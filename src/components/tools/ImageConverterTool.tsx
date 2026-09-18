@@ -1,0 +1,255 @@
+import React, { useState } from 'react';
+import JSZip from 'jszip';
+import { Download, FileArchive, Trash2, Upload } from 'lucide-react';
+import { useLanguage } from '../../context/LanguageContext';
+
+interface ConvertItem {
+  id: string;
+  file: File;
+  previewUrl: string;
+  targetFormat: string;
+  convertedBlob: Blob | null;
+  status: 'idle' | 'converting' | 'done';
+}
+
+interface ImageConverterToolProps {
+  onShowToast: (msg: string) => void;
+}
+
+export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowToast }) => {
+  const { t } = useLanguage();
+  const [items, setItems] = useState<ConvertItem[]>([]);
+  const [globalTarget, setGlobalTarget] = useState<'image/png' | 'image/jpeg' | 'image/webp' | 'image/bmp'>('image/png');
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const handleFilesAdded = (files: File[]) => {
+    const newItems: ConvertItem[] = files
+      .filter(f => f.type.startsWith('image/'))
+      .map(file => ({
+        id: Math.random().toString(36).substring(2, 9),
+        file,
+        previewUrl: URL.createObjectURL(file),
+        targetFormat: globalTarget,
+        convertedBlob: null,
+        status: 'idle'
+      }));
+
+    if (newItems.length === 0) {
+      onShowToast('Please select valid image files');
+      return;
+    }
+
+    setItems(prev => [...prev, ...newItems]);
+    onShowToast(`Added ${newItems.length} image(s)`);
+  };
+
+  const convertSingle = async (item: ConvertItem): Promise<ConvertItem> => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) {
+          resolve({ ...item, status: 'done' });
+          return;
+        }
+
+        // Fill white background for non-alpha formats like JPEG
+        if (item.targetFormat === 'image/jpeg' || item.targetFormat === 'image/bmp') {
+          ctx.fillStyle = '#FFFFFF';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+        ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob(
+          (blob) => {
+            resolve({
+              ...item,
+              convertedBlob: blob,
+              status: 'done'
+            });
+          },
+          item.targetFormat,
+          0.92
+        );
+      };
+      img.onerror = () => resolve({ ...item, status: 'done' });
+      img.src = item.previewUrl;
+    });
+  };
+
+  const convertAll = async () => {
+    if (items.length === 0) return;
+    setIsProcessing(true);
+    const updated = await Promise.all(
+      items.map(item => convertSingle({ ...item, targetFormat: globalTarget }))
+    );
+    setItems(updated);
+    setIsProcessing(false);
+    onShowToast('Conversion finished!');
+  };
+
+  const downloadAllZip = async () => {
+    const readyItems = items.filter(i => i.convertedBlob);
+    if (readyItems.length === 0) {
+      onShowToast('Convert images first');
+      return;
+    }
+
+    const zip = new JSZip();
+    readyItems.forEach((item, index) => {
+      let ext = '.png';
+      if (item.targetFormat === 'image/jpeg') ext = '.jpg';
+      if (item.targetFormat === 'image/webp') ext = '.webp';
+      if (item.targetFormat === 'image/bmp') ext = '.bmp';
+
+      const cleanName = item.file.name.substring(0, item.file.name.lastIndexOf('.')) || item.file.name;
+      zip.file(`${cleanName}-converted-${index + 1}${ext}`, item.convertedBlob!);
+    });
+
+    const content = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(content);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'converted-images.zip';
+    a.click();
+    URL.revokeObjectURL(url);
+    onShowToast('Downloaded converted ZIP!');
+  };
+
+  const formatSize = (bytes: number) => {
+    if (bytes === 0) return '0 B';
+    const k = 1024;
+    const sizes = ['B', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+  };
+
+  return (
+    <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
+      <div className="text-center max-w-xl mx-auto mb-6">
+        <span className="text-4xl mb-2 inline-block">🔄</span>
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
+          {t('imageConverterTitle', 'Image Format Converter')}
+        </h1>
+        <p className="text-sm text-gray-500 dark:text-slate-400 mt-2">
+          {t('converterSubtitle', 'Convert PNG, JPG, WebP, GIF, and BMP files in batch mode. Fast, private, lossless quality output.')}
+        </p>
+      </div>
+
+      {items.length === 0 ? (
+        <label className="flex flex-col items-center justify-center p-10 border-2 border-dashed border-indigo-300/60 dark:border-indigo-900/40 rounded-2xl hover:border-indigo-500 cursor-pointer glass-card transition-all text-center">
+          <Upload className="w-12 h-12 text-indigo-500 mb-3 animate-pulse" />
+          <span className="text-sm font-bold text-gray-900 dark:text-white">
+            {t('dropImagesConvert', 'Drop image files here to convert')}
+          </span>
+          <span className="text-xs text-gray-500 dark:text-slate-400 mt-1">
+            {t('supportsFormats', 'Supports PNG, JPG, WebP, BMP, GIF, AVIF')}
+          </span>
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            className="hidden"
+            onChange={(e) => e.target.files && handleFilesAdded(Array.from(e.target.files))}
+          />
+        </label>
+      ) : null}
+
+      {items.length > 0 && (
+        <div className="p-5 rounded-2xl glass-card flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <span className="text-xs font-bold text-gray-700 dark:text-slate-300 uppercase">
+              {t('convertAllTo', 'Convert All To:')}
+            </span>
+            <select
+              value={globalTarget}
+              onChange={(e) => setGlobalTarget(e.target.value as any)}
+              className="p-2.5 rounded-xl glass-input text-xs font-bold text-gray-800 dark:text-slate-200 cursor-pointer"
+            >
+              <option value="image/png">PNG (.png)</option>
+              <option value="image/jpeg">JPG / JPEG (.jpg)</option>
+              <option value="image/webp">WebP (.webp)</option>
+              <option value="image/bmp">BMP (.bmp)</option>
+            </select>
+          </div>
+
+          <div className="flex gap-2 w-full sm:w-auto">
+            <button
+              onClick={convertAll}
+              disabled={isProcessing}
+              className="flex-1 sm:flex-initial py-2.5 px-5 bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-amber-500/20 transition-all disabled:opacity-50 cursor-pointer"
+            >
+              {isProcessing ? t('processing', 'Converting...') : t('convertImages', 'Convert Images')}
+            </button>
+            <button
+              onClick={downloadAllZip}
+              disabled={!items.some(i => i.convertedBlob)}
+              className="py-2.5 px-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-extrabold text-xs sm:text-sm rounded-xl shadow-md transition-all disabled:opacity-40 flex items-center gap-2 cursor-pointer"
+            >
+              <FileArchive className="w-4 h-4" /> {t('downloadAllZip', 'Download ZIP')}
+            </button>
+          </div>
+        </div>
+      )}
+
+      {items.length > 0 && (
+        <div className="space-y-3">
+          {items.map(item => (
+            <div
+              key={item.id}
+              className="flex items-center gap-4 p-3.5 rounded-2xl glass-card"
+            >
+              <img
+                src={item.previewUrl}
+                alt={item.file.name}
+                className="w-12 h-12 object-cover rounded-xl bg-gray-200 dark:bg-slate-700 border border-white/40 dark:border-white/10"
+              />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
+                  {item.file.name}
+                </p>
+                <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">
+                  Size: <strong className="text-gray-700 dark:text-slate-300 font-semibold">{formatSize(item.file.size)}</strong> • Target: {globalTarget.replace('image/', '').toUpperCase()}
+                </p>
+              </div>
+
+              {item.convertedBlob ? (
+                <button
+                  onClick={() => {
+                    let ext = '.png';
+                    if (item.targetFormat === 'image/jpeg') ext = '.jpg';
+                    if (item.targetFormat === 'image/webp') ext = '.webp';
+                    if (item.targetFormat === 'image/bmp') ext = '.bmp';
+
+                    const cleanName = item.file.name.substring(0, item.file.name.lastIndexOf('.')) || item.file.name;
+                    const url = URL.createObjectURL(item.convertedBlob!);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `${cleanName}-converted${ext}`;
+                    a.click();
+                    URL.revokeObjectURL(url);
+                  }}
+                  className="p-2.5 bg-emerald-500 text-white rounded-xl hover:bg-emerald-600 transition-colors shadow-xs cursor-pointer"
+                  title="Download"
+                >
+                  <Download className="w-4 h-4" />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setItems(prev => prev.filter(i => i.id !== item.id))}
+                  className="p-2.5 text-gray-400 hover:text-rose-500 rounded-xl transition-colors cursor-pointer"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};

@@ -1,0 +1,5 @@
+# Zubware Search Engine & AI Crawler Policy
+User-agent: *
+Allow: /
+
+Sitemap: https://zubware.com/sitemap.xml

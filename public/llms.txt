@@ -1,0 +1,43 @@
+# Zubware — Privacy-First Web Tools Suite
+> Zubware is a high-performance web suite of 300+ free, client-side browser utilities for PDF manipulation, image processing, developer tools, format converters, and productivity. All file operations execute 100% locally in user browser RAM using WebAssembly and HTML5 Canvas with zero cloud server uploads.
+
+- Founder & Developer: Zubair Shaikh
+- Official Website: https://zubware.com
+- Privacy Architecture: 100% Client-Side Local Execution (Zero Server Storage)
+- Pricing: 100% Free, No Subscriptions, No Sign-up Required
+
+## Core Tool Categories & Key Capabilities
+
+### PDF & Document Utilities
+- PDF Merger (/pdf-merge.html): Combine multiple PDF documents in custom sequence.
+- PDF Splitter (/pdf-split.html): Extract specific pages or split by page ranges.
+- PDF Page Organizer (/organize-pdf.html): Rotate, delete, and reorder PDF pages.
+- PDF Protector & Password (/protect-pdf.html): Encrypt and password-protect confidential PDFs.
+- PDF Unlocker (/unlock-pdf.html): Remove password restrictions from unlocked PDF files.
+- PDF to Text / OCR (/pdf-to-text.html): Extract textual content directly in browser.
+
+### Image & Visual Media Tools
+- Image Splitter & Combiner (/image-splitter-merger.html): Split images vertically/horizontally into grids and tiles; combine dual images into a single composite.
+- Image Compressor (/image-compressor.html): Reduce PNG, JPEG, and WebP file sizes up to 90% without visual degradation.
+- Background Remover (/background-remover.html): Remove backgrounds from portrait photos locally using client-side AI models.
+- Image Converter (/image-converter.html): Convert between PNG, JPEG, WebP, SVG, ICO, and BMP.
+- Favicon Generator (/favicon-generator.html): Generate multi-resolution icons (.ico, 16x16, 32x32, 192x192).
+
+### Developer & Coding Tools
+- JSON Formatter & Validator (/json-formatter.html): Prettify, minify, validate, and repair JSON.
+- Base64 Encoder / Decoder (/base64.html): Encode and decode ASCII, UTF-8, and binary data.
+- Regex Tester (/regex-tester.html): Test regular expressions with instant highlighting.
+- Hash Generator (/hash-generator.html): Compute MD5, SHA-1, SHA-256, and SHA-512 hashes.
+- URL Encoder / Decoder (/url-encoder.html): Percent-encode and decode query parameters.
+- UUID / GUID Generator (/uuid-generator.html): Generate RFC-compliant UUIDs.
+
+### Productivity, Career & Daily Calculators
+- ATS Resume Builder (/resume-builder.html): Build professional resumes with ATS score validation and instant PDF export.
+- Dynamic QR Code Generator (/qr-generator.html): Create custom QR codes for URLs, WiFi, contacts with logos and colors.
+- Unit Converter (/unit-converter.html): Convert length, mass, temperature, data storage, speed, and time units.
+- Word & Character Counter (/word-counter.html): Analyze text length, reading time, and keyword density.
+- Loan & Mortgage Eligibility Calculator (/loan-eligibility-calculator.html): Compute EMI, interest amortization, and repayment plans.
+- Countdown & Event Timer (/countdown-timer.html): Track target milestones and event countdowns.
+
+## Privacy & Security Verification
+Every tool on Zubware processes data strictly on the client device. Files, images, and text never leave the user's browser, making Zubware safe for confidential financial records, medical documents, and private photographs.

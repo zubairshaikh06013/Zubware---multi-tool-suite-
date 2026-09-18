@@ -1,0 +1,28 @@
+# Cloudflare Pages Headers Configuration for Zubware (zubware.com)
+
+# Default security & performance headers
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Long-term immutable caching for hashed production assets
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Freshness revalidation for static HTML pages to ensure updates propagate instantly
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# XML Sitemap and Robots
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600, must-revalidate

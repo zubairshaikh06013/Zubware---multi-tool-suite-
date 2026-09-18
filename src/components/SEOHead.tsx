@@ -1,0 +1,220 @@
+import React, { useEffect } from 'react';
+import { ToolMeta, FAQItem, BreadcrumbItem } from '../types';
+
+export interface HowToStep {
+  name: string;
+  text: string;
+}
+
+export interface HowToSchema {
+  name: string;
+  description: string;
+  steps: HowToStep[];
+}
+
+interface SEOHeadProps {
+  title: string;
+  description: string;
+  canonicalPath: string;
+  robots?: string;
+  ogType?: string;
+  ogImage?: string;
+  lang?: string;
+  toolMeta?: ToolMeta;
+  faqs?: FAQItem[];
+  breadcrumbs?: BreadcrumbItem[];
+  howTo?: HowToSchema;
+}
+
+export const SEOHead: React.FC<SEOHeadProps> = ({
+  title,
+  description,
+  canonicalPath,
+  robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+  ogType = 'website',
+  ogImage,
+  lang = 'en',
+  toolMeta,
+  faqs = [],
+  breadcrumbs = [],
+  howTo
+}) => {
+  const domain = 'https://zubware.com';
+  const cleanPath = canonicalPath === '/' ? '' : (canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`);
+  const fullUrl = `${domain}${cleanPath}`;
+  const defaultOgImage = `${domain}/icon.svg`;
+  const imageToUse = ogImage || defaultOgImage;
+
+  useEffect(() => {
+    // 1. Language attribute
+    document.documentElement.lang = lang;
+
+    // 2. Title
+    document.title = title;
+
+    // Helper to set meta tag
+    const setMeta = (nameAttr: string, attrVal: string, content: string) => {
+      let el = document.querySelector(`meta[${nameAttr}="${attrVal}"]`);
+      if (!el) {
+        el = document.createElement('meta');
+        el.setAttribute(nameAttr, attrVal);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('content', content);
+    };
+
+    // Helper for link rel
+    const setLink = (rel: string, href: string) => {
+      let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
+      if (!el) {
+        el = document.createElement('link');
+        el.setAttribute('rel', rel);
+        document.head.appendChild(el);
+      }
+      el.setAttribute('href', href);
+    };
+
+    // Meta directives
+    setMeta('name', 'description', description);
+    if (toolMeta?.tags && toolMeta.tags.length > 0) {
+      setMeta('name', 'keywords', toolMeta.tags.join(', '));
+    }
+    setMeta('name', 'robots', robots);
+    setMeta('name', 'googlebot', robots);
+    // Google Search Console verification token for Zubware
+    // To set your Google Search Console token, define VITE_GOOGLE_SITE_VERIFICATION in .env or provide it directly
+    const googleSiteVerification = (typeof import.meta !== 'undefined' && import.meta.env?.VITE_GOOGLE_SITE_VERIFICATION) || '';
+    if (googleSiteVerification) {
+      setMeta('name', 'google-site-verification', googleSiteVerification);
+    }
+
+    // Canonical URL
+    setLink('canonical', fullUrl);
+
+    // OpenGraph
+    setMeta('property', 'og:site_name', 'Zubware');
+    setMeta('property', 'og:title', title);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:url', fullUrl);
+    setMeta('property', 'og:type', ogType);
+    setMeta('property', 'og:image', imageToUse);
+
+    // Twitter
+    setMeta('name', 'twitter:card', 'summary_large_image');
+    setMeta('name', 'twitter:title', title);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image', imageToUse);
+
+    // JSON-LD Schemas
+    const schemas: object[] = [
+      // WebSite + SearchAction
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        'name': 'Zubware',
+        'url': domain,
+        'potentialAction': {
+          '@type': 'SearchAction',
+          'target': `${domain}/?search={search_term_string}`,
+          'query-input': 'required name=search_term_string'
+        }
+      },
+      // Organization Entity
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        'name': 'Zubware',
+        'url': domain,
+        'logo': `${domain}/icon.svg`,
+        'description': 'Zubware is a multi-tool suite offering 300+ free online client-side tools for PDF, images, developers, and creators. All Your Tools. A Smarter You.',
+        'sameAs': ['https://zubware.com']
+      }
+    ];
+
+    // Tool SoftwareApplication / WebApplication Schema
+    if (toolMeta) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        'name': toolMeta.title,
+        'url': fullUrl,
+        'operatingSystem': 'All',
+        'applicationCategory': toolMeta.category === '🖼️ Image Tools' ? 'MultimediaApplication' : (toolMeta.category === '📄 PDF Tools' ? 'PDFApplication' : 'UtilitiesApplication'),
+        'browserRequirements': 'Requires HTML5 and JavaScript support',
+        'offers': {
+          '@type': 'Offer',
+          'price': '0',
+          'priceCurrency': 'USD'
+        },
+        'featureList': toolMeta.features?.join(', ') || '100% Client-Side, Zero Server Uploads, Free',
+        'keywords': toolMeta.tags?.join(', ') || '',
+        'description': toolMeta.description
+      });
+    }
+
+    // FAQ Schema
+    if (faqs.length > 0) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        'mainEntity': faqs.map(faq => ({
+          '@type': 'Question',
+          'name': faq.question,
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': faq.answer
+          }
+        }))
+      });
+    }
+
+    // HowTo Schema
+    if (howTo && howTo.steps.length > 0) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'HowTo',
+        'name': howTo.name,
+        'description': howTo.description,
+        'step': howTo.steps.map((st, idx) => ({
+          '@type': 'HowToStep',
+          'position': idx + 1,
+          'name': st.name,
+          'itemListElement': [
+            {
+              '@type': 'HowToDirection',
+              'text': st.text
+            }
+          ]
+        }))
+      });
+    }
+
+    // Breadcrumb Schema
+    if (breadcrumbs.length > 0) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        'itemListElement': breadcrumbs.map((crumb, idx) => ({
+          '@type': 'ListItem',
+          'position': idx + 1,
+          'name': crumb.label,
+          'item': crumb.path ? `${domain}${crumb.path.startsWith('/') ? crumb.path : '/' + crumb.path}` : fullUrl
+        }))
+      });
+    }
+
+    // Inject Script JSON-LD
+    let scriptEl = document.getElementById('json-ld-schema');
+    if (!scriptEl) {
+      scriptEl = document.createElement('script');
+      scriptEl.id = 'json-ld-schema';
+      scriptEl.setAttribute('type', 'application/ld+json');
+      document.head.appendChild(scriptEl);
+    }
+    scriptEl.textContent = JSON.stringify(schemas);
+
+  }, [title, description, robots, ogType, imageToUse, lang, fullUrl, toolMeta, faqs, breadcrumbs, howTo]);
+
+  return null;
+};
+

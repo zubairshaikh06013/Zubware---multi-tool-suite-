@@ -1,0 +1,3 @@
+# Cloudflare Pages Redirects
+/splitdrop/* /:splat 301
+/Splitdrop/* /:splat 301

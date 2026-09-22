@@ -31,7 +31,6 @@ export function getQrTargetUrl(data: ResumeData): string | null {
     qrCode?.url &&
     qrCode.url.trim().length > 0 &&
     !qrCode.url.includes('zubware.com') &&
-    !qrCode.url.includes('splitdrop.com') &&
     !qrCode.url.includes('example.com')
   ) {
     return qrCode.url.trim();

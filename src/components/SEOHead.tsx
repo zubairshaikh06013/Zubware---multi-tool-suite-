@@ -42,7 +42,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   const domain = 'https://zubware.com';
   const cleanPath = canonicalPath === '/' ? '' : (canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`);
   const fullUrl = `${domain}${cleanPath}`;
-  const defaultOgImage = `${domain}/icon.svg`;
+  const defaultOgImage = `${domain}/icon.png`;
   const imageToUse = ogImage || defaultOgImage;
 
   useEffect(() => {
@@ -68,7 +68,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
       if (!el) {
         el = document.createElement('link');
-        el.setAttribute('rel', rel);
+        el.setAttribute(rel, rel);
         document.head.appendChild(el);
       }
       el.setAttribute('href', href);
@@ -107,17 +107,12 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // JSON-LD Schemas
     const schemas: object[] = [
-      // WebSite + SearchAction
+      // WebSite (Clean site entity)
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         'name': 'Zubware',
-        'url': domain,
-        'potentialAction': {
-          '@type': 'SearchAction',
-          'target': `${domain}/?search={search_term_string}`,
-          'query-input': 'required name=search_term_string'
-        }
+        'url': domain
       },
       // Organization Entity
       {
@@ -125,9 +120,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         '@type': 'Organization',
         'name': 'Zubware',
         'url': domain,
-        'logo': `${domain}/icon.svg`,
-        'description': 'Zubware is a multi-tool suite offering 300+ free online client-side tools for PDF, images, developers, and creators.',
-        'sameAs': ['https://zubware.com']
+        'logo': `${domain}/icon.png`,
+        'description': 'Zubware is a multi-tool suite offering 300+ free online browser-based tools for PDF, images, developers, and productivity.'
       }
     ];
 
@@ -146,7 +140,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
           'price': '0',
           'priceCurrency': 'USD'
         },
-        'featureList': toolMeta.features?.join(', ') || '100% Client-Side, Zero Server Uploads, Free',
+        'featureList': toolMeta.features?.join(', ') || 'Browser-Based Processing, Free',
         'keywords': toolMeta.tags?.join(', ') || '',
         'description': toolMeta.description
       });

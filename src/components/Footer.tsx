@@ -23,10 +23,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
             <div>
               <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-                {t('zeroServerUploads', '100% Client-Side Privacy')}
+                {t('zeroServerUploads', 'Client-Side Privacy')}
               </h4>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {t('zeroServerUploadsDesc', 'Your images and PDFs are processed entirely in your browser. Nothing is ever uploaded to external servers.')}
+                {t('zeroServerUploadsDesc', 'Processing happens locally in your browser for offline tools; files are not uploaded to Zubware servers.')}
               </p>
             </div>
           </div>
@@ -37,10 +37,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
             <div>
               <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-                {t('instantSpeed', 'Instant Processing Speed')}
+                {t('instantSpeed', 'Fast Processing')}
               </h4>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {t('instantSpeedDesc', 'No queue times or upload bottlenecks. Experience sub-second image splitting, conversion, and compression.')}
+                {t('instantSpeedDesc', 'Optimized browser-based execution using modern WebAssembly and Canvas APIs without upload bottlenecks.')}
               </p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              300+ free online tools for creators, developers, designers, and students with 100% private browser processing.
+              300+ free online tools for creators, developers, designers, and students with private browser processing.
             </p>
           </div>
 
@@ -87,7 +87,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h5>
             <ul className="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
               <li>
-                <a href={getLinkUrl('/')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <a href={getLinkUrl('/image-splitter-merger.html')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/image-splitter-merger.html')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   Image Splitter & Combiner
                 </a>
               </li>

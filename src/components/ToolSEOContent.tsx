@@ -16,6 +16,13 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
+  const NETWORK_DEPENDENT_TOOL_IDS = new Set([
+    'api-request-builder',
+    'website-downloader',
+    'http-header-viewer'
+  ]);
+  const isNetworkTool = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
+
   // Generate dynamic FAQs if not provided on tool object
   const defaultFaqs: FAQItem[] = [
     {
@@ -23,8 +30,10 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
       answer: `Yes, ${tool.title} is 100% free with unlimited usage. There are no watermarks, hidden subscriptions, or registration requirements.`
     },
     {
-      question: `Are my files uploaded to any server when using ${tool.navTitle}?`,
-      answer: `No. ${tool.title} operates entirely inside your web browser using HTML5 and modern WebAssembly. Your confidential files never leave your device memory.`
+      question: `How does ${tool.navTitle} handle data and privacy?`,
+      answer: isNetworkTool
+        ? `${tool.title} communicates directly with the specified external endpoints from your browser. Zubware does not store your payload data or requests on our servers.`
+        : `Processing happens locally in your browser for this tool; files and data are not uploaded to Zubware servers.`
     },
     {
       question: `Which file formats and devices are supported by ${tool.navTitle}?`,
@@ -32,11 +41,42 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     },
     {
       question: `How fast is processing with ${tool.navTitle}?`,
-      answer: `Since processing is performed locally on your device's CPU/GPU, execution is sub-second and instant without network lag or queue delays.`
+      answer: `Processing is performed in your browser on your device's engine, eliminating server upload queues and latency.`
     }
   ];
 
   const faqsToUse = tool.faq && tool.faq.length > 0 ? tool.faq : defaultFaqs;
+
+  const isFileTool =
+    tool.category.includes('PDF') ||
+    tool.category.includes('Image') ||
+    tool.category.includes('Video') ||
+    tool.category.includes('Audio') ||
+    (tool.features && tool.features.some(f => /upload|file|image|pdf|video|audio/i.test(f)));
+
+  const isCalcOrConverter =
+    tool.category.includes('Calculator') ||
+    tool.category.includes('Converter') ||
+    tool.category.includes('Financial') ||
+    /calculator|converter/i.test(tool.title);
+
+  const howToSteps = isFileTool
+    ? [
+        { title: 'Select or Drag Files', desc: `Open ${tool.title} in your browser and select or drop your files into the workspace.` },
+        { title: 'Configure Settings', desc: `Adjust parameters, formats, dimensions, compression levels, or custom preferences.` },
+        { title: 'Export & Download', desc: `Generate your processed output directly in your browser memory and save it to your device.` }
+      ]
+    : isCalcOrConverter
+    ? [
+        { title: 'Enter Your Values', desc: `Input your starting numbers, amounts, or parameters into ${tool.title}.` },
+        { title: 'Select Options', desc: `Choose desired units, calculation modes, or conversion preferences.` },
+        { title: 'View & Copy Results', desc: `Inspect real-time calculated results computed instantly in your browser.` }
+      ]
+    : [
+        { title: 'Input or Configure Data', desc: `Enter or paste your text, code, or parameters into ${tool.title}.` },
+        { title: 'Process or Generate', desc: `Execute the tool with your selected configuration options.` },
+        { title: 'Copy or Save Output', desc: `Copy the formatted output or save the resulting file directly to your device.` }
+      ];
 
   // Filter related tools in same category excluding current
   const relatedTools = allTools
@@ -80,14 +120,27 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
           <div className="space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" /> Privacy & Local Execution
+              <ShieldCheck className="w-4 h-4 text-emerald-500" /> Privacy & Execution Architecture
             </h3>
-            <p>
-              Unlike legacy online convertors that upload confidential documents and media to third-party cloud servers, {tool.navTitle} runs 100% locally in client-side memory using modern JavaScript and WebAssembly engines.
-            </p>
-            <p>
-              This architecture guarantees absolute privacy protection, zero data transmission risk, and instant performance unconstrained by upload bandwidth limits.
-            </p>
+            {isNetworkTool ? (
+              <>
+                <p>
+                  {tool.navTitle} connects directly from your browser to the specified external endpoint.
+                </p>
+                <p>
+                  Your requests and payloads are not recorded, intercepted, or stored on Zubware servers.
+                </p>
+              </>
+            ) : (
+              <>
+                <p>
+                  Processing happens locally in your browser for this tool; files and inputs are not uploaded to Zubware servers.
+                </p>
+                <p>
+                  Execution is handled directly by your browser engine using modern Web APIs, avoiding server upload bottlenecks and latency.
+                </p>
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -105,7 +158,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           </div>
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Execution Engine</span>
-            <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-1 block">100% Client Browser</span>
+            <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-1 block">
+              {isNetworkTool ? 'Browser (Direct API)' : 'Client Browser'}
+            </span>
           </div>
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Cost / License</span>
@@ -113,7 +168,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           </div>
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Server Uploads</span>
-            <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1 block">Zero (0 Bytes)</span>
+            <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1 block">
+              {isNetworkTool ? 'Direct to API Host' : 'None (Browser-Side)'}
+            </span>
           </div>
         </div>
       </section>
@@ -124,27 +181,17 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           How to Use {tool.navTitle}
         </h2>
         <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <li className="glass-card p-6 rounded-2xl relative">
-            <span className="w-8 h-8 rounded-full bg-indigo-600 text-white font-black text-sm flex items-center justify-center mb-4">1</span>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Select or Drag Files</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Open {tool.title} in your browser and upload or drag-and-drop your target files into the interactive work area.
-            </p>
-          </li>
-          <li className="glass-card p-6 rounded-2xl relative">
-            <span className="w-8 h-8 rounded-full bg-indigo-600 text-white font-black text-sm flex items-center justify-center mb-4">2</span>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Configure Settings</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Adjust parameters, formats, dimensions, compression levels, or custom preferences using real-time canvas controls.
-            </p>
-          </li>
-          <li className="glass-card p-6 rounded-2xl relative">
-            <span className="w-8 h-8 rounded-full bg-indigo-600 text-white font-black text-sm flex items-center justify-center mb-4">3</span>
-            <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">Export & Download</h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Click export to generate your processed file instantly in your local browser memory and save it directly to your drive.
-            </p>
-          </li>
+          {howToSteps.map((step, idx) => (
+            <li key={idx} className="glass-card p-6 rounded-2xl relative">
+              <span className="w-8 h-8 rounded-full bg-indigo-600 text-white font-black text-sm flex items-center justify-center mb-4">
+                {idx + 1}
+              </span>
+              <h3 className="text-base font-bold text-slate-900 dark:text-white mb-2">{step.title}</h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                {step.desc}
+              </p>
+            </li>
+          ))}
         </ol>
       </section>
 

@@ -946,14 +946,39 @@ export default function App() {
               { label: activeTool.navTitle }
             ];
 
+            const isFileTool =
+              activeTool.category.includes('PDF') ||
+              activeTool.category.includes('Image') ||
+              activeTool.category.includes('Video') ||
+              activeTool.category.includes('Audio') ||
+              (activeTool.features && activeTool.features.some(f => /upload|file|image|pdf|video|audio/i.test(f)));
+
+            const isCalcOrConverter =
+              activeTool.category.includes('Calculator') ||
+              activeTool.category.includes('Converter') ||
+              activeTool.category.includes('Financial') ||
+              /calculator|converter/i.test(activeTool.title);
+
             const toolHowToSchema = {
               name: `How to Use ${activeTool.navTitle}`,
               description: activeTool.description,
-              steps: [
-                { name: 'Upload Files', text: `Upload or drag-and-drop your files into ${activeTool.title}.` },
-                { name: 'Configure Settings', text: `Adjust parameters or preferences for ${activeTool.navTitle}.` },
-                { name: 'Export & Download', text: `Export your processed output directly in your browser memory.` }
-              ]
+              steps: isFileTool
+                ? [
+                    { name: 'Select or Upload Files', text: `Open ${activeTool.title} in your browser and select or drop your files into the workspace.` },
+                    { name: 'Configure Options', text: `Adjust options, parameters, or compression settings for ${activeTool.navTitle}.` },
+                    { name: 'Process & Download', text: `Generate and download your processed result directly in your browser.` }
+                  ]
+                : isCalcOrConverter
+                ? [
+                    { name: 'Enter Your Values', text: `Input your starting numbers, values, or parameters into ${activeTool.title}.` },
+                    { name: 'Select Calculation Settings', text: `Choose desired units, options, or calculation modes.` },
+                    { name: 'View or Copy Results', text: `Get instant, calculated results computed directly in your browser.` }
+                  ]
+                : [
+                    { name: 'Input or Configure Data', text: `Enter your text, code, or parameters into ${activeTool.title}.` },
+                    { name: 'Process or Generate', text: `Execute the tool with your selected configuration options.` },
+                    { name: 'Copy or Save Output', text: `Copy the formatted output or download the resulting file.` }
+                  ]
             };
 
             return (

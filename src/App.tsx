@@ -728,7 +728,7 @@ export default function App() {
           {!isStaticPage && !activeTool && (currentPath === '/' || currentPath === '/index.html' || currentPath === '') && (
             <>
               <SEOHead
-                title="Zubware — All Your Tools. A Smarter You. Free Online Multi-Tool Suite"
+                title="Zubware — Free Online Multi-Tool Suite"
                 description="Explore 300+ free online tools for PDF, images, video, developers, calculators, and productivity. 100% private, instant browser processing with zero server uploads."
                 canonicalPath="/"
                 faqs={HOMEPAGE_FAQS}

@@ -3,7 +3,7 @@ import { Copy, Check, Download, Braces, Trash2, Upload, AlertCircle, CheckCircle
 
 export const JsonFormatterTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [jsonInput, setJsonInput] = useState(
-    `{"name":"SplitDrop","version":"2.0.0","tools":["Word Counter","JSON Formatter","Markdown Editor"],"settings":{"theme":"dark","offline":true}}`
+    `{"name":"Zubware","version":"2.0.0","tools":["Word Counter","JSON Formatter","Markdown Editor"],"settings":{"theme":"dark","offline":true}}`
   );
   const [indent, setIndent] = useState<number | string>(2);
   const [copied, setCopied] = useState(false);

@@ -3,7 +3,7 @@ import { Copy, Check, Download, Trash2, Upload, Sparkles, Sliders } from 'lucide
 
 export const TextCleanerTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState(
-    `   <h1>Welcome to SplitDrop Text Cleaner!</h1>  \n\tThis tool    cleans messy text.\n\n\n\t\t- Removes extra spaces   and tabs.\n- Strips <p>HTML tags</p> if needed.\n\t- Normalizes line breaks.\n  `
+    `   <h1>Welcome to Zubware Text Cleaner!</h1>  \n\tThis tool    cleans messy text.\n\n\n\t\t- Removes extra spaces   and tabs.\n- Strips <p>HTML tags</p> if needed.\n\t- Normalizes line breaks.\n  `
   );
 
   const [removeExtraSpaces, setRemoveExtraSpaces] = useState(true);

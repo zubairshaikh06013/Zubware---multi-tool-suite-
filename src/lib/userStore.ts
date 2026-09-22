@@ -168,7 +168,7 @@ export function exportFeedbackJSON() {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
-  a.download = `splitdrop_feedback_${new Date().toISOString().slice(0, 10)}.json`;
+  a.download = `zubware_feedback_${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
 }

@@ -485,7 +485,7 @@ export const EditPdfTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ 
       {/* Privacy Notice */}
       <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200/60 dark:border-emerald-800/40">
         <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-        <span>Files are processed locally in your browser and are not uploaded to SplitDrop&apos;s servers.</span>
+        <span>Files are processed locally in your browser and are not uploaded to Zubware&apos;s servers.</span>
       </div>
 
       {/* Honest Capability Disclaimer */}

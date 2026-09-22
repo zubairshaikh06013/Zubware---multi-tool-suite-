@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FileText, Copy, Check, Download, Trash2, Upload, Sparkles, Eye, Code2 } from 'lucide-react';
 
 export function MarkdownToHtmlTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
-  const sampleMarkdown = `# SplitDrop Markdown Guide
+  const sampleMarkdown = `# Zubware Markdown Guide
 
 Welcome to the **Markdown to HTML Converter**!
 

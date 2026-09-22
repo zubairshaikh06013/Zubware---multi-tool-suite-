@@ -7,7 +7,7 @@ interface RemoveLineBreaksToolProps {
 
 export const RemoveLineBreaksTool: React.FC<RemoveLineBreaksToolProps> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState<string>(
-    `SplitDrop makes it easy\nto format and clean\nline breaks from any text.\n\nParagraphs can be preserved\nwith an intelligent double break option.`
+    `Zubware makes it easy\nto format and clean\nline breaks from any text.\n\nParagraphs can be preserved\nwith an intelligent double break option.`
   );
   const [replaceMode, setReplaceMode] = useState<'space' | 'none' | 'custom'>('space');
   const [customSeparator, setCustomSeparator] = useState<string>(', ');

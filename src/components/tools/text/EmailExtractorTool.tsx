@@ -7,7 +7,7 @@ interface EmailExtractorToolProps {
 
 export const EmailExtractorTool: React.FC<EmailExtractorToolProps> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState<string>(
-    `Contact our customer support at support@example.com or reach out directly to hello@splitdrop.tools.\nFor press inquiries: press@example.org and media@splitdrop.tools.\nDuplicate email test: support@example.com`
+    `Contact our customer support at support@example.com or reach out directly to hello@zubware.com.\nFor press inquiries: press@example.org and media@zubware.com.\nDuplicate email test: support@example.com`
   );
   const [removeDuplicates, setRemoveDuplicates] = useState<boolean>(true);
   const [sortAlphabetically, setSortAlphabetically] = useState<boolean>(false);

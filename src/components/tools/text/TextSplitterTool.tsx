@@ -8,7 +8,7 @@ interface TextSplitterToolProps {
 export const TextSplitterTool: React.FC<TextSplitterToolProps> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState<string>(
     `The quick brown fox jumps over the lazy dog.
-SplitDrop tools process all your text locally in your browser.
+Zubware tools process all your text locally in your browser.
 No data is ever sent to any remote server.
 Enjoy instant speeds and complete privacy with client-side processing.`
   );

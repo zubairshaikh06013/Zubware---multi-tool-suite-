@@ -14,7 +14,7 @@ export const CalendarNotesTool: React.FC<CalendarNotesToolProps> = ({ onShowToas
       if (saved) return JSON.parse(saved);
     } catch {}
     return {
-      [new Date().toISOString().split('T')[0]]: 'Check out SplitDrop new security suite tools!'
+      [new Date().toISOString().split('T')[0]]: 'Check out Zubware new security suite tools!'
     };
   });
 

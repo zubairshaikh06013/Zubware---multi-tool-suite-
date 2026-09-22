@@ -61,7 +61,7 @@ export const PromptExportActions: React.FC<PromptExportActionsProps> = ({
 
   const handleDownloadMd = () => {
     if (!promptText.trim()) return;
-    const mdContent = `# ${title}\n\n\`\`\`markdown\n${promptText}\n\`\`\`\n\n*Generated with SplitDrop AI Prompt Builder Suite*`;
+    const mdContent = `# ${title}\n\n\`\`\`markdown\n${promptText}\n\`\`\`\n\n*Generated with Zubware AI Prompt Builder Suite*`;
     const blob = new Blob([mdContent], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

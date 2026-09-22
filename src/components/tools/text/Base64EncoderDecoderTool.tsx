@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Copy, Check, Binary, Download, Trash2, Upload } from 'lucide-react';
 
 export const Base64EncoderDecoderTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
-  const [inputText, setInputText] = useState('SplitDrop Local Text Tools Suite 2026');
+  const [inputText, setInputText] = useState('Zubware Local Text Tools Suite 2026');
   const [mode, setMode] = useState<'encode' | 'decode'>('encode');
   const [copied, setCopied] = useState(false);
 

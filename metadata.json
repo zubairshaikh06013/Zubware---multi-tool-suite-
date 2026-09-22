@@ -1,6 +1,6 @@
 {
   "name": "Zubware - Multi-Tool Suite",
-  "description": "All Your Tools. A Smarter You. Zubware provides 300+ free online tools for PDF, images, developers, creators, calculators, and productivity with 100% client-side privacy.",
+  "description": "Zubware provides 300+ free online tools for PDF, images, developers, creators, calculators, and productivity with 100% client-side privacy.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

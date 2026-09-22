@@ -475,7 +475,7 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
                       Increase Strategy: Harmless Standard PDF Data Padding
                     </p>
                     <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                      SplitDrop will expand your PDF by adding standard-compliant non-rendering data stream structures.
+                      Zubware will expand your PDF by adding standard-compliant non-rendering data stream structures.
                       Your document text, vector shapes, fonts, page count, and layout remain <strong>100% intact and untouched</strong>.
                     </p>
                   </div>
@@ -491,7 +491,7 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
                         Reduction Strategy: Stream & Content Optimization
                       </p>
                       <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-                        SplitDrop optimizes document stream structures and applies balanced compression. If a PDF is already compressed, it safely preserves your original without degrading quality.
+                        Zubware optimizes document stream structures and applies balanced compression. If a PDF is already compressed, it safely preserves your original without degrading quality.
                       </p>
                     </div>
                   </div>

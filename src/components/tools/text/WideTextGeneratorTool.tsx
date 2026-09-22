@@ -136,7 +136,7 @@ export const WideTextGeneratorTool: React.FC<WideTextGeneratorToolProps> = ({ on
           {/* Quick presets */}
           <div className="flex flex-wrap items-center gap-2 pt-1">
             <span className="text-[10px] font-bold text-slate-400 uppercase">Presets:</span>
-            {['VAPORWAVE AESTHETIC', 'RETRO LO-FI DREAMS', 'SPLITDROP TOOLS'].map((preset, idx) => (
+            {['VAPORWAVE AESTHETIC', 'RETRO LO-FI DREAMS', 'ZUBWARE TOOLS'].map((preset, idx) => (
               <button
                 key={idx}
                 onClick={() => setInputText(preset)}

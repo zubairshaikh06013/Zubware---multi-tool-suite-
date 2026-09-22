@@ -3,7 +3,7 @@ import { CheckCircle2, AlertOctagon, FileCode2, Copy, Check, Upload, Trash2 } fr
 
 export const XmlValidatorTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [xmlString, setXmlString] = useState(
-    `<note>\n  <to>Tove</to>\n  <from>Jani</from>\n  <heading>Reminder</heading>\n  <body>Don't forget SplitDrop XML Validator!</body>\n</note>`
+    `<note>\n  <to>Tove</to>\n  <from>Jani</from>\n  <heading>Reminder</heading>\n  <body>Don't forget Zubware XML Validator!</body>\n</note>`
   );
   const [copied, setCopied] = useState(false);
 

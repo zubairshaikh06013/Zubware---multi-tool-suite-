@@ -23,7 +23,7 @@ export const TodoListTool: React.FC<TodoListToolProps> = ({ onShowToast }) => {
     return [
       {
         id: '1',
-        title: 'Complete SplitDrop Security suite testing',
+        title: 'Complete Zubware Security suite testing',
         completed: false,
         priority: 'high',
         category: 'Work',

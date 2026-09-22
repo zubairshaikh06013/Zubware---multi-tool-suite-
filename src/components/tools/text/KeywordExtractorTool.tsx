@@ -30,7 +30,7 @@ const COMMON_STOP_WORDS = new Set([
 
 export const KeywordExtractorTool: React.FC<KeywordExtractorToolProps> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState<string>(
-    `SplitDrop is a powerful collection of free online browser tools designed for productivity, document processing, image editing, and text manipulation. All processing takes place 100% client-side in your browser, guaranteeing zero file uploads and complete data privacy. Boost your workflow with instant image compressors, PDF mergers, typing tests, and keyword extractors.`
+    `Zubware is a powerful collection of free online browser tools designed for productivity, document processing, image editing, and text manipulation. All processing takes place 100% client-side in your browser, guaranteeing zero file uploads and complete data privacy. Boost your workflow with instant image compressors, PDF mergers, typing tests, and keyword extractors.`
   );
   const [removeStopWords, setRemoveStopWords] = useState<boolean>(true);
   const [minWordLength, setMinWordLength] = useState<number>(3);

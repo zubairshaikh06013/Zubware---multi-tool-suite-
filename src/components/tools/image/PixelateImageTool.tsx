@@ -220,7 +220,7 @@ export const PixelateImageTool: React.FC<PixelateImageToolProps> = ({ onShowToas
   return (
     <div className="space-y-6">
       <SEOHead
-        title="Pixelate Image Online Free — SplitDrop"
+        title="Pixelate Image Online Free — Zubware"
         description="Free online pixelate tool. Censor sensitive photos, faces, or text in JPG, PNG, WebP images with custom pixel size slider & brush paint tool."
         canonicalPath="/pixelate-image.html"
       />

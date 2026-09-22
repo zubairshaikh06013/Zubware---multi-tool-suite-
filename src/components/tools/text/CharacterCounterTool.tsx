@@ -3,7 +3,7 @@ import { Copy, Check, Trash2, Upload, Download, Hash, AlignLeft } from 'lucide-r
 
 export const CharacterCounterTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [text, setText] = useState(
-    'SplitDrop Character Counter displays precise character metrics including total length, spaces, non-space characters, letters (A-Z), numbers (0-9), and special symbols.'
+    'Zubware Character Counter displays precise character metrics including total length, spaces, non-space characters, letters (A-Z), numbers (0-9), and special symbols.'
   );
   const [copied, setCopied] = useState(false);
 

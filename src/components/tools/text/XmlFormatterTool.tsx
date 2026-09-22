@@ -3,7 +3,7 @@ import { Copy, Check, Download, FileCode2, Trash2, Upload, AlertCircle } from 'l
 
 export const XmlFormatterTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [xmlInput, setXmlInput] = useState(
-    `<root><user id="101"><name>SplitDrop</name><role>Admin</role></user><tools><tool>XML Formatter</tool><tool>JSON Validator</tool></tools></root>`
+    `<root><user id="101"><name>Zubware</name><role>Admin</role></user><tools><tool>XML Formatter</tool><tool>JSON Validator</tool></tools></root>`
   );
   const [indent, setIndent] = useState<number | string>(2);
   const [copied, setCopied] = useState(false);

@@ -3,7 +3,7 @@ import { Copy, Check, Download, Trash2, Upload, AlignLeft } from 'lucide-react';
 
 export const RemoveEmptyLinesTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState(
-    `Line 1: SplitDrop Text Tools\n\n\nLine 2: Clean empty lines instantly.\n\n\n\nLine 3: Supports whitespace trimming and line normalization.`
+    `Line 1: Zubware Text Tools\n\n\nLine 2: Clean empty lines instantly.\n\n\n\nLine 3: Supports whitespace trimming and line normalization.`
   );
   const [trimWhitespace, setTrimWhitespace] = useState(true);
   const [normalizeSpacing, setNormalizeSpacing] = useState(false); // Collapses multiple blank lines into 1

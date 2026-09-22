@@ -126,7 +126,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         'name': 'Zubware',
         'url': domain,
         'logo': `${domain}/icon.svg`,
-        'description': 'Zubware is a multi-tool suite offering 300+ free online client-side tools for PDF, images, developers, and creators. All Your Tools. A Smarter You.',
+        'description': 'Zubware is a multi-tool suite offering 300+ free online client-side tools for PDF, images, developers, and creators.',
         'sameAs': ['https://zubware.com']
       }
     ];

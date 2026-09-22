@@ -194,7 +194,7 @@ export const WatermarkImageTool: React.FC<WatermarkImageToolProps> = ({ onShowTo
   return (
     <div className="space-y-6">
       <SEOHead
-        title="Watermark Image Online Free — SplitDrop"
+        title="Watermark Image Online Free — Zubware"
         description="Free online image watermarker. Add custom text or image watermarks to JPG, PNG, WebP with custom opacity, rotation, shadow, fonts, and repeat tile patterns."
         canonicalPath="/image-watermark.html"
       />

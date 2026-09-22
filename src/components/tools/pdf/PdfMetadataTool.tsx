@@ -285,7 +285,7 @@ export const PdfMetadataTool: React.FC<{ onShowToast: (msg: string) => void }> =
                   type="text"
                   value={creator}
                   onChange={e => setCreator(e.target.value)}
-                  placeholder="e.g. SplitDrop PDF Suite"
+                  placeholder="e.g. Zubware PDF Suite"
                   className="w-full p-3 rounded-xl glass-input font-semibold text-slate-900 dark:text-white"
                 />
               </div>
@@ -298,7 +298,7 @@ export const PdfMetadataTool: React.FC<{ onShowToast: (msg: string) => void }> =
                   type="text"
                   value={producer}
                   onChange={e => setProducer(e.target.value)}
-                  placeholder="e.g. SplitDrop Web Engine"
+                  placeholder="e.g. Zubware Web Engine"
                   className="w-full p-3 rounded-xl glass-input font-semibold text-slate-900 dark:text-white"
                 />
               </div>

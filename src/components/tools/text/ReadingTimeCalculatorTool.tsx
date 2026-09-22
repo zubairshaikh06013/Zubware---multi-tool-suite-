@@ -3,7 +3,7 @@ import { Clock, Sliders, FileText, Copy, Check, Upload, Trash2 } from 'lucide-re
 
 export const ReadingTimeCalculatorTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [text, setText] = useState(
-    `SplitDrop Reading Time Calculator determines exactly how long it takes an average person, speed reader, or presenter to read or speak your article, blog post, or speech aloud.\n\nSimply paste your manuscript or upload a file to calculate reading speed metrics across standard speed tiers.`
+    `Zubware Reading Time Calculator determines exactly how long it takes an average person, speed reader, or presenter to read or speak your article, blog post, or speech aloud.\n\nSimply paste your manuscript or upload a file to calculate reading speed metrics across standard speed tiers.`
   );
   const [customWpm, setCustomWpm] = useState(200);
 

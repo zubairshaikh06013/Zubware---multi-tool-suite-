@@ -127,9 +127,6 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
               </span>
             </div>
           </div>
-          <p className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 tracking-wide mt-2 sm:mt-3">
-            All Your Tools. A Smarter You.
-          </p>
         </div>
 
         {/* Website Main Title */}

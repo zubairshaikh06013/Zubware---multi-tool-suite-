@@ -146,7 +146,7 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
   return (
     <div className="space-y-6">
       <SEOHead
-        title="Rounded Corner Generator — Round Photo Corners Online — SplitDrop"
+        title="Rounded Corner Generator — Round Photo Corners Online — Zubware"
         description="Free online rounded corner generator for photos. Customize individual corner radii, create circle crops or rounded rectangles with transparent or color background."
         canonicalPath="/rounded-corners.html"
       />

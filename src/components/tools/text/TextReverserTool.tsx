@@ -7,7 +7,7 @@ interface TextReverserToolProps {
 
 export const TextReverserTool: React.FC<TextReverserToolProps> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState<string>(
-    'SplitDrop Online Tools\nTransform and reverse your text easily!'
+    'Zubware Online Tools\nTransform and reverse your text easily!'
   );
   const [mode, setMode] = useState<'char' | 'word' | 'line'>('char');
   const [preserveLineBreaks, setPreserveLineBreaks] = useState<boolean>(true);

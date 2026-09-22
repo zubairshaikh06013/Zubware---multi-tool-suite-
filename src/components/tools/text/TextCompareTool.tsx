@@ -3,10 +3,10 @@ import { GitCompare, ArrowLeftRight, Trash2, Plus, Minus, Check, Copy } from 'lu
 
 export const TextCompareTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [originalText, setOriginalText] = useState(
-    `SplitDrop is a fast browser-based tool suite.\nIt supports image splitting and PDF merging.\nEverything runs 100% locally in your browser.`
+    `Zubware is a fast browser-based tool suite.\nIt supports image splitting and PDF merging.\nEverything runs 100% locally in your browser.`
   );
   const [modifiedText, setModifiedText] = useState(
-    `SplitDrop is an ultra-fast browser-based tool suite.\nIt supports image splitting, text editing, and PDF merging.\nEverything runs 100% locally in your private browser.`
+    `Zubware is an ultra-fast browser-based tool suite.\nIt supports image splitting, text editing, and PDF merging.\nEverything runs 100% locally in your private browser.`
   );
 
   const origLines = originalText.split('\n');

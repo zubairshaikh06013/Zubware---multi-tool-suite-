@@ -76,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              All Your Tools. A Smarter You. 300+ free online tools for creators, developers, designers, and students with 100% private browser processing.
+              300+ free online tools for creators, developers, designers, and students with 100% private browser processing.
             </p>
           </div>
 
@@ -196,7 +196,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Bottom Copyright */}
         <div className="pt-8 border-t border-slate-200/60 dark:border-slate-800/60 text-center text-xs text-slate-500 dark:text-slate-400 flex flex-col sm:flex-row items-center justify-between gap-3 font-medium">
           <p>{t('copyright', '© 2026 Zubware.com. All Rights Reserved.')}</p>
-          <p className="text-[11px]">{t('madeWithLove', 'All Your Tools. A Smarter You.')}</p>
+          <p className="text-[11px]">{t('madeWithLove', 'Made with ❤️ for creators.')}</p>
         </div>
       </div>
     </footer>

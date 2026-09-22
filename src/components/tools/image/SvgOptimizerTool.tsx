@@ -94,7 +94,7 @@ export const SvgOptimizerTool: React.FC<SvgOptimizerToolProps> = ({ onShowToast,
   return (
     <div className="space-y-6">
       <SEOHead
-        title="SVG Optimizer — Clean & Compress SVG Code Online — SplitDrop"
+        title="SVG Optimizer — Clean & Compress SVG Code Online — Zubware"
         description="Free online SVG optimizer. Strip metadata, comments, empty groups & round path decimals to reduce SVG vector file size instantly."
         canonicalPath="/svg-optimizer.html"
       />

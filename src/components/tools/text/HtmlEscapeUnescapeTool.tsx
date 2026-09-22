@@ -3,7 +3,7 @@ import { Copy, Check, Code2, Download, Trash2, Upload } from 'lucide-react';
 
 export const HtmlEscapeUnescapeTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState(
-    `<div class="container" id="main">\n  <h1>SplitDrop & Text Suite</h1>\n  <p>Escape "quotes" & 'single quotes' safely!</p>\n</div>`
+    `<div class="container" id="main">\n  <h1>Zubware & Text Suite</h1>\n  <p>Escape "quotes" & 'single quotes' safely!</p>\n</div>`
   );
   const [mode, setMode] = useState<'escape' | 'unescape'>('escape');
   const [copied, setCopied] = useState(false);

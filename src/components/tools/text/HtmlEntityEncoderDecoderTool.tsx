@@ -52,7 +52,7 @@ const NAMED_MAP: Record<string, string> = {
 
 export const HtmlEntityEncoderDecoderTool: React.FC<HtmlEntityEncoderDecoderToolProps> = ({ onShowToast }) => {
   const [inputText, setInputText] = useState<string>(
-    `<div class="card">\n  <h1>SplitDrop & Text Suite © 2026</h1>\n  <p>Price: €49.99 — "Save 20% today!"</p>\n</div>`
+    `<div class="card">\n  <h1>Zubware & Text Suite © 2026</h1>\n  <p>Price: €49.99 — "Save 20% today!"</p>\n</div>`
   );
   const [mode, setMode] = useState<'encodeNamed' | 'encodeDecimal' | 'encodeHex' | 'decode'>('encodeNamed');
   const [copied, setCopied] = useState<boolean>(false);

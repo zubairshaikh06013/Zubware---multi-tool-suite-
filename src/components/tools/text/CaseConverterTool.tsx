@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Copy, Check, Download, Type, Upload, Trash2, ArrowLeftRight, Sparkles, RefreshCw } from 'lucide-react';
 
 export const CaseConverterTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
-  const [text, setText] = useState('welcome to splitdrop case converter! convert any text instantly.');
+  const [text, setText] = useState('welcome to zubware case converter! convert any text instantly.');
   const [copied, setCopied] = useState(false);
 
   const getWords = (str: string): string[] => {

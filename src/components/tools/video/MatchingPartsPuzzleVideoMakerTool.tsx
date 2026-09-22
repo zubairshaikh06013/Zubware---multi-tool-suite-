@@ -2255,7 +2255,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
 
       {/* LOCAL PROCESSING NOTICE */}
       <div className="mt-6 pt-4 border-t border-slate-800 text-center text-xs text-slate-500">
-        <p>Your images and project are processed 100% locally in your browser. Nothing is uploaded to Zubware servers.</p>
+        <p>Your images and project are processed 100% locally in your browser. Nothing is uploaded to Zubware's servers.</p>
       </div>
     </div>
   );

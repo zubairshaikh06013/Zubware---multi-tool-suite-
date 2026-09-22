@@ -3,7 +3,7 @@ import { Copy, Check, Trash2, Download, FileText, Clock, AlignLeft, Upload, Spar
 
 export const WordCounterTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [text, setText] = useState(
-    `Welcome to SplitDrop Word Counter & Readability Analyzer!\n\nThis browser-based tool calculates real-time word count, total character count, characters without spaces, sentences, paragraphs, reading time, and estimated speaking duration.\n\nIt also evaluates the readability level of your writing using standard formulas like Flesch Reading Ease and Flesch-Kincaid Grade Level.\n\nYou can type directly, paste text, or drag and drop text files (.txt, .md, .json, .xml, .html) directly into the box below.`
+    `Welcome to Zubware Word Counter & Readability Analyzer!\n\nThis browser-based tool calculates real-time word count, total character count, characters without spaces, sentences, paragraphs, reading time, and estimated speaking duration.\n\nIt also evaluates the readability level of your writing using standard formulas like Flesch Reading Ease and Flesch-Kincaid Grade Level.\n\nYou can type directly, paste text, or drag and drop text files (.txt, .md, .json, .xml, .html) directly into the box below.`
   );
   const [copiedText, setCopiedText] = useState(false);
   const [copiedStats, setCopiedStats] = useState(false);

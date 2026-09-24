@@ -99,6 +99,19 @@ export const Header: React.FC<HeaderProps> = ({
             Categories
           </a>
 
+          <a
+            href={getLinkUrl('/blog')}
+            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/blog')); }}
+            aria-label="Guides and Tutorials"
+            className={`px-3 py-1.5 rounded-xl transition-all ${
+              currentPath.includes('/blog')
+                ? 'text-indigo-600 dark:text-indigo-400 font-bold bg-indigo-50/80 dark:bg-indigo-950/60 border border-indigo-200/50 dark:border-indigo-800/50 shadow-xs'
+                : 'hover:text-indigo-600 hover:bg-white/60 dark:hover:bg-slate-800/60'
+            }`}
+          >
+            Guides
+          </a>
+
           {/* Tools Dropdown */}
           <div className="relative">
             <button

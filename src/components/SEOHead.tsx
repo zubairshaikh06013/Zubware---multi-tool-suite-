@@ -8,8 +8,19 @@ export interface HowToStep {
 
 export interface HowToSchema {
   name: string;
-  description: string;
+  description?: string;
   steps: HowToStep[];
+}
+
+export interface ArticleSchemaData {
+  title: string;
+  description: string;
+  publishedTime: string;
+  modifiedTime?: string;
+  authorName: string;
+  authorUrl?: string;
+  section?: string;
+  tags?: string[];
 }
 
 interface SEOHeadProps {
@@ -24,6 +35,7 @@ interface SEOHeadProps {
   faqs?: FAQItem[];
   breadcrumbs?: BreadcrumbItem[];
   howTo?: HowToSchema;
+  article?: ArticleSchemaData;
 }
 
 export const SEOHead: React.FC<SEOHeadProps> = ({
@@ -31,19 +43,21 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   description,
   canonicalPath,
   robots = 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
-  ogType = 'website',
+  ogType,
   ogImage,
   lang = 'en',
   toolMeta,
   faqs = [],
   breadcrumbs = [],
-  howTo
+  howTo,
+  article
 }) => {
   const domain = 'https://zubware.com';
   const cleanPath = canonicalPath === '/' ? '' : (canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`);
   const fullUrl = `${domain}${cleanPath}`;
   const defaultOgImage = `${domain}/icon.png`;
   const imageToUse = ogImage || defaultOgImage;
+  const effectiveOgType = ogType || (article ? 'article' : 'website');
 
   useEffect(() => {
     // 1. Language attribute
@@ -96,8 +110,23 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:url', fullUrl);
-    setMeta('property', 'og:type', ogType);
+    setMeta('property', 'og:type', effectiveOgType);
     setMeta('property', 'og:image', imageToUse);
+
+    if (article) {
+      if (article.publishedTime) {
+        setMeta('property', 'article:published_time', article.publishedTime);
+      }
+      if (article.modifiedTime) {
+        setMeta('property', 'article:modified_time', article.modifiedTime);
+      }
+      if (article.authorName) {
+        setMeta('property', 'article:author', article.authorName);
+      }
+      if (article.section) {
+        setMeta('property', 'article:section', article.section);
+      }
+    }
 
     // Twitter
     setMeta('name', 'twitter:card', 'summary_large_image');
@@ -197,7 +226,39 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       });
     }
 
-    // Inject Script JSON-LD
+    // Article Schema
+    if (article) {
+      schemas.push({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        'headline': article.title,
+        'description': article.description,
+        'datePublished': article.publishedTime,
+        'dateModified': article.modifiedTime || article.publishedTime,
+        'mainEntityOfPage': {
+          '@type': 'WebPage',
+          '@id': fullUrl
+        },
+        'author': {
+          '@type': 'Organization',
+          'name': article.authorName,
+          'url': article.authorUrl || domain
+        },
+        'publisher': {
+          '@type': 'Organization',
+          'name': 'Zubware',
+          'url': domain,
+          'logo': {
+            '@type': 'ImageObject',
+            'url': `${domain}/icon.png`
+          }
+        },
+        'image': imageToUse,
+        'keywords': article.tags && article.tags.length > 0 ? article.tags.join(', ') : undefined
+      });
+    }
+
+    // Inject Script JSON-LD with standard @graph container
     let scriptEl = document.getElementById('json-ld-schema');
     if (!scriptEl) {
       scriptEl = document.createElement('script');
@@ -205,9 +266,16 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       scriptEl.setAttribute('type', 'application/ld+json');
       document.head.appendChild(scriptEl);
     }
-    scriptEl.textContent = JSON.stringify(schemas);
+    const graphSchema = {
+      '@context': 'https://schema.org',
+      '@graph': schemas.map((s: any) => {
+        const { '@context': _ctx, ...rest } = s;
+        return rest;
+      })
+    };
+    scriptEl.textContent = JSON.stringify(graphSchema);
 
-  }, [title, description, robots, ogType, imageToUse, lang, fullUrl, toolMeta, faqs, breadcrumbs, howTo]);
+  }, [title, description, robots, effectiveOgType, imageToUse, lang, fullUrl, toolMeta, faqs, breadcrumbs, howTo, article]);
 
   return null;
 };

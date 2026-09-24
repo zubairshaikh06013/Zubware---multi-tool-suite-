@@ -1,5 +1,5 @@
 # Zubware — Online Multi-Tool Suite
-> Zubware (https://zubware.com) is an online multi-tool suite offering 300+ free utilities for PDF documents, image processing, developer workflows, video and audio media, calculators, and daily productivity.
+> Zubware (https://zubware.com) is an online multi-tool suite offering 307+ free utilities for PDF documents, image processing, developer workflows, video and audio media, calculators, and daily productivity.
 
 - Canonical Homepage: https://zubware.com
 - Total Active Tools: 307
@@ -9,6 +9,33 @@
 ## Execution & Privacy Guidelines
 - Offline & Local Processing: Document manipulation, image editing, PDF splitting/merging, and data calculations are processed in the user's browser. Files are not uploaded to Zubware remote servers.
 - Network Utilities: For API testing, HTTP inspection, and web scrapers, browser requests are dispatched directly to the user-specified destination without storing request payloads on Zubware servers.
+
+## Dedicated Category Authority Hubs
+- [PDF Tools](https://zubware.com/category/pdf-tools.html): Merge, split, convert, rotate, reorder, protect & edit PDF documents.
+- [Image Tools](https://zubware.com/category/image-tools.html): Compress, convert, resize, crop, rotate, watermark & edit photos instantly.
+- [Creator & Social Tools](https://zubware.com/category/creator-tools.html): YouTube, Instagram, TikTok & LinkedIn generator suite for content creators.
+- [Video Tools](https://zubware.com/category/video-tools.html): Create satisfying puzzle animation shorts, video reels & interactive clip generators.
+- [Audio Tools](https://zubware.com/category/audio-tools.html): Lofi music studio, slowed and reverb audio effects, and browser sound utilities.
+- [Business Tools](https://zubware.com/category/business-tools.html): Create GST invoices, business cards & business productivity tools.
+- [Text & Writing Tools](https://zubware.com/category/text-tools.html): Case converter, word counter, text diff, text cleaner, markdown editor & line sorter.
+- [Career & Resume Tools](https://zubware.com/category/career-tools.html): ATS resume builder, cover letters, salary hike & experience calculators.
+- [Developer Tools](https://zubware.com/category/developer-tools.html): Format JSON/XML/HTML, test regex, decode JWTs, convert colors & timestamps.
+- [Design & Utility Tools](https://zubware.com/category/design-tools.html): CSS gradients, box shadows, unit converters, EMI & age calculators.
+- [AI Prompt Builder Tools](https://zubware.com/category/prompt-tools.html): ChatGPT, Gemini, Claude, Veo, Midjourney & Flux prompt generator suite.
+- [Health & Fitness](https://zubware.com/category/health-fitness.html): Calculate calories, macros, bulking targets, and fitness benchmarks.
+- [Generators & Productivity](https://zubware.com/category/generators.html): QR generators, password generators, hashes, UUIDs & productivity tools.
+
+## In-Depth Guides & Technical Documentation
+- [How to Compress a PDF Without Losing Readability](https://zubware.com/blog/how-to-compress-pdf-without-losing-readability): Learn how to reduce PDF file size while preserving clear, readable text. Understand lossy vs. lossless compression, target file sizes, and client-side optimization.
+- [Client-Side Image Optimization: WebP, Compression & Quality Preservation](https://zubware.com/blog/client-side-image-optimization-guide): Master image optimization without sacrificing quality. Learn how modern WebP formats, lossless vs lossy algorithms, and browser-based batch processing work.
+- [How to Merge, Split, and Reorder PDFs Securely in the Browser](https://zubware.com/blog/merge-split-pdf-browser-workflow-guide): Learn how to combine reports, extract select pages, and reorganize PDF documents safely on your device without third-party cloud uploads.
+- [The Developer Privacy Handbook: Formatting, Decoding & Hashing Without Server Leakage](https://zubware.com/blog/offline-developer-tools-privacy-guide): Learn why pasting JWTs, API responses, and database connection strings into remote online formatters is a major security risk, and how client-side developer tools protect your credentials.
+- [Financial Planning Tools: Understanding SIP, Loan EMI, and GST Calculations](https://zubware.com/blog/financial-calculators-sip-emi-gst-guide): Understand the mathematical formulas behind SIP compounding, loan EMI amortization, and GST tax calculations. Plan your investments and budgets with precision.
+- [Clean Text Processing: Diffs, Word Counts, ATS Formatting & Case Conversion](https://zubware.com/blog/clean-text-processing-formatting-guide): Learn how to sanitize messy text, compare text diffs, format content for Applicant Tracking Systems (ATS), and automate case conversions.
+- [The YouTube Growth Blueprint: Titles, Tags, Descriptions, and High-CTR Thumbnails](https://zubware.com/blog/youtube-growth-metadata-thumbnails-guide): Master YouTube SEO and discoverability. Learn how to engineer high-CTR titles, optimize description timestamps, target algorithmic tags, and test thumbnails in mobile feeds.
+- [Browser-Based Video Creation: Puzzle Shorts, Script-to-Video & Web Audio Production](https://zubware.com/blog/browser-video-audio-creation-guide): Learn how to generate viral puzzle animation shorts, produce lofi beats, and apply slowed and reverb DSP filters directly in your browser without desktop editing suites.
+- [AI Prompt Engineering Mastery: Structuring Role, Context, and Few-Shot Directives](https://zubware.com/blog/ai-prompt-engineering-mastery-guide): Learn the architectural principles of prompt engineering for LLMs and image diffusion models. Master zero-shot, few-shot, delimiter isolation, and negative prompts.
+- [Beating the ATS: The Complete Guide to Applicant Tracking Systems & Resume Optimization](https://zubware.com/blog/ats-resume-optimization-career-guide): Learn how Applicant Tracking Systems parse PDF resumes. Discover the exact rules for keyword frequency, single-column formatting, and avoiding parser rejections.
 
 ## Comprehensive Directory of Tools by Category
 

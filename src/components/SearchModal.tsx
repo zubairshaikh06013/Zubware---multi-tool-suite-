@@ -116,8 +116,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                   autoFocus
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  aria-label={t('searchPlaceholder', 'Search 100+ tools by name, tag, category or feature...')}
-                  placeholder={t('searchPlaceholder', 'Search 100+ tools by name, tag, category or feature...')}
+                  aria-label={t('searchPlaceholder', `Search ${translatedTools.length}+ tools by name, tag, category or feature...`)}
+                  placeholder={t('searchPlaceholder', `Search ${translatedTools.length}+ tools by name, tag, category or feature...`)}
                   className="w-full text-sm font-semibold bg-transparent text-slate-900 dark:text-white outline-none placeholder:text-slate-400 dark:placeholder:text-slate-500"
                 />
                 {query && (

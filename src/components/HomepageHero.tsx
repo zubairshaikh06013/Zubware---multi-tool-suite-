@@ -310,15 +310,18 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
               <span>{getTranslation(currentLang, 'popularSearches', 'Quick:')}</span>
             </span>
             {popularTools.map((tool) => (
-              <button
+              <a
                 key={tool.id}
-                type="button"
-                onClick={() => onNavigate(getLinkUrl(tool.path))}
+                href={getLinkUrl(tool.path)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(getLinkUrl(tool.path));
+                }}
                 className="px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 text-xs font-medium transition-all shadow-2xs cursor-pointer flex items-center gap-1.5 active:scale-95"
               >
                 <span>{tool.icon}</span>
                 <span>{tool.navTitle || tool.title}</span>
-              </button>
+              </a>
             ))}
           </div>
         </div>

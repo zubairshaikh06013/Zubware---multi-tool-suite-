@@ -13,7 +13,7 @@ export const CATEGORIES_DATA: CategoryItem[] = [
     nameKey: 'allCategories',
     defaultName: 'All Tools',
     icon: '⚡',
-    description: 'Explore our complete directory of 100+ free online browser utilities.',
+    description: 'Explore our complete directory of 300+ free online browser utilities.',
     match: () => true,
   },
   {
@@ -47,6 +47,14 @@ export const CATEGORIES_DATA: CategoryItem[] = [
     icon: '📹',
     description: 'Create satisfying puzzle animation shorts, video reels & interactive clip generators.',
     match: (cat) => cat.toLowerCase().includes('video'),
+  },
+  {
+    slug: 'audio-tools',
+    nameKey: 'audioToolsCategory',
+    defaultName: 'Audio Tools',
+    icon: '🎵',
+    description: 'Lofi music studio, slowed and reverb audio effects, and browser sound utilities.',
+    match: (cat) => cat.toLowerCase().includes('audio'),
   },
   {
     slug: 'business-tools',
@@ -86,7 +94,7 @@ export const CATEGORIES_DATA: CategoryItem[] = [
     defaultName: 'Design & Utility Tools',
     icon: '🎨',
     description: 'CSS gradients, box shadows, unit converters, EMI & age calculators.',
-    match: (cat) => cat.toLowerCase().includes('design') || cat.toLowerCase().includes('utility'),
+    match: (cat) => cat.toLowerCase().includes('design') || cat.toLowerCase().includes('utility') || cat.toLowerCase().includes('government'),
   },
   {
     slug: 'prompt-tools',
@@ -119,3 +127,10 @@ export function getCategoryBySlug(slug?: string): CategoryItem {
   const found = CATEGORIES_DATA.find((c) => c.slug === slug.toLowerCase());
   return found || CATEGORIES_DATA[0];
 }
+
+export function getCategoryForTool(toolCategory: string): CategoryItem {
+  const realCategories = CATEGORIES_DATA.filter((c) => c.slug !== 'all');
+  const found = realCategories.find((c) => c.match(toolCategory));
+  return found || CATEGORIES_DATA[0];
+}
+

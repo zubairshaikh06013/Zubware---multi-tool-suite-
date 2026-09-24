@@ -26,13 +26,19 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
     const handleRecentUpdate = () => setRecentList(getRecentTools());
     const handleStatsUpdate = () => setToolStats(getToolStats());
 
+    window.addEventListener('zubware_favorites_updated', handleFavUpdate);
     window.addEventListener('splitdrop_favorites_updated', handleFavUpdate);
+    window.addEventListener('zubware_recent_updated', handleRecentUpdate);
     window.addEventListener('splitdrop_recent_updated', handleRecentUpdate);
+    window.addEventListener('zubware_download_recorded', handleStatsUpdate);
     window.addEventListener('splitdrop_download_recorded', handleStatsUpdate);
 
     return () => {
+      window.removeEventListener('zubware_favorites_updated', handleFavUpdate);
       window.removeEventListener('splitdrop_favorites_updated', handleFavUpdate);
+      window.removeEventListener('zubware_recent_updated', handleRecentUpdate);
       window.removeEventListener('splitdrop_recent_updated', handleRecentUpdate);
+      window.removeEventListener('zubware_download_recorded', handleStatsUpdate);
       window.removeEventListener('splitdrop_download_recorded', handleStatsUpdate);
     };
   }, []);

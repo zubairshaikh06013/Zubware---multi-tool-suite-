@@ -365,6 +365,8 @@ const AboutPage = lazy(() => import('./components/pages/AboutPage').then(m => ({
 const SeoDiagnosticsPage = lazy(() => import('./components/pages/SeoDiagnosticsPage').then(m => ({ default: m.SeoDiagnosticsPage })));
 const NotFoundPage = lazy(() => import('./components/pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 const ToolSEOContent = lazy(() => import('./components/ToolSEOContent').then(m => ({ default: m.ToolSEOContent })));
+const BlogIndexPage = lazy(() => import('./components/pages/BlogIndexPage').then(m => ({ default: m.BlogIndexPage })));
+const BlogPostPage = lazy(() => import('./components/pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 
 const LoadingFallback = () => (
   <div className="flex flex-col items-center justify-center p-12 space-y-4 text-center min-h-[300px]">
@@ -374,12 +376,13 @@ const LoadingFallback = () => (
 );
 
 import { TOOLS_DATA, HOMEPAGE_FAQS, getTranslatedTools, getTranslatedFaqs } from './data/toolsData';
+import { getBlogArticleBySlug, BLOG_ARTICLES } from './data/blogArticles';
 import { getToolSeoTitle } from './lib/seoTitles';
 import { getCategoryBySlug } from './data/categoriesData';
 import { detectBrowserLanguage, LanguageCode, getTranslation } from './lib/i18n';
 import { LanguageProvider } from './context/LanguageContext';
 import { normalizePath, getLinkUrl } from './lib/paths';
-import { ArrowRight, ChevronDown, CheckCircle2, Shield, Zap, Sparkles } from 'lucide-react';
+import { ArrowRight, ChevronDown, CheckCircle2, Shield, Zap, Sparkles, BookOpen } from 'lucide-react';
 import { HomepageHero } from './components/HomepageHero';
 
 export default function App() {
@@ -569,6 +572,15 @@ export default function App() {
   const isAboutPage = currentPath.includes('about');
   const isDiagnosticsPage = currentPath.includes('seo-diagnostics') || currentPath.includes('diagnostics');
 
+  // Blog & Guides checks
+  const cleanPathLower = currentPath.toLowerCase().split('?')[0].replace(/\/$/, '');
+  const isBlogIndexPage = cleanPathLower === '/blog' || cleanPathLower === '/blog.html' || cleanPathLower === '/blog/index.html';
+  const isBlogPostPath = cleanPathLower.startsWith('/blog/') && !isBlogIndexPage;
+  const blogArticleSlug = isBlogPostPath ? cleanPathLower.replace(/^\/blog\//, '').replace(/\.html$/, '') : undefined;
+  const activeBlogArticle = blogArticleSlug ? getBlogArticleBySlug(blogArticleSlug) : undefined;
+  const isBlogPostPage = isBlogPostPath && !!activeBlogArticle;
+  const isBlogPage = isBlogIndexPage || isBlogPostPage;
+
   // Platform Feature Page checks
   const isDashboardPage = currentPath.includes('dashboard');
   const isCategoryPage = currentPath.includes('category') || currentPath.includes('categories');
@@ -577,11 +589,16 @@ export default function App() {
   const isFeedbackPage = currentPath.includes('feedback');
 
   const isPlatformPage = isDashboardPage || isCategoryPage || isHelpPage || isChangelogPage || isFeedbackPage;
-  const isStaticPage = isPrivacyPage || isTermsPage || isDisclaimerPage || isContactPage || isAboutPage || isPlatformPage || isDiagnosticsPage;
+  const isStaticPage = isPrivacyPage || isTermsPage || isDisclaimerPage || isContactPage || isAboutPage || isPlatformPage || isDiagnosticsPage || isBlogPage;
 
   // Extract active category slug from current URL/path
   const getCategorySlugFromPath = (path: string): string | undefined => {
     try {
+      const clean = path.split('?')[0].replace(/\/$/, '').replace(/\.html$/, '');
+      const match = clean.match(/^\/categor(?:y|ies)\/([a-z0-9-]+)$/i);
+      if (match && match[1]) {
+        return match[1];
+      }
       const qIndex = path.indexOf('?');
       if (qIndex !== -1) {
         const searchParams = new URLSearchParams(path.substring(qIndex));
@@ -603,6 +620,18 @@ export default function App() {
   // Dynamic breadcrumb generator
   const buildBreadcrumbItems = () => {
     const homeItem = { label: getTranslation(currentLang, 'home', 'Home'), path: getLinkUrl('/') };
+
+    if (isBlogIndexPage) {
+      return [homeItem, { label: 'Guides & Articles', path: getLinkUrl('/blog') }];
+    }
+
+    if (isBlogPostPage && activeBlogArticle) {
+      return [
+        homeItem,
+        { label: 'Guides & Articles', path: getLinkUrl('/blog') },
+        { label: activeBlogArticle.title }
+      ];
+    }
 
     if (isDashboardPage) {
       return [homeItem, { label: getTranslation(currentLang, 'userDashboard', 'User Dashboard') }];
@@ -688,16 +717,20 @@ export default function App() {
           {isStaticPage && (
             <div className="max-w-5xl mx-auto space-y-6">
               
-              {/* Sticky Navigation Bar with Back Button & Breadcrumbs */}
-              <div className="sticky top-28 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl py-3 px-4 sm:px-6 -mx-4 sm:-mx-6 border-b border-white/50 dark:border-white/10 shadow-sm flex flex-wrap items-center justify-between gap-3 rounded-2xl mb-4">
-                <BackButton onNavigate={navigateTo} />
-                <Breadcrumb
-                  items={buildBreadcrumbItems()}
-                  onNavigate={navigateTo}
-                />
-              </div>
+              {/* Sticky Navigation Bar with Back Button & Breadcrumbs (for standard legal/platform pages) */}
+              {!isBlogPage && (
+                <div className="sticky top-28 z-40 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl py-3 px-4 sm:px-6 -mx-4 sm:-mx-6 border-b border-white/50 dark:border-white/10 shadow-sm flex flex-wrap items-center justify-between gap-3 rounded-2xl mb-4">
+                  <BackButton onNavigate={navigateTo} />
+                  <Breadcrumb
+                    items={buildBreadcrumbItems()}
+                    onNavigate={navigateTo}
+                  />
+                </div>
+              )}
 
               <Suspense fallback={<LoadingFallback />}>
+                {isBlogIndexPage && <BlogIndexPage onNavigate={navigateTo} />}
+                {isBlogPostPage && activeBlogArticle && <BlogPostPage article={activeBlogArticle} onNavigate={navigateTo} />}
                 {isDashboardPage && <DashboardPage onNavigate={navigateTo} onShowToast={triggerToast} />}
                 {isCategoryPage && <CategoryPage categorySlug={activeCategorySlug} onNavigate={navigateTo} onShowToast={triggerToast} />}
                 {isHelpPage && <HelpPage onNavigate={navigateTo} />}
@@ -783,11 +816,15 @@ export default function App() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                           {categoryTools.map((tool) => (
-                            <motion.div
+                            <motion.a
                               key={tool.id}
+                              href={getLinkUrl(tool.path)}
                               whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all shadow-sm hover:shadow-xl hover:shadow-indigo-500/5"
-                              onClick={() => navigateTo(getLinkUrl(tool.path))}
+                              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 block"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                navigateTo(getLinkUrl(tool.path));
+                              }}
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-4">
@@ -818,18 +855,14 @@ export default function App() {
                               </div>
 
                               <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-                                <button
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    navigateTo(getLinkUrl(tool.path));
-                                  }}
-                                  className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
+                                <span
+                                  className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
                                 >
                                   <span>{getTranslation(currentLang, 'openTool', 'Open')} {tool.navTitle}</span>
                                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
-                                </button>
+                                </span>
                               </div>
-                            </motion.div>
+                            </motion.a>
                           ))}
                         </div>
                       </div>
@@ -879,6 +912,70 @@ export default function App() {
                       {getTranslation(currentLang, 'freeForeverDesc', 'No watermarks, daily submission limits, or required accounts.')}
                     </p>
                   </div>
+                </div>
+              </section>
+
+              {/* KNOWLEDGE BASE & EXPERT GUIDES SECTION */}
+              <section className="my-12 max-w-7xl mx-auto">
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-slate-200/80 dark:border-slate-800">
+                  <div>
+                    <span className="text-xs font-extrabold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                      <BookOpen className="w-3.5 h-3.5" /> Topical Authority & Tutorials
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white mt-1">
+                      Knowledge Base & Practical Guides
+                    </h2>
+                    <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+                      Deep-dive technical guides on document compression, format conversion, and offline developer security.
+                    </p>
+                  </div>
+                  <a
+                    href={getLinkUrl('/blog')}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigateTo(getLinkUrl('/blog'));
+                    }}
+                    className="mt-4 sm:mt-0 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5"
+                  >
+                    <span>View All Articles & Guides</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {BLOG_ARTICLES.slice(0, 6).map((article) => (
+                    <a
+                      key={article.slug}
+                      href={getLinkUrl(article.canonicalPath)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigateTo(getLinkUrl(article.canonicalPath));
+                      }}
+                      className="glass-card p-6 rounded-3xl flex flex-col justify-between hover:border-indigo-500/40 group transition-all shadow-xs hover:shadow-lg"
+                    >
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between text-xs">
+                          <span className="font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
+                            {article.category}
+                          </span>
+                          <span className="text-slate-400 text-[11px] font-medium">
+                            {article.readingTime}
+                          </span>
+                        </div>
+                        <h3 className="font-bold text-base text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors line-clamp-2">
+                          {article.title}
+                        </h3>
+                        <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed">
+                          {article.excerpt}
+                        </p>
+                      </div>
+
+                      <div className="pt-4 mt-4 border-t border-slate-100 dark:border-slate-800/80 flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                        <span>Read Full Guide</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </a>
+                  ))}
                 </div>
               </section>
 

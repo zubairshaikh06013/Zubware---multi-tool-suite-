@@ -150,6 +150,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </a>
               </li>
               <li>
+                <a href={getLinkUrl('/blog')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/blog')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 font-semibold text-slate-700 dark:text-slate-300 transition-colors">
+                  📚 Guides & Tutorials
+                </a>
+              </li>
+              <li>
                 <a href={getLinkUrl('/help.html')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/help.html')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   ❓ Help Center & Guides
                 </a>

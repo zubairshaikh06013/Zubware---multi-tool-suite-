@@ -419,3 +419,44 @@ export interface VideoMakerSettings {
   visualizerMode: 'waveform' | 'spectrum' | 'bars' | 'circular' | 'minimal';
   visualizerColor: string;
 }
+
+export interface BlogArticleAuthor {
+  name: string;
+  url?: string;
+  role?: string;
+}
+
+export interface BlogArticleSection {
+  id: string;
+  title: string;
+  content: string;
+}
+
+export interface BlogArticle {
+  slug: string;
+  title: string;
+  metaTitle: string;
+  description: string;
+  canonicalPath: string;
+  publishedTime: string;
+  modifiedTime: string;
+  author: BlogArticleAuthor;
+  publisher: {
+    name: string;
+    url: string;
+  };
+  category: string;
+  readingTime: string;
+  tags: string[];
+  excerpt: string;
+  takeaways?: string[];
+  sections?: BlogArticleSection[];
+  relatedToolIds: string[];
+  faqs?: FAQItem[];
+  howTo?: {
+    name: string;
+    description?: string;
+    steps: { name: string; text: string }[];
+  };
+}
+

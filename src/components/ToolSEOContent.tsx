@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ToolMeta, FAQItem } from '../types';
-import { ChevronDown, ShieldCheck, Zap, HardDrive, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ChevronDown, ShieldCheck, Zap, HardDrive, CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
 import { getLinkUrl } from '../lib/paths';
+import { BLOG_ARTICLES } from '../data/blogArticles';
+import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
 
 interface ToolSEOContentProps {
   tool: ToolMeta;
@@ -26,8 +28,8 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
   // Generate dynamic FAQs if not provided on tool object
   const defaultFaqs: FAQItem[] = [
     {
-      question: `Is ${tool.navTitle} completely free to use?`,
-      answer: `Yes, ${tool.title} is 100% free with unlimited usage. There are no watermarks, hidden subscriptions, or registration requirements.`
+      question: `Is ${tool.navTitle} free to use?`,
+      answer: `This Zubware tool is available to use in your browser. Availability of features and limits can vary by tool.`
     },
     {
       question: `How does ${tool.navTitle} handle data and privacy?`,
@@ -41,7 +43,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     },
     {
       question: `How fast is processing with ${tool.navTitle}?`,
-      answer: `Processing is performed in your browser on your device's engine, eliminating server upload queues and latency.`
+      answer: isNetworkTool
+        ? `Processing speed depends on network latency and the response time of the target endpoint.`
+        : `Processing is performed in your browser on your device's engine, eliminating server upload queues.`
     }
   ];
 
@@ -78,10 +82,11 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
         { title: 'Copy or Save Output', desc: `Copy the formatted output or save the resulting file directly to your device.` }
       ];
 
-  // Filter related tools in same category excluding current
-  const relatedTools = allTools
-    .filter((t) => t.id !== tool.id && (t.category === tool.category || tool.category.includes(t.category)))
-    .slice(0, 6);
+  // Filter related tools with workflow clustering
+  const relatedTools = getRelatedTools(tool, allTools, 6);
+
+  // Find matching blog articles / guides
+  const matchingGuides = getMatchingGuidesForTool(tool, BLOG_ARTICLES, 2);
 
   return (
     <div className="mt-12 space-y-12">
@@ -99,7 +104,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
         {/* Direct Answer Paragraph for AI Overviews / Snippets */}
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium leading-relaxed bg-indigo-50/50 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/50">
-          <strong>{tool.title}</strong> is a free, web-based online utility designed by Zubware to assist users with fast, browser-side file processing. {tool.description}
+          <strong>{tool.title}</strong> is an online utility provided by Zubware. {tool.description}
         </p>
 
         {/* Extended Description */}
@@ -301,6 +306,64 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                   <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 mt-1 leading-snug">
                     {relTool.description}
                   </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* 7. RECOMMENDED PRACTICAL GUIDES & EDITORIAL AUTHORITY */}
+      {matchingGuides.length > 0 && (
+        <section className="glass-panel p-6 sm:p-10 rounded-3xl border border-indigo-200/60 dark:border-indigo-900/60 bg-gradient-to-br from-indigo-50/40 via-white to-transparent dark:from-indigo-950/20 dark:via-slate-900 dark:to-transparent">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-indigo-100 dark:border-slate-800">
+            <div>
+              <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400 flex items-center gap-1.5">
+                <BookOpen className="w-3.5 h-3.5" /> Best Practice Guides & Tutorials
+              </span>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mt-1">
+                Learn More About {tool.navTitle || tool.title} Workflows
+              </h2>
+            </div>
+            <a
+              href={getLinkUrl('/blog')}
+              onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/blog')); }}
+              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 mt-2 sm:mt-0"
+            >
+              Browse All Guides <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {matchingGuides.map((guide) => (
+              <a
+                key={guide.slug}
+                href={getLinkUrl(guide.canonicalPath)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(getLinkUrl(guide.canonicalPath));
+                }}
+                className="glass-card p-5 rounded-2xl flex flex-col justify-between hover:border-indigo-500/50 group transition-all"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
+                      {guide.category}
+                    </span>
+                    <span className="text-[11px] text-slate-400 font-medium">
+                      {guide.readingTime}
+                    </span>
+                  </div>
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                    {guide.title}
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
+                    {guide.excerpt}
+                  </p>
+                </div>
+                <div className="pt-3 mt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                  <span>Read In-Depth Guide</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </a>
             ))}

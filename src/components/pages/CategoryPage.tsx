@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { getTranslatedTools } from '../../data/toolsData';
 import { CATEGORIES_DATA, CategoryItem } from '../../data/categoriesData';
+import { CATEGORY_AUTHORITY_MAP } from '../../data/categoryAuthorityData';
 import { useLanguage } from '../../context/LanguageContext';
 import { getLinkUrl } from '../../lib/paths';
 import { toggleFavorite, isFavorite } from '../../lib/userStore';
 import { ArrowRight, CheckCircle2, Star, Filter, Sparkles } from 'lucide-react';
+import { SEOHead } from '../SEOHead';
 
 interface CategoryPageProps {
   categorySlug?: string;
@@ -32,6 +34,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
   }, [categorySlug]);
 
   const activeCategoryMeta = CATEGORIES_DATA.find((c) => c.slug === activeCategory) || CATEGORIES_DATA[0];
+  const authMeta = CATEGORY_AUTHORITY_MAP[activeCategory];
 
   // Filter tools by active category
   const filteredTools = allTools.filter((tool) => activeCategoryMeta.match(tool.category));
@@ -49,7 +52,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
   const handleSelectCategory = (slug: string) => {
     setActiveCategory(slug);
     setSelectedTag('All');
-    const path = slug === 'all' ? '/categories.html' : `/categories.html?cat=${slug}`;
+    const path = slug === 'all' ? '/categories.html' : `/category/${slug}.html`;
     onNavigate(getLinkUrl(path));
   };
 
@@ -59,8 +62,25 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
     onShowToast(added ? t('addedFavorite', 'Added to favorites!') : t('removedFavorite', 'Removed from favorites'));
   };
 
+  const pageTitle = activeCategory === 'all'
+    ? 'Tool Categories & Complete Directory — Zubware'
+    : (authMeta?.seoTitle || `${t(activeCategoryMeta.nameKey, activeCategoryMeta.defaultName)} — Free Online Utilities | Zubware`);
+  const pageDesc = activeCategory === 'all'
+    ? `Browse our complete suite of ${allTools.length}+ free online browser utilities organized across 13 specialized domains with zero installation.`
+    : (authMeta?.metaDescription
+        ? authMeta.metaDescription.replace(/^([A-Za-z]+)\s+/i, `$1 ${filteredTools.length} `)
+        : activeCategoryMeta.description);
+  const canonicalPath = activeCategory === 'all' ? '/categories.html' : `/category/${activeCategory}.html`;
+  const faqs = authMeta?.faqs || [];
+
   return (
     <div className="space-y-8 max-w-6xl mx-auto py-4">
+      <SEOHead
+        title={pageTitle}
+        description={pageDesc}
+        canonicalPath={canonicalPath}
+        faqs={faqs}
+      />
       
       {/* Category Header */}
       <div className="glass-panel p-6 sm:p-8 rounded-3xl text-center max-w-3xl mx-auto space-y-3">
@@ -68,10 +88,14 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
           <Sparkles className="w-3.5 h-3.5" aria-hidden="true" /> Zubware Multi-Tool Platform
         </span>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
-          {t('toolCategories', 'Tool Categories & Directory')}
+          {activeCategory === 'all'
+            ? t('toolCategories', 'Tool Categories & Directory')
+            : `${activeCategoryMeta.icon} ${t(activeCategoryMeta.nameKey, activeCategoryMeta.defaultName)}`}
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto">
-          {t('categoriesSubtitle', 'Browse hundreds of browser-based utilities organized by domain with zero installation and 100% private offline processing.')}
+          {activeCategory === 'all'
+            ? t('categoriesSubtitle', 'Browse hundreds of browser-based utilities organized by domain with zero installation and fast client-side processing.')
+            : (authMeta?.leadParagraph || activeCategoryMeta.description)}
         </p>
       </div>
 
@@ -80,10 +104,15 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
         {CATEGORIES_DATA.map((cat) => {
           const isActive = activeCategory === cat.slug;
           const translatedName = t(cat.nameKey, cat.defaultName);
+          const catPath = cat.slug === 'all' ? '/categories.html' : `/category/${cat.slug}.html`;
           return (
-            <button
+            <a
               key={cat.slug}
-              onClick={() => handleSelectCategory(cat.slug)}
+              href={getLinkUrl(catPath)}
+              onClick={(e) => {
+                e.preventDefault();
+                handleSelectCategory(cat.slug);
+              }}
               aria-label={`Category ${translatedName}`}
               aria-current={isActive ? 'page' : undefined}
               className={`px-4 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer ${
@@ -94,7 +123,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
             >
               <span aria-hidden="true">{cat.icon}</span>
               <span>{translatedName}</span>
-            </button>
+            </a>
           );
         })}
       </nav>
@@ -138,19 +167,16 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
         {finalTools.map((tool) => {
           const fav = isFavorite(tool.id);
           return (
-            <div
+            <a
               key={tool.id}
-              role="button"
-              tabIndex={0}
+              href={getLinkUrl(tool.path)}
               aria-label={`Open ${tool.title}`}
-              onClick={() => onNavigate(getLinkUrl(tool.path))}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  onNavigate(getLinkUrl(tool.path));
-                }
+              onClick={(e) => {
+                if ((e.target as HTMLElement).closest('button')) return;
+                e.preventDefault();
+                onNavigate(getLinkUrl(tool.path));
               }}
-              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all relative"
+              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all relative block shadow-xs hover:shadow-md"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
@@ -159,6 +185,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
+                      type="button"
                       onClick={(e) => handleToggleFav(tool.id, e)}
                       aria-label={fav ? `Remove ${tool.title} from favorites` : `Add ${tool.title} to favorites`}
                       className={`p-2 rounded-xl transition-all cursor-pointer ${
@@ -196,19 +223,14 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
               </div>
 
               <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    onNavigate(getLinkUrl(tool.path));
-                  }}
-                  aria-label={`Open tool ${tool.navTitle}`}
-                  className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20 cursor-pointer"
+                <span
+                  className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
                 >
                   <span>{t('openTool', 'Open')} {tool.navTitle}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" aria-hidden="true" />
-                </button>
+                </span>
               </div>
-            </div>
+            </a>
           );
         })}
       </div>

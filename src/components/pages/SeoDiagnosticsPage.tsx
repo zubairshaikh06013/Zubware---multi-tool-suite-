@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { SEOHead } from '../SEOHead';
+import { TOOLS_DATA } from '../../data/toolsData';
 import { CheckCircle2, Copy, FileText, Globe, Search, ShieldCheck, Terminal, AlertTriangle } from 'lucide-react';
 
 interface SeoDiagnosticsPageProps {
@@ -89,7 +90,7 @@ export const SeoDiagnosticsPage: React.FC<SeoDiagnosticsPageProps> = ({ onNaviga
             </button>
           </div>
           <p className="text-xs text-slate-600 dark:text-slate-400">
-            Ensure <code className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono">/sitemap.xml</code> lists all 60+ public tool routes, static legal pages, category hubs, and homepage with valid ISO dates.
+            Ensure <code className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 font-mono">/sitemap.xml</code> lists all {TOOLS_DATA.length} public tool routes, static legal pages, category hubs, blog articles, and homepage with valid ISO dates.
           </p>
           <ul className="text-xs text-slate-600 dark:text-slate-400 space-y-1 list-disc list-inside">
             <li>Includes all tools (<code className="font-mono">/image-compressor.html</code>, <code className="font-mono">/heic-to-jpg.html</code>, <code className="font-mono">/slowed-and-reverb.html</code>, etc.)</li>

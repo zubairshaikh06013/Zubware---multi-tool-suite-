@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SEOHead } from '../SEOHead';
 import { TOOLS_DATA } from '../../data/toolsData';
+import { SITE_ORIGIN } from '../../lib/siteConfig';
 import { CheckCircle2, Copy, FileText, Globe, Search, ShieldCheck, Terminal, AlertTriangle } from 'lucide-react';
 
 interface SeoDiagnosticsPageProps {
@@ -18,7 +19,7 @@ export const SeoDiagnosticsPage: React.FC<SeoDiagnosticsPageProps> = ({ onNaviga
 
   const domain = typeof window !== 'undefined' && window.location.origin
     ? window.location.origin
-    : 'https://zubware.com';
+    : SITE_ORIGIN;
 
   return (
     <div className="max-w-4xl mx-auto space-y-8 py-4">

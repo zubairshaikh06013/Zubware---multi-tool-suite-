@@ -299,7 +299,7 @@ export function PdfToTextTool({ onShowToast }: { onShowToast: (msg: string) => v
           <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
             <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
               <AlertCircle className="w-3.5 h-3.5" />
-              <span>Extracted 100% locally. Zero server upload.</span>
+              <span>Processed locally in your browser. Files are not uploaded to Zubware servers.</span>
             </div>
 
             <div className="flex items-center gap-2">

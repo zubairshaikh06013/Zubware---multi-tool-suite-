@@ -3,6 +3,7 @@ import { ToolMeta } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
 import { ArrowRight, Sparkles, Layers, Zap } from 'lucide-react';
+import { ToolIcon } from './common/ToolIcon';
 
 interface ToolRecommendationsProps {
   currentTool: ToolMeta;
@@ -59,7 +60,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl" aria-hidden="true">{tool.icon}</span>
+                  <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
                   <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {tool.navTitle}
                   </h4>
@@ -95,7 +96,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl" aria-hidden="true">{tool.icon}</span>
+                  <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
                   <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {tool.navTitle}
                   </h4>
@@ -131,7 +132,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="text-2xl" aria-hidden="true">{tool.icon}</span>
+                  <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
                   <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {tool.navTitle}
                   </h4>

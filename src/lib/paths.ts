@@ -22,17 +22,10 @@ export function getLinkUrl(path?: string): string {
 
 /**
  * Normalizes a full browser pathname into an internal route path.
- * Handles backward-compatibility if an incoming URL still has /Splitdrop prefix.
- * Example: normalizePath('/image-compressor.html') => '/image-compressor.html'
- * Example: normalizePath('/Splitdrop/image-compressor.html') => '/image-compressor.html'
  */
 export function normalizePath(pathname?: string): string {
   if (!pathname) return '/';
   let p = pathname;
-  // Strip legacy /splitdrop prefix if a user or search engine accesses an old link
-  if (/^\/splitdrop(\/|$)/i.test(p)) {
-    p = p.replace(/^\/splitdrop/i, '');
-  }
   if (BASE_PATH && p.toLowerCase().startsWith(BASE_PATH.toLowerCase())) {
     p = p.slice(BASE_PATH.length);
   }

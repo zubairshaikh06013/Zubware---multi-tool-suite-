@@ -243,7 +243,7 @@ export const TimeZoneConverterTool: React.FC<TimeZoneConverterToolProps> = ({ on
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🌐</span> Time Zone Converter
+            Time Zone Converter
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Convert date and time across multiple global time zones with automatic Daylight Saving Time (DST) tracking.

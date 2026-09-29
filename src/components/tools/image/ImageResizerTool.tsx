@@ -6,7 +6,6 @@ import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgr
 import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface ImageResizerToolProps {
@@ -145,25 +144,15 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast,
     <div className="space-y-6">
       <SEOHead
         title="Image Resizer — Resize JPG, PNG, WebP Online Free"
-        description="Free online image resizer. Resize images by exact pixels, width, height, or percentage. Lock aspect ratio & instant browser download with zero server uploads."
+        description="Free online image resizer. Resize images by exact pixels, width, height, or percentage. Lock aspect ratio & instant browser download with local processing."
         canonicalPath="/image-resizer.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Image Resizer' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          📐 Image Resizer
+          Image Resizer
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Resize JPG, PNG, WebP, AVIF & GIF images by custom width, height, or percentage in seconds.

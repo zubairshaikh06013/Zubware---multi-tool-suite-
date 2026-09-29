@@ -70,7 +70,7 @@ export const DiceRollerTool: React.FC<DiceRollerToolProps> = ({ onShowToast }) =
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🎲</span> Dice Roller (d4 to d100)
+            Dice Roller (d4 to d100)
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Multi-dice simulator for tabletop RPGs, board games, and probability calculation with modifiers.

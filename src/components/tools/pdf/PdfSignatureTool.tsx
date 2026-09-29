@@ -185,7 +185,7 @@ export function PdfSignatureTool({ onShowToast }: { onShowToast: (msg: string) =
         <div>
           <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <FileSignature className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-            PDF E-Signature & Signer (100% Client-Side)
+            PDF E-Signature & Signer (Client-Side)
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Draw, type, or upload your signature and stamp it securely onto any page of your PDF document.

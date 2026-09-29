@@ -53,7 +53,7 @@ export const FileInformationPanel: React.FC<FileInformationProps> = ({
         {/* Local Privacy Badge */}
         <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/80 text-emerald-700 dark:text-emerald-300 text-[11px] font-bold rounded-full border border-emerald-200/60 dark:border-emerald-800/60 shadow-xs">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-          <span>{t('privacyBadge', '100% Local • Private in Browser')}</span>
+          <span>{t('privacyBadge', 'Local Processing • Private in Browser')}</span>
         </div>
       </div>
 

@@ -32,7 +32,7 @@ export const YouTubeTagsGeneratorTool: React.FC<{ onShowToast: (msg: string) => 
 
     const seoTags = [
       `${lower} studio`,
-      `${lower} high ranking keywords`,
+      `${lower} keyword ideas`,
       `${lower} crash course`,
       `learn ${lower} fast`,
       `${lower} examples and projects`,

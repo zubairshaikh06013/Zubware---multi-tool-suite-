@@ -576,7 +576,7 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
 
         <div className="flex items-center gap-2 pt-2 text-[11px] text-slate-400 dark:text-slate-500 border-t border-slate-100 dark:border-slate-800/80">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
-          <span>100% Client-Side Private: All binary search and resolution scaling runs locally in your browser with zero server uploads.</span>
+          <span>Local Browser Processing: Binary search and resolution scaling run locally in your browser. Files are not uploaded to Zubware servers.</span>
         </div>
       </div>
     </div>

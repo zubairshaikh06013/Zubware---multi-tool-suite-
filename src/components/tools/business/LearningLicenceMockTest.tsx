@@ -953,7 +953,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 glass-card p-5 rounded-3xl border border-indigo-500/20 bg-indigo-50/40 dark:bg-slate-900/40">
         <div>
           <div className="flex items-center gap-2">
-            <span className="text-2xl">🚦</span>
+            
             <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               {text.title}
             </h2>

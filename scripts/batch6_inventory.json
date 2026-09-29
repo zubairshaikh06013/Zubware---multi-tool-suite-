@@ -1,0 +1,1046 @@
+[
+  {
+    "id": "lofi-song-maker",
+    "title": "Lofi Music Studio",
+    "category": "🎵 Audio Tools",
+    "desc": "Transform audio with vintage Lofi effects or synthesize original Lofi beats & chill tracks completely in your browser."
+  },
+  {
+    "id": "lofi-maker",
+    "title": "Lofi Maker",
+    "category": "🎵 Audio Tools",
+    "desc": "Turn your song into a smooth Lofi version in one click. Upload an audio file and download your Lofi MP3."
+  },
+  {
+    "id": "slowed-and-reverb",
+    "title": "Slowed & Reverb Generator",
+    "category": "🎵 Audio Tools",
+    "desc": "Slow down your song and add a smooth reverb effect online. Upload an audio file, create a slowed and reverb version, and download it as MP3."
+  },
+  {
+    "id": "qr-generator",
+    "title": "QR Code Generator",
+    "category": "Generators",
+    "desc": "Generate custom QR codes for URLs, WiFi networks, text, and vCards for free. High-resolution vector PNG/SVG QR code generator with brand color options."
+  },
+  {
+    "id": "resume-builder",
+    "title": "Resume Builder",
+    "category": "💼 Career Tools",
+    "desc": "Create beautiful ATS-friendly resumes completely in your browser. Live preview, customizable sections, instant PDF export."
+  },
+  {
+    "id": "ats-resume-checker",
+    "title": "ATS Resume Checker",
+    "category": "💼 Career Tools",
+    "desc": "Scan resume text locally to calculate ATS compatibility score, missing target keywords, contact details, and formatting warnings."
+  },
+  {
+    "id": "resume-score-analyzer",
+    "title": "Resume Score Analyzer",
+    "category": "💼 Career Tools",
+    "desc": "In-depth multi-dimensional breakdown evaluating Design, Content, ATS Readiness, Keyword Density, and Professionalism."
+  },
+  {
+    "id": "cover-letter-builder",
+    "title": "Cover Letter Builder",
+    "category": "💼 Career Tools",
+    "desc": "Interactive cover letter builder with structured sections, professional preset styles, and multi-format PDF/HTML/JSON export."
+  },
+  {
+    "id": "cover-letter-templates",
+    "title": "Cover Letter Templates",
+    "category": "💼 Career Tools",
+    "desc": "15+ industry-tailored cover letter templates for Software Engineers, Designers, Doctors, Teachers, Freshers, Marketers & more."
+  },
+  {
+    "id": "cv-builder",
+    "title": "CV Builder",
+    "category": "💼 Career Tools",
+    "desc": "Comprehensive Curriculum Vitae builder tailored for academic, medical, research, and senior executive applications."
+  },
+  {
+    "id": "resume-keyword-optimizer",
+    "title": "Resume Keyword Optimizer",
+    "category": "💼 Career Tools",
+    "desc": "Paste target Job Description and compare against your resume text to highlight missing, repeated, weak, and strong power words."
+  },
+  {
+    "id": "resume-template-gallery",
+    "title": "Resume Template Gallery",
+    "category": "💼 Career Tools",
+    "desc": "Browse and load 30+ professionally engineered resume templates across Minimal, Modern, Executive, Developer, Creative & Medical."
+  },
+  {
+    "id": "resume-version-manager",
+    "title": "Resume Version Manager",
+    "category": "💼 Career Tools",
+    "desc": "Store, rename, duplicate, manage, and back up multiple resume versions safely inside local browser storage."
+  },
+  {
+    "id": "resume-import",
+    "title": "Resume Import",
+    "category": "💼 Career Tools",
+    "desc": "Import previously saved resume files in JSON, HTML, or TXT formats directly into active suite memory."
+  },
+  {
+    "id": "resume-export",
+    "title": "Resume Export",
+    "category": "💼 Career Tools",
+    "desc": "Export active resume to PDF, clean HTML web page, raw JSON code, plain TXT file, or initiate direct print & web sharing."
+  },
+  {
+    "id": "resume-completeness",
+    "title": "Resume Completeness Tracker",
+    "category": "💼 Career Tools",
+    "desc": "Check profile completeness percentage with interactive checklist and step-by-step recommendations for job readiness."
+  },
+  {
+    "id": "resume-section-manager",
+    "title": "Resume Section Manager",
+    "category": "💼 Career Tools",
+    "desc": "Reorder, show, hide, duplicate, or rename resume sections with drag-and-drop flexibility and undo/redo history stack."
+  },
+  {
+    "id": "professional-skill-library",
+    "title": "Professional Skill Library",
+    "category": "💼 Career Tools",
+    "desc": "Searchable library of 500+ predefined professional skills across Programming, Design, Marketing, Finance, HR, Legal & Healthcare."
+  },
+  {
+    "id": "summary-generator",
+    "title": "Professional Summary Generator",
+    "category": "💼 Career Tools",
+    "desc": "Generate high-impact executive summaries without AI using structured formula templates for every experience level."
+  },
+  {
+    "id": "resume-color-themes",
+    "title": "Resume Color Themes",
+    "category": "💼 Career Tools",
+    "desc": "Apply professional high-contrast color themes (Corporate Navy, Emerald Green, Ocean Blue, Royal Purple, Obsidian) to your resume."
+  },
+  {
+    "id": "viral-hook-generator",
+    "title": "Viral Hook Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate powerful first-line hooks for YouTube, Instagram, TikTok, Facebook, and LinkedIn videos and posts to maximize viewer retention."
+  },
+  {
+    "id": "cta-generator",
+    "title": "CTA Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate compelling Call-To-Action (CTA) phrases for Subscribe, Like, Comment, Share, and Website links across multiple communication tones."
+  },
+  {
+    "id": "social-character-counter",
+    "title": "Social Character Counter",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Live character, word, sentence, and reading time counter with built-in limit gauges for YouTube, Instagram, TikTok, Twitter/X, Facebook, and LinkedIn."
+  },
+  {
+    "id": "emoji-generator",
+    "title": "Emoji Generator & Picker",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Browse, search, and copy emojis by category with recent emoji tracking, favorites list, and social media emoji combination generator."
+  },
+  {
+    "id": "instagram-caption-generator",
+    "title": "Instagram Caption Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate catchy captions with emojis and hashtags for Reels, Posts, Stories, Business, Travel, Food, Fashion, Fitness, Education, Motivation, and Personal Brand."
+  },
+  {
+    "id": "instagram-hashtag-generator",
+    "title": "Instagram Hashtag Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate Popular, Niche, Long-tail, Local, and Reels hashtags with real-time character counter and one-click Copy All."
+  },
+  {
+    "id": "instagram-bio-generator",
+    "title": "Instagram Bio Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate professional, creative, and aesthetic bios for Business, Creator, Freelancer, Student, Influencer, Islamic, Tech, Gamer, Fitness, and Photographer profiles."
+  },
+  {
+    "id": "instagram-username-generator",
+    "title": "Instagram Username Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate available-style usernames categorized into Short, Professional, Creative, Minimal, and Random options."
+  },
+  {
+    "id": "tiktok-caption-generator",
+    "title": "TikTok Caption Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate viral, high-retention TikTok captions across Entertainment, Comedy, Education, Gaming, Lifestyle, and Technology niches."
+  },
+  {
+    "id": "tiktok-hashtag-generator",
+    "title": "TikTok Hashtag Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate FYP-optimized TikTok hashtags with favorites saving and one-click copy."
+  },
+  {
+    "id": "facebook-caption-generator",
+    "title": "Facebook Caption Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate engaging Facebook post captions for Business, Festival, Events, Travel, Technology, Marketing, and Personal posts."
+  },
+  {
+    "id": "facebook-hashtag-generator",
+    "title": "Facebook Hashtag Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate trending-style Facebook hashtags to expand post reach and engagement."
+  },
+  {
+    "id": "linkedin-headline-generator",
+    "title": "LinkedIn Headline Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate high-converting professional headlines for Developer, Designer, Student, HR, Marketing, Sales, AI Engineer, Teacher, Doctor, and Business."
+  },
+  {
+    "id": "linkedin-summary-generator",
+    "title": "LinkedIn Summary Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate polished, professional About summaries for LinkedIn. Edit directly, copy to clipboard, or download as TXT file."
+  },
+  {
+    "id": "twitter-bio-generator",
+    "title": "Twitter (X) Bio Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate punchy Twitter/X bios in Short, Professional, Funny, Minimal, and Business styles within character limits."
+  },
+  {
+    "id": "universal-hashtag-generator",
+    "title": "Universal Hashtag Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate platform-tailored hashtags for YouTube, Instagram, TikTok, Facebook, LinkedIn, Twitter (X), Pinterest, and Threads."
+  },
+  {
+    "id": "fancy-text-generator",
+    "title": "Fancy Text Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Convert plain text into stylized Unicode fonts including Bold, Italic, Script, Bubble, Outline, Monospace, and Small Caps."
+  },
+  {
+    "id": "unicode-font-generator",
+    "title": "Unicode Font Generator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Generate multiple Unicode text font styles with live preview, favorites saving, and one-click copy for bios and captions."
+  },
+  {
+    "id": "text-decorator",
+    "title": "Text Decorator",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Decorate text with Stars, Lines, Boxes, Symbols, Arrows, Circles, and minimal separators for social media bios and headers."
+  },
+  {
+    "id": "emoji-combiner",
+    "title": "Emoji Combiner",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Combine and build creative emoji strings and sequences with recents stack, favorites saving, and instant copy."
+  },
+  {
+    "id": "social-media-post-formatter",
+    "title": "Social Media Post Formatter",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Format posts for Instagram, Facebook, LinkedIn, Twitter, and Threads preserving line breaks, paragraph spacing, and bullet points."
+  },
+  {
+    "id": "social-bio-link-builder",
+    "title": "Social Bio Link Builder",
+    "category": "📱 Creator & Social Media Tools",
+    "desc": "Build a personalized single-page bio link website with Name, Bio, Website, Instagram, YouTube, LinkedIn, GitHub, and Email, and export as static HTML."
+  },
+  {
+    "id": "uuid-generator",
+    "title": "UUID Generator",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate bulk UUID v4 strings instantly in your browser with download TXT option."
+  },
+  {
+    "id": "hash-generator",
+    "title": "Hash Generator",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate cryptographic MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes locally in real-time."
+  },
+  {
+    "id": "jwt-decoder",
+    "title": "JWT Decoder",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Decode JSON Web Tokens locally. Inspect Header, Payload, Expiry, and Issued time without sending data to any server."
+  },
+  {
+    "id": "regex-tester",
+    "title": "Regex Tester & Explainer",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Test regular expressions against sample text with live highlights, capture groups, and plain English token breakdown."
+  },
+  {
+    "id": "json-formatter",
+    "title": "JSON Formatter & Tree Viewer",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Beautify, minify, validate, and inspect collapsible JSON node tree structures."
+  },
+  {
+    "id": "json-validator",
+    "title": "JSON Validator",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Validate JSON syntax locally, pinpoint error line and column numbers, and format valid JSON."
+  },
+  {
+    "id": "json-to-csv",
+    "title": "JSON to CSV Converter",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert JSON arrays into CSV spreadsheets with live table preview and instant CSV export."
+  },
+  {
+    "id": "csv-to-json",
+    "title": "CSV to JSON Converter",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert CSV spreadsheets or TSV files into clean formatted JSON objects and arrays."
+  },
+  {
+    "id": "csv-viewer",
+    "title": "CSV Viewer & Data Grid",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Inspect, search, sort by column, filter, and paginate large CSV datasets directly in your browser."
+  },
+  {
+    "id": "website-downloader",
+    "title": "Website Downloader — Download Website Assets & HTML into ZIP",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Download publicly accessible website HTML, CSS, JavaScript, and images into a structured ZIP archive with rewritten relative links. 100% client-side in-browser tool."
+  },
+  {
+    "id": "html-formatter",
+    "title": "HTML Formatter & Preview",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Beautify, indent, minify, or preview rendered HTML document markups in real-time."
+  },
+  {
+    "id": "css-formatter",
+    "title": "CSS Formatter & Beautifier",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Format, indent, clean, and minify CSS style rules for maximum readability & performance."
+  },
+  {
+    "id": "javascript-formatter",
+    "title": "JavaScript Formatter",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Format, beautify, un-minify, or compact JavaScript & TypeScript code directly in your browser."
+  },
+  {
+    "id": "xml-formatter",
+    "title": "XML Formatter",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Beautify and indent raw XML documents with custom spacing options."
+  },
+  {
+    "id": "xml-validator",
+    "title": "XML Validator",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Validate XML syntax and detect unmatched opening or closing tags."
+  },
+  {
+    "id": "url-parser",
+    "title": "URL Component Parser",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Break down complex URL strings into protocol, host, port, path, fragment hash, and query parameter pairs."
+  },
+  {
+    "id": "url-encoder-decoder",
+    "title": "URL Encoder / Decoder",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Encode special characters into web-safe URL formats or decode percent-encoded links back to plain text."
+  },
+  {
+    "id": "base64-encoder-decoder",
+    "title": "Base64 Encoder / Decoder",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Encode text into Base64 format or decode Base64 strings back to UTF-8 text."
+  },
+  {
+    "id": "html-escape-unescape",
+    "title": "HTML Escape / Unescape",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert HTML markup characters into safe entity codes (&lt;, &gt;, &amp;) or unescape entities back to markup."
+  },
+  {
+    "id": "http-header-viewer",
+    "title": "HTTP Header Viewer",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Parse HTTP headers, categorize security & caching rules, and audit security compliance."
+  },
+  {
+    "id": "api-request-builder",
+    "title": "API Request Builder",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Send HTTP requests (GET, POST, PUT, DELETE) and inspect status, headers, and response payloads directly in browser."
+  },
+  {
+    "id": "color-converter",
+    "title": "Color Converter & Contrast",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert colors between HEX, RGB, HSL, and CMYK with WCAG contrast ratio checks."
+  },
+  {
+    "id": "qr-code-decoder",
+    "title": "QR Code Decoder",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Upload any image containing a QR code to extract its underlying text or web link completely client-side."
+  },
+  {
+    "id": "css-gradient-generator",
+    "title": "CSS Gradient Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Design custom linear, radial, or conic CSS gradients with live preview, unlimited color stops, angle adjustment & instant export."
+  },
+  {
+    "id": "box-shadow-generator",
+    "title": "Box Shadow Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Create layered, soft, inset, or multi-shadow CSS box shadows with real-time visual canvas customization."
+  },
+  {
+    "id": "border-radius-generator",
+    "title": "Border Radius Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Design custom rounded, asymmetrical, or elliptical box corners easily with live preview."
+  },
+  {
+    "id": "glassmorphism-generator",
+    "title": "Glassmorphism Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate frosted glass UI effects with blur, opacity, translucent borders & ambient glow."
+  },
+  {
+    "id": "neumorphism-generator",
+    "title": "Neumorphism Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate soft UI extruded or inset neumorphic shadows, flat, concave, and convex shapes."
+  },
+  {
+    "id": "css-clip-path-generator",
+    "title": "CSS Clip Path Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Create custom geometric shapes, polygons, circles & stars using CSS clip-path."
+  },
+  {
+    "id": "svg-shape-generator",
+    "title": "SVG Shape Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate vector circles, stars, polygons & organic smooth blobs with SVG download."
+  },
+  {
+    "id": "color-palette-generator",
+    "title": "Color Palette Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate harmonious monochromatic, triadic, complementary or random palettes with hex lock & JSON export."
+  },
+  {
+    "id": "contrast-checker",
+    "title": "Contrast Checker",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Check color contrast ratios against WCAG 2.1 AA & AAA accessibility guidelines with live text preview."
+  },
+  {
+    "id": "random-color-generator",
+    "title": "Random Color Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate random colors instantly in HEX, RGB, HSL, RGBA with spacebar control & favorites list."
+  },
+  {
+    "id": "qr-business-card-generator",
+    "title": "QR Business Card Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Create a contact vCard QR code that instantly imports contact details on mobile smartphones."
+  },
+  {
+    "id": "random-number-generator",
+    "title": "Random Number Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate random numbers with customizable range, quantity, unique rules & sorting."
+  },
+  {
+    "id": "random-password-generator",
+    "title": "Random Password Generator",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate strong, cryptographically secure random passwords instantly in your browser."
+  },
+  {
+    "id": "chatgpt-prompt-builder",
+    "title": "ChatGPT Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Build structured, professional prompts for ChatGPT writing, coding, marketing, business, education & productivity."
+  },
+  {
+    "id": "gemini-prompt-builder",
+    "title": "Gemini Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Construct optimized prompts for Google Gemini AI covering writing, research, analysis, image ideas & multimodal prompts."
+  },
+  {
+    "id": "claude-prompt-builder",
+    "title": "Claude Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Craft long-form prompts with XML tags, system personas, context framing & complex reasoning for Claude AI."
+  },
+  {
+    "id": "veo-prompt-builder",
+    "title": "Veo Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate realistic cinematic AI video prompts for Google Veo, Runway, Luma & Sora with camera motion & lighting."
+  },
+  {
+    "id": "midjourney-prompt-builder",
+    "title": "Midjourney Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Build Midjourney v6 prompts with aspect ratio --ar, stylize --s, chaos --c, quality --q, version --v & negative parameters."
+  },
+  {
+    "id": "flux-prompt-builder",
+    "title": "Flux Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Create hyperrealistic Flux1.0 AI image generator prompts for portraits, anime, photorealism, typography & architecture."
+  },
+  {
+    "id": "stable-diffusion-prompt-builder",
+    "title": "Stable Diffusion Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate positive and negative prompts for SDXL, SD 1.5, Pony & Flux with samplers, CFG scale & step recommendations."
+  },
+  {
+    "id": "logo-prompt-builder",
+    "title": "Logo Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate vector logo prompts across Tech, Business, Medical, Finance, Gaming, Luxury & Minimalist styles."
+  },
+  {
+    "id": "thumbnail-prompt-builder",
+    "title": "Thumbnail Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate high-CTR thumbnail prompts for YouTube, TikTok, Instagram & Facebook with facial hooks & bold text."
+  },
+  {
+    "id": "product-photo-prompt-builder",
+    "title": "Product Photography Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate commercial studio photography prompts for Amazon, Flipkart, luxury brands & e-commerce."
+  },
+  {
+    "id": "interior-design-prompt-builder",
+    "title": "Interior Design Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate AI prompts for interior architecture, luxury villas, cafes, bedrooms, kitchens & modern offices."
+  },
+  {
+    "id": "story-prompt-builder",
+    "title": "Story Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate narrative prompts across Horror, Sci-Fi, Fantasy, Adventure, Islamic Stories, Kids Stories & Mysteries."
+  },
+  {
+    "id": "youtube-script-prompt-builder",
+    "title": "YouTube Script Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate scriptwriting prompts for YouTube Shorts, Long Videos, Explainers, Podcasts & Tech channels."
+  },
+  {
+    "id": "resume-prompt-builder",
+    "title": "Resume Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate ATS-friendly AI resume writing & job tailoring prompts using accomplishment metrics."
+  },
+  {
+    "id": "cover-letter-prompt-builder",
+    "title": "Cover Letter Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Craft persuasive, professional AI cover letter prompts tailored to target companies & hiring managers."
+  },
+  {
+    "id": "email-prompt-builder",
+    "title": "Email Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate AI prompts for business emails, cold outreach, customer support, job offers & marketing."
+  },
+  {
+    "id": "social-media-prompt-builder",
+    "title": "Social Media Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate viral social post prompts for Instagram, LinkedIn, TikTok, Twitter/X, Facebook & Threads."
+  },
+  {
+    "id": "seo-prompt-builder",
+    "title": "SEO Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Build SEO content briefs for blogs, websites, keyword research, meta titles & internal linking."
+  },
+  {
+    "id": "coding-prompt-builder",
+    "title": "Coding Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Generate software engineering prompts for React, Python, JS, Flutter, SQL, debugging & clean architecture."
+  },
+  {
+    "id": "universal-prompt-builder",
+    "title": "Universal Prompt Builder",
+    "category": "🤖 AI Prompt Builder Tools",
+    "desc": "Build custom structured master prompts with Role, Goal, Context, Constraints, Format, Tone & Examples."
+  },
+  {
+    "id": "qr-code-safety-checker",
+    "title": "QR Code Safety Checker",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Scan a QR code safely, decode its URL or text, and check for common phishing and suspicious URL patterns before opening it."
+  },
+  {
+    "id": "barcode-generator",
+    "title": "Free Barcode Generator — Create Code 128, EAN-13, UPC Barcodes",
+    "category": "💼 Business Tools",
+    "desc": "Generate high-resolution vector and raster barcodes for retail, shipping, and inventory in Code 128, EAN-13, UPC-A, Code 39, and more."
+  },
+  {
+    "id": "case-converter",
+    "title": "Case Converter — Uppercase, Lowercase, Title Case, CamelCase",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Convert text case instantly between UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, and kebab-case."
+  },
+  {
+    "id": "word-counter",
+    "title": "Word Counter & Character Counter — Readability & Speaking Time",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Count words, characters, sentences, and paragraphs in real time with Flesch reading score, reading time, and speaking time calculations."
+  },
+  {
+    "id": "character-counter",
+    "title": "Character Counter — Letters, Numbers & Symbol Statistics",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Analyze precise character counts, spaces, alphanumeric letters, digits, and special punctuation in your copy."
+  },
+  {
+    "id": "remove-duplicate-lines",
+    "title": "Remove Duplicate Lines — Deduplicate Text Lists Online",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Deduplicate lines of text, email lists, keywords, and code lists instantly with case sensitivity and trimming options."
+  },
+  {
+    "id": "remove-empty-lines",
+    "title": "Remove Empty Lines — Strip Blank Lines & Whitespace Online",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Remove blank lines, unnecessary carriage returns, and normalize paragraph spacing in messy text files."
+  },
+  {
+    "id": "find-and-replace",
+    "title": "Find and Replace Text Online — Batch Replace with Regex Support",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Find and replace words, phrases, or regex patterns across long text documents with live match counter and replacement preview."
+  },
+  {
+    "id": "text-compare",
+    "title": "Text Compare Tool — Online Diff Checker & Text Difference",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Compare two text snippets side-by-side or inline to visually spot differences, additions, and edits."
+  },
+  {
+    "id": "text-cleaner",
+    "title": "Text Cleaner — Remove Extra Spaces, Tabs, HTML Tags & Empty Lines",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Clean up sloppy, formatted, or copied text by stripping HTML tags, redundant spaces, tabs, duplicate lines, and weird unicode characters."
+  },
+  {
+    "id": "sort-lines",
+    "title": "Sort Lines Online — Alphabetical, Numeric & Reverse Line Sorter",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Sort lines of text alphabetically (A-Z or Z-A), numerically (0-9), by length, or randomly shuffle lines with duplicate removal."
+  },
+  {
+    "id": "lorem-ipsum-generator",
+    "title": "Lorem Ipsum Generator — Dummy Placeholder Text Generator",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Generate customizable Latin dummy text by paragraphs, sentences, or word counts for web design and mockup layouts."
+  },
+  {
+    "id": "markdown-editor",
+    "title": "Markdown Editor & Live Previewer — Export MD, HTML & Text",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Full-featured online Markdown editor with instant side-by-side HTML preview, formatting toolbar, and multi-format download."
+  },
+  {
+    "id": "json-minifier",
+    "title": "JSON Minifier & Compressor — Minify JSON Online Free",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Minify, compress, and strip unneeded whitespace and line breaks from JSON documents to reduce payload size."
+  },
+  {
+    "id": "json-to-xml",
+    "title": "JSON to XML Converter — Transform JSON to XML Online Free",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Transform JSON data structures into clean, standardized XML documents with customizable root and item element names."
+  },
+  {
+    "id": "xml-to-json",
+    "title": "XML to JSON Converter — Convert XML Structure to JSON Online",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Parse and convert XML feeds and document structures into clean, formatted JSON data objects directly in your browser."
+  },
+  {
+    "id": "markdown-to-html",
+    "title": "Markdown to HTML Converter — Parse Markdown to Clean HTML",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert Markdown syntax (.md) into clean, semantic HTML markup with live preview and syntax-highlighted code output."
+  },
+  {
+    "id": "sql-formatter",
+    "title": "SQL Formatter & Beautifier — Format SQL Queries Online Free",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Format, beautify, and indent SQL queries with customizable uppercase keywords, indentation, and support for MySQL, Postgres, SQLite, and T-SQL."
+  },
+  {
+    "id": "jwt-generator",
+    "title": "JWT Generator & Signer — Create Signed JSON Web Tokens Online",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Create and cryptographically sign JSON Web Tokens (JWT) using HS256, HS384, or HS512 with custom headers, claims, and expiry."
+  },
+  {
+    "id": "cron-expression-generator",
+    "title": "Cron Expression Generator & Explainer — Schedule Builder",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Build, translate, and explain 5-part Unix cron schedule expressions into plain English with upcoming execution time predictions."
+  },
+  {
+    "id": "hex-color-generator",
+    "title": "Hex Color Code Generator — Random HTML & CSS Palette",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Generate beautiful random hex color codes, color shades, tints, and complementary color schemes with one-click CSS copy."
+  },
+  {
+    "id": "rgb-color-generator",
+    "title": "RGB Color Code Generator & Hex Slider Converter",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Interactive RGB color sliders with real-time Hex, HSL, CSS conversion, and live color canvas previews."
+  },
+  {
+    "id": "random-name-picker",
+    "title": "Random Name Picker — Lucky Draw & Raffle Winner Wheel",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Pick random winners from any list of names or entries. Perfect for classroom activities, sweepstakes, giveaways, and raffles."
+  },
+  {
+    "id": "business-name-generator",
+    "title": "Business Name Generator — Creative Brand & Startup Ideas",
+    "category": "💼 Business Tools",
+    "desc": "Generate hundreds of catchy, modern, and memorable company brand names for your new startup, online store, or business venture."
+  },
+  {
+    "id": "brand-name-generator",
+    "title": "Brand Name Generator — Catchy Company & Domain Names",
+    "category": "💼 Business Tools",
+    "desc": "Create unique, premium, and creative brand identity names with linguistic morphemes, blended words, and modern tech vibes."
+  },
+  {
+    "id": "coin-flip",
+    "title": "Online Coin Flip Simulator — 3D Heads or Tails Toss",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Realistic 3D coin toss simulator with heads/tails streak statistics, multiple coin flips, and sound effects for unbiased decision making."
+  },
+  {
+    "id": "json-viewer",
+    "title": "JSON Viewer & Tree Formatter — Interactive Object Inspector",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Inspect, validate, and navigate complex JSON data structures with collapsible tree views, search filters, and syntax highlighting."
+  },
+  {
+    "id": "name-picker-wheel",
+    "title": "Name Picker Wheel — Random Raffle & Prize Spinner",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Spin the customizable lucky wheel to pick a random name, winner, decision, or team member with celebratory animations."
+  },
+  {
+    "id": "dice-roller",
+    "title": "3D Dice Roller Simulator — Multi-Dice D6, D20 & D100",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Roll virtual dice for tabletop RPGs, D&D, board games, and probability tests. Supports D4, D6, D8, D10, D12, D20, and D100."
+  },
+  {
+    "id": "user-agent-parser",
+    "title": "User Agent Parser — Browser, Device & OS Header Lookup",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Parse browser User-Agent strings to detect browser family, layout engine, operating system version, and mobile device hardware model."
+  },
+  {
+    "id": "random-letter-generator",
+    "title": "Random Letter Generator — Alphabet Picker & Word Games",
+    "category": "🎨 Design & Utility Tools",
+    "desc": "Pick random letters from the English alphabet with uppercase, lowercase, vowel/consonant filtering, and word game modes (Scrabble/Boggle)."
+  },
+  {
+    "id": "json-to-yaml",
+    "title": "JSON to YAML Converter — Format Configs & Data Online",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert JSON objects into clean, indented YAML data structures for Kubernetes manifests, Docker Compose, and CI/CD pipelines."
+  },
+  {
+    "id": "url-extractor",
+    "title": "URL Extractor — Scrape & Filter Web Links from Raw Text",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Extract, deduplicate, and clean all HTTP/HTTPS website links and URLs from unformatted text, HTML source code, and documents."
+  },
+  {
+    "id": "sha256-hash-generator",
+    "title": "SHA-256 Hash Generator — Real-Time Checksum Verifier",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate 256-bit cryptographic SHA-256 checksum hashes in real-time with Web Crypto API and verify matching digests."
+  },
+  {
+    "id": "md5-hash-generator",
+    "title": "MD5 Hash Generator — 128-Bit Checksum Digest Lookup",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate 128-bit MD5 message digest hash checksums instantly with real-time verification and casing options."
+  },
+  {
+    "id": "wide-text-generator",
+    "title": "Wide Text Generator — Fullwidth Aesthetic Vaporwave Font",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Convert standard text into fullwidth Unicode aesthetic text (ｗｉｄｅ　ｔｅｘｔ) and spaced typography."
+  },
+  {
+    "id": "typing-speed-test",
+    "title": "Typing Speed Test — Test WPM & Accuracy Online",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Test your words per minute (WPM), raw CPM speed, and keystroke accuracy with timed 15s, 30s, 60s, or 120s typing tests."
+  },
+  {
+    "id": "text-reverser",
+    "title": "Text Reverser — Reverse Text, Words & Letters Online",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Flip and reverse characters, words, lines, or mirror text backwards instantly with 1-click clipboard copy."
+  },
+  {
+    "id": "remove-line-breaks",
+    "title": "Remove Line Breaks — Clean Text & Paragraph Formatter",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Remove line breaks, carriage returns, and newlines from messy copied text, PDF text, or code with customizable separators."
+  },
+  {
+    "id": "remove-extra-spaces",
+    "title": "Remove Extra Spaces — Clean Whitespace & Indents",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Eliminate duplicate spaces, trailing whitespace, blank lines, and irregular indents from your text in one click."
+  },
+  {
+    "id": "text-repeater",
+    "title": "Text Repeater — Repeat Words & Messages 10,000x Times",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Repeat any word, phrase, emoji, or text string up to 10,000 times with newlines, spaces, or custom separators."
+  },
+  {
+    "id": "text-splitter",
+    "title": "Text Splitter — Split Text by Delimiter, Lines & Chunks",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Split text, lists, CSVs, or logs by character, comma, newline, regex delimiter, or fixed character chunk size."
+  },
+  {
+    "id": "text-joiner",
+    "title": "Text Joiner — Combine Lines with Custom Delimiters",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Merge and concatenate list items, lines of text, or values using commas, tabs, semicolons, or custom prefixes/suffixes."
+  },
+  {
+    "id": "email-extractor",
+    "title": "Email Extractor — Scrape & Filter Emails from Text",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Extract all valid email addresses from raw text, HTML documents, or spreadsheets with domain filtering and deduplication."
+  },
+  {
+    "id": "keyword-extractor",
+    "title": "Keyword Extractor — Extract SEO Keywords & Density",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Analyze text to extract top single words, 2-word, and 3-word key phrases with frequency and percentage density."
+  },
+  {
+    "id": "html-entity-encoder-decoder",
+    "title": "HTML Entity Encoder & Decoder — Convert &amp;, &lt;, &gt;",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Encode special characters to HTML entities (&amp;, &lt;, &gt;, &quot;) or decode named and numeric entities back to text."
+  },
+  {
+    "id": "text-to-binary",
+    "title": "Text to Binary Converter — Convert Text to 0s & 1s Online",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert ASCII and UTF-8 text strings to 8-bit binary code with space, comma, or continuous formatting."
+  },
+  {
+    "id": "binary-to-text",
+    "title": "Binary to Text Converter — Decode 0s & 1s to Text Online",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Translate binary code (0s and 1s) back into readable English text with auto-delimiter detection and error handling."
+  },
+  {
+    "id": "text-to-hex",
+    "title": "Text to Hex Converter — Convert ASCII to Hexadecimal",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Convert plain text and strings to hexadecimal values with uppercase/lowercase, space, colon, or 0x prefixes."
+  },
+  {
+    "id": "hex-to-text",
+    "title": "Hex to Text Converter — Decode Hexadecimal to Plain Text",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Decode hexadecimal strings, byte codes, and hex dumps back into readable ASCII/UTF-8 plain text."
+  },
+  {
+    "id": "css-minifier",
+    "title": "CSS Minifier — Minify CSS Online for Faster Page Speeds",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Compress and minify CSS stylesheets by stripping comments, redundant whitespace, and semicolons for production."
+  },
+  {
+    "id": "javascript-minifier",
+    "title": "JavaScript Minifier — Minify JS Code Online Free",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Minify JavaScript code by stripping comments and extraneous whitespace while preserving syntactical keyword boundaries."
+  },
+  {
+    "id": "html-minifier",
+    "title": "HTML Minifier — Compress HTML Online for SEO Speed",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Minify HTML markup, strip comments, and eliminate whitespace while protecting pre, code, and script blocks."
+  },
+  {
+    "id": "sql-minifier",
+    "title": "SQL Minifier — Compress SQL Queries to Single Line",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Minify SQL queries, remove comments, and convert multi-line statements into single-line queries while protecting string literals."
+  },
+  {
+    "id": "meta-tag-generator",
+    "title": "Meta Tag Generator — Generate SEO & Open Graph Tags",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate Google SEO meta tags, Open Graph tags, and Twitter Cards with live SERP and social share previews."
+  },
+  {
+    "id": "robots-txt-generator",
+    "title": "Robots.txt Generator — Create SEO-Friendly Robots.txt Online",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate optimized robots.txt files for Googlebot and search crawlers with presets, disallow paths, and sitemap directives."
+  },
+  {
+    "id": "xml-sitemap-generator",
+    "title": "XML Sitemap Generator — Create Google Sitemaps Free",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate Google Search Console compliant XML sitemaps with priority, change frequency, and bulk URL importing."
+  },
+  {
+    "id": "schema-markup-generator",
+    "title": "Schema Markup Generator — JSON-LD Structured Data",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate Google Rich Results JSON-LD schema markup for Organizations, Articles, FAQ Pages, Products, and Local Businesses."
+  },
+  {
+    "id": "utm-builder",
+    "title": "UTM Campaign URL Builder — Google Analytics UTM Generator",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Build trackable marketing campaign URLs with UTM parameters (source, medium, campaign, term, content) and history tracking."
+  },
+  {
+    "id": "barcode-scanner",
+    "title": "Barcode Scanner — Scan 1D/2D Barcodes Online Free",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Scan and decode 1D & 2D barcodes from camera or uploaded images with automatic barcode format detection and Google lookup."
+  },
+  {
+    "id": "calendar-notes",
+    "title": "Calendar Notes — Private Monthly Calendar & Daily Planner",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Organize your schedule and write private daily notes on an interactive monthly calendar stored securely in your browser."
+  },
+  {
+    "id": "clipboard-history",
+    "title": "Clipboard History Manager — Save & Search Copied Snippets",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Store frequently used text snippets, code blocks, and notes locally with instant search and one-click re-copying."
+  },
+  {
+    "id": "daily-planner",
+    "title": "Daily Routine Planner — Morning, Afternoon & Evening Focus",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Structure your day into Morning, Afternoon, and Evening priorities with persistent task checkboxes and daily notes."
+  },
+  {
+    "id": "expense-tracker",
+    "title": "Personal Expense Tracker — Income, Expenses & Budget Ledger",
+    "category": "💼 Business Tools",
+    "desc": "Track daily expenses and income, view real-time balance metrics, and export categorized financial transactions to CSV."
+  },
+  {
+    "id": "file-checksum-verifier",
+    "title": "File Checksum Verifier — Verify SHA-256, SHA-1, SHA-512 & MD5",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Compute cryptographic hashes of any file to verify file integrity and detect tampering with instant hash comparison."
+  },
+  {
+    "id": "habit-tracker",
+    "title": "Daily Habit Tracker — Build Habits & Track Streaks",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Cultivate positive daily habits, maintain consecutive streaks, and monitor your personal consistency over time."
+  },
+  {
+    "id": "monthly-budget-planner",
+    "title": "Monthly Budget Planner — Category Spending & Expense Limits",
+    "category": "💼 Business Tools",
+    "desc": "Plan monthly expenditures by category, monitor actual spending against budgeted limits, and avoid overspending."
+  },
+  {
+    "id": "passphrase-generator",
+    "title": "Memorable Passphrase Generator — Secure Diceware Words",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Generate highly secure yet easy-to-remember multi-word passphrases using Diceware principles and cryptographic randomness."
+  },
+  {
+    "id": "password-strength-checker",
+    "title": "Password Strength Checker — Entropy & Crack Time Estimator",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Evaluate password resilience, calculate mathematical entropy bits, and estimate brute-force cracking resistance."
+  },
+  {
+    "id": "pomodoro-timer",
+    "title": "Pomodoro Focus Timer — 25-Minute Work & Break Intervals",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Enhance focus and productivity with 25-minute Pomodoro sessions, short and long breaks, and synthesized audio chimes."
+  },
+  {
+    "id": "secure-notes",
+    "title": "Secure Offline Notes — Private Encrypted Local Notepad",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Draft, organize, and pin private notes stored entirely on your device with text search and instant export."
+  },
+  {
+    "id": "sha-checksum-generator",
+    "title": "SHA Checksum Generator — SHA-1, SHA-256, SHA-384 & SHA-512",
+    "category": "👨‍💻 Developer Tools",
+    "desc": "Generate SHA-1, SHA-256, SHA-384, and SHA-512 cryptographic hashes simultaneously for strings or uploaded files."
+  },
+  {
+    "id": "text-encrypt-decrypt",
+    "title": "AES Text Encrypt & Decrypt — Secure Cipher with Secret Key",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Encrypt confidential text messages with AES symmetric encryption and decrypt ciphertexts using your private passphrase."
+  },
+  {
+    "id": "todo-list",
+    "title": "Todo List & Task Manager — Priority Checklist & Categories",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Stay organized with priority task tagging, custom category grouping, active/completed filters, and persistent local storage."
+  },
+  {
+    "id": "weekly-planner",
+    "title": "7-Day Weekly Planner — Monday to Sunday Schedule Manager",
+    "category": "🔒 Security, Privacy & Productivity",
+    "desc": "Map out your schedule and tasks across all 7 days of the week with easy per-day task entries and browser storage."
+  },
+  {
+    "id": "random-text-generator",
+    "title": "Random Text & String Generator — Custom Length & Character Sets",
+    "category": "✍️ Text & Writing Tools",
+    "desc": "Generate cryptographically random strings, alphanumeric keys, and passwords with customizable length and character sets."
+  }
+]

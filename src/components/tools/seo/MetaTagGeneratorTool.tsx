@@ -10,13 +10,13 @@ export const MetaTagGeneratorTool: React.FC<MetaTagGeneratorToolProps> = ({ onSh
   const [description, setDescription] = useState<string>(
     'Zubware provides 300+ free, fast, and privacy-focused online web tools for file conversion, image editing, developer utilities, and productivity right in your browser.'
   );
-  const [canonicalUrl, setCanonicalUrl] = useState<string>('https://zubware.com');
+  const [canonicalUrl, setCanonicalUrl] = useState<string>('https://www.zubware.com');
   const [author, setAuthor] = useState<string>('Zubware Team');
   const [robotsIndex, setRobotsIndex] = useState<boolean>(true);
   const [robotsFollow, setRobotsFollow] = useState<boolean>(true);
   const [themeColor, setThemeColor] = useState<string>('#4f46e5');
   const [ogType, setOgType] = useState<string>('website');
-  const [ogImage, setOgImage] = useState<string>('https://zubware.com/og-banner.png');
+  const [ogImage, setOgImage] = useState<string>('https://www.zubware.com/og-banner.png');
   const [twitterCard, setTwitterCard] = useState<string>('summary_large_image');
   const [twitterSite, setTwitterSite] = useState<string>('@zubware');
   const [copied, setCopied] = useState<boolean>(false);

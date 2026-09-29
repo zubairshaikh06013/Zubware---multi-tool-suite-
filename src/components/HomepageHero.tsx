@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { getTranslation } from '../lib/i18n';
 import { getLinkUrl } from '../lib/paths';
 import { ZubwareLogo } from './ZubwareLogo';
+import { ToolIcon } from './common/ToolIcon';
 
 interface HomepageHeroProps {
   tools: ToolMeta[];
@@ -15,7 +16,7 @@ interface HomepageHeroProps {
 }
 
 const POPULAR_TOOL_IDS = [
-  'splitdrop',
+  'image-splitter-merger',
   'image-compressor',
   'pdf-merge',
   'resume-builder',
@@ -139,7 +140,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
           {getTranslation(
             currentLang,
             'homepageHeroSubtitle',
-            'Zubware is your all-in-one privacy-first toolkit. 300+ instant browser tools for PDF, Image, Video, Developer, Career, and Productivity — 100% free with zero server uploads.'
+            'Zubware is your all-in-one privacy-first toolkit. 300+ instant browser tools for PDF, Image, Video, Developer, Career, and Productivity — free to use with no Zubware server upload for local tools.'
           )}
         </p>
 
@@ -147,15 +148,15 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
         <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 pt-1 text-xs font-medium text-slate-500 dark:text-slate-400">
           <span className="inline-flex items-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-emerald-500" />
-            <span>100% Client-Side Privacy</span>
+            <span>Local Browser-Based Processing</span>
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Zap className="w-4 h-4 text-amber-500" />
-            <span>Instant In-Browser Speed</span>
+            <span>Instant In-Browser Execution</span>
           </span>
           <span className="hidden sm:inline-flex items-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-indigo-500" />
-            <span>Zero Server Uploads</span>
+            <span>No Server Upload for Local Tools</span>
           </span>
         </div>
 
@@ -259,9 +260,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                         }`}
                       >
                         <div className="flex items-center gap-3 min-w-0">
-                          <span className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-xl shrink-0 group-hover:scale-110 transition-transform">
-                            {tool.icon}
-                          </span>
+                          <ToolIcon toolId={tool.id} category={tool.category} size="md" className="group-hover:scale-105 transition-transform" />
                           <div className="min-w-0">
                             <div className="flex items-center gap-2 flex-wrap">
                               <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
@@ -319,7 +318,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                 }}
                 className="px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 text-xs font-medium transition-all shadow-2xs cursor-pointer flex items-center gap-1.5 active:scale-95"
               >
-                <span>{tool.icon}</span>
+                <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
                 <span>{tool.navTitle || tool.title}</span>
               </a>
             ))}

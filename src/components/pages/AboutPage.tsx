@@ -18,7 +18,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
           About Zubware
         </h1>
         <p className="text-xs sm:text-base text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
-          Reimagining online tools with 100% client-side privacy, instant execution, and zero server storage requirements.
+          Reimagining online tools with browser-based processing, zero server upload requirements for local tools, and fast execution.
         </p>
       </div>
 
@@ -34,7 +34,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             Zubware was created by <strong>Zubair Shaikh</strong> to solve a pervasive problem on the modern web: traditional file tools force users to upload their confidential documents, private photos, and personal information to unknown third-party cloud servers.
           </p>
           <p>
-            We engineered Zubware to process everything locally inside your device using HTML5 Canvas, WebAssembly, and modern Web APIs.
+            We engineered Zubware so that local utilities process data directly inside your browser using HTML5 Canvas, WebAssembly, and modern Web APIs. For local tools, your files and inputs are never uploaded to Zubware servers.
           </p>
         </div>
 
@@ -42,9 +42,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
           <div className="glass-card p-5 rounded-2xl">
             <ShieldCheck className="w-6 h-6 text-indigo-600 dark:text-indigo-400 mb-2" />
-            <h3 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">Absolute Privacy</h3>
+            <h3 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">Client-Side Privacy</h3>
             <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
-              Zero cloud uploads. Your data stays completely in your browser memory.
+              No Zubware server upload for local-processing tools. Your files stay in browser memory.
             </p>
           </div>
 
@@ -52,13 +52,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
             <Zap className="w-6 h-6 text-amber-500 mb-2" />
             <h3 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">Instant Execution</h3>
             <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
-              No uploading wait time. Experience instant compression, splitting, and rendering.
+              No server upload wait time. Enjoy rapid local conversion, compression, and rendering.
             </p>
           </div>
 
           <div className="glass-card p-5 rounded-2xl">
             <Heart className="w-6 h-6 text-emerald-500 mb-2" />
-            <h3 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">Free Forever</h3>
+            <h3 className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">Free to Use</h3>
             <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-1">
               No account mandatory, no hidden paywalls, and no forced watermarks.
             </p>
@@ -68,26 +68,26 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
         {/* Tools Included */}
         <div className="space-y-3 pt-4 border-t border-slate-100 dark:border-slate-800">
           <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Globe className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> The Zubware Suite (300+ Free Tools)
+            <Globe className="w-5 h-5 text-indigo-600 dark:text-indigo-400" /> The Zubware Suite (300+ Modern Online Tools)
           </h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
             <li className="glass-card p-3 rounded-xl font-semibold">
-              ✨ <strong>Image Splitter & Photo Merger</strong>: Split or combine images seamlessly.
+              📑 <strong>Advanced PDF Suite</strong>: Drag-and-drop page reordering, per-page 90° rotation, thumbnail inspector, split, merge, and lossless compression.
             </li>
             <li className="glass-card p-3 rounded-xl font-semibold">
-              🗜️ <strong>Batch Image Compressor</strong>: Reduce PNG, JPG, WebP file sizes.
+              🏛️ <strong>Income Tax & Financial Suite</strong>: Latest IRS 2025/2026 brackets & India Budget 2025-2026 New Tax Regime with ₹75k standard deduction and Section 87A rebate.
             </li>
             <li className="glass-card p-3 rounded-xl font-semibold">
-              🔄 <strong>Batch Image Converter</strong>: Convert formats instantly.
+              🏡 <strong>Home Loan & Down Payment Roadmap</strong>: Target savings plans with HYSA compound growth, mortgage calculators, and PMI estimators.
             </li>
             <li className="glass-card p-3 rounded-xl font-semibold">
-              📚 <strong>PDF Tools Suite</strong>: Reorder, combine, split, or extract PDF pages.
+              💼 <strong>Career & Resume Studio</strong>: ATS resume scoring, work experience overlap calculator, CV builders, and professional summary generators.
             </li>
             <li className="glass-card p-3 rounded-xl font-semibold">
-              📱 <strong>Dynamic QR Code Generator</strong>: Custom vector QR codes with colors and logos.
+              🗜️ <strong>Batch Image Studio</strong>: High-speed local compression, format conversion (PNG, JPG, WebP, AVIF), cropping, and photo merging.
             </li>
             <li className="glass-card p-3 rounded-xl font-semibold">
-              📄 <strong>Professional Resume Builder</strong>: Multi-template ATS resume builder.
+              📱 <strong>QR & Business Card Suite</strong>: vCard QR code generator with executive theme mockups and vector exports.
             </li>
           </ul>
         </div>

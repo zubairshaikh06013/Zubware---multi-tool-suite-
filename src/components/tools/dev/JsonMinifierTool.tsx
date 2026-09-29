@@ -11,7 +11,7 @@ export function JsonMinifierTool({ onShowToast }: { onShowToast: (msg: string) =
     "verified": true
   },
   "features": [
-    "100% Client-Side Processing",
+    "Client-Side Processing",
     "No Cloud Uploads",
     "Instant Format Conversion",
     "Zero Telemetry"

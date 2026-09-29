@@ -248,7 +248,7 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
           <span>Unified PDF Size Engine</span>
           <span className="text-slate-300 dark:text-slate-700">•</span>
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
-          <span>100% Client-Side Private</span>
+          <span>Local Browser Processing</span>
         </div>
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
           PDF Size Adjuster
@@ -269,7 +269,7 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
               maxSizeMB={50}
               title="Upload PDF Document"
               subtitle="Drag & drop your PDF file here, or click to browse"
-              fileTypeSupportText="Supports standard PDF files up to 50 MB. 100% processed locally in your browser."
+              fileTypeSupportText="Supports standard PDF files up to 50 MB. Processed locally in your browser."
               onFilesSelected={handleFileSelected}
             />
           </div>
@@ -743,7 +743,7 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
                     </div>
                     <div className="flex items-center gap-1.5">
                       <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                      <span>100% Client-side sandbox</span>
+                      <span>Browser-native sandbox</span>
                     </div>
                   </div>
                 </div>
@@ -805,7 +805,7 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
             <ShieldCheck className="w-4 h-4" />
           </div>
           <h4 className="text-sm font-extrabold text-slate-900 dark:text-white">
-            100% Client-Side Privacy
+            Client-Side Privacy
           </h4>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
             Your PDF documents are processed strictly inside your web browser sandbox using WebAssembly and canvas. No files are ever sent to any remote server.

@@ -7,9 +7,6 @@ import {
 } from 'lucide-react';
 import jsPDF from 'jspdf';
 import { ImageUploadArea } from './ImageUploadArea';
-import { SEOHead } from '../../SEOHead';
-import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { formatBytes } from '../../../lib/imageUtils';
 
 interface PassportPhotoMakerToolProps {
@@ -921,91 +918,25 @@ export const PassportPhotoMakerTool: React.FC<PassportPhotoMakerToolProps> = ({ 
   const checkSizeOk = exportKbSize >= (activeProfile.minKb || 10) && exportKbSize <= (activeProfile.maxKb || 5000);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-      {/* SEO Head */}
-      <SEOHead
-        title="Passport Photo Maker - Create Passport, Visa & Age Repair Photos Online"
-        description="Create passport, visa and ID photos online with AI Photo Repair, clothes color changer, formal suit overlays, age transformation, background removal, and print-ready PDF sheet generator."
-        canonicalPath="/passport-photo-maker.html"
-        faqs={[
-          {
-            question: "What is a passport-size photo?",
-            answer: "A passport-size photo is a standardized physical or digital photograph meeting specific government requirements regarding dimensions (e.g., 35x45 mm or 2x2 inches), background color, face position, and file size."
-          },
-          {
-            question: "How can I change clothes color or wear a formal suit in my photo?",
-            answer: "Zubware includes built-in clothes color transformation tools (Navy Blue, Black, Royal Blue, Maroon, Emerald) and formal suit overlays (Men's Suit & Tie, White Shirt & Tie, Women's Blazer). You can adjust scale and position to snap a formal outfit onto your photo instantly."
-          },
-          {
-            question: "Can I change person age or retouch my face?",
-            answer: "Yes! Our Photo Repair & Touch-Up Suite lets you perform age transformation (Younger, Natural, Mature, Senior), skin blemish & wrinkle smoothing, flash glare removal, and hair tone adjustments."
-          },
-          {
-            question: "Can I make a passport photo from a selfie?",
-            answer: "Yes, you can upload a clean, well-lit portrait photo or selfie. Ensure your face is directly facing the camera with a neutral expression and no harsh shadows."
-          },
-          {
-            question: "Can I change the background to white?",
-            answer: "Yes! Zubware includes an automated background color modifier that allows you to replace your photo background with plain white, off-white, light grey, or custom hex colors."
-          },
-          {
-            question: "Can I print multiple passport photos on A4 or 4x6 paper?",
-            answer: "Yes, our built-in Print Sheet Generator arranges 2, 4, 8, 12, or 16 photo copies onto A4, A5, or 4x6 inch paper with cutting guides and PDF export."
-          },
-          {
-            question: "Are my photos uploaded to a server?",
-            answer: "No. All cropping, clothes color changes, age retouching, background styling, and PDF exports are calculated 100% locally inside your web browser. Your photo is never sent to any server."
-          }
-        ]}
-      />
-
-      {/* Navigation Breadcrumb */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <BackButton onNavigate={(p) => onNavigate ? onNavigate(p) : window.history.back()} />
-          <Breadcrumb
-            items={[
-              { label: 'Home', path: '/' },
-              { label: 'Image Tools', path: '/#category-image-tools' },
-              { label: 'Passport & Visa Photo Maker' }
-            ]}
-            onNavigate={onNavigate}
-          />
-        </div>
-      </div>
-
-      {/* Title Header */}
-      <div className="text-center space-y-3 max-w-3xl mx-auto">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-          <ShieldCheck className="w-4 h-4" />
-          Official Requirements & Photo Repair Suite
-        </div>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-          Passport & Visa Photo Maker
-        </h1>
-        <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
-          Create passport photos, change clothes color, wear formal suits, transform age & repair photos instantly.
-        </p>
-      </div>
-
-      {/* Mandatory Official Legal / Accuracy Notice Banner */}
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-6">
+      {/* Legal & Accuracy Notice Banner */}
       <div className="glass-panel p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 text-slate-800 dark:text-slate-200 flex items-start gap-3">
         <AlertTriangle className="w-5 h-5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
         <div className="text-xs sm:text-sm space-y-1">
           <p className="font-semibold text-amber-900 dark:text-amber-300">
-            Important Legal & Official Accuracy Notice:
+            Important Notice:
           </p>
           <p>
-            Photo requirements vary by application, country, embassy, passport office or visa type. Always verify current official requirements before submitting your photo.
+            Photo requirements vary by application, country, embassy, or visa type. Always verify your current application guidelines before submitting your photo.
           </p>
         </div>
       </div>
 
-      {/* Privacy Banner */}
+      {/* Privacy Notice */}
       <div className="glass-panel p-3.5 rounded-xl border border-emerald-500/20 bg-emerald-500/5 flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
         <ShieldCheck className="w-4 h-4 text-emerald-500 shrink-0" />
         <span>
-          <strong>100% Private & In-Browser:</strong> Your photo is processed directly inside your browser. It is never uploaded to Zubware or any remote server.
+          <strong>Client-Side Browser Processing:</strong> Your photo is processed directly inside your browser. It is not uploaded to Zubware servers.
         </span>
       </div>
 

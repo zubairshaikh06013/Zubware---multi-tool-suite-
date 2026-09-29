@@ -221,7 +221,7 @@ export const PdfToJpgTool: React.FC<{ onShowToast: (msg: string) => void }> = ({
           maxSizeMB={100}
           title="Drop your PDF here to convert to JPG"
           subtitle="Converts every page into crisp, high-resolution JPG images with instant download"
-          fileTypeSupportText="100% Client-Side • Supports multi-page documents"
+          fileTypeSupportText="Client-Side • Supports multi-page documents"
           onFilesSelected={handleFileSelected}
         />
       ) : (

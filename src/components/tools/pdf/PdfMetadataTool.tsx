@@ -5,6 +5,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { FileInformationPanel } from './FileInformationPanel';
 import { PdfProcessingProgress, ProcessingStage } from './PdfProcessingProgress';
 import { formatBytes, extractPdfVersionFromBuffer } from '../../../lib/pdfUtils';
+import { ToolIcon } from '../../common/ToolIcon';
 
 export const PdfMetadataTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const { t } = useLanguage();
@@ -144,7 +145,7 @@ export const PdfMetadataTool: React.FC<{ onShowToast: (msg: string) => void }> =
   return (
     <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
       <div className="text-center max-w-xl mx-auto mb-6">
-        <span className="text-4xl mb-2 inline-block">📋</span>
+        <div className="flex justify-center mb-3"><ToolIcon toolId="pdf-metadata" category="PDF Tools" size="xl" /></div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
           {t('pdfMetadataTitle', 'PDF Metadata Viewer & Editor')}
         </h1>

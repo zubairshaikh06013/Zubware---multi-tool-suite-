@@ -5,6 +5,7 @@ import { getTranslatedTools } from '../data/toolsData';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
 import { recordToolUsage, isFavorite } from '../lib/userStore';
+import { ToolIcon } from './common/ToolIcon';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -12,7 +13,7 @@ interface SearchModalProps {
   onSelectTool: (path: string) => void;
 }
 
-const RECENT_SEARCHES_KEY = 'splitdrop_recent_searches';
+const RECENT_SEARCHES_KEY = 'zubware_recent_searches';
 
 export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSelectTool }) => {
   const [query, setQuery] = useState('');
@@ -203,9 +204,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                       aria-label={`Open ${tool.title}`}
                       className="w-full text-left p-3.5 rounded-2xl hover:bg-indigo-50/80 dark:hover:bg-indigo-950/50 transition-all flex items-center gap-3 group border border-transparent hover:border-indigo-200/50 dark:hover:border-indigo-800/50 cursor-pointer"
                     >
-                      <span className="text-2xl shrink-0 p-2 rounded-xl bg-slate-100/80 dark:bg-slate-800/80">
-                        {tool.icon}
-                      </span>
+                      <ToolIcon toolId={tool.id} category={tool.category} size="md" />
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <span className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">

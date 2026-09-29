@@ -6,6 +6,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { FileInformationPanel } from './FileInformationPanel';
 import { PdfProcessingProgress, ProcessingStage } from './PdfProcessingProgress';
 import { extractPdfVersionFromBuffer } from '../../../lib/pdfUtils';
+import { ToolIcon } from '../../common/ToolIcon';
 
 // Configure pdfjs worker source safely
 if (typeof window !== 'undefined') {
@@ -294,14 +295,14 @@ export const UnlockPdfTool: React.FC<{ onShowToast: (msg: string) => void }> = (
   return (
     <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
       <div className="text-center max-w-xl mx-auto mb-6">
-        <span className="text-4xl mb-2 inline-block">🔓</span>
+        <div className="flex justify-center mb-3"><ToolIcon toolId="pdf-unlock" category="PDF Tools" size="xl" /></div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
           {t('unlockPdfTitle', 'Unlock & Remove PDF Password')}
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
           {t(
             'unlockPdfSubtitle',
-            'Remove password restrictions, printing limits, and owner security from PDF files 100% locally in your browser.'
+            'Remove password restrictions, printing limits, and owner security from PDF files locally in your browser. Files are not uploaded to Zubware servers.'
           )}
         </p>
       </div>

@@ -37,7 +37,7 @@ export const OnlineClockTool: React.FC<OnlineClockToolProps> = ({ onShowToast })
   const [is24Hour, setIs24Hour] = useState<boolean>(false);
   const [worldClocks, setWorldClocks] = useState<SavedClock[]>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-world-clocks');
+      const saved = localStorage.getItem('zubware-world-clocks');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -64,7 +64,7 @@ export const OnlineClockTool: React.FC<OnlineClockToolProps> = ({ onShowToast })
   // Save clocks to localStorage
   useEffect(() => {
     try {
-      localStorage.setItem('splitdrop-world-clocks', JSON.stringify(worldClocks));
+      localStorage.setItem('zubware-world-clocks', JSON.stringify(worldClocks));
     } catch {
       // Ignore
     }
@@ -173,7 +173,7 @@ export const OnlineClockTool: React.FC<OnlineClockToolProps> = ({ onShowToast })
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🌐</span> Online Clock & World Clock
+            Online Clock & World Clock
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Real-time local clock and multi-city world time viewer with automatic DST adjustments.

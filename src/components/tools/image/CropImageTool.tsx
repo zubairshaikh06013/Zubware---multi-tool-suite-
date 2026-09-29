@@ -6,7 +6,6 @@ import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgr
 import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface CropImageToolProps {
@@ -164,21 +163,11 @@ export const CropImageTool: React.FC<CropImageToolProps> = ({ onShowToast, onNav
         canonicalPath="/crop-image.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Crop Image' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          ✂️ Crop Image
+          Crop Image
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Crop photos with precision presets for social media, rotation, zoom, and live preview.

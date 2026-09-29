@@ -300,5 +300,5 @@ export const TEMPLATE_GALLERY_ITEMS = [
   { id: 'medical', title: 'Medical & Clinical', category: 'Medical', icon: '🩺', badge: 'Healthcare', desc: 'Clear clinical certifications, licensure, and patient care timeline.' },
   { id: 'education', title: 'Educator & Teacher', category: 'Education', icon: '📚', badge: 'Academic', desc: 'Highlights teaching philosophy, certifications, and classroom outcomes.' },
   { id: 'business', title: 'Corporate Business', category: 'Business', icon: '📊', badge: 'Management', desc: 'Metrics-first layout emphasizing revenue impact and KPI achievements.' },
-  { id: 'ats-clean', title: 'ATS Guaranteed Clean', category: 'Minimal', icon: '🎯', badge: 'ATS Safe', desc: '100% single column parseable format matching ATS scanner bots.' }
+  { id: 'ats-clean', title: 'ATS Optimized Clean', category: 'Minimal', icon: '🎯', badge: 'ATS Safe', desc: 'Single-column parseable layout designed for ATS scanner compliance.' }
 ];

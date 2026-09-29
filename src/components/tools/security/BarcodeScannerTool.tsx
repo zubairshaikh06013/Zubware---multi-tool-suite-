@@ -11,7 +11,7 @@ export const BarcodeScannerTool: React.FC<BarcodeScannerToolProps> = ({ onShowTo
   const [scannedResult, setScannedResult] = useState<{ value: string; format: string } | null>(null);
   const [history, setHistory] = useState<{ value: string; format: string }[]>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-barcode-history');
+      const saved = localStorage.getItem('zubware-barcode-history');
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -25,7 +25,7 @@ export const BarcodeScannerTool: React.FC<BarcodeScannerToolProps> = ({ onShowTo
   const animFrameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    localStorage.setItem('splitdrop-barcode-history', JSON.stringify(history.slice(0, 20)));
+    localStorage.setItem('zubware-barcode-history', JSON.stringify(history.slice(0, 20)));
   }, [history]);
 
   const addResult = (value: string, format: string) => {
@@ -153,7 +153,7 @@ export const BarcodeScannerTool: React.FC<BarcodeScannerToolProps> = ({ onShowTo
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📊</span> Multi-Format Barcode Scanner
+          Multi-Format Barcode Scanner
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Scan EAN, UPC, Code128, Code39, PDF417, and QR barcodes from camera or image files locally.

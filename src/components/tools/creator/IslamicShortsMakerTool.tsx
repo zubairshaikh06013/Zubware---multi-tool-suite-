@@ -1613,30 +1613,6 @@ export const IslamicShortsMakerTool: React.FC<IslamicShortsMakerProps> = ({ onSh
           onToggleHideSelectedLayer={handleToggleHideSelectedLayer}
         />
       </div>
-
-      {/* FREQUENTLY ASKED QUESTIONS */}
-      <section className="glass-panel p-6 rounded-3xl space-y-4">
-        <h3 className="text-lg font-black text-slate-900 dark:text-white">
-          Islamic Shorts & Reels Maker — FAQs
-        </h3>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h4 className="font-bold text-indigo-600 dark:text-indigo-400">How do I create an Islamic Short in 5 seconds?</h4>
-            <p className="text-slate-600 dark:text-slate-400">
-              Select a template or compose your text with Arabic diacritics, click "Save PNG" or "Export 9:16 Video", then import into CapCut or YouTube Shorts editor.
-            </p>
-          </div>
-
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h4 className="font-bold text-indigo-600 dark:text-indigo-400">Are my files or text saved on a server?</h4>
-            <p className="text-slate-600 dark:text-slate-400">
-              No! Everything runs 100% locally inside your browser memory using Web APIs and HTML5 Canvas with zero cloud uploads.
-            </p>
-          </div>
-        </div>
-      </section>
-
     </div>
   );
 };

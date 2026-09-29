@@ -4,7 +4,6 @@ import { ImageUploadArea } from './ImageUploadArea';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface ImageCollageMakerToolProps {
@@ -158,21 +157,11 @@ export const ImageCollageMakerTool: React.FC<ImageCollageMakerToolProps> = ({ on
         canonicalPath="/image-collage.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Image Collage Maker' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🧩 Image Collage Maker
+          Image Collage Maker
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Combine multiple photos into beautiful grid, masonry, or row layouts with rounded gaps and custom background fill.

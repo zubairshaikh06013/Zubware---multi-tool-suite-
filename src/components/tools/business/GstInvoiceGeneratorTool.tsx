@@ -319,7 +319,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   // Check for local draft on mount
   useEffect(() => {
     try {
-      const saved = localStorage.getItem('splitdrop_gst_invoice_draft');
+      const saved = localStorage.getItem('zubware_gst_invoice_draft');
       if (saved) {
         setDraftExists(true);
       }
@@ -351,7 +351,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   // Load Draft handler
   const handleLoadDraft = () => {
     try {
-      const saved = localStorage.getItem('splitdrop_gst_invoice_draft');
+      const saved = localStorage.getItem('zubware_gst_invoice_draft');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (parsed.supplier) setSupplier(parsed.supplier);
@@ -394,7 +394,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         taxOverride,
         savedAt: new Date().toISOString()
       };
-      localStorage.setItem('splitdrop_gst_invoice_draft', JSON.stringify(payload));
+      localStorage.setItem('zubware_gst_invoice_draft', JSON.stringify(payload));
       if (onShowToast) onShowToast('Invoice saved as draft locally! 💾');
     } catch {
       if (onShowToast) onShowToast('Failed to save draft locally.');
@@ -676,7 +676,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         <div className="flex items-center gap-2.5 text-indigo-900 dark:text-indigo-200 font-medium">
           <ShieldCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />
           <span>
-            <strong className="font-bold">🔒 Private & Local:</strong> Your invoice details, business logo, and signature are processed completely inside your browser and never uploaded to any server.
+            <strong className="font-bold">🔒 Private & Local:</strong> Processed locally in your browser. Files are not uploaded to Zubware servers.
           </span>
         </div>
 
@@ -1940,74 +1940,6 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
 
         </div>
 
-      </div>
-
-      {/* SEO FAQs & INFORMATIONAL SECTION */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6 mt-12">
-        <div>
-          <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            GST Invoice FAQ & Information
-          </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-            Frequently Asked Questions about GST Invoices
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-indigo-500 shrink-0" /> What is a GST invoice?
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              A GST invoice is a legal document issued by a GST-registered business to a customer for goods or services supplied. It details supplier and recipient GSTINs, HSN/SAC codes, itemized values, applicable tax rates (CGST, SGST, or IGST), and total payable amount.
-            </p>
-          </div>
-
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-indigo-500 shrink-0" /> Can I create a GST invoice for free?
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Yes! Zubware's GST Invoice Generator is 100% free with no watermarks, registration, or monthly subscription fees.
-            </p>
-          </div>
-
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-indigo-500 shrink-0" /> Does the tool calculate CGST, SGST & IGST?
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Yes. The tool automatically detects whether the transaction is intra-state (same supplier & customer state) or inter-state. For intra-state sales, it splits the tax equally into CGST and SGST. For inter-state sales, it applies IGST.
-            </p>
-          </div>
-
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-indigo-500 shrink-0" /> Can I download the invoice as PDF or Print?
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Yes! You can download a high-resolution A4 PDF document directly to your device or print it formatted with one click.
-            </p>
-          </div>
-
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-indigo-500 shrink-0" /> Can I add my business logo & UPI QR code?
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              Yes! You can upload your business logo and digital signature stamp, as well as enter your UPI ID to generate a scan-to-pay QR code embedded on the invoice.
-            </p>
-          </div>
-
-          <div className="glass-card p-4 rounded-2xl space-y-1">
-            <h3 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <HelpCircle className="w-4 h-4 text-indigo-500 shrink-0" /> Is my invoice data uploaded to any server?
-            </h3>
-            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              No. All calculations, logo processing, QR generation, and PDF downloads happen 100% locally inside your Web browser. Your business data remains completely private.
-            </p>
-          </div>
-        </div>
       </div>
 
     </div>

@@ -48,7 +48,7 @@ export const GeminiPromptBuilderTool: React.FC<GeminiPromptBuilderToolProps> = (
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>✨</span> Google Gemini Prompt Builder
+            Google Gemini Prompt Builder
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Build optimized Gemini prompts for text, deep research, reasoning, document analysis & planning.

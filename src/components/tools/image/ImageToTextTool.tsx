@@ -245,7 +245,7 @@ export function ImageToTextTool({ onShowToast }: { onShowToast: (msg: string) =>
           <div className="flex flex-wrap items-center justify-between gap-3 pt-1">
             <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
               <AlertCircle className="w-3.5 h-3.5" />
-              <span>100% Client-Side OCR. Your images never leave your computer.</span>
+              <span>Local Browser OCR. Files are not uploaded to Zubware servers.</span>
             </div>
 
             <div className="flex items-center gap-2">

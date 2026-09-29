@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Copy, Check, Link, ArrowLeftRight, Download, Trash2 } from 'lucide-react';
 
 export const UrlEncoderDecoderTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
-  const [inputText, setInputText] = useState('https://zubware.com/search?query=hello world&category=text tools#top');
+  const [inputText, setInputText] = useState('https://www.zubware.com/search?query=hello world&category=text tools#top');
   const [copied, setCopied] = useState(false);
 
   const encodeUrl = () => {

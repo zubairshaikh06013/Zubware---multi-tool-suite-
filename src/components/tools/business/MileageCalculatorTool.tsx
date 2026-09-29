@@ -10,7 +10,7 @@ export const MileageCalculatorTool: React.FC<MileageCalculatorToolProps> = ({ on
   const [distance, setDistance] = useState<number>(350); // miles or km
   const [fuelUsed, setFuelUsed] = useState<number>(11.5); // gallons or liters
   const [fuelPrice, setFuelPrice] = useState<number>(3.65); // $ per gal or liter
-  const [irsRate, setIrsRate] = useState<number>(0.67); // standard 2024 IRS rate $0.67/mi
+  const [irsRate, setIrsRate] = useState<number>(0.70); // standard 2025/2026 IRS rate $0.70/mi
   const [copied, setCopied] = useState<boolean>(false);
 
   // Conversions & Fuel Economy:
@@ -48,7 +48,7 @@ export const MileageCalculatorTool: React.FC<MileageCalculatorToolProps> = ({ on
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>⛽</span> Gas Mileage & Fuel Economy Calculator
+            Gas Mileage & Fuel Economy Calculator
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Calculate vehicle fuel economy (MPG & L/100km), total fuel trip costs, cost per mile, and tax mileage deductions.

@@ -3,6 +3,7 @@ import { SEOHead } from '../SEOHead';
 import { Search, Home, ArrowRight, Grid, Sparkles } from 'lucide-react';
 import { getLinkUrl } from '../../lib/paths';
 import { TOOLS_DATA } from '../../data/toolsData';
+import { ToolIcon } from '../common/ToolIcon';
 
 interface NotFoundPageProps {
   onNavigate: (path: string) => void;
@@ -85,9 +86,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
               }}
               className="glass-card p-4 rounded-2xl flex items-start gap-3 hover:border-indigo-500/40 group transition-all"
             >
-              <span className="text-2xl p-2 rounded-xl bg-indigo-50/80 dark:bg-slate-800 shrink-0 group-hover:scale-110 transition-transform">
-                {tool.icon}
-              </span>
+              <ToolIcon toolId={tool.id} category={tool.category} size="md" className="group-hover:scale-110 transition-transform" />
               <div className="overflow-hidden">
                 <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
                   {tool.title}

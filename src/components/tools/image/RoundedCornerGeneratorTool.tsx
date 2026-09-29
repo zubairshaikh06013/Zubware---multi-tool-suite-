@@ -6,7 +6,6 @@ import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgr
 import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface RoundedCornerGeneratorToolProps {
@@ -151,17 +150,7 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
         canonicalPath="/rounded-corners.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Rounded Corner Generator' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">

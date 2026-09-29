@@ -10,7 +10,7 @@ export const RandomColorGeneratorTool: React.FC<RandomColorGeneratorToolProps> =
   const [history, setHistory] = useState<string[]>(['#6366f1']);
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop_fav_colors');
+      const saved = localStorage.getItem('zubware_fav_colors');
       return saved ? JSON.parse(saved) : [];
     } catch {
       return [];
@@ -65,7 +65,7 @@ export const RandomColorGeneratorTool: React.FC<RandomColorGeneratorToolProps> =
     }
     setFavorites(updated);
     try {
-      localStorage.setItem('splitdrop_fav_colors', JSON.stringify(updated));
+      localStorage.setItem('zubware_fav_colors', JSON.stringify(updated));
     } catch {}
   };
 
@@ -91,7 +91,7 @@ export const RandomColorGeneratorTool: React.FC<RandomColorGeneratorToolProps> =
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🎲</span> Random Color Generator
+            Random Color Generator
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Generate random colors instantly. Press Spacebar or click Generate.

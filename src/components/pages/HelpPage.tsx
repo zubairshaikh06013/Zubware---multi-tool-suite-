@@ -96,10 +96,10 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
       <section className="glass-panel p-6 rounded-3xl space-y-3 bg-emerald-500/5 border border-emerald-500/20">
         <h2 className="text-xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
           <Shield className="w-5 h-5 text-emerald-500" />
-          <span>{t('privacyGuarantee', 'Privacy & Offline Guarantee')}</span>
+          <span>{t('privacyGuarantee', 'Privacy & Local Processing')}</span>
         </h2>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          {t('privacyDesc', 'Zubware operates on a strict zero-server privacy architecture. When you compress an image, merge a PDF, convert code, or build a resume, all computation happens 100% inside your browser device memory. No data is transmitted to external servers.')}
+          {t('privacyDesc', 'For local tools, processing happens locally in your browser. Files and inputs are not uploaded to Zubware servers. For network-dependent testing tools, requests connect directly from your browser to your specified target endpoint without Zubware recording payloads.')}
         </p>
       </section>
 

@@ -16,10 +16,10 @@ interface SitemapUrlEntry {
 export const XmlSitemapGeneratorTool: React.FC<XmlSitemapGeneratorToolProps> = ({ onShowToast }) => {
   const today = new Date().toISOString().split('T')[0];
   const [entries, setEntries] = useState<SitemapUrlEntry[]>([
-    { id: '1', loc: 'https://zubware.com/', lastmod: today, changefreq: 'daily', priority: '1.0' },
-    { id: '2', loc: 'https://zubware.com/typing-speed-test.html', lastmod: today, changefreq: 'weekly', priority: '0.9' },
-    { id: '3', loc: 'https://zubware.com/scientific-calculator.html', lastmod: today, changefreq: 'weekly', priority: '0.9' },
-    { id: '4', loc: 'https://zubware.com/about.html', lastmod: today, changefreq: 'monthly', priority: '0.6' }
+    { id: '1', loc: 'https://www.zubware.com/', lastmod: today, changefreq: 'daily', priority: '1.0' },
+    { id: '2', loc: 'https://www.zubware.com/typing-speed-test.html', lastmod: today, changefreq: 'weekly', priority: '0.9' },
+    { id: '3', loc: 'https://www.zubware.com/scientific-calculator.html', lastmod: today, changefreq: 'weekly', priority: '0.9' },
+    { id: '4', loc: 'https://www.zubware.com/about.html', lastmod: today, changefreq: 'monthly', priority: '0.6' }
   ]);
   const [bulkInput, setBulkInput] = useState<string>('');
   const [activeTab, setActiveTab] = useState<'table' | 'bulk'>('table');
@@ -30,7 +30,7 @@ export const XmlSitemapGeneratorTool: React.FC<XmlSitemapGeneratorToolProps> = (
       ...prev,
       {
         id: Date.now().toString(),
-        loc: 'https://zubware.com/new-page.html',
+        loc: 'https://www.zubware.com/new-page.html',
         lastmod: today,
         changefreq: 'weekly',
         priority: '0.8'
@@ -224,7 +224,7 @@ ${urlsXml}
             value={bulkInput}
             onChange={(e) => setBulkInput(e.target.value)}
             rows={8}
-            placeholder={`https://zubware.com/\nhttps://zubware.com/typing-speed-test.html\nhttps://zubware.com/about.html`}
+            placeholder={`https://www.zubware.com/\nhttps://www.zubware.com/typing-speed-test.html\nhttps://www.zubware.com/about.html`}
             className="w-full p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 font-mono text-xs text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-y"
           />
           <div className="flex justify-end">

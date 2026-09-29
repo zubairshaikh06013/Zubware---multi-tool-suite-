@@ -503,7 +503,7 @@ export const EditPdfTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ 
           maxSizeMB={100}
           title="Drop your PDF here to edit"
           subtitle="Add text, signature, images, highlights, and rearrange pages directly in your browser"
-          fileTypeSupportText="100% Client-Side • Secure & Private"
+          fileTypeSupportText="Client-Side • Secure & Private"
           onFilesSelected={handleFileSelected}
         />
       ) : (

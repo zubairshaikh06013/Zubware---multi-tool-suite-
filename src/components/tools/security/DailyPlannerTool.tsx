@@ -21,7 +21,7 @@ interface DailyPlannerToolProps {
 export const DailyPlannerTool: React.FC<DailyPlannerToolProps> = ({ onShowToast }) => {
   const [planner, setPlanner] = useState<DailyPlannerData>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-daily-planner');
+      const saved = localStorage.getItem('zubware-daily-planner');
       if (saved) return JSON.parse(saved);
     } catch {}
     return {
@@ -37,7 +37,7 @@ export const DailyPlannerTool: React.FC<DailyPlannerToolProps> = ({ onShowToast 
   const [inputEvening, setInputEvening] = useState<string>('');
 
   useEffect(() => {
-    localStorage.setItem('splitdrop-daily-planner', JSON.stringify(planner));
+    localStorage.setItem('zubware-daily-planner', JSON.stringify(planner));
   }, [planner]);
 
   const addTask = (section: 'morning' | 'afternoon' | 'evening', text: string) => {
@@ -68,7 +68,7 @@ export const DailyPlannerTool: React.FC<DailyPlannerToolProps> = ({ onShowToast 
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📅</span> Daily Planner (Morning / Afternoon / Evening)
+          Daily Planner (Morning / Afternoon / Evening)
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Structure your day into morning, afternoon, and evening focus blocks locally.

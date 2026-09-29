@@ -7,6 +7,7 @@ import { getLinkUrl } from '../../lib/paths';
 import { toggleFavorite, isFavorite } from '../../lib/userStore';
 import { ArrowRight, CheckCircle2, Star, Filter, Sparkles } from 'lucide-react';
 import { SEOHead } from '../SEOHead';
+import { ToolIcon } from '../common/ToolIcon';
 
 interface CategoryPageProps {
   categorySlug?: string;
@@ -180,9 +181,12 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
             >
               <div>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-3xl p-3 rounded-2xl bg-indigo-50/80 dark:bg-slate-800/80 inline-block group-hover:scale-110 transition-transform" aria-hidden="true">
-                    {tool.icon}
-                  </span>
+                  <ToolIcon 
+                    toolId={tool.id} 
+                    category={tool.category} 
+                    size="lg" 
+                    className="group-hover:scale-110 transition-transform shadow-xs" 
+                  />
                   <div className="flex items-center gap-1.5">
                     <button
                       type="button"

@@ -10,7 +10,7 @@ export const CalendarNotesTool: React.FC<CalendarNotesToolProps> = ({ onShowToas
   const [selectedDate, setSelectedDate] = useState<string>(new Date().toISOString().split('T')[0]);
   const [notes, setNotes] = useState<Record<string, string>>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-calendar-notes');
+      const saved = localStorage.getItem('zubware-calendar-notes');
       if (saved) return JSON.parse(saved);
     } catch {}
     return {
@@ -21,7 +21,7 @@ export const CalendarNotesTool: React.FC<CalendarNotesToolProps> = ({ onShowToas
   const [activeNoteText, setActiveNoteText] = useState<string>('');
 
   useEffect(() => {
-    localStorage.setItem('splitdrop-calendar-notes', JSON.stringify(notes));
+    localStorage.setItem('zubware-calendar-notes', JSON.stringify(notes));
   }, [notes]);
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export const CalendarNotesTool: React.FC<CalendarNotesToolProps> = ({ onShowToas
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📅</span> Offline Calendar Notes & Event Logger
+          Offline Calendar Notes & Event Logger
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Select dates on the interactive calendar to record private local reminders and event notes.

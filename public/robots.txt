@@ -1,15 +1,12 @@
-# Zubware Search Engine & AI Crawler Policy
 User-agent: *
 Allow: /
 
-# Googlebot & Search Crawlers
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
 
-# AI Search Crawlers (ChatGPT Search, Perplexity, Claude, Gemini)
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -28,8 +25,4 @@ Allow: /
 User-agent: Applebot
 Allow: /
 
-# LLM Machine-Readable Index
-# https://zubware.com/llms.txt
-
-# XML Sitemap Location
-Sitemap: https://zubware.com/sitemap.xml
+Sitemap: https://www.zubware.com/sitemap.xml

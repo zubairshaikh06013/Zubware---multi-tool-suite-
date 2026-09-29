@@ -334,7 +334,6 @@ export const YouTubeBannerSafeAreaTool: React.FC<{ onShowToast: (msg: string) =>
   const [subscriberCount, setSubscriberCount] = useState<string>('248K subscribers');
   const [videoCount, setVideoCount] = useState<string>('312 videos');
   const [showChannelSettings, setShowChannelSettings] = useState<boolean>(false);
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // Upload & File Validation Metadata
   const [imageMeta, setImageMeta] = useState<ImageMeta | null>({
@@ -985,7 +984,7 @@ export const YouTubeBannerSafeAreaTool: React.FC<{ onShowToast: (msg: string) =>
         {/* Informative Guidance */}
         <div className="text-xs font-bold text-slate-500 dark:text-slate-400 px-2 flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
-          <span>100% Client-Side Privacy: Your images are never uploaded to any server.</span>
+          <span>Client-Side Privacy: Processed locally in your browser. Files are not uploaded to Zubware servers.</span>
         </div>
       </div>
 
@@ -2068,119 +2067,6 @@ export const YouTubeBannerSafeAreaTool: React.FC<{ onShowToast: (msg: string) =>
           )}
         </div>
       )}
-
-      {/* ===================================================================== */}
-      {/* 5. EDUCATIONAL CREATOR GUIDE / HOW IT WORKS */}
-      {/* ===================================================================== */}
-      <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 space-y-6 shadow-sm">
-        <div>
-          <h3 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-red-600" />
-            How to Make Your YouTube Banner 100% Mobile Safe
-          </h3>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
-            Follow these 3 simple rules to guarantee clean presentation across all viewers.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
-            <span className="w-7 h-7 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-black text-xs flex items-center justify-center">
-              1
-            </span>
-            <h4 className="text-xs font-black text-slate-800 dark:text-slate-200 uppercase tracking-wider">
-              Central Safe Area
-            </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Keep your channel name, tagline, social handles, and faces strictly centered within <strong>1546 × 423 px</strong>.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
-            <span className="w-7 h-7 rounded-xl bg-blue-500/10 text-blue-600 dark:text-blue-400 font-black text-xs flex items-center justify-center">
-              2
-            </span>
-            <h4 className="text-xs font-black text-slate-800 dark:text-slate-200 uppercase tracking-wider">
-              Desktop Bleed
-            </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Desktop browsers expand outward horizontally to <strong>2560 × 423 px</strong>. Keep secondary graphics in these wings.
-            </p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200/70 dark:border-slate-800 space-y-2">
-            <span className="w-7 h-7 rounded-xl bg-purple-500/10 text-purple-600 dark:text-purple-400 font-black text-xs flex items-center justify-center">
-              3
-            </span>
-            <h4 className="text-xs font-black text-slate-800 dark:text-slate-200 uppercase tracking-wider">
-              Full 16:9 Canvas
-            </h4>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Export at <strong>2560 × 1440 px</strong> so that Smart TV viewers see rich background artwork without awkward black bars.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ===================================================================== */}
-      {/* 6. FREQUENTLY ASKED QUESTIONS (CREATOR FAQ) */}
-      {/* ===================================================================== */}
-      <div className="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 dark:border-slate-800 space-y-4 shadow-sm">
-        <div className="flex items-center gap-2">
-          <HelpCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
-          <h3 className="text-lg font-black text-slate-900 dark:text-white">
-            Frequently Asked Questions
-          </h3>
-        </div>
-
-        <div className="space-y-3">
-          {[
-            {
-              q: 'Why does YouTube crop my channel banner differently on mobile, desktop, and TV?',
-              a: 'YouTube serves a single uploaded image (recommended 2560 × 1440 px) to all devices. On Smart TVs, the entire 16:9 canvas is displayed. On desktop monitors, YouTube cuts out a wide horizontal strip (2560 × 423 px). On smartphones and tablets, YouTube crops inward even further, showing only the central 1546 × 423 px safe area. If your channel title or logos are placed near the sides or top, they will be clipped on phones.'
-            },
-            {
-              q: 'What is the "Fit to Mobile Safe Area" button?',
-              a: 'Clicking "Fit to Mobile Safe Area" automatically scales and centers your uploaded artwork so that your primary content fits neatly inside the 1546 × 423 px central green safe box. It maintains your image’s original aspect ratio without distortion and prevents crucial text or faces from getting cut off on mobile devices.'
-            },
-            {
-              q: 'Will the green safe-area outline appear in my downloaded banner?',
-              a: 'No! When you click "DOWNLOAD FINAL BANNER", our client-side canvas engine renders only your clean, repositioned artwork onto an exact 2560 × 1440 px canvas. No borders, crop masks, guides, or labels are included. If you want the visual guides for Photoshop or Figma reference, use the secondary "Download Guide" button instead.'
-            },
-            {
-              q: 'Can I drag and position my banner using a phone or tablet touch screen?',
-              a: 'Yes! The interactive canvas fully supports multi-touch gestures and touch dragging. You can touch and drag your banner around the canvas directly from your iPhone, Android phone, or iPad, and use the zoom slider to scale your design.'
-            },
-            {
-              q: 'Are my uploaded banner images uploaded to any server?',
-              a: 'Never. Zubware processes 100% of your images locally in your browser memory using HTML5 Canvas and Object URLs. Your design never leaves your device, guaranteeing total privacy.'
-            }
-          ].map((item, idx) => (
-            <div
-              key={idx}
-              className="rounded-2xl border border-slate-200/70 dark:border-slate-800 bg-slate-50/60 dark:bg-slate-900/40 overflow-hidden transition-all"
-            >
-              <button
-                type="button"
-                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
-                className="w-full px-5 py-4 text-left flex items-center justify-between gap-3 text-xs sm:text-sm font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100/60 dark:hover:bg-slate-800/60 transition-colors cursor-pointer"
-              >
-                <span>{item.q}</span>
-                {openFaqIndex === idx ? (
-                  <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
-                ) : (
-                  <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
-                )}
-              </button>
-              {openFaqIndex === idx && (
-                <div className="px-5 pb-4 pt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-200/40 dark:border-slate-800/40">
-                  {item.a}
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

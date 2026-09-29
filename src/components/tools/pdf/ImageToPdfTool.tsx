@@ -5,6 +5,7 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { FileInformationPanel } from './FileInformationPanel';
 import { PdfProcessingProgress, ProcessingStage } from './PdfProcessingProgress';
 import { formatBytes } from '../../../lib/pdfUtils';
+import { ToolIcon } from '../../common/ToolIcon';
 
 interface ImageItem {
   id: string;
@@ -197,7 +198,7 @@ export const ImageToPdfTool: React.FC<{ onShowToast: (msg: string) => void }> = 
     <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
       {/* Header */}
       <div className="text-center max-w-xl mx-auto mb-6">
-        <span className="text-4xl mb-2 inline-block">🖼️</span>
+        <div className="flex justify-center mb-3"><ToolIcon toolId="image-to-pdf" category="PDF Tools" size="xl" /></div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
           {t('imageToPdfTitle', 'Image to PDF Converter')}
         </h1>

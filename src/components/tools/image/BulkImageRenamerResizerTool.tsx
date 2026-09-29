@@ -9,7 +9,6 @@ import { ImageUploadArea } from './ImageUploadArea';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 import { formatBytes } from '../../../lib/imageUtils';
 
@@ -636,7 +635,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
           },
           {
             question: "Are my images uploaded to a server?",
-            answer: "No. All renaming, resizing, format conversion, and ZIP archiving take place 100% locally inside your web browser. Your images never get uploaded to any server."
+            answer: "No. Renaming, resizing, format conversion, and ZIP archiving take place locally in your web browser. Files and inputs are not uploaded to Zubware servers."
           },
           {
             question: "Can I use this tool on my phone?",
@@ -649,20 +648,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
         ]}
       />
 
-      {/* Navigation Breadcrumb */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <BackButton onNavigate={(p) => onNavigate ? onNavigate(p) : window.history.back()} />
-          <Breadcrumb
-            items={[
-              { label: 'Home', path: '/' },
-              { label: 'Image Tools', path: '/#category-image-tools' },
-              { label: 'Bulk Image Renamer & Resizer' }
-            ]}
-            onNavigate={onNavigate}
-          />
-        </div>
-      </div>
+      
 
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
@@ -682,7 +668,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
       <div className="glass-panel p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 dark:bg-emerald-500/10 flex items-start gap-3">
         <ShieldCheck className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
         <div className="text-xs sm:text-sm text-slate-700 dark:text-slate-200">
-          <span className="font-semibold text-emerald-700 dark:text-emerald-300">100% Private & Local:</span> Your images are processed directly in your browser. They are never uploaded to Zubware or any external server.
+          <span className="font-semibold text-emerald-700 dark:text-emerald-300">Local Browser Processing:</span> Your images are processed directly in your browser. Files and inputs are not uploaded to Zubware servers.
         </div>
       </div>
 
@@ -1370,86 +1356,6 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
           </div>
         </div>
       )}
-
-      {/* FAQ Section */}
-      <div className="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Everything you need to know about bulk image renaming & resizing.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I rename multiple images at once?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yes! You can rename dozens or hundreds of images at once using custom patterns, prefixes, suffixes, base names, and zero-padded sequential numbers.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I resize 100 images at once?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yes, you can upload 100 or more images, choose preset resolutions (like 1920px, 1080px, Instagram, Marketplace) or custom dimensions, and resize all images simultaneously.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I rename product photos in bulk?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              E-commerce sellers can quickly format product photos (e.g. product-001.jpg, product-002.jpg) with consistent dimensions for Amazon, Shopify, eBay, and Etsy.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I resize property photos in bulk?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Real-estate agents and property dealers can batch rename and resize gallery photos (e.g. property-001.jpg, 1920x1080) in seconds.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Are my images uploaded to a server?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              No. All renaming, resizing, format conversion, and ZIP archiving take place 100% locally inside your web browser. Your images never get uploaded to any server.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I download all images as a ZIP?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yes! Once processing is complete, you can download all converted images in a single compressed ZIP file generated locally inside your browser.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Related Tools */}
-      <div className="glass-panel p-6 rounded-2xl space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 dark:text-white">Related Image Tools</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { title: 'HEIC to JPG', path: '/heic-to-jpg.html', icon: '📱' },
-            { title: 'Batch Converter', path: '/batch-image-converter.html', icon: '⚡' },
-            { title: 'Image Compressor', path: '/image-compressor.html', icon: '🗜️' },
-            { title: 'Image Resizer', path: '/image-resizer.html', icon: '📐' }
-          ].map((t) => (
-            <a
-              key={t.path}
-              href={getLinkUrl(t.path)}
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate(t.path);
-              }}
-              className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-2.5 text-xs font-medium text-slate-900 dark:text-white"
-            >
-              <span className="text-base">{t.icon}</span>
-              <span className="truncate">{t.title}</span>
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

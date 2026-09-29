@@ -1,5 +1,6 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
 import { getLinkUrl } from '../lib/paths';
+import { ZubwareLogo } from './ZubwareLogo';
 
 interface Props {
   children: ReactNode;
@@ -24,9 +25,29 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Unhandled UI Error in Root Boundary:', error, errorInfo);
+
+    // Automatic recovery for stale Vite chunk hash mismatches during hot updates/deployments
+    const isDynamicImportError = error?.message && (
+      error.message.includes('Failed to fetch dynamically imported module') ||
+      error.message.includes('error loading dynamically imported module') ||
+      error.message.includes('Importing a module script failed')
+    );
+
+    if (isDynamicImportError) {
+      const hasReloaded = sessionStorage.getItem('chunk_reload_attempt');
+      if (!hasReloaded) {
+        sessionStorage.setItem('chunk_reload_attempt', 'true');
+        window.location.reload();
+      }
+    }
   }
 
   public handleReload = () => {
+    try {
+      sessionStorage.removeItem('chunk_reload_attempt');
+    } catch {
+      // Ignore storage errors
+    }
     this.setState({ hasError: false, error: null });
     window.location.reload();
   };
@@ -47,8 +68,8 @@ export class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="min-h-screen flex items-center justify-center p-6 bg-slate-900 text-white font-sans text-center">
           <div className="max-w-md w-full p-8 bg-slate-800 rounded-3xl border border-slate-700 shadow-2xl space-y-6">
-            <div className="w-12 h-12 bg-indigo-600 rounded-2xl flex items-center justify-center text-xl font-bold mx-auto shadow-lg shadow-indigo-600/30">
-              SD
+            <div className="flex justify-center mx-auto mb-2">
+              <ZubwareLogo className="w-14 h-14 drop-shadow-md" />
             </div>
 
             <div className="space-y-2">

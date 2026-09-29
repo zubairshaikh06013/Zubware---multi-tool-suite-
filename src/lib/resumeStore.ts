@@ -2,10 +2,10 @@ import { ResumeData } from '../types/resume';
 import { SAMPLE_RESUME_DATA, EMPTY_RESUME_DATA } from '../data/resumeTemplatesData';
 import { CoverLetterData, getDefaultCoverLetter } from '../data/careerData';
 
-const ACTIVE_RESUME_KEY = 'splitdrop_active_resume';
-const RESUME_VERSIONS_KEY = 'splitdrop_resume_versions';
-const ACTIVE_COVER_LETTER_KEY = 'splitdrop_active_cover_letter';
-const COVER_LETTER_VERSIONS_KEY = 'splitdrop_cover_letter_versions';
+const ACTIVE_RESUME_KEY = 'zubware_active_resume';
+const RESUME_VERSIONS_KEY = 'zubware_resume_versions';
+const ACTIVE_COVER_LETTER_KEY = 'zubware_active_cover_letter';
+const COVER_LETTER_VERSIONS_KEY = 'zubware_cover_letter_versions';
 
 export function getActiveResume(): ResumeData {
   try {

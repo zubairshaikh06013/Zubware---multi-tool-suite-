@@ -17,7 +17,7 @@ interface ExpenseTrackerToolProps {
 export const ExpenseTrackerTool: React.FC<ExpenseTrackerToolProps> = ({ onShowToast }) => {
   const [transactions, setTransactions] = useState<Transaction[]>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-transactions');
+      const saved = localStorage.getItem('zubware-transactions');
       if (saved) return JSON.parse(saved);
     } catch {}
     return [
@@ -32,7 +32,7 @@ export const ExpenseTrackerTool: React.FC<ExpenseTrackerToolProps> = ({ onShowTo
   const [note, setNote] = useState<string>('');
 
   useEffect(() => {
-    localStorage.setItem('splitdrop-transactions', JSON.stringify(transactions));
+    localStorage.setItem('zubware-transactions', JSON.stringify(transactions));
   }, [transactions]);
 
   const addTransaction = (e: React.FormEvent) => {
@@ -88,7 +88,7 @@ export const ExpenseTrackerTool: React.FC<ExpenseTrackerToolProps> = ({ onShowTo
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>💰</span> Income & Expense Tracker
+            Income & Expense Tracker
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Track personal cash flow, log income and expenses, and export CSV reports locally.

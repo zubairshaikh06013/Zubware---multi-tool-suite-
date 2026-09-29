@@ -136,7 +136,7 @@ export const JsonToYamlTool: React.FC<JsonToYamlToolProps> = ({ onShowToast }) =
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🔄</span> JSON to YAML Converter
+            JSON to YAML Converter
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Convert JSON configuration objects to human-readable YAML with proper indentation, lists, and formatting.

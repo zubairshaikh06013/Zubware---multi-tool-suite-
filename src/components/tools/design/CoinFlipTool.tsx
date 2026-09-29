@@ -327,7 +327,7 @@ export const CoinFlipTool: React.FC<CoinFlipToolProps> = ({ onShowToast }) => {
         <div>
           <div className="flex items-center gap-2">
             <h2 className="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="text-3xl">🪙</span> 3D Coin Flip Simulator
+              3D Coin Flip Simulator
             </h2>
             <span className="px-2 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">
               Pro Physics

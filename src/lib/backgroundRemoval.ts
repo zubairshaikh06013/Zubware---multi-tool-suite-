@@ -45,7 +45,7 @@ function loadImage(src: string | Blob | File): Promise<HTMLImageElement> {
 
 /**
  * Executes AI Background Removal on an image using @imgly/background-removal
- * Completely client-side, 100% private with no server uploads.
+ * Completely client-side browser processing with no server uploads.
  */
 export async function processBackgroundRemoval(
   fileOrBlob: File | Blob,

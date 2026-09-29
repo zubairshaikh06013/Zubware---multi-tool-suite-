@@ -178,7 +178,7 @@ const PRESET_SCENARIOS = [
     nameHi: 'सुरक्षित वेबसाइट',
     badge: 'Safe',
     color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-300 border-emerald-300 dark:border-emerald-800',
-    data: 'https://zubware.com/about.html'
+    data: 'https://www.zubware.com/about.html'
   },
   {
     name: 'HTTP Login Form',
@@ -1130,7 +1130,7 @@ export const QrCodeSafetyCheckerTool: React.FC<QrCodeSafetyCheckerToolProps> = (
 
           <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 text-xs font-bold border border-emerald-200/80 dark:border-emerald-800/40">
             <Lock className="w-3.5 h-3.5" />
-            <span>{language === 'hi' ? '100% प्राइवेट • नो सर्वर अपलोड' : '100% Client-Side Private'}</span>
+            <span>{language === 'hi' ? 'लोकल प्रोसेसिंग • नो सर्वर अपलोड' : 'Local Browser Processing'}</span>
           </div>
         </div>
       </div>
@@ -1541,7 +1541,7 @@ export const QrCodeSafetyCheckerTool: React.FC<QrCodeSafetyCheckerToolProps> = (
                 <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto mb-4">
                   {language === 'hi'
                     ? 'PNG, JPG, JPEG या WEBP फ़ाइल का समर्थन करता है। आपकी छवि कभी भी किसी सर्वर पर अपलोड नहीं होती है।'
-                    : 'Supports PNG, JPG, JPEG, WEBP. Decoded 100% locally in your browser memory.'}
+                    : 'Supports PNG, JPG, JPEG, WEBP. Processed locally in your browser. Files are not uploaded to Zubware servers.'}
                 </p>
 
                 <div className="flex items-center justify-center gap-3 flex-wrap">

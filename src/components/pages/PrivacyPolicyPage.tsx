@@ -30,50 +30,52 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
           <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
           <div>
             <h3 className="font-extrabold text-slate-900 dark:text-white text-sm">
-              100% In-Browser Local Processing
+              Local Browser-Based Architecture
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
-              Zubware operates completely inside your local web browser. Your private images, PDF documents, text, code, and personal data are never sent to external servers or cloud databases.
+              For local tools, processing happens locally in your browser. Files, documents, images, and text inputs are not uploaded to or stored on Zubware servers.
             </p>
           </div>
         </div>
 
         <section className="space-y-3">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-            <HardDrive className="w-4 h-4 text-indigo-600" /> 1. Information We Do Not Collect (No Server Uploads)
+            <HardDrive className="w-4 h-4 text-indigo-600" /> 1. Information Processing & Server Architecture
           </h2>
           <p>
-            When you use any utility on Zubware (such as image splitting, image compression, PDF merging, QR code generation, calculators, or converters), the execution occurs strictly within your browser's RAM memory using WebAssembly, HTML5 Canvas, and client-side JavaScript. We do not store, view, or retain your files on any server.
+            When you use local processing utilities on Zubware (such as image splitting, image compression, PDF merging, QR code generation, calculators, converters, or text formatters), execution occurs locally within your browser using WebAssembly, HTML5 Canvas, and client-side JavaScript. Files and personal inputs processed by these tools are not transmitted to or stored on Zubware servers.
+          </p>
+          <p>
+            For specialized network-dependent developer utilities (such as the API Request Builder, Website Downloader, and HTTP Header Viewer), requests connect directly from your browser to the external endpoints or URLs you specify. Zubware does not store your request payloads, responses, or headers on its servers.
           </p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-            <Cookie className="w-4 h-4 text-indigo-600" /> 2. Local Storage & Cookies
+            <Cookie className="w-4 h-4 text-indigo-600" /> 2. Browser Storage & Local State
           </h2>
           <p>
-            Zubware uses <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-[11px]">localStorage</code> and <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-[11px]">IndexedDB</code> solely to remember your preferences (such as dark mode, selected language, or favorite tools) locally on your device. You can clear this data at any time via your browser settings.
+            Zubware uses browser storage technologies including <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-[11px]">localStorage</code> and <code className="px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800 font-mono text-[11px]">IndexedDB</code> for both application preferences and local productivity state:
           </p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-            <EyeOff className="w-4 h-4 text-indigo-600" /> 3. Google AdSense & Third-Party Cookies Policy
-          </h2>
-          <p>
-            We use Google AdSense to serve advertisements when you visit our website. Google, as a third-party vendor, uses cookies to serve ads on Zubware:
-          </p>
-          <ul className="list-disc pl-5 space-y-1.5 text-xs">
-            <li>
-              Google's use of advertising cookies (including the DoubleClick cookie) enables it and its partners to serve ads to users based on their visits to our site and other sites on the Internet.
-            </li>
-            <li>
-              Users may opt out of personalized advertising by visiting Google's <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 font-semibold underline">Ads Settings</a> or via <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-indigo-600 dark:text-indigo-400 font-semibold underline">www.aboutads.info</a>.
-            </li>
-            <li>
-              Third-party ad networks or ad servers use technology in their respective advertisements and links that appear on Zubware, sent directly to your browser. They automatically receive your IP address when this occurs.
-            </li>
+          <ul className="list-disc pl-5 space-y-1 text-xs">
+            <li><strong>Preferences:</strong> Dark mode preference, selected language, and bookmarked favorite tools.</li>
+            <li><strong>User-Created Data:</strong> Several tools save user-created drafts and work-in-progress locally on your device for your convenience, including resume versions and templates, encrypted notes, productivity planner items, calculation histories, prompt histories, GST invoice drafts, and generated QR/barcode history.</li>
           </ul>
+          <p>
+            This data remains stored exclusively on your device until you manually clear it, delete browser data, or reset the respective tool. Zubware servers never receive or sync your locally stored drafts.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
+            <EyeOff className="w-4 h-4 text-indigo-600" /> 3. Analytics & Zero Advertisements Policy
+          </h2>
+          <p>
+            <strong>Analytics:</strong> Zubware integrates Google Tag Manager (GTM-MRXVGW45) to measure aggregate website traffic, page views, and user navigation patterns. Analytics services use standard anonymous telemetry solely to evaluate platform performance, resolve errors, and guide user experience improvements. No advertising profiles or behavioral ad trackers are utilized.
+          </p>
+          <p>
+            <strong>Ad-Free Platform:</strong> Zubware does not display or host any third-party commercial advertisements, banner ads, popups, or sponsored tracking networks. The platform is completely free to use without ad monetization scripts or third-party advertising cookies.
+          </p>
         </section>
 
         <section className="space-y-3">
@@ -81,7 +83,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             4. CCPA & GDPR Privacy Rights
           </h2>
           <p>
-            Under GDPR and CCPA, users have rights including the right to request access to personal data, the right to erasure, and the right to non-discrimination. Because Zubware processes all files client-side and does not create user accounts or store personal files on our servers, no personal files are retained in our systems.
+            Under GDPR and CCPA regulations, users have fundamental privacy rights regarding access and control over their personal data. Because Zubware processes files and inputs client-side in the browser and does not maintain user accounts or store personal files on our servers, no personal documents or processed assets are retained on Zubware infrastructure.
           </p>
         </section>
 

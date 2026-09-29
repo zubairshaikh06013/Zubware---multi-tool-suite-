@@ -8,7 +8,6 @@ import { ImageUploadArea } from './ImageUploadArea';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 import { formatBytes } from '../../../lib/imageUtils';
 
@@ -458,7 +457,7 @@ export const HeicToJpgTool: React.FC<HeicToJpgToolProps> = ({ onShowToast, onNav
           },
           {
             question: "Are my HEIC images uploaded to a server?",
-            answer: "No. All conversion is processed 100% locally inside your web browser using WebAssembly. Your images never leave your device or get uploaded to any external server."
+            answer: "No. Conversion is processed locally inside your web browser using WebAssembly. Files and inputs are not uploaded to Zubware servers."
           },
           {
             question: "Can I adjust JPG quality?",
@@ -470,7 +469,7 @@ export const HeicToJpgTool: React.FC<HeicToJpgToolProps> = ({ onShowToast, onNav
           },
           {
             question: "Does the converter work offline?",
-            answer: "Yes! Once the webpage and decoder assets are loaded into your browser cache, the converter can operate completely offline."
+            answer: "Yes. Once the webpage and decoder assets are loaded into your browser cache, the converter processes files locally in your browser."
           },
           {
             question: "Why can't my browser open a HEIC file natively?",
@@ -479,26 +478,13 @@ export const HeicToJpgTool: React.FC<HeicToJpgToolProps> = ({ onShowToast, onNav
         ]}
       />
 
-      {/* Navigation Breadcrumb */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div>
-          <BackButton onNavigate={(p) => onNavigate ? onNavigate(p) : window.history.back()} />
-          <Breadcrumb
-            items={[
-              { label: 'Home', path: '/' },
-              { label: 'Image Tools', path: '/#category-image-tools' },
-              { label: 'HEIC to JPG Converter' }
-            ]}
-            onNavigate={onNavigate}
-          />
-        </div>
-      </div>
+      
 
       {/* Tool Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
           <ShieldCheck className="w-4 h-4" />
-          100% Client-Side & Private
+          Local Browser Processing
         </div>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
           HEIC to JPG Converter
@@ -937,86 +923,6 @@ export const HeicToJpgTool: React.FC<HeicToJpgToolProps> = ({ onShowToast, onNav
           </div>
         </div>
       )}
-
-      {/* FAQ Section */}
-      <div className="glass-panel p-6 sm:p-8 rounded-2xl space-y-6">
-        <div className="text-center space-y-2">
-          <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
-          <p className="text-sm text-slate-600 dark:text-slate-400">
-            Everything you need to know about HEIC to JPG conversion.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">What is a HEIC file?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              HEIC is Apple's high-efficiency image container format used on iPhones and iPads. It offers half the file size of JPG at similar visual quality.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">How do I convert HEIC to JPG?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Drag and drop your HEIC files into the box above, adjust quality or dimension settings if desired, and click Convert. You can download the JPGs instantly.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I convert HEIC files on iPhone?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yes, our converter is fully optimized for mobile browsers on iOS, iPadOS, Android, and desktop.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I convert multiple HEIC files?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yes! You can select multiple HEIC images, batch convert them simultaneously, and download all converted JPGs in a single ZIP file.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Are my HEIC images uploaded?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              No. All decoding and conversion happen locally inside your web browser. Your images are never sent to any server.
-            </p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="text-base font-semibold text-slate-900 dark:text-white">Can I adjust JPG quality and dimensions?</h3>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-              Yes, you can adjust the JPG quality from 10% to 100% or pick preset options like 1920px, 1080px, or custom width and height.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Related Tools */}
-      <div className="glass-panel p-6 rounded-2xl space-y-4">
-        <h2 className="text-lg font-bold text-slate-900 dark:text-white">Related Image Tools</h2>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {[
-            { title: 'Batch Converter', path: '/batch-image-converter.html', icon: '⚡' },
-            { title: 'Image Compressor', path: '/image-compressor.html', icon: '🗜️' },
-            { title: 'Image Resizer', path: '/image-resizer.html', icon: '📐' },
-            { title: 'Image Converter', path: '/image-converter.html', icon: '🔄' }
-          ].map((t) => (
-            <a
-              key={t.path}
-              href={getLinkUrl(t.path)}
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavigate) onNavigate(t.path);
-              }}
-              className="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 dark:hover:bg-indigo-950/30 border border-slate-200 dark:border-slate-700 transition-colors flex items-center gap-2.5 text-xs font-medium text-slate-900 dark:text-white"
-            >
-              <span className="text-base">{t.icon}</span>
-              <span className="truncate">{t.title}</span>
-            </a>
-          ))}
-        </div>
-      </div>
     </div>
   );
 };

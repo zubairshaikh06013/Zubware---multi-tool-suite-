@@ -18,6 +18,7 @@ import { TOOLS_DATA } from '../../data/toolsData';
 import { SEOHead } from '../SEOHead';
 import { Breadcrumb } from '../Breadcrumb';
 import { getLinkUrl } from '../../lib/paths';
+import { ToolIcon } from '../common/ToolIcon';
 
 interface BlogPostPageProps {
   article: BlogArticle;
@@ -118,7 +119,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
               </span>
               <span className="text-slate-300 dark:text-slate-700">•</span>
               <span className="text-slate-500">
-                100% Client-Side Verified
+                Browser Processing Verified
               </span>
             </div>
           </div>
@@ -194,7 +195,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
                   <span className="text-indigo-600 dark:text-indigo-400">Step-by-Step:</span> {article.howTo.name}
                 </h2>
                 <span className="text-xs font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-200/50">
-                  100% Client-Side Private
+                  Local Browser Processing
                 </span>
               </div>
 
@@ -228,10 +229,10 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
                       Ready to get started?
                     </span>
                     <h3 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
-                      Launch {relatedTools[0].title} — Free & Unlimited
+                      Launch {relatedTools[0].title} — Free to Use
                     </h3>
                     <p className="text-xs text-slate-600 dark:text-slate-400">
-                      Runs directly in your browser. Zero server uploads, zero watermarks, and instant processing.
+                      Runs directly in your browser. Processed locally in your browser for local tools with zero watermarks and instant processing.
                     </p>
                   </div>
                   <a
@@ -314,7 +315,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
                     className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group block shadow-xs hover:shadow-md"
                   >
                     <div className="flex items-center justify-between mb-2">
-                      <span className="text-2xl">{tool.icon}</span>
+                      <ToolIcon toolId={tool.id} category={tool.category} size="md" />
                       <span className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full">
                         {idx === 0 ? 'Primary Tool' : (tool.badge || 'Browser Tool')}
                       </span>

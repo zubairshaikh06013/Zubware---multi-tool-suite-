@@ -6,7 +6,6 @@ import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgr
 import { getImageMetadata, ImageMetadata, formatBytes } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface ImageCompressionComparisonToolProps {
@@ -128,21 +127,11 @@ export const ImageCompressionComparisonTool: React.FC<ImageCompressionComparison
         canonicalPath="/compression-comparison.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Compression Comparison' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🔍 Image Compression Comparison
+          Image Compression Comparison
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Side-by-side slider comparison of original vs compressed photo pixels with 2x/4x magnification inspection.

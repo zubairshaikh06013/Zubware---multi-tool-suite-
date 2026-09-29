@@ -155,7 +155,7 @@ export function VideoTrimmerTool({ onShowToast }: { onShowToast: (msg: string) =
             Video Trimmer & Cutter
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Cut and extract specific portions of your video with millisecond accuracy. 100% private browser processing.
+            Cut and extract specific portions of your video with millisecond accuracy. Processed locally in your browser.
           </p>
         </div>
       </div>

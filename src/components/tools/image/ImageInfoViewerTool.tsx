@@ -4,7 +4,6 @@ import { ImageUploadArea } from './ImageUploadArea';
 import { getImageMetadata, ImageMetadata, formatBytes } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface ImageInfoViewerToolProps {
@@ -64,21 +63,11 @@ Generated with Zubware Image Tools`;
         canonicalPath="/image-info-viewer.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Image Information Viewer' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🔍 Image Information Viewer
+          Image Information Viewer
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Analyze full technical specifications, EXIF tags, aspect ratio, print size, and transparency details.

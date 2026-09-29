@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ToolMeta, FAQItem, BreadcrumbItem } from '../types';
+import { SITE_ORIGIN } from '../lib/siteConfig';
 
 export interface HowToStep {
   name: string;
@@ -52,7 +53,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   howTo,
   article
 }) => {
-  const domain = 'https://zubware.com';
+  const domain = SITE_ORIGIN;
   const cleanPath = canonicalPath === '/' ? '' : (canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`);
   const fullUrl = `${domain}${cleanPath}`;
   const defaultOgImage = `${domain}/icon.png`;
@@ -82,7 +83,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       let el = document.querySelector(`link[rel="${rel}"]`) as HTMLLinkElement;
       if (!el) {
         el = document.createElement('link');
-        el.setAttribute(rel, rel);
+        el.setAttribute('rel', rel);
         document.head.appendChild(el);
       }
       el.setAttribute('href', href);

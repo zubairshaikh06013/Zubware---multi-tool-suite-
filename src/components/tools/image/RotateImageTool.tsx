@@ -5,7 +5,6 @@ import { ImageFileInfoPanel } from './ImageFileInfoPanel';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface RotateImageToolProps {
@@ -117,21 +116,11 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
         canonicalPath="/rotate-image.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Rotate Image' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🔄 Rotate Image
+          Rotate Image
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Rotate single or batch images clockwise, counter-clockwise, or at any custom angle.

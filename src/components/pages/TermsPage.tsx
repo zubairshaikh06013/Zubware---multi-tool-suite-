@@ -24,7 +24,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
         <section className="space-y-2">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">1. Acceptance of Terms</h2>
           <p>
-            By accessing and using Zubware (zubware.com), you agree to comply with these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
+            By accessing and using Zubware (https://www.zubware.com), you agree to comply with these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this site.
           </p>
         </section>
 
@@ -38,7 +38,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
         <section className="space-y-2">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">3. User Responsibility & File Ownership</h2>
           <p>
-            You retain 100% ownership of all files and data processed through Zubware. Because all processing occurs locally on your browser, Zubware does not store, review, or back-up your processed files.
+            You retain full copyright and ownership of all files and data processed through Zubware. Local tools process files directly inside your browser memory; Zubware does not store, review, or back up your processed files.
           </p>
         </section>
 

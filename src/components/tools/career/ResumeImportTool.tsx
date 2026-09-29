@@ -79,7 +79,7 @@ export const ResumeImportTool: React.FC<{ onShowToast: (msg: string) => void; on
           <p className="text-xs font-bold text-slate-800 dark:text-slate-200">
             Click to browse or drop resume file here
           </p>
-          <p className="text-[11px] text-slate-400">Supports .json, .txt, .html files (100% Client-Side Private)</p>
+          <p className="text-[11px] text-slate-400">Supports .json, .txt, .html files (Processed locally in your browser)</p>
         </div>
 
         <input

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import JSZip from 'jszip';
 import { Download, FileArchive, Trash2, Upload } from 'lucide-react';
+import { ToolIcon } from '../common/ToolIcon';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface ConvertItem {
@@ -131,7 +132,9 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
   return (
     <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
       <div className="text-center max-w-xl mx-auto mb-6">
-        <span className="text-4xl mb-2 inline-block">🔄</span>
+        <div className="flex justify-center mb-3">
+          <ToolIcon toolId="image-converter" category="Image Tools" size="xl" />
+        </div>
         <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 dark:text-white">
           {t('imageConverterTitle', 'Image Format Converter')}
         </h1>

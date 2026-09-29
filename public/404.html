@@ -6,18 +6,11 @@
     <title>Zubware — Free Online Multi-Tool Suite</title>
     <script type="text/javascript">
       // Single Page Apps SPA redirect fallback
-      // Supports root domain (https://zubware.com/) and legacy repo path redirection
+      // Supports root domain (https://www.zubware.com/) and legacy repo path redirection
       var l = window.location;
       var pathSegments = l.pathname.split('/').filter(Boolean);
-      var segmentCount = 0;
       
-      // If legacy path starts with splitdrop, strip it to route smoothly to root
-      if (pathSegments.length > 0 && pathSegments[0].toLowerCase() === 'splitdrop') {
-        segmentCount = 1;
-      }
-
-      var targetRoute = l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~');
-      
+      var targetRoute = l.pathname.slice(1).replace(/&/g, '~and~');
       l.replace(
         l.protocol + '//' + l.host + '/?p=' + targetRoute +
         (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +

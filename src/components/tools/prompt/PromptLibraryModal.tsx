@@ -24,8 +24,8 @@ export const PromptLibraryModal: React.FC<PromptLibraryModalProps> = ({
   useEffect(() => {
     if (isOpen) {
       try {
-        setFavorites(JSON.parse(localStorage.getItem('splitdrop_prompt_favs') || '[]'));
-        setHistory(JSON.parse(localStorage.getItem('splitdrop_prompt_history') || '[]'));
+        setFavorites(JSON.parse(localStorage.getItem('zubware_prompt_favs') || '[]'));
+        setHistory(JSON.parse(localStorage.getItem('zubware_prompt_history') || '[]'));
       } catch {}
     }
   }, [isOpen]);

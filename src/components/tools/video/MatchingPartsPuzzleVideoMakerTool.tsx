@@ -45,7 +45,6 @@ import {
   Sliders,
   Type
 } from 'lucide-react';
-import { AdSlot } from '../../AdSlot';
 import { getLinkUrl } from '../../../lib/paths';
 
 // ============================================================================
@@ -1517,7 +1516,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
   const handleSaveProject = () => {
     try {
       const projectData = { settings, objects, timestamp: Date.now() };
-      localStorage.setItem('splitdrop-puzzle-project-v2', JSON.stringify(projectData));
+      localStorage.setItem('zubware-puzzle-project-v2', JSON.stringify(projectData));
       onShowToast('Saved project to browser storage!');
     } catch {
       onShowToast('Failed to save project. Storage limit exceeded.');
@@ -1527,7 +1526,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
   // Load Project JSON
   const handleLoadProject = () => {
     try {
-      const raw = localStorage.getItem('splitdrop-puzzle-project-v2');
+      const raw = localStorage.getItem('zubware-puzzle-project-v2');
       if (!raw) {
         onShowToast('No saved project found.');
         return;
@@ -1548,7 +1547,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
       {/* TOOL ACTION TOOLBAR */}
       <div className="bg-slate-850 bg-slate-800/80 border border-slate-700/70 rounded-2xl p-3 sm:p-4 mb-5 flex flex-wrap items-center justify-between gap-3 shadow-md">
         <div className="flex items-center gap-2.5">
-          <span className="text-2xl">📹</span>
+          
           <div>
             <div className="flex items-center gap-2">
               <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">Interactive Puzzle Video Studio</h2>
@@ -2255,7 +2254,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
 
       {/* LOCAL PROCESSING NOTICE */}
       <div className="mt-6 pt-4 border-t border-slate-800 text-center text-xs text-slate-500">
-        <p>Your images and project are processed 100% locally in your browser. Nothing is uploaded to Zubware's servers.</p>
+        <p>Processed locally in your browser. Files are not uploaded to Zubware servers.</p>
       </div>
     </div>
   );

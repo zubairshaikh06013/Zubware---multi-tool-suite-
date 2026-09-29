@@ -1,16 +1,12 @@
 import { ToolId } from '../types';
 
 const FAVORITES_KEY = 'zubware_favorites';
-const LEGACY_FAVORITES_KEY = 'splitdrop_favorites';
 
 const RECENT_KEY = 'zubware_recent_tools';
-const LEGACY_RECENT_KEY = 'splitdrop_recent_tools';
 
 const STATS_KEY = 'zubware_tool_stats';
-const LEGACY_STATS_KEY = 'splitdrop_tool_stats';
 
 const FEEDBACK_KEY = 'zubware_user_feedback';
-const LEGACY_FEEDBACK_KEY = 'splitdrop_user_feedback';
 
 export interface RecentToolItem {
   id: ToolId;
@@ -35,8 +31,9 @@ export interface FeedbackRecord {
 // Favorites Management
 export function getFavorites(): ToolId[] {
   try {
-    const raw = localStorage.getItem(FAVORITES_KEY) || localStorage.getItem(LEGACY_FAVORITES_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const raw = localStorage.getItem(FAVORITES_KEY);
+    const list: string[] = raw ? JSON.parse(raw) : [];
+    return list as ToolId[];
   } catch {
     return [];
   }
@@ -60,7 +57,6 @@ export function toggleFavorite(toolId: ToolId): boolean {
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(updated));
     // Dispatch events for reactive UI updates
     window.dispatchEvent(new CustomEvent('zubware_favorites_updated', { detail: updated }));
-    window.dispatchEvent(new CustomEvent('splitdrop_favorites_updated', { detail: updated }));
     return added;
   } catch {
     return false;
@@ -71,7 +67,7 @@ export function toggleFavorite(toolId: ToolId): boolean {
 export function recordToolUsage(toolId: ToolId) {
   if (!toolId) return;
   try {
-    const raw = localStorage.getItem(RECENT_KEY) || localStorage.getItem(LEGACY_RECENT_KEY);
+    const raw = localStorage.getItem(RECENT_KEY);
     let list: RecentToolItem[] = raw ? JSON.parse(raw) : [];
     
     // Remove if already present
@@ -89,7 +85,6 @@ export function recordToolUsage(toolId: ToolId) {
     incrementToolUsage(toolId);
 
     window.dispatchEvent(new CustomEvent('zubware_recent_updated', { detail: list }));
-    window.dispatchEvent(new CustomEvent('splitdrop_recent_updated', { detail: list }));
   } catch {
     // ignore
   }
@@ -97,8 +92,9 @@ export function recordToolUsage(toolId: ToolId) {
 
 export function getRecentTools(): RecentToolItem[] {
   try {
-    const raw = localStorage.getItem(RECENT_KEY) || localStorage.getItem(LEGACY_RECENT_KEY);
-    return raw ? JSON.parse(raw) : [];
+    const raw = localStorage.getItem(RECENT_KEY);
+    const list: RecentToolItem[] = raw ? JSON.parse(raw) : [];
+    return list;
   } catch {
     return [];
   }
@@ -107,7 +103,7 @@ export function getRecentTools(): RecentToolItem[] {
 // Statistics Management
 export function getToolStats(): Record<string, ToolStatItem> {
   try {
-    const raw = localStorage.getItem(STATS_KEY) || localStorage.getItem(LEGACY_STATS_KEY);
+    const raw = localStorage.getItem(STATS_KEY);
     return raw ? JSON.parse(raw) : {};
   } catch {
     return {};
@@ -140,7 +136,6 @@ export function recordDownload(toolId: ToolId) {
     };
     localStorage.setItem(STATS_KEY, JSON.stringify(stats));
     window.dispatchEvent(new CustomEvent('zubware_download_recorded', { detail: { toolId } }));
-    window.dispatchEvent(new CustomEvent('splitdrop_download_recorded', { detail: { toolId } }));
   } catch {
     // ignore
   }
@@ -149,7 +144,7 @@ export function recordDownload(toolId: ToolId) {
 // Feedback Management
 export function getFeedbackList(): FeedbackRecord[] {
   try {
-    const raw = localStorage.getItem(FEEDBACK_KEY) || localStorage.getItem(LEGACY_FEEDBACK_KEY);
+    const raw = localStorage.getItem(FEEDBACK_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
@@ -191,22 +186,22 @@ export function getSavedUserDataSummary() {
   let expenseCount = 0;
   
   try {
-    const rawResume = localStorage.getItem('splitdrop_resume_data') || localStorage.getItem('resumeData');
+    const rawResume = localStorage.getItem('zubware_resumes') || localStorage.getItem('zubware_resume_data') || localStorage.getItem('resumeData');
     if (rawResume) resumesCount = 1;
     
-    const rawNotes = localStorage.getItem('splitdrop_secure_notes');
+    const rawNotes = localStorage.getItem('zubware_secure_notes');
     if (rawNotes) {
       const parsed = JSON.parse(rawNotes);
       notesCount = Array.isArray(parsed) ? parsed.length : 1;
     }
 
-    const rawHabits = localStorage.getItem('splitdrop_habits');
+    const rawHabits = localStorage.getItem('zubware-habits');
     if (rawHabits) {
       const parsed = JSON.parse(rawHabits);
       habitCount = Array.isArray(parsed) ? parsed.length : 0;
     }
 
-    const rawExpenses = localStorage.getItem('splitdrop_expenses');
+    const rawExpenses = localStorage.getItem('zubware-transactions') || localStorage.getItem('zubware_expenses');
     if (rawExpenses) {
       const parsed = JSON.parse(rawExpenses);
       expenseCount = Array.isArray(parsed) ? parsed.length : 0;

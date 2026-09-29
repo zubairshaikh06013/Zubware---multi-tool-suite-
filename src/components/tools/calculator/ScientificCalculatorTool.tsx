@@ -18,7 +18,7 @@ export const ScientificCalculatorTool: React.FC<ScientificCalculatorToolProps> =
   const [memory, setMemory] = useState<number>(0);
   const [history, setHistory] = useState<HistoryItem[]>(() => {
     try {
-      const stored = localStorage.getItem('splitdrop_calc_history');
+      const stored = localStorage.getItem('zubware_calc_history');
       return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
@@ -218,7 +218,7 @@ export const ScientificCalculatorTool: React.FC<ScientificCalculatorToolProps> =
       setHistory(prev => {
         const next = [newHistoryItem, ...prev].slice(0, 15);
         try {
-          localStorage.setItem('splitdrop_calc_history', JSON.stringify(next));
+          localStorage.setItem('zubware_calc_history', JSON.stringify(next));
         } catch {}
         return next;
       });
@@ -264,7 +264,7 @@ export const ScientificCalculatorTool: React.FC<ScientificCalculatorToolProps> =
   const handleClearHistory = () => {
     setHistory([]);
     try {
-      localStorage.removeItem('splitdrop_calc_history');
+      localStorage.removeItem('zubware_calc_history');
     } catch {}
     onShowToast('Calculation history cleared');
   };

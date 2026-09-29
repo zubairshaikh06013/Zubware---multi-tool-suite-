@@ -6,7 +6,6 @@ import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgr
 import { getImageMetadata, stripExifFromImage, ImageMetadata, formatBytes } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface ExifRemoverToolProps {
@@ -90,21 +89,11 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
         canonicalPath="/exif-remover.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'EXIF Remover' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🛡️ EXIF Metadata Remover
+          EXIF Metadata Remover
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Wipe hidden GPS location tags, camera model, author info, and device details from photos for complete privacy.

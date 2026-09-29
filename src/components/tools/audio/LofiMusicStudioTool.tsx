@@ -13,7 +13,6 @@ import {
   FileAudio,
   RefreshCw,
   CheckCircle2,
-  HelpCircle,
   Disc,
   ShieldCheck,
   Volume2,
@@ -21,7 +20,6 @@ import {
   AlertCircle
 } from 'lucide-react';
 import { SEOHead } from '../../SEOHead';
-import { AdSlot } from '../../AdSlot';
 import { Breadcrumb } from '../../Breadcrumb';
 import {
   StudioMode,
@@ -702,7 +700,7 @@ export function LofiMusicStudioTool({
         </div>
         <div className="relative z-10 max-w-3xl space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-wider">
-            <Sparkles size={14} /> 100% Client-Side Lofi Music Studio
+            <Sparkles size={14} /> Client-Side Lofi Music Studio
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
             Lofi Music Studio
@@ -1311,40 +1309,9 @@ export function LofiMusicStudioTool({
       <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 text-xs text-slate-400 flex items-center gap-3">
         <ShieldCheck size={20} className="text-emerald-400 shrink-0" />
         <span>
-          <strong>100% Privacy & Local Processing:</strong> Your audio files and synthesized tracks are processed entirely locally in your browser using the Web Audio API. Nothing is uploaded to any server.
+          <strong>Local Processing:</strong> Your audio files and synthesized tracks are processed locally in your browser using the Web Audio API. Files and inputs are not uploaded to Zubware servers.
         </span>
       </div>
-
-      {/* FAQ SECTION */}
-      <div className="p-6 md:p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-800 space-y-6">
-        <h2 className="text-2xl font-extrabold text-white flex items-center gap-2">
-          <HelpCircle className="text-amber-400" /> Frequently Asked Questions
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300">
-          <div className="space-y-2">
-            <h3 className="font-bold text-sm text-white">What format is exported?</h3>
-            <p>Audio is exported as an uncompressed, studio-quality 16-bit PCM WAV file encoded client-side in your browser.</p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-bold text-sm text-white">Can I create original Lofi music without uploading a song?</h3>
-            <p>Yes! Mode 2 (Original Lofi Creator) uses algorithmic Web Audio synthesis to generate custom chords, melodies, drums, and basslines in any BPM and key.</p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-bold text-sm text-white">What Lofi effects are applied?</h3>
-            <p>You can tweak playback speed, pitch shifting, low-pass filters, vinyl crackle & pop, tape saturation, wow & flutter, space reverb, and background ambiance like rain or fireplace sounds.</p>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-bold text-sm text-white">Can I export a Lofi video for YouTube Shorts or Reels?</h3>
-            <p>Yes, you can export your finished track as a video in 16:9, 9:16 Shorts, or 1:1 Square format complete with visualizers and track titles.</p>
-          </div>
-        </div>
-      </div>
-
-      <AdSlot type="banner" />
     </div>
   );
 }

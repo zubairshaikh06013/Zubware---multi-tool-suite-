@@ -23,7 +23,7 @@ export const TextToPdfTool: React.FC<{ onShowToast: (msg: string) => void }> = (
 
   const [documentTitle, setDocumentTitle] = useState('My Document');
   const [content, setContent] = useState(
-    'Welcome to Zubware Text to PDF Converter.\n\nYou can type or paste any formatted or unformatted text here, configure your typography, margins, and page orientation, and download an official publication-ready PDF.\n\nAll generation is processed 100% locally in your browser with zero server uploads, keeping your documents and sensitive notes private.'
+    'Welcome to Zubware Text to PDF Converter.\n\nYou can type or paste any formatted or unformatted text here, configure your typography, margins, and page orientation, and download an official publication-ready PDF.\n\nAll generation is processed locally in your browser. Files are not uploaded to Zubware servers, keeping your documents and sensitive notes private.'
   );
 
   // Layout parameters

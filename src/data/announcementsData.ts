@@ -27,7 +27,7 @@ export const ANNOUNCEMENTS_CONFIG: AnnouncementConfig = {
       icon: '🚀',
       badge: 'NEW',
       badgeColor: 'rose',
-      text: 'Resume Builder is now available • 100% Free • No Sign-up • Browser Based • ATS Friendly • PDF Export • Works Offline',
+      text: 'Resume Builder is now available • Free to Use • No Sign-up • Browser Based • ATS Friendly • PDF Export',
       link: '/resume-builder',
       isNew: true,
     },
@@ -36,7 +36,7 @@ export const ANNOUNCEMENTS_CONFIG: AnnouncementConfig = {
       icon: '🔒',
       badge: 'PRIVACY FIRST',
       badgeColor: 'emerald',
-      text: '100% Private • Files Never Leave Your Device • Zero Server Uploads • Fast Client Processing',
+      text: 'Local Browser Processing • No Server Upload for Local Tools • Fast In-Browser Execution',
     },
     {
       id: 'top-3',

@@ -89,7 +89,7 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🎓</span> CGPA Calculator (Cumulative Grade Point Average)
+            CGPA Calculator (Cumulative Grade Point Average)
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Calculate your cumulative CGPA, overall percentage conversion, and degree honors across college semesters.

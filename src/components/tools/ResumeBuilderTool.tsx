@@ -104,7 +104,7 @@ export const ResumeBuilderTool: React.FC<ResumeBuilderToolProps> = ({ onShowToas
 
   const [savedResumes, setSavedResumes] = useState<ResumeData[]>(() => {
     try {
-      const stored = localStorage.getItem('splitdrop_resumes');
+      const stored = localStorage.getItem('zubware_resumes');
       if (stored) {
         const parsed = JSON.parse(stored);
         if (Array.isArray(parsed) && parsed.length > 0) return parsed;
@@ -126,7 +126,7 @@ export const ResumeBuilderTool: React.FC<ResumeBuilderToolProps> = ({ onShowToas
 
   useEffect(() => {
     try {
-      localStorage.setItem('splitdrop_resumes', JSON.stringify(savedResumes));
+      localStorage.setItem('zubware_resumes', JSON.stringify(savedResumes));
     } catch {
       // Storage error
     }

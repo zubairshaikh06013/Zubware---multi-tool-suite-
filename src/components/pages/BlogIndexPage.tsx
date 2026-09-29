@@ -23,6 +23,15 @@ export const BlogIndexPage: React.FC<BlogIndexPageProps> = ({ onNavigate }) => {
     { label: 'Guides & Articles', path: getLinkUrl('/blog') }
   ];
 
+  const formatDate = (isoString: string) => {
+    try {
+      const d = new Date(isoString);
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    } catch {
+      return 'Recent';
+    }
+  };
+
   return (
     <>
       <SEOHead
@@ -87,7 +96,7 @@ export const BlogIndexPage: React.FC<BlogIndexPageProps> = ({ onNavigate }) => {
                       <Clock className="w-3.5 h-3.5" /> {article.readingTime}
                     </span>
                     <span className="flex items-center gap-1">
-                      <Calendar className="w-3.5 h-3.5" /> Sept 23, 2026
+                      <Calendar className="w-3.5 h-3.5" /> {formatDate(article.publishedTime)}
                     </span>
                   </div>
                 </div>
@@ -154,7 +163,7 @@ export const BlogIndexPage: React.FC<BlogIndexPageProps> = ({ onNavigate }) => {
             </div>
             <div>
               <h3 className="text-sm sm:text-base font-extrabold text-slate-900 dark:text-white">
-                Learn It, Then Practice 100% Free & Privately
+                Learn It, Then Practice Privately in Your Browser
               </h3>
               <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
                 All Zubware tools mentioned in our guides process files in your browser with zero remote server uploads.

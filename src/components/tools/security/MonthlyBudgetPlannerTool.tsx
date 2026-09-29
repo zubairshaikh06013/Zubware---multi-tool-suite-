@@ -15,7 +15,7 @@ interface MonthlyBudgetPlannerToolProps {
 export const MonthlyBudgetPlannerTool: React.FC<MonthlyBudgetPlannerToolProps> = ({ onShowToast }) => {
   const [items, setItems] = useState<BudgetItem[]>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-budget-planner');
+      const saved = localStorage.getItem('zubware-budget-planner');
       if (saved) return JSON.parse(saved);
     } catch {}
     return [
@@ -30,7 +30,7 @@ export const MonthlyBudgetPlannerTool: React.FC<MonthlyBudgetPlannerToolProps> =
   const [spent, setSpent] = useState<string>('');
 
   useEffect(() => {
-    localStorage.setItem('splitdrop-budget-planner', JSON.stringify(items));
+    localStorage.setItem('zubware-budget-planner', JSON.stringify(items));
   }, [items]);
 
   const addItem = (e: React.FormEvent) => {
@@ -71,7 +71,7 @@ export const MonthlyBudgetPlannerTool: React.FC<MonthlyBudgetPlannerToolProps> =
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📊</span> Monthly Budget Planner
+          Monthly Budget Planner
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Plan category budgets, track spending against caps, and calculate remaining allowance locally.

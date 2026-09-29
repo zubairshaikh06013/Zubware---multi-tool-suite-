@@ -191,7 +191,7 @@ export const WeightGainCalculatorTool: React.FC<WeightGainCalculatorToolProps> =
             <span>Health & Fitness Suite</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
-            <span>💪</span> Weight Gain Calorie & Macro Calculator
+            Weight Gain Calorie & Macro Calculator
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1.5 max-w-2xl">
             Calculate your personalized daily caloric surplus and optimal protein, fat, and carb targets for steady lean muscle & weight gain.

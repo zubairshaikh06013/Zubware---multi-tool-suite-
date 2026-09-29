@@ -15,7 +15,7 @@ interface SavedLink {
 }
 
 export const UtmBuilderTool: React.FC<UtmBuilderToolProps> = ({ onShowToast }) => {
-  const [websiteUrl, setWebsiteUrl] = useState<string>('https://zubware.com/typing-speed-test.html');
+  const [websiteUrl, setWebsiteUrl] = useState<string>('https://www.zubware.com/typing-speed-test.html');
   const [source, setSource] = useState<string>('google');
   const [medium, setMedium] = useState<string>('cpc');
   const [campaign, setCampaign] = useState<string>('spring_promo_2026');
@@ -24,7 +24,7 @@ export const UtmBuilderTool: React.FC<UtmBuilderToolProps> = ({ onShowToast }) =
   const [copied, setCopied] = useState<boolean>(false);
   const [savedLinks, setSavedLinks] = useState<SavedLink[]>(() => {
     try {
-      const stored = localStorage.getItem('splitdrop_utm_history');
+      const stored = localStorage.getItem('zubware_utm_history');
       return stored ? JSON.parse(stored) : [];
     } catch {
       return [];
@@ -91,7 +91,7 @@ export const UtmBuilderTool: React.FC<UtmBuilderToolProps> = ({ onShowToast }) =
       setSavedLinks(prev => {
         const updated = [newEntry, ...prev.filter(l => l.url !== finalUrl)].slice(0, 10);
         try {
-          localStorage.setItem('splitdrop_utm_history', JSON.stringify(updated));
+          localStorage.setItem('zubware_utm_history', JSON.stringify(updated));
         } catch {}
         return updated;
       });
@@ -101,7 +101,7 @@ export const UtmBuilderTool: React.FC<UtmBuilderToolProps> = ({ onShowToast }) =
   const handleClearHistory = () => {
     setSavedLinks([]);
     try {
-      localStorage.removeItem('splitdrop_utm_history');
+      localStorage.removeItem('zubware_utm_history');
     } catch {}
     onShowToast('Cleared link history');
   };

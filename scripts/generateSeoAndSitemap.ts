@@ -9,6 +9,7 @@ import { getToolSeoTitle } from '../src/lib/seoTitles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
 import { ToolMeta, BlogArticle } from '../src/types';
 import { CategoryItem } from '../src/data/categoriesData';
+import { SITE_ORIGIN } from '../src/lib/siteConfig';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,7 +17,7 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.resolve(rootDir, 'dist');
 const publicDir = path.resolve(rootDir, 'public');
 
-const DOMAIN = 'https://zubware.com';
+const DOMAIN = SITE_ORIGIN;
 
 const NETWORK_DEPENDENT_TOOL_IDS = new Set([
   'api-request-builder',
@@ -88,6 +89,13 @@ const STATIC_PAGES: StaticPageMeta[] = [
 ];
 
 function getToolHowToSteps(tool: ToolMeta): { name: string; text: string }[] {
+  if (tool.howTo && tool.howTo.length > 0) {
+    return tool.howTo.map(s => ({
+      name: s.title,
+      text: s.desc
+    }));
+  }
+
   const isFileTool =
     tool.category.includes('PDF') ||
     tool.category.includes('Image') ||
@@ -444,9 +452,9 @@ function renderStaticPageContent(page: StaticPageMeta): string {
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
             Zubware is an open, privacy-focused multi-tool suite offering over ${TOOLS_DATA.length} free web utilities designed to solve daily technical, design, audio-visual, and documentation challenges. We believe essential computational tools should be instantly accessible to everyone on earth without paywalls, sign-up forms, or invasive tracking.
           </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">100% Client-Side Privacy Architecture</h2>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Browser-Based Processing &amp; Local Privacy</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            Unlike legacy online converters that transmit your private files, PDFs, and media assets to distant cloud servers, Zubware executes operations locally inside your web browser. Utilizing high-performance WebAssembly (WASM), HTML5 Canvas, and the native Web Cryptography API, your data never leaves your computer or phone.
+            Unlike legacy online converters that transmit your private files, PDFs, and media assets to distant cloud servers, Zubware executes local operations inside your web browser. Utilizing high-performance WebAssembly (WASM), HTML5 Canvas, and native Web Cryptography APIs, files and inputs processed by local tools are not uploaded to Zubware servers.
           </p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Comprehensive Multi-Tool Ecosystem</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
@@ -462,17 +470,21 @@ function renderStaticPageContent(page: StaticPageMeta): string {
     case 'privacy.html':
       specificBody = `
         <section style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">1. Zero Remote Storage Principle</h2>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">1. Local Browser-Based Processing</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            At Zubware, your privacy is protected by mathematics and local browser architecture, not mere marketing promises. When you compress an image, split a PDF, format a JSON string, or hash credentials, the entire computation is executed in your browser's local sandbox memory. No file data is uploaded to our servers.
+            At Zubware, your privacy is protected by mathematics and local browser architecture. For local processing utilities (such as image compression, PDF merging, text formatting, and calculation tools), processing happens locally in your browser. Files and inputs are not uploaded to or stored on Zubware servers.
           </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">2. Network Dependent Utilities</h2>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">2. Network-Dependent Utilities</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            For specialized tools that test remote web services (such as HTTP Header Checkers or DNS lookups), requests are dispatched directly from your browser to the designated target host. Zubware does not log or persist your request payloads or headers.
+            For specialized tools that test remote web services (such as the API Request Builder, Website Downloader, and HTTP Header Viewer), requests connect directly from your browser to the external endpoints or URLs you specify. Zubware does not store your request payloads, responses, or headers on its servers.
           </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">3. Local Storage &amp; Cookies</h2>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">3. Browser Storage &amp; User State</h2>
+          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
+            Zubware uses browser localStorage and IndexedDB on your device to remember user preferences (such as Dark Mode and bookmarked favorite tools) and to keep user-created drafts (such as resume versions, encrypted notes, and calculation history) saved locally for your convenience. Zubware servers never receive or sync your locally saved drafts.
+          </p>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">4. Analytics &amp; Zero Advertisements Policy</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
-            We do not use tracking cookies to build user profiling databases. Local storage is strictly utilized for user interface state preferences, such as Dark Mode toggling and bookmarked favorite tools.
+            We integrate Google Tag Manager to measure aggregate website performance and resolve application errors. Zubware is currently 100% ad-free and does not host or display any commercial advertisements, banner ads, or sponsored ad networks. No advertising tracking cookies or commercial ad scripts are used.
           </p>
           <p><a href="${DOMAIN}/terms.html" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Review Terms of Service &rarr;</a></p>
         </section>`;
@@ -483,11 +495,11 @@ function renderStaticPageContent(page: StaticPageMeta): string {
         <section style="margin-bottom: 2rem;">
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">1. Acceptance of Terms</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            By accessing or using Zubware (https://zubware.com), you agree to comply with and be bound by these Terms of Service. If you do not agree, please do not use our services.
+            By accessing or using Zubware (https://www.zubware.com), you agree to comply with and be bound by these Terms of Service. If you do not agree, please do not use our services.
           </p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">2. Permitted Use &amp; Intellectual Property</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            Zubware grants you a personal, non-exclusive, worldwide, royalty-free license to use our web utilities for personal, educational, and commercial workflows. You retain 100% full ownership and copyright of any files or content processed through our utilities.
+            Zubware grants you a personal, non-exclusive, worldwide, royalty-free license to use our web utilities for personal, educational, and commercial workflows. You retain full ownership and copyright of any files or content processed through our utilities.
           </p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">3. Service Availability &amp; Disclaimer</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
@@ -500,13 +512,21 @@ function renderStaticPageContent(page: StaticPageMeta): string {
     case 'disclaimer.html':
       specificBody = `
         <section style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">General Informational &amp; Utility Disclaimer</h2>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">General Information Only</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            The calculations, format conversions, document transformations, and media outputs provided across Zubware are intended solely for general utility, productivity, and educational purposes.
+            The calculations, format conversions, document transformations, and media outputs provided across Zubware (https://www.zubware.com) are intended solely for general utility, productivity, developer assistance, and educational purposes. Local tools process data directly inside the user's web browser memory.
           </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Not Financial, Legal, or Medical Advice</h2>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">No Professional Advice</h2>
+          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
+            Calculators, financial estimators, and conversion tools provide estimates based on mathematical formulas and user inputs. They do not constitute certified professional financial, investment, legal, tax, or medical advice. Always consult certified professionals for critical decisions.
+          </p>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">External Links &amp; Third-Party Resources</h2>
+          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
+            Zubware may contain links leading to external websites, documentation, or third-party resources for user convenience. Zubware does not control, operate, or endorse third-party content and assumes no responsibility for their policies, availability, or accuracy.
+          </p>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Limitation of Liability</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
-            Calculators (including loan estimators, tax approximations, and health metrics) provide estimates based on mathematical formulas and user inputs. They do not constitute certified professional financial, tax, legal, or medical advice. Always consult certified professionals for critical decisions.
+            All utilities on Zubware are provided on an "as is" and "as available" basis without warranties of any kind. Under no circumstances shall Zubware be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use our tools, calculations, or resources.
           </p>
           <p><a href="${DOMAIN}/" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">&larr; Return to Zubware Home</a></p>
         </section>`;
@@ -557,7 +577,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
               <div style="font-size: 0.75rem; font-weight: 800; color: #4f46e5; margin-bottom: 0.25rem;">VERSION 2.0 • LATEST RELEASE</div>
               <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 0 0 0.5rem 0;">307 Active Web Tools &amp; Authority Architecture</h3>
-              <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">Added 13 dedicated category authority hubs, 10 technical guides, machine-readable llms.txt index, enhanced schema structured data, and offline WASM image pipelines.</p>
+              <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">Added 13 dedicated category authority hubs, 30 technical guides, machine-readable llms.txt index, enhanced schema structured data, and offline WASM image pipelines.</p>
             </div>
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
               <div style="font-size: 0.75rem; font-weight: 800; color: #64748b; margin-bottom: 0.25rem;">VERSION 1.5</div>
@@ -1038,10 +1058,10 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
             ⚡ ${catTools.length} Active Tools
           </span>
           <span style="background: #ffffff; padding: 0.4rem 0.85rem; border-radius: 9999px; border: 1px solid #c7d2fe; color: #4338ca;">
-            🔒 100% Client-Side Privacy
+            🔒 Local In-Browser Privacy
           </span>
           <span style="background: #ffffff; padding: 0.4rem 0.85rem; border-radius: 9999px; border: 1px solid #c7d2fe; color: #4338ca;">
-            🆓 Free Forever • Zero Install
+            🆓 Free to Use • Zero Install
           </span>
         </div>
       </header>
@@ -1353,10 +1373,10 @@ function renderHomepageContent(): string {
       <!-- Technical Architecture & Privacy -->
       <section style="margin-bottom: 4rem; padding: 2rem; background: #ffffff; border-radius: 1.5rem; border: 1px solid #e2e8f0;">
         <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-top: 0; margin-bottom: 0.75rem;">
-          Privacy Architecture: 100% Client-Side Execution
+          Privacy Architecture: Local Browser-Based Execution
         </h2>
         <p style="font-size: 0.95rem; color: #334155; line-height: 1.6;">
-          Unlike traditional web services that upload your sensitive documents, personal photographs, and source code to remote cloud farms, Zubware processes your data locally on your device using compiled WebAssembly, modern HTML5 Canvas, and Web Cryptography APIs. Your files are never transmitted across the network or stored on external servers.
+          Unlike traditional web services that upload your sensitive documents, personal photographs, and source code to remote cloud farms, Zubware processes your data locally on your device for local tools using compiled WebAssembly, modern HTML5 Canvas, and Web Cryptography APIs. Files and inputs are not uploaded to Zubware servers.
         </p>
       </section>
 
@@ -1390,9 +1410,10 @@ function injectMetadataIntoHtml(
     jsonLdSchema: object;
     bodyContent?: string;
     ogType?: string;
+    robots?: string;
   }
 ): string {
-  const { title, description, canonicalUrl, keywords, jsonLdSchema, bodyContent, ogType } = options;
+  const { title, description, canonicalUrl, keywords, jsonLdSchema, bodyContent, ogType, robots } = options;
   const escapedTitle = escapeHtml(title);
   const escapedDesc = escapeHtml(description);
   const escapedUrl = escapeHtml(canonicalUrl);
@@ -1458,7 +1479,8 @@ function injectMetadataIntoHtml(
   html = html.replace(/<script\s+id="json-ld-schema"[\s\S]*?<\/script>\n?/gi, '');
 
   const keywordsTag = keywords ? `\n    <meta name="keywords" content="${escapeHtml(keywords)}" />` : '';
-  const robotsTag = `\n    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />`;
+  const robotsDirective = robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+  const robotsTag = `\n    <meta name="robots" content="${escapeHtml(robotsDirective)}" />`;
   const schemaTag = `\n    <script id="json-ld-schema" type="application/ld+json">${JSON.stringify(jsonLdSchema)}</script>`;
 
   const injection = `${keywordsTag}${robotsTag}${schemaTag}`;
@@ -1496,9 +1518,9 @@ export function generateLlmsTxt(tools: ToolMeta[]): string {
   ];
 
   let output = `# Zubware — Online Multi-Tool Suite
-> Zubware (https://zubware.com) is an online multi-tool suite offering ${tools.length}+ free utilities for PDF documents, image processing, developer workflows, video and audio media, calculators, and daily productivity.
+> Zubware (https://www.zubware.com) is an online multi-tool suite offering ${tools.length}+ free utilities for PDF documents, image processing, developer workflows, video and audio media, calculators, and daily productivity.
 
-- Canonical Homepage: https://zubware.com
+- Canonical Homepage: https://www.zubware.com
 - Total Active Tools: ${tools.length}
 - Access Model: Free to use, no mandatory account sign-up, no hidden subscriptions.
 - Technical Architecture: Fast, browser-based execution for offline tools; direct browser requests for network testing tools.
@@ -1535,6 +1557,22 @@ ${CATEGORIES_DATA.filter(c => c.slug !== 'all').map(c => `- [${c.defaultName}]($
   return output;
 }
 
+function getToolLastmod(tool: ToolMeta): string {
+  const cat = tool.category || '';
+  if (cat.includes('Developer')) return '2026-09-25';
+  if (cat.includes('Image') || cat.includes('Video') || cat.includes('Audio')) return '2026-09-24';
+  if (cat.includes('PDF')) return '2026-09-23';
+  if (cat.includes('Calculator') || cat.includes('Business')) return '2026-09-20';
+  if (cat.includes('Career') || cat.includes('Prompt')) return '2026-09-22';
+  return '2026-09-21';
+}
+
+function getStaticPageLastmod(filename: string): string {
+  if (filename === 'privacy.html' || filename === 'terms.html') return '2026-09-26';
+  if (filename === 'about.html') return '2026-09-25';
+  return '2026-09-20';
+}
+
 export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsCount?: number; articlesCount?: number; sitemapUrlsCount: number } {
   console.log('[Zubware SEO] Starting static HTML SEO injection, llms.txt generation, and dynamic sitemap generation...');
 
@@ -1557,8 +1595,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   pristineBaseHtml = pristineBaseHtml.replace(/\s*<meta name="keywords" content="[^"]*"\s*\/?>/g, '');
   pristineBaseHtml = pristineBaseHtml.replace(/\s*<meta name="robots" content="[^"]*"\s*\/?>/g, '');
 
-  // Track all unique URLs for sitemap
-  const sitemapUrls: Array<{ loc: string; priority: string; changefreq: string }> = [];
+  // Track all unique URLs for sitemap with meaningful lastmod dates
+  const sitemapUrls: Array<{ loc: string; priority: string; changefreq: string; lastmod: string }> = [];
 
   // Add homepage (pre-rendered rich semantic HTML)
   const homeJsonLd = {
@@ -1609,7 +1647,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   sitemapUrls.push({
     loc: `${DOMAIN}/`,
     priority: '1.0',
-    changefreq: 'daily'
+    changefreq: 'daily',
+    lastmod: '2026-09-26'
   });
 
   // 1. Generate Categories Directory Page (/categories.html)
@@ -1662,7 +1701,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   sitemapUrls.push({
     loc: categoriesCanonical,
     priority: '0.9',
-    changefreq: 'weekly'
+    changefreq: 'weekly',
+    lastmod: '2026-09-24'
   });
 
   // 1b. Generate 13 Dedicated Category Authority Hub Pages (/category/[slug].html and /category/[slug]/index.html)
@@ -1692,42 +1732,43 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       bodyContent: catBody
     });
 
-    const catSpecificDir = path.join(categoryDistDir, cat.slug);
-    if (!fs.existsSync(catSpecificDir)) {
-      fs.mkdirSync(catSpecificDir, { recursive: true });
-    }
-
     fs.writeFileSync(path.join(categoryDistDir, `${cat.slug}.html`), catHtml, 'utf-8');
-    fs.writeFileSync(path.join(catSpecificDir, 'index.html'), catHtml, 'utf-8');
     categoryHubCount++;
 
     sitemapUrls.push({
       loc: catCanonical,
       priority: '0.9',
-      changefreq: 'weekly'
+      changefreq: 'weekly',
+      lastmod: '2026-09-24'
     });
   }
 
-  // 2. Generate Static Pages (About, Privacy, Terms, Disclaimer, Contact)
+  // 2. Generate Static Pages (About, Privacy, Terms, Disclaimer, Contact, Dashboard)
   for (const page of STATIC_PAGES) {
     const canonicalUrl = `${DOMAIN}/${page.filename}`;
     const jsonLd = buildStaticPageJsonLd(page, canonicalUrl);
     const bodyContent = renderStaticPageContent(page);
+    const isDashboard = page.filename === 'dashboard.html';
     const html = injectMetadataIntoHtml(pristineBaseHtml, {
       title: page.title,
       description: page.description,
       canonicalUrl,
       jsonLdSchema: jsonLd,
-      bodyContent
+      bodyContent,
+      robots: isDashboard ? 'noindex, follow' : undefined
     });
 
     fs.writeFileSync(path.join(distDir, page.filename), html, 'utf-8');
 
-    sitemapUrls.push({
-      loc: canonicalUrl,
-      priority: '0.5',
-      changefreq: 'monthly'
-    });
+    // Do NOT include noindex private pages in sitemap.xml
+    if (!isDashboard) {
+      sitemapUrls.push({
+        loc: canonicalUrl,
+        priority: '0.5',
+        changefreq: 'monthly',
+        lastmod: getStaticPageLastmod(page.filename)
+      });
+    }
   }
 
   // 3. Generate Tool Pages for all 307 active tools in TOOLS_DATA
@@ -1760,7 +1801,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     sitemapUrls.push({
       loc: canonicalUrl,
       priority: '0.8',
-      changefreq: 'weekly'
+      changefreq: 'weekly',
+      lastmod: getToolLastmod(tool)
     });
   }
 
@@ -1792,7 +1834,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   sitemapUrls.push({
     loc: blogIndexCanonical,
     priority: '0.8',
-    changefreq: 'weekly'
+    changefreq: 'weekly',
+    lastmod: '2026-09-25'
   });
 
   // 4b. Blog Articles (/blog/[slug])
@@ -1813,29 +1856,23 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       ogType: 'article'
     });
 
-    const articleSpecificDir = path.join(blogDistDir, article.slug);
-    if (!fs.existsSync(articleSpecificDir)) {
-      fs.mkdirSync(articleSpecificDir, { recursive: true });
-    }
-
     fs.writeFileSync(path.join(blogDistDir, `${article.slug}.html`), articleHtml, 'utf-8');
-    fs.writeFileSync(path.join(articleSpecificDir, 'index.html'), articleHtml, 'utf-8');
     articleCount++;
 
     sitemapUrls.push({
       loc: articleCanonical,
       priority: '0.8',
-      changefreq: 'monthly'
+      changefreq: 'monthly',
+      lastmod: (article.modifiedTime || article.publishedTime || '2026-09-24').split('T')[0]
     });
   }
 
-  // 5. Generate dynamic sitemap.xml
-  const today = new Date().toISOString().split('T')[0];
+  // 5. Generate dynamic sitemap.xml with meaningful lastmod dates
   const sitemapEntries = sitemapUrls
     .map(
       (u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${today}</lastmod>
+    <lastmod>${u.lastmod}</lastmod>
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`

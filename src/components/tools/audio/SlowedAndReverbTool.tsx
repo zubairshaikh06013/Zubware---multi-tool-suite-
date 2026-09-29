@@ -14,11 +14,9 @@ import {
   Sliders,
   Disc,
   Info,
-  ChevronDown,
   Trash2,
   Zap,
-  Radio,
-  ArrowRight
+  Radio
 } from 'lucide-react';
 import {
   processSlowedAndReverb,
@@ -71,7 +69,6 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
   const [processedCurrentTime, setProcessedCurrentTime] = useState<number>(0);
   const [processedDuration, setProcessedDuration] = useState<number>(0);
 
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
   const dropZoneRef = useRef<HTMLDivElement | null>(null);
 
   // Clean up Object URLs on unmount
@@ -320,44 +317,6 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
   const estimatedDuration = audioBuffer ? audioBuffer.duration / speed : 0;
   const estimatedMp3SizeBytes = Math.round((estimatedDuration * (mp3Bitrate * 1000)) / 8);
 
-  const faqs = [
-    {
-      question: 'What is Slowed and Reverb?',
-      answer: 'Slowed and Reverb (often stylized as "slowed + reverb") is a popular music aesthetic where a track is slowed down to around 80%–90% of its original tempo and layered with acoustic reverb. This creates a dreamy, atmospheric, and nostalgic listening vibe.'
-    },
-    {
-      question: 'How do I make a slowed and reverb song?',
-      answer: 'Simply upload your MP3, WAV, or OGG audio file into Zubware, pick a speed preset (such as 0.85x or 0.80x), select a reverb intensity (Light, Medium, or Deep), and click "CREATE SLOWED + REVERB". Zubware handles the audio rendering locally in seconds.'
-    },
-    {
-      question: 'What speed should I use for the best slowed effect?',
-      answer: '0.85x is the golden standard default for most songs! It lowers the pitch and tempo naturally without making vocals sound unnaturally distorted. For energetic pop or EDM songs, 0.80x or 0.85x works great. For acoustic tracks, 0.90x yields a subtle chill vibe.'
-    },
-    {
-      question: 'Can I download the processed result as an MP3 file?',
-      answer: 'Yes! Zubware includes a high-fidelity 320 kbps LAME MP3 encoder built directly into your browser. The output file is a genuine MP3 audio file ready for offline playback, ringtones, or content creation.'
-    },
-    {
-      question: 'Is my audio uploaded to a server?',
-      answer: 'No. Your audio file is processed entirely inside your web browser using HTML5 Web Audio API and WebAssembly. Your files never leave your device memory, ensuring 100% privacy and instant speed.'
-    },
-    {
-      question: 'Does slowing a song change its pitch?',
-      answer: 'Yes! By default, slowing a song down with standard analog-style playback speed lowers both the tempo and pitch naturally together. This gives slowed & reverb tracks their signature deep, warm, and atmospheric tone.'
-    }
-  ];
-
-  const relatedTools = [
-    { title: 'Lofi Music Studio', icon: '🎧', path: '/lofi-song-maker.html', category: 'Audio Tools' },
-    { title: 'Audio Converter', icon: '🔄', path: '/category/audio.html', category: 'Audio Tools' },
-    { title: 'Audio Compressor', icon: '🗜️', path: '/category/audio.html', category: 'Audio Tools' },
-    { title: 'Audio Cutter', icon: '✂️', path: '/category/audio.html', category: 'Audio Tools' },
-    { title: 'Volume Booster', icon: '🔊', path: '/category/audio.html', category: 'Audio Tools' },
-    { title: 'Bass Booster', icon: '🎸', path: '/category/audio.html', category: 'Audio Tools' },
-    { title: 'Pitch Shifter', icon: '🎶', path: '/category/audio.html', category: 'Audio Tools' },
-    { title: 'Video to Audio', icon: '📹', path: '/category/video.html', category: 'Video Tools' }
-  ];
-
   return (
     <div className="space-y-8">
       
@@ -440,7 +399,7 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
             </div>
 
             <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-              🔒 Private local processing — your audio file is never uploaded to any server.
+              🔒 Private local processing — processed locally in your browser. Files are not uploaded to Zubware servers.
             </p>
           </div>
         )}
@@ -787,66 +746,8 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
       <div className="glass-panel p-5 rounded-2xl flex items-center gap-4 text-slate-700 dark:text-slate-300">
         <ShieldCheck className="w-8 h-8 text-indigo-500 shrink-0" />
         <p className="text-xs leading-relaxed font-medium">
-          <strong>Privacy Guaranteed:</strong> Your audio is processed locally in your browser whenever possible. Your file is not uploaded to any external server.
+          <strong>Local Processing:</strong> Your audio is processed locally in your browser. Files and inputs are not uploaded to Zubware servers.
         </p>
-      </div>
-
-      {/* FAQ SECTION */}
-      <div className="glass-panel p-6 sm:p-8 rounded-3xl space-y-6">
-        <div className="text-center max-w-2xl mx-auto">
-          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Everything you need to know about creating slowed & reverb tracks online.
-          </p>
-        </div>
-
-        <div className="space-y-3 max-w-3xl mx-auto">
-          {faqs.map((faq, idx) => {
-            const isOpen = openFaqIndex === idx;
-            return (
-              <div key={idx} className="glass-card rounded-2xl overflow-hidden transition-all">
-                <button
-                  onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                  className="w-full p-4 text-left flex items-center justify-between gap-4 text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-indigo-600 transition-colors"
-                >
-                  <span>{faq.question}</span>
-                  <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180 text-indigo-600' : ''}`} />
-                </button>
-                {isOpen && (
-                  <div className="px-4 pb-4 text-xs text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 leading-relaxed pt-2">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* RELATED TOOLS SECTION */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-          Explore Related Audio & Media Tools
-        </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          {relatedTools.map((t, idx) => (
-            <div
-              key={idx}
-              onClick={() => onNavigate && onNavigate(getLinkUrl(t.path))}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all flex items-center gap-3 group"
-            >
-              <span className="text-2xl group-hover:scale-110 transition-transform">{t.icon}</span>
-              <div>
-                <h4 className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 transition-colors">
-                  {t.title}
-                </h4>
-                <span className="text-[10px] text-slate-500 font-medium">{t.category}</span>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
     </div>

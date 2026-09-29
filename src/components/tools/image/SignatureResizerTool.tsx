@@ -260,7 +260,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
           maxSizeMB={25}
           title="Drop your signature image here to resize"
           subtitle="Supports PNG, JPG, WebP signatures with instant dimension & KB size adjustments"
-          fileTypeSupportText="100% Client-Side • Preserves transparency"
+          fileTypeSupportText="Client-Side • Preserves transparency"
           onFilesSelected={handleFileSelected}
         />
       ) : (

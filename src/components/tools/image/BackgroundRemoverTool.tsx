@@ -10,7 +10,6 @@ import {
   Layers,
   ArrowRight,
   Eye,
-  ChevronDown,
   FileImage,
   Sliders,
   ShieldCheck,
@@ -27,38 +26,6 @@ interface BackgroundRemoverToolProps {
 
 type PreviewBackground = 'checkerboard' | 'white' | 'black' | 'gray';
 type ViewMode = 'result' | 'original' | 'slider';
-
-interface ToolFAQ {
-  question: string;
-  answer: string;
-}
-
-const FAQS: ToolFAQ[] = [
-  {
-    question: 'What image formats are supported?',
-    answer: 'The AI Background Remover supports JPG, JPEG, PNG, and WebP image formats up to 20 MB.'
-  },
-  {
-    question: 'Does the tool remove backgrounds automatically?',
-    answer: 'Yes! The AI automatically detects people, products, animals, cars, and objects in your photo and extracts them without requiring manual tracing or lasso tools.'
-  },
-  {
-    question: 'Can I download a transparent PNG?',
-    answer: 'Absolutely. The final output is saved as a 32-bit PNG file containing real transparent alpha pixels, perfect for graphics, e-commerce, and design projects.'
-  },
-  {
-    question: 'Is my image uploaded to any server?',
-    answer: 'No. All AI segmentation and image rendering take place 100% locally in your web browser memory. Your private photos never leave your device.'
-  },
-  {
-    question: 'Can I remove the background from a product photo?',
-    answer: 'Yes, it is optimized for e-commerce products, fashion models, vehicles, furniture, and everyday objects with crisp edge accuracy.'
-  },
-  {
-    question: 'Does it preserve original image resolution?',
-    answer: 'Yes! Even though AI models process at internal tensor resolutions, Zubware maps the high-precision alpha matte back onto your full-resolution source image.'
-  }
-];
 
 export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ onShowToast, onNavigate }) => {
   // File state
@@ -80,9 +47,6 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
   const [previewBg, setPreviewBg] = useState<PreviewBackground>('checkerboard');
   const [viewMode, setViewMode] = useState<ViewMode>('result');
   const [sliderPosition, setSliderPosition] = useState<number>(50);
-
-  // FAQ collapse state
-  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -244,7 +208,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
         <div className="flex items-center gap-2.5">
           <Lock className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
           <p className="font-medium">
-            <strong className="font-bold">🔒 Private & Local:</strong> Your image is processed directly in your browser. Files are never uploaded to Zubware.
+            <strong className="font-bold">🔒 Private & Local:</strong> Processed locally in your browser. Files are not uploaded to Zubware servers.
           </p>
         </div>
       </div>
@@ -306,7 +270,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Max size: 20 MB
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> 100% Free & Automatic
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Automatic In-Browser AI
             </span>
           </div>
         </div>
@@ -610,112 +574,6 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
         </div>
       )}
 
-      {/* ========================================================
-          ANSWER-FIRST CONTENT & EXPLANATION
-          ======================================================== */}
-      <div className="pt-8 space-y-8 border-t border-slate-200/80 dark:border-slate-800 text-slate-800 dark:text-slate-200">
-        <section className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
-          <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
-            What is an AI Background Remover?
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-            An AI background remover automatically detects the main subject in an image and removes the surrounding background, creating a transparent image. Unlike manual photo editing software that requires painstaking lasso selections, our client-side machine learning segmentation model analyzes edge boundaries, color contrast, and depth pixels in real-time.
-          </p>
-
-          <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white pt-4">
-            How to remove an image background online?
-          </h2>
-          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
-            <li className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
-              <span className="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs font-black flex items-center justify-center">1</span>
-              <h3 className="text-xs font-bold text-slate-900 dark:text-white">Upload Your Photo</h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">Drag & drop or browse any JPG, PNG, or WebP image.</p>
-            </li>
-            <li className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
-              <span className="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs font-black flex items-center justify-center">2</span>
-              <h3 className="text-xs font-bold text-slate-900 dark:text-white">AI Detection</h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">Our browser AI segments foreground subject and cuts background.</p>
-            </li>
-            <li className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
-              <span className="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs font-black flex items-center justify-center">3</span>
-              <h3 className="text-xs font-bold text-slate-900 dark:text-white">Preview Transparency</h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">Inspect the transparent result on checkerboard or color canvas.</p>
-            </li>
-            <li className="p-4 rounded-2xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 space-y-1.5">
-              <span className="w-6 h-6 rounded-lg bg-indigo-600 text-white text-xs font-black flex items-center justify-center">4</span>
-              <h3 className="text-xs font-bold text-slate-900 dark:text-white">Download PNG</h3>
-              <p className="text-[11px] text-slate-500 dark:text-slate-400">Save a high-resolution PNG with real alpha channel.</p>
-            </li>
-          </ol>
-        </section>
-
-        {/* FREQUENTLY ASKED QUESTIONS */}
-        <section className="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
-          <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-3">
-            {FAQS.map((faq, idx) => {
-              const isOpen = openFaqIndex === idx;
-              return (
-                <div
-                  key={idx}
-                  className="rounded-2xl border border-slate-200/80 dark:border-slate-800/80 overflow-hidden bg-white/50 dark:bg-slate-900/50"
-                >
-                  <button
-                    onClick={() => setOpenFaqIndex(isOpen ? null : idx)}
-                    className="w-full p-4 text-left flex items-center justify-between gap-4 text-xs sm:text-sm font-bold text-slate-900 dark:text-white hover:text-indigo-600 transition-colors"
-                  >
-                    <span>{faq.question}</span>
-                    <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180 text-indigo-600' : ''}`} />
-                  </button>
-
-                  {isOpen && (
-                    <div className="px-4 pb-4 pt-1 text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/60">
-                      {faq.answer}
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </section>
-
-        {/* RELATED IMAGE TOOLS */}
-        <section className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-              Related Image Tools
-            </h3>
-            <span className="text-xs text-slate-500 font-medium">Zubware Suite</span>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 pt-2">
-            {[
-              { id: 'image-compressor', title: 'Image Compressor', icon: '🗜️', path: '/image-compressor.html' },
-              { id: 'image-resizer', title: 'Image Resizer', icon: '📐', path: '/image-resizer.html' },
-              { id: 'heic-to-jpg', title: 'HEIC to JPG', icon: '📱', path: '/heic-to-jpg.html' },
-              { id: 'bulk-image-renamer-resizer', title: 'Bulk Image Renamer', icon: '📁', path: '/bulk-image-renamer-resizer.html' },
-              { id: 'passport-photo-maker', title: 'Passport Photo Maker', icon: '🪪', path: '/passport-photo-maker.html' },
-              { id: 'image-converter', title: 'Image Converter', icon: '🔄', path: '/image-converter.html' },
-              { id: 'crop-image', title: 'Crop Image', icon: '✂️', path: '/crop-image.html' },
-              { id: 'background-color-changer', title: 'BG Color Changer', icon: '🎨', path: '/background-color-changer.html' }
-            ].map((tool) => (
-              <button
-                key={tool.id}
-                onClick={() => onNavigate && onNavigate(getLinkUrl(tool.path))}
-                className="p-3 rounded-2xl bg-white/70 dark:bg-slate-900/70 hover:bg-indigo-50/80 dark:hover:bg-indigo-950/50 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-500/40 text-left transition-all group flex items-center gap-2.5"
-              >
-                <span className="text-xl shrink-0 group-hover:scale-110 transition-transform">{tool.icon}</span>
-                <span className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 truncate">
-                  {tool.title}
-                </span>
-              </button>
-            ))}
-          </div>
-        </section>
-      </div>
     </div>
   );
 };

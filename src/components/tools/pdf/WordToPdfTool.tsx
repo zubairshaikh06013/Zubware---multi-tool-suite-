@@ -25,7 +25,7 @@ export function WordToPdfTool({ onShowToast }: { onShowToast: (msg: string) => v
     { type: 'paragraph', text: 'This document was converted from a Word (.docx) file directly in the browser using Zubware client-side processing.' },
     { type: 'heading2', text: '1. Project Overview & Objectives' },
     { type: 'paragraph', text: 'The objective of this initiative is to deliver fast, reliable, privacy-friendly online utilities without transmitting sensitive files to remote servers.' },
-    { type: 'bullet', text: 'Zero server uploads: 100% in-browser conversion' },
+    { type: 'bullet', text: 'Processed locally in your browser. Files are not uploaded to Zubware servers.' },
     { type: 'bullet', text: 'Retains semantic headings, lists, and structure' },
     { type: 'bullet', text: 'Instant PDF export with customizable margins and paper sizes' },
     { type: 'heading2', text: '2. Performance Deliverables' },

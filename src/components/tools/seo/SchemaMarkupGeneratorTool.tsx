@@ -10,25 +10,25 @@ export const SchemaMarkupGeneratorTool: React.FC<SchemaMarkupGeneratorToolProps>
 
   // Organization fields
   const [orgName, setOrgName] = useState<string>('Zubware');
-  const [orgUrl, setOrgUrl] = useState<string>('https://zubware.com');
-  const [orgLogo, setOrgLogo] = useState<string>('https://zubware.com/logo.png');
+  const [orgUrl, setOrgUrl] = useState<string>('https://www.zubware.com');
+  const [orgLogo, setOrgLogo] = useState<string>('https://www.zubware.com/logo.png');
   const [orgDescription, setOrgDescription] = useState<string>('Free online tools for productivity, files, and text processing.');
 
   // Article fields
   const [articleHeadline, setArticleHeadline] = useState<string>('How to Boost Browser Productivity in 2026');
   const [articleAuthor, setArticleAuthor] = useState<string>('Zubware Editorial Team');
   const [articleDatePublished, setArticleDatePublished] = useState<string>(new Date().toISOString().split('T')[0]);
-  const [articleImage, setArticleImage] = useState<string>('https://zubware.com/article-banner.jpg');
+  const [articleImage, setArticleImage] = useState<string>('https://www.zubware.com/article-banner.jpg');
 
   // FAQPage questions
   const [faqs, setFaqs] = useState<{ q: string; a: string }[]>([
-    { q: 'Is Zubware free to use?', a: 'Yes, all tools on Zubware are 100% free with no account or registration required.' },
-    { q: 'Are my files safe and private?', a: 'All processing happens locally in your browser. No files are uploaded to any server.' }
+    { q: 'Is Zubware free to use?', a: 'Yes, all tools on Zubware are free to use with no account or registration required.' },
+    { q: 'Are my files safe and private?', a: 'Processing happens locally in your browser. Files and inputs are not uploaded to Zubware servers.' }
   ]);
 
   // Product fields
   const [productName, setProductName] = useState<string>('Zubware Toolkit');
-  const [productImage, setProductImage] = useState<string>('https://zubware.com/product.png');
+  const [productImage, setProductImage] = useState<string>('https://www.zubware.com/product.png');
   const [productPrice, setProductPrice] = useState<string>('0.00');
   const [productCurrency, setProductCurrency] = useState<string>('USD');
 

@@ -727,7 +727,7 @@ export const YouTubeThumbnailSimulatorTool: React.FC<{ onShowToast: (msg: string
       <div className="flex flex-wrap items-center justify-between gap-3 px-4 py-3 rounded-2xl bg-slate-100/90 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 text-xs text-slate-600 dark:text-slate-400">
         <div className="flex items-center gap-2">
           <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-          <span className="font-semibold text-slate-800 dark:text-slate-200">100% Client-Side Privacy:</span>
+          <span className="font-semibold text-slate-800 dark:text-slate-200">Client-Side Privacy:</span>
           <span>Your image is processed locally in your browser. Nothing is uploaded to any server.</span>
         </div>
         <div className="flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 italic">

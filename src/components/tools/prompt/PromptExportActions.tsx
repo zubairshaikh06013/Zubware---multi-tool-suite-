@@ -21,7 +21,7 @@ export const PromptExportActions: React.FC<PromptExportActionsProps> = ({
 
   useEffect(() => {
     try {
-      const savedFavs = JSON.parse(localStorage.getItem('splitdrop_prompt_favs') || '[]');
+      const savedFavs = JSON.parse(localStorage.getItem('zubware_prompt_favs') || '[]');
       setIsFavorite(savedFavs.some((f: any) => f.title === title && f.prompt === promptText));
     } catch {
       setIsFavorite(false);
@@ -40,10 +40,10 @@ export const PromptExportActions: React.FC<PromptExportActionsProps> = ({
 
     // Save to recently used history
     try {
-      const history = JSON.parse(localStorage.getItem('splitdrop_prompt_history') || '[]');
+      const history = JSON.parse(localStorage.getItem('zubware_prompt_history') || '[]');
       const filtered = history.filter((h: any) => h.prompt !== promptText);
       const updated = [{ title, prompt: promptText, date: new Date().toISOString(), toolId }, ...filtered].slice(0, 20);
-      localStorage.setItem('splitdrop_prompt_history', JSON.stringify(updated));
+      localStorage.setItem('zubware_prompt_history', JSON.stringify(updated));
     } catch {}
   };
 
@@ -124,7 +124,7 @@ export const PromptExportActions: React.FC<PromptExportActionsProps> = ({
 
   const toggleFavorite = () => {
     try {
-      const savedFavs = JSON.parse(localStorage.getItem('splitdrop_prompt_favs') || '[]');
+      const savedFavs = JSON.parse(localStorage.getItem('zubware_prompt_favs') || '[]');
       let updated;
       if (isFavorite) {
         updated = savedFavs.filter((f: any) => !(f.title === title && f.prompt === promptText));
@@ -133,7 +133,7 @@ export const PromptExportActions: React.FC<PromptExportActionsProps> = ({
         updated = [{ title, prompt: promptText, date: new Date().toISOString(), toolId }, ...savedFavs];
         onShowToast('Added to favorites!');
       }
-      localStorage.setItem('splitdrop_prompt_favs', JSON.stringify(updated));
+      localStorage.setItem('zubware_prompt_favs', JSON.stringify(updated));
       setIsFavorite(!isFavorite);
     } catch {
       onShowToast('Failed to save favorite');

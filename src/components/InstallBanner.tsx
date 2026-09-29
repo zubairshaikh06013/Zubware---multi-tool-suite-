@@ -74,7 +74,7 @@ export const InstallBanner: React.FC = () => {
             {isOffline ? (
               <>
                 <WifiOff className="w-4 h-4 shrink-0" aria-hidden="true" />
-                <span>{t('offlineNotice', 'Offline Mode — Local tools remain 100% active!')}</span>
+                <span>{t('offlineNotice', 'Offline Mode — Local tools remain available!')}</span>
               </>
             ) : (
               <>
@@ -107,7 +107,7 @@ export const InstallBanner: React.FC = () => {
                     <Sparkles className="w-3.5 h-3.5 text-indigo-500" aria-hidden="true" />
                   </h4>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    {t('installAppDesc', 'Get 100% offline access, desktop shortcuts, and zero load delays.')}
+                    {t('installAppDesc', 'Install for fast desktop access, home screen shortcuts, and local tool usage.')}
                   </p>
                 </div>
               </div>

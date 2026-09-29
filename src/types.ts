@@ -1,5 +1,5 @@
 export type ToolId = 
-  | 'splitdrop' 
+  | 'image-splitter-merger'
   | 'background-remover'
   | 'image-compressor' 
   | 'image-converter' 
@@ -327,6 +327,11 @@ export type ToolId =
   | 'video-to-gif'
   | 'video-trimmer';
 
+export interface ToolHowToStep {
+  title: string;
+  desc: string;
+}
+
 export interface ToolMeta {
   id: ToolId;
   title: string;
@@ -341,6 +346,7 @@ export interface ToolMeta {
   features: string[];
   tags?: string[];
   faq?: FAQItem[];
+  howTo?: ToolHowToStep[];
   trending?: boolean;
   featured?: boolean;
   editorsPick?: boolean;

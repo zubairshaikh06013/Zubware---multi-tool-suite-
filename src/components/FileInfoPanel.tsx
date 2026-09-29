@@ -67,7 +67,7 @@ export const FileInfoPanel: React.FC<FileInfoPanelProps> = ({ item, className = 
 
         {/* Privacy Badge */}
         <div className="shrink-0 px-2.5 py-1 rounded-full bg-emerald-50/80 dark:bg-emerald-950/70 border border-emerald-200/60 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 font-extrabold text-[10px] flex items-center gap-1 shadow-xs">
-          <ShieldCheck className="w-3.5 h-3.5" /> 100% Local Private
+          <ShieldCheck className="w-3.5 h-3.5" /> Local Browser Processing
         </div>
       </div>
 

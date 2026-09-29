@@ -102,7 +102,7 @@ export const PasswordStrengthCheckerTool: React.FC<PasswordStrengthCheckerToolPr
           <span>🛡️</span> Password Strength Checker
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-          Test and analyze password security, crack time estimate, and entropy score 100% locally in your browser.
+          Test and analyze password security, crack time estimate, and entropy score locally in your browser.
         </p>
       </div>
 

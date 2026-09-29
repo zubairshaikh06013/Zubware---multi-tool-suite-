@@ -6,7 +6,6 @@ import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgr
 import { getImageMetadata, ImageMetadata, rgbToHex } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface BackgroundColorChangerToolProps {
@@ -197,21 +196,11 @@ export const BackgroundColorChangerTool: React.FC<BackgroundColorChangerToolProp
         canonicalPath="/background-color-changer.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Background Color Changer' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🎨 Background Color Changer
+          Background Color Changer
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Replace photo backgrounds with custom HEX/RGB solid colors, smooth gradients, or soft ambient blur.

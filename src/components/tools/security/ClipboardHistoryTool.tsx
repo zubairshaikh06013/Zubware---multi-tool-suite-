@@ -14,7 +14,7 @@ interface ClipboardHistoryToolProps {
 export const ClipboardHistoryTool: React.FC<ClipboardHistoryToolProps> = ({ onShowToast }) => {
   const [history, setHistory] = useState<ClipboardItem[]>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-clipboard-history');
+      const saved = localStorage.getItem('zubware-clipboard-history');
       if (saved) return JSON.parse(saved);
     } catch {}
     return [
@@ -31,7 +31,7 @@ export const ClipboardHistoryTool: React.FC<ClipboardHistoryToolProps> = ({ onSh
   const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
-    localStorage.setItem('splitdrop-clipboard-history', JSON.stringify(history));
+    localStorage.setItem('zubware-clipboard-history', JSON.stringify(history));
   }, [history]);
 
   const addSnippet = (text: string) => {
@@ -85,7 +85,7 @@ export const ClipboardHistoryTool: React.FC<ClipboardHistoryToolProps> = ({ onSh
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>📋</span> Local Clipboard History Manager
+            Local Clipboard History Manager
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Store and search recent clipboard snippets locally with zero cloud synchronization.

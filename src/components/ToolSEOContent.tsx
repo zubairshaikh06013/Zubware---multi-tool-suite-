@@ -4,6 +4,7 @@ import { ChevronDown, ShieldCheck, Zap, HardDrive, CheckCircle2, ArrowRight, Boo
 import { getLinkUrl } from '../lib/paths';
 import { BLOG_ARTICLES } from '../data/blogArticles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
+import { ToolIcon } from './common/ToolIcon';
 
 interface ToolSEOContentProps {
   tool: ToolMeta;
@@ -64,7 +65,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     tool.category.includes('Financial') ||
     /calculator|converter/i.test(tool.title);
 
-  const howToSteps = isFileTool
+  const howToSteps = tool.howTo && tool.howTo.length > 0
+    ? tool.howTo
+    : isFileTool
     ? [
         { title: 'Select or Drag Files', desc: `Open ${tool.title} in your browser and select or drop your files into the workspace.` },
         { title: 'Configure Settings', desc: `Adjust parameters, formats, dimensions, compression levels, or custom preferences.` },
@@ -169,7 +172,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           </div>
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Cost / License</span>
-            <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block">Free / Unlimited</span>
+            <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block">Free to Use</span>
           </div>
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Server Uploads</span>
@@ -296,9 +299,12 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 }}
                 className="glass-card p-4 rounded-2xl flex items-start gap-3.5 hover:border-indigo-500/40 group transition-all"
               >
-                <span className="text-2xl p-2.5 rounded-xl bg-indigo-50/80 dark:bg-slate-800/80 shrink-0 group-hover:scale-110 transition-transform">
-                  {relTool.icon}
-                </span>
+                <ToolIcon
+                  toolId={relTool.id}
+                  category={relTool.category}
+                  size="md"
+                  className="group-hover:scale-110 transition-transform shrink-0"
+                />
                 <div className="overflow-hidden">
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors truncate">
                     {relTool.title}

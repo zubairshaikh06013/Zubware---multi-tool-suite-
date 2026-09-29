@@ -9,7 +9,7 @@ Welcome to the **Markdown to HTML Converter**!
 ## Features
 * Fast client-side rendering
 * Real-time HTML markup generation
-* Fully private — *zero server uploads*
+* Fully private — *Processed locally in your browser. Files are not uploaded to Zubware servers.*
 
 ### Code Example
 Here is a sample JavaScript snippet:
@@ -26,7 +26,7 @@ const welcome = (name) => {
 2. Convert to semantic HTML
 3. Publish to web or CMS
 
-Visit [Zubware](https://zubware.com) for more productivity tools!`;
+Visit [Zubware](https://www.zubware.com) for more productivity tools!`;
 
   const [inputMd, setInputMd] = useState<string>(sampleMarkdown);
   const [viewMode, setViewMode] = useState<'html' | 'preview'>('preview');

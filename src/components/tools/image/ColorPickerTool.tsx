@@ -5,7 +5,6 @@ import { ImageFileInfoPanel } from './ImageFileInfoPanel';
 import { getImageMetadata, rgbToHex, rgbToHsl, rgbToCmyk, ImageMetadata } from '../../../lib/imageUtils';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
-import { BackButton } from '../../BackButton';
 import { getLinkUrl } from '../../../lib/paths';
 
 interface ColorPickerToolProps {
@@ -144,21 +143,11 @@ export const ColorPickerTool: React.FC<ColorPickerToolProps> = ({ onShowToast, o
         canonicalPath="/color-picker.html"
       />
 
-      <div className="flex items-center justify-between gap-4">
-        <BackButton onNavigate={onNavigate} />
-        <Breadcrumb
-          items={[
-            { label: 'Home', path: getLinkUrl('/') },
-            { label: 'Image Tools' },
-            { label: 'Color Picker' }
-          ]}
-          onNavigate={onNavigate}
-        />
-      </div>
+      
 
       <div className="text-center max-w-2xl mx-auto space-y-2">
         <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          🎨 Image Color Picker
+          Image Color Picker
         </h1>
         <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
           Click anywhere on an image to inspect exact HEX, RGB, HSL, HSV & CMYK color values.

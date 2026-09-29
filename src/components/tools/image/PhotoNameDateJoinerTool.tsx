@@ -239,7 +239,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
           maxSizeMB={25}
           title="Drop candidate photo here to add name & date"
           subtitle="Meets standard recruitment, entrance exam, and passport application requirements"
-          fileTypeSupportText="100% Client-Side • Sharp vector typography"
+          fileTypeSupportText="Client-Side • Sharp vector typography"
           onFilesSelected={handleFileSelected}
         />
       ) : (

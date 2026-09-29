@@ -1,10 +1,4 @@
 # Cloudflare Pages Redirects
-/splitdrop / 301
-/splitdrop/ / 301
-/Splitdrop / 301
-/Splitdrop/ / 301
-/splitdrop/* /:splat 301
-/Splitdrop/* /:splat 301
 /blog.html /blog 301
 /blog/index.html /blog 301
 /index.html / 301
@@ -14,3 +8,7 @@
 /categories/ /categories.html 301
 /categories/:slug /category/:slug.html 301
 /categories/:slug.html /category/:slug.html 301
+/category/:slug /category/:slug.html 301
+/category/:slug/ /category/:slug.html 301
+/blog/:slug /blog/:slug.html 301
+/blog/:slug/ /blog/:slug.html 301

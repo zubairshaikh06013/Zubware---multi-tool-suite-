@@ -3,7 +3,7 @@ import { Copy, Check, Download, Bold, Italic, Heading, List, Table, Code, Link, 
 
 export const MarkdownEditorTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [markdown, setMarkdown] = useState(
-    `# Zubware Markdown Editor\n\nWelcome to the **live browser-based Markdown Editor**. Write and format document notes with instant preview and multi-format exports.\n\n## Key Features\n- Real-time side-by-side preview\n- Toolbar helpers for bold, italic, headings, lists, tables, code blocks, links, and images\n- Export to **Markdown (.md)**, **HTML (.html)**, or **Text (.txt)**\n\n### Sample Table\n| Feature | Status | Speed |\n| --- | --- | --- |\n| Client-side | Active | Instant |\n| Privacy | 100% Local | Zero Uploads |\n\n\`\`\`javascript\nconsole.log("Hello, Zubware Markdown!");\n\`\`\`\n\n[Visit Zubware](https://zubware.com)\n`
+    `# Zubware Markdown Editor\n\nWelcome to the **live browser-based Markdown Editor**. Write and format document notes with instant preview and multi-format exports.\n\n## Key Features\n- Real-time side-by-side preview\n- Toolbar helpers for bold, italic, headings, lists, tables, code blocks, links, and images\n- Export to **Markdown (.md)**, **HTML (.html)**, or **Text (.txt)**\n\n### Sample Table\n| Feature | Status | Speed |\n| --- | --- | --- |\n| Client-side | Active | Instant |\n| Privacy | Local Browser | No Server Storage |\n\n\`\`\`javascript\nconsole.log("Hello, Zubware Markdown!");\n\`\`\`\n\n[Visit Zubware](https://www.zubware.com)\n`
   );
 
   const [activeTab, setActiveTab] = useState<'split' | 'edit' | 'preview'>('split');

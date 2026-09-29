@@ -523,7 +523,7 @@ Zubware Website Downloader — Package Summary
 =====================================================
 Target URL / Source: ${base}
 Export Date: ${new Date().toISOString()}
-Downloaded with: Zubware (100% Client-Side In-Browser Tool)
+Downloaded with: Zubware (Direct In-Browser Downloader)
 
 PACKAGE CONTENTS:
 -----------------------------------------------------
@@ -627,7 +627,7 @@ links inside index.html so they still render when connected to the internet.
                 Website Downloader & Asset Extractor
               </h2>
               <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                100% Client-Side In-Browser Website Downloader & ZIP Packager with Link Rewriting.
+                Direct In-Browser Website Downloader & ZIP Packager with Link Rewriting.
               </p>
             </div>
           </div>
@@ -795,10 +795,10 @@ links inside index.html so they still render when connected to the internet.
                   Target Website Blocked by Browser CORS Policy (Same-Origin Policy)
                 </h4>
                 <p className="leading-relaxed">
-                  Web browsers enforce strict security that prevents direct JavaScript cross-origin fetching unless the target server sends permissive headers (<code className="bg-amber-200/50 dark:bg-amber-900/50 px-1 py-0.5 rounded">Access-Control-Allow-Origin: *</code>).
+                  Web browsers enforce strict security that prevents direct JavaScript cross-origin fetching unless the target server sends permissive headers (<code className="bg-amber-200/50 dark:bg-amber-900/50 px-1 py-0.5 rounded">Access-Control-Allow-Origin: *</code>). Browser-based requests may fail because of CORS policies, required user authentication, access restrictions, dynamically rendered JavaScript resources, or website-side anti-scraping blocks.
                 </p>
                 <div className="pt-2 flex flex-wrap items-center gap-2">
-                  <span className="font-bold">100% Working Solution:</span>
+                  <span className="font-bold">Recommended Alternative (Direct Source Mode):</span>
                   <button
                     onClick={() => {
                       setInputMode('html');
@@ -1252,10 +1252,10 @@ links inside index.html so they still render when connected to the internet.
             </span>
             <div>
               <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
-                Understanding Browser Security (CORS) & Client-Side Privacy
+                Understanding Browser Security (CORS) & Direct Browser Requests
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                How Zubware runs 100% locally inside your browser without backend proxy servers.
+                How Zubware runs network requests directly from your browser without intermediary proxy servers.
               </p>
             </div>
           </div>
@@ -1264,10 +1264,10 @@ links inside index.html so they still render when connected to the internet.
             <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
               <h4 className="font-bold text-slate-900 dark:text-white flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-emerald-500" />
-                Zero Server Uploads & 100% Privacy
+                No Zubware Server Storage & Browser Privacy
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Traditional website downloaders run proxy servers that secretly mirror your requests and collect data. Zubware processes everything in client-side Web Workers, memory, and JSZip — no third-party server ever sees what you are analyzing.
+                Traditional website downloaders run proxy servers that secretly mirror your requests and collect data. Zubware connects directly from your browser to the specified external endpoint — Zubware does not store the request or downloaded payload on its servers.
               </p>
             </div>
 
@@ -1284,7 +1284,7 @@ links inside index.html so they still render when connected to the internet.
 
           <div className="p-5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 space-y-3">
             <h4 className="font-bold text-indigo-900 dark:text-indigo-300 text-sm">
-              💡 How to Download ANY Website with Direct Source Mode:
+              💡 How to Package Websites with Direct Source Mode:
             </h4>
             <ol className="list-decimal list-inside space-y-2 text-xs text-indigo-950 dark:text-indigo-200">
               <li>

@@ -152,7 +152,7 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
             YouTube Title Generator
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Generate viral, high-CTR, SEO-optimized titles tailored to your topic and niche.
+            Generate creative, potentially engaging, SEO-friendly titles tailored to your topic and niche.
           </p>
         </div>
       </div>

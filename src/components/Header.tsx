@@ -6,6 +6,7 @@ import { SUPPORTED_LANGUAGES, LanguageCode } from '../lib/i18n';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
 import { ZubwareLogo } from './ZubwareLogo';
+import { ToolIcon } from './common/ToolIcon';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -155,7 +156,7 @@ export const Header: React.FC<HeaderProps> = ({
                           : 'text-slate-700 dark:text-slate-300 hover:bg-white/60 dark:hover:bg-slate-800/60'
                       }`}
                     >
-                      <span className="text-lg" aria-hidden="true">{tool.icon}</span>
+                      <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
                       <span className="truncate">{tool.navTitle}</span>
                     </a>
                   ))}

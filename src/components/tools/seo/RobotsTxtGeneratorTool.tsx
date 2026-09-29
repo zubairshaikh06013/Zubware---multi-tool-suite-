@@ -14,7 +14,7 @@ interface RuleItem {
 export const RobotsTxtGeneratorTool: React.FC<RobotsTxtGeneratorToolProps> = ({ onShowToast }) => {
   const [userAgent, setUserAgent] = useState<string>('*');
   const [crawlDelay, setCrawlDelay] = useState<string>('');
-  const [sitemapUrl, setSitemapUrl] = useState<string>('https://zubware.com/sitemap.xml');
+  const [sitemapUrl, setSitemapUrl] = useState<string>('https://www.zubware.com/sitemap.xml');
   const [rules, setRules] = useState<RuleItem[]>([
     { id: '1', type: 'Disallow', path: '/admin/' },
     { id: '2', type: 'Disallow', path: '/api/' },

@@ -11,7 +11,7 @@ import { ToolMeta } from '../types';
  */
 export const TOOL_SEO_TITLES: Record<string, string> = {
   // --- Core & Image Tools ---
-  'splitdrop': 'Image Splitter & Photo Merger — Zubware Online Free',
+  'image-splitter-merger': 'Image Splitter & Photo Merger — Zubware Online Free',
   'learning-licence-mock-test': 'Learning Licence Mock Test — RTO Exam Practice | Zubware',
   'background-remover': 'Background Remover — Free AI Image BG Remover | Zubware',
   'image-compressor': 'Image Compressor to 20KB, 50KB, 100KB, 200KB Free Online | Zubware',
@@ -296,7 +296,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
   'torque-calculator': 'Torque Calculator — Force, Distance & Motor RPM | Zubware',
   'linear-regression-calculator': 'Linear Regression Calculator — Best Fit y = mx+b | Zubware',
   'sha256-hash-generator': 'SHA-256 Hash Generator — Real-Time Checksum | Zubware',
-  'us-income-tax-calculator': 'US Income Tax Calculator — 2024 Federal Brackets | Zubware',
+  'us-income-tax-calculator': 'US Income Tax Calculator — Latest Federal Brackets & FICA | Zubware',
   'personal-loan-calculator': 'Personal Loan Calculator — Monthly EMI & APR | Zubware',
   'sale-price-calculator': 'Sale Price Calculator — Stacked Coupon Discount | Zubware',
   'md5-hash-generator': 'MD5 Hash Generator — 128-Bit Checksum Digest | Zubware',
@@ -365,7 +365,7 @@ export function getToolSeoTitle(tool: ToolMeta): string {
   }
 
   // Graceful, robust fallback for future dynamic tools:
-  let cleanBase = tool.title.replace(/\s*\|\s*(?:SplitDrop|Zubware)/gi, '').trim();
+  let cleanBase = tool.title.replace(/\s*\|\s*Zubware/gi, '').trim();
   if (cleanBase.includes('—')) {
     return `${cleanBase} | Zubware`;
   }

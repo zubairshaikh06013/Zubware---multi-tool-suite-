@@ -6,7 +6,6 @@ import { SearchModal } from './components/SearchModal';
 import { Breadcrumb } from './components/Breadcrumb';
 import { BackButton } from './components/BackButton';
 import { SEOHead } from './components/SEOHead';
-import { AdSlot } from './components/AdSlot';
 import { ToolRecommendations } from './components/ToolRecommendations';
 import { InstallBanner } from './components/InstallBanner';
 import { KeyboardShortcutsModal } from './components/KeyboardShortcutsModal';
@@ -23,7 +22,7 @@ const ChangelogPage = lazy(() => import('./components/pages/ChangelogPage').then
 const FeedbackPage = lazy(() => import('./components/pages/FeedbackPage').then(m => ({ default: m.FeedbackPage })));
 
 // Lazy loaded tool components
-const SplitDropHero = lazy(() => import('./components/tools/SplitDropHero').then(m => ({ default: m.SplitDropHero })));
+const ImageSplitterMergerTool = lazy(() => import('./components/tools/ImageSplitterMergerTool').then(m => ({ default: m.ImageSplitterMergerTool })));
 const BackgroundRemoverTool = lazy(() => import('./components/tools/image/BackgroundRemoverTool').then(m => ({ default: m.BackgroundRemoverTool })));
 const ImageCompressorTool = lazy(() => import('./components/tools/ImageCompressorTool').then(m => ({ default: m.ImageCompressorTool })));
 const ImageConverterTool = lazy(() => import('./components/tools/ImageConverterTool').then(m => ({ default: m.ImageConverterTool })));
@@ -364,7 +363,7 @@ const ContactPage = lazy(() => import('./components/pages/ContactPage').then(m =
 const AboutPage = lazy(() => import('./components/pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const SeoDiagnosticsPage = lazy(() => import('./components/pages/SeoDiagnosticsPage').then(m => ({ default: m.SeoDiagnosticsPage })));
 const NotFoundPage = lazy(() => import('./components/pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
-const ToolSEOContent = lazy(() => import('./components/ToolSEOContent').then(m => ({ default: m.ToolSEOContent })));
+const ToolSEOContent = lazyWithRetry(() => import('./components/ToolSEOContent').then(m => ({ default: m.ToolSEOContent })));
 const BlogIndexPage = lazy(() => import('./components/pages/BlogIndexPage').then(m => ({ default: m.BlogIndexPage })));
 const BlogPostPage = lazy(() => import('./components/pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
 
@@ -384,6 +383,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { normalizePath, getLinkUrl } from './lib/paths';
 import { ArrowRight, ChevronDown, CheckCircle2, Shield, Zap, Sparkles, BookOpen } from 'lucide-react';
 import { HomepageHero } from './components/HomepageHero';
+import { ToolIcon } from './components/common/ToolIcon';
 
 export default function App() {
   // Path routing state
@@ -407,7 +407,7 @@ export default function App() {
   // Language state
   const [currentLang, setCurrentLang] = useState<LanguageCode>(() => {
     try {
-      const saved = localStorage.getItem('splitdrop-lang');
+      const saved = localStorage.getItem('zubware-lang');
       if (saved) return saved as LanguageCode;
     } catch {
       // ignore
@@ -418,7 +418,7 @@ export default function App() {
   // Dark Mode state
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     try {
-      const saved = localStorage.getItem('zubware-theme') || localStorage.getItem('splitdrop-theme');
+      const saved = localStorage.getItem('zubware-theme');
       if (saved) return saved === 'dark';
     } catch {
       // ignore
@@ -465,11 +465,11 @@ export default function App() {
     });
     if (segmentMatch) return segmentMatch;
 
-    // 3. Backward compatibility aliases for stopwatch, timezone converter and splitdrop
+    // 3. Backward compatibility aliases for stopwatch, timezone converter and image splitter
     return translatedTools.find((t) => {
       if (t.id === 'online-stopwatch' && (pathSegment === 'stopwatch.html' || pathSegment === 'stopwatch')) return true;
       if (t.id === 'time-zone-converter' && (pathSegment === 'timezone-converter.html' || pathSegment === 'timezone-converter')) return true;
-      if (t.id === 'splitdrop' && (pathSegment === 'image-splitter-merger.html' || pathSegment === 'splitdrop' || pathSegment === 'splitdrop.html')) return true;
+      if (t.id === 'image-splitter-merger' && pathSegment === 'image-splitter-merger.html') return true;
       if (t.id === 'youtube-thumbnail-simulator' && (pathSegment.includes('thumbnail-simulator') || pathSegment.includes('youtube-thumbnail-feed-simulator'))) return true;
       if (t.id === 'youtube-banner-safe-area' && (pathSegment.includes('banner-safe-area') || pathSegment.includes('youtube-banner'))) return true;
       if (t.id === 'matching-parts-video-maker' && pathSegment.includes('matching-parts')) return true;
@@ -507,11 +507,9 @@ export default function App() {
       if (darkMode) {
         document.documentElement.classList.add('dark');
         localStorage.setItem('zubware-theme', 'dark');
-        localStorage.setItem('splitdrop-theme', 'dark');
       } else {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('zubware-theme', 'light');
-        localStorage.setItem('splitdrop-theme', 'light');
       }
     } catch {
       // Storage restricted
@@ -521,7 +519,7 @@ export default function App() {
   // Apply RTL direction for Arabic & Urdu
   useEffect(() => {
     try {
-      localStorage.setItem('splitdrop-lang', currentLang);
+      localStorage.setItem('zubware-lang', currentLang);
       if (currentLang === 'ar' || currentLang === 'ur') {
         document.documentElement.dir = 'rtl';
       } else {
@@ -762,7 +760,7 @@ export default function App() {
             <>
               <SEOHead
                 title="Zubware — Free Online Multi-Tool Suite"
-                description="Explore 300+ free online tools for PDF, images, video, developers, calculators, and productivity. 100% private, instant browser processing with zero server uploads."
+                description="Explore 300+ free online tools for PDF, images, video, developers, calculators, and productivity. Fast, private browser processing with zero server uploads for local tools."
                 canonicalPath="/"
                 faqs={HOMEPAGE_FAQS}
               />
@@ -774,9 +772,6 @@ export default function App() {
                 selectedCategory={homeCategoryFilter}
                 onSelectCategory={setHomeCategoryFilter}
               />
-
-              {/* AD PLACEMENT 1 */}
-              <AdSlot type="banner" label="Advertisement" />
 
               {/* EXPLORE FREE TOOLS SECTION */}
               <section className="my-12">
@@ -801,26 +796,41 @@ export default function App() {
                   {Array.from(new Set(translatedTools.map(t => t.category)))
                     .filter(catName => homeCategoryFilter === 'All' || homeCategoryFilter === catName)
                     .map((catName) => {
-                      const categoryTools = translatedTools.filter(t => t.category === catName);
-                      if (!categoryTools.length) return null;
+                      const allCategoryTools = translatedTools.filter(t => t.category === catName);
+                      if (!allCategoryTools.length) return null;
+                      const isFiltered = homeCategoryFilter !== 'All';
+                      const visibleTools = isFiltered ? allCategoryTools : allCategoryTools.slice(0, 6);
+                      const hasMore = !isFiltered && allCategoryTools.length > 6;
+
                     return (
                       <div key={catName} className="space-y-4">
-                        <div className="flex items-center gap-3">
-                          <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
-                            {catName}
-                          </h3>
-                          <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-bold">
-                            {categoryTools.length} Tools
-                          </span>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-3">
+                            <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
+                              {catName}
+                            </h3>
+                            <span className="text-xs px-2.5 py-0.5 rounded-full bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300 font-bold">
+                              {allCategoryTools.length} Tools
+                            </span>
+                          </div>
+
+                          {hasMore && (
+                            <button
+                              onClick={() => setHomeCategoryFilter(catName)}
+                              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1 cursor-pointer transition-colors"
+                            >
+                              <span>View all {allCategoryTools.length} tools</span>
+                              <ArrowRight className="w-3.5 h-3.5" />
+                            </button>
+                          )}
                         </div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                          {categoryTools.map((tool) => (
-                            <motion.a
+                          {visibleTools.map((tool) => (
+                            <a
                               key={tool.id}
                               href={getLinkUrl(tool.path)}
-                              whileHover={{ y: -4, transition: { duration: 0.2 } }}
-                              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 block"
+                              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all hover:-translate-y-1 shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 block"
                               onClick={(e) => {
                                 e.preventDefault();
                                 navigateTo(getLinkUrl(tool.path));
@@ -828,9 +838,12 @@ export default function App() {
                             >
                               <div>
                                 <div className="flex items-center justify-between mb-4">
-                                  <span className="text-3xl p-3 rounded-2xl bg-indigo-50/80 dark:bg-slate-800/80 inline-block group-hover:scale-110 transition-transform">
-                                    {tool.icon}
-                                  </span>
+                                  <ToolIcon 
+                                    toolId={tool.id} 
+                                    category={tool.category} 
+                                    size="lg" 
+                                    className="group-hover:scale-110 transition-transform shadow-xs" 
+                                  />
                                   {tool.badge && (
                                     <span className="text-[10px] font-bold uppercase px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
                                       {tool.badge}
@@ -862,7 +875,7 @@ export default function App() {
                                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
                                 </span>
                               </div>
-                            </motion.a>
+                            </a>
                           ))}
                         </div>
                       </div>
@@ -870,9 +883,6 @@ export default function App() {
                   })}
                 </div>
               </section>
-
-              {/* AD PLACEMENT 2 */}
-              <AdSlot type="native" label="Sponsored Content" />
 
               {/* FEATURES SECTION */}
               <section className="glass-panel my-12 p-8 sm:p-12 rounded-3xl text-slate-900 dark:text-white">
@@ -884,32 +894,32 @@ export default function App() {
                     {getTranslation(currentLang, 'whyCreatorsChoose', 'Why Creators & Professionals Choose Zubware')}
                   </h2>
                   <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-3 leading-relaxed">
-                    Traditional web tools upload your private pictures and PDFs to distant cloud servers. Zubware runs 100% inside your local browser using modern HTML5 Canvas, PDF-lib, and Web Assembly.
+                    Traditional web tools upload your private pictures and PDFs to distant cloud servers. Zubware executes local utilities directly inside your browser using modern HTML5 Canvas, PDF-lib, and WebAssembly.
                   </p>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
                   <div className="glass-card p-5 rounded-2xl">
                     <Shield className="w-7 h-7 text-indigo-600 dark:text-indigo-400 mb-3" />
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'zeroServerUploads', 'Zero Server Uploads')}</h4>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'zeroServerUploads', 'Private In-Browser Processing for Local Tools')}</h4>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      {getTranslation(currentLang, 'zeroServerUploadsDesc', 'Your confidential files never leave your device memory. Total security.')}
+                      {getTranslation(currentLang, 'zeroServerUploadsDesc', 'For local tools, processing happens locally in your browser. Files and inputs are not uploaded to Zubware servers.')}
                     </p>
                   </div>
 
                   <div className="glass-card p-5 rounded-2xl">
                     <Zap className="w-7 h-7 text-amber-500 mb-3" />
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'instantSpeed', 'Sub-Second Processing')}</h4>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'instantSpeed', 'In-Browser Execution')}</h4>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      {getTranslation(currentLang, 'instantSpeedDesc', 'No upload wait times or server queue bottlenecks. Instant results.')}
+                      {getTranslation(currentLang, 'instantSpeedDesc', 'No server upload wait times or cloud queue bottlenecks for local tools. Processing speed depends on your device and browser.')}
                     </p>
                   </div>
 
                   <div className="glass-card p-5 rounded-2xl">
                     <Sparkles className="w-7 h-7 text-emerald-500 mb-3" />
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'freeForever', 'Free Forever')}</h4>
+                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'freeForever', 'Free to Use')}</h4>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                      {getTranslation(currentLang, 'freeForeverDesc', 'No watermarks, daily submission limits, or required accounts.')}
+                      {getTranslation(currentLang, 'freeForeverDesc', 'No mandatory accounts, paywalls, or forced watermarks across our browser utilities.')}
                     </p>
                   </div>
                 </div>
@@ -1026,9 +1036,6 @@ export default function App() {
                   })}
                 </div>
               </section>
-
-              {/* AD PLACEMENT 3 */}
-              <AdSlot type="banner" label="Advertisement" />
             </>
           )}
 
@@ -1059,7 +1066,9 @@ export default function App() {
             const toolHowToSchema = {
               name: `How to Use ${activeTool.navTitle}`,
               description: activeTool.description,
-              steps: isFileTool
+              steps: activeTool.howTo && activeTool.howTo.length > 0
+                ? activeTool.howTo.map(s => ({ name: s.title, text: s.desc }))
+                : isFileTool
                 ? [
                     { name: 'Select or Upload Files', text: `Open ${activeTool.title} in your browser and select or drop your files into the workspace.` },
                     { name: 'Configure Options', text: `Adjust options, parameters, or compression settings for ${activeTool.navTitle}.` },
@@ -1101,7 +1110,14 @@ export default function App() {
 
                 {/* Tool Title Banner */}
                 <div className="text-center max-w-2xl mx-auto mb-4">
-                  <span className="text-4xl mb-2 inline-block">{activeTool.icon}</span>
+                  <div className="flex justify-center mb-3">
+                    <ToolIcon
+                      toolId={activeTool.id}
+                      category={activeTool.category}
+                      size="2xl"
+                      className="shadow-md hover:scale-105 transition-transform"
+                    />
+                  </div>
                   <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
                     {activeTool.title}
                   </h1>
@@ -1110,14 +1126,11 @@ export default function App() {
                   </p>
                 </div>
 
-              {/* TOOL PAGE AD 1 */}
-              <AdSlot type="banner" label="Advertisement" />
-
               {/* THE TOOL COMPONENT INTERFACE WRAPPED IN FROSTED GLASS */}
               <div className="glass-panel rounded-3xl overflow-hidden">
                 <ToolErrorBoundary toolTitle={activeTool.title} onReset={() => window.location.reload()}>
                   <Suspense fallback={<LoadingFallback />}>
-                    {activeTool.id === 'splitdrop' && <SplitDropHero onShowToast={triggerToast} />}
+                    {activeTool.id === 'image-splitter-merger' && <ImageSplitterMergerTool onShowToast={triggerToast} />}
                     {activeTool.id === 'background-remover' && <BackgroundRemoverTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'image-compressor' && <ImageCompressorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'image-converter' && <ImageConverterTool onShowToast={triggerToast} />}
@@ -1428,30 +1441,6 @@ export default function App() {
                 </ToolErrorBoundary>
               </div>
 
-              {/* TOOL PAGE AD 2 */}
-              <AdSlot type="native" label="Sponsored Links" />
-
-              {/* INSTRUCTIONS / HOW TO USE */}
-              <section className="glass-panel my-8 p-6 sm:p-8 rounded-3xl">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
-                  {getTranslation(currentLang, 'howToUse', 'How to Use')} {activeTool.navTitle}
-                </h3>
-                <ol className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-                  <li className="glass-card p-4 rounded-2xl">
-                    <strong className="text-indigo-600 dark:text-indigo-400 font-bold text-base block mb-1">1. {getTranslation(currentLang, 'uploadFiles', 'Upload Files')}</strong>
-                    Drag and drop or select your files from your device.
-                  </li>
-                  <li className="glass-card p-4 rounded-2xl">
-                    <strong className="text-indigo-600 dark:text-indigo-400 font-bold text-base block mb-1">2. {getTranslation(currentLang, 'configureOptions', 'Configure Options')}</strong>
-                    Adjust parameters like quality, ranges, or target formats.
-                  </li>
-                  <li className="glass-card p-4 rounded-2xl">
-                    <strong className="text-indigo-600 dark:text-indigo-400 font-bold text-base block mb-1">3. {getTranslation(currentLang, 'downloadResult', 'Download Result')}</strong>
-                    Save your processed files directly to your machine or download as ZIP.
-                  </li>
-                </ol>
-              </section>
-
               {/* TOOL RECOMMENDATIONS */}
               <ToolRecommendations
                 currentTool={activeTool}
@@ -1460,12 +1449,11 @@ export default function App() {
               />
 
               {/* RICH CRAWLABLE AEO & SEO CONTENT MODULE */}
-              <Suspense fallback={<LoadingFallback />}>
-                <ToolSEOContent tool={activeTool} allTools={translatedTools} onNavigate={navigateTo} />
-              </Suspense>
-
-              {/* TOOL PAGE AD 3 */}
-              <AdSlot type="banner" label="Advertisement" />
+              <ToolErrorBoundary toolTitle={`${activeTool.title} Guide`} onReset={() => window.location.reload()}>
+                <Suspense fallback={<LoadingFallback />}>
+                  <ToolSEOContent tool={activeTool} allTools={translatedTools} onNavigate={navigateTo} />
+                </Suspense>
+              </ToolErrorBoundary>
             </div>
             );
           })()}

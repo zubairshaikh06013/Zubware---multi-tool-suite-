@@ -5,7 +5,9 @@ import { useLanguage } from '../../context/LanguageContext';
 import { getFavorites, toggleFavorite, getRecentTools, getToolStats, getSavedUserDataSummary, RecentToolItem } from '../../lib/userStore';
 import { getLinkUrl } from '../../lib/paths';
 import { ToolMeta, ToolId } from '../../types';
-import { Star, Clock, FileText, Download, Activity, ArrowRight, Trash2, LayoutDashboard, Sparkles, FolderCheck, Grid } from 'lucide-react';
+import { Star, Clock, FileText, Lock, Download, Activity, ArrowRight, Trash2, LayoutDashboard, Sparkles, FolderCheck, Grid } from 'lucide-react';
+import { SEOHead } from '../SEOHead';
+import { ToolIcon } from '../common/ToolIcon';
 
 interface DashboardPageProps {
   onNavigate: (path: string) => void;
@@ -27,19 +29,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
     const handleStatsUpdate = () => setToolStats(getToolStats());
 
     window.addEventListener('zubware_favorites_updated', handleFavUpdate);
-    window.addEventListener('splitdrop_favorites_updated', handleFavUpdate);
     window.addEventListener('zubware_recent_updated', handleRecentUpdate);
-    window.addEventListener('splitdrop_recent_updated', handleRecentUpdate);
     window.addEventListener('zubware_download_recorded', handleStatsUpdate);
-    window.addEventListener('splitdrop_download_recorded', handleStatsUpdate);
 
     return () => {
       window.removeEventListener('zubware_favorites_updated', handleFavUpdate);
-      window.removeEventListener('splitdrop_favorites_updated', handleFavUpdate);
       window.removeEventListener('zubware_recent_updated', handleRecentUpdate);
-      window.removeEventListener('splitdrop_recent_updated', handleRecentUpdate);
       window.removeEventListener('zubware_download_recorded', handleStatsUpdate);
-      window.removeEventListener('splitdrop_download_recorded', handleStatsUpdate);
     };
   }, []);
 
@@ -73,7 +69,14 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
   };
 
   return (
-    <div className="space-y-8 max-w-5xl mx-auto py-4">
+    <>
+      <SEOHead
+        title="User Dashboard — Zubware"
+        description="Access your favorite tools, view recent activity, and manage your private workspace."
+        canonicalPath="/dashboard.html"
+        robots="noindex, follow"
+      />
+      <div className="space-y-8 max-w-5xl mx-auto py-4">
       
       {/* Header Banner */}
       <div className="glass-panel p-6 sm:p-8 rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-white/60 dark:border-white/10 shadow-xl">
@@ -86,7 +89,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
               {t('userDashboard', 'User Productivity Dashboard')}
             </h1>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1 font-medium">
-              {t('localDashboardDesc', '100% private local browser storage. Manage your favorite tools, history & saved assets.')}
+              {t('localDashboardDesc', 'Local browser storage. Manage your favorite tools, history & saved assets.')}
             </p>
           </div>
         </div>
@@ -226,10 +229,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-3xl">{tool.icon}</span>
+                    <ToolIcon toolId={tool.id} category={tool.category} size="md" />
                     <button
                       onClick={(e) => handleRemoveFavorite(tool.id, e)}
-                      className="p-1.5 rounded-lg text-amber-500 hover:bg-amber-500/10 transition-colors"
+                      className="p-1.5 rounded-lg text-amber-500 hover:bg-amber-500/10 transition-colors cursor-pointer"
                       title={t('removeFavorite', 'Remove Favorite')}
                     >
                       <Star className="w-4 h-4 fill-amber-500" />
@@ -278,7 +281,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
               >
                 <div>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-3xl">{tool.icon}</span>
+                    <ToolIcon toolId={tool.id} category={tool.category} size="md" />
                     <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-500 flex items-center gap-1">
                       <Clock className="w-3 h-3" /> {formatTimeAgo(timestamp)}
                     </span>
@@ -319,7 +322,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
             className="glass-card p-5 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all flex items-center justify-between group"
           >
             <div className="flex items-center gap-3">
-              <span className="text-3xl">📄</span>
+              <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-800/40 flex items-center justify-center shrink-0">
+                <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+              </div>
               <div>
                 <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   {t('savedResumes', 'Saved Resume Document')}
@@ -337,7 +342,9 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
             className="glass-card p-5 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all flex items-center justify-between group"
           >
             <div className="flex items-center gap-3">
-              <span className="text-3xl">📝</span>
+              <div className="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/40 flex items-center justify-center shrink-0">
+                <Lock className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              </div>
               <div>
                 <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   {t('savedNotes', 'Encrypted Secure Notes')}
@@ -353,5 +360,6 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
       </section>
 
     </div>
+    </>
   );
 };

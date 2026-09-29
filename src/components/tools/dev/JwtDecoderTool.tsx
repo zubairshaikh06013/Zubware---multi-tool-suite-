@@ -124,7 +124,7 @@ export const JwtDecoderTool: React.FC<{ onShowToast: (msg: string) => void }> = 
         </div>
 
         <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold">
-          <ShieldCheck className="w-4 h-4" /> 100% Client-Side Privacy
+          <ShieldCheck className="w-4 h-4" /> Client-Side Privacy
         </div>
       </div>
 

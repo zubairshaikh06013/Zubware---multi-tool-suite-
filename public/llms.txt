@@ -1,8 +1,8 @@
 # Zubware — Online Multi-Tool Suite
-> Zubware (https://www.zubware.com) is an online multi-tool suite offering 307+ free utilities for PDF documents, image processing, developer workflows, video and audio media, calculators, and daily productivity.
+> Zubware (https://www.zubware.com) is an online multi-tool suite offering 308+ free utilities for PDF documents, image processing, developer workflows, video and audio media, calculators, and daily productivity.
 
 - Canonical Homepage: https://www.zubware.com
-- Total Active Tools: 307
+- Total Active Tools: 308
 - Access Model: Free to use, no mandatory account sign-up, no hidden subscriptions.
 - Technical Architecture: Fast, browser-based execution for offline tools; direct browser requests for network testing tools.
 
@@ -11,19 +11,19 @@
 - Network Utilities: For API testing, HTTP inspection, and web scrapers, browser requests are dispatched directly to the user-specified destination without storing request payloads on Zubware servers.
 
 ## Dedicated Category Authority Hubs
-- [PDF Tools](https://www.zubware.com/category/pdf-tools.html): Merge, split, convert, rotate, reorder, protect & edit PDF documents.
-- [Image Tools](https://www.zubware.com/category/image-tools.html): Compress, convert, resize, crop, rotate, watermark & edit photos instantly.
-- [Creator & Social Tools](https://www.zubware.com/category/creator-tools.html): YouTube, Instagram, TikTok & LinkedIn generator suite for content creators.
-- [Video Tools](https://www.zubware.com/category/video-tools.html): Create satisfying puzzle animation shorts, video reels & interactive clip generators.
-- [Audio Tools](https://www.zubware.com/category/audio-tools.html): Lofi music studio, slowed and reverb audio effects, and browser sound utilities.
-- [Business Tools](https://www.zubware.com/category/business-tools.html): Create GST invoices, business cards & business productivity tools.
-- [Text & Writing Tools](https://www.zubware.com/category/text-tools.html): Case converter, word counter, text diff, text cleaner, markdown editor & line sorter.
-- [Career & Resume Tools](https://www.zubware.com/category/career-tools.html): ATS resume builder, cover letters, salary hike & experience calculators.
-- [Developer Tools](https://www.zubware.com/category/developer-tools.html): Format JSON/XML/HTML, test regex, decode JWTs, convert colors & timestamps.
-- [Design & Utility Tools](https://www.zubware.com/category/design-tools.html): CSS gradients, box shadows, unit converters, EMI & age calculators.
-- [AI Prompt Builder Tools](https://www.zubware.com/category/prompt-tools.html): ChatGPT, Gemini, Claude, Veo, Midjourney & Flux prompt generator suite.
-- [Health & Fitness](https://www.zubware.com/category/health-fitness.html): Calculate calories, macros, bulking targets, and fitness benchmarks.
-- [Generators & Productivity](https://www.zubware.com/category/generators.html): QR generators, password generators, hashes, UUIDs & productivity tools.
+- [PDF Tools](https://www.zubware.com/category/pdf-tools): Merge, split, convert, rotate, reorder, protect & edit PDF documents.
+- [Image Tools](https://www.zubware.com/category/image-tools): Compress, convert, resize, crop, rotate, watermark & edit photos instantly.
+- [Creator & Social Tools](https://www.zubware.com/category/creator-tools): YouTube, Instagram, TikTok & LinkedIn generator suite for content creators.
+- [Video Tools](https://www.zubware.com/category/video-tools): Create satisfying puzzle animation shorts, video reels & interactive clip generators.
+- [Audio Tools](https://www.zubware.com/category/audio-tools): Lofi music studio, slowed and reverb audio effects, and browser sound utilities.
+- [Business Tools](https://www.zubware.com/category/business-tools): Create GST invoices, business cards & business productivity tools.
+- [Text & Writing Tools](https://www.zubware.com/category/text-tools): Case converter, word counter, text diff, text cleaner, markdown editor & line sorter.
+- [Career & Resume Tools](https://www.zubware.com/category/career-tools): ATS resume builder, cover letters, salary hike & experience calculators.
+- [Developer Tools](https://www.zubware.com/category/developer-tools): Format JSON/XML/HTML, test regex, decode JWTs, convert colors & timestamps.
+- [Design & Utility Tools](https://www.zubware.com/category/design-tools): CSS gradients, box shadows, unit converters, EMI & age calculators.
+- [AI Prompt Builder Tools](https://www.zubware.com/category/prompt-tools): ChatGPT, Gemini, Claude, Veo, Midjourney & Flux prompt generator suite.
+- [Health & Fitness](https://www.zubware.com/category/health-fitness): Calculate calories, macros, bulking targets, and fitness benchmarks.
+- [Generators & Productivity](https://www.zubware.com/category/generators): QR generators, password generators, hashes, UUIDs & productivity tools.
 
 ## In-Depth Guides & Technical Documentation
 - [How to Compress a PDF Without Losing Readability](https://www.zubware.com/blog/how-to-compress-pdf-without-losing-readability): Learn how to reduce PDF file size while preserving clear, readable text. Understand lossy vs. lossless compression, target file sizes, and client-side optimization.
@@ -170,7 +170,7 @@
 
 - [QR Code Generator](https://www.zubware.com/qr-generator.html) [Browser-Side]: Generate custom QR codes for URLs, WiFi networks, vCards, UPI payments, emails, and events. High-resolution vector PNG, SVG, and A4 PDF QR code generator with logo embed and custom styles. | Key features: 9 Data Formats (URL, WiFi, vCard, UPI, etc.), Logo Upload & Center Embedding, Custom Dots & Corner Eye Styles, Linear & Radial Gradient Fills, PNG, Scalable SVG & A4 PDF Print
 
-### Career Tools (23 tools)
+### Career Tools (24 tools)
 
 - [Resume Builder](https://www.zubware.com/resume-builder.html) [Browser-Side]: Create beautiful ATS-friendly resumes completely in your browser. Live preview, customizable sections, instant PDF export. | Key features: ATS Friendly, Live Preview, PDF Export, Custom Sections, Client-Side Processing
 - [ATS Resume Checker](https://www.zubware.com/ats-resume-checker.html) [Browser-Side]: Scan resume text locally to calculate ATS compatibility score, missing target keywords, contact details, and formatting warnings. | Key features: ATS Score (0-100), Missing Keyword Scan, Contact Info Check, Readability Score, Local Browser Scanner
@@ -195,6 +195,7 @@
 - [Working Days Calculator](https://www.zubware.com/working-days-calculator.html) [Browser-Side]: Calculate exact working business days between two dates excluding weekends (5-day or 6-day week) and custom public holidays. | Key features: 5-Day & 6-Day Week Options, Weekend Exclusions, Custom Holiday Entries, Hours & Minutes Equivalent, Fast Local Calc
 - [Exam Score Calculator — Test Grade, Percentage & Negative Marking](https://www.zubware.com/exam-score-calculator.html) [Browser-Side]: Calculate test percentage marks, letter grades (A+ to F), and net scores with negative marking penalties for competitive exams and academic assessments. | Key features: Letter Grade Conversion, Target Grade Goal Solver, Weighted Grading Scale, Wrong Answer Analysis, Pass / Fail Thresholds
 - [CGPA to Percentage Calculator — University Grade Points](https://www.zubware.com/cgpa-calculator.html) [Browser-Side]: Convert college and university CGPA or GPA into percentage marks using standard CBSE, Mumbai University, and 10-point scale formulas. | Key features: CBSE 9.5x Multiplier, Semester-by-Semester GPA, Credit Weight Calculation, Division & Honors Class, PDF Transcript Summary
+- [College GPA Calculator – 4.0 Scale Weighted & Semester GPA](https://www.zubware.com/college-gpa-calculator.html) [Browser-Side]: Calculate college semester and cumulative Grade Point Average on a standard 4.0 scale with credit-weighted quality points, letter grades (A+ to F), and graduation honors. | Key features: 4.0 Letter Grade Scale (A+ to F), Credit-Weighted Quality Points, Semester & Cumulative GPA, Target GPA Honors Planner, Interactive Course Rows
 
 ### Creator & Social Media Tools (37 tools)
 

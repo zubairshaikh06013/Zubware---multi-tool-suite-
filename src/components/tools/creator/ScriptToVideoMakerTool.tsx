@@ -599,7 +599,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
         toolMeta={currentToolMeta}
         breadcrumbs={[
           { label: 'Home', path: getLinkUrl('/') },
-          { label: 'Creator Tools', path: getLinkUrl('/categories.html') },
+          { label: 'Creator Tools', path: getLinkUrl('/category/creator-tools') },
           { label: 'Script to Video' }
         ]}
       />

@@ -171,7 +171,7 @@ export const BlogIndexPage: React.FC<BlogIndexPageProps> = ({ onNavigate }) => {
             </div>
           </div>
           <button
-            onClick={() => onNavigate(getLinkUrl('/categories.html'))}
+            onClick={() => onNavigate(getLinkUrl('/categories'))}
             className="px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold shrink-0 hover:opacity-90 transition-opacity"
           >
             Explore 300+ Free Tools

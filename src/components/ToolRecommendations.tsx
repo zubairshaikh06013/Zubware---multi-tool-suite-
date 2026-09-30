@@ -52,11 +52,15 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {relatedList.map((tool) => (
-            <button
+            <a
               key={tool.id}
-              onClick={() => onNavigate(getLinkUrl(tool.path))}
+              href={getLinkUrl(tool.path)}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(getLinkUrl(tool.path));
+              }}
               aria-label={`Open tool ${tool.navTitle}`}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left"
+              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -73,7 +77,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
                 <span>{tool.category}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </div>
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -88,11 +92,15 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {togetherList.map((tool) => (
-            <button
+            <a
               key={tool.id}
-              onClick={() => onNavigate(getLinkUrl(tool.path))}
+              href={getLinkUrl(tool.path)}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(getLinkUrl(tool.path));
+              }}
               aria-label={`Open tool ${tool.navTitle}`}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left"
+              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -109,7 +117,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
                 <span className="truncate">{tool.tags ? tool.tags.slice(0, 2).join(' • ') : tool.category}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </div>
-            </button>
+            </a>
           ))}
         </div>
       </div>
@@ -124,11 +132,15 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {recommendedList.map((tool) => (
-            <button
+            <a
               key={tool.id}
-              onClick={() => onNavigate(getLinkUrl(tool.path))}
+              href={getLinkUrl(tool.path)}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(getLinkUrl(tool.path));
+              }}
               aria-label={`Open tool ${tool.navTitle}`}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left"
+              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
@@ -145,7 +157,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
                 <span>{tool.badge || 'Trending'}</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
               </div>
-            </button>
+            </a>
           ))}
         </div>
       </div>

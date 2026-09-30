@@ -290,6 +290,7 @@ const BondYieldCalculatorTool = lazy(() => import('./components/tools/business/B
 const CatAgeCalculatorTool = lazy(() => import('./components/tools/design/CatAgeCalculatorTool').then(m => ({ default: m.CatAgeCalculatorTool })));
 const ExamScoreCalculatorTool = lazy(() => import('./components/tools/career/ExamScoreCalculatorTool').then(m => ({ default: m.ExamScoreCalculatorTool })));
 const CgpaCalculatorTool = lazy(() => import('./components/tools/career/CgpaCalculatorTool').then(m => ({ default: m.CgpaCalculatorTool })));
+const CollegeGpaCalculatorTool = lazy(() => import('./components/tools/career/CollegeGpaCalculatorTool').then(m => ({ default: m.CollegeGpaCalculatorTool })));
 const MileageCalculatorTool = lazy(() => import('./components/tools/business/MileageCalculatorTool').then(m => ({ default: m.MileageCalculatorTool })));
 const PaintCostCalculatorTool = lazy(() => import('./components/tools/design/PaintCostCalculatorTool').then(m => ({ default: m.PaintCostCalculatorTool })));
 const DensityCalculatorTool = lazy(() => import('./components/tools/design/DensityCalculatorTool').then(m => ({ default: m.DensityCalculatorTool })));
@@ -377,7 +378,7 @@ const LoadingFallback = () => (
 import { TOOLS_DATA, HOMEPAGE_FAQS, getTranslatedTools, getTranslatedFaqs } from './data/toolsData';
 import { getBlogArticleBySlug, BLOG_ARTICLES } from './data/blogArticles';
 import { getToolSeoTitle } from './lib/seoTitles';
-import { getCategoryBySlug } from './data/categoriesData';
+import { getCategoryBySlug, getCategoryForTool } from './data/categoriesData';
 import { detectBrowserLanguage, LanguageCode, getTranslation } from './lib/i18n';
 import { LanguageProvider } from './context/LanguageContext';
 import { normalizePath, getLinkUrl } from './lib/paths';
@@ -636,7 +637,7 @@ export default function App() {
     }
 
     if (isCategoryPage) {
-      const catListItem = { label: getTranslation(currentLang, 'toolCategories', 'Tool Categories'), path: getLinkUrl('/categories.html') };
+      const catListItem = { label: getTranslation(currentLang, 'toolCategories', 'Tool Categories'), path: getLinkUrl('/categories') };
       if (activeCategorySlug && activeCategorySlug !== 'all' && activeCategoryItem) {
         const translatedCatName = getTranslation(currentLang, activeCategoryItem.nameKey, activeCategoryItem.defaultName);
         return [homeItem, catListItem, { label: translatedCatName }];
@@ -1043,10 +1044,10 @@ export default function App() {
               DEDICATED TOOL PAGES
               ======================================================== */}
           {!isStaticPage && activeTool && (() => {
-            const cleanCategoryName = activeTool.category.replace(/^[^\w]+/, '').trim();
+            const toolCategoryMeta = getCategoryForTool(activeTool.category);
             const toolBreadcrumbList = [
               { label: 'Home', path: getLinkUrl('/') },
-              { label: cleanCategoryName, path: getLinkUrl('/categories.html') },
+              { label: toolCategoryMeta.defaultName, path: getLinkUrl(toolCategoryMeta.slug === 'all' ? '/categories' : `/category/${toolCategoryMeta.slug}`) },
               { label: activeTool.navTitle }
             ];
 
@@ -1127,7 +1128,7 @@ export default function App() {
                 </div>
 
               {/* THE TOOL COMPONENT INTERFACE WRAPPED IN FROSTED GLASS */}
-              <div className="glass-panel rounded-3xl overflow-hidden">
+              <div className="glass-panel rounded-3xl overflow-hidden min-h-[360px]">
                 <ToolErrorBoundary toolTitle={activeTool.title} onReset={() => window.location.reload()}>
                   <Suspense fallback={<LoadingFallback />}>
                     {activeTool.id === 'image-splitter-merger' && <ImageSplitterMergerTool onShowToast={triggerToast} />}
@@ -1376,6 +1377,7 @@ export default function App() {
                   {activeTool.id === 'cat-age-calculator' && <CatAgeCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'exam-score-calculator' && <ExamScoreCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'cgpa-calculator' && <CgpaCalculatorTool onShowToast={triggerToast} />}
+                  {activeTool.id === 'college-gpa-calculator' && <CollegeGpaCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'mileage-calculator' && <MileageCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'paint-cost-calculator' && <PaintCostCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'density-calculator' && <DensityCalculatorTool onShowToast={triggerToast} />}

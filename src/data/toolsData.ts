@@ -6263,6 +6263,30 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     ]
   },
   {
+    id: 'college-gpa-calculator',
+    title: 'College GPA Calculator – 4.0 Scale Weighted & Semester GPA',
+    navTitle: 'College GPA Calculator',
+    description: 'Calculate college semester and cumulative Grade Point Average on a standard 4.0 scale with credit-weighted quality points, letter grades (A+ to F), and graduation honors.',
+    icon: '🎓',
+    path: '/college-gpa-calculator.html',
+    filename: 'college-gpa-calculator.html',
+    category: '💼 Career Tools',
+    badge: 'Academic',
+    features: ['4.0 Letter Grade Scale (A+ to F)', 'Credit-Weighted Quality Points', 'Semester & Cumulative GPA', 'Target GPA Honors Planner', 'Interactive Course Rows'],
+    howTo: [
+      { title: "Add Course Names & Credits", desc: "Enter course names and select credit hours (1 to 6 credits) for each class in your semester schedule." },
+      { title: "Select Letter Grades", desc: "Choose your letter grades (A+, A, A-, B+, B, B-, C+, C, C-, D+, D, D-, F) to calculate course quality points." },
+      { title: "Review Quality Points & Honors", desc: "Inspect your calculated semester GPA, total quality points, cumulative blended GPA, and Latin graduation honors (Summa/Magna Cum Laude)." }
+    ],
+    faq: [
+      { question: "How do credit hours affect my college semester GPA?", answer: "Courses with higher credit hours carry more weight. Quality Points equal Credit Hours multiplied by Grade Point value. Total quality points are divided by total attempted credit hours." },
+      { question: "What is the difference between College GPA Calculator and CGPA Calculator?", answer: "The College GPA Calculator computes credit-weighted course grades on a 4.0 letter scale (A+ to F), while the CGPA Calculator converts a 10.0 scale university cumulative score into a percentage using standard multipliers (like 9.5x)." },
+      { question: "What GPA qualifies for graduation honors (Cum Laude)?", answer: "Standard Latin honors benchmarks are: Cum Laude (Honors): 3.50–3.69 GPA; Magna Cum Laude (High Honors): 3.70–3.89 GPA; and Summa Cum Laude (Highest Honors): 3.90–4.00 GPA." },
+      { question: "How is cumulative GPA calculated across multiple semesters?", answer: "Cumulative GPA is calculated by dividing total quality points earned across all semesters by total credit hours completed across your degree." },
+      { question: "Are my student grades saved or transmitted to a server?", answer: "No. All GPA calculations execute 100% locally in your browser with zero server transmission and complete student privacy." }
+    ]
+  },
+  {
     id: 'mileage-calculator',
     title: 'Car Gas Mileage Calculator — MPG & Fuel Economy Tracker',
     navTitle: 'Mileage Calculator',

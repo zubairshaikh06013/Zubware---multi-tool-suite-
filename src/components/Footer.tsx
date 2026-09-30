@@ -145,7 +145,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 </a>
               </li>
               <li>
-                <a href={getLinkUrl('/categories.html')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories.html')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <a href={getLinkUrl('/categories')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                   ⚡ Tool Categories Directory
                 </a>
               </li>

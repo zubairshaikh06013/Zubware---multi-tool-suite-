@@ -11,14 +11,33 @@ import {
   Sparkles,
   Layers,
   HelpCircle,
-  ChevronRight
+  ChevronRight,
+  BookOpen
 } from 'lucide-react';
 import { BlogArticle } from '../../types';
 import { TOOLS_DATA } from '../../data/toolsData';
+import { BLOG_ARTICLES } from '../../data/blogArticles';
 import { SEOHead } from '../SEOHead';
 import { Breadcrumb } from '../Breadcrumb';
 import { getLinkUrl } from '../../lib/paths';
 import { ToolIcon } from '../common/ToolIcon';
+
+function getCategoryHubForBlog(categoryStr: string): { name: string; path: string } {
+  const c = (categoryStr || '').toLowerCase();
+  if (c.includes('pdf')) return { name: 'PDF Tools', path: '/category/pdf-tools' };
+  if (c.includes('image') || c.includes('photo')) return { name: 'Image Tools', path: '/category/image-tools' };
+  if (c.includes('developer') || c.includes('code')) return { name: 'Developer Tools', path: '/category/developer-tools' };
+  if (c.includes('creator') || c.includes('social') || c.includes('youtube') || c.includes('instagram')) return { name: 'Creator & Social Tools', path: '/category/creator-tools' };
+  if (c.includes('video')) return { name: 'Video Tools', path: '/category/video-tools' };
+  if (c.includes('audio') || c.includes('music')) return { name: 'Audio Tools', path: '/category/audio-tools' };
+  if (c.includes('business') || c.includes('invoic') || c.includes('tax') || c.includes('gst')) return { name: 'Business Tools', path: '/category/business-tools' };
+  if (c.includes('text') || c.includes('writing')) return { name: 'Text & Writing Tools', path: '/category/text-tools' };
+  if (c.includes('career') || c.includes('resume') || c.includes('job')) return { name: 'Career & Resume Tools', path: '/category/career-tools' };
+  if (c.includes('design') || c.includes('css') || c.includes('color')) return { name: 'Design & Utility Tools', path: '/category/design-tools' };
+  if (c.includes('prompt') || c.includes('ai')) return { name: 'AI Prompt Builder Tools', path: '/category/prompt-tools' };
+  if (c.includes('health') || c.includes('fitness') || c.includes('bmi')) return { name: 'Health & Fitness', path: '/category/health-fitness' };
+  return { name: 'Generators & Productivity', path: '/category/generators' };
+}
 
 interface BlogPostPageProps {
   article: BlogArticle;
@@ -28,11 +47,14 @@ interface BlogPostPageProps {
 export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const breadcrumbs = [
+  const catHub = useMemo(() => getCategoryHubForBlog(article.category), [article.category]);
+
+  const breadcrumbs = useMemo(() => [
     { label: 'Home', path: getLinkUrl('/') },
     { label: 'Guides & Articles', path: getLinkUrl('/blog') },
+    { label: catHub.name, path: getLinkUrl(catHub.path) },
     { label: article.title }
-  ];
+  ], [catHub, article.title]);
 
   // Resolve related tools from tool IDs
   const relatedTools = useMemo(() => {
@@ -43,6 +65,24 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
       .map((id) => TOOLS_DATA.find((t) => t.id === id))
       .filter(Boolean);
   }, [article.relatedToolIds]);
+
+  // Contextual Related Guides from the 30-article library
+  const relatedGuides = useMemo(() => {
+    return BLOG_ARTICLES.filter((a) => a.slug !== article.slug)
+      .map((a) => {
+        let score = 0;
+        if (a.category === article.category) score += 4;
+        if (a.tags && article.tags) {
+          for (const t of a.tags) {
+            if (article.tags.includes(t)) score += 2;
+          }
+        }
+        return { article: a, score };
+      })
+      .sort((a, b) => b.score - a.score)
+      .slice(0, 3)
+      .map((item) => item.article);
+  }, [article.slug, article.category, article.tags]);
 
   // Format date helper
   const formattedDate = useMemo(() => {
@@ -82,9 +122,16 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
         {/* Article Header */}
         <header className="space-y-4 border-b border-slate-200/80 dark:border-slate-800 pb-8">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-extrabold text-xs border border-indigo-200/50 dark:border-indigo-800/50">
-              {article.category}
-            </span>
+            <a
+              href={getLinkUrl(catHub.path)}
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate(getLinkUrl(catHub.path));
+              }}
+              className="px-3 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/70 hover:bg-indigo-100 dark:hover:bg-indigo-900/80 text-indigo-600 dark:text-indigo-400 font-extrabold text-xs border border-indigo-200/50 dark:border-indigo-800/50 transition-colors"
+            >
+              {article.category} &rarr;
+            </a>
             <span className="text-xs text-slate-500 dark:text-slate-400 font-medium flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" /> {article.readingTime}
             </span>
@@ -326,6 +373,66 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate 
                     <p className="text-[11px] text-slate-500 mt-1 line-clamp-2">
                       {tool.description}
                     </p>
+                  </a>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Related Guides & Tutorials Section */}
+          {relatedGuides.length > 0 && (
+            <section id="related-guides" className="space-y-4 scroll-mt-24 pt-6 border-t border-slate-200/80 dark:border-slate-800">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+                    <BookOpen className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+                    <span>Related Guides &amp; Tutorials</span>
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-1">
+                    Expand your technical understanding with companion guides from our library:
+                  </p>
+                </div>
+                <a
+                  href={getLinkUrl('/blog')}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate(getLinkUrl('/blog'));
+                  }}
+                  className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 shrink-0"
+                >
+                  Browse All Guides <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                {relatedGuides.map((guide) => (
+                  <a
+                    key={guide.slug}
+                    href={getLinkUrl(guide.canonicalPath)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(getLinkUrl(guide.canonicalPath));
+                    }}
+                    className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between block shadow-xs hover:shadow-md"
+                  >
+                    <div className="space-y-2">
+                      <div className="flex items-center justify-between text-[10px] font-bold text-slate-400 uppercase">
+                        <span className="text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-950/60 px-2 py-0.5 rounded-full">
+                          {guide.category}
+                        </span>
+                        <span>{guide.readingTime}</span>
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        {guide.title}
+                      </h3>
+                      <p className="text-[11px] text-slate-500 line-clamp-2">
+                        {guide.description}
+                      </p>
+                    </div>
+                    <div className="mt-3 pt-2 border-t border-slate-100 dark:border-slate-800 text-[11px] font-bold text-indigo-600 dark:text-indigo-400 flex items-center justify-between">
+                      <span>Read Guide</span>
+                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </a>
                 ))}
               </div>

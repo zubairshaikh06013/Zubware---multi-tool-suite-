@@ -153,7 +153,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
             <span>{t('exploreCategories', 'Explore Tool Categories')}</span>
           </h2>
           <button
-            onClick={() => onNavigate(getLinkUrl('/categories.html'))}
+            onClick={() => onNavigate(getLinkUrl('/categories'))}
             className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"
           >
             <span>{t('viewAllCategories', 'View Directory')}</span>
@@ -171,11 +171,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
                 role="button"
                 tabIndex={0}
                 aria-label={`Browse ${categoryName} category (${count} tools)`}
-                onClick={() => onNavigate(getLinkUrl(`/categories.html?cat=${cat.slug}`))}
+                onClick={() => onNavigate(getLinkUrl(`/category/${cat.slug}`))}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    onNavigate(getLinkUrl(`/categories.html?cat=${cat.slug}`));
+                    onNavigate(getLinkUrl(`/category/${cat.slug}`));
                   }
                 }}
                 className="glass-card p-5 rounded-2xl cursor-pointer hover:border-indigo-500/50 transition-all group flex flex-col justify-between"

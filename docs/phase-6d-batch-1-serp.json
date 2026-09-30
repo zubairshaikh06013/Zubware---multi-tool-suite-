@@ -1,0 +1,2438 @@
+{
+  "generatedAt": "2026-09-30T20:08:31.640Z",
+  "targetDomain": "https://www.zubware.com",
+  "batchNumber": 1,
+  "totalClustersResearched": 39,
+  "verifiedCompetitorsCount": 117,
+  "existingPageDecisions": 39,
+  "potentialNewPageDecisions": 0,
+  "mergedRejectedDecisions": 0,
+  "dataset": [
+    {
+      "toolName": "PDF Merge",
+      "toolUrl": "https://www.zubware.com/pdf-merge.html",
+      "toolId": "pdf-merge",
+      "category": "PDF Tools",
+      "keyword": "merge pdf files free combine multiple files",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://smallpdf.com/merge-pdf",
+          "title": "Merge PDF - Combine PDF files online for free - Smallpdf",
+          "domain": "smallpdf.com",
+          "pageType": "Interactive PDF SaaS Tool",
+          "strengths": [
+            "Drag-and-drop file reordering",
+            "Page-level thumbnail preview"
+          ],
+          "gaps": [
+            "Strict 2-tasks-per-day free limit",
+            "Uploads sensitive documents to cloud server"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://tools.pdf24.org/en/merge-pdf",
+          "title": "Merge PDF files online - PDF24 Tools",
+          "domain": "pdf24.org",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Unlimited free merging",
+            "Multi-file rearrangement"
+          ],
+          "gaps": [
+            "Dated ad-heavy interface",
+            "Server-side file processing"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.pdfgear.com/merge-pdf/",
+          "title": "Free PDF Merger Online - Combine Multiple PDF Files - PDFgear",
+          "domain": "pdfgear.com",
+          "pageType": "Interactive Web Tool",
+          "strengths": [
+            "No signup required",
+            "Clean interface"
+          ],
+          "gaps": [
+            "Server upload latency on files >50MB"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors require uploading confidential business/tax documents to remote cloud infrastructure.",
+        "Zubware Advantage: Pure in-browser pdf-lib WebAssembly engine; merges unlimited PDFs instantaneously on the client device."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/pdf-merge.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "PDF Split",
+      "toolUrl": "https://www.zubware.com/pdf-split.html",
+      "toolId": "pdf-split",
+      "category": "PDF Tools",
+      "keyword": "split pdf pages online free extract pages",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.ilovepdf.com/split_pdf",
+          "title": "Split PDF file - Separate PDF pages online - iLovePDF",
+          "domain": "ilovepdf.com",
+          "pageType": "Interactive Web App",
+          "strengths": [
+            "Range splitting and fixed range mode",
+            "Visual page grid selector"
+          ],
+          "gaps": [
+            "Server queue delay on large scans",
+            "Daily task quotas"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://deftpdf.com/split-pdf",
+          "title": "Split PDF in Half, by Pages or Bookmarks - DeftPDF",
+          "domain": "deftpdf.com",
+          "pageType": "Interactive Web Utility",
+          "notes": "",
+          "strengths": [
+            "Bookmark splitting",
+            "Batch split options"
+          ],
+          "gaps": [
+            "Intrusive cookie banners and cloud upload"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://pi7.org/split-pdf",
+          "title": "Split PDF Pages Online Free - Pi7 PDF Tool",
+          "domain": "pi7.org",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Fast page range selection",
+            "No signup needed"
+          ],
+          "gaps": [
+            "Ad cluttered layout",
+            "Lacks visual multi-page drag selection"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors upload pages to cloud servers with 1-2 hour retention buffers.",
+        "Zubware Advantage: Local client-side splitting with instant ZIP export and zero server footprint."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/pdf-split.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "PDF to Images",
+      "toolUrl": "https://www.zubware.com/pdf-to-images.html",
+      "toolId": "pdf-to-images",
+      "category": "PDF Tools",
+      "keyword": "convert pdf to high resolution jpg images online free",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://pdftoimage.com/",
+          "title": "PDF to JPG – Convert PDF to JPEG Online Free",
+          "domain": "pdftoimage.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Batch multi-PDF upload",
+            "Automatic ZIP bundling"
+          ],
+          "gaps": [
+            "Banner ads",
+            "Cloud queue waits during peak hours"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://cloudconvert.com/pdf-to-jpg",
+          "title": "PDF to JPG Converter - CloudConvert",
+          "domain": "cloudconvert.com",
+          "pageType": "Cloud Conversion SaaS",
+          "strengths": [
+            "DPI quality settings (150/300 DPI)",
+            "Color profile preservation"
+          ],
+          "gaps": [
+            "25 conversion minutes daily cap",
+            "Requires cloud upload"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://11zon.com/en/pdf-to-jpg/",
+          "title": "Convert PDF to JPG Online Free - 11zon",
+          "domain": "11zon.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Individual image or ZIP download",
+            "Clean grid preview"
+          ],
+          "gaps": [
+            "Ad supported",
+            "Server file storage"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors cap free resolution at standard 72/150 DPI.",
+        "Zubware Advantage: Client-side PDF.js canvas rendering up to 300+ DPI with instant ZIP download."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/pdf-to-images.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Image to PDF",
+      "toolUrl": "https://www.zubware.com/image-to-pdf.html",
+      "toolId": "image-to-pdf",
+      "category": "PDF Tools",
+      "keyword": "convert images to single pdf document online free",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://imagetopdf.com/",
+          "title": "Image to PDF – Convert JPG to PDF Online Free",
+          "domain": "imagetopdf.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Up to 20 images combined at once",
+            "Automatic orientation detection"
+          ],
+          "gaps": [
+            "Cannot reorder pages dynamically before building PDF",
+            "Ad heavy"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.resizepixel.com/convert-image-to-pdf/",
+          "title": "Convert Image to PDF Online - ResizePixel",
+          "domain": "resizepixel.com",
+          "pageType": "Web Editor",
+          "strengths": [
+            "Page margin adjustments",
+            "Supports PNG/JPG/WebP"
+          ],
+          "gaps": [
+            "Slow multi-file batch handling"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://smallpdf.com/jpg-to-pdf",
+          "title": "JPG to PDF - Convert your Images to PDFs online for free - Smallpdf",
+          "domain": "smallpdf.com",
+          "pageType": "SaaS Tool",
+          "strengths": [
+            "A4 / US Letter margin presets",
+            "Drag-and-drop grid"
+          ],
+          "gaps": [
+            "Usage paywalls and email gating"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors restrict margin adjustment and force cloud uploads.",
+        "Zubware Advantage: Instant in-browser PDF compilation with custom margin presets, orientation locking, and zero file size limits."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/image-to-pdf.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Protect PDF",
+      "toolUrl": "https://www.zubware.com/protect-pdf.html",
+      "toolId": "protect-pdf",
+      "category": "PDF Tools",
+      "keyword": "protect pdf with password online encrypt pdf free",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.ilovepdf.com/protect-pdf",
+          "title": "Protect PDF - Encrypt your PDF with a password - iLovePDF",
+          "domain": "ilovepdf.com",
+          "pageType": "SaaS Utility",
+          "strengths": [
+            "AES-128 and AES-256 encryption",
+            "Simple password input"
+          ],
+          "gaps": [
+            "Requires sending unencrypted sensitive document over HTTP to their servers"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://tools.pdf24.org/en/protect-pdf",
+          "title": "Protect PDF - Password protect PDF files free - PDF24",
+          "domain": "pdf24.org",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Permission restrictions (print/copy protection)",
+            "No signup required"
+          ],
+          "gaps": [
+            "Cluttered UI",
+            "Server-side crypto operations"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://deftpdf.com/protect-pdf",
+          "title": "Protect PDF files with password - DeftPDF",
+          "domain": "deftpdf.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Clean user guide",
+            "Instant download"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Remote server execution"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Major privacy flaw: Competitors require uploading sensitive confidential files to third-party servers to encrypt them.",
+        "Zubware Advantage: 100% Client-Side WebAssembly encryption; the password and unencrypted document never touch a network socket."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/protect-pdf.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Unlock PDF",
+      "toolUrl": "https://www.zubware.com/unlock-pdf.html",
+      "toolId": "unlock-pdf",
+      "category": "PDF Tools",
+      "keyword": "unlock password protected pdf online free remove pdf password",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://smallpdf.com/unlock-pdf",
+          "title": "Unlock PDF - Remove password from PDF online - Smallpdf",
+          "domain": "smallpdf.com",
+          "pageType": "SaaS Tool",
+          "strengths": [
+            "Fast decryption",
+            "Clean legal disclaimer"
+          ],
+          "gaps": [
+            "Paywall after 2 daily actions",
+            "Server upload required"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.ilovepdf.com/unlock_pdf",
+          "title": "Unlock PDF – Remove PDF password security - iLovePDF",
+          "domain": "ilovepdf.com",
+          "pageType": "SaaS Utility",
+          "strengths": [
+            "Bulk unlock support",
+            "Automatic permission stripping"
+          ],
+          "gaps": [
+            "Cloud upload of sensitive decrypted documents"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://pdfcandy.com/unlock-pdf.html",
+          "title": "Unlock PDF - Free Online PDF Password Remover - PDF Candy",
+          "domain": "pdfcandy.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Easy workflow",
+            "Supports standard PDF encryption"
+          ],
+          "gaps": [
+            "Slow queue times on free tier"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors process unlocked sensitive records on cloud servers.",
+        "Zubware Advantage: Local client-side decryption; saves unencrypted PDF directly to disk in milliseconds."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/unlock-pdf.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Background Remover",
+      "toolUrl": "https://www.zubware.com/background-remover.html",
+      "toolId": "background-remover",
+      "category": "🖼️ Image Tools",
+      "keyword": "remove background from image free online transparent png",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.photoroom.com/tools/background-remover",
+          "title": "Free Background Remover - Remove Background Online - PhotoRoom",
+          "domain": "photoroom.com",
+          "pageType": "AI Design SaaS",
+          "strengths": [
+            "Clean edge detection",
+            "Custom solid background colors"
+          ],
+          "gaps": [
+            "Forces low-res export unless user buys Pro subscription",
+            "Requires account"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://pixlr.com/remove-background/",
+          "title": "Remove Background - 100% Automatically and Free - Pixlr",
+          "domain": "pixlr.com",
+          "pageType": "Online Photo Editor",
+          "strengths": [
+            "AI subject detection",
+            "Supports PNG/JPEG/BMP"
+          ],
+          "gaps": [
+            "Daily task quotas",
+            "Cluttered workspace"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.remove.bg/",
+          "title": "Remove Background from Image for Free – remove.bg",
+          "domain": "remove.bg",
+          "pageType": "AI Utility Leader",
+          "strengths": [
+            "Industry-standard hair/edge precision",
+            "Instant processing"
+          ],
+          "gaps": [
+            "Free download capped at 0.25 Megapixels (preview size); full HD requires paid credits"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors restrict full-resolution HD downloads behind aggressive paywalls or coin systems.",
+        "Zubware Advantage: 100% Free Full-Resolution client-side canvas background cutout and transparent PNG export."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/background-remover.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Crop Image",
+      "toolUrl": "https://www.zubware.com/crop-image.html",
+      "toolId": "crop-image",
+      "category": "🖼️ Image Tools",
+      "keyword": "crop image online free circle custom aspect ratio",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.iloveimg.com/crop-image",
+          "title": "Crop IMAGE online - Cut JPG, PNG or GIF by defining rectangle in pixels - iLoveIMG",
+          "domain": "iloveimg.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Pixel dimension inputs",
+            "Visual drag crop handles"
+          ],
+          "gaps": [
+            "Lacks circular crop preset",
+            "Server processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://crop-circle.imageonline.co/",
+          "title": "Crop Circle in Image Online - ImageOnline.co",
+          "domain": "imageonline.co",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Circular crop with transparent background output"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Heavy banner ads"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.resizepixel.com/crop-image/",
+          "title": "Crop Image Online for Free - ResizePixel",
+          "domain": "resizepixel.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "16:9, 4:3, 1:1 preset aspect ratios",
+            "Clean UI"
+          ],
+          "gaps": [
+            "Limited zoom and rotation controls within crop boundary"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors lack combined rectangle and circular alpha crop in a single fluid canvas UI.",
+        "Zubware Advantage: Real-time HTML5 Canvas cropper with standard aspect ratio presets (1:1, 16:9, 4:5), circular avatar crop, and instant PNG/JPG export."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/crop-image.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Image Resizer",
+      "toolUrl": "https://www.zubware.com/image-resizer.html",
+      "toolId": "image-resizer",
+      "category": "🖼️ Image Tools",
+      "keyword": "resize image in pixels and cm online free",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://imageresizer.com/",
+          "title": "Image Resizer - Easily Resize Images Online for Free",
+          "domain": "imageresizer.com",
+          "pageType": "Interactive Web Utility",
+          "strengths": [
+            "Resize by percentage or pixel dimensions",
+            "Batch support"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Uploads images to cloud"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.simpleimageresizer.com/",
+          "title": "Simple Image Resizer - Resize online images without losing quality",
+          "domain": "simpleimageresizer.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Simple percentage slider",
+            "Supports common image formats"
+          ],
+          "gaps": [
+            "Lacks exact centimeter/millimeter conversion at custom DPI"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://resizepic.com/",
+          "title": "Resize Pic - Free Online Photo Resizer",
+          "domain": "resizepic.com",
+          "pageType": "Web Tool",
+          "strengths": [
+            "Fast execution",
+            "No registration"
+          ],
+          "gaps": [
+            "Dated 2010-era UI",
+            "Lacks bulk queue"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors do not provide real-time aspect ratio locking with custom DPI/print unit conversions.",
+        "Zubware Advantage: Client-side bicubic resampling, instant pixel/inch/cm toggling, and zero upload delay."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/image-resizer.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "EXIF Remover",
+      "toolUrl": "https://www.zubware.com/exif-remover.html",
+      "toolId": "exif-remover",
+      "category": "🖼️ Image Tools",
+      "keyword": "remove exif data from photos online strip metadata private",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.exifremove.com/",
+          "title": "Exif Remove - Free Online Tool to Strip Exif Data from Photos",
+          "domain": "exifremove.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Strips GPS and camera metadata",
+            "Batch support"
+          ],
+          "gaps": [
+            "Uploads photos to server",
+            "Ad heavy"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://verexif.com/en/",
+          "title": "VerExif - View and Remove EXIF data online",
+          "domain": "verexif.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Displays raw EXIF tags before stripping"
+          ],
+          "gaps": [
+            "Single image limit",
+            "Dated UI"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://jimpl.com/",
+          "title": "Jimpl - Online EXIF Data Viewer and Remover",
+          "domain": "jimpl.com",
+          "pageType": "Privacy Tool",
+          "strengths": [
+            "Detailed metadata inspection (shutter speed, focal length, geolocation)"
+          ],
+          "gaps": [
+            "Uploads images to cloud server for inspection"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors defeat the purpose of privacy by uploading user photos containing secret GPS coordinates to remote cloud servers.",
+        "Zubware Advantage: 100% In-Browser binary buffer manipulation; strips EXIF headers locally on the device with zero network transmission."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/exif-remover.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "color-picker",
+      "toolUrl": "https://www.zubware.com/color-picker.html",
+      "toolId": "color-picker",
+      "category": "Utility",
+      "keyword": "image color picker extract hex rgb palette online from image",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://imagecolorpicker.com/",
+          "title": "Image Color Picker - Extract HTML Colors from Image",
+          "domain": "imagecolorpicker.com",
+          "pageType": "Interactive Design Tool",
+          "strengths": [
+            "Magnifying loupe for exact pixel selection",
+            "Auto-generates 5-color palette"
+          ],
+          "gaps": [
+            "Ad cluttered layout",
+            "Slow canvas zoom on 4K screenshots"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://htmlcolorcodes.com/color-picker/",
+          "title": "Color Picker — HTML Color Codes",
+          "domain": "htmlcolorcodes.com",
+          "pageType": "Developer Resource",
+          "strengths": [
+            "HEX, RGB, HSL, CMYK conversions",
+            "Color harmony rules (complementary, triadic)"
+          ],
+          "gaps": [
+            "Lacks drag-and-drop custom image sampling on primary view"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://colors.co/image-picker",
+          "title": "Image Picker - Coolors",
+          "domain": "coolors.co",
+          "pageType": "Design SaaS Tool",
+          "strengths": [
+            "Clean modern UI",
+            "Palette export in PDF/SVG"
+          ],
+          "gaps": [
+            "Prompts for paid Pro subscription for bulk exports"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors either push subscriptions or crowd the viewport with banners.",
+        "Zubware Advantage: Smooth high-FPS canvas loupe, 1-click HEX/RGB/HSL clipboard copying, and auto-generated dominant palette with zero ads."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/color-picker.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Favicon Generator",
+      "toolUrl": "https://www.zubware.com/favicon-generator.html",
+      "toolId": "favicon-generator",
+      "category": "🖼️ Image Tools",
+      "keyword": "favicon generator convert png to ico all sizes online",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://favicon.io/",
+          "title": "Favicon Generator - Generate from Image, Text, or Emoji",
+          "domain": "favicon.io",
+          "pageType": "Developer Web Tool",
+          "strengths": [
+            "Generates ICO, 192x192, 512x512 PNGs",
+            "Provides ready-to-paste HTML meta tags"
+          ],
+          "gaps": [
+            "Cannot customize corner radius or border padding on uploaded image"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://realfavicongenerator.net/",
+          "title": "RealFaviconGenerator - Favicon Generator. For all platforms: iOS, Android, PC/Mac...",
+          "domain": "realfavicongenerator.net",
+          "pageType": "Comprehensive Favicon Suite",
+          "strengths": [
+            "Platform preview (iOS home screen, Windows tiles, browser tabs)",
+            "PWA manifest generation"
+          ],
+          "gaps": [
+            "Overly complex multi-step wizard for simple quick favicon tasks"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.favicon-generator.org/",
+          "title": "Favicon & App Icon Generator",
+          "domain": "favicon-generator.org",
+          "pageType": "Web Tool",
+          "strengths": [
+            "Fast 16x16 and 32x32 ICO conversion"
+          ],
+          "gaps": [
+            "Dated 2008 design",
+            "Ad heavy"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors require multiple configuration steps or lack live tab mockup previews.",
+        "Zubware Advantage: Real-time browser tab simulator, 1-click multi-size ICO/PNG bundle download, and PWA manifest snippet generation in a single screen."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/favicon-generator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Passport & Visa Photo Maker",
+      "toolUrl": "https://www.zubware.com/passport-photo-maker.html",
+      "toolId": "passport-photo-maker",
+      "category": "🖼️ Image Tools",
+      "keyword": "passport size photo maker online free printable 4x6 sheet",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://makepassportphoto.com/",
+          "title": "Make Passport Photo - Free Online Passport Photo Maker",
+          "domain": "makepassportphoto.com",
+          "pageType": "Specialized Web Utility",
+          "strengths": [
+            "Country-specific presets (India 3.5x4.5cm, US 2x2 inch)",
+            "Printable 4x6 grid layout"
+          ],
+          "gaps": [
+            "Watermarks photos unless upgraded",
+            "Cloud server upload"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://123passportphoto.com/",
+          "title": "123PassportPhoto - Free Online Passport Photo Generator",
+          "domain": "123passportphoto.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Multi-country size selector",
+            "Grid sheet export"
+          ],
+          "gaps": [
+            "Dated interface",
+            "Cluttered advertisements"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://passport-photo.online/",
+          "title": "Passport Photo Online - Photo in 3 seconds!",
+          "domain": "passport-photo.online",
+          "pageType": "Commercial SaaS App",
+          "strengths": [
+            "AI background replacement and compliance check"
+          ],
+          "gaps": [
+            "Aggressive $14.99 per photo fee to download printable template"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors charge exorbitant fees ($10–$15) or watermark printable sheets.",
+        "Zubware Advantage: 100% Free printable 4x6/A4 sheet builder with white background replacement, country dimension presets (India, US, Schengen, UK), and instant high-res JPEG export."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/passport-photo-maker.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "SVG Optimizer",
+      "toolUrl": "https://www.zubware.com/svg-optimizer.html",
+      "toolId": "svg-optimizer",
+      "category": "🖼️ Image Tools",
+      "keyword": "svg optimizer online clean svg code reduce file size",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://jakearchibald.github.io/svgomg/",
+          "title": "SVGOMG - SVGO's Missing GUI",
+          "domain": "jakearchibald.github.io",
+          "pageType": "Open Source Web App",
+          "strengths": [
+            "Granular SVGO precision toggles",
+            "Visual side-by-side diff",
+            "100% client side"
+          ],
+          "gaps": [
+            "Lacks batch processing for whole icon folders"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.svgviewer.dev/",
+          "title": "SVG Viewer - View, edit and optimize SVGs online",
+          "domain": "svgviewer.dev",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "Live SVG code editor",
+            "React JSX export toggle"
+          ],
+          "gaps": [
+            "Single file only",
+            "Ad supported"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://vecta.io/nano",
+          "title": "Nano - SVG Compressor and Optimizer - Vecta",
+          "domain": "vecta.io",
+          "pageType": "Developer Utility",
+          "strengths": [
+            "High compression ratio",
+            "Removes unnecessary metadata"
+          ],
+          "gaps": [
+            "Requires registration for bulk exports"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors lack multi-file batch SVG optimization with instant ZIP packaging.",
+        "Zubware Advantage: Batch SVG optimizer with live code minify preview, React SVG component code generation, and zero upload delay."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/svg-optimizer.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Slowed & Reverb Generator",
+      "toolUrl": "https://www.zubware.com/slowed-and-reverb.html",
+      "toolId": "slowed-and-reverb",
+      "category": "🎵 Audio Tools",
+      "keyword": "slowed and reverb audio generator online make daycore songs",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://slowedandreverb.io/",
+          "title": "Slowed and Reverb Audio Generator Online - Free",
+          "domain": "slowedandreverb.io",
+          "pageType": "Audio Web Utility",
+          "strengths": [
+            "Playback speed slider (0.8x-0.95x)",
+            "Reverb depth and room size controls"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Uploads audio to remote backend"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://safeaudiokit.com/slowed-reverb",
+          "title": "Slowed + Reverb Generator Online Free - Safe Audio Kit",
+          "domain": "safeaudiokit.com",
+          "pageType": "Audio Web Utility",
+          "strengths": [
+            "Fast filter processing",
+            "No watermark"
+          ],
+          "gaps": [
+            "Lacks pitch-shift preservation options"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://reverbgenerator.com/",
+          "title": "Reverb Generator - Add Reverb to Audio Online",
+          "domain": "reverbgenerator.com",
+          "pageType": "Audio Tool",
+          "strengths": [
+            "Simple wet/dry mix slider"
+          ],
+          "gaps": [
+            "Limited slowing down controls"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors send copyrighted MP3 files across network servers.",
+        "Zubware Advantage: Real-time Web Audio API ConvolverNode processing with customizable studio impulse responses, vinyl crackle blend, and client-side WAV rendering."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/slowed-and-reverb.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "video-to-mp3",
+      "toolUrl": "https://www.zubware.com/video-to-mp3.html",
+      "toolId": "video-to-mp3",
+      "category": "Utility",
+      "keyword": "extract audio from mp4 video online to mp3 free",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://audio-extractor.net/",
+          "title": "Audio Extractor - Extract audio from video online",
+          "domain": "audio-extractor.net",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Supports MP4, AVI, FLV, MOV",
+            "Extracts to MP3, WAV, M4A, FLAC"
+          ],
+          "gaps": [
+            "Slow server upload queue on files >100MB",
+            "Heavy advertisements"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://cloudconvert.com/mp4-to-mp3",
+          "title": "MP4 to MP3 Converter - CloudConvert",
+          "domain": "cloudconvert.com",
+          "pageType": "Cloud SaaS Tool",
+          "strengths": [
+            "Bitrate selection (128/192/320 kbps)",
+            "Volume normalization"
+          ],
+          "gaps": [
+            "Daily free conversion minute cap"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://ezgif.com/video-to-mp3",
+          "title": "Video to MP3 converter online - Ezgif",
+          "domain": "ezgif.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Fast conversion",
+            "Supports cutting audio by start/end time"
+          ],
+          "gaps": [
+            "100MB file size limit",
+            "Ad heavy"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors require multi-minute video uploads and enforce strict 100MB file limits.",
+        "Zubware Advantage: In-browser WebAssembly FFmpeg/WebCodecs demuxing; extracts high-bitrate MP3/WAV instantly with zero cloud upload."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/video-to-mp3.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Video Compressor — Reduce Video File Size In Browser",
+      "toolUrl": "https://www.zubware.com/video-compressor.html",
+      "toolId": "video-compressor",
+      "category": "📹 Video Tools",
+      "keyword": "compress mp4 video file size online reduce mb for whatsapp email",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.freeconvert.com/video-compressor",
+          "title": "Video Compressor - Compress MP4, AVI, MOV Online Free - FreeConvert",
+          "domain": "freeconvert.com",
+          "pageType": "Cloud Video SaaS",
+          "strengths": [
+            "Target size by percentage or exact MB",
+            "Resolution downscaling (1080p to 720p)"
+          ],
+          "gaps": [
+            "1GB maximum file limit on free tier",
+            "Slow upload speeds"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://clideo.com/compress-video",
+          "title": "Compress Video Online - Reduce File Size for Free - Clideo",
+          "domain": "clideo.com",
+          "pageType": "Video Editing SaaS",
+          "strengths": [
+            "Fast one-click compression slider",
+            "Clean interface"
+          ],
+          "gaps": [
+            "Leaves a large visible Clideo watermark on output video unless paid"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.veed.io/tools/video-compressor",
+          "title": "Free Video Compressor Online - VEED.IO",
+          "domain": "veed.io",
+          "pageType": "Creative SaaS Tool",
+          "strengths": [
+            "Quality vs speed preset selector",
+            "Modern UI"
+          ],
+          "gaps": [
+            "Forces user account creation to download compressed MP4"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors add intrusive watermarks or throttle upload speeds to sell subscriptions.",
+        "Zubware Advantage: Client-side video encoding using WebAssembly with customizable bitrate presets, resolution downscaling, and zero watermarks."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/video-compressor.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "audio-joiner",
+      "toolUrl": "https://www.zubware.com/audio-joiner.html",
+      "toolId": "audio-joiner",
+      "category": "Utility",
+      "keyword": "merge audio files online free combine mp3 songs into one",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://audio-joiner.com/",
+          "title": "Audio Joiner - Merge Audio Files Online for Free",
+          "domain": "audio-joiner.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Crossfade between tracks",
+            "Individual track trimming intervals"
+          ],
+          "gaps": [
+            "Uploads audio files to remote servers",
+            "Flash-legacy layout style"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://clideo.com/merge-audio",
+          "title": "Merge Audio Online - Combine Songs for Free - Clideo",
+          "domain": "clideo.com",
+          "pageType": "Audio SaaS Tool",
+          "strengths": [
+            "Crossfade toggle",
+            "Modern multi-track timeline"
+          ],
+          "gaps": [
+            "Processing wait times on free tier"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://123apps.com/audio-joiner/",
+          "title": "Merge Songs & Audio Tracks Online - 123apps",
+          "domain": "123apps.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Supports 300+ audio formats",
+            "Clean waveform visuals"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Server-side audio compilation"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors upload large WAV/MP3 files to servers before rendering.",
+        "Zubware Advantage: Pure Web Audio API AudioBuffer concatenation with live crossfade controls and instant client-side rendering."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/audio-joiner.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "audio-cutter",
+      "toolUrl": "https://www.zubware.com/audio-cutter.html",
+      "toolId": "audio-cutter",
+      "category": "Utility",
+      "keyword": "cut audio file online free trim mp3 ringtone maker",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://mp3cut.net/",
+          "title": "Audio Cutter - Cut MP3, WAV, and audio tracks online",
+          "domain": "mp3cut.net",
+          "pageType": "Audio Utility",
+          "strengths": [
+            "Waveform visual scrubber",
+            "Fade-in and fade-out toggles",
+            "Ringtone M4R/MP3 export"
+          ],
+          "gaps": [
+            "Banner ads",
+            "Server upload required"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://audiotrimmer.com/",
+          "title": "Audio Trimmer - Online MP3 Cutter",
+          "domain": "audiotrimmer.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Fast loading",
+            "Simple mobile-friendly sliders"
+          ],
+          "gaps": [
+            "100MB file limit",
+            "Ad heavy"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://clideo.com/cut-audio",
+          "title": "Cut Audio Online - Free MP3 Trimmer - Clideo",
+          "domain": "clideo.com",
+          "pageType": "Audio SaaS",
+          "strengths": [
+            "Modern timeline editor",
+            "Extract or delete selected segment"
+          ],
+          "gaps": [
+            "Queue times on free tier"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors require remote audio upload for basic split/trim tasks.",
+        "Zubware Advantage: Instant client-side Web Audio waveform visualization with millisecond precision trimming and instant MP3 export."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/audio-cutter.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "voice-recorder",
+      "toolUrl": "https://www.zubware.com/voice-recorder.html",
+      "toolId": "voice-recorder",
+      "category": "Utility",
+      "keyword": "online voice recorder free in browser microphone audio recorder",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://online-voice-recorder.com/",
+          "title": "Online Voice Recorder - Free Voice Recording Tool",
+          "domain": "online-voice-recorder.com",
+          "pageType": "Web Audio Utility",
+          "strengths": [
+            "Auto-silence trimming",
+            "Microphone gain adjustment",
+            "100% in-browser processing"
+          ],
+          "gaps": [
+            "Heavy banner ads",
+            "Dated UI layout"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://rev.com/online-voice-recorder",
+          "title": "Free Online Voice Recorder - Rev",
+          "domain": "rev.com",
+          "pageType": "Commercial Audio SaaS",
+          "strengths": [
+            "Clean modern interface",
+            "Direct transcription upsell"
+          ],
+          "gaps": [
+            "Prompts for paid AI transcription service"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://vocaroo.com/",
+          "title": "Vocaroo - The premier voice recording service",
+          "domain": "vocaroo.com",
+          "pageType": "Audio Hosting Utility",
+          "strengths": [
+            "Instant shareable link",
+            "Volume boost toggle"
+          ],
+          "gaps": [
+            "Uploads recordings to public cloud servers"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors compromise privacy by storing voice clips on public servers or display intrusive ads.",
+        "Zubware Advantage: 100% Client-Side MediaRecorder API with real-time waveform visualization, pause/resume, and private WAV/MP3 download."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/voice-recorder.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "JSON Formatter & Tree Viewer",
+      "toolUrl": "https://www.zubware.com/json-formatter.html",
+      "toolId": "json-formatter",
+      "category": "👨‍💻 Developer Tools",
+      "keyword": "json formatter online beautify validate json client side",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://jsonformatter.org/",
+          "title": "Best JSON Formatter and JSON Validator Online",
+          "domain": "jsonformatter.org",
+          "pageType": "Developer Utility",
+          "strengths": [
+            "Collapsible tree view",
+            "Minify and beautify toggles",
+            "JSON to XML/CSV conversion"
+          ],
+          "gaps": [
+            "Heavily cluttered with Google AdSense banner ads across the coding workspace"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://jsonlint.com/",
+          "title": "JSONLint - The JSON Validator",
+          "domain": "jsonlint.com",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "Pinpoints exact line and column syntax errors",
+            "Standard industry validator"
+          ],
+          "gaps": [
+            "Dated interface",
+            "Lacks dark mode and collapsible object trees"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://curiousconcept.com/json/formatter",
+          "title": "JSON Formatter & Validator - Curious Concept",
+          "domain": "curiousconcept.com",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "RFC 8259 and ECMA-404 specification validation"
+          ],
+          "gaps": [
+            "Ad heavy",
+            "Basic text display"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors clutter the code editing viewport with intrusive ads and lack fast schema validation.",
+        "Zubware Advantage: Clean Monaco-grade editor with dark/light themes, instant 1-click copy, collapsible nodes, and zero network transmission of proprietary API tokens."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/json-formatter.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Base64 Encoder / Decoder",
+      "toolUrl": "https://www.zubware.com/base64-encoder-decoder.html",
+      "toolId": "base64-encoder-decoder",
+      "category": "👨‍💻 Developer Tools",
+      "keyword": "base64 encode decode online string image file client side",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.base64encode.org/",
+          "title": "Base64 Encode - Online Base64 Encoder",
+          "domain": "base64encode.org",
+          "pageType": "Developer Web Tool",
+          "strengths": [
+            "Character set selection (UTF-8, ASCII, ISO)",
+            "Live encoding output"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Separate pages for encode vs decode"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.base64decode.org/",
+          "title": "Base64 Decode - Online Base64 Decoder",
+          "domain": "base64decode.org",
+          "pageType": "Developer Web Tool",
+          "strengths": [
+            "Instant decoding",
+            "File upload decoding"
+          ],
+          "gaps": [
+            "Separate URL from encoder",
+            "Dated layout"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://codebeautify.org/base64-encode",
+          "title": "Best Base64 Encoder Online - CodeBeautify",
+          "domain": "codebeautify.org",
+          "pageType": "Developer Portal",
+          "strengths": [
+            "Supports images to Base64 data URIs",
+            "Sample data presets"
+          ],
+          "gaps": [
+            "Heavy multi-column advertising"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors split encoder and decoder across two separate URLs, causing extra clicks.",
+        "Zubware Advantage: Dual-mode Bi-directional Base64 text and binary file tool with live data URI generator in a single clean workspace."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/base64-encoder-decoder.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "JWT Decoder",
+      "toolUrl": "https://www.zubware.com/jwt-decoder.html",
+      "toolId": "jwt-decoder",
+      "category": "👨‍💻 Developer Tools",
+      "keyword": "jwt decoder online verify signature decode token client side",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://jwt.io/",
+          "title": "JSON Web Tokens - jwt.io",
+          "domain": "jwt.io",
+          "pageType": "Industry Standard Developer Tool",
+          "strengths": [
+            "Color-coded header/payload/signature",
+            "Live editing of claims"
+          ],
+          "gaps": [
+            "Sponsored by Auth0/Okta with commercial upsells",
+            "Lacks batch token diff inspection"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://ctrlops.io/tools/jwt-decoder",
+          "title": "Online JWT Decoder & Signature Verifier - CtrlOps",
+          "domain": "ctrlops.io",
+          "pageType": "Developer Web Utility",
+          "strengths": [
+            "Client-side processing",
+            "Timestamp to human-readable date conversion"
+          ],
+          "gaps": [
+            "Basic formatting options"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://devglan.com/online-tools/jwt-decode",
+          "title": "Online JWT Decode and Verify - DevGlan",
+          "domain": "devglan.com",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "HS256 secret verification",
+            "Clean JSON tree"
+          ],
+          "gaps": [
+            "Banner advertisements"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors often send token payloads over network telemetry.",
+        "Zubware Advantage: 100% In-Browser token decoding with human-readable timestamp conversions (exp, iat, nbf) and zero server logging."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/jwt-decoder.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "markdown-preview",
+      "toolUrl": "https://www.zubware.com/markdown-preview.html",
+      "toolId": "markdown-preview",
+      "category": "Utility",
+      "keyword": "markdown editor online live preview github flavored html export",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://stackedit.io/app",
+          "title": "StackEdit – In-browser Markdown editor",
+          "domain": "stackedit.io",
+          "pageType": "Markdown Web App",
+          "strengths": [
+            "Full WYSIWYG sync scroll",
+            "LaTeX math equations and Mermaid diagrams"
+          ],
+          "gaps": [
+            "Heavy initial bundle load",
+            "Complex workspace setup"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://dillinger.io/",
+          "title": "Dillinger, the Last Markdown Editor, Ever.",
+          "domain": "dillinger.io",
+          "pageType": "Markdown Editor",
+          "strengths": [
+            "GitHub / Dropbox export",
+            "Clean side-by-side split screen"
+          ],
+          "gaps": [
+            "Dated UI theme",
+            "Lacks instant HTML code snippet generator"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://markdownlivepreview.com/",
+          "title": "Markdown Live Preview",
+          "domain": "markdownlivepreview.com",
+          "pageType": "Lightweight Utility",
+          "strengths": [
+            "Instant zero-lag typing preview",
+            "Simple clean design"
+          ],
+          "gaps": [
+            "Lacks table of contents generator and PDF export"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors lack instant 1-click HTML clipboard copy and styled PDF export.",
+        "Zubware Advantage: GitHub-Flavored Markdown live split-view with syntax highlighting, word count metrics, and instant HTML/PDF downloads."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/markdown-preview.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "SQL Formatter & Beautifier — Format SQL Queries Online Free",
+      "toolUrl": "https://www.zubware.com/sql-formatter.html",
+      "toolId": "sql-formatter",
+      "category": "👨‍💻 Developer Tools",
+      "keyword": "sql formatter online beautify sql queries format postgresql mysql",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://sqlformat.org/",
+          "title": "Free Online SQL Formatter - SQLFormat",
+          "domain": "sqlformat.org",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "Keyword capitalization toggles (UPPER/lower)",
+            "Indent width customization"
+          ],
+          "gaps": [
+            "Server-side API execution",
+            "Ad banners"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.dpriver.com/pp/sqlformat.htm",
+          "title": "Instant SQL Formatter - DpRiver",
+          "domain": "dpriver.com",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "Supports Oracle, SQL Server, DB2, MySQL, PostgreSQL dialects"
+          ],
+          "gaps": [
+            "2004-era interface",
+            "Lacks syntax error highlighting"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://poorsql.com/",
+          "title": "Poor Man's T-SQL Formatter",
+          "domain": "poorsql.com",
+          "pageType": "Open Source Web Utility",
+          "strengths": [
+            "100% in-browser JavaScript engine",
+            "Clean instant output"
+          ],
+          "gaps": [
+            "Focused primarily on T-SQL; limited PostgreSQL JSONB support"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors expose proprietary database queries to third-party servers.",
+        "Zubware Advantage: 100% In-Browser SQL parser with multi-dialect support (PostgreSQL, MySQL, SQLite, T-SQL), keyword capitalization controls, and zero server logging."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/sql-formatter.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Regex Tester & Explainer",
+      "toolUrl": "https://www.zubware.com/regex-tester.html",
+      "toolId": "regex-tester",
+      "category": "👨‍💻 Developer Tools",
+      "keyword": "regex tester online regular expression evaluator javascript python",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://regex101.com/",
+          "title": "regex101: build, test, and debug regex",
+          "domain": "regex101.com",
+          "pageType": "Developer Tool Leader",
+          "strengths": [
+            "Granular regex explanation breakdown",
+            "Match group tables",
+            "Unit test assertions"
+          ],
+          "gaps": [
+            "High UI complexity for quick simple pattern checks"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://regexr.com/",
+          "title": "RegExr: Learn, Build, & Test RegEx",
+          "domain": "regexr.com",
+          "pageType": "Interactive Regex Tool",
+          "strengths": [
+            "Clean highlight overlays",
+            "Community regex library"
+          ],
+          "gaps": [
+            "Heavy memory footprint on large test strings"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.regextester.com/",
+          "title": "Online Regex Tester and Debugger",
+          "domain": "regextester.com",
+          "pageType": "Developer Web Tool",
+          "strengths": [
+            "Quick test input",
+            "Common regex cheat sheet"
+          ],
+          "gaps": [
+            "Ad heavy",
+            "Basic error reporting"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors are either overly complex or filled with ads.",
+        "Zubware Advantage: Fast in-browser regex evaluator with real-time match highlighting, capture group breakdown, regex flags toggles (g, i, m, s), and common preset patterns."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/regex-tester.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "sip-calculator",
+      "toolUrl": "https://www.zubware.com/sip-calculator.html",
+      "toolId": "sip-calculator",
+      "category": "Utility",
+      "keyword": "sip calculator online mutual fund return compounding table",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://groww.in/calculators/sip-calculator",
+          "title": "SIP Calculator - Mutual Fund SIP Return Calculator Online - Groww",
+          "domain": "groww.in",
+          "pageType": "Fintech Calculator",
+          "strengths": [
+            "Smooth interactive sliders",
+            "Visual pie chart of invested amount vs wealth gained"
+          ],
+          "gaps": [
+            "Pushes broker account sign-up popups"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.etmoney.com/tools-and-calculators/sip-calculator",
+          "title": "SIP Calculator: Calculate Mutual Fund Returns Online - ET Money",
+          "domain": "etmoney.com",
+          "pageType": "Financial Portal",
+          "strengths": [
+            "Year-on-year growth compounding table",
+            "Step-up SIP calculations"
+          ],
+          "gaps": [
+            "Ad banners and lead capture forms"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://sipcalculator.org/",
+          "title": "SIP Calculator Online - Calculate SIP Investment Returns",
+          "domain": "sipcalculator.org",
+          "pageType": "Dedicated Financial Calculator",
+          "strengths": [
+            "Inflation-adjusted returns toggle",
+            "Monthly schedule table"
+          ],
+          "gaps": [
+            "Ad cluttered layout"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors use financial calculators to capture phone numbers or push specific mutual fund products.",
+        "Zubware Advantage: 100% Private financial calculator with interactive sliders, inflation adjustment toggle, step-up increment simulation, and complete year-by-year compounding table."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/sip-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "EMI Calculator",
+      "toolUrl": "https://www.zubware.com/emi-calculator.html",
+      "toolId": "emi-calculator",
+      "category": "🎨 Design & Utility Tools",
+      "keyword": "emi calculator online home loan car loan monthly repayment schedule",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://emicalculator.net/",
+          "title": "EMI Calculator for Home Loan, Car Loan & Personal Loan in India",
+          "domain": "emicalculator.net",
+          "pageType": "Financial Calculator Leader",
+          "strengths": [
+            "Complete monthly and yearly amortization schedule",
+            "Interactive loan amount sliders"
+          ],
+          "gaps": [
+            "Extremely dense banner and video advertisements across the page"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.hdfcbank.com/personal/tools-and-calculators/emi-calculator",
+          "title": "Loan EMI Calculator - Calculate Home, Personal & Car Loan EMI - HDFC Bank",
+          "domain": "hdfcbank.com",
+          "pageType": "Banking Portal",
+          "strengths": [
+            "Official bank rates",
+            "Clean interface"
+          ],
+          "gaps": [
+            "Directs user to bank loan applications; lacks full downloadable repayment schedule"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://cleartax.in/s/emi-calculator",
+          "title": "EMI Calculator: Calculate Loan EMI Online for Free - ClearTax",
+          "domain": "cleartax.in",
+          "pageType": "Financial Advisory SaaS",
+          "strengths": [
+            "Principal vs interest breakdown chart",
+            "Clear educational guides"
+          ],
+          "gaps": [
+            "Lead generation popups"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors are either inundated with ads or force bank marketing leads.",
+        "Zubware Advantage: Clean, instant, client-side EMI calculator with interactive pie charts, prepayment impact calculator, and full amortization schedule export."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/emi-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "gratuity-calculator",
+      "toolUrl": "https://www.zubware.com/gratuity-calculator.html",
+      "toolId": "gratuity-calculator",
+      "category": "Utility",
+      "keyword": "gratuity calculator online formula 15 26 eligibility calculate amount",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://cleartax.in/s/gratuity-calculator",
+          "title": "Gratuity Calculator: Calculate Gratuity Amount Online - ClearTax",
+          "domain": "cleartax.in",
+          "pageType": "Financial Portal",
+          "strengths": [
+            "Explains 15*Last Drawn Salary*Tenure/26 formula",
+            "Tax exemption limits (up to ₹20 Lakhs)"
+          ],
+          "gaps": [
+            "Lead-gen banners"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://groww.in/calculators/gratuity-calculator",
+          "title": "Gratuity Calculator - Calculate Gratuity Online - Groww",
+          "domain": "groww.in",
+          "pageType": "Fintech Calculator",
+          "strengths": [
+            "Instant slider input for tenure and basic pay",
+            "Clean visual breakdown"
+          ],
+          "gaps": [
+            "Lacks non-covered under Gratuity Act formula switch"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.etmoney.com/tools-and-calculators/gratuity-calculator",
+          "title": "Gratuity Calculator: Check Gratuity Eligibility & Calculate Online - ET Money",
+          "domain": "etmoney.com",
+          "pageType": "Financial Calculator",
+          "strengths": [
+            "Detailed 5-year eligibility criteria FAQ",
+            "Tax liability breakdown"
+          ],
+          "gaps": [
+            "Ad banners"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors do not allow switching between Gratuity Act covered vs non-covered formulas.",
+        "Zubware Advantage: Dual-formula calculation engine (Covered vs Non-Covered under Payment of Gratuity Act 1972), tax exemption limit indicators, and detailed explanation."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/gratuity-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Compound Interest & CAGR Calculator",
+      "toolUrl": "https://www.zubware.com/compound-interest-calculator.html",
+      "toolId": "compound-interest-calculator",
+      "category": "🎨 Design & Utility Tools",
+      "keyword": "compound interest calculator monthly yearly compounding formula online",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.investor.gov/financial-tools-calculators/calculators/compound-interest-calculator",
+          "title": "Compound Interest Calculator | Investor.gov",
+          "domain": "investor.gov",
+          "pageType": "Government Financial Tool (US SEC)",
+          "strengths": [
+            "Authoritative SEC calculation",
+            "Compounding frequency selector (Daily, Monthly, Annually)"
+          ],
+          "gaps": [
+            "Basic government form design",
+            "Lacks interactive chart scrubbing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.thecalculatorsite.com/finance/calculators/compoundinterestcalculator.php",
+          "title": "Compound Interest Calculator - The Calculator Site",
+          "domain": "thecalculatorsite.com",
+          "pageType": "Financial Tool",
+          "strengths": [
+            "Deposit/withdrawal schedules",
+            "Multiple currency support"
+          ],
+          "gaps": [
+            "Heavy ad network presence"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.omnicalculator.com/finance/compounding-interest",
+          "title": "Compound Interest Calculator - Omni Calculator",
+          "domain": "omnicalculator.com",
+          "pageType": "Educational Calculator",
+          "strengths": [
+            "Dynamic formula steps",
+            "Extensive educational context"
+          ],
+          "gaps": [
+            "Slow script execution on mobile",
+            "Ad clutter"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors are ad-heavy or lack real-time visual charts.",
+        "Zubware Advantage: Clean responsive canvas growth chart, compounding frequency toggles (Daily, Monthly, Quarterly, Yearly), regular contribution inputs, and zero ads."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/compound-interest-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "freelance-rate-calculator",
+      "toolUrl": "https://www.zubware.com/freelance-rate-calculator.html",
+      "toolId": "freelance-rate-calculator",
+      "category": "Utility",
+      "keyword": "freelance hourly rate calculator day rate pricing formula",
+      "searchIntent": "Commercial Investigation",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.hellobonsai.com/freelance-rate-calculator",
+          "title": "Freelance Rate Calculator - Hello Bonsai",
+          "domain": "hellobonsai.com",
+          "pageType": "SaaS Tool",
+          "strengths": [
+            "Role and experience benchmark dropdowns",
+            "Clean visual styling"
+          ],
+          "gaps": [
+            "Prompts for email sign-up and software subscription"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.clockify.me/freelance-hourly-rate-calculator",
+          "title": "Freelance Hourly Rate Calculator - Clockify",
+          "domain": "clockify.me",
+          "pageType": "Time Tracking SaaS",
+          "strengths": [
+            "Factoring billable hours vs non-billable administrative time",
+            "Tax and business cost breakdown"
+          ],
+          "gaps": [
+            "Upsells Clockify time tracker"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.crunch.co.uk/knowledge-becoming-freelancer/freelance-rate-calculator",
+          "title": "Freelance Rate Calculator - Crunch",
+          "domain": "crunch.co.uk",
+          "pageType": "Accounting Firm Calculator",
+          "strengths": [
+            "Clear annual to hourly translation",
+            "Holiday and sick leave allowance"
+          ],
+          "gaps": [
+            "Region-locked to UK tax system"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors gate results behind email collection or country-specific tax rules.",
+        "Zubware Advantage: Universal multi-currency rate calculator taking into account billable utilization %, annual vacation days, healthcare/taxes, and profit buffer."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/freelance-rate-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Word Counter & Character Counter — Readability & Speaking Time",
+      "toolUrl": "https://www.zubware.com/word-counter.html",
+      "toolId": "word-counter",
+      "category": "✍️ Text & Writing Tools",
+      "keyword": "word counter online count words characters reading time",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://wordcounter.net/",
+          "title": "Word Counter — Count Words & Correct Writing",
+          "domain": "wordcounter.net",
+          "pageType": "Web Utility Leader",
+          "strengths": [
+            "Real-time word/character count",
+            "Reading time & speaking time estimation",
+            "Keyword density checker"
+          ],
+          "gaps": [
+            "Heavy banner ads",
+            "Slow on 50,000+ word manuscripts"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.wordcounter360.com/",
+          "title": "Word Counter 360° - Free Online Words and Characters Counter",
+          "domain": "wordcounter360.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Paragraph and sentence counts",
+            "Multi-language support"
+          ],
+          "gaps": [
+            "Dated interface",
+            "Cluttered layout"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://easywordcount.com/",
+          "title": "Easy Word Count - Free Online Word and Character Counter",
+          "domain": "easywordcount.com",
+          "pageType": "Web Tool",
+          "strengths": [
+            "Minimalist layout",
+            "Instant counting"
+          ],
+          "gaps": [
+            "Lacks reading level metrics and keyword analysis"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors crowd the writing canvas with intrusive display advertising.",
+        "Zubware Advantage: Distraction-free writing space with real-time word/character/sentence/paragraph counts, reading/speaking time, and top keyword frequency analyzer."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/word-counter.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Case Converter — Uppercase, Lowercase, Title Case, CamelCase",
+      "toolUrl": "https://www.zubware.com/case-converter.html",
+      "toolId": "case-converter",
+      "category": "✍️ Text & Writing Tools",
+      "keyword": "case converter online uppercase lowercase title case camelCase",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://convertcase.net/",
+          "title": "Convert Case - Convert upper case to lower case, lower case to upper case",
+          "domain": "convertcase.net",
+          "pageType": "Web Utility Leader",
+          "strengths": [
+            "Sentence case, lower case, UPPER CASE, Capitalized Case, aLtErNaTiNg cAsE, Title Case"
+          ],
+          "gaps": [
+            "Ad cluttered",
+            "Lacks developer casing (camelCase, kebab-case, snake_case, PascalCase)"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://caseconverter.com/",
+          "title": "Case Converter - Change text case online",
+          "domain": "caseconverter.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Fast conversion buttons",
+            "Download text file"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Basic casing options only"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://codebeautify.org/case-converter",
+          "title": "Case Converter Online - CodeBeautify",
+          "domain": "codebeautify.org",
+          "pageType": "Developer Utility",
+          "strengths": [
+            "Supports programmer cases (snake_case, camelCase)"
+          ],
+          "gaps": [
+            "Multi-column ad layout"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors either focus only on English grammar cases or only on code cases.",
+        "Zubware Advantage: All-in-one case converter supporting Sentence case, Title Case, UPPERCASE, lowercase, camelCase, snake_case, kebab-case, PascalCase, and CONSTANT_CASE with 1-click clipboard copy."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/case-converter.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "diff-checker",
+      "toolUrl": "https://www.zubware.com/diff-checker.html",
+      "toolId": "diff-checker",
+      "category": "Utility",
+      "keyword": "diff checker online compare two text files find difference",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.diffchecker.com/",
+          "title": "Diffchecker - Compare text online to find the difference between two text files",
+          "domain": "diffchecker.com",
+          "pageType": "Developer Tool Leader",
+          "strengths": [
+            "Side-by-side and inline character-level highlighting",
+            "Image/PDF/Excel diff modes"
+          ],
+          "gaps": [
+            "Pushes paid Desktop app and Pro subscriptions",
+            "Stores diffs on server by default"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://countwordsfree.com/comparetext",
+          "title": "Compare Text Online - Free Diff Tool - CountWordsFree",
+          "domain": "countwordsfree.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Fast text comparison",
+            "Highlights inserted and deleted words"
+          ],
+          "gaps": [
+            "Ad cluttered layout"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://text-compare.com/",
+          "title": "Text Compare! - An online diff tool that can find the difference between two text documents",
+          "domain": "text-compare.com",
+          "pageType": "Web Tool",
+          "strengths": [
+            "Extremely simple 2-box comparison"
+          ],
+          "gaps": [
+            "Dated 2005 design",
+            "Lacks character-level granularity"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors compromise confidential contract/code privacy by storing diffs in remote databases.",
+        "Zubware Advantage: Pure client-side Myers diff algorithm with split/unified views, character/word highlighting, and zero network transmission."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/diff-checker.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Lorem Ipsum Generator — Dummy Placeholder Text Generator",
+      "toolUrl": "https://www.zubware.com/lorem-ipsum-generator.html",
+      "toolId": "lorem-ipsum-generator",
+      "category": "✍️ Text & Writing Tools",
+      "keyword": "lorem ipsum generator dummy text placeholder generator paragraphs words",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.lipsum.com/",
+          "title": "Lorem Ipsum - All the facts - Lipsum generator",
+          "domain": "lipsum.com",
+          "pageType": "Historic Reference Tool",
+          "strengths": [
+            "Generates paragraphs, words, bytes, or lists",
+            "Standard Cicero classical Latin text"
+          ],
+          "gaps": [
+            "Dated interface",
+            "Requires navigating to new page to copy generated text"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://loremipsum.io/",
+          "title": "Lorem Ipsum – Generator, Origins and Meaning",
+          "domain": "loremipsum.io",
+          "pageType": "Design Utility",
+          "strengths": [
+            "Modern clean UI",
+            "HTML tag wrapping options (<p>, <li>, <h1>)"
+          ],
+          "gaps": [
+            "Ad banners"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://generator.lorem-ipsum.info/",
+          "title": "Lorem Ipsum Generator (with real words) in 40+ languages",
+          "domain": "generator.lorem-ipsum.info",
+          "pageType": "Multilingual Generator",
+          "strengths": [
+            "Generates dummy text in various language alphabets (Cyrillic, Greek, Devanagari)"
+          ],
+          "gaps": [
+            "Ad heavy"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors lack instant 1-click clipboard copy with HTML/Markdown tag wrappers.",
+        "Zubware Advantage: Instant live slider generator with paragraph/word/list controls, optional HTML `<p>`/`<li>` formatting, and 1-click copy."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/lorem-ipsum-generator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "slug-generator",
+      "toolUrl": "https://www.zubware.com/slug-generator.html",
+      "toolId": "slug-generator",
+      "category": "Utility",
+      "keyword": "url slug generator online convert title to seo friendly clean url",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.slugify-online.com/",
+          "title": "Slugify Online - Convert text to URL slug",
+          "domain": "slugify-online.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Removes special characters and stop words",
+            "Custom separator (- or _)"
+          ],
+          "gaps": [
+            "Ad banners"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://codebeautify.org/slugify-url",
+          "title": "Slugify URL Online - CodeBeautify",
+          "domain": "codebeautify.org",
+          "pageType": "Developer Tool",
+          "strengths": [
+            "Live real-time output",
+            "Supports unicode transliteration"
+          ],
+          "gaps": [
+            "Heavy advertising"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://tools.totalecommerce.biz/slug-generator",
+          "title": "SEO Friendly URL Slug Generator",
+          "domain": "totalecommerce.biz",
+          "pageType": "Marketing Tool",
+          "strengths": [
+            "Lowercase conversion and hyphen replacement"
+          ],
+          "gaps": [
+            "Dated layout"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors do not handle non-English multilingual diacritics transliteration smoothly.",
+        "Zubware Advantage: Instant client-side slug generator with accent normalization (é→e, ü→u), custom separator toggles, stop-word removal, and 1-click copy."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/slug-generator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Age Calculator",
+      "toolUrl": "https://www.zubware.com/age-calculator.html",
+      "toolId": "age-calculator",
+      "category": "🎨 Design & Utility Tools",
+      "keyword": "age calculator calculate exact age from date of birth years months days",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.calculator.net/age-calculator.html",
+          "title": "Age Calculator - Calculate exact age from date of birth",
+          "domain": "calculator.net",
+          "pageType": "General Calculator Leader",
+          "strengths": [
+            "Calculates age in years/months/days, total weeks, total days, total hours, total minutes"
+          ],
+          "gaps": [
+            "Ad banners",
+            "Dated 1990s web aesthetic"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://agecalculator.me/",
+          "title": "Age Calculator - Calculate Your Exact Age Online",
+          "domain": "agecalculator.me",
+          "pageType": "Dedicated Utility",
+          "strengths": [
+            "Countdown to next birthday",
+            "Zodiac sign info"
+          ],
+          "gaps": [
+            "Cluttered with mobile video ads"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.timeanddate.com/date/duration.html",
+          "title": "Date Duration Calculator: Days Between Two Dates - Time and Date",
+          "domain": "timeanddate.com",
+          "pageType": "Authority Time Portal",
+          "strengths": [
+            "Extreme astronomical accuracy",
+            "Includes/excludes end dates"
+          ],
+          "gaps": [
+            "Complex input forms"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors overwhelm users with display ads or complex date forms.",
+        "Zubware Advantage: Clean modern datepicker with leap-year precision, exact breakdown (years, months, days, hours, seconds), and upcoming birthday countdown."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/age-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Percentage Calculator",
+      "toolUrl": "https://www.zubware.com/percentage-calculator.html",
+      "toolId": "percentage-calculator",
+      "category": "🎨 Design & Utility Tools",
+      "keyword": "percentage calculator calculate discount increase decrease percentage of a number",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.calculator.net/percentage-calculator.html",
+          "title": "Percentage Calculator - Calculate % of a Number, Percentage Change",
+          "domain": "calculator.net",
+          "pageType": "Calculator Portal",
+          "strengths": [
+            "What is X% of Y?",
+            "X is what % of Y?",
+            "Percentage increase/decrease formulas with step-by-step math"
+          ],
+          "gaps": [
+            "Ad supported",
+            "Static text layout"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://percentagecalculator.net/",
+          "title": "Percentage Calculator",
+          "domain": "percentagecalculator.net",
+          "pageType": "Single Purpose Web Utility",
+          "strengths": [
+            "Clean 3-box interface with instant live recalculation"
+          ],
+          "gaps": [
+            "Ad banners"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.omnicalculator.com/math/percentage",
+          "title": "Percentage Calculator - Omni Calculator",
+          "domain": "omnicalculator.com",
+          "pageType": "Educational Math Tool",
+          "strengths": [
+            "Deep mathematical explanations and fraction conversions"
+          ],
+          "gaps": [
+            "Heavy ad scripts causing mobile scroll lag"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors display intrusive ads across simple calculation fields.",
+        "Zubware Advantage: Instant live calculation cards for all percentage question archetypes (X% of Y, Percentage Change, Markup, and Discount) in a single fast UI."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/percentage-calculator.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    },
+    {
+      "toolName": "Unit Converter",
+      "toolUrl": "https://www.zubware.com/unit-converter.html",
+      "toolId": "unit-converter",
+      "category": "🎨 Design & Utility Tools",
+      "keyword": "unit converter online convert length weight temperature volume speed",
+      "searchIntent": "Transactional",
+      "researchDate": "2026-09-30",
+      "researchSource": "Live Google Web Search & Grounded Competitor SERP Analysis",
+      "serpVerified": true,
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.unitconverters.net/",
+          "title": "Unit Converter - Convert between all units of measurement",
+          "domain": "unitconverters.net",
+          "pageType": "Unit Converter Leader",
+          "strengths": [
+            "Covers Length, Temperature, Area, Volume, Weight, Time, Pressure, Digital Storage"
+          ],
+          "gaps": [
+            "Dated table layout",
+            "Heavy advertising banners"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.convertunits.com/",
+          "title": "Convert Units - Measurement Unit Converter",
+          "domain": "convertunits.com",
+          "pageType": "Conversion Portal",
+          "strengths": [
+            "Extensive obscure scientific units",
+            "Formula explanation"
+          ],
+          "gaps": [
+            "Cluttered UI",
+            "Slow navigation"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.thecalculatorsite.com/conversions/",
+          "title": "Unit Converters - The Calculator Site",
+          "domain": "thecalculatorsite.com",
+          "pageType": "Financial & Unit Suite",
+          "strengths": [
+            "Clean category cards",
+            "Mobile friendly inputs"
+          ],
+          "gaps": [
+            "Ad banners across the calculation canvas"
+          ]
+        }
+      ],
+      "zubwareGap": [
+        "Competitors present outdated 1990s table layouts with slow dropdown selectors.",
+        "Zubware Advantage: Modern categorized converter (Length, Mass, Temperature, Data, Area, Time, Speed) with instant multi-unit target results on a single screen."
+      ],
+      "pageDecision": "EXISTING_TOOL_PAGE",
+      "reason": "The existing URL (/unit-converter.html) hosts the client-side tool engine and interactive controls. Consolidating search authority directly on the primary canonical URL avoids Google doorway penalties and satisfies user search intent with zero upload friction."
+    }
+  ]
+}

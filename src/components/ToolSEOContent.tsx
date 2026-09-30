@@ -280,8 +280,8 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
               </h2>
             </div>
             <a
-              href={getLinkUrl('/categories.html')}
-              onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories.html')); }}
+              href={getLinkUrl('/categories')}
+              onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories')); }}
               className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 mt-2 sm:mt-0"
             >
               Explore All Categories <ArrowRight className="w-3.5 h-3.5" />

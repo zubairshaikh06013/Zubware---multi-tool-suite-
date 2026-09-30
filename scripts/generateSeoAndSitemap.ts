@@ -167,7 +167,7 @@ function buildToolJsonLd(tool: ToolMeta, canonicalUrl: string): object {
   const appCategory = categoryMap[tool.category] || 'UtilitiesApplication';
   const cleanCategory = tool.category.replace(/^[^\w]+/, '').trim();
   const toolCat = getCategoryForTool(tool.category);
-  const catItemUrl = toolCat && toolCat.slug !== 'all' ? `${DOMAIN}/category/${toolCat.slug}.html` : `${DOMAIN}/categories.html`;
+  const catItemUrl = toolCat && toolCat.slug !== 'all' ? `${DOMAIN}/category/${toolCat.slug}` : `${DOMAIN}/categories`;
   const catItemName = toolCat && toolCat.slug !== 'all' ? toolCat.defaultName : cleanCategory;
   const faqs = getToolFaqs(tool);
   const steps = getToolHowToSteps(tool);
@@ -310,7 +310,7 @@ function buildStaticPageJsonLd(page: StaticPageMeta, canonicalUrl: string): obje
 function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
   const cleanCategory = tool.category.replace(/^[^\w]+/, '').trim();
   const toolCat = getCategoryForTool(tool.category);
-  const catItemUrl = toolCat && toolCat.slug !== 'all' ? `${DOMAIN}/category/${toolCat.slug}.html` : `${DOMAIN}/categories.html`;
+  const catItemUrl = toolCat && toolCat.slug !== 'all' ? `${DOMAIN}/category/${toolCat.slug}` : `${DOMAIN}/categories`;
   const catItemName = toolCat && toolCat.slug !== 'all' ? toolCat.defaultName : cleanCategory;
   const isNetwork = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
   const steps = getToolHowToSteps(tool);
@@ -403,7 +403,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin: 0;">
             Related Free Tools
           </h2>
-          <a href="${DOMAIN}/categories.html" style="font-size: 0.85rem; color: #4f46e5; font-weight: 600; text-decoration: underline;">
+          <a href="${DOMAIN}/categories" style="font-size: 0.85rem; color: #4f46e5; font-weight: 600; text-decoration: underline;">
             Explore All Categories &rarr;
           </a>
         </div>
@@ -461,7 +461,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
             Our tool suite spans 13 specialized domains, including PDF manipulation, media encoding, developer decoding, career resume formatting, and financial calculators.
           </p>
           <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a href="${DOMAIN}/categories.html" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Browse All Categories &rarr;</a>
+            <a href="${DOMAIN}/categories" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Browse All Categories &rarr;</a>
             <a href="${DOMAIN}/blog" style="padding: 0.75rem 1.5rem; background: #ffffff; color: #4f46e5; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #c7d2fe;">Technical Guides &rarr;</a>
           </div>
         </section>`;
@@ -585,7 +585,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
               <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">Introduced JWT decoders, SQL formatters, JSON diff utilities, ATS resume scanner, and cover letter generator.</p>
             </div>
           </div>
-          <p><a href="${DOMAIN}/categories.html" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Explore Full Tool Directory &rarr;</a></p>
+          <p><a href="${DOMAIN}/categories" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Explore Full Tool Directory &rarr;</a></p>
         </section>`;
       break;
 
@@ -637,7 +637,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
               <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Create custom styled QR codes for links and text.</p>
             </a>
           </div>
-          <p><a href="${DOMAIN}/categories.html" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Browse Complete Directory of 307 Tools &rarr;</a></p>
+          <p><a href="${DOMAIN}/categories" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Browse Complete Directory of 307 Tools &rarr;</a></p>
         </section>`;
       break;
 
@@ -987,7 +987,7 @@ function renderCategoriesPageContent(): string {
                 </h2>
                 <span style="font-size: 0.85rem; font-weight: 700; color: #4f46e5;">(${catTools.length} tools)</span>
               </div>
-              <a href="${DOMAIN}/category/${cat.slug}.html" style="font-size: 0.85rem; font-weight: 700; color: #4f46e5; text-decoration: underline;">
+              <a href="${DOMAIN}/category/${cat.slug}" style="font-size: 0.85rem; font-weight: 700; color: #4f46e5; text-decoration: underline;">
                 Explore ${escapeHtml(cat.defaultName)} Hub &rarr;
               </a>
             </div>
@@ -1027,9 +1027,25 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
     faqs: []
   };
 
-  const matchingGuides = BLOG_ARTICLES.filter(
-    (a) => a.category.toLowerCase().includes(cat.defaultName.toLowerCase().split(' ')[0]) || a.tags.some(t => t.toLowerCase().includes(cat.slug.replace('-tools', '')))
-  ).slice(0, 3);
+  const c = cat.slug.toLowerCase();
+  const matchingGuides = BLOG_ARTICLES.filter((a) => {
+    const aCat = a.category.toLowerCase();
+    const aTags = (a.tags || []).map(t => t.toLowerCase());
+    if (c === 'pdf-tools') return aCat.includes('pdf') || aTags.some(t => t.includes('pdf'));
+    if (c === 'image-tools') return aCat.includes('image') || aTags.some(t => t.includes('image') || t.includes('photo') || t.includes('heic'));
+    if (c === 'creator-tools') return aCat.includes('creator') || aCat.includes('social') || aTags.some(t => t.includes('youtube') || t.includes('instagram') || t.includes('tiktok'));
+    if (c === 'video-tools') return aCat.includes('video') || aTags.some(t => t.includes('video') || t.includes('animation'));
+    if (c === 'audio-tools') return aCat.includes('audio') || aTags.some(t => t.includes('audio') || t.includes('lofi') || t.includes('music'));
+    if (c === 'business-tools') return aCat.includes('business') || aCat.includes('financial') || aTags.some(t => t.includes('invoice') || t.includes('gst') || t.includes('tax'));
+    if (c === 'text-tools') return aCat.includes('text') || aTags.some(t => t.includes('text') || t.includes('word') || t.includes('formatting'));
+    if (c === 'career-tools') return aCat.includes('career') || aCat.includes('resume') || aTags.some(t => t.includes('resume') || t.includes('ats') || t.includes('interview'));
+    if (c === 'developer-tools') return aCat.includes('developer') || aTags.some(t => t.includes('json') || t.includes('jwt') || t.includes('developer') || t.includes('api'));
+    if (c === 'design-tools') return aCat.includes('design') || aCat.includes('calculator') || aCat.includes('financial') || aTags.some(t => t.includes('css') || t.includes('color') || t.includes('emi') || t.includes('sip'));
+    if (c === 'prompt-tools') return aCat.includes('prompt') || aCat.includes('ai') || aTags.some(t => t.includes('prompt') || t.includes('chatgpt') || t.includes('claude'));
+    if (c === 'health-fitness') return aCat.includes('health') || aCat.includes('fitness') || aTags.some(t => t.includes('bmi') || t.includes('calorie') || t.includes('fasting'));
+    if (c === 'generators') return aCat.includes('security') || aCat.includes('productivity') || aTags.some(t => t.includes('password') || t.includes('qr') || t.includes('habit') || t.includes('generator'));
+    return false;
+  }).slice(0, 3);
 
   const otherCategories = CATEGORIES_DATA.filter(c => c.slug !== 'all' && c.slug !== cat.slug);
 
@@ -1038,7 +1054,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
       <!-- Breadcrumbs -->
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 1.25rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
-        <a href="${DOMAIN}/categories.html" style="color: inherit; text-decoration: underline;">Categories Directory</a> &gt;
+        <a href="${DOMAIN}/categories" style="color: inherit; text-decoration: underline;">Categories Directory</a> &gt;
         <span aria-current="page" style="font-weight: 600;">${escapeHtml(cat.defaultName)}</span>
       </nav>
 
@@ -1178,9 +1194,9 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
           Explore Other Tool Categories
         </h2>
         <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
-          <a href="${DOMAIN}/categories.html" style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; background: #eef2ff; border: 1px solid #c7d2fe; padding: 0.5rem 1rem; border-radius: 0.75rem; text-decoration: none;">⚡ All Categories Directory</a>
+          <a href="${DOMAIN}/categories" style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; background: #eef2ff; border: 1px solid #c7d2fe; padding: 0.5rem 1rem; border-radius: 0.75rem; text-decoration: none;">⚡ All Categories Directory</a>
           ${otherCategories.map(c => `
-          <a href="${DOMAIN}/category/${c.slug}.html" style="font-size: 0.8rem; font-weight: 600; color: #334155; background: #ffffff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 0.75rem; text-decoration: none;">
+          <a href="${DOMAIN}/category/${c.slug}" style="font-size: 0.8rem; font-weight: 600; color: #334155; background: #ffffff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 0.75rem; text-decoration: none;">
             ${c.icon} ${escapeHtml(c.defaultName)}
           </a>`).join('\n          ')}
         </div>
@@ -1243,7 +1259,7 @@ function buildCategoryHubJsonLd(cat: CategoryItem, catTools: ToolMeta[], canonic
           '@type': 'ListItem',
           'position': 2,
           'name': 'Categories Directory',
-          'item': `${DOMAIN}/categories.html`
+          'item': `${DOMAIN}/categories`
         },
         {
           '@type': 'ListItem',
@@ -1293,9 +1309,9 @@ function renderHomepageContent(): string {
           Compress PDFs, convert images, decode JWTs, calculate financial loans, and format documents right inside your browser memory. No installations, zero wait times, and client-side data privacy.
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-          <a href="${DOMAIN}/category/pdf-tools.html" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Explore PDF Tools &rarr;</a>
-          <a href="${DOMAIN}/category/image-tools.html" style="padding: 0.75rem 1.5rem; background: #ffffff; color: #4f46e5; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #c7d2fe;">Image Tools &rarr;</a>
-          <a href="${DOMAIN}/categories.html" style="padding: 0.75rem 1.5rem; background: #f8fafc; color: #334155; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #e2e8f0;">Full Directory &rarr;</a>
+          <a href="${DOMAIN}/category/pdf-tools" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Explore PDF Tools &rarr;</a>
+          <a href="${DOMAIN}/category/image-tools" style="padding: 0.75rem 1.5rem; background: #ffffff; color: #4f46e5; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #c7d2fe;">Image Tools &rarr;</a>
+          <a href="${DOMAIN}/categories" style="padding: 0.75rem 1.5rem; background: #f8fafc; color: #334155; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #e2e8f0;">Full Directory &rarr;</a>
           <a href="${DOMAIN}/blog" style="padding: 0.75rem 1.5rem; background: #f8fafc; color: #334155; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #e2e8f0;">Knowledge Base &rarr;</a>
         </div>
       </section>
@@ -1320,7 +1336,7 @@ function renderHomepageContent(): string {
                 <span aria-hidden="true">${cat.icon}</span> ${escapeHtml(cat.defaultName)}
                 <span style="font-size: 0.85rem; font-weight: 700; color: #4f46e5; margin-left: 0.5rem;">(${catTools.length} tools)</span>
               </h3>
-              <a href="${DOMAIN}/category/${cat.slug}.html" style="font-size: 0.8rem; color: #4f46e5; font-weight: 600; text-decoration: underline;">Explore ${escapeHtml(cat.defaultName)} Hub &rarr;</a>
+              <a href="${DOMAIN}/category/${cat.slug}" style="font-size: 0.8rem; color: #4f46e5; font-weight: 600; text-decoration: underline;">Explore ${escapeHtml(cat.defaultName)} Hub &rarr;</a>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
               ${catTools.map(tool => `
@@ -1530,7 +1546,7 @@ export function generateLlmsTxt(tools: ToolMeta[]): string {
 - Network Utilities: For API testing, HTTP inspection, and web scrapers, browser requests are dispatched directly to the user-specified destination without storing request payloads on Zubware servers.
 
 ## Dedicated Category Authority Hubs
-${CATEGORIES_DATA.filter(c => c.slug !== 'all').map(c => `- [${c.defaultName}](${DOMAIN}/category/${c.slug}.html): ${c.description}`).join('\n')}
+${CATEGORIES_DATA.filter(c => c.slug !== 'all').map(c => `- [${c.defaultName}](${DOMAIN}/category/${c.slug}): ${c.description}`).join('\n')}
 
 ## In-Depth Guides & Technical Documentation
 `;
@@ -1651,8 +1667,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     lastmod: '2026-09-26'
   });
 
-  // 1. Generate Categories Directory Page (/categories.html)
-  const categoriesCanonical = `${DOMAIN}/categories.html`;
+  // 1. Generate Categories Directory Page (/categories)
+  const categoriesCanonical = `${DOMAIN}/categories`;
   const categoriesJsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -1696,6 +1712,11 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     bodyContent: renderCategoriesPageContent()
   });
 
+  const categoriesDistDir = path.join(distDir, 'categories');
+  if (!fs.existsSync(categoriesDistDir)) {
+    fs.mkdirSync(categoriesDistDir, { recursive: true });
+  }
+  fs.writeFileSync(path.join(categoriesDistDir, 'index.html'), categoriesHtml, 'utf-8');
   fs.writeFileSync(path.join(distDir, 'categories.html'), categoriesHtml, 'utf-8');
 
   sitemapUrls.push({
@@ -1716,7 +1737,7 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   for (const cat of realCategories) {
     const catTools = TOOLS_DATA.filter(t => cat.match(t.category));
     const authMeta = CATEGORY_AUTHORITY_MAP[cat.slug];
-    const catCanonical = `${DOMAIN}/category/${cat.slug}.html`;
+    const catCanonical = `${DOMAIN}/category/${cat.slug}`;
     const catTitle = authMeta?.seoTitle || `${cat.defaultName} — Free Online Utilities | Zubware`;
     const baseDesc = authMeta?.metaDescription || `${cat.description} Explore free browser utilities with zero installation.`;
     const catDesc = baseDesc.replace(/^([A-Za-z]+)\s+/i, `$1 ${catTools.length} `);
@@ -1732,6 +1753,11 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       bodyContent: catBody
     });
 
+    const catSlugDir = path.join(categoryDistDir, cat.slug);
+    if (!fs.existsSync(catSlugDir)) {
+      fs.mkdirSync(catSlugDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(catSlugDir, 'index.html'), catHtml, 'utf-8');
     fs.writeFileSync(path.join(categoryDistDir, `${cat.slug}.html`), catHtml, 'utf-8');
     categoryHubCount++;
 
@@ -1856,6 +1882,11 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       ogType: 'article'
     });
 
+    const articleSlugDir = path.join(blogDistDir, article.slug);
+    if (!fs.existsSync(articleSlugDir)) {
+      fs.mkdirSync(articleSlugDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(articleSlugDir, 'index.html'), articleHtml, 'utf-8');
     fs.writeFileSync(path.join(blogDistDir, `${article.slug}.html`), articleHtml, 'utf-8');
     articleCount++;
 
@@ -1898,9 +1929,17 @@ ${sitemapEntries}
     fs.writeFileSync(path.join(publicDir, 'llms.txt'), llmsTxtContent, 'utf-8');
   }
 
+  // 7. Sync _redirects and _headers to dist/
+  if (fs.existsSync(path.join(publicDir, '_redirects'))) {
+    fs.copyFileSync(path.join(publicDir, '_redirects'), path.join(distDir, '_redirects'));
+  }
+  if (fs.existsSync(path.join(publicDir, '_headers'))) {
+    fs.copyFileSync(path.join(publicDir, '_headers'), path.join(distDir, '_headers'));
+  }
+
   console.log(`[Zubware SEO] Successfully generated ${toolCount} tool HTML pages with semantic body content.`);
   console.log(`[Zubware SEO] Successfully generated ${STATIC_PAGES.length} static legal/info HTML pages.`);
-  console.log(`[Zubware SEO] Successfully generated Categories Directory page at /categories.html.`);
+  console.log(`[Zubware SEO] Successfully generated Categories Directory page at /categories.`);
   console.log(`[Zubware SEO] Successfully generated ${categoryHubCount} Category Authority Hub HTML pages.`);
   console.log(`[Zubware SEO] Successfully generated Blog Index and ${articleCount} Blog Article HTML pages.`);
   console.log(`[Zubware SEO] Generated sitemap.xml with ${sitemapUrls.length} total canonical URLs.`);

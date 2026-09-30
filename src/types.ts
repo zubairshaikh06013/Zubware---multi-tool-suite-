@@ -265,6 +265,7 @@ export type ToolId =
   | 'cat-age-calculator'
   | 'exam-score-calculator'
   | 'cgpa-calculator'
+  | 'college-gpa-calculator'
   | 'mileage-calculator'
   | 'paint-cost-calculator'
   | 'density-calculator'

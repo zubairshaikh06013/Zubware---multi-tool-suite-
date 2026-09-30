@@ -60,8 +60,8 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
             <Home className="w-4 h-4" /> Go to Homepage
           </a>
           <a
-            href={getLinkUrl('/categories.html')}
-            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories.html')); }}
+            href={getLinkUrl('/categories')}
+            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories')); }}
             className="px-5 py-2.5 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-bold text-xs flex items-center gap-2 hover:bg-slate-300 transition-all"
           >
             <Grid className="w-4 h-4" /> Browse Categories

@@ -183,6 +183,16 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
               ref={searchInputRef}
               type="text"
               id="homepage-main-search"
+              aria-label={getTranslation(
+                currentLang,
+                'homepageSearchPlaceholder',
+                'Search 300+ free tools (e.g. Split Image, PDF Merge, Background Remover, Password Protect...)'
+              )}
+              title={getTranslation(
+                currentLang,
+                'homepageSearchPlaceholder',
+                'Search 300+ free tools'
+              )}
               value={searchQuery}
               onChange={(e) => {
                 setSearchQuery(e.target.value);

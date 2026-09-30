@@ -1,14 +1,23 @@
-# Cloudflare Pages Redirects
+# Cloudflare Pages Redirects - Clean Canonical Architecture
+
+# 1. Homepage canonicalization
+/index.html / 301
+
+# 2. Blog canonicalization (redirect legacy .html to clean canonical URL)
 /blog.html /blog 301
 /blog/index.html /blog 301
-/index.html / 301
-/categories /categories.html 301
-/category /categories.html 301
-/category/ /categories.html 301
-/categories/ /categories.html 301
-/categories/:slug /category/:slug.html 301
-/categories/:slug.html /category/:slug.html 301
-/category/:slug /category/:slug.html 301
-/category/:slug/ /category/:slug.html 301
-/blog/:slug /blog/:slug.html 301
-/blog/:slug/ /blog/:slug.html 301
+/blog/:slug.html /blog/:slug 301
+/blog/:slug/index.html /blog/:slug 301
+
+# 3. Categories Hub canonicalization (redirect legacy .html & variations to /categories)
+/categories.html /categories 301
+/categories/index.html /categories 301
+/category /categories 301
+/categories/ /categories 301
+/category/ /categories 301
+
+# 4. Category Authority Hub canonicalization (redirect plural & .html to /category/:slug)
+/categories/:slug /category/:slug 301
+/categories/:slug.html /category/:slug 301
+/category/:slug.html /category/:slug 301
+/category/:slug/index.html /category/:slug 301

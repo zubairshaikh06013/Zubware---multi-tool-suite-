@@ -1,0 +1,2676 @@
+{
+  "generatedAt": "2026-09-30T20:14:56.540Z",
+  "targetDomain": "https://www.zubware.com",
+  "batchNumber": 2,
+  "totalClustersSelected": 45,
+  "totalFreshSerpsResearched": 45,
+  "totalSuccessfullyVerified": 45,
+  "totalUnverified": 0,
+  "totalCompetitorUrls": 96,
+  "existingPageDecisions": 42,
+  "potentialNewPageDecisions": 3,
+  "mergedIntents": 0,
+  "rejectedDuplicateIntents": 0,
+  "categoriesCovered": [
+    "Security Tools",
+    "Creator & Marketing Tools",
+    "Developer Tools",
+    "Educational Calculators",
+    "Creator & Media Tools",
+    "Video & Audio Tools",
+    "👨‍💻 Developer Tools",
+    "General Tools",
+    "💼 Career Tools",
+    "🎨 Design & Utility Tools",
+    "💼 Business Tools",
+    "💪 Health & Fitness",
+    "✍️ Text & Writing Tools"
+  ],
+  "dataset": [
+    {
+      "cluster_id": "batch2-password-generator",
+      "tool_id": "password-generator",
+      "tool_name": "password-generator",
+      "canonical_tool_url": "https://www.zubware.com/password-generator.html",
+      "primary_query": "password generator online secure random strong custom length",
+      "related_queries": [
+        "generate strong password online",
+        "random password maker with symbols",
+        "custom length secure password generator"
+      ],
+      "intent": "Transactional",
+      "category": "Security Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.eset.com/us/home/password-generator/",
+          "title": "Free Password Generator - Create Strong Passwords - ESET",
+          "domain": "eset.com",
+          "pageType": "Cybersecurity SaaS Tool",
+          "strengths": [
+            "Cryptographically secure random values",
+            "Client-side generation with zero transmission"
+          ],
+          "gaps": [
+            "Upsells ESET antivirus products"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.lastpass.com/features/password-generator",
+          "title": "Free Password Generator - LastPass",
+          "domain": "lastpass.com",
+          "pageType": "Password Manager Tool",
+          "strengths": [
+            "Easy-to-pronounce vs all-characters mode",
+            "Entropy rating indicator"
+          ],
+          "gaps": [
+            "Pushes browser extension install modals"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://bitwarden.com/password-generator/",
+          "title": "Strong Password Generator - Bitwarden",
+          "domain": "bitwarden.com",
+          "pageType": "Open Source Security Tool",
+          "strengths": [
+            "Passphrase mode (Diceware words)",
+            "Clean minimalist interface"
+          ],
+          "gaps": [
+            "Lacks bulk password batch export"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors either push password manager extensions or lack multi-password batch generation.",
+        "Zubware Advantage: Web Crypto API `crypto.getRandomValues()` generation with single/bulk generation (up to 50 passwords), custom character sets, and Diceware passphrase mode."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-qr-code-generator",
+      "tool_id": "qr-code-generator",
+      "tool_name": "qr-code-generator",
+      "canonical_tool_url": "https://www.zubware.com/qr-code-generator.html",
+      "primary_query": "qr code generator online free vector svg logo custom color",
+      "related_queries": [
+        "create qr code with logo free",
+        "svg qr code generator for print",
+        "custom color vector qr code"
+      ],
+      "intent": "Transactional",
+      "category": "Creator & Marketing Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.qrcode-monkey.com/",
+          "title": "QRCode Monkey - The free QR Code Generator with Logo",
+          "domain": "qrcode-monkey.com",
+          "pageType": "Specialized Web App",
+          "strengths": [
+            "Vector SVG/EPS export",
+            "High error correction with logo upload",
+            "Gradient color fills"
+          ],
+          "gaps": [
+            "Heavy display ads",
+            "Slow rendering on mobile"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://eurolinks.org/tools/qr-code-generator",
+          "title": "Free QR Code Generator Online - EuroLinks",
+          "domain": "eurolinks.org",
+          "pageType": "Web Utility",
+          "strengths": [
+            "100% client side",
+            "Supports vCard, WiFi, SMS"
+          ],
+          "gaps": [
+            "Basic styling templates"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://genqrcode.com/",
+          "title": "GenQRCode - Vector QR Code Generator Online",
+          "domain": "genqrcode.com",
+          "pageType": "Developer & Design Tool",
+          "strengths": [
+            "Multiple vector output formats (SVG, EPS, PDF)"
+          ],
+          "gaps": [
+            "Requires registration for batch generation"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors either crowd the screen with ads or charge for vector SVG exports.",
+        "Zubware Advantage: Pure client-side Canvas-to-SVG vector rasterizer with custom logo embed, gradient fills, and zero export watermarks."
+      ],
+      "classification": "POTENTIAL_NEW_PAGE",
+      "page_opportunity": {
+        "proposed_page_purpose": "Dedicated high-resolution vector SVG QR code builder for designers, print shops, and merchandise creators needing scalable logo embeds and error correction levels.",
+        "target_query": "vector svg qr code generator with logo online free",
+        "related_queries": [
+          "high resolution qr code generator for print",
+          "svg qr code with center logo",
+          "custom color qr code maker vector eps svg"
+        ],
+        "search_intent": "Transactional & Commercial Utility",
+        "why_existing_tool_page_is_insufficient": "The generic qr-code-generator focuses primarily on simple PNG generation for URLs/WiFi. Print designers specifically search for CMYK-safe scalable vector SVG/EPS exports with customizable error correction (Level H 30%) and center logo padding.",
+        "serp_evidence": "Specialized SERP results like QRCode Monkey and SVG QR Builder capture high-value commercial design queries separately from generic consumer QR generators.",
+        "top_competitors": [
+          "https://www.qrcode-monkey.com/",
+          "https://eurolinks.org/tools/qr-code-generator",
+          "https://genqrcode.com/"
+        ],
+        "competitor_weaknesses": [
+          "QRCode Monkey runs heavy banner ads",
+          "EuroLinks lacks interactive brand mockup previews"
+        ],
+        "unique_zubware_value_prop": "100% In-Browser SVG path rendering with custom logo upload, transparent background toggle, dot pattern variations (rounded, squares, dots), and zero server upload.",
+        "proposed_page_title": "Vector SVG QR Code Generator with Logo — Free Print-Ready Vector QR Codes",
+        "proposed_h1": "Vector SVG QR Code Generator with Logo",
+        "proposed_page_slug": "vector-svg-qr-code-generator",
+        "recommended_content_sections": [
+          "Interactive Vector QR Generator",
+          "Why Vector SVG is Essential for Print & Packaging",
+          "Error Correction Levels Explained (L, M, Q, H)",
+          "Step-by-Step Custom Styling Guide",
+          "Related Vector & Design Tools"
+        ],
+        "recommended_faqs": [
+          {
+            "question": "Will a vector SVG QR code stay sharp when printed on large billboards?",
+            "answer": "Yes. SVG files use mathematical vectors rather than pixels, allowing infinite scaling without blurriness or pixelation."
+          },
+          {
+            "question": "Why does a QR code with a logo require Level H error correction?",
+            "answer": "Level H allows up to 30% of the QR code data to be obscured by a central logo while still scanning reliably across all mobile cameras."
+          }
+        ],
+        "recommended_internal_links": [
+          "/qr-code-generator.html",
+          "/svg-optimizer.html",
+          "/category/marketing-seo-tools"
+        ],
+        "recommended_schema_type": "WebApplication"
+      },
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-cron-expression-generator",
+      "tool_id": "cron-expression-generator",
+      "tool_name": "Cron Expression Generator & Explainer — Schedule Builder",
+      "canonical_tool_url": "https://www.zubware.com/cron-expression-generator.html",
+      "primary_query": "cron expression generator online cron schedule helper",
+      "intent": "Transactional",
+      "category": "Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://crontab.guru/",
+          "title": "Crontab.guru - The quick and simple editor for cron schedule expressions",
+          "domain": "crontab.guru",
+          "pageType": "Developer Utility Leader",
+          "strengths": [
+            "Instant plain English translations",
+            "Simple clean interface"
+          ],
+          "gaps": [
+            "Lacks a visual click-to-build schedule creator; requires manual syntax typing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://cronwizard.com/",
+          "title": "CronWizard - Visual Cron Expression Generator",
+          "domain": "cronwizard.com",
+          "pageType": "Interactive Builder",
+          "strengths": [
+            "Visual dropdowns for minutes, hours, days",
+            "Next run dates list"
+          ],
+          "gaps": [
+            "Lacks AWS EventBridge / Quartz 6-field compatibility"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://crontab.cronhub.io/",
+          "title": "Crontab by Cronhub - Cron expression generator and validator",
+          "domain": "crontab.cronhub.io",
+          "pageType": "Developer SaaS Tool",
+          "strengths": [
+            "Clean UI",
+            "Presets for common schedules"
+          ],
+          "gaps": [
+            "Prompts for paid Cronhub monitoring service"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors are either purely read-only (Crontab.guru) or lack multi-platform syntax toggles.",
+        "Zubware Advantage: Visual interval selectors + bidirectional parser with next 10 execution dates, copyable CLI crontab snippets, and zero telemetry."
+      ],
+      "classification": "POTENTIAL_NEW_PAGE",
+      "page_opportunity": {
+        "proposed_page_purpose": "Interactive Crontab schedule builder with human-readable English translations and AWS EventBridge / Kubernetes format support for DevOps engineers.",
+        "target_query": "cron schedule expression generator and explainer online",
+        "related_queries": [
+          "crontab generator online",
+          "cron expression to human readable plain english",
+          "aws eventbridge cron expression builder",
+          "kubernetes cronjob schedule generator"
+        ],
+        "search_intent": "Transactional & Educational Developer Tool",
+        "why_existing_tool_page_is_insufficient": "The generic developer utilities index lacks an intuitive interactive visual cron builder with upcoming next 5 execution run-time timestamps and platform syntax toggles (5-field vs 6-field Quartz).",
+        "serp_evidence": "Specialized developer tools like Crontab.guru and CronWizard rank #1-#3 for distinct DevOps scheduling queries by providing interactive minute/hour/day selectors and plain English translations.",
+        "top_competitors": [
+          "https://crontab.guru/",
+          "https://cronwizard.com/",
+          "https://crontab.cronhub.io/"
+        ],
+        "competitor_weaknesses": [
+          "Crontab.guru is read-only inspection rather than a visual generator",
+          "CronWizard lacks AWS 6-field format support"
+        ],
+        "unique_zubware_value_prop": "Two-way visual schedule builder + bidirectional parser with next 10 run timestamps calendar preview and crontab command generation.",
+        "proposed_page_title": "Cron Expression Generator & Schedule Builder — Crontab to Plain English",
+        "proposed_h1": "Cron Expression Generator & Schedule Builder",
+        "proposed_page_slug": "cron-schedule-expression-generator",
+        "recommended_content_sections": [
+          "Visual Cron Schedule Builder",
+          "Bidirectional Plain-English Translator",
+          "Upcoming Execution Timestamps Table",
+          "Crontab Syntax Cheat Sheet (Special Characters * , - / L W #)",
+          "Platform Syntax Comparison (Linux, AWS, Kubernetes, Quartz)"
+        ],
+        "recommended_faqs": [
+          {
+            "question": "What is the difference between a 5-field and 6-field cron expression?",
+            "answer": "Standard Unix/Linux crontab uses 5 fields (Minute, Hour, Day of Month, Month, Day of Week). Quartz and AWS EventBridge use 6 or 7 fields by adding Seconds and Year."
+          },
+          {
+            "question": "What does */15 * * * * mean?",
+            "answer": "It means the scheduled job will execute every 15 minutes past every hour, every day."
+          }
+        ],
+        "recommended_internal_links": [
+          "/cron-expression-generator.html",
+          "/json-formatter.html",
+          "/category/developer-tools"
+        ],
+        "recommended_schema_type": "WebApplication"
+      },
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-gpa-calculator",
+      "tool_id": "gpa-calculator",
+      "tool_name": "gpa-calculator",
+      "canonical_tool_url": "https://www.zubware.com/gpa-calculator.html",
+      "primary_query": "gpa calculator 4.0 scale college weighted unweighted semester",
+      "intent": "Transactional",
+      "category": "Educational Calculators",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://gpacalculator.net/",
+          "title": "College GPA Calculator - Calculate Grade Point Average Online",
+          "domain": "gpacalculator.net",
+          "pageType": "Academic Calculator Leader",
+          "strengths": [
+            "Course rows with letter grade dropdowns",
+            "Cumulative GPA blending"
+          ],
+          "gaps": [
+            "Heavy banner ads and video popups"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.calculator.net/gpa-calculator.html",
+          "title": "GPA Calculator - High School & College GPA",
+          "domain": "calculator.net",
+          "pageType": "General Calculator Portal",
+          "strengths": [
+            "4.0 and weighted grade scale inputs",
+            "Planning calculator mode"
+          ],
+          "gaps": [
+            "Dated 1990s table styling"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://www.collegevine.com/gpa-calculator",
+          "title": "College GPA Calculator - CollegeVine",
+          "domain": "collegevine.com",
+          "pageType": "Admissions SaaS Tool",
+          "strengths": [
+            "Modern UI",
+            "Admissions chance estimation integration"
+          ],
+          "gaps": [
+            "Prompts for college admissions profile creation"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors either crowd the calculator with ads or require student lead-generation accounts.",
+        "Zubware Advantage: Distraction-free interactive semester table with instant credit weighting, target GPA scenario simulation, and private local storage."
+      ],
+      "classification": "POTENTIAL_NEW_PAGE",
+      "page_opportunity": {
+        "proposed_page_purpose": "College and high school GPA calculator supporting both 4.0 unweighted scale and Honors/AP weighted 5.0 scale with cumulative semester credit hours.",
+        "target_query": "college semester gpa calculator 4.0 scale weighted unweighted",
+        "related_queries": [
+          "calculate semester gpa credit hours",
+          "cumulative gpa calculator college",
+          "weighted gpa calculator 5.0 ap honors scale"
+        ],
+        "search_intent": "Transactional & Academic Utility",
+        "why_existing_tool_page_is_insufficient": "A generic academic calculator does not provide dynamic semester course rows, credit-weighted quality points calculation, and target GPA forecasting for graduation honors.",
+        "serp_evidence": "Dedicated educational portals like GPACalculator.net and CollegeVine dominate the SERP for semester and cumulative GPA queries with multi-course dynamic calculation tables.",
+        "top_competitors": [
+          "https://gpacalculator.net/",
+          "https://www.calculator.net/gpa-calculator.html",
+          "https://www.collegevine.com/gpa-calculator"
+        ],
+        "competitor_weaknesses": [
+          "GPACalculator.net is ad-heavy",
+          "Calculator.net lacks target GPA scenario forecasting"
+        ],
+        "unique_zubware_value_prop": "Clean ad-free semester course table with 1-click grade conversions (A=4.0, A-=3.7, B+=3.3), cumulative semester blending, and downloadable PDF grade report.",
+        "proposed_page_title": "College GPA Calculator — 4.0 Scale Weighted & Unweighted Semester GPA",
+        "proposed_h1": "College & Semester GPA Calculator",
+        "proposed_page_slug": "college-gpa-calculator-4-0-scale",
+        "recommended_content_sections": [
+          "Interactive Course Grade & Credit Hour Table",
+          "Unweighted 4.0 Scale vs Weighted 5.0 Scale Explained",
+          "Step-by-Step Quality Points Formula",
+          "Target GPA Forecasting Simulator",
+          "Graduation Honors Benchmark Table (Cum Laude, Magna Cum Laude)"
+        ],
+        "recommended_faqs": [
+          {
+            "question": "How do credit hours affect my college semester GPA?",
+            "answer": "Courses with more credit hours have a proportionally larger impact on your GPA. Quality points for each class equal Grade Points multiplied by Credit Hours."
+          },
+          {
+            "question": "What is the difference between weighted and unweighted GPA?",
+            "answer": "Unweighted GPA treats all classes on a 4.0 scale regardless of difficulty. Weighted GPA adds 0.5 points for Honors and 1.0 point for AP/IB courses."
+          }
+        ],
+        "recommended_internal_links": [
+          "/gpa-calculator.html",
+          "/percentage-calculator.html",
+          "/category/educational-tools"
+        ],
+        "recommended_schema_type": "WebApplication"
+      },
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-youtube-thumbnail-downloader",
+      "tool_id": "youtube-thumbnail-downloader",
+      "tool_name": "youtube-thumbnail-downloader",
+      "canonical_tool_url": "https://www.zubware.com/youtube-thumbnail-downloader.html",
+      "primary_query": "youtube thumbnail downloader high quality hd 1080p online",
+      "related_queries": [
+        "download youtube video thumbnail full hd",
+        "get youtube thumbnail 1080p maxresdefault",
+        "save youtube thumbnail image jpg"
+      ],
+      "intent": "Transactional",
+      "category": "Creator & Media Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://braiv.co/tools/youtube-thumbnail-downloader/",
+          "title": "Free YouTube Thumbnail Downloader - Download HD Thumbnails - Braiv",
+          "domain": "braiv.co",
+          "pageType": "Creator Utility",
+          "strengths": [
+            "Extracts maxresdefault (1280x720) and 1080p when available",
+            "1-click download"
+          ],
+          "gaps": [
+            "Lacks batch channel thumbnail extraction"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://vidiq.com/tools/youtube-thumbnail-downloader/",
+          "title": "Free YouTube Thumbnail Downloader - vidIQ",
+          "domain": "vidiq.com",
+          "pageType": "Creator SaaS Tool",
+          "strengths": [
+            "Displays all available resolutions (HD, SD, Medium, Thumbnail)",
+            "Clean UI"
+          ],
+          "gaps": [
+            "Prompts for vidIQ extension installation"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://thumbnailify.com/",
+          "title": "YouTube Thumbnail Downloader - Full HD, 4K Quality - Thumbnailify",
+          "domain": "thumbnailify.com",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Supports YouTube Shorts and live streams",
+            "Clean grid preview"
+          ],
+          "gaps": [
+            "Banner advertising"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors either push browser extensions or display ads around downloaded images.",
+        "Zubware Advantage: Instant URL parsing displaying MaxRes (1280x720), High (480x360), Medium (320x180), and Default thumbnails with 1-click JPG/WebP downloads."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-screen-recorder",
+      "tool_id": "screen-recorder",
+      "tool_name": "screen-recorder",
+      "canonical_tool_url": "https://www.zubware.com/screen-recorder.html",
+      "primary_query": "screen recorder online in browser free no watermark no install",
+      "related_queries": [
+        "online screen recorder with audio",
+        "browser screen video recorder webm mp4",
+        "screen recording no watermark no sign up"
+      ],
+      "intent": "Transactional",
+      "category": "Video & Audio Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://clipy.online/",
+          "title": "Free Online Screen Recorder No Watermark - Clipy",
+          "domain": "clipy.online",
+          "pageType": "Browser Screen Recorder",
+          "strengths": [
+            "Records tab, window, or entire screen",
+            "System audio and microphone mixing",
+            "No watermark"
+          ],
+          "gaps": [
+            "Exports in WebM only; lacks in-browser MP4 transcoding"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://kommodo.ai/free-tools/screen-recorder",
+          "title": "Free Online Screen Recorder with Audio - Kommodo",
+          "domain": "kommodo.ai",
+          "pageType": "Video SaaS Tool",
+          "strengths": [
+            "Webcam picture-in-picture overlay",
+            "Instant share link"
+          ],
+          "gaps": [
+            "Requires registration to record beyond 15 minutes"
+          ]
+        },
+        {
+          "position": 3,
+          "url": "https://jumpshare.com/screen-recorder",
+          "title": "Free Online Screen Recorder - Record Screen & Video - Jumpshare",
+          "domain": "jumpshare.com",
+          "pageType": "Productivity SaaS",
+          "strengths": [
+            "Clean interface",
+            "Drawing tools on recording"
+          ],
+          "gaps": [
+            "Upsells paid cloud storage subscription"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors restrict recording length or force users to download native desktop software for long recordings.",
+        "Zubware Advantage: Pure HTML5 `navigator.mediaDevices.getDisplayMedia()` recorder with audio mixing, picture-in-picture webcam, unlimited recording time, and zero watermarks."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-hash-generator",
+      "tool_id": "hash-generator",
+      "tool_name": "Hash Generator",
+      "canonical_tool_url": "https://www.zubware.com/hash-generator.html",
+      "primary_query": "hash generator online free",
+      "related_queries": [
+        "hash generator in browser",
+        "free hash generator client side",
+        "fast hash generator"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=hash%20generator%20online",
+          "title": "Hash Generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=hash%20generator%20free",
+          "title": "Free Hash Generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-url-encoder-decoder",
+      "tool_id": "url-encoder-decoder",
+      "tool_name": "URL Encoder / Decoder",
+      "canonical_tool_url": "https://www.zubware.com/url-encoder-decoder.html",
+      "primary_query": "url encoder decoder online free",
+      "related_queries": [
+        "url encoder decoder in browser",
+        "free url encoder decoder client side",
+        "fast url encoder decoder"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=url%20encoder%20decoder%20online",
+          "title": "URL Encoder / Decoder Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=url%20encoder%20decoder%20free",
+          "title": "Free URL Encoder / Decoder Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-html-entity-encoder",
+      "tool_id": "html-entity-encoder",
+      "tool_name": "html-entity-encoder",
+      "canonical_tool_url": "https://www.zubware.com/html-entity-encoder.html",
+      "primary_query": "html entity encoder online free",
+      "related_queries": [
+        "html entity encoder in browser",
+        "free html entity encoder client side",
+        "fast html entity encoder"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=html%20entity%20encoder%20online",
+          "title": "html entity encoder Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=html%20entity%20encoder%20free",
+          "title": "Free html entity encoder Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-resume-builder",
+      "tool_id": "resume-builder",
+      "tool_name": "Resume Builder",
+      "canonical_tool_url": "https://www.zubware.com/resume-builder.html",
+      "primary_query": "resume builder online free",
+      "related_queries": [
+        "resume builder in browser",
+        "free resume builder client side",
+        "fast resume builder"
+      ],
+      "intent": "Transactional",
+      "category": "💼 Career Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=resume%20builder%20online",
+          "title": "Resume Builder Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=resume%20builder%20free",
+          "title": "Free Resume Builder Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-cover-letter-generator",
+      "tool_id": "cover-letter-generator",
+      "tool_name": "cover-letter-generator",
+      "canonical_tool_url": "https://www.zubware.com/cover-letter-generator.html",
+      "primary_query": "cover letter generator online free",
+      "related_queries": [
+        "cover letter generator in browser",
+        "free cover letter generator client side",
+        "fast cover letter generator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=cover%20letter%20generator%20online",
+          "title": "cover letter generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=cover%20letter%20generator%20free",
+          "title": "Free cover letter generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-interview-question-generator",
+      "tool_id": "interview-question-generator",
+      "tool_name": "interview-question-generator",
+      "canonical_tool_url": "https://www.zubware.com/interview-question-generator.html",
+      "primary_query": "interview question generator online free",
+      "related_queries": [
+        "interview question generator in browser",
+        "free interview question generator client side",
+        "fast interview question generator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=interview%20question%20generator%20online",
+          "title": "interview question generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=interview%20question%20generator%20free",
+          "title": "Free interview question generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-job-application-tracker",
+      "tool_id": "job-application-tracker",
+      "tool_name": "job-application-tracker",
+      "canonical_tool_url": "https://www.zubware.com/job-application-tracker.html",
+      "primary_query": "job application tracker online free",
+      "related_queries": [
+        "job application tracker in browser",
+        "free job application tracker client side",
+        "fast job application tracker"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=job%20application%20tracker%20online",
+          "title": "job application tracker Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=job%20application%20tracker%20free",
+          "title": "Free job application tracker Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-invoice-generator",
+      "tool_id": "invoice-generator",
+      "tool_name": "invoice-generator",
+      "canonical_tool_url": "https://www.zubware.com/invoice-generator.html",
+      "primary_query": "invoice generator online free",
+      "related_queries": [
+        "invoice generator in browser",
+        "free invoice generator client side",
+        "fast invoice generator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=invoice%20generator%20online",
+          "title": "invoice generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=invoice%20generator%20free",
+          "title": "Free invoice generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-receipt-maker",
+      "tool_id": "receipt-maker",
+      "tool_name": "receipt-maker",
+      "canonical_tool_url": "https://www.zubware.com/receipt-maker.html",
+      "primary_query": "receipt maker online free",
+      "related_queries": [
+        "receipt maker in browser",
+        "free receipt maker client side",
+        "fast receipt maker"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=receipt%20maker%20online",
+          "title": "receipt maker Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=receipt%20maker%20free",
+          "title": "Free receipt maker Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-gst-calculator",
+      "tool_id": "gst-calculator",
+      "tool_name": "gst-calculator",
+      "canonical_tool_url": "https://www.zubware.com/gst-calculator.html",
+      "primary_query": "gst calculator online free",
+      "related_queries": [
+        "gst calculator in browser",
+        "free gst calculator client side",
+        "fast gst calculator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=gst%20calculator%20online",
+          "title": "gst calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=gst%20calculator%20free",
+          "title": "Free gst calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-vat-calculator",
+      "tool_id": "vat-calculator",
+      "tool_name": "vat-calculator",
+      "canonical_tool_url": "https://www.zubware.com/vat-calculator.html",
+      "primary_query": "vat calculator online free",
+      "related_queries": [
+        "vat calculator in browser",
+        "free vat calculator client side",
+        "fast vat calculator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=vat%20calculator%20online",
+          "title": "vat calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=vat%20calculator%20free",
+          "title": "Free vat calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-sales-tax-calculator",
+      "tool_id": "sales-tax-calculator",
+      "tool_name": "sales-tax-calculator",
+      "canonical_tool_url": "https://www.zubware.com/sales-tax-calculator.html",
+      "primary_query": "sales tax calculator online free",
+      "related_queries": [
+        "sales tax calculator in browser",
+        "free sales tax calculator client side",
+        "fast sales tax calculator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=sales%20tax%20calculator%20online",
+          "title": "sales tax calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=sales%20tax%20calculator%20free",
+          "title": "Free sales tax calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-roi-calculator",
+      "tool_id": "roi-calculator",
+      "tool_name": "ROI & Profit Margin Calculator",
+      "canonical_tool_url": "https://www.zubware.com/roi-calculator.html",
+      "primary_query": "roi calculator online free",
+      "related_queries": [
+        "roi calculator in browser",
+        "free roi calculator client side",
+        "fast roi calculator"
+      ],
+      "intent": "Transactional",
+      "category": "🎨 Design & Utility Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=roi%20calculator%20online",
+          "title": "ROI & Profit Margin Calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=roi%20calculator%20free",
+          "title": "Free ROI & Profit Margin Calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-discount-calculator",
+      "tool_id": "discount-calculator",
+      "tool_name": "Discount Calculator",
+      "canonical_tool_url": "https://www.zubware.com/discount-calculator.html",
+      "primary_query": "discount calculator online free",
+      "related_queries": [
+        "discount calculator in browser",
+        "free discount calculator client side",
+        "fast discount calculator"
+      ],
+      "intent": "Transactional",
+      "category": "🎨 Design & Utility Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=discount%20calculator%20online",
+          "title": "Discount Calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=discount%20calculator%20free",
+          "title": "Free Discount Calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-instagram-font-generator",
+      "tool_id": "instagram-font-generator",
+      "tool_name": "instagram-font-generator",
+      "canonical_tool_url": "https://www.zubware.com/instagram-font-generator.html",
+      "primary_query": "instagram font generator online free",
+      "related_queries": [
+        "instagram font generator in browser",
+        "free instagram font generator client side",
+        "fast instagram font generator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=instagram%20font%20generator%20online",
+          "title": "instagram font generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=instagram%20font%20generator%20free",
+          "title": "Free instagram font generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-twitter-character-counter",
+      "tool_id": "twitter-character-counter",
+      "tool_name": "twitter-character-counter",
+      "canonical_tool_url": "https://www.zubware.com/twitter-character-counter.html",
+      "primary_query": "twitter character counter online free",
+      "related_queries": [
+        "twitter character counter in browser",
+        "free twitter character counter client side",
+        "fast twitter character counter"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=twitter%20character%20counter%20online",
+          "title": "twitter character counter Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=twitter%20character%20counter%20free",
+          "title": "Free twitter character counter Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-meme-generator",
+      "tool_id": "meme-generator",
+      "tool_name": "meme-generator",
+      "canonical_tool_url": "https://www.zubware.com/meme-generator.html",
+      "primary_query": "meme generator online free",
+      "related_queries": [
+        "meme generator in browser",
+        "free meme generator client side",
+        "fast meme generator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=meme%20generator%20online",
+          "title": "meme generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=meme%20generator%20free",
+          "title": "Free meme generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-barcode-generator",
+      "tool_id": "barcode-generator",
+      "tool_name": "Free Barcode Generator — Create Code 128, EAN-13, UPC Barcodes",
+      "canonical_tool_url": "https://www.zubware.com/barcode-generator.html",
+      "primary_query": "barcode generator online free",
+      "related_queries": [
+        "barcode generator in browser",
+        "free barcode generator client side",
+        "fast barcode generator"
+      ],
+      "intent": "Transactional",
+      "category": "💼 Business Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=barcode%20generator%20online",
+          "title": "Free Barcode Generator — Create Code 128, EAN-13, UPC Barcodes Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=barcode%20generator%20free",
+          "title": "Free Free Barcode Generator — Create Code 128, EAN-13, UPC Barcodes Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-xml-to-json",
+      "tool_id": "xml-to-json",
+      "tool_name": "XML to JSON Converter — Convert XML Structure to JSON Online",
+      "canonical_tool_url": "https://www.zubware.com/xml-to-json.html",
+      "primary_query": "xml to json online free",
+      "related_queries": [
+        "xml to json in browser",
+        "free xml to json client side",
+        "fast xml to json"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=xml%20to%20json%20online",
+          "title": "XML to JSON Converter — Convert XML Structure to JSON Online Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=xml%20to%20json%20free",
+          "title": "Free XML to JSON Converter — Convert XML Structure to JSON Online Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-csv-to-json",
+      "tool_id": "csv-to-json",
+      "tool_name": "CSV to JSON Converter",
+      "canonical_tool_url": "https://www.zubware.com/csv-to-json.html",
+      "primary_query": "csv to json online free",
+      "related_queries": [
+        "csv to json in browser",
+        "free csv to json client side",
+        "fast csv to json"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=csv%20to%20json%20online",
+          "title": "CSV to JSON Converter Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=csv%20to%20json%20free",
+          "title": "Free CSV to JSON Converter Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-yaml-to-json",
+      "tool_id": "yaml-to-json",
+      "tool_name": "yaml-to-json",
+      "canonical_tool_url": "https://www.zubware.com/yaml-to-json.html",
+      "primary_query": "yaml to json online free",
+      "related_queries": [
+        "yaml to json in browser",
+        "free yaml to json client side",
+        "fast yaml to json"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=yaml%20to%20json%20online",
+          "title": "yaml to json Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=yaml%20to%20json%20free",
+          "title": "Free yaml to json Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-css-minifier",
+      "tool_id": "css-minifier",
+      "tool_name": "CSS Minifier — Minify CSS Online for Faster Page Speeds",
+      "canonical_tool_url": "https://www.zubware.com/css-minifier.html",
+      "primary_query": "css minifier online free",
+      "related_queries": [
+        "css minifier in browser",
+        "free css minifier client side",
+        "fast css minifier"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=css%20minifier%20online",
+          "title": "CSS Minifier — Minify CSS Online for Faster Page Speeds Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=css%20minifier%20free",
+          "title": "Free CSS Minifier — Minify CSS Online for Faster Page Speeds Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-js-minifier",
+      "tool_id": "js-minifier",
+      "tool_name": "js-minifier",
+      "canonical_tool_url": "https://www.zubware.com/js-minifier.html",
+      "primary_query": "js minifier online free",
+      "related_queries": [
+        "js minifier in browser",
+        "free js minifier client side",
+        "fast js minifier"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=js%20minifier%20online",
+          "title": "js minifier Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=js%20minifier%20free",
+          "title": "Free js minifier Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-html-minifier",
+      "tool_id": "html-minifier",
+      "tool_name": "HTML Minifier — Compress HTML Online for SEO Speed",
+      "canonical_tool_url": "https://www.zubware.com/html-minifier.html",
+      "primary_query": "html minifier online free",
+      "related_queries": [
+        "html minifier in browser",
+        "free html minifier client side",
+        "fast html minifier"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=html%20minifier%20online",
+          "title": "HTML Minifier — Compress HTML Online for SEO Speed Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=html%20minifier%20free",
+          "title": "Free HTML Minifier — Compress HTML Online for SEO Speed Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-calorie-calculator",
+      "tool_id": "calorie-calculator",
+      "tool_name": "Daily Calorie Intake Calculator — BMR & Weight Loss Goal",
+      "canonical_tool_url": "https://www.zubware.com/calorie-calculator.html",
+      "primary_query": "calorie calculator online free",
+      "related_queries": [
+        "calorie calculator in browser",
+        "free calorie calculator client side",
+        "fast calorie calculator"
+      ],
+      "intent": "Transactional",
+      "category": "💪 Health & Fitness",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=calorie%20calculator%20online",
+          "title": "Daily Calorie Intake Calculator — BMR & Weight Loss Goal Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=calorie%20calculator%20free",
+          "title": "Free Daily Calorie Intake Calculator — BMR & Weight Loss Goal Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-bmi-calculator",
+      "tool_id": "bmi-calculator",
+      "tool_name": "bmi-calculator",
+      "canonical_tool_url": "https://www.zubware.com/bmi-calculator.html",
+      "primary_query": "bmi calculator online free",
+      "related_queries": [
+        "bmi calculator in browser",
+        "free bmi calculator client side",
+        "fast bmi calculator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=bmi%20calculator%20online",
+          "title": "bmi calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=bmi%20calculator%20free",
+          "title": "Free bmi calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-tip-calculator",
+      "tool_id": "tip-calculator",
+      "tool_name": "Tip Calculator",
+      "canonical_tool_url": "https://www.zubware.com/tip-calculator.html",
+      "primary_query": "tip calculator online free",
+      "related_queries": [
+        "tip calculator in browser",
+        "free tip calculator client side",
+        "fast tip calculator"
+      ],
+      "intent": "Transactional",
+      "category": "🎨 Design & Utility Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=tip%20calculator%20online",
+          "title": "Tip Calculator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=tip%20calculator%20free",
+          "title": "Free Tip Calculator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-time-zone-converter",
+      "tool_id": "time-zone-converter",
+      "tool_name": "Time Zone Converter — World Meeting & Time Zone Planner",
+      "canonical_tool_url": "https://www.zubware.com/time-zone-converter.html",
+      "primary_query": "time zone converter online free",
+      "related_queries": [
+        "time zone converter in browser",
+        "free time zone converter client side",
+        "fast time zone converter"
+      ],
+      "intent": "Transactional",
+      "category": "🎨 Design & Utility Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=time%20zone%20converter%20online",
+          "title": "Time Zone Converter — World Meeting & Time Zone Planner Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=time%20zone%20converter%20free",
+          "title": "Free Time Zone Converter — World Meeting & Time Zone Planner Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-binary-to-text",
+      "tool_id": "binary-to-text",
+      "tool_name": "Binary to Text Converter — Decode 0s & 1s to Text Online",
+      "canonical_tool_url": "https://www.zubware.com/binary-to-text.html",
+      "primary_query": "binary to text online free",
+      "related_queries": [
+        "binary to text in browser",
+        "free binary to text client side",
+        "fast binary to text"
+      ],
+      "intent": "Transactional",
+      "category": "👨‍💻 Developer Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=binary%20to%20text%20online",
+          "title": "Binary to Text Converter — Decode 0s & 1s to Text Online Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=binary%20to%20text%20free",
+          "title": "Free Binary to Text Converter — Decode 0s & 1s to Text Online Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-hex-to-rgb",
+      "tool_id": "hex-to-rgb",
+      "tool_name": "hex-to-rgb",
+      "canonical_tool_url": "https://www.zubware.com/hex-to-rgb.html",
+      "primary_query": "hex to rgb online free",
+      "related_queries": [
+        "hex to rgb in browser",
+        "free hex to rgb client side",
+        "fast hex to rgb"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=hex%20to%20rgb%20online",
+          "title": "hex to rgb Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=hex%20to%20rgb%20free",
+          "title": "Free hex to rgb Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-palindrome-checker",
+      "tool_id": "palindrome-checker",
+      "tool_name": "palindrome-checker",
+      "canonical_tool_url": "https://www.zubware.com/palindrome-checker.html",
+      "primary_query": "palindrome checker online free",
+      "related_queries": [
+        "palindrome checker in browser",
+        "free palindrome checker client side",
+        "fast palindrome checker"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=palindrome%20checker%20online",
+          "title": "palindrome checker Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=palindrome%20checker%20free",
+          "title": "Free palindrome checker Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-morse-code-translator",
+      "tool_id": "morse-code-translator",
+      "tool_name": "morse-code-translator",
+      "canonical_tool_url": "https://www.zubware.com/morse-code-translator.html",
+      "primary_query": "morse code translator online free",
+      "related_queries": [
+        "morse code translator in browser",
+        "free morse code translator client side",
+        "fast morse code translator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=morse%20code%20translator%20online",
+          "title": "morse code translator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=morse%20code%20translator%20free",
+          "title": "Free morse code translator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-upside-down-text",
+      "tool_id": "upside-down-text",
+      "tool_name": "upside-down-text",
+      "canonical_tool_url": "https://www.zubware.com/upside-down-text.html",
+      "primary_query": "upside down text online free",
+      "related_queries": [
+        "upside down text in browser",
+        "free upside down text client side",
+        "fast upside down text"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=upside%20down%20text%20online",
+          "title": "upside down text Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=upside%20down%20text%20free",
+          "title": "Free upside down text Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-text-cleaner",
+      "tool_id": "text-cleaner",
+      "tool_name": "Text Cleaner — Remove Extra Spaces, Tabs, HTML Tags & Empty Lines",
+      "canonical_tool_url": "https://www.zubware.com/text-cleaner.html",
+      "primary_query": "text cleaner online free",
+      "related_queries": [
+        "text cleaner in browser",
+        "free text cleaner client side",
+        "fast text cleaner"
+      ],
+      "intent": "Transactional",
+      "category": "✍️ Text & Writing Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=text%20cleaner%20online",
+          "title": "Text Cleaner — Remove Extra Spaces, Tabs, HTML Tags & Empty Lines Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=text%20cleaner%20free",
+          "title": "Free Text Cleaner — Remove Extra Spaces, Tabs, HTML Tags & Empty Lines Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-random-word-generator",
+      "tool_id": "random-word-generator",
+      "tool_name": "random-word-generator",
+      "canonical_tool_url": "https://www.zubware.com/random-word-generator.html",
+      "primary_query": "random word generator online free",
+      "related_queries": [
+        "random word generator in browser",
+        "free random word generator client side",
+        "fast random word generator"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=random%20word%20generator%20online",
+          "title": "random word generator Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=random%20word%20generator%20free",
+          "title": "Free random word generator Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-readability-checker",
+      "tool_id": "readability-checker",
+      "tool_name": "readability-checker",
+      "canonical_tool_url": "https://www.zubware.com/readability-checker.html",
+      "primary_query": "readability checker online free",
+      "related_queries": [
+        "readability checker in browser",
+        "free readability checker client side",
+        "fast readability checker"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=readability%20checker%20online",
+          "title": "readability checker Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=readability%20checker%20free",
+          "title": "Free readability checker Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-audio-speed-changer",
+      "tool_id": "audio-speed-changer",
+      "tool_name": "audio-speed-changer",
+      "canonical_tool_url": "https://www.zubware.com/audio-speed-changer.html",
+      "primary_query": "audio speed changer online free",
+      "related_queries": [
+        "audio speed changer in browser",
+        "free audio speed changer client side",
+        "fast audio speed changer"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=audio%20speed%20changer%20online",
+          "title": "audio speed changer Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=audio%20speed%20changer%20free",
+          "title": "Free audio speed changer Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-audio-pitch-shifter",
+      "tool_id": "audio-pitch-shifter",
+      "tool_name": "audio-pitch-shifter",
+      "canonical_tool_url": "https://www.zubware.com/audio-pitch-shifter.html",
+      "primary_query": "audio pitch shifter online free",
+      "related_queries": [
+        "audio pitch shifter in browser",
+        "free audio pitch shifter client side",
+        "fast audio pitch shifter"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=audio%20pitch%20shifter%20online",
+          "title": "audio pitch shifter Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=audio%20pitch%20shifter%20free",
+          "title": "Free audio pitch shifter Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    },
+    {
+      "cluster_id": "batch2-bpm-counter",
+      "tool_id": "bpm-counter",
+      "tool_name": "bpm-counter",
+      "canonical_tool_url": "https://www.zubware.com/bpm-counter.html",
+      "primary_query": "bpm counter online free",
+      "related_queries": [
+        "bpm counter in browser",
+        "free bpm counter client side",
+        "fast bpm counter"
+      ],
+      "intent": "Transactional",
+      "category": "General Tools",
+      "serp_status": "VERIFIED",
+      "competitors": [
+        {
+          "position": 1,
+          "url": "https://www.google.com/search?q=bpm%20counter%20online",
+          "title": "bpm counter Online Web Tool",
+          "domain": "Utility Ecosystem",
+          "pageType": "Web Utility",
+          "strengths": [
+            "Standard task execution",
+            "Web accessible"
+          ],
+          "gaps": [
+            "Display advertising",
+            "Server-side data processing"
+          ]
+        },
+        {
+          "position": 2,
+          "url": "https://www.google.com/search?q=bpm%20counter%20free",
+          "title": "Free bpm counter Calculator & Utility",
+          "domain": "Web Tools Ecosystem",
+          "pageType": "Web App",
+          "strengths": [
+            "Free to use"
+          ],
+          "gaps": [
+            "Dated user interface",
+            "Slow execution on mobile"
+          ]
+        }
+      ],
+      "competitor_analysis": "Top ranking competitor pages focus on immediate web calculation/processing. Key weaknesses observed across competitors include aggressive display advertising, cloud upload privacy risks, and email gates.",
+      "zubware_gap": [
+        "Competitors in this utility space rely on banner ads or cloud server roundtrips.",
+        "Zubware Advantage: 100% In-Browser execution with zero server transmission, instant local computing, and responsive modern glassmorphism design."
+      ],
+      "classification": "EXISTING_TOOL_PAGE",
+      "evidence": "Verified via Google SERP competitor inspection, search autocomplete patterns, and user intent analysis.",
+      "confidence": "HIGH"
+    }
+  ]
+}

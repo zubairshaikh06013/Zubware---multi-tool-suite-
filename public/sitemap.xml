@@ -7,85 +7,85 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/categories.html</loc>
+    <loc>https://www.zubware.com/categories</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/pdf-tools.html</loc>
+    <loc>https://www.zubware.com/category/pdf-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/image-tools.html</loc>
+    <loc>https://www.zubware.com/category/image-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/creator-tools.html</loc>
+    <loc>https://www.zubware.com/category/creator-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/video-tools.html</loc>
+    <loc>https://www.zubware.com/category/video-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/audio-tools.html</loc>
+    <loc>https://www.zubware.com/category/audio-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/business-tools.html</loc>
+    <loc>https://www.zubware.com/category/business-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/text-tools.html</loc>
+    <loc>https://www.zubware.com/category/text-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/career-tools.html</loc>
+    <loc>https://www.zubware.com/category/career-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/developer-tools.html</loc>
+    <loc>https://www.zubware.com/category/developer-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/design-tools.html</loc>
+    <loc>https://www.zubware.com/category/design-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/prompt-tools.html</loc>
+    <loc>https://www.zubware.com/category/prompt-tools</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/health-fitness.html</loc>
+    <loc>https://www.zubware.com/category/health-fitness</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.zubware.com/category/generators.html</loc>
+    <loc>https://www.zubware.com/category/generators</loc>
     <lastmod>2026-09-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -1610,6 +1610,12 @@
   </url>
   <url>
     <loc>https://www.zubware.com/cgpa-calculator.html</loc>
+    <lastmod>2026-09-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.zubware.com/college-gpa-calculator.html</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

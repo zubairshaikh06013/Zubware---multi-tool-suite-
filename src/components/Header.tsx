@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Moon, Sun, ChevronDown, Wrench, Globe } from 'lucide-react';
+import { Search, Moon, Sun, ChevronDown, Wrench, Globe, Menu, X, Home, LayoutDashboard, Grid, BookOpen } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { getTranslatedTools } from '../data/toolsData';
 import { SUPPORTED_LANGUAGES, LanguageCode } from '../lib/i18n';
@@ -7,6 +7,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
 import { ZubwareLogo } from './ZubwareLogo';
 import { ToolIcon } from './common/ToolIcon';
+import { CATEGORIES_DATA } from '../data/categoriesData';
 
 interface HeaderProps {
   darkMode: boolean;
@@ -29,6 +30,7 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
 
   const translatedTools = getTranslatedTools(currentLang);
@@ -46,14 +48,14 @@ export const Header: React.FC<HeaderProps> = ({
             e.preventDefault();
             onNavigate(getLinkUrl('/'));
           }}
-          className="flex items-center gap-2.5 sm:gap-3 group cursor-pointer select-none"
+          className="flex items-center gap-2 sm:gap-3 group cursor-pointer select-none shrink-0"
         >
-          <ZubwareLogo className="w-9 h-9 sm:w-10 sm:h-10 shrink-0 drop-shadow-sm group-hover:scale-105 transition-transform" />
+          <ZubwareLogo className="w-8 h-8 sm:w-10 sm:h-10 shrink-0 drop-shadow-sm group-hover:scale-105 transition-transform" />
           <div className="flex flex-col justify-center">
-            <span className="font-brand font-[850] text-[21px] sm:text-[24px] leading-none text-slate-900 dark:text-white tracking-[-0.035em] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+            <span className="font-brand font-[850] text-[19px] sm:text-[24px] leading-none text-slate-900 dark:text-white tracking-[-0.035em] group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
               Zubware
             </span>
-            <span className="font-brand-sub text-[8px] sm:text-[9.5px] font-bold text-slate-500 dark:text-slate-400 tracking-[0.24em] uppercase leading-none mt-1 sm:mt-1.5">
+            <span className="font-brand-sub text-[7.5px] sm:text-[9.5px] font-bold text-slate-500 dark:text-slate-400 tracking-[0.24em] uppercase leading-none mt-1 sm:mt-1.5">
               Multi Tool Suite
             </span>
           </div>
@@ -88,8 +90,8 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
 
           <a
-            href={getLinkUrl('/categories.html')}
-            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories.html')); }}
+            href={getLinkUrl('/categories')}
+            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories')); }}
             aria-label="Tool Categories"
             className={`px-3 py-1.5 rounded-xl transition-all ${
               currentPath.includes('categories')
@@ -263,7 +265,7 @@ export const Header: React.FC<HeaderProps> = ({
             whileTap={{ scale: 0.92 }}
             onClick={onToggleDarkMode}
             aria-label={darkMode ? 'Switch to Light Mode (Day)' : 'Switch to Dark Mode (Night)'}
-            className="p-2 rounded-xl bg-slate-100/90 hover:bg-slate-200/90 dark:bg-slate-800/90 dark:hover:bg-slate-700/90 border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-amber-400 transition-all cursor-pointer shadow-xs flex items-center justify-center"
+            className="p-2 rounded-xl bg-slate-100/90 hover:bg-slate-200/90 dark:bg-slate-800/90 dark:hover:bg-slate-700/90 border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-amber-400 transition-all cursor-pointer shadow-xs flex items-center justify-center min-h-[44px] min-w-[44px]"
             title={darkMode ? `${t('themeLight', 'Light Mode')} (Day)` : `${t('themeDark', 'Dark Mode')} (Night)`}
           >
             {darkMode ? (
@@ -272,8 +274,135 @@ export const Header: React.FC<HeaderProps> = ({
               <Moon className="w-5 h-5 text-slate-700 fill-slate-700/10 transition-transform" />
             )}
           </motion.button>
+
+          {/* Mobile Menu Hamburger Button */}
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-nav-drawer"
+            aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
+            className="md:hidden p-2 rounded-xl bg-slate-100/90 hover:bg-slate-200/90 dark:bg-slate-800/90 dark:hover:bg-slate-700/90 border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-200 transition-all cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5 text-slate-900 dark:text-white" />
+            ) : (
+              <Menu className="w-5 h-5 text-slate-900 dark:text-white" />
+            )}
+          </motion.button>
         </div>
       </div>
+
+      {/* Mobile Navigation Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.nav
+            id="mobile-nav-drawer"
+            aria-label="Mobile Navigation"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden border-t border-slate-200/70 dark:border-slate-800/70 bg-white/95 dark:bg-slate-900/95 backdrop-blur-2xl px-4 py-4 space-y-4 shadow-xl overflow-hidden"
+          >
+            {/* Quick Action Nav Links */}
+            <div className="grid grid-cols-2 gap-2 text-xs font-bold">
+              <a
+                href={getLinkUrl('/')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(getLinkUrl('/'));
+                  setMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 p-3 rounded-xl transition-all min-h-[44px] ${
+                  currentPath === '/' || currentPath === '/index.html'
+                    ? 'bg-indigo-50/90 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200/60 dark:border-indigo-800/60'
+                    : 'bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50'
+                }`}
+              >
+                <Home className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                <span>Home</span>
+              </a>
+
+              <a
+                href={getLinkUrl('/dashboard.html')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(getLinkUrl('/dashboard.html'));
+                  setMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 p-3 rounded-xl transition-all min-h-[44px] ${
+                  currentPath.includes('dashboard')
+                    ? 'bg-indigo-50/90 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200/60 dark:border-indigo-800/60'
+                    : 'bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50'
+                }`}
+              >
+                <LayoutDashboard className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                <span>Dashboard</span>
+              </a>
+
+              <a
+                href={getLinkUrl('/categories')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(getLinkUrl('/categories'));
+                  setMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 p-3 rounded-xl transition-all min-h-[44px] ${
+                  currentPath.includes('categories')
+                    ? 'bg-indigo-50/90 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200/60 dark:border-indigo-800/60'
+                    : 'bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50'
+                }`}
+              >
+                <Grid className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                <span>Categories</span>
+              </a>
+
+              <a
+                href={getLinkUrl('/blog')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(getLinkUrl('/blog'));
+                  setMobileMenuOpen(false);
+                }}
+                className={`flex items-center gap-2 p-3 rounded-xl transition-all min-h-[44px] ${
+                  currentPath.includes('/blog')
+                    ? 'bg-indigo-50/90 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-200/60 dark:border-indigo-800/60'
+                    : 'bg-slate-50 dark:bg-slate-800/60 text-slate-700 dark:text-slate-300 hover:bg-indigo-50/50'
+                }`}
+              >
+                <BookOpen className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
+                <span>Guides</span>
+              </a>
+            </div>
+
+            {/* Category Quick Badges */}
+            <div className="space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
+              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                Explore Tool Categories
+              </span>
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {CATEGORIES_DATA.filter(c => c.slug !== 'all').map((cat) => (
+                  <a
+                    key={cat.slug}
+                    href={getLinkUrl(`/category/${cat.slug}`)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      onNavigate(getLinkUrl(`/category/${cat.slug}`));
+                      setMobileMenuOpen(false);
+                    }}
+                    className="px-2.5 py-1.5 rounded-lg bg-slate-100/90 dark:bg-slate-800/90 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 text-[11px] font-semibold text-slate-700 dark:text-slate-300 hover:text-indigo-600 transition-colors flex items-center gap-1 min-h-[36px]"
+                  >
+                    <span>{cat.icon}</span>
+                    <span>{cat.defaultName}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };

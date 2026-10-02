@@ -151,22 +151,7 @@ export const ImageCollageMakerTool: React.FC<ImageCollageMakerToolProps> = ({ on
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Image Collage Maker — Create Photo Grids Online — Zubware"
-        description="Free online photo collage maker. Combine 2, 3, 4, 6, 9+ photos into custom grid, masonry, horizontal or vertical layouts with spacing & corner controls."
-        canonicalPath="/image-collage.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Image Collage Maker
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Combine multiple photos into beautiful grid, masonry, or row layouts with rounded gaps and custom background fill.
-        </p>
-      </div>
 
       {images.length === 0 ? (
         <ImageUploadArea onImageSelected={handleImageSelected} multiple={true} title="Drop 2 or more images to build collage" />

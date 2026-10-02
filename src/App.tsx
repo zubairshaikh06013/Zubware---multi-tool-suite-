@@ -779,11 +779,11 @@ export default function App() {
                 <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-slate-200/80 dark:border-slate-800">
                   <div>
                     <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                      {getTranslation(currentLang, 'freeTools', 'Free Multi-Tool Suite')}
+                      {getTranslation(currentLang, 'freeTools', 'Free Tools')}
                     </span>
                     <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
                       {homeCategoryFilter === 'All'
-                        ? getTranslation(currentLang, 'exploreAllTools', 'Explore Free Online Tools')
+                        ? getTranslation(currentLang, 'exploreAllTools', 'Explore All Online Tools')
                         : homeCategoryFilter}
                     </h2>
                   </div>

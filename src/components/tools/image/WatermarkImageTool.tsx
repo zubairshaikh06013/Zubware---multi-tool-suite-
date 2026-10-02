@@ -192,22 +192,7 @@ export const WatermarkImageTool: React.FC<WatermarkImageToolProps> = ({ onShowTo
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Watermark Image Online Free — Zubware"
-        description="Free online image watermarker. Add custom text or image watermarks to JPG, PNG, WebP with custom opacity, rotation, shadow, fonts, and repeat tile patterns."
-        canonicalPath="/image-watermark.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Watermark Image
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Protect your photos with customizable text or logo watermarks, tile repeat patterns & position controls.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

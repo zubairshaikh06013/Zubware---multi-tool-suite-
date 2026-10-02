@@ -409,7 +409,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem;">
           ${relatedTools.map(rel => `
-          <a href="${DOMAIN}/${escapeHtml(rel.filename)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+          <a href="${DOMAIN}/${escapeHtml(rel.id)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
             <div style="font-size: 0.9rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.25rem;">
               ${escapeHtml(rel.title)}
             </div>
@@ -486,7 +486,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
             We integrate Google Tag Manager to measure aggregate website performance and resolve application errors. Zubware is currently 100% ad-free and does not host or display any commercial advertisements, banner ads, or sponsored ad networks. No advertising tracking cookies or commercial ad scripts are used.
           </p>
-          <p><a href="${DOMAIN}/terms.html" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Review Terms of Service &rarr;</a></p>
+          <p><a href="${DOMAIN}/terms" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Review Terms of Service &rarr;</a></p>
         </section>`;
       break;
 
@@ -505,7 +505,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
             Zubware provides all utilities on an "as is" and "as available" basis without warranties of any kind. We do not guarantee uninterrupted availability or error-free calculations.
           </p>
-          <p><a href="${DOMAIN}/privacy.html" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Review Privacy Policy &rarr;</a></p>
+          <p><a href="${DOMAIN}/privacy" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Review Privacy Policy &rarr;</a></p>
         </section>`;
       break;
 
@@ -543,7 +543,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
             <p style="font-size: 0.95rem; color: #1e293b; margin: 0 0 0.5rem 0;"><strong>Direct Inquiries:</strong> <a href="mailto:work95812@gmail.com" style="color: #4f46e5; text-decoration: underline;">work95812@gmail.com</a></p>
             <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Typical turnaround time: 24 to 48 business hours.</p>
           </div>
-          <p><a href="${DOMAIN}/feedback.html" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Submit Feature Request &rarr;</a></p>
+          <p><a href="${DOMAIN}/feedback" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Submit Feature Request &rarr;</a></p>
         </section>`;
       break;
 
@@ -616,28 +616,28 @@ function renderStaticPageContent(page: StaticPageMeta): string {
             Bookmark your most frequent tools for instant access. Favorite tools are securely remembered in your browser's private local storage.
           </p>
           <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-            <a href="${DOMAIN}/image-compressor.html" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+            <a href="${DOMAIN}/image-compressor" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
               <div style="font-size: 1.25rem;">🗜️</div>
               <h3 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0.25rem 0;">Image Compressor</h3>
               <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Compress PNG, JPG, and WebP images client-side.</p>
             </a>
-            <a href="${DOMAIN}/pdf-merge.html" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+            <a href="${DOMAIN}/pdf-merge" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
               <div style="font-size: 1.25rem;">📑</div>
               <h3 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0.25rem 0;">PDF Merger</h3>
               <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Combine multiple PDF files into one document.</p>
             </a>
-            <a href="${DOMAIN}/json-formatter.html" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+            <a href="${DOMAIN}/json-formatter" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
               <div style="font-size: 1.25rem;">✨</div>
               <h3 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0.25rem 0;">JSON Formatter</h3>
               <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Validate, format, and inspect JSON payloads.</p>
             </a>
-            <a href="${DOMAIN}/qr-generator.html" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+            <a href="${DOMAIN}/qr-generator" style="padding: 1rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
               <div style="font-size: 1.25rem;">📱</div>
               <h3 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0.25rem 0;">QR Code Generator</h3>
               <p style="font-size: 0.8rem; color: #64748b; margin: 0;">Create custom styled QR codes for links and text.</p>
             </a>
           </div>
-          <p><a href="${DOMAIN}/categories" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Browse Complete Directory of 307 Tools &rarr;</a></p>
+          <p><a href="${DOMAIN}/categories" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Browse Complete Directory of ${TOOLS_DATA.length} Tools &rarr;</a></p>
         </section>`;
       break;
 
@@ -769,7 +769,7 @@ function buildBlogArticleJsonLd(article: BlogArticle, canonicalUrl: string): obj
       'author': {
         '@type': 'Organization',
         'name': article.author.name,
-        'url': article.author.url || `${DOMAIN}/about.html`
+        'url': article.author.url || `${DOMAIN}/about`
       },
       'publisher': {
         '@type': 'Organization',
@@ -943,7 +943,7 @@ function renderBlogArticleContent(article: BlogArticle): string {
         </h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem;">
           ${relatedTools.map(rel => `
-          <a href="${DOMAIN}/${escapeHtml(rel.filename)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+          <a href="${DOMAIN}/${escapeHtml(rel.id)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
             <div style="font-size: 0.9rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.25rem;">
               ${escapeHtml(rel.title)}
             </div>
@@ -996,7 +996,7 @@ function renderCategoriesPageContent(): string {
             </p>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
               ${catTools.map(tool => `
-              <a href="${DOMAIN}/${escapeHtml(tool.filename)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+              <a href="${DOMAIN}/${escapeHtml(tool.id)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                   <span style="font-size: 1.5rem;">${tool.icon}</span>
                   ${tool.badge ? `<span style="font-size: 0.7rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.2rem 0.5rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
@@ -1108,7 +1108,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
               ${wf.toolIds.map(tid => {
                 const t = TOOLS_DATA.find(tool => tool.id === tid);
                 if (!t) return '';
-                return `<a href="${DOMAIN}/${escapeHtml(t.filename)}" style="font-size: 0.75rem; font-weight: 600; color: #4f46e5; background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.3rem 0.6rem; border-radius: 0.5rem; text-decoration: none;">${escapeHtml(t.navTitle || t.title)} &rarr;</a>`;
+                return `<a href="${DOMAIN}/${escapeHtml(t.id)}" style="font-size: 0.75rem; font-weight: 600; color: #4f46e5; background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.3rem 0.6rem; border-radius: 0.5rem; text-decoration: none;">${escapeHtml(t.navTitle || t.title)} &rarr;</a>`;
               }).join('')}
             </div>` : ''}
           </div>`).join('\n          ')}
@@ -1125,7 +1125,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;">
           ${catTools.map(tool => `
-          <a href="${DOMAIN}/${escapeHtml(tool.filename)}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.15s ease, border-color 0.15s ease;">
+          <a href="${DOMAIN}/${escapeHtml(tool.id)}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.15s ease, border-color 0.15s ease;">
             <div>
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
                 <span style="font-size: 1.75rem;">${tool.icon}</span>
@@ -1242,7 +1242,7 @@ function buildCategoryHubJsonLd(cat: CategoryItem, catTools: ToolMeta[], canonic
           '@type': 'ListItem',
           'position': idx + 1,
           'name': t.title,
-          'url': `${DOMAIN}/${t.filename}`
+          'url': `${DOMAIN}/${t.id}`
         }))
       }
     },
@@ -1340,7 +1340,7 @@ function renderHomepageContent(): string {
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
               ${catTools.map(tool => `
-              <a href="${DOMAIN}/${escapeHtml(tool.filename)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+              <a href="${DOMAIN}/${escapeHtml(tool.id)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                   <span style="font-size: 1.4rem;">${tool.icon}</span>
                   ${tool.badge ? `<span style="font-size: 0.65rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.15rem 0.45rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
@@ -1563,7 +1563,7 @@ ${CATEGORIES_DATA.filter(c => c.slug !== 'all').map(c => `- [${c.defaultName}]($
     output += `\n### ${cleanCategory} (${catTools.length} tools)\n\n`;
 
     for (const tool of catTools) {
-      const toolUrl = `${DOMAIN}/${tool.filename}`;
+      const toolUrl = `${DOMAIN}/${tool.id}`;
       const featureList = tool.features && tool.features.length > 0 ? ` | Key features: ${tool.features.join(', ')}` : '';
       const executionNote = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id) ? ' [Direct API]' : ' [Browser-Side]';
       output += `- [${tool.title}](${toolUrl})${executionNote}: ${tool.description}${featureList}\n`;
@@ -1771,7 +1771,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
 
   // 2. Generate Static Pages (About, Privacy, Terms, Disclaimer, Contact, Dashboard)
   for (const page of STATIC_PAGES) {
-    const canonicalUrl = `${DOMAIN}/${page.filename}`;
+    const cleanSlug = page.filename.replace(/\.html$/, '');
+    const canonicalUrl = `${DOMAIN}/${cleanSlug}`;
     const jsonLd = buildStaticPageJsonLd(page, canonicalUrl);
     const bodyContent = renderStaticPageContent(page);
     const isDashboard = page.filename === 'dashboard.html';
@@ -1785,6 +1786,11 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     });
 
     fs.writeFileSync(path.join(distDir, page.filename), html, 'utf-8');
+    const staticPageDir = path.join(distDir, cleanSlug);
+    if (!fs.existsSync(staticPageDir)) {
+      fs.mkdirSync(staticPageDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(staticPageDir, 'index.html'), html, 'utf-8');
 
     // Do NOT include noindex private pages in sitemap.xml
     if (!isDashboard) {
@@ -1797,7 +1803,7 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     }
   }
 
-  // 3. Generate Tool Pages for all 307 active tools in TOOLS_DATA
+  // 3. Generate Tool Pages for all active tools in TOOLS_DATA
   const seenFilenames = new Set<string>();
   let toolCount = 0;
 
@@ -1806,8 +1812,9 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     if (seenFilenames.has(tool.filename)) continue;
     seenFilenames.add(tool.filename);
 
+    const cleanSlug = tool.filename.replace(/\.html$/, '');
     const title = getToolSeoTitle(tool);
-    const canonicalUrl = `${DOMAIN}/${tool.filename}`;
+    const canonicalUrl = `${DOMAIN}/${cleanSlug}`;
     const keywords = tool.tags && tool.tags.length > 0 ? tool.tags.join(', ') : undefined;
     const jsonLd = buildToolJsonLd(tool, canonicalUrl);
     const bodyContent = renderStaticToolContent(tool, TOOLS_DATA);
@@ -1822,6 +1829,11 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     });
 
     fs.writeFileSync(path.join(distDir, tool.filename), html, 'utf-8');
+    const toolSlugDir = path.join(distDir, cleanSlug);
+    if (!fs.existsSync(toolSlugDir)) {
+      fs.mkdirSync(toolSlugDir, { recursive: true });
+    }
+    fs.writeFileSync(path.join(toolSlugDir, 'index.html'), html, 'utf-8');
     toolCount++;
 
     sitemapUrls.push({

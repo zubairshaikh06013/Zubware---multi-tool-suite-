@@ -592,18 +592,6 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
 
   return (
     <div className="max-w-6xl mx-auto space-y-6 pb-12">
-      <SEOHead
-        title="Script to Video Maker - Create Scrolling Text Videos Online | Zubware"
-        description="Turn scripts and stories into scrolling text videos for Reels, Shorts and TikTok. Add custom backgrounds, fonts, colors and logo overlays in your browser."
-        canonicalPath="/script-to-video-maker.html"
-        toolMeta={currentToolMeta}
-        breadcrumbs={[
-          { label: 'Home', path: getLinkUrl('/') },
-          { label: 'Creator Tools', path: getLinkUrl('/category/creator-tools') },
-          { label: 'Script to Video' }
-        ]}
-      />
-
       {/* Main Studio Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Studio Controls */}

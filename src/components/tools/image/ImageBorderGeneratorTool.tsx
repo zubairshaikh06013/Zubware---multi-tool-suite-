@@ -169,22 +169,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Image Border Generator — Add Custom Borders Online — Zubware"
-        description="Free online image border generator. Add solid, dashed, dotted, double or rounded borders with custom width & colors to photos."
-        canonicalPath="/image-border.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Image Border Generator
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Add custom solid, dashed, dotted, double, or rounded borders to photos with instant color & width controls.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

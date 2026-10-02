@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { ToolMeta } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
-import { ArrowRight, Sparkles, Layers, Zap } from 'lucide-react';
+import { ArrowRight, Layers } from 'lucide-react';
 import { ToolIcon } from './common/ToolIcon';
 
 interface ToolRecommendationsProps {
@@ -18,150 +18,100 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
 }) => {
   const { t } = useLanguage();
 
-  const otherTools = allTools.filter((t) => t.id !== currentTool.id);
+  const relatedTools = useMemo(() => {
+    const pool = allTools.filter((t) => t.id !== currentTool.id);
+    const seen = new Set<string>();
+    const result: ToolMeta[] = [];
 
-  // Related Tools (Same Category)
-  const categoryTools = otherTools.filter((t) => t.category === currentTool.category);
+    // 1. Same category tools
+    const categoryTools = pool.filter((t) => t.category === currentTool.category);
+    for (const tool of categoryTools) {
+      if (result.length >= 6) break;
+      if (!seen.has(tool.id)) {
+        seen.add(tool.id);
+        result.push(tool);
+      }
+    }
 
-  // Frequently Used Together (Matching Tags)
-  const tagTools = otherTools.filter(
-    (t) =>
-      t.category !== currentTool.category &&
-      t.tags &&
-      currentTool.tags &&
-      t.tags.some((tag) => currentTool.tags?.includes(tag))
-  );
+    // 2. Matching tags tools
+    if (result.length < 6 && currentTool.tags && currentTool.tags.length > 0) {
+      const tagTools = pool.filter(
+        (t) => t.tags && t.tags.some((tag) => currentTool.tags?.includes(tag))
+      );
+      for (const tool of tagTools) {
+        if (result.length >= 6) break;
+        if (!seen.has(tool.id)) {
+          seen.add(tool.id);
+          result.push(tool);
+        }
+      }
+    }
 
-  // You May Also Like (Popular / Trending / Random)
-  const trendingTools = otherTools.filter((t) => t.trending || t.featured || t.editorsPick);
+    // 3. Trending/Featured fallback
+    if (result.length < 6) {
+      const popular = pool.filter((t) => t.trending || t.featured || t.editorsPick);
+      for (const tool of popular) {
+        if (result.length >= 6) break;
+        if (!seen.has(tool.id)) {
+          seen.add(tool.id);
+          result.push(tool);
+        }
+      }
+    }
 
-  const relatedList = (categoryTools.length > 0 ? categoryTools : otherTools).slice(0, 3);
-  const togetherList = (tagTools.length > 0 ? tagTools : trendingTools).slice(0, 3);
-  const recommendedList = (trendingTools.length > 0 ? trendingTools : otherTools).slice(0, 3);
+    // 4. Fill to 6 if needed
+    for (const tool of pool) {
+      if (result.length >= 6) break;
+      if (!seen.has(tool.id)) {
+        seen.add(tool.id);
+        result.push(tool);
+      }
+    }
+
+    return result;
+  }, [allTools, currentTool]);
+
+  if (relatedTools.length === 0) return null;
 
   return (
-    <div className="space-y-8 my-10 border-t border-slate-200/80 dark:border-slate-800 pt-8">
-      
-      {/* 1. Related Tools (Category) */}
-      <div>
-        <div className="flex items-center gap-2 mb-4">
-          <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-            {t('relatedTools', 'Related Tools')}
-          </h3>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {relatedList.map((tool) => (
-            <a
-              key={tool.id}
-              href={getLinkUrl(tool.path)}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(getLinkUrl(tool.path));
-              }}
-              aria-label={`Open tool ${tool.navTitle}`}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                    {tool.navTitle}
-                  </h4>
-                </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                  {tool.description}
-                </p>
-              </div>
-              <div className="mt-3 pt-2 flex items-center justify-between text-[11px] text-indigo-600 dark:text-indigo-400 font-bold">
-                <span>{tool.category}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-              </div>
-            </a>
-          ))}
-        </div>
+    <div className="my-10 border-t border-slate-200/80 dark:border-slate-800 pt-8">
+      {/* Unified Single Related Tools Section */}
+      <div className="flex items-center gap-2 mb-4">
+        <Layers className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
+          {t('relatedTools', 'Related Tools')}
+        </h3>
       </div>
-
-      {/* 2. Frequently Used Together */}
-      <div>
-        <div className="flex items-center gap-2 mb-4">
-          <Zap className="w-5 h-5 text-amber-500" aria-hidden="true" />
-          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-            {t('frequentlyUsedTogether', 'Frequently Used Together')}
-          </h3>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {togetherList.map((tool) => (
-            <a
-              key={tool.id}
-              href={getLinkUrl(tool.path)}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(getLinkUrl(tool.path));
-              }}
-              aria-label={`Open tool ${tool.navTitle}`}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                    {tool.navTitle}
-                  </h4>
-                </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                  {tool.description}
-                </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        {relatedTools.map((tool) => (
+          <a
+            key={tool.id}
+            href={getLinkUrl(tool.path)}
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate(getLinkUrl(tool.path));
+            }}
+            aria-label={`Open tool ${tool.navTitle}`}
+            className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
+          >
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
+                <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  {tool.navTitle}
+                </h4>
               </div>
-              <div className="mt-3 pt-2 flex items-center justify-between text-[11px] text-indigo-600 dark:text-indigo-400 font-bold">
-                <span className="truncate">{tool.tags ? tool.tags.slice(0, 2).join(' • ') : tool.category}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-              </div>
-            </a>
-          ))}
-        </div>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed font-normal">
+                {tool.description}
+              </p>
+            </div>
+            <div className="mt-3 pt-2 flex items-center justify-between text-[11px] text-indigo-600 dark:text-indigo-400 font-bold">
+              <span>{tool.category.replace(/^[^\w]+/, '').trim()}</span>
+              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+            </div>
+          </a>
+        ))}
       </div>
-
-      {/* 3. You May Also Like */}
-      <div>
-        <div className="flex items-center gap-2 mb-4">
-          <Sparkles className="w-5 h-5 text-emerald-500" aria-hidden="true" />
-          <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">
-            {t('youMayAlsoLike', 'You May Also Like')}
-          </h3>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {recommendedList.map((tool) => (
-            <a
-              key={tool.id}
-              href={getLinkUrl(tool.path)}
-              onClick={(e) => {
-                e.preventDefault();
-                onNavigate(getLinkUrl(tool.path));
-              }}
-              aria-label={`Open tool ${tool.navTitle}`}
-              className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
-            >
-              <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                    {tool.navTitle}
-                  </h4>
-                </div>
-                <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-2 leading-relaxed">
-                  {tool.description}
-                </p>
-              </div>
-              <div className="mt-3 pt-2 flex items-center justify-between text-[11px] text-indigo-600 dark:text-indigo-400 font-bold">
-                <span>{tool.badge || 'Trending'}</span>
-                <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-
     </div>
   );
 };

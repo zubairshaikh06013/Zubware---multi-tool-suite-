@@ -190,22 +190,7 @@ export const BackgroundColorChangerTool: React.FC<BackgroundColorChangerToolProp
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Background Color Changer — Replace Image BG Online — Zubware"
-        description="Free online background color changer. Replace transparent or solid photo backgrounds with solid colors, gradients, or blur effects instantly."
-        canonicalPath="/background-color-changer.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Background Color Changer
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Replace photo backgrounds with custom HEX/RGB solid colors, smooth gradients, or soft ambient blur.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

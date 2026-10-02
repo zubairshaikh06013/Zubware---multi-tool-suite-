@@ -121,22 +121,7 @@ export const ImageCompressionComparisonTool: React.FC<ImageCompressionComparison
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Image Compression Comparison — Interactive Quality Slider — Zubware"
-        description="Free online image compression comparison tool. Inspect side-by-side original vs compressed image quality with magnifying zoom & live byte savings metrics."
-        canonicalPath="/compression-comparison.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Image Compression Comparison
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Side-by-side slider comparison of original vs compressed photo pixels with 2x/4x magnification inspection.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

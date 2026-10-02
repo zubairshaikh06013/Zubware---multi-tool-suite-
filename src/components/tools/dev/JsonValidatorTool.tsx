@@ -17,7 +17,7 @@ const SAMPLE_JSONS = [
 ];
 
 export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToast }) => {
-  const [jsonInput, setJsonInput] = useState<string>(SAMPLE_JSONS[0].json);
+  const [jsonInput, setJsonInput] = useState<string>('');
   const [indentSpaces, setIndentSpaces] = useState<number>(2);
   const [copied, setCopied] = useState<boolean>(false);
 

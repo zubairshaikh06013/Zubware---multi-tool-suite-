@@ -124,7 +124,7 @@ export const ColorPickerTool: React.FC<ColorPickerToolProps> = ({ onShowToast, o
         // EyeDropper cancelled or unsupported
       }
     } else {
-      alert('Click anywhere directly on the image to pick a pixel color!');
+      onShowToast('Click anywhere directly on the uploaded image to pick a pixel color!');
     }
   };
 
@@ -137,22 +137,7 @@ export const ColorPickerTool: React.FC<ColorPickerToolProps> = ({ onShowToast, o
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Image Color Picker — Pick HEX, RGB, HSL, CMYK Online — Zubware"
-        description="Free online image color picker. Click any pixel on image to get HEX, RGB, HSL, HSV, CMYK color codes with instant copy & recent color palette."
-        canonicalPath="/color-picker.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Image Color Picker
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Click anywhere on an image to inspect exact HEX, RGB, HSL, HSV & CMYK color values.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

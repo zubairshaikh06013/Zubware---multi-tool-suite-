@@ -18,7 +18,10 @@ import {
 } from 'lucide-react';
 import { ToolIcon } from '../common/ToolIcon';
 import { useLanguage } from '../../context/LanguageContext';
-import { renderPdfPageToDataUrl, formatBytes } from '../../lib/pdfUtils';
+import { renderPdfPageToDataUrl } from '../../lib/pdfUtils';
+import { formatDecimalBytes } from '../../lib/fileSizeStandard';
+
+const formatBytes = (b: number) => formatDecimalBytes(b);
 
 interface PageThumbnail {
   pageNumber: number;
@@ -260,19 +263,6 @@ export const PdfSplitTool: React.FC<PdfSplitToolProps> = ({ onShowToast }) => {
 
   return (
     <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
-      {/* Title Header */}
-      <div className="text-center max-w-xl mx-auto mb-6">
-        <div className="flex justify-center mb-3">
-          <ToolIcon toolId="pdf-split" category="PDF Tools" size="xl" />
-        </div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-          PDF Splitter & Visual Page Studio
-        </h1>
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Split PDF documents into individual pages, extract custom ranges, or compile selected pages into a new combined PDF with visual page thumbnails.
-        </p>
-      </div>
-
       {!pdfFile ? (
         <label
           onDragOver={(e) => { e.preventDefault(); setIsDraggingFile(true); }}

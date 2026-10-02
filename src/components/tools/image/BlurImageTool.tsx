@@ -209,22 +209,7 @@ export const BlurImageTool: React.FC<BlurImageToolProps> = ({ onShowToast, onNav
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Blur Image Online Free — Brush & Area Blur — Zubware"
-        description="Free online image blur tool. Blur sensitive information, faces, backgrounds in JPG, PNG, WebP images with interactive brush, area box, undo/redo stack & download."
-        canonicalPath="/blur-image.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Blur Image
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Hide sensitive information, blur faces or backgrounds with brush tools, strength controls & undo/redo.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

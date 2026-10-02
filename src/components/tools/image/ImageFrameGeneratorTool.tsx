@@ -222,22 +222,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Image Frame Generator — Polaroid, Shadow & Art Frames — Zubware"
-        description="Free online image frame generator. Add Polaroid, Shadow, Glass, Minimal, Instagram, White Gallery & Black frames with custom caption text to photos."
-        canonicalPath="/image-frame.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Image Frame Generator
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Transform ordinary photos into Polaroid, Shadow, Frosted Glass, or Art Gallery framed masterpieces.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

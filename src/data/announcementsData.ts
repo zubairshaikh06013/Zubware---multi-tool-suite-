@@ -61,13 +61,13 @@ export const ANNOUNCEMENTS_CONFIG: AnnouncementConfig = {
       id: 'bot-1',
       icon: '⭐',
       text: 'Image Splitter',
-      link: '/image-splitter-merger.html',
+      link: '/image-splitter-merger',
     },
     {
       id: 'bot-2',
       icon: '🖼️',
       text: 'Image Combiner',
-      link: '/image-splitter-merger.html',
+      link: '/image-splitter-merger',
     },
     {
       id: 'bot-3',

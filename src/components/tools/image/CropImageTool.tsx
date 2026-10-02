@@ -157,22 +157,7 @@ export const CropImageTool: React.FC<CropImageToolProps> = ({ onShowToast, onNav
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Crop Image Online Free — Zubware"
-        description="Free online image cropper. Crop JPG, PNG, WebP with custom aspect ratios, Instagram, YouTube, Facebook presets, zoom and rotation tools."
-        canonicalPath="/crop-image.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Crop Image
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Crop photos with precision presets for social media, rotation, zoom, and live preview.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

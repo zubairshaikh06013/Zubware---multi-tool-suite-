@@ -218,22 +218,7 @@ export const PixelateImageTool: React.FC<PixelateImageToolProps> = ({ onShowToas
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Pixelate Image Online Free — Zubware"
-        description="Free online pixelate tool. Censor sensitive photos, faces, or text in JPG, PNG, WebP images with custom pixel size slider & brush paint tool."
-        canonicalPath="/pixelate-image.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Pixelate Image
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Censor photos or create retro pixel art effects with interactive paint brush & slider.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

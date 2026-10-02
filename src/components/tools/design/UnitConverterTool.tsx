@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { ArrowLeftRight, Calculator } from 'lucide-react';
+import { ArrowLeftRight, Calculator, Copy, Check, RotateCcw, Download, Share2 } from 'lucide-react';
 
 interface UnitConverterToolProps {
   onShowToast: (message: string) => void;
 }
 
-type UnitCategory = 'length' | 'weight' | 'temperature' | 'area' | 'volume' | 'speed' | 'data' | 'time';
+type UnitCategory = 'length' | 'weight' | 'temperature' | 'area' | 'volume' | 'speed' | 'data' | 'time' | 'pressure' | 'power' | 'energy';
 
 interface UnitDef {
   name: string;
@@ -104,6 +104,41 @@ const CATEGORIES: Record<UnitCategory, { label: string; base: string; units: Rec
       week: { name: 'Weeks (wk)', factor: 604800 },
       year: { name: 'Years (yr)', factor: 31536000 }
     }
+  },
+  pressure: {
+    label: 'Pressure',
+    base: 'pascal',
+    units: {
+      pascal: { name: 'Pascals (Pa)', factor: 1 },
+      kilopascal: { name: 'Kilopascals (kPa)', factor: 1000 },
+      bar: { name: 'Bar (bar)', factor: 100000 },
+      psi: { name: 'Pounds per sq inch (psi)', factor: 6894.76 },
+      atm: { name: 'Standard Atmospheres (atm)', factor: 101325 },
+      mmhg: { name: 'Millimeters of Mercury (mmHg)', factor: 133.322 }
+    }
+  },
+  power: {
+    label: 'Power',
+    base: 'watt',
+    units: {
+      watt: { name: 'Watts (W)', factor: 1 },
+      kilowatt: { name: 'Kilowatts (kW)', factor: 1000 },
+      megawatt: { name: 'Megawatts (MW)', factor: 1000000 },
+      horsepower: { name: 'Horsepower (hp metric)', factor: 735.499 },
+      btu_per_hour: { name: 'BTU per hour (BTU/h)', factor: 0.293071 }
+    }
+  },
+  energy: {
+    label: 'Energy',
+    base: 'joule',
+    units: {
+      joule: { name: 'Joules (J)', factor: 1 },
+      kilojoule: { name: 'Kilojoules (kJ)', factor: 1000 },
+      calorie: { name: 'Calories (cal)', factor: 4.184 },
+      kilocalorie: { name: 'Kilocalories (kcal)', factor: 4184 },
+      kwh: { name: 'Kilowatt-hours (kWh)', factor: 3600000 },
+      btu: { name: 'British Thermal Units (BTU)', factor: 1055.06 }
+    }
   }
 };
 
@@ -112,6 +147,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
   const [inputValue, setInputValue] = useState<string>('1');
   const [fromUnit, setFromUnit] = useState<string>('meter');
   const [toUnit, setToUnit] = useState<string>('foot');
+  const [copied, setCopied] = useState<boolean>(false);
 
   const currentCategory = CATEGORIES[category];
 
@@ -141,6 +177,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
     const temp = fromUnit;
     setFromUnit(toUnit);
     setToUnit(temp);
+    onShowToast(`Swapped units: ${toUnit} ⇄ ${temp}`);
   };
 
   const handleCategoryChange = (catKey: UnitCategory) => {
@@ -150,16 +187,64 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
     setToUnit(keys[1] || keys[0]);
   };
 
+  const handleCopyResult = () => {
+    const fromLabel = currentCategory.units[fromUnit]?.name || fromUnit;
+    const toLabel = currentCategory.units[toUnit]?.name || toUnit;
+    const formatted = `${inputValue} ${fromLabel} = ${convertedValue.toLocaleString(undefined, { maximumFractionDigits: 6 })} ${toLabel}`;
+    navigator.clipboard.writeText(formatted);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    onShowToast('Copied conversion to clipboard!');
+  };
+
+  const handleReset = () => {
+    setCategory('length');
+    setInputValue('1');
+    setFromUnit('meter');
+    setToUnit('foot');
+    onShowToast('Reset unit converter to default');
+  };
+
+  const handleDownloadTable = () => {
+    const fromLabel = currentCategory.units[fromUnit]?.name || fromUnit;
+    let report = `Zubware Universal Unit Converter\nCategory: ${currentCategory.label}\nInput: ${inputValue} ${fromLabel}\nDate: ${new Date().toLocaleDateString()}\n\n`;
+    report += `Conversions:\n`;
+    Object.entries(currentCategory.units).forEach(([uKey, uDef]) => {
+      const res = convertValue(inputValue, fromUnit, uKey);
+      report += `• ${uDef.name}: ${res.toLocaleString(undefined, { maximumFractionDigits: 6 })}\n`;
+    });
+
+    const blob = new Blob([report], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `unit-conversion-${category}-${inputValue}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+    onShowToast('Downloaded conversion breakdown!');
+  };
+
   return (
-    <div className="p-6 sm:p-8 space-y-6">
+    <div className="p-4 sm:p-8 space-y-6 max-w-4xl mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             Universal Unit Converter
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Convert length, weight, area, volume, temperature, data storage, speed & time units.
+            Convert length, weight, area, volume, temperature, pressure, energy, power, data storage, speed & time units.
           </p>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleReset}
+            className="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer"
+            title="Reset to default"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset</span>
+          </button>
         </div>
       </div>
 
@@ -169,10 +254,10 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
           <button
             key={catKey}
             onClick={() => handleCategoryChange(catKey)}
-            className={`px-4 py-2 rounded-xl text-xs font-bold transition-all capitalize ${
+            className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all capitalize cursor-pointer ${
               category === catKey
                 ? 'bg-indigo-600 text-white shadow-md'
-                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200'
+                : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700'
             }`}
           >
             {CATEGORIES[catKey].label}
@@ -181,7 +266,7 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
       </div>
 
       {/* Conversion Main Interface */}
-      <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+      <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-slate-200/80 dark:border-slate-800 bg-white/70 dark:bg-slate-900/70">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
           {/* From */}
           <div className="md:col-span-2 space-y-2">
@@ -190,12 +275,12 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
               type="number"
               value={inputValue}
               onChange={e => setInputValue(e.target.value)}
-              className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-lg font-bold text-slate-900 dark:text-white"
+              className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-mono text-lg font-bold text-slate-900 dark:text-white focus:ring-2 focus:ring-indigo-500 outline-none"
             />
             <select
               value={fromUnit}
               onChange={e => setFromUnit(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700"
             >
               {Object.entries(currentCategory.units).map(([key, def]) => (
                 <option key={key} value={key}>{def.name}</option>
@@ -207,7 +292,8 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
           <div className="flex justify-center">
             <button
               onClick={swapUnits}
-              className="p-3 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-md"
+              className="p-3 rounded-2xl bg-indigo-600 text-white hover:bg-indigo-700 transition-colors shadow-md cursor-pointer active:scale-95"
+              title="Swap units"
             >
               <ArrowLeftRight className="w-5 h-5" />
             </button>
@@ -215,14 +301,25 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
 
           {/* To */}
           <div className="md:col-span-2 space-y-2">
-            <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Converted Result</label>
-            <div className="w-full px-4 py-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-900 font-mono text-lg font-bold text-indigo-600 dark:text-indigo-400">
-              {Number.isFinite(convertedValue) ? convertedValue.toLocaleString(undefined, { maximumFractionDigits: 6 }) : '0'}
+            <div className="flex items-center justify-between">
+              <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Converted Result</label>
+              <button
+                onClick={handleCopyResult}
+                className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"
+              >
+                {copied ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
+                <span>{copied ? 'Copied' : 'Copy'}</span>
+              </button>
+            </div>
+            <div className="w-full px-4 py-3 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-900 font-mono text-lg font-bold text-indigo-600 dark:text-indigo-400 flex items-center justify-between">
+              <span className="truncate">
+                {Number.isFinite(convertedValue) ? convertedValue.toLocaleString(undefined, { maximumFractionDigits: 6 }) : '0'}
+              </span>
             </div>
             <select
               value={toUnit}
               onChange={e => setToUnit(e.target.value)}
-              className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white"
+              className="w-full px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-xs font-bold text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700"
             >
               {Object.entries(currentCategory.units).map(([key, def]) => (
                 <option key={key} value={key}>{def.name}</option>
@@ -233,20 +330,41 @@ export const UnitConverterTool: React.FC<UnitConverterToolProps> = ({ onShowToas
       </div>
 
       {/* Quick All-Unit Breakdown Table */}
-      <div className="glass-card p-6 rounded-3xl space-y-4">
-        <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-          All {currentCategory.label} Conversions for {inputValue || '0'} {currentCategory.units[fromUnit]?.name}
-        </h3>
+      <div className="glass-card p-6 rounded-3xl space-y-4 border border-slate-200/80 dark:border-slate-800">
+        <div className="flex items-center justify-between">
+          <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+            All {currentCategory.label} Conversions for {inputValue || '0'} {currentCategory.units[fromUnit]?.name}
+          </h3>
+          <button
+            onClick={handleDownloadTable}
+            className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer"
+          >
+            <Download className="w-3.5 h-3.5" />
+            <span>Export TXT</span>
+          </button>
+        </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {Object.entries(currentCategory.units).map(([uKey, uDef]) => {
             const res = convertValue(inputValue, fromUnit, uKey);
             return (
-              <div key={uKey} className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800">
-                <div className="text-[10px] font-bold text-slate-500 uppercase">{uDef.name}</div>
-                <div className="font-mono text-sm font-bold text-slate-900 dark:text-white mt-0.5">
-                  {res.toLocaleString(undefined, { maximumFractionDigits: 6 })}
+              <div key={uKey} className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-800 flex items-center justify-between">
+                <div>
+                  <div className="text-[10px] font-bold text-slate-500 uppercase">{uDef.name}</div>
+                  <div className="font-mono text-sm font-bold text-slate-900 dark:text-white mt-0.5">
+                    {res.toLocaleString(undefined, { maximumFractionDigits: 6 })}
+                  </div>
                 </div>
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(`${res}`);
+                    onShowToast(`Copied ${res} ${uDef.name}`);
+                  }}
+                  className="p-1.5 text-slate-400 hover:text-indigo-600 transition-colors"
+                  title="Copy this value"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                </button>
               </div>
             );
           })}

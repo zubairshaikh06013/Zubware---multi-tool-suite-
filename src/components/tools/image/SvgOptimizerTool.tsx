@@ -92,22 +92,7 @@ export const SvgOptimizerTool: React.FC<SvgOptimizerToolProps> = ({ onShowToast,
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="SVG Optimizer — Clean & Compress SVG Code Online — Zubware"
-        description="Free online SVG optimizer. Strip metadata, comments, empty groups & round path decimals to reduce SVG vector file size instantly."
-        canonicalPath="/svg-optimizer.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          SVG Optimizer
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Clean SVG vector code, strip Inkscape/Illustrator metadata, comments, and empty groups to minimize file size.
-        </p>
-      </div>
 
       {!svgInput ? (
         <div className="p-8 border-2 border-dashed border-indigo-300/80 dark:border-indigo-900/50 rounded-3xl text-center space-y-4 glass-card">

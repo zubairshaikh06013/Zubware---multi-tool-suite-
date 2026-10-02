@@ -133,17 +133,6 @@ export const PdfToImagesTool: React.FC<{ onShowToast: (msg: string) => void }> =
 
   return (
     <div className="w-full max-w-4xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
-      {/* Header */}
-      <div className="text-center max-w-xl mx-auto mb-6">
-        <div className="flex justify-center mb-3"><ToolIcon toolId="pdf-to-image" category="PDF Tools" size="xl" /></div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-          {t('pdfToImagesTitle', 'PDF to Images Converter')}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-          {t('pdfToImagesSubtitle', 'Extract every PDF page as high-resolution PNG, JPG, or WebP images instantly in your browser.')}
-        </p>
-      </div>
-
       {!file ? (
         <label className="flex flex-col items-center justify-center p-10 border-2 border-dashed border-indigo-300/60 dark:border-indigo-900/40 rounded-2xl hover:border-indigo-500 cursor-pointer glass-card transition-all text-center">
           <Upload className="w-12 h-12 text-indigo-500 mb-3 animate-pulse" />

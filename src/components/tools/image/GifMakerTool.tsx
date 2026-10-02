@@ -230,22 +230,7 @@ export const GifMakerTool: React.FC<GifMakerToolProps> = ({ onShowToast, onNavig
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="GIF Maker — Create Animated GIFs Online — Zubware"
-        description="Free online GIF maker. Convert photo sequences into smooth animated GIFs with custom speed, dimensions, loop & bounce directions."
-        canonicalPath="/gif-maker.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          GIF Maker
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Combine photo frames into animated GIFs with custom speed, frame sizing, and loop direction controls.
-        </p>
-      </div>
 
       {frames.length === 0 ? (
         <ImageUploadArea onImageSelected={handleImageSelected} multiple={true} title="Drop multiple frames to create GIF animation" />

@@ -54,7 +54,11 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   article
 }) => {
   const domain = SITE_ORIGIN;
-  const cleanPath = canonicalPath === '/' ? '' : (canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`);
+  let rawCleanPath = canonicalPath === '/' ? '' : (canonicalPath.startsWith('/') ? canonicalPath : `/${canonicalPath}`);
+  if (rawCleanPath.endsWith('.html') && rawCleanPath !== '/404.html') {
+    rawCleanPath = rawCleanPath.slice(0, -5);
+  }
+  const cleanPath = rawCleanPath;
   const fullUrl = `${domain}${cleanPath}`;
   const defaultOgImage = `${domain}/icon.png`;
   const imageToUse = ogImage || defaultOgImage;
@@ -218,17 +222,28 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       schemas.push({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
-        'itemListElement': breadcrumbs.map((crumb, idx) => ({
-          '@type': 'ListItem',
-          'position': idx + 1,
-          'name': crumb.label,
-          'item': crumb.path ? `${domain}${crumb.path.startsWith('/') ? crumb.path : '/' + crumb.path}` : fullUrl
-        }))
+        'itemListElement': breadcrumbs.map((crumb, idx) => {
+          let itemUrl = fullUrl;
+          if (crumb.path) {
+            let p = crumb.path.startsWith('/') ? crumb.path : '/' + crumb.path;
+            if (p.endsWith('.html') && p !== '/index.html' && p !== '/404.html') {
+              p = p.slice(0, -5);
+            }
+            itemUrl = `${domain}${p === '/' ? '' : p}`;
+          }
+          return {
+            '@type': 'ListItem',
+            'position': idx + 1,
+            'name': crumb.label,
+            'item': itemUrl
+          };
+        })
       });
     }
 
     // Article Schema
     if (article) {
+      const cleanAuthorUrl = (article.authorUrl || domain).replace(/\.html$/, '');
       schemas.push({
         '@context': 'https://schema.org',
         '@type': 'Article',
@@ -243,7 +258,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
         'author': {
           '@type': 'Organization',
           'name': article.authorName,
-          'url': article.authorUrl || domain
+          'url': cleanAuthorUrl
         },
         'publisher': {
           '@type': 'Organization',

@@ -24,6 +24,7 @@ import {
 } from 'lucide-react';
 import { UniversalFileUpload } from './UniversalFileUpload';
 import { BatchActionToolbar, CustomBatchAction } from './BatchActionToolbar';
+import { formatDecimalBytes } from '../../lib/fileSizeStandard';
 
 export interface BatchQueueItem {
   /** Unique identifier for the item in the queue */
@@ -48,6 +49,10 @@ export interface BatchQueueItem {
   customLabel?: string;
   /** Optional key-value metadata */
   extraMeta?: Record<string, any>;
+  /** Optional explicit download file name */
+  downloadFileName?: string;
+  /** Optional flag indicating exact target byte match */
+  exactMatch?: boolean;
 }
 
 export interface BatchQueueProps {
@@ -94,13 +99,28 @@ export interface BatchQueueProps {
   className?: string;
 }
 
-/** Utility to format bytes cleanly */
+/** Utility to format bytes cleanly according to Zubware decimal standard */
 function formatBytes(bytes: number): string {
-  if (bytes === 0) return '0 B';
-  const k = 1024;
-  const sizes = ['B', 'KB', 'MB', 'GB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
+  return formatDecimalBytes(bytes);
+}
+
+function getDownloadName(item: BatchQueueItem): string {
+  if (item.downloadFileName) return item.downloadFileName;
+  const ext = item.resultBlob?.type === 'image/webp'
+    ? '.webp'
+    : item.resultBlob?.type === 'image/jpeg'
+    ? '.jpg'
+    : item.resultBlob?.type === 'image/bmp'
+    ? '.bmp'
+    : item.resultBlob?.type === 'image/x-icon'
+    ? '.ico'
+    : item.resultBlob?.type === 'application/pdf'
+    ? '.pdf'
+    : item.resultBlob?.type === 'image/png'
+    ? '.png'
+    : '';
+  const cleanName = item.file.name.replace(/\.[^/.]+$/, '');
+  return ext ? `${cleanName}-optimized${ext}` : `optimized-${item.file.name}`;
 }
 
 /**
@@ -488,7 +508,7 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
                     {item.resultUrl && item.status === 'done' && (
                       <a
                         href={item.resultUrl}
-                        download={`converted-${item.file.name}`}
+                        download={getDownloadName(item)}
                         onClick={(e) => e.stopPropagation()}
                         className="w-full mt-1 py-1 px-2 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] font-bold flex items-center justify-center gap-1 shadow-xs transition-all"
                       >
@@ -594,7 +614,7 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
                     {item.resultUrl && item.status === 'done' && (
                       <a
                         href={item.resultUrl}
-                        download={`converted-${item.file.name}`}
+                        download={getDownloadName(item)}
                         onClick={(e) => e.stopPropagation()}
                         className="py-1 px-2.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[10px] flex items-center gap-1 shadow-xs"
                       >

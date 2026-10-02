@@ -8191,10 +8191,21 @@ function getToolTagsAndFlags(id: string, category: string): { tags: string[]; tr
   };
 }
 
+function simplifyBadge(badge?: string): 'New' | 'Free' | undefined {
+  if (!badge) return undefined;
+  const b = badge.trim();
+  if (b === 'New') return 'New';
+  if (b === 'Free' || b === 'Original' || b.includes('Free') || b.includes('Online')) return 'Free';
+  return undefined;
+}
+
 export const TOOLS_DATA: ToolMeta[] = RAW_TOOLS_DATA.map(tool => {
   const { tags, trending, featured, editorsPick } = getToolTagsAndFlags(tool.id, tool.category);
+  const cleanPath = `/${tool.id}`;
   return {
     ...tool,
+    path: cleanPath,
+    badge: simplifyBadge(tool.badge),
     tags: Array.from(new Set([...(tool.tags || []), ...tags])),
     trending: tool.trending ?? trending,
     featured: tool.featured ?? featured,

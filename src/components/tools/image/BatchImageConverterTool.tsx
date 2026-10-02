@@ -146,22 +146,7 @@ export const BatchImageConverterTool: React.FC<BatchImageConverterToolProps> = (
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Batch Image Converter — Convert Multiple Photos Online — Zubware"
-        description="Free online batch image converter. Convert multiple photos to PNG, JPG, WebP, BMP, AVIF instantly with bulk ZIP download."
-        canonicalPath="/batch-image-converter.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Batch Image Converter
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Convert dozens of photos simultaneously into PNG, JPG, WebP, BMP or AVIF with one-click bulk ZIP export.
-        </p>
-      </div>
 
       {isProcessing && <ImageProcessingProgress stage={stage} progress={progress} />}
 

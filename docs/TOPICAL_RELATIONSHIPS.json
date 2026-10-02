@@ -1,11 +1,11 @@
 {
   "domain": "https://www.zubware.com",
-  "generatedAt": "2026-09-30T08:52:40.354Z",
+  "generatedAt": "2026-10-02T06:10:49.646Z",
   "inventory": {
-    "totalTools": 307,
+    "totalTools": 308,
     "totalBlogs": 30,
     "totalCategories": 13,
-    "totalCanonicalUrls": 351
+    "totalCanonicalUrls": 352
   },
   "categories": [
     {
@@ -66,42 +66,42 @@
         {
           "id": "pdf-merge",
           "title": "PDF Merge",
-          "path": "/pdf-merge.html"
+          "path": "/pdf-merge"
         },
         {
           "id": "pdf-split",
           "title": "PDF Split",
-          "path": "/pdf-split.html"
+          "path": "/pdf-split"
         },
         {
           "id": "image-to-pdf",
           "title": "Image to PDF",
-          "path": "/image-to-pdf.html"
+          "path": "/image-to-pdf"
         },
         {
           "id": "pdf-to-images",
           "title": "PDF to Images",
-          "path": "/pdf-to-images.html"
+          "path": "/pdf-to-images"
         },
         {
           "id": "rotate-pdf",
           "title": "Rotate PDF",
-          "path": "/rotate-pdf.html"
+          "path": "/rotate-pdf"
         },
         {
           "id": "delete-pdf-pages",
           "title": "Delete PDF Pages",
-          "path": "/delete-pdf-pages.html"
+          "path": "/delete-pdf-pages"
         },
         {
           "id": "extract-pdf-pages",
           "title": "Extract PDF Pages",
-          "path": "/extract-pdf-pages.html"
+          "path": "/extract-pdf-pages"
         },
         {
           "id": "reorder-pdf-pages",
           "title": "Reorder PDF Pages",
-          "path": "/reorder-pdf-pages.html"
+          "path": "/reorder-pdf-pages"
         }
       ]
     },
@@ -163,42 +163,42 @@
         {
           "id": "image-splitter-merger",
           "title": "Image Splitter & Combiner",
-          "path": "/image-splitter-merger.html"
+          "path": "/image-splitter-merger"
         },
         {
           "id": "background-remover",
           "title": "Background Remover",
-          "path": "/background-remover.html"
+          "path": "/background-remover"
         },
         {
           "id": "image-compressor",
           "title": "Image Compressor",
-          "path": "/image-compressor.html"
+          "path": "/image-compressor"
         },
         {
           "id": "image-converter",
           "title": "Image Converter",
-          "path": "/image-converter.html"
+          "path": "/image-converter"
         },
         {
           "id": "image-resizer",
           "title": "Image Resizer",
-          "path": "/image-resizer.html"
+          "path": "/image-resizer"
         },
         {
           "id": "crop-image",
           "title": "Crop Image",
-          "path": "/crop-image.html"
+          "path": "/crop-image"
         },
         {
           "id": "rotate-image",
           "title": "Rotate Image",
-          "path": "/rotate-image.html"
+          "path": "/rotate-image"
         },
         {
           "id": "flip-image",
           "title": "Flip Image",
-          "path": "/flip-image.html"
+          "path": "/flip-image"
         }
       ]
     },
@@ -238,42 +238,42 @@
         {
           "id": "youtube-title-generator",
           "title": "YouTube Title Generator",
-          "path": "/youtube-title-generator.html"
+          "path": "/youtube-title-generator"
         },
         {
           "id": "youtube-description-generator",
           "title": "YouTube Description Generator",
-          "path": "/youtube-description-generator.html"
+          "path": "/youtube-description-generator"
         },
         {
           "id": "youtube-tags-generator",
           "title": "YouTube Tags Generator",
-          "path": "/youtube-tags-generator.html"
+          "path": "/youtube-tags-generator"
         },
         {
           "id": "youtube-hashtag-generator",
           "title": "YouTube Hashtag Generator",
-          "path": "/youtube-hashtag-generator.html"
+          "path": "/youtube-hashtag-generator"
         },
         {
           "id": "youtube-thumbnail-simulator",
           "title": "YouTube Thumbnail & Mobile Feed Simulator",
-          "path": "/youtube-thumbnail-simulator.html"
+          "path": "/youtube-thumbnail-simulator"
         },
         {
           "id": "youtube-banner-safe-area",
           "title": "YouTube Channel Banner Safe Area Simulator",
-          "path": "/youtube-banner-safe-area.html"
+          "path": "/youtube-banner-safe-area"
         },
         {
           "id": "youtube-thumbnail-preview",
           "title": "YouTube Thumbnail Preview",
-          "path": "/youtube-thumbnail-preview.html"
+          "path": "/youtube-thumbnail-preview"
         },
         {
           "id": "youtube-channel-name-generator",
           "title": "YouTube Channel Name Generator",
-          "path": "/youtube-channel-name-generator.html"
+          "path": "/youtube-channel-name-generator"
         }
       ]
     },
@@ -301,37 +301,37 @@
         {
           "id": "matching-parts-video-maker",
           "title": "Matching Parts Puzzle Video Maker",
-          "path": "/matching-parts-video-maker.html"
+          "path": "/matching-parts-video-maker"
         },
         {
           "id": "subtitle-generator",
           "title": "Video Subtitle & SRT Generator — Create Captions & Timestamps",
-          "path": "/subtitle-generator.html"
+          "path": "/subtitle-generator"
         },
         {
           "id": "video-aspect-ratio",
           "title": "Video Aspect Ratio Converter — 9:16 Shorts, Reels & 16:9 YouTube",
-          "path": "/video-aspect-ratio.html"
+          "path": "/video-aspect-ratio"
         },
         {
           "id": "video-compressor",
           "title": "Video Compressor — Reduce Video File Size In Browser",
-          "path": "/video-compressor.html"
+          "path": "/video-compressor"
         },
         {
           "id": "video-to-audio",
           "title": "Video to Audio Extractor — Convert MP4 & WebM to WAV Online",
-          "path": "/video-to-audio.html"
+          "path": "/video-to-audio"
         },
         {
           "id": "video-to-gif",
           "title": "Video to GIF Converter — Create Animated GIFs from Video Clips",
-          "path": "/video-to-gif.html"
+          "path": "/video-to-gif"
         },
         {
           "id": "video-trimmer",
           "title": "Video Trimmer & Cutter — Cut Video Segments In Browser",
-          "path": "/video-trimmer.html"
+          "path": "/video-trimmer"
         }
       ]
     },
@@ -367,17 +367,17 @@
         {
           "id": "lofi-song-maker",
           "title": "Lofi Music Studio",
-          "path": "/lofi-song-maker.html"
+          "path": "/lofi-song-maker"
         },
         {
           "id": "lofi-maker",
           "title": "Lofi Maker",
-          "path": "/lofi-maker.html"
+          "path": "/lofi-maker"
         },
         {
           "id": "slowed-and-reverb",
           "title": "Slowed & Reverb Generator",
-          "path": "/slowed-and-reverb.html"
+          "path": "/slowed-and-reverb"
         }
       ]
     },
@@ -415,42 +415,42 @@
         {
           "id": "gst-invoice-generator",
           "title": "GST Invoice Generator — Create & Download Invoices Online",
-          "path": "/gst-invoice-generator.html"
+          "path": "/gst-invoice-generator"
         },
         {
           "id": "omr-sheet-generator",
           "title": "OMR Sheet Generator — Create Printable OMR Answer Sheets Free",
-          "path": "/omr-sheet-generator.html"
+          "path": "/omr-sheet-generator"
         },
         {
           "id": "barcode-generator",
           "title": "Free Barcode Generator — Create Code 128, EAN-13, UPC Barcodes",
-          "path": "/barcode-generator.html"
+          "path": "/barcode-generator"
         },
         {
           "id": "business-name-generator",
           "title": "Business Name Generator — Creative Brand & Startup Ideas",
-          "path": "/business-name-generator.html"
+          "path": "/business-name-generator"
         },
         {
           "id": "brand-name-generator",
           "title": "Brand Name Generator — Catchy Company & Domain Names",
-          "path": "/brand-name-generator.html"
+          "path": "/brand-name-generator"
         },
         {
           "id": "loan-eligibility-calculator",
           "title": "Loan Eligibility Calculator — FOIR & Maximum Borrow Limit",
-          "path": "/loan-eligibility-calculator.html"
+          "path": "/loan-eligibility-calculator"
         },
         {
           "id": "down-payment-calculator",
           "title": "Down Payment Calculator — Mortgage Savings & Upfront Cash",
-          "path": "/down-payment-calculator.html"
+          "path": "/down-payment-calculator"
         },
         {
           "id": "bond-yield-calculator",
           "title": "Bond Yield Calculator — Current Yield & YTM Valuation",
-          "path": "/bond-yield-calculator.html"
+          "path": "/bond-yield-calculator"
         }
       ]
     },
@@ -499,42 +499,42 @@
         {
           "id": "case-converter",
           "title": "Case Converter — Uppercase, Lowercase, Title Case, CamelCase",
-          "path": "/case-converter.html"
+          "path": "/case-converter"
         },
         {
           "id": "word-counter",
           "title": "Word Counter & Character Counter — Readability & Speaking Time",
-          "path": "/word-counter.html"
+          "path": "/word-counter"
         },
         {
           "id": "character-counter",
           "title": "Character Counter — Letters, Numbers & Symbol Statistics",
-          "path": "/character-counter.html"
+          "path": "/character-counter"
         },
         {
           "id": "reading-time-calculator",
           "title": "Reading Time Calculator — Estimate Reading & Speaking Duration",
-          "path": "/reading-time-calculator.html"
+          "path": "/reading-time-calculator"
         },
         {
           "id": "remove-duplicate-lines",
           "title": "Remove Duplicate Lines — Deduplicate Text Lists Online",
-          "path": "/remove-duplicate-lines.html"
+          "path": "/remove-duplicate-lines"
         },
         {
           "id": "remove-empty-lines",
           "title": "Remove Empty Lines — Strip Blank Lines & Whitespace Online",
-          "path": "/remove-empty-lines.html"
+          "path": "/remove-empty-lines"
         },
         {
           "id": "find-and-replace",
           "title": "Find and Replace Text Online — Batch Replace with Regex Support",
-          "path": "/find-and-replace.html"
+          "path": "/find-and-replace"
         },
         {
           "id": "text-compare",
           "title": "Text Compare Tool — Online Diff Checker & Text Difference",
-          "path": "/text-compare.html"
+          "path": "/text-compare"
         }
       ]
     },
@@ -543,7 +543,7 @@
       "name": "Career & Resume Tools",
       "icon": "💼",
       "canonicalUrl": "https://www.zubware.com/category/career-tools",
-      "totalTools": 23,
+      "totalTools": 24,
       "workflows": [
         {
           "title": "ATS Resume Optimization",
@@ -585,42 +585,42 @@
         {
           "id": "resume-builder",
           "title": "Resume Builder",
-          "path": "/resume-builder.html"
+          "path": "/resume-builder"
         },
         {
           "id": "ats-resume-checker",
           "title": "ATS Resume Checker",
-          "path": "/ats-resume-checker.html"
+          "path": "/ats-resume-checker"
         },
         {
           "id": "resume-score-analyzer",
           "title": "Resume Score Analyzer",
-          "path": "/resume-score-analyzer.html"
+          "path": "/resume-score-analyzer"
         },
         {
           "id": "cover-letter-builder",
           "title": "Cover Letter Builder",
-          "path": "/cover-letter-builder.html"
+          "path": "/cover-letter-builder"
         },
         {
           "id": "cover-letter-templates",
           "title": "Cover Letter Templates",
-          "path": "/cover-letter-templates.html"
+          "path": "/cover-letter-templates"
         },
         {
           "id": "cv-builder",
           "title": "CV Builder",
-          "path": "/cv-builder.html"
+          "path": "/cv-builder"
         },
         {
           "id": "resume-keyword-optimizer",
           "title": "Resume Keyword Optimizer",
-          "path": "/resume-keyword-optimizer.html"
+          "path": "/resume-keyword-optimizer"
         },
         {
           "id": "resume-template-gallery",
           "title": "Resume Template Gallery",
-          "path": "/resume-template-gallery.html"
+          "path": "/resume-template-gallery"
         }
       ]
     },
@@ -685,42 +685,42 @@
         {
           "id": "uuid-generator",
           "title": "UUID Generator",
-          "path": "/uuid-generator.html"
+          "path": "/uuid-generator"
         },
         {
           "id": "hash-generator",
           "title": "Hash Generator",
-          "path": "/hash-generator.html"
+          "path": "/hash-generator"
         },
         {
           "id": "jwt-decoder",
           "title": "JWT Decoder",
-          "path": "/jwt-decoder.html"
+          "path": "/jwt-decoder"
         },
         {
           "id": "unix-timestamp-converter",
           "title": "Unix Timestamp Converter",
-          "path": "/unix-timestamp-converter.html"
+          "path": "/unix-timestamp-converter"
         },
         {
           "id": "regex-tester",
           "title": "Regex Tester & Explainer",
-          "path": "/regex-tester.html"
+          "path": "/regex-tester"
         },
         {
           "id": "json-formatter",
           "title": "JSON Formatter & Tree Viewer",
-          "path": "/json-formatter.html"
+          "path": "/json-formatter"
         },
         {
           "id": "json-validator",
           "title": "JSON Validator",
-          "path": "/json-validator.html"
+          "path": "/json-validator"
         },
         {
           "id": "json-to-csv",
           "title": "JSON to CSV Converter",
-          "path": "/json-to-csv.html"
+          "path": "/json-to-csv"
         }
       ]
     },
@@ -759,42 +759,42 @@
         {
           "id": "learning-licence-mock-test",
           "title": "Learning Licence Mock Test — Practice RTO Driving Exam Online",
-          "path": "/learning-licence-mock-test.html"
+          "path": "/learning-licence-mock-test"
         },
         {
           "id": "css-gradient-generator",
           "title": "CSS Gradient Generator",
-          "path": "/css-gradient-generator.html"
+          "path": "/css-gradient-generator"
         },
         {
           "id": "box-shadow-generator",
           "title": "Box Shadow Generator",
-          "path": "/box-shadow-generator.html"
+          "path": "/box-shadow-generator"
         },
         {
           "id": "border-radius-generator",
           "title": "Border Radius Generator",
-          "path": "/border-radius-generator.html"
+          "path": "/border-radius-generator"
         },
         {
           "id": "glassmorphism-generator",
           "title": "Glassmorphism Generator",
-          "path": "/glassmorphism-generator.html"
+          "path": "/glassmorphism-generator"
         },
         {
           "id": "neumorphism-generator",
           "title": "Neumorphism Generator",
-          "path": "/neumorphism-generator.html"
+          "path": "/neumorphism-generator"
         },
         {
           "id": "css-clip-path-generator",
           "title": "CSS Clip Path Generator",
-          "path": "/css-clip-path-generator.html"
+          "path": "/css-clip-path-generator"
         },
         {
           "id": "svg-shape-generator",
           "title": "SVG Shape Generator",
-          "path": "/svg-shape-generator.html"
+          "path": "/svg-shape-generator"
         }
       ]
     },
@@ -830,42 +830,42 @@
         {
           "id": "chatgpt-prompt-builder",
           "title": "ChatGPT Prompt Builder",
-          "path": "/chatgpt-prompt-builder.html"
+          "path": "/chatgpt-prompt-builder"
         },
         {
           "id": "gemini-prompt-builder",
           "title": "Gemini Prompt Builder",
-          "path": "/gemini-prompt-builder.html"
+          "path": "/gemini-prompt-builder"
         },
         {
           "id": "claude-prompt-builder",
           "title": "Claude Prompt Builder",
-          "path": "/claude-prompt-builder.html"
+          "path": "/claude-prompt-builder"
         },
         {
           "id": "veo-prompt-builder",
           "title": "Veo Prompt Builder",
-          "path": "/veo-prompt-builder.html"
+          "path": "/veo-prompt-builder"
         },
         {
           "id": "midjourney-prompt-builder",
           "title": "Midjourney Prompt Builder",
-          "path": "/midjourney-prompt-builder.html"
+          "path": "/midjourney-prompt-builder"
         },
         {
           "id": "flux-prompt-builder",
           "title": "Flux Prompt Builder",
-          "path": "/flux-prompt-builder.html"
+          "path": "/flux-prompt-builder"
         },
         {
           "id": "stable-diffusion-prompt-builder",
           "title": "Stable Diffusion Prompt Builder",
-          "path": "/stable-diffusion-prompt-builder.html"
+          "path": "/stable-diffusion-prompt-builder"
         },
         {
           "id": "logo-prompt-builder",
           "title": "Logo Prompt Builder",
-          "path": "/logo-prompt-builder.html"
+          "path": "/logo-prompt-builder"
         }
       ]
     },
@@ -893,17 +893,17 @@
         {
           "id": "weight-gain-calculator",
           "title": "Weight Gain Calorie & Macro Calculator",
-          "path": "/weight-gain-calculator.html"
+          "path": "/weight-gain-calculator"
         },
         {
           "id": "calorie-calculator",
           "title": "Daily Calorie Intake Calculator — BMR & Weight Loss Goal",
-          "path": "/calorie-calculator.html"
+          "path": "/calorie-calculator"
         },
         {
           "id": "water-intake-calculator",
           "title": "Daily Water Intake Calculator — Hydration Needs by Weight",
-          "path": "/water-intake-calculator.html"
+          "path": "/water-intake-calculator"
         }
       ]
     },
@@ -945,42 +945,42 @@
         {
           "id": "qr-generator",
           "title": "QR Code Generator",
-          "path": "/qr-generator.html"
+          "path": "/qr-generator"
         },
         {
           "id": "qr-code-safety-checker",
           "title": "QR Code Safety Checker",
-          "path": "/qr-code-safety-checker.html"
+          "path": "/qr-code-safety-checker"
         },
         {
           "id": "typing-speed-test",
           "title": "Typing Speed Test — Test WPM & Accuracy Online",
-          "path": "/typing-speed-test.html"
+          "path": "/typing-speed-test"
         },
         {
           "id": "barcode-scanner",
           "title": "Barcode Scanner — Scan 1D/2D Barcodes Online Free",
-          "path": "/barcode-scanner.html"
+          "path": "/barcode-scanner"
         },
         {
           "id": "calendar-notes",
           "title": "Calendar Notes — Private Monthly Calendar & Daily Planner",
-          "path": "/calendar-notes.html"
+          "path": "/calendar-notes"
         },
         {
           "id": "clipboard-history",
           "title": "Clipboard History Manager — Save & Search Copied Snippets",
-          "path": "/clipboard-history.html"
+          "path": "/clipboard-history"
         },
         {
           "id": "daily-planner",
           "title": "Daily Routine Planner — Morning, Afternoon & Evening Focus",
-          "path": "/daily-planner.html"
+          "path": "/daily-planner"
         },
         {
           "id": "file-checksum-verifier",
           "title": "File Checksum Verifier — Verify SHA-256, SHA-1, SHA-512 & MD5",
-          "path": "/file-checksum-verifier.html"
+          "path": "/file-checksum-verifier"
         }
       ]
     }

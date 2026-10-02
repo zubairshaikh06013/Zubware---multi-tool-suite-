@@ -21,3 +21,27 @@
 /categories/:slug.html /category/:slug 301
 /category/:slug.html /category/:slug 301
 /category/:slug/index.html /category/:slug 301
+
+# 5. Static Pages canonicalization (redirect legacy .html to clean canonical URL)
+/about.html /about 301
+/about/index.html /about 301
+/privacy.html /privacy 301
+/privacy/index.html /privacy 301
+/terms.html /terms 301
+/terms/index.html /terms 301
+/disclaimer.html /disclaimer 301
+/disclaimer/index.html /disclaimer 301
+/contact.html /contact 301
+/contact/index.html /contact 301
+/help.html /help 301
+/help/index.html /help 301
+/changelog.html /changelog 301
+/changelog/index.html /changelog 301
+/feedback.html /feedback 301
+/feedback/index.html /feedback 301
+/dashboard.html /dashboard 301
+/dashboard/index.html /dashboard 301
+
+# 6. Tool Pages canonicalization (redirect legacy .html to clean canonical URL)
+/:slug.html /:slug 301
+/:slug/index.html /:slug 301

@@ -57,22 +57,7 @@ Generated with Zubware Image Tools`;
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Image Information Viewer — Inspect Specs & EXIF — Zubware"
-        description="Free online image information viewer. Inspect resolution, aspect ratio, color depth, transparency, print size & EXIF tags of any JPG, PNG, WebP image."
-        canonicalPath="/image-info-viewer.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Image Information Viewer
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Analyze full technical specifications, EXIF tags, aspect ratio, print size, and transparency details.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

@@ -92,16 +92,13 @@ export async function renderPdfPageToDataUrl(
   return canvas.toDataURL(mimeType, 0.92);
 }
 
+import { formatDecimalBytes } from './fileSizeStandard';
+
 /**
- * Format raw bytes into human readable size
+ * Format raw bytes into human readable size according to Zubware decimal standard
  */
 export function formatBytes(bytes: number, decimals = 1): string {
-  if (bytes === 0) return '0 B';
-  const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
-  const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  return formatDecimalBytes(bytes, decimals);
 }
 
 /**
@@ -119,4 +116,33 @@ export function extractPdfVersionFromBuffer(buffer: ArrayBuffer): string {
     // fallback
   }
   return 'v1.7';
+}
+
+/**
+ * Extract all textual content across all pages of a PDF document
+ */
+export async function extractTextFromPdf(pdfData: ArrayBuffer): Promise<string> {
+  try {
+    const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(pdfData.slice(0)) });
+    const pdf = await loadingTask.promise;
+    const maxPages = pdf.numPages;
+    const pageTextPromises: Promise<string>[] = [];
+
+    for (let i = 1; i <= maxPages; i++) {
+      pageTextPromises.push(
+        pdf.getPage(i).then(async (page) => {
+          const content = await page.getTextContent();
+          return content.items
+            .map((item: any) => (item.str ? item.str : ''))
+            .join(' ');
+        })
+      );
+    }
+
+    const pages = await Promise.all(pageTextPromises);
+    return pages.join('\n\n');
+  } catch (err) {
+    console.warn('[PDF Text Extraction] Error reading text:', err);
+    throw new Error('Unable to extract text from PDF. It may be encrypted or a scanned image.');
+  }
 }

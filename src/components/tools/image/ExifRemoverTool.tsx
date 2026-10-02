@@ -83,22 +83,7 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="EXIF Data Remover — Strip GPS, Camera & Metadata — Zubware"
-        description="Free online EXIF metadata remover. Strip GPS coordinates, camera serial numbers, author name & device info from photos while preserving high image quality."
-        canonicalPath="/exif-remover.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          EXIF Metadata Remover
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Wipe hidden GPS location tags, camera model, author info, and device details from photos for complete privacy.
-        </p>
-      </div>
 
       {files.length === 0 ? (
         <ImageUploadArea onImageSelected={handleImageSelected} multiple={true} />

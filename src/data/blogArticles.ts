@@ -11,7 +11,7 @@ export const BLOG_ARTICLES: BlogArticle[] = [
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Technical Documentation & Tools Team'
     },
     publisher: {
@@ -159,7 +159,7 @@ To maintain readability while achieving significant file reduction:
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Engineering Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Core Architecture & Graphics Group'
     },
     publisher: {
@@ -271,7 +271,7 @@ To maintain readability while achieving significant file reduction:
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Document Security & Productivity Team'
     },
     publisher: {
@@ -367,7 +367,7 @@ Client-side PDF manipulation completely eliminates this vulnerability. By utiliz
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Security Research',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Application Security Group'
     },
     publisher: {
@@ -462,7 +462,7 @@ However, traditional utility websites are often backed by Node.js or Python back
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Financial Editorial',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Economics & Mathematics Team'
     },
     publisher: {
@@ -568,7 +568,7 @@ Key insight: In the initial years of a 20-year home mortgage, up to 75% of your 
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Content & Typography Group'
     },
     publisher: {
@@ -663,7 +663,7 @@ Using Zubware's Remove Extra Spaces and Case Converter cleans and standardizes a
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Content & Media Architecture Team'
     },
     publisher: {
@@ -702,7 +702,7 @@ Metadata — including your video title, description, tags, and spoken transcrip
 
 - **Keyword Placement:** Place your core search phrase in the first 40 characters so it remains visible on mobile devices where 70%+ of YouTube watch time originates.
 - **The Information Gap Theory:** Create a psychological tension that can only be resolved by clicking. Compare *"How to Edit Videos in Premiere"* (flat, passive) with *"5 Premiere Pro Shortcuts That Cut My Editing Time in Half"* (high utility, specific outcome).
-- **Power Words & Specificity:** Use concrete numbers, temporal benchmarks, and contrast words (e.g., 'Free', 'Faster', 'Secret', 'Tested'). Our [YouTube Title Generator](https://www.zubware.com/youtube-title-generator.html) automates these linguistic patterns based on proven viral frameworks.`
+- **Power Words & Specificity:** Use concrete numbers, temporal benchmarks, and contrast words (e.g., 'Free', 'Faster', 'Secret', 'Tested'). Our [YouTube Title Generator](/youtube-title-generator) automates these linguistic patterns based on proven viral frameworks.`
       },
       {
         id: 'description-structure-timestamps',
@@ -712,7 +712,7 @@ Metadata — including your video title, description, tags, and spoken transcrip
 1. **The Hook (Lines 1-2):** 150-200 characters summarizing the video value before the "...more" button truncation.
 2. **Key Moments / Timestamps:** Formatted as \`00:00 Introduction\`, \`02:15 The Core Setup\`. Google Search indexes these exact timestamps as interactive "Key Moments" on search results pages.
 3. **Contextual Links & Tool Resources:** Links to mentioned tools and workflows.
-4. **Keyword Enrichment:** Natural paragraphs explaining the methodology, allowing semantic search engines to extract entities. Use our [YouTube Description Generator](https://www.zubware.com/youtube-description-generator.html) to produce structured, SEO-compliant templates.`
+4. **Keyword Enrichment:** Natural paragraphs explaining the methodology, allowing semantic search engines to extract entities. Use our [YouTube Description Generator](/youtube-description-generator) to produce structured, SEO-compliant templates.`
       },
       {
         id: 'thumbnail-mobile-simulation',
@@ -721,7 +721,7 @@ Metadata — including your video title, description, tags, and spoken transcrip
 
 - **Complimentary Storytelling:** If the title asks a question, let the thumbnail show the extreme reaction or the outcome.
 - **Visual Contrast in Dark Mode:** Over 65% of mobile users browse YouTube in Dark Mode. Dark, muddy thumbnails blend into the pitch-black background. Ensure strong rim lighting, drop shadows, or high-luminance borders around subjects.
-- **The 3-Element Rule:** Never include more than 3 focal points in a single thumbnail: (1) The Subject/Face, (2) The Key Object, and (3) Maximum 3 Words of Bold Text. Preview your graphics with our [YouTube Thumbnail Simulator](https://www.zubware.com/youtube-thumbnail-simulator.html) before uploading.`
+- **The 3-Element Rule:** Never include more than 3 focal points in a single thumbnail: (1) The Subject/Face, (2) The Key Object, and (3) Maximum 3 Words of Bold Text. Preview your graphics with our [YouTube Thumbnail Simulator](/youtube-thumbnail-simulator) before uploading.`
       }
     ],
     relatedToolIds: [
@@ -774,7 +774,7 @@ Metadata — including your video title, description, tags, and spoken transcrip
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Audio & Video Engineering Team'
     },
     publisher: {
@@ -813,7 +813,7 @@ This architecture provides two unprecedented advantages:
         title: '2. The Viral Mechanics of Matching Parts Puzzle Videos',
         content: `Short-form algorithms on YouTube Shorts, TikTok, and Instagram Reels heavily prioritize **Average Percentage Viewed (APV)**. When a user watches a 15-second clip twice because of a seamless loop or an engaging puzzle reveal, the platform's algorithm interprets this 200% completion rate as an indicator of exceptional viral quality.
 
-Our [Matching Parts Puzzle Video Maker](https://www.zubware.com/matching-parts-puzzle-video-maker.html) creates an irresistible visual suspense loop:
+Our [Matching Parts Puzzle Video Maker](/matching-parts-puzzle-video-maker) creates an irresistible visual suspense loop:
 - Split character images or satisfying geometric shapes rotate across divided horizontal or vertical reels.
 - Viewers watch with intense anticipation until the exact microsecond when all sections snap into alignment.
 - The looping animation is generated programmatically on HTML5 Canvas and recorded via \`MediaRecorder\` into high-definition vertical video (9:16 aspect ratio).`
@@ -825,12 +825,12 @@ Our [Matching Parts Puzzle Video Maker](https://www.zubware.com/matching-parts-p
 
 - **Time-Stretching / Pitch Shifting:** Lowering playback speed by 10%–20% introduces a mellow, relaxed tempo and deepens vocal timbre.
 - **Impulse Response Convolution:** Running the audio signal through a simulated reverb impulse response recreates the acoustics of an empty cathedral, subterranean tunnel, or damp arena.
-- **Low-Pass Filtering:** Attenuating high frequencies above 6kHz removes harsh transients and simulates the warm acoustic profile of magnetic cassette tape. Zubware's [Slowed and Reverb Tool](https://www.zubware.com/slowed-and-reverb.html) executes these convolutions in real time.`
+- **Low-Pass Filtering:** Attenuating high frequencies above 6kHz removes harsh transients and simulates the warm acoustic profile of magnetic cassette tape. Zubware's [Slowed and Reverb Tool](/slowed-and-reverb) executes these convolutions in real time.`
       },
       {
         id: 'lofi-music-generation',
         title: '4. Ambient & Lofi Soundscapes for Study & Productivity',
-        content: `Lofi hip-hop relies on vinyl crackle, gentle rain ambiances, detuned electric piano chords (Fender Rhodes), and laid-back boom-bap drum beats. Using the [Lofi Music Studio](https://www.zubware.com/lofi-music-studio.html), creators can layer customizable ambient textures, adjust vinyl static noise levels, and mix relaxing background music for study streams or voiceover backgrounds with zero royalty encumbrances.`
+        content: `Lofi hip-hop relies on vinyl crackle, gentle rain ambiances, detuned electric piano chords (Fender Rhodes), and laid-back boom-bap drum beats. Using the [Lofi Music Studio](/lofi-music-studio), creators can layer customizable ambient textures, adjust vinyl static noise levels, and mix relaxing background music for study streams or voiceover backgrounds with zero royalty encumbrances.`
       }
     ],
     relatedToolIds: [
@@ -883,7 +883,7 @@ Our [Matching Parts Puzzle Video Maker](https://www.zubware.com/matching-parts-p
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'AI Systems & Prompt Engineering Team'
     },
     publisher: {
@@ -934,7 +934,7 @@ Summarize the document enclosed in <document_body> tags in 3 concise bullet poin
 [Your raw input text here]
 </document_body>
 \`\`\`
-- **Few-Shot Demonstration:** Rather than trying to describe complex formatting rules in abstract prose, provide concrete input/output examples. 2 to 3 few-shot pairs dramatically improve consistency across edge cases. Our [Universal Prompt Builder](https://www.zubware.com/universal-prompt-builder.html) automates these structural scaffolds.`
+- **Few-Shot Demonstration:** Rather than trying to describe complex formatting rules in abstract prose, provide concrete input/output examples. 2 to 3 few-shot pairs dramatically improve consistency across edge cases. Our [Universal Prompt Builder](/universal-prompt-builder) automates these structural scaffolds.`
       },
       {
         id: 'diffusion-prompting-midjourney-flux',
@@ -944,15 +944,15 @@ Summarize the document enclosed in <document_body> tags in 3 concise bullet poin
 To generate photorealistic or stylistic imagery without digital artifacts:
 - **Order of Weight:** Tokens at the beginning of the prompt carry significantly higher influence. Place the core subject first, followed by atmospheric lighting, camera details, and composition.
 - **Lighting Semantics:** Avoid vague words like *"beautiful lighting"*. Specify physical lighting sources: *"Rembrandt lighting, golden hour volumetric sun rays, soft rim light, 35mm f/1.4 lens, shallow depth of field, kodachrome film grain"*.
-- **Parameter Flags:** Midjourney requires exact syntax flags such as \`--ar 16:9\`, \`--style raw\`, and \`--v 6.1\`. Use the [Midjourney Prompt Builder](https://www.zubware.com/midjourney-prompt-builder.html) and [Flux Prompt Builder](https://www.zubware.com/flux-prompt-builder.html) to construct syntax-perfect prompts.`
+- **Parameter Flags:** Midjourney requires exact syntax flags such as \`--ar 16:9\`, \`--style raw\`, and \`--v 6.1\`. Use the [Midjourney Prompt Builder](/midjourney-prompt-builder) and [Flux Prompt Builder](/flux-prompt-builder) to construct syntax-perfect prompts.`
       },
       {
         id: 'specialized-model-tuning',
         title: '4. Tailoring Prompts for Gemini, Claude, and ChatGPT',
         content: `Each major model family has distinct stylistic tendencies:
-- **Anthropic Claude:** Excels at complex code refactoring, nuance, and maintaining long context fidelity. Prefers clear XML tags and structured constraints. Use our [Claude Prompt Builder](https://www.zubware.com/claude-prompt-builder.html).
-- **OpenAI ChatGPT:** Responds best to explicit role framing and system prompts. Use our [ChatGPT Prompt Builder](https://www.zubware.com/chatgpt-prompt-builder.html).
-- **Google Gemini:** Possesses massive multimodal context windows and real-time search grounding. Structure inputs with clear data blocks using our [Gemini Prompt Builder](https://www.zubware.com/gemini-prompt-builder.html).`
+- **Anthropic Claude:** Excels at complex code refactoring, nuance, and maintaining long context fidelity. Prefers clear XML tags and structured constraints. Use our [Claude Prompt Builder](/claude-prompt-builder).
+- **OpenAI ChatGPT:** Responds best to explicit role framing and system prompts. Use our [ChatGPT Prompt Builder](/chatgpt-prompt-builder).
+- **Google Gemini:** Possesses massive multimodal context windows and real-time search grounding. Structure inputs with clear data blocks using our [Gemini Prompt Builder](/gemini-prompt-builder).`
       }
     ],
     relatedToolIds: [
@@ -1005,7 +1005,7 @@ To generate photorealistic or stylistic imagery without digital artifacts:
     modifiedTime: '2026-09-24T00:00:00Z',
     author: {
       name: 'Zubware Editorial Team',
-      url: 'https://www.zubware.com/about.html',
+      url: 'https://www.zubware.com/about',
       role: 'Career Strategy & HR Tech Team'
     },
     publisher: {
@@ -1057,7 +1057,7 @@ The ATS performs optical and binary parsing:
 
 1. **Both Acronyms and Long-Form Terms:** Mention both *"Search Engine Optimization (SEO)"* or *"Certified Information Systems Security Professional (CISSP)"*.
 2. **Contextual Action Verbs:** Rather than a bare list of buzzwords, pair keywords with measurable business metrics: *"Architected high-throughput microservices using Go and Docker, reducing API latency by 45%."*
-3. **Use Automated Scanners:** Test your resume before submission using our [ATS Resume Checker](https://www.zubware.com/ats-resume-checker.html) and [Resume Keyword Optimizer](https://www.zubware.com/resume-keyword-optimizer.html).`
+3. **Use Automated Scanners:** Test your resume before submission using our [ATS Resume Checker](/ats-resume-checker) and [Resume Keyword Optimizer](/resume-keyword-optimizer).`
       },
       {
         id: 'salary-career-calculations',
@@ -1065,9 +1065,9 @@ The ATS performs optical and binary parsing:
         content: `Once your optimized resume secures an interview loop, compensation negotiation begins. Understanding your Cost-to-Company (CTC) breakdown, in-hand deductions, and provident fund allocations is essential for evaluating competing offers.
 
 Use our suite of dedicated career calculators:
-- [Salary Hike Calculator](https://www.zubware.com/salary-hike-calculator.html) to model target increment percentages.
-- [CTC Calculator](https://www.zubware.com/ctc-calculator.html) to project net monthly take-home pay.
-- [Notice Period Calculator](https://www.zubware.com/notice-period-calculator.html) to coordinate smooth transition timelines.`
+- [Salary Hike Calculator](/salary-hike-calculator) to model target increment percentages.
+- [CTC Calculator](/ctc-calculator) to project net monthly take-home pay.
+- [Notice Period Calculator](/notice-period-calculator) to coordinate smooth transition timelines.`
       }
     ],
     relatedToolIds: [
@@ -1120,7 +1120,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1212,7 +1212,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1299,7 +1299,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1386,7 +1386,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1473,7 +1473,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1560,7 +1560,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1647,7 +1647,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1734,7 +1734,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1821,7 +1821,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1908,7 +1908,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -1995,7 +1995,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2082,7 +2082,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2169,7 +2169,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2256,7 +2256,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2343,7 +2343,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2430,7 +2430,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2517,7 +2517,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2604,7 +2604,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2691,7 +2691,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {
@@ -2778,7 +2778,7 @@ Use our suite of dedicated career calculators:
     "modifiedTime": "2026-09-28T00:00:00Z",
     "author": {
       "name": "Zubware Editorial Team",
-      "url": "https://www.zubware.com/about.html",
+      "url": "https://www.zubware.com/about",
       "role": "Technical Documentation & Tools Team"
     },
     "publisher": {

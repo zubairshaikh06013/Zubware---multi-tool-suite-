@@ -77,8 +77,8 @@ export const Header: React.FC<HeaderProps> = ({
           </a>
 
           <a
-            href={getLinkUrl('/dashboard.html')}
-            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/dashboard.html')); }}
+            href={getLinkUrl('/dashboard')}
+            onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/dashboard')); }}
             aria-label="User Dashboard"
             className={`px-3 py-1.5 rounded-xl transition-all ${
               currentPath.includes('dashboard')
@@ -326,10 +326,10 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
 
               <a
-                href={getLinkUrl('/dashboard.html')}
+                href={getLinkUrl('/dashboard')}
                 onClick={(e) => {
                   e.preventDefault();
-                  onNavigate(getLinkUrl('/dashboard.html'));
+                  onNavigate(getLinkUrl('/dashboard'));
                   setMobileMenuOpen(false);
                 }}
                 className={`flex items-center gap-2 p-3 rounded-xl transition-all min-h-[44px] ${

@@ -604,52 +604,6 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* SEO Head */}
-      <SEOHead
-        title="Bulk Image Renamer & Resizer - Rename & Resize Images Online"
-        description="Rename and resize multiple images at once. Bulk rename product photos, property images and other files, change dimensions, convert formats and download everything as a ZIP directly in your browser."
-        canonicalPath="/bulk-image-renamer-resizer.html"
-        faqs={[
-          {
-            question: "Can I rename multiple images at once?",
-            answer: "Yes! You can rename dozens or hundreds of images at once using custom patterns, prefixes, suffixes, base names, and zero-padded sequential numbers."
-          },
-          {
-            question: "Can I resize 100 images at once?",
-            answer: "Yes, you can upload 100 or more images, choose preset resolutions (like 1920px, 1080px, Instagram, Marketplace) or custom dimensions, and resize all images simultaneously."
-          },
-          {
-            question: "Can I rename product photos in bulk?",
-            answer: "Absolutely. E-commerce sellers can quickly format product photos (e.g. product-001.jpg, product-002.jpg) with consistent dimensions for Amazon, Shopify, eBay, and Etsy."
-          },
-          {
-            question: "Can I resize property photos in bulk?",
-            answer: "Yes, real-estate agents and property dealers can batch rename and resize gallery photos (e.g. property-001.jpg, 1920x1080) in seconds."
-          },
-          {
-            question: "Can I convert JPG to WebP in bulk?",
-            answer: "Yes, you can select WebP, JPG, or PNG as your bulk output format with customizable quality controls."
-          },
-          {
-            question: "Can I download all images as ZIP?",
-            answer: "Yes! Once processing is complete, you can download all converted images in a single compressed ZIP file generated locally inside your browser."
-          },
-          {
-            question: "Are my images uploaded to a server?",
-            answer: "No. Renaming, resizing, format conversion, and ZIP archiving take place locally in your web browser. Files and inputs are not uploaded to Zubware servers."
-          },
-          {
-            question: "Can I use this tool on my phone?",
-            answer: "Yes, Zubware Bulk Image Renamer & Resizer is fully responsive and optimized for touch devices on Android, iPhone, iPad, and desktop."
-          },
-          {
-            question: "What happens if one image fails?",
-            answer: "If a corrupted or unsupported file fails, Zubware marks that individual file as failed and continues processing all remaining images in the batch."
-          }
-        ]}
-      />
-
-      
-
       {/* Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/20">

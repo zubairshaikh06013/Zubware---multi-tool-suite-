@@ -110,22 +110,7 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Rotate Image Online — 90°, 180°, Custom Angle — Zubware"
-        description="Free online image rotator. Rotate JPG, PNG, WebP images by 90°, 180°, 270° or custom angles with batch support and instant browser download."
-        canonicalPath="/rotate-image.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          Rotate Image
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Rotate single or batch images clockwise, counter-clockwise, or at any custom angle.
-        </p>
-      </div>
 
       {files.length === 0 ? (
         <ImageUploadArea onImageSelected={handleImageSelected} multiple={true} />

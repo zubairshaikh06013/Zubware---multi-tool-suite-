@@ -434,52 +434,6 @@ export const HeicToJpgTool: React.FC<HeicToJpgToolProps> = ({ onShowToast, onNav
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* SEO Head */}
-      <SEOHead
-        title="HEIC to JPG Converter - Convert HEIC Images to JPG Online"
-        description="Convert HEIC and HEIF images to JPG directly in your browser. Batch convert HEIC files, adjust JPG quality and download your images without uploading them to a server."
-        canonicalPath="/heic-to-jpg.html"
-        faqs={[
-          {
-            question: "What is a HEIC file?",
-            answer: "HEIC (High Efficiency Image Container) is the default photo format used by Apple iOS (iPhone/iPad) and macOS devices. It provides high quality at reduced file sizes, but is not natively supported by all browsers and Windows applications."
-          },
-          {
-            question: "How do I convert HEIC to JPG?",
-            answer: "Simply upload your .HEIC or .HEIF images using our drag-and-drop tool above, select your desired JPG quality or dimensions, and click Convert to JPG. Your images will be converted instantly."
-          },
-          {
-            question: "Can I convert HEIC files on iPhone?",
-            answer: "Yes! Zubware HEIC to JPG Converter works directly in mobile browsers on iOS (iPhone/iPad), Android, and desktop without installing any software or app."
-          },
-          {
-            question: "Can I convert multiple HEIC files?",
-            answer: "Yes, you can batch convert dozens of HEIC files at once and download them individually or as a single ZIP archive."
-          },
-          {
-            question: "Are my HEIC images uploaded to a server?",
-            answer: "No. Conversion is processed locally inside your web browser using WebAssembly. Files and inputs are not uploaded to Zubware servers."
-          },
-          {
-            question: "Can I adjust JPG quality?",
-            answer: "Yes, you can choose from preset quality levels (Low, Medium, High, Very High, Maximum) or adjust the quality slider from 10% to 100%."
-          },
-          {
-            question: "Can I resize the converted image?",
-            answer: "Yes, you can preserve the original dimensions or resize to popular resolutions like 1920px, 1600px, 1280px, 1080px, 720px, or enter custom dimensions."
-          },
-          {
-            question: "Does the converter work offline?",
-            answer: "Yes. Once the webpage and decoder assets are loaded into your browser cache, the converter processes files locally in your browser."
-          },
-          {
-            question: "Why can't my browser open a HEIC file natively?",
-            answer: "Most web browsers (like Chrome, Firefox, and Edge) lack native HEIC image decoding codecs due to licensing constraints. Zubware uses a client-side WebAssembly decoder to render HEIC images safely in any browser."
-          }
-        ]}
-      />
-
-      
-
       {/* Tool Header */}
       <div className="text-center space-y-3 max-w-3xl mx-auto">
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">

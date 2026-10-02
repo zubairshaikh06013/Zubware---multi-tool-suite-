@@ -163,22 +163,7 @@ export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onSh
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Favicon Generator — Multi-Size PNG & ICO Package — Zubware"
-        description="Free online favicon generator. Convert any logo to 16x16, 32x32, 48x48, 180x180, 512x512, favicon.ico & site.webmanifest in a single ZIP download."
-        canonicalPath="/favicon-generator.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          ⭐ Favicon Generator
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Generate complete set of multi-size favicons (16px - 512px), `favicon.ico`, PWA web manifest, and HTML code.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

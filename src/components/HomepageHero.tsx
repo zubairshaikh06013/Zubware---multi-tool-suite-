@@ -5,7 +5,7 @@ import { ToolMeta } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { getTranslation } from '../lib/i18n';
 import { getLinkUrl } from '../lib/paths';
-import { ZubwareLogo } from './ZubwareLogo';
+import { ZubwareLogo, ZubwareWordmark } from './ZubwareLogo';
 import { ToolIcon } from './common/ToolIcon';
 
 interface HomepageHeroProps {
@@ -15,13 +15,13 @@ interface HomepageHeroProps {
   onSelectCategory: (cat: string) => void;
 }
 
-const POPULAR_TOOL_IDS = [
-  'image-splitter-merger',
-  'image-compressor',
-  'pdf-merge',
-  'resume-builder',
-  'qr-generator',
-  'unit-converter'
+const POPULAR_TOOLS_CONFIG = [
+  { id: 'image-splitter-merger', label: 'Image Split & Combine' },
+  { id: 'image-compressor', label: 'Image Compressor' },
+  { id: 'pdf-merge', label: 'PDF Merge Tool' },
+  { id: 'resume-builder', label: 'Resume Builder' },
+  { id: 'qr-generator', label: 'QR Code Generator' },
+  { id: 'unit-converter', label: 'Unit Converter' }
 ];
 
 export const HomepageHero: React.FC<HomepageHeroProps> = ({
@@ -102,7 +102,10 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
 
   // Popular quick tags from tools list
   const popularTools = useMemo(() => {
-    return POPULAR_TOOL_IDS.map((id) => tools.find((t) => t.id === id)).filter(Boolean) as ToolMeta[];
+    return POPULAR_TOOLS_CONFIG.map((item) => {
+      const tool = tools.find((t) => t.id === item.id);
+      return tool ? { ...tool, displayLabel: item.label } : null;
+    }).filter(Boolean) as (ToolMeta & { displayLabel: string })[];
   }, [tools]);
 
 
@@ -114,20 +117,11 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
         <div className="w-[400px] h-[250px] bg-rose-500/5 dark:bg-rose-500/10 blur-[80px] rounded-full translate-x-20 -translate-y-10" />
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-5 sm:space-y-6">
-        {/* Official Zubware Brand Presentation (Brand Identity Sheet) */}
-        <div className="flex flex-col items-center justify-center select-none pt-2 sm:pt-4">
-          <div className="inline-flex items-center justify-center gap-3 sm:gap-4.5 group">
-            <ZubwareLogo className="w-11 h-11 sm:w-16 sm:h-16 shrink-0 drop-shadow-md group-hover:scale-105 transition-transform duration-300" />
-            <div className="flex flex-col text-left justify-center">
-              <span className="font-brand font-[850] text-3xl sm:text-5xl leading-none text-slate-900 dark:text-white tracking-[-0.035em]">
-                Zubware
-              </span>
-              <span className="font-brand-sub text-[10px] sm:text-[13px] font-bold text-slate-500 dark:text-slate-400 tracking-[0.28em] uppercase leading-none mt-1.5 sm:mt-2">
-                Multi Tool Suite
-              </span>
-            </div>
-          </div>
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 space-y-5 sm:space-y-6 pt-2 sm:pt-4">
+        {/* Brand Mark Hero Logo - Clean standalone lockup directly matching screenshot */}
+        <div className="flex items-center justify-center gap-3 select-none pb-1">
+          <ZubwareLogo className="w-12 h-12 sm:w-14 sm:h-14 drop-shadow-sm" />
+          <ZubwareWordmark className="text-[28px] sm:text-[36px]" subtitleClassName="text-[9px] sm:text-[11px]" />
         </div>
 
         {/* Website Main Title */}
@@ -202,8 +196,8 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
               onKeyDown={handleKeyDown}
               placeholder={getTranslation(
                 currentLang,
-                'homepageSearchPlaceholder',
-                'Search 300+ free tools (e.g. Split Image, PDF Merge, Background Remover, Password Protect...)'
+                'searchPlaceholderShort',
+                'Search 300+ tools...'
               )}
               className="w-full h-14 sm:h-16 pl-12 sm:pl-14 pr-24 sm:pr-32 text-sm sm:text-base font-medium rounded-full bg-white dark:bg-slate-900/95 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 focus:border-slate-300 dark:focus:border-slate-700 focus:outline-none focus:ring-0 outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
             />
@@ -314,9 +308,9 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
 
           {/* Popular Quick Suggestions */}
           <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-xs">
-            <span className="font-medium text-slate-400 dark:text-slate-500 mr-1 flex items-center gap-1 text-[11px]">
-              <Sparkles className="w-3 h-3 text-indigo-500" />
-              <span>{getTranslation(currentLang, 'popularSearches', 'Quick:')}</span>
+            <span className="font-medium text-slate-500 dark:text-slate-400 mr-1 flex items-center gap-1 text-xs">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-500" />
+              <span>{getTranslation(currentLang, 'popularSearches', 'Popular Searches')}</span>
             </span>
             {popularTools.map((tool) => (
               <a
@@ -329,7 +323,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                 className="px-3 py-1 rounded-full bg-white/80 dark:bg-slate-900/80 hover:bg-indigo-50 dark:hover:bg-indigo-950/60 border border-slate-200/80 dark:border-slate-800 hover:border-indigo-300 dark:hover:border-indigo-700 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-300 text-xs font-medium transition-all shadow-2xs cursor-pointer flex items-center gap-1.5 active:scale-95"
               >
                 <ToolIcon toolId={tool.id} category={tool.category} size="sm" showBackground={false} />
-                <span>{tool.navTitle || tool.title}</span>
+                <span>{tool.displayLabel}</span>
               </a>
             ))}
           </div>

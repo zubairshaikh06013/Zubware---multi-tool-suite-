@@ -3,17 +3,23 @@ export const BASE_URL = (typeof import.meta !== 'undefined' && import.meta.env?.
 export const BASE_PATH = BASE_URL === '/' ? '' : BASE_URL.replace(/\/$/, '');
 
 /**
- * Returns a full href suitable for <a> tags.
- * Example: getLinkUrl('/image-compressor.html') => '/image-compressor.html'
+ * Returns a full clean href suitable for <a> tags.
+ * Example: getLinkUrl('/image-compressor.html') => '/image-compressor'
+ * Example: getLinkUrl('/about.html') => '/about'
  */
 export function getLinkUrl(path?: string): string {
   if (!path || path === '/' || path === '/index.html') {
     return BASE_URL;
   }
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('mailto:')) {
-    return path;
+    // If it's an internal absolute URL to zubware.com, strip trailing .html from web pages
+    return path.replace(/(https?:\/\/(?:www\.)?zubware\.com\/[a-zA-Z0-9_-]+)\.html(\?.*)?$/g, '$1$2');
   }
-  const cleanPath = path.startsWith('/') ? path : '/' + path;
+  let cleanPath = path.startsWith('/') ? path : '/' + path;
+  // Clean trailing .html from web routes (keep index.html as root, don't strip static assets)
+  if (cleanPath.endsWith('.html') && cleanPath !== '/index.html' && cleanPath !== '/404.html') {
+    cleanPath = cleanPath.slice(0, -5);
+  }
   if (BASE_PATH && cleanPath.toLowerCase().startsWith(BASE_PATH.toLowerCase())) {
     return cleanPath;
   }
@@ -31,6 +37,10 @@ export function normalizePath(pathname?: string): string {
   }
   if (!p.startsWith('/')) {
     p = '/' + p;
+  }
+  // Strip trailing .html from route matching (except index.html)
+  if (p.endsWith('.html') && p !== '/index.html' && p !== '/404.html') {
+    p = p.slice(0, -5);
   }
   return p === '' ? '/' : p;
 }

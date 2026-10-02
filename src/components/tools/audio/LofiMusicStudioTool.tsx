@@ -679,20 +679,6 @@ export function LofiMusicStudioTool({
 
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 text-slate-100">
-      <SEOHead
-        title="Lofi Music Studio - Create Original Lofi Beats & Transform Audio | Zubware"
-        description="Transform songs with vintage Lofi effects or generate original chill Lofi music from scratch in your browser. Add vinyl crackle, tape saturation, rainy ambience & export PCM WAV audio or video."
-        canonicalPath="/lofi-song-maker.html"
-      />
-
-      <Breadcrumb
-        items={[
-          { label: 'Home', path: '/' },
-          { label: 'Audio Tools', path: '/category/audio-tools' },
-          { label: 'Lofi Music Studio' }
-        ]}
-      />
-
       {/* HEADER HERO */}
       <div className="p-6 md:p-8 rounded-2xl bg-slate-900/80 backdrop-blur-md border border-slate-800 shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">

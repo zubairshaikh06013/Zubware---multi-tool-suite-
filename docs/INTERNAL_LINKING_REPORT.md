@@ -1,8 +1,8 @@
 # Zubware Internal Linking & Topical Authority Report (Phase 4)
 
-**Generated:** 2026-09-30T08:52:40.358Z  
+**Generated:** 2026-10-02T06:10:49.650Z  
 **Production Domain:** `https://www.zubware.com`  
-**Total Canonical Inventory:** 351 pages (307 Tools, 30 Blog Guides, 13 Category Hubs, 1 Categories Index, 1 Homepage)  
+**Total Canonical Inventory:** 352 pages (307 Tools, 30 Blog Guides, 13 Category Hubs, 1 Categories Index, 1 Homepage)  
 **Orphan Page Count:** **0** (All 307 tools reachable within 2–3 clicks)
 
 ---
@@ -49,7 +49,7 @@ Each of the 13 specialized category hubs acts as an educational and operational 
 | **🎵 Audio Tools** | [`/category/audio-tools`](https://www.zubware.com/category/audio-tools) | 3 | 2 Workflows | 3 Guides |
 | **🧾 Business Tools** | [`/category/business-tools`](https://www.zubware.com/category/business-tools) | 14 | 2 Workflows | 4 Guides |
 | **✍️ Text & Writing Tools** | [`/category/text-tools`](https://www.zubware.com/category/text-tools) | 23 | 3 Workflows | 4 Guides |
-| **💼 Career & Resume Tools** | [`/category/career-tools`](https://www.zubware.com/category/career-tools) | 23 | 3 Workflows | 3 Guides |
+| **💼 Career & Resume Tools** | [`/category/career-tools`](https://www.zubware.com/category/career-tools) | 24 | 3 Workflows | 3 Guides |
 | **👨‍💻 Developer Tools** | [`/category/developer-tools`](https://www.zubware.com/category/developer-tools) | 51 | 4 Workflows | 6 Guides |
 | **🎨 Design & Utility Tools** | [`/category/design-tools`](https://www.zubware.com/category/design-tools) | 50 | 2 Workflows | 6 Guides |
 | **🤖 AI Prompt Builder Tools** | [`/category/prompt-tools`](https://www.zubware.com/category/prompt-tools) | 20 | 2 Workflows | 1 Guides |

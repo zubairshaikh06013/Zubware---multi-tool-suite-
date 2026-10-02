@@ -92,22 +92,7 @@ export const FlipImageTool: React.FC<FlipImageToolProps> = ({ onShowToast, onNav
 
   return (
     <div className="space-y-6">
-      <SEOHead
-        title="Flip Image Online — Horizontal & Vertical Mirror — Zubware"
-        description="Free online image flipper. Flip JPG, PNG, WebP images horizontally or vertically to mirror photos instantly in your browser."
-        canonicalPath="/flip-image.html"
-      />
-
       
-
-      <div className="text-center max-w-2xl mx-auto space-y-2">
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
-          ⇄ Flip Image
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400">
-          Flip images horizontally, vertically, or both to create mirror effects instantly.
-        </p>
-      </div>
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />

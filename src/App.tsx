@@ -381,7 +381,7 @@ import { getToolSeoTitle } from './lib/seoTitles';
 import { getCategoryBySlug, getCategoryForTool } from './data/categoriesData';
 import { detectBrowserLanguage, LanguageCode, getTranslation } from './lib/i18n';
 import { LanguageProvider } from './context/LanguageContext';
-import { normalizePath, getLinkUrl } from './lib/paths';
+import { normalizePath, getLinkUrl, getToolCanonicalPath, getToolHowToHeading } from './lib/paths';
 import { ArrowRight, ChevronDown, CheckCircle2, Shield, Zap, Sparkles, BookOpen } from 'lucide-react';
 import { HomepageHero } from './components/HomepageHero';
 import { ToolIcon } from './components/common/ToolIcon';
@@ -1065,7 +1065,7 @@ export default function App() {
               /calculator|converter/i.test(activeTool.title);
 
             const toolHowToSchema = {
-              name: `How to Use ${activeTool.navTitle}`,
+              name: getToolHowToHeading(activeTool),
               description: activeTool.description,
               steps: activeTool.howTo && activeTool.howTo.length > 0
                 ? activeTool.howTo.map(s => ({ name: s.title, text: s.desc }))
@@ -1093,7 +1093,7 @@ export default function App() {
                 <SEOHead
                   title={getToolSeoTitle(activeTool)}
                   description={activeTool.description}
-                  canonicalPath={activeTool.path}
+                  canonicalPath={getToolCanonicalPath(activeTool)}
                   toolMeta={activeTool}
                   faqs={activeTool.faq}
                   breadcrumbs={toolBreadcrumbList}

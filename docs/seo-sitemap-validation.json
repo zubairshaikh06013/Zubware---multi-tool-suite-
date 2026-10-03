@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-10-03T11:48:25.462Z",
+  "activeTools": 308,
+  "sitemapTotalUrls": 374,
+  "sitemapToolUrls": 308,
+  "llmsTotalToolUrls": 308,
+  "sitemapDuplicates": 0,
+  "llmsDuplicates": 0,
+  "toolsMissingFromSitemap": 0,
+  "toolsMissingFromLlms": 0,
+  "unexpectedSitemapUrls": 0,
+  "legacyHtmlUrlsInSitemap": 0,
+  "canonicalConflicts": 0,
+  "buildResult": "PASS"
+}

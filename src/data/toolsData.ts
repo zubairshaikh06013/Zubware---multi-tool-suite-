@@ -1,6 +1,7 @@
 import { ToolMeta, FAQItem } from '../types';
 import { LanguageCode, getTranslation } from '../lib/i18n';
 import { getToolKeywords } from '../lib/toolKeywords';
+import { getToolCanonicalPath } from '../lib/paths';
 
 const RAW_TOOLS_DATA: ToolMeta[] = [
   {
@@ -8201,7 +8202,7 @@ function simplifyBadge(badge?: string): 'New' | 'Free' | undefined {
 
 export const TOOLS_DATA: ToolMeta[] = RAW_TOOLS_DATA.map(tool => {
   const { tags, trending, featured, editorsPick } = getToolTagsAndFlags(tool.id, tool.category);
-  const cleanPath = `/${tool.id}`;
+  const cleanPath = getToolCanonicalPath(tool);
   return {
     ...tool,
     path: cleanPath,

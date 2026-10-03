@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ToolMeta, FAQItem } from '../types';
 import { ChevronDown, ShieldCheck, Zap, HardDrive, CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
-import { getLinkUrl } from '../lib/paths';
+import { getLinkUrl, getToolCanonicalPath, getToolHowToHeading, getToolIntroParagraph, NETWORK_DEPENDENT_TOOL_IDS } from '../lib/paths';
 import { BLOG_ARTICLES } from '../data/blogArticles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
 import { ToolIcon } from './common/ToolIcon';
@@ -19,11 +19,6 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const NETWORK_DEPENDENT_TOOL_IDS = new Set([
-    'api-request-builder',
-    'website-downloader',
-    'http-header-viewer'
-  ]);
   const isNetworkTool = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
 
   // Generate dynamic FAQs if not provided on tool object
@@ -107,7 +102,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
         {/* Direct Answer Paragraph for AI Overviews / Snippets */}
         <p className="text-sm sm:text-base text-slate-700 dark:text-slate-300 font-medium leading-relaxed bg-indigo-50/50 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/50">
-          <strong>{tool.title}</strong> is an online utility provided by Zubware. {tool.description}
+          {getToolIntroParagraph(tool)}
         </p>
 
         {/* Extended Description */}
@@ -186,7 +181,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
       {/* 3. STEP-BY-STEP HOW TO USE */}
       <section className="glass-panel p-6 sm:p-10 rounded-3xl">
         <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mb-6">
-          How to Use {tool.navTitle}
+          {getToolHowToHeading(tool)}
         </h2>
         <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {howToSteps.map((step, idx) => (

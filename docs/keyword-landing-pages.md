@@ -1,8 +1,8 @@
 # Keyword Landing Pages Inventory & Doorway Evaluation
 
 **Domain:** `https://www.zubware.com`  
-**Generated:** 2026-09-30  
-**Strategy:** Zero-Doorway Consolidation (Google Search Essentials Compliance)
+**Generated:** 2026-10-03  
+**Strategy:** Zero-Doorway Consolidation & Topical Expansion (Google Search Essentials Compliance)
 
 ## Evaluation Policy
 
@@ -16,13 +16,18 @@ Every interactive tool on Zubware already contains:
 
 ## Approved Keyword Landing Pages Matrix
 
-| Keyword/Intent | Existing Tool | New URL | Why Separate | SERP Evidence & Decision |
+| Keyword / Intent | Existing Tool / Hub | Canonical URL | Why Separate / Action | Search Intent Resolution |
 |---|---|---|---|---|
-| *All 307 Tool Keyword Intents* | *Respective Tool Pages* | *None (Merged)* | *Intents are fully satisfied on canonical tool pages via interactive widgets* | *Consolidating search authority onto canonical /<tool-slug>.html prevents doorway spam penalties and strengthens PageRank.* |
+| *308 Tool Keyword Intents* | Respective Tool Pages | `/:tool-clean-slug` | Direct utility intent satisfied on canonical interactive tool pages. | Consolidating search authority onto canonical clean tool paths prevents doorway penalties and maximizes PageRank. |
+| *14 Overlapping Roadmap Topics* | Relevant Existing Guides | `/blog/:existing-guide` | Consolidate query intent into established high-authority guides. | Merged into existing guides (e.g., PDF to Word, Passport Photo, AI Background Removal, JWT claims). |
+| *12 Multi-Step Architectural Topics* | 2 to 5 Zubware Tools Each | `/blog/:guide-slug` | High-depth technical, regulatory, and multi-tool workflow guides (1,800–2,500 words). | Solves complex intents (e.g., AES-256 PDF encryption, e-signatures, EXIF privacy, ReDoS avoidance, FFmpeg WASM codecs) with direct tool CTAs. |
 
 ---
 
-### Conclusion:
-- **Total Approved New Landing Pages:** 0
-- **Total Existing Primary Pages Optimized:** 307
-- **Sitemap Impact:** Maintained exactly at **361 canonical URLs** (307 tools + 30 blogs + 13 categories + static index pages).
+### Conclusion & Inventory Summary:
+- **Total Interactive Canonical Tool Pages:** 308 (including `/color-picker`)
+- **Total Published In-Depth Guides:** 42 (30 foundational + 12 newly expanded topical guides)
+- **Total Category Authority Hubs:** 13
+- **Total Core / Legal Pages:** 11
+- **Total Active Canonical URLs in Sitemap:** **374** (0 duplicate URLs, 0 obsolete .html canonicals, 0 broken tool links).
+

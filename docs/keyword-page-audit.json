@@ -1,0 +1,4166 @@
+[
+  {
+    "keyword": "password protect pdf online",
+    "intent": "Informational & Security Workflow",
+    "existingPage": "/protect-pdf (tool only)",
+    "targetTool": "protect-pdf",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/pdf-security-encryption-watermarking-guide",
+    "reason": "Explains ISO 32000-1 AES-256 vs RC4 encryption, User vs Owner passwords, and watermarking deterrence not coverable in a single tool button.",
+    "internalLinks": [
+      "/protect-pdf",
+      "/unlock-pdf",
+      "/pdf-watermark",
+      "/pdf-metadata"
+    ]
+  },
+  {
+    "keyword": "sign pdf online free",
+    "intent": "Legal & E-Signing Workflow",
+    "existingPage": "/pdf-signature (tool only)",
+    "targetTool": "pdf-signature",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/how-to-electronically-sign-pdf-contracts",
+    "reason": "Covers legal validity under US ESIGN and EU eIDAS regulations, audit trails, and vector signature capture.",
+    "internalLinks": [
+      "/pdf-signature",
+      "/signature-maker",
+      "/edit-pdf",
+      "/photo-signature-joiner"
+    ]
+  },
+  {
+    "keyword": "convert heic to jpg online",
+    "intent": "Cross-Platform Compatibility & Format Comparison",
+    "existingPage": "/heic-to-jpg (tool only)",
+    "targetTool": "heic-to-jpg",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/complete-image-formats-conversion-guide",
+    "reason": "Compares WebP, AVIF, HEIC, PNG, and JPG compression ratios, alpha transparency, and browser decoding support.",
+    "internalLinks": [
+      "/heic-to-jpg",
+      "/image-converter",
+      "/batch-image-converter",
+      "/image-compressor"
+    ]
+  },
+  {
+    "keyword": "remove exif data from photos online",
+    "intent": "Digital Photo Privacy & Geotag Scrubbing",
+    "existingPage": "/exif-remover (tool only)",
+    "targetTool": "exif-remover",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/remove-exif-metadata-photo-privacy-guide",
+    "reason": "Deep dive on GPS coordinate extraction, camera serial fingerprints, and in-browser APP1 binary marker slicing.",
+    "internalLinks": [
+      "/exif-remover",
+      "/image-info-viewer",
+      "/image-watermark",
+      "/image-compressor"
+    ]
+  },
+  {
+    "keyword": "convert json to csv online",
+    "intent": "Data Pipeline Engineering & Interoperability",
+    "existingPage": "/json-to-csv (tool only)",
+    "targetTool": "json-to-csv",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/json-xml-csv-yaml-data-transformation-guide",
+    "reason": "Explains hierarchical tree flattening, delimiter escaping, and data transformation across JSON, XML, CSV, and YAML.",
+    "internalLinks": [
+      "/json-to-csv",
+      "/csv-to-json",
+      "/json-to-xml",
+      "/xml-to-json",
+      "/json-validator"
+    ]
+  },
+  {
+    "keyword": "regex tester online free",
+    "intent": "Pattern Testing & Regular Expression Security",
+    "existingPage": "/regex-tester (tool only)",
+    "targetTool": "regex-tester",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/regex-tester-pattern-debugging-guide",
+    "reason": "Covers tokenization, capture groups, lookarounds, and preventing Catastrophic Backtracking (ReDoS) vulnerabilities.",
+    "internalLinks": [
+      "/regex-tester",
+      "/url-parser",
+      "/email-extractor",
+      "/url-extractor"
+    ]
+  },
+  {
+    "keyword": "cron expression generator",
+    "intent": "Unix DevOps Scheduling & Syntax",
+    "existingPage": "/cron-expression-generator (tool only)",
+    "targetTool": "cron-expression-generator",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/cron-expression-generator-scheduling-guide",
+    "reason": "Explains 5-field crontab syntax, step intervals, special characters, and timezone / Daylight Saving Time pitfalls.",
+    "internalLinks": [
+      "/cron-expression-generator",
+      "/unix-timestamp-converter",
+      "/time-zone-converter"
+    ]
+  },
+  {
+    "keyword": "compress video online free without watermark",
+    "intent": "WebAssembly Media Engineering & Video Bitrates",
+    "existingPage": "/video-compressor (tool only)",
+    "targetTool": "video-compressor",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/compress-convert-video-browser-ffmpeg-guide",
+    "reason": "Explains in-browser FFmpeg WebAssembly execution, Constant Rate Factor (CRF) scaling, and audio/video demuxing.",
+    "internalLinks": [
+      "/video-compressor",
+      "/video-to-gif",
+      "/video-aspect-ratio",
+      "/video-trimmer"
+    ]
+  },
+  {
+    "keyword": "salary hike calculator percentage",
+    "intent": "Compensation Analysis & Negotiation Math",
+    "existingPage": "/salary-hike-calculator (tool only)",
+    "targetTool": "salary-hike-calculator",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/salary-negotiation-ctc-hike-calculator-guide",
+    "reason": "Demystifies CTC components, basic salary, EPF, HRA, and fixed vs variable pay calculations for offer evaluations.",
+    "internalLinks": [
+      "/salary-hike-calculator",
+      "/ctc-calculator",
+      "/notice-period-calculator",
+      "/experience-calculator"
+    ]
+  },
+  {
+    "keyword": "linkedin headline generator professional",
+    "intent": "Executive Branding & Recruiter Search SEO",
+    "existingPage": "/linkedin-headline-generator (tool only)",
+    "targetTool": "linkedin-headline-generator",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/linkedin-profile-headline-summary-optimization-guide",
+    "reason": "Details the 220-character formula, boolean recruiter filtering, keyword indexing, and high-conversion About summaries.",
+    "internalLinks": [
+      "/linkedin-headline-generator",
+      "/linkedin-summary-generator",
+      "/resume-score-analyzer",
+      "/resume-builder"
+    ]
+  },
+  {
+    "keyword": "markdown editor online with live preview",
+    "intent": "Technical Documentation & CommonMark Standards",
+    "existingPage": "/markdown-editor (tool only)",
+    "targetTool": "markdown-editor",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/markdown-syntax-technical-writing-guide",
+    "reason": "Complete GitHub Flavored Markdown (GFM) reference, table formatting, AST parsing, and HTML export techniques.",
+    "internalLinks": [
+      "/markdown-editor",
+      "/markdown-to-html",
+      "/reading-time-calculator",
+      "/character-counter"
+    ]
+  },
+  {
+    "keyword": "midjourney prompt formula guide",
+    "intent": "Generative AI Cinematography & Lighting",
+    "existingPage": "/midjourney-prompt-builder (tool only)",
+    "targetTool": "midjourney-prompt-builder",
+    "action": "CREATE",
+    "newUrl": "https://www.zubware.com/blog/diffusion-model-prompting-lighting-camera-guide",
+    "reason": "Replaces generic buzzwords with real camera focal lengths, volumetric lighting directives, and aspect ratio flags.",
+    "internalLinks": [
+      "/midjourney-prompt-builder",
+      "/flux-prompt-builder",
+      "/product-photo-prompt-builder",
+      "/logo-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "pdf to word converter free",
+    "intent": "OCR & Format Conversion",
+    "existingPage": "/blog/pdf-to-word-excel-conversion-guide",
+    "targetTool": "pdf-to-word",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/pdf-to-word-excel-conversion-guide",
+    "reason": "Identical search intent to published Article 11. Merged authority to prevent keyword cannibalization.",
+    "internalLinks": [
+      "/pdf-to-word"
+    ]
+  },
+  {
+    "keyword": "passport photo maker free",
+    "intent": "Photo Dimensions & Specifications",
+    "existingPage": "/blog/passport-size-photo-maker-guidelines",
+    "targetTool": "passport-photo-maker",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/passport-size-photo-maker-guidelines",
+    "reason": "Identical intent to published Article 12 detailing official biometric photo standards.",
+    "internalLinks": [
+      "/passport-photo-maker"
+    ]
+  },
+  {
+    "keyword": "remove image background free online",
+    "intent": "Edge Matting & AI Vision",
+    "existingPage": "/blog/background-removal-ai-browser-guide",
+    "targetTool": "background-remover",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/background-removal-ai-browser-guide",
+    "reason": "Fully satisfied by published Article 13 on in-browser WebGL segmentation.",
+    "internalLinks": [
+      "/background-remover"
+    ]
+  },
+  {
+    "keyword": "jwt token decoder online",
+    "intent": "Token Claims & Auth Debugging",
+    "existingPage": "/blog/jwt-security-decoding-claims-guide",
+    "targetTool": "jwt-decoder",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/jwt-security-decoding-claims-guide",
+    "reason": "Identical intent to published Article 15 covering JWT header, payload, and signature verification.",
+    "internalLinks": [
+      "/jwt-decoder"
+    ]
+  },
+  {
+    "keyword": "viral hook generator shorts reels",
+    "intent": "Copywriting Frameworks",
+    "existingPage": "/blog/viral-youtube-hooks-titles-psychology",
+    "targetTool": "viral-hook-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/viral-youtube-hooks-titles-psychology",
+    "reason": "Consolidated into published Article 20 on high-CTR headlines and curiosity gaps.",
+    "internalLinks": [
+      "/viral-hook-generator"
+    ]
+  },
+  {
+    "keyword": "instagram bio generator aesthetic",
+    "intent": "Social Bio Layouts",
+    "existingPage": "/blog/instagram-growth-hashtags-captions-strategy",
+    "targetTool": "instagram-bio-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/instagram-growth-hashtags-captions-strategy",
+    "reason": "Consolidated into published Article 21 on Instagram profile SEO.",
+    "internalLinks": [
+      "/instagram-bio-generator"
+    ]
+  },
+  {
+    "keyword": "hashtag generator for instagram and tiktok",
+    "intent": "Hashtag Distribution",
+    "existingPage": "/blog/instagram-growth-hashtags-captions-strategy",
+    "targetTool": "instagram-hashtag-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/instagram-growth-hashtags-captions-strategy",
+    "reason": "Consolidated into published Article 21 covering algorithmic niche hashtagging.",
+    "internalLinks": [
+      "/instagram-hashtag-generator"
+    ]
+  },
+  {
+    "keyword": "slowed and reverb audio generator",
+    "intent": "DSP Pitch & Spatial Audio",
+    "existingPage": "/blog/slowed-reverb-audio-trend-explained",
+    "targetTool": "slowed-and-reverb",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/slowed-reverb-audio-trend-explained",
+    "reason": "Identical intent to published Article 17 on Web Audio API convolution.",
+    "internalLinks": [
+      "/slowed-and-reverb"
+    ]
+  },
+  {
+    "keyword": "free gst invoice generator",
+    "intent": "Tax Compliance & Invoicing",
+    "existingPage": "/blog/freelancer-gst-invoicing-tax-compliance",
+    "targetTool": "gst-invoice-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/freelancer-gst-invoicing-tax-compliance",
+    "reason": "Identical intent to published Article 26 covering GST statutory fields.",
+    "internalLinks": [
+      "/gst-invoice-generator"
+    ]
+  },
+  {
+    "keyword": "mortgage calculator with amortization schedule",
+    "intent": "Loan Math & Down Payments",
+    "existingPage": "/blog/emi-loan-amortization-strategies",
+    "targetTool": "loan-mortgage-calculator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/emi-loan-amortization-strategies",
+    "reason": "Identical intent to published Article 25 on debt amortization schedules.",
+    "internalLinks": [
+      "/loan-mortgage-calculator"
+    ]
+  },
+  {
+    "keyword": "qr code generator high resolution",
+    "intent": "QR Error Correction & Safety",
+    "existingPage": "/blog/qr-code-security-phishing-prevention",
+    "targetTool": "qr-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/qr-code-security-phishing-prevention",
+    "reason": "Consolidated into published Article 29 on QR architecture and quishing.",
+    "internalLinks": [
+      "/qr-generator"
+    ]
+  },
+  {
+    "keyword": "glassmorphism css generator",
+    "intent": "CSS Visual Effects",
+    "existingPage": "/blog/css-modern-styling-glassmorphism-gradients",
+    "targetTool": "glassmorphism-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/css-modern-styling-glassmorphism-gradients",
+    "reason": "Consolidated into published Article 22 covering backdrop-filter and neumorphism.",
+    "internalLinks": [
+      "/glassmorphism-generator"
+    ]
+  },
+  {
+    "keyword": "tdee calorie calculator bulking cutting",
+    "intent": "Energy Balance & Metabolism",
+    "existingPage": "/blog/bmi-body-composition-tdee-health-guide",
+    "targetTool": "calorie-calculator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/bmi-body-composition-tdee-health-guide",
+    "reason": "Identical intent to published Article 30 on BMR, TDEE, and caloric deficits.",
+    "internalLinks": [
+      "/calorie-calculator"
+    ]
+  },
+  {
+    "keyword": "password generator high entropy",
+    "intent": "Cryptographic Security & Passphrases",
+    "existingPage": "/blog/password-security-entropy-brute-force-math",
+    "targetTool": "random-password-generator",
+    "action": "MERGE",
+    "newUrl": "https://www.zubware.com/blog/password-security-entropy-brute-force-math",
+    "reason": "Identical intent to published Article 28 on Shannon entropy and passphrase math.",
+    "internalLinks": [
+      "/random-password-generator"
+    ]
+  },
+  {
+    "keyword": "image splitter & combiner",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-splitter-merger",
+    "targetTool": "image-splitter-merger",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-splitter-merger",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-splitter-merger"
+    ]
+  },
+  {
+    "keyword": "learning licence mock test — practice rto driving exam online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/learning-licence-mock-test",
+    "targetTool": "learning-licence-mock-test",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/learning-licence-mock-test",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/learning-licence-mock-test"
+    ]
+  },
+  {
+    "keyword": "background remover",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/background-remover",
+    "targetTool": "background-remover",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/background-remover",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/background-remover"
+    ]
+  },
+  {
+    "keyword": "image compressor",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-compressor",
+    "targetTool": "image-compressor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-compressor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-compressor"
+    ]
+  },
+  {
+    "keyword": "image converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-converter",
+    "targetTool": "image-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-converter"
+    ]
+  },
+  {
+    "keyword": "image resizer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-resizer",
+    "targetTool": "image-resizer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-resizer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-resizer"
+    ]
+  },
+  {
+    "keyword": "crop image",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/crop-image",
+    "targetTool": "crop-image",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/crop-image",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/crop-image"
+    ]
+  },
+  {
+    "keyword": "rotate image",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/rotate-image",
+    "targetTool": "rotate-image",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/rotate-image",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/rotate-image"
+    ]
+  },
+  {
+    "keyword": "flip image",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/flip-image",
+    "targetTool": "flip-image",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/flip-image",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/flip-image"
+    ]
+  },
+  {
+    "keyword": "watermark image",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-watermark",
+    "targetTool": "image-watermark",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-watermark",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-watermark"
+    ]
+  },
+  {
+    "keyword": "blur image",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/blur-image",
+    "targetTool": "blur-image",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/blur-image",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/blur-image"
+    ]
+  },
+  {
+    "keyword": "pixelate image",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pixelate-image",
+    "targetTool": "pixelate-image",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pixelate-image",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pixelate-image"
+    ]
+  },
+  {
+    "keyword": "exif remover",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/exif-remover",
+    "targetTool": "exif-remover",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/exif-remover",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/exif-remover"
+    ]
+  },
+  {
+    "keyword": "color picker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/color-picker",
+    "targetTool": "image-color-picker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/color-picker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/color-picker"
+    ]
+  },
+  {
+    "keyword": "image information viewer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-info-viewer",
+    "targetTool": "image-info-viewer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-info-viewer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-info-viewer"
+    ]
+  },
+  {
+    "keyword": "background color changer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/background-color-changer",
+    "targetTool": "background-color-changer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/background-color-changer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/background-color-changer"
+    ]
+  },
+  {
+    "keyword": "rounded corner generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/rounded-corners",
+    "targetTool": "rounded-corners",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/rounded-corners",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/rounded-corners"
+    ]
+  },
+  {
+    "keyword": "image border generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-border",
+    "targetTool": "image-border",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-border",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-border"
+    ]
+  },
+  {
+    "keyword": "image frame generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-frame",
+    "targetTool": "image-frame",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-frame",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-frame"
+    ]
+  },
+  {
+    "keyword": "image collage maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-collage",
+    "targetTool": "image-collage",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-collage",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-collage"
+    ]
+  },
+  {
+    "keyword": "favicon generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/favicon-generator",
+    "targetTool": "favicon-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/favicon-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/favicon-generator"
+    ]
+  },
+  {
+    "keyword": "svg optimizer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/svg-optimizer",
+    "targetTool": "svg-optimizer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/svg-optimizer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/svg-optimizer"
+    ]
+  },
+  {
+    "keyword": "gif maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/gif-maker",
+    "targetTool": "gif-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/gif-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/gif-maker"
+    ]
+  },
+  {
+    "keyword": "batch image converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/batch-image-converter",
+    "targetTool": "batch-image-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/batch-image-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/batch-image-converter"
+    ]
+  },
+  {
+    "keyword": "compression comparison",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/compression-comparison",
+    "targetTool": "compression-comparison",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/compression-comparison",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/compression-comparison"
+    ]
+  },
+  {
+    "keyword": "heic to jpg converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/heic-to-jpg",
+    "targetTool": "heic-to-jpg",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/heic-to-jpg",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/heic-to-jpg"
+    ]
+  },
+  {
+    "keyword": "bulk image renamer & resizer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/bulk-image-renamer-resizer",
+    "targetTool": "bulk-image-renamer-resizer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/bulk-image-renamer-resizer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/bulk-image-renamer-resizer"
+    ]
+  },
+  {
+    "keyword": "passport & visa photo maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/passport-photo-maker",
+    "targetTool": "passport-photo-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/passport-photo-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/passport-photo-maker"
+    ]
+  },
+  {
+    "keyword": "matching parts puzzle video maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/matching-parts-video-maker",
+    "targetTool": "matching-parts-video-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/matching-parts-video-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/matching-parts-video-maker"
+    ]
+  },
+  {
+    "keyword": "lofi music studio",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/lofi-song-maker",
+    "targetTool": "lofi-song-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/lofi-song-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/lofi-song-maker"
+    ]
+  },
+  {
+    "keyword": "lofi maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/lofi-maker",
+    "targetTool": "lofi-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/lofi-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/lofi-maker"
+    ]
+  },
+  {
+    "keyword": "slowed & reverb generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/slowed-and-reverb",
+    "targetTool": "slowed-and-reverb",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/slowed-and-reverb",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/slowed-and-reverb"
+    ]
+  },
+  {
+    "keyword": "gst invoice generator — create & download invoices online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/gst-invoice-generator",
+    "targetTool": "gst-invoice-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/gst-invoice-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/gst-invoice-generator"
+    ]
+  },
+  {
+    "keyword": "pdf merge",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-merge",
+    "targetTool": "pdf-merge",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-merge",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-merge"
+    ]
+  },
+  {
+    "keyword": "pdf split",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-split",
+    "targetTool": "pdf-split",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-split",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-split"
+    ]
+  },
+  {
+    "keyword": "image to pdf",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-to-pdf",
+    "targetTool": "image-to-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-to-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-to-pdf"
+    ]
+  },
+  {
+    "keyword": "pdf to images",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-to-images",
+    "targetTool": "pdf-to-images",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-to-images",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-to-images"
+    ]
+  },
+  {
+    "keyword": "rotate pdf",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/rotate-pdf",
+    "targetTool": "rotate-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/rotate-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/rotate-pdf"
+    ]
+  },
+  {
+    "keyword": "delete pdf pages",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/delete-pdf-pages",
+    "targetTool": "delete-pdf-pages",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/delete-pdf-pages",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/delete-pdf-pages"
+    ]
+  },
+  {
+    "keyword": "extract pdf pages",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/extract-pdf-pages",
+    "targetTool": "extract-pdf-pages",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/extract-pdf-pages",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/extract-pdf-pages"
+    ]
+  },
+  {
+    "keyword": "reorder pdf pages",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/reorder-pdf-pages",
+    "targetTool": "reorder-pdf-pages",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/reorder-pdf-pages",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/reorder-pdf-pages"
+    ]
+  },
+  {
+    "keyword": "add watermark",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-watermark",
+    "targetTool": "pdf-watermark",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-watermark",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-watermark"
+    ]
+  },
+  {
+    "keyword": "protect pdf",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/protect-pdf",
+    "targetTool": "protect-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/protect-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/protect-pdf"
+    ]
+  },
+  {
+    "keyword": "unlock pdf",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/unlock-pdf",
+    "targetTool": "unlock-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/unlock-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/unlock-pdf"
+    ]
+  },
+  {
+    "keyword": "pdf metadata viewer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-metadata",
+    "targetTool": "pdf-metadata",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-metadata",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-metadata"
+    ]
+  },
+  {
+    "keyword": "qr code generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/qr-generator",
+    "targetTool": "qr-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/qr-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/qr-generator"
+    ]
+  },
+  {
+    "keyword": "resume builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-builder",
+    "targetTool": "resume-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-builder"
+    ]
+  },
+  {
+    "keyword": "ats resume checker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/ats-resume-checker",
+    "targetTool": "ats-resume-checker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/ats-resume-checker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/ats-resume-checker"
+    ]
+  },
+  {
+    "keyword": "resume score analyzer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-score-analyzer",
+    "targetTool": "resume-score-analyzer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-score-analyzer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-score-analyzer"
+    ]
+  },
+  {
+    "keyword": "cover letter builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cover-letter-builder",
+    "targetTool": "cover-letter-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cover-letter-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cover-letter-builder"
+    ]
+  },
+  {
+    "keyword": "cover letter templates",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cover-letter-templates",
+    "targetTool": "cover-letter-templates",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cover-letter-templates",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cover-letter-templates"
+    ]
+  },
+  {
+    "keyword": "cv builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cv-builder",
+    "targetTool": "cv-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cv-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cv-builder"
+    ]
+  },
+  {
+    "keyword": "resume keyword optimizer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-keyword-optimizer",
+    "targetTool": "resume-keyword-optimizer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-keyword-optimizer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-keyword-optimizer"
+    ]
+  },
+  {
+    "keyword": "resume template gallery",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-template-gallery",
+    "targetTool": "resume-template-gallery",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-template-gallery",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-template-gallery"
+    ]
+  },
+  {
+    "keyword": "resume version manager",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-version-manager",
+    "targetTool": "resume-version-manager",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-version-manager",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-version-manager"
+    ]
+  },
+  {
+    "keyword": "resume import",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-import",
+    "targetTool": "resume-import",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-import",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-import"
+    ]
+  },
+  {
+    "keyword": "resume export",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-export",
+    "targetTool": "resume-export",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-export",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-export"
+    ]
+  },
+  {
+    "keyword": "resume completeness tracker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-completeness",
+    "targetTool": "resume-completeness",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-completeness",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-completeness"
+    ]
+  },
+  {
+    "keyword": "resume section manager",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-section-manager",
+    "targetTool": "resume-section-manager",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-section-manager",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-section-manager"
+    ]
+  },
+  {
+    "keyword": "professional skill library",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/professional-skill-library",
+    "targetTool": "professional-skill-library",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/professional-skill-library",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/professional-skill-library"
+    ]
+  },
+  {
+    "keyword": "professional summary generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/summary-generator",
+    "targetTool": "summary-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/summary-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/summary-generator"
+    ]
+  },
+  {
+    "keyword": "resume color themes",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-color-themes",
+    "targetTool": "resume-color-themes",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-color-themes",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-color-themes"
+    ]
+  },
+  {
+    "keyword": "work experience calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/experience-calculator",
+    "targetTool": "experience-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/experience-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/experience-calculator"
+    ]
+  },
+  {
+    "keyword": "notice period calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/notice-period-calculator",
+    "targetTool": "notice-period-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/notice-period-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/notice-period-calculator"
+    ]
+  },
+  {
+    "keyword": "salary hike calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/salary-hike-calculator",
+    "targetTool": "salary-hike-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/salary-hike-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/salary-hike-calculator"
+    ]
+  },
+  {
+    "keyword": "ctc to in-hand calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/ctc-calculator",
+    "targetTool": "ctc-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/ctc-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/ctc-calculator"
+    ]
+  },
+  {
+    "keyword": "working days calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/working-days-calculator",
+    "targetTool": "working-days-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/working-days-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/working-days-calculator"
+    ]
+  },
+  {
+    "keyword": "youtube title generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-title-generator",
+    "targetTool": "youtube-title-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-title-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-title-generator"
+    ]
+  },
+  {
+    "keyword": "youtube description generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-description-generator",
+    "targetTool": "youtube-description-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-description-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-description-generator"
+    ]
+  },
+  {
+    "keyword": "youtube tags generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-tags-generator",
+    "targetTool": "youtube-tags-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-tags-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-tags-generator"
+    ]
+  },
+  {
+    "keyword": "youtube hashtag generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-hashtag-generator",
+    "targetTool": "youtube-hashtag-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-hashtag-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-hashtag-generator"
+    ]
+  },
+  {
+    "keyword": "youtube thumbnail & mobile feed simulator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-thumbnail-simulator",
+    "targetTool": "youtube-thumbnail-simulator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-thumbnail-simulator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-thumbnail-simulator"
+    ]
+  },
+  {
+    "keyword": "youtube channel banner safe area simulator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-banner-safe-area",
+    "targetTool": "youtube-banner-safe-area",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-banner-safe-area",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-banner-safe-area"
+    ]
+  },
+  {
+    "keyword": "youtube thumbnail preview",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-thumbnail-preview",
+    "targetTool": "youtube-thumbnail-preview",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-thumbnail-preview",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-thumbnail-preview"
+    ]
+  },
+  {
+    "keyword": "youtube channel name generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-channel-name-generator",
+    "targetTool": "youtube-channel-name-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-channel-name-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-channel-name-generator"
+    ]
+  },
+  {
+    "keyword": "youtube video idea generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-video-idea-generator",
+    "targetTool": "youtube-video-idea-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-video-idea-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-video-idea-generator"
+    ]
+  },
+  {
+    "keyword": "youtube playlist name generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-playlist-name-generator",
+    "targetTool": "youtube-playlist-name-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-playlist-name-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-playlist-name-generator"
+    ]
+  },
+  {
+    "keyword": "youtube timestamp generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-timestamp-generator",
+    "targetTool": "youtube-timestamp-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-timestamp-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-timestamp-generator"
+    ]
+  },
+  {
+    "keyword": "youtube video description formatter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-description-formatter",
+    "targetTool": "youtube-description-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-description-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-description-formatter"
+    ]
+  },
+  {
+    "keyword": "thumbnail text generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/thumbnail-text-generator",
+    "targetTool": "thumbnail-text-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/thumbnail-text-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/thumbnail-text-generator"
+    ]
+  },
+  {
+    "keyword": "viral hook generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/viral-hook-generator",
+    "targetTool": "viral-hook-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/viral-hook-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/viral-hook-generator"
+    ]
+  },
+  {
+    "keyword": "cta generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cta-generator",
+    "targetTool": "cta-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cta-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cta-generator"
+    ]
+  },
+  {
+    "keyword": "social character counter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/social-character-counter",
+    "targetTool": "social-character-counter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/social-character-counter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/social-character-counter"
+    ]
+  },
+  {
+    "keyword": "emoji generator & picker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/emoji-generator",
+    "targetTool": "emoji-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/emoji-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/emoji-generator"
+    ]
+  },
+  {
+    "keyword": "instagram caption generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/instagram-caption-generator",
+    "targetTool": "instagram-caption-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/instagram-caption-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/instagram-caption-generator"
+    ]
+  },
+  {
+    "keyword": "instagram hashtag generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/instagram-hashtag-generator",
+    "targetTool": "instagram-hashtag-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/instagram-hashtag-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/instagram-hashtag-generator"
+    ]
+  },
+  {
+    "keyword": "instagram bio generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/instagram-bio-generator",
+    "targetTool": "instagram-bio-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/instagram-bio-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/instagram-bio-generator"
+    ]
+  },
+  {
+    "keyword": "instagram username generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/instagram-username-generator",
+    "targetTool": "instagram-username-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/instagram-username-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/instagram-username-generator"
+    ]
+  },
+  {
+    "keyword": "tiktok caption generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/tiktok-caption-generator",
+    "targetTool": "tiktok-caption-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/tiktok-caption-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/tiktok-caption-generator"
+    ]
+  },
+  {
+    "keyword": "tiktok hashtag generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/tiktok-hashtag-generator",
+    "targetTool": "tiktok-hashtag-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/tiktok-hashtag-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/tiktok-hashtag-generator"
+    ]
+  },
+  {
+    "keyword": "facebook caption generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/facebook-caption-generator",
+    "targetTool": "facebook-caption-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/facebook-caption-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/facebook-caption-generator"
+    ]
+  },
+  {
+    "keyword": "facebook hashtag generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/facebook-hashtag-generator",
+    "targetTool": "facebook-hashtag-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/facebook-hashtag-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/facebook-hashtag-generator"
+    ]
+  },
+  {
+    "keyword": "linkedin headline generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/linkedin-headline-generator",
+    "targetTool": "linkedin-headline-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/linkedin-headline-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/linkedin-headline-generator"
+    ]
+  },
+  {
+    "keyword": "linkedin summary generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/linkedin-summary-generator",
+    "targetTool": "linkedin-summary-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/linkedin-summary-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/linkedin-summary-generator"
+    ]
+  },
+  {
+    "keyword": "twitter (x) bio generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/twitter-bio-generator",
+    "targetTool": "twitter-bio-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/twitter-bio-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/twitter-bio-generator"
+    ]
+  },
+  {
+    "keyword": "universal hashtag generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/universal-hashtag-generator",
+    "targetTool": "universal-hashtag-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/universal-hashtag-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/universal-hashtag-generator"
+    ]
+  },
+  {
+    "keyword": "fancy text generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/fancy-text-generator",
+    "targetTool": "fancy-text-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/fancy-text-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/fancy-text-generator"
+    ]
+  },
+  {
+    "keyword": "unicode font generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/unicode-font-generator",
+    "targetTool": "unicode-font-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/unicode-font-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/unicode-font-generator"
+    ]
+  },
+  {
+    "keyword": "text decorator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-decorator",
+    "targetTool": "text-decorator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-decorator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-decorator"
+    ]
+  },
+  {
+    "keyword": "emoji combiner",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/emoji-combiner",
+    "targetTool": "emoji-combiner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/emoji-combiner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/emoji-combiner"
+    ]
+  },
+  {
+    "keyword": "social media post formatter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/social-media-post-formatter",
+    "targetTool": "social-media-post-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/social-media-post-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/social-media-post-formatter"
+    ]
+  },
+  {
+    "keyword": "social bio link builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/social-bio-link-builder",
+    "targetTool": "social-bio-link-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/social-bio-link-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/social-bio-link-builder"
+    ]
+  },
+  {
+    "keyword": "islamic shorts maker — create 9:16 islamic images online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/islamic-shorts-maker",
+    "targetTool": "islamic-shorts-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/islamic-shorts-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/islamic-shorts-maker"
+    ]
+  },
+  {
+    "keyword": "script to video maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/script-to-video-maker",
+    "targetTool": "script-to-video-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/script-to-video-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/script-to-video-maker"
+    ]
+  },
+  {
+    "keyword": "uuid generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/uuid-generator",
+    "targetTool": "uuid-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/uuid-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/uuid-generator"
+    ]
+  },
+  {
+    "keyword": "hash generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/hash-generator",
+    "targetTool": "hash-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/hash-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/hash-generator"
+    ]
+  },
+  {
+    "keyword": "jwt decoder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/jwt-decoder",
+    "targetTool": "jwt-decoder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/jwt-decoder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/jwt-decoder"
+    ]
+  },
+  {
+    "keyword": "unix timestamp converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/unix-timestamp-converter",
+    "targetTool": "unix-timestamp-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/unix-timestamp-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/unix-timestamp-converter"
+    ]
+  },
+  {
+    "keyword": "regex tester & explainer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/regex-tester",
+    "targetTool": "regex-tester",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/regex-tester",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/regex-tester"
+    ]
+  },
+  {
+    "keyword": "json formatter & tree viewer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-formatter",
+    "targetTool": "json-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-formatter"
+    ]
+  },
+  {
+    "keyword": "json validator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-validator",
+    "targetTool": "json-validator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-validator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-validator"
+    ]
+  },
+  {
+    "keyword": "json to csv converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-to-csv",
+    "targetTool": "json-to-csv",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-to-csv",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-to-csv"
+    ]
+  },
+  {
+    "keyword": "csv to json converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/csv-to-json",
+    "targetTool": "csv-to-json",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/csv-to-json",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/csv-to-json"
+    ]
+  },
+  {
+    "keyword": "csv viewer & data grid",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/csv-viewer",
+    "targetTool": "csv-viewer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/csv-viewer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/csv-viewer"
+    ]
+  },
+  {
+    "keyword": "website downloader — download website assets & html into zip",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/website-downloader",
+    "targetTool": "website-downloader",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/website-downloader",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/website-downloader"
+    ]
+  },
+  {
+    "keyword": "html formatter & preview",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/html-formatter",
+    "targetTool": "html-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/html-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/html-formatter"
+    ]
+  },
+  {
+    "keyword": "css formatter & beautifier",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/css-formatter",
+    "targetTool": "css-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/css-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/css-formatter"
+    ]
+  },
+  {
+    "keyword": "javascript formatter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/javascript-formatter",
+    "targetTool": "javascript-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/javascript-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/javascript-formatter"
+    ]
+  },
+  {
+    "keyword": "xml formatter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/xml-formatter",
+    "targetTool": "xml-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/xml-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/xml-formatter"
+    ]
+  },
+  {
+    "keyword": "xml validator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/xml-validator",
+    "targetTool": "xml-validator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/xml-validator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/xml-validator"
+    ]
+  },
+  {
+    "keyword": "url component parser",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/url-parser",
+    "targetTool": "url-parser",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/url-parser",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/url-parser"
+    ]
+  },
+  {
+    "keyword": "url encoder / decoder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/url-encoder-decoder",
+    "targetTool": "url-encoder-decoder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/url-encoder-decoder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/url-encoder-decoder"
+    ]
+  },
+  {
+    "keyword": "base64 encoder / decoder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/base64-encoder-decoder",
+    "targetTool": "base64-encoder-decoder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/base64-encoder-decoder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/base64-encoder-decoder"
+    ]
+  },
+  {
+    "keyword": "html escape / unescape",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/html-escape-unescape",
+    "targetTool": "html-escape-unescape",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/html-escape-unescape",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/html-escape-unescape"
+    ]
+  },
+  {
+    "keyword": "http header viewer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/http-header-viewer",
+    "targetTool": "http-header-viewer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/http-header-viewer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/http-header-viewer"
+    ]
+  },
+  {
+    "keyword": "api request builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/api-request-builder",
+    "targetTool": "api-request-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/api-request-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/api-request-builder"
+    ]
+  },
+  {
+    "keyword": "color converter & contrast",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/color-converter",
+    "targetTool": "color-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/color-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/color-converter"
+    ]
+  },
+  {
+    "keyword": "qr code decoder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/qr-code-decoder",
+    "targetTool": "qr-code-decoder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/qr-code-decoder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/qr-code-decoder"
+    ]
+  },
+  {
+    "keyword": "css gradient generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/css-gradient-generator",
+    "targetTool": "css-gradient-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/css-gradient-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/css-gradient-generator"
+    ]
+  },
+  {
+    "keyword": "box shadow generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/box-shadow-generator",
+    "targetTool": "box-shadow-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/box-shadow-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/box-shadow-generator"
+    ]
+  },
+  {
+    "keyword": "border radius generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/border-radius-generator",
+    "targetTool": "border-radius-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/border-radius-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/border-radius-generator"
+    ]
+  },
+  {
+    "keyword": "glassmorphism generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/glassmorphism-generator",
+    "targetTool": "glassmorphism-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/glassmorphism-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/glassmorphism-generator"
+    ]
+  },
+  {
+    "keyword": "neumorphism generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/neumorphism-generator",
+    "targetTool": "neumorphism-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/neumorphism-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/neumorphism-generator"
+    ]
+  },
+  {
+    "keyword": "css clip path generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/css-clip-path-generator",
+    "targetTool": "css-clip-path-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/css-clip-path-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/css-clip-path-generator"
+    ]
+  },
+  {
+    "keyword": "svg shape generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/svg-shape-generator",
+    "targetTool": "svg-shape-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/svg-shape-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/svg-shape-generator"
+    ]
+  },
+  {
+    "keyword": "color palette generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/color-palette-generator",
+    "targetTool": "color-palette-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/color-palette-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/color-palette-generator"
+    ]
+  },
+  {
+    "keyword": "contrast checker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/contrast-checker",
+    "targetTool": "contrast-checker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/contrast-checker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/contrast-checker"
+    ]
+  },
+  {
+    "keyword": "random color generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/random-color-generator",
+    "targetTool": "random-color-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/random-color-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/random-color-generator"
+    ]
+  },
+  {
+    "keyword": "qr business card generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/qr-business-card-generator",
+    "targetTool": "qr-business-card-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/qr-business-card-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/qr-business-card-generator"
+    ]
+  },
+  {
+    "keyword": "unit converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/unit-converter",
+    "targetTool": "unit-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/unit-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/unit-converter"
+    ]
+  },
+  {
+    "keyword": "percentage calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/percentage-calculator",
+    "targetTool": "percentage-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/percentage-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/percentage-calculator"
+    ]
+  },
+  {
+    "keyword": "age calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/age-calculator",
+    "targetTool": "age-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/age-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/age-calculator"
+    ]
+  },
+  {
+    "keyword": "emi calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/emi-calculator",
+    "targetTool": "emi-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/emi-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/emi-calculator"
+    ]
+  },
+  {
+    "keyword": "discount calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/discount-calculator",
+    "targetTool": "discount-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/discount-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/discount-calculator"
+    ]
+  },
+  {
+    "keyword": "currency calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/currency-calculator",
+    "targetTool": "currency-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/currency-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/currency-calculator"
+    ]
+  },
+  {
+    "keyword": "tip calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/tip-calculator",
+    "targetTool": "tip-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/tip-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/tip-calculator"
+    ]
+  },
+  {
+    "keyword": "random number generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/random-number-generator",
+    "targetTool": "random-number-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/random-number-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/random-number-generator"
+    ]
+  },
+  {
+    "keyword": "random password generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/random-password-generator",
+    "targetTool": "random-password-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/random-password-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/random-password-generator"
+    ]
+  },
+  {
+    "keyword": "number to words converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/number-to-words",
+    "targetTool": "number-to-words",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/number-to-words",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/number-to-words"
+    ]
+  },
+  {
+    "keyword": "words to number converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/words-to-number",
+    "targetTool": "words-to-number",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/words-to-number",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/words-to-number"
+    ]
+  },
+  {
+    "keyword": "roman numeral converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/roman-numeral-converter",
+    "targetTool": "roman-numeral-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/roman-numeral-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/roman-numeral-converter"
+    ]
+  },
+  {
+    "keyword": "loan & mortgage calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/loan-calculator",
+    "targetTool": "loan-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/loan-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/loan-calculator"
+    ]
+  },
+  {
+    "keyword": "roi & profit margin calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/roi-calculator",
+    "targetTool": "roi-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/roi-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/roi-calculator"
+    ]
+  },
+  {
+    "keyword": "compound interest & cagr calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/compound-interest-calculator",
+    "targetTool": "compound-interest-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/compound-interest-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/compound-interest-calculator"
+    ]
+  },
+  {
+    "keyword": "chatgpt prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/chatgpt-prompt-builder",
+    "targetTool": "chatgpt-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/chatgpt-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/chatgpt-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "gemini prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/gemini-prompt-builder",
+    "targetTool": "gemini-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/gemini-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/gemini-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "claude prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/claude-prompt-builder",
+    "targetTool": "claude-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/claude-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/claude-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "veo prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/veo-prompt-builder",
+    "targetTool": "veo-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/veo-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/veo-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "midjourney prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/midjourney-prompt-builder",
+    "targetTool": "midjourney-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/midjourney-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/midjourney-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "flux prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/flux-prompt-builder",
+    "targetTool": "flux-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/flux-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/flux-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "stable diffusion prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/stable-diffusion-prompt-builder",
+    "targetTool": "stable-diffusion-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/stable-diffusion-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/stable-diffusion-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "logo prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/logo-prompt-builder",
+    "targetTool": "logo-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/logo-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/logo-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "thumbnail prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/thumbnail-prompt-builder",
+    "targetTool": "thumbnail-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/thumbnail-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/thumbnail-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "product photography prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/product-photo-prompt-builder",
+    "targetTool": "product-photo-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/product-photo-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/product-photo-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "interior design prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/interior-design-prompt-builder",
+    "targetTool": "interior-design-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/interior-design-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/interior-design-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "story prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/story-prompt-builder",
+    "targetTool": "story-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/story-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/story-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "youtube script prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/youtube-script-prompt-builder",
+    "targetTool": "youtube-script-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/youtube-script-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/youtube-script-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "resume prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/resume-prompt-builder",
+    "targetTool": "resume-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/resume-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/resume-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "cover letter prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cover-letter-prompt-builder",
+    "targetTool": "cover-letter-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cover-letter-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cover-letter-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "email prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/email-prompt-builder",
+    "targetTool": "email-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/email-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/email-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "social media prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/social-media-prompt-builder",
+    "targetTool": "social-media-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/social-media-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/social-media-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "seo prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/seo-prompt-builder",
+    "targetTool": "seo-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/seo-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/seo-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "coding prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/coding-prompt-builder",
+    "targetTool": "coding-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/coding-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/coding-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "universal prompt builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/universal-prompt-builder",
+    "targetTool": "universal-prompt-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/universal-prompt-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/universal-prompt-builder"
+    ]
+  },
+  {
+    "keyword": "qr code safety checker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/qr-code-safety-checker",
+    "targetTool": "qr-code-safety-checker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/qr-code-safety-checker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/qr-code-safety-checker"
+    ]
+  },
+  {
+    "keyword": "weight gain calorie & macro calculator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/weight-gain-calculator",
+    "targetTool": "weight-gain-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/weight-gain-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/weight-gain-calculator"
+    ]
+  },
+  {
+    "keyword": "pdf size adjuster online – increase or reduce pdf size",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-size-adjuster",
+    "targetTool": "pdf-size-adjuster",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-size-adjuster",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-size-adjuster"
+    ]
+  },
+  {
+    "keyword": "increase pdf size online – make a pdf larger",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/increase-pdf-size",
+    "targetTool": "increase-pdf-size",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/increase-pdf-size",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/increase-pdf-size"
+    ]
+  },
+  {
+    "keyword": "decrease pdf size online – compress pdf",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/decrease-pdf-size",
+    "targetTool": "decrease-pdf-size",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/decrease-pdf-size",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/decrease-pdf-size"
+    ]
+  },
+  {
+    "keyword": "pdf compressor — compress pdf files online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-compressor",
+    "targetTool": "pdf-compressor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-compressor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-compressor"
+    ]
+  },
+  {
+    "keyword": "pdf to jpg converter — convert pdf pages to images online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-to-jpg",
+    "targetTool": "pdf-to-jpg",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-to-jpg",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-to-jpg"
+    ]
+  },
+  {
+    "keyword": "online pdf editor — add text, sign & edit pdf free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/edit-pdf",
+    "targetTool": "edit-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/edit-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/edit-pdf"
+    ]
+  },
+  {
+    "keyword": "text to pdf converter — convert plain text to pdf free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-to-pdf",
+    "targetTool": "text-to-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-to-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-to-pdf"
+    ]
+  },
+  {
+    "keyword": "online signature maker — create digital signatures free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/signature-maker",
+    "targetTool": "signature-maker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/signature-maker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/signature-maker"
+    ]
+  },
+  {
+    "keyword": "signature resizer — resize signature images online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/signature-resizer",
+    "targetTool": "signature-resizer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/signature-resizer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/signature-resizer"
+    ]
+  },
+  {
+    "keyword": "photo and signature joiner — combine images online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/photo-signature-joiner",
+    "targetTool": "photo-signature-joiner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/photo-signature-joiner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/photo-signature-joiner"
+    ]
+  },
+  {
+    "keyword": "add name and date to photo online — exam photo maker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/photo-name-date-joiner",
+    "targetTool": "photo-name-date-joiner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/photo-name-date-joiner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/photo-name-date-joiner"
+    ]
+  },
+  {
+    "keyword": "text to handwriting converter — create realistic handwritten notes",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-to-handwriting",
+    "targetTool": "text-to-handwriting",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-to-handwriting",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-to-handwriting"
+    ]
+  },
+  {
+    "keyword": "omr sheet generator — create printable omr answer sheets free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/omr-sheet-generator",
+    "targetTool": "omr-sheet-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/omr-sheet-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/omr-sheet-generator"
+    ]
+  },
+  {
+    "keyword": "pdf to word converter — convert pdf to editable docx online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-to-word",
+    "targetTool": "pdf-to-word",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-to-word",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-to-word"
+    ]
+  },
+  {
+    "keyword": "word to pdf converter — convert docx to pdf online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/word-to-pdf",
+    "targetTool": "word-to-pdf",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/word-to-pdf",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/word-to-pdf"
+    ]
+  },
+  {
+    "keyword": "pdf to text converter — extract text from pdf with ocr online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-to-text",
+    "targetTool": "pdf-to-text",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-to-text",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-to-text"
+    ]
+  },
+  {
+    "keyword": "pdf to excel converter — extract tables to xlsx online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-to-excel",
+    "targetTool": "pdf-to-excel",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-to-excel",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-to-excel"
+    ]
+  },
+  {
+    "keyword": "add page numbers to pdf online free — number pdf pages",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-page-number",
+    "targetTool": "pdf-page-number",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-page-number",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-page-number"
+    ]
+  },
+  {
+    "keyword": "pdf compare tool — compare two pdf files side-by-side online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-compare",
+    "targetTool": "pdf-compare",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-compare",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-compare"
+    ]
+  },
+  {
+    "keyword": "sign pdf online free — electronic signature & stamp for pdf",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pdf-signature",
+    "targetTool": "pdf-signature",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pdf-signature",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pdf-signature"
+    ]
+  },
+  {
+    "keyword": "free barcode generator — create code 128, ean-13, upc barcodes",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/barcode-generator",
+    "targetTool": "barcode-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/barcode-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/barcode-generator"
+    ]
+  },
+  {
+    "keyword": "case converter — uppercase, lowercase, title case, camelcase",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/case-converter",
+    "targetTool": "case-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/case-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/case-converter"
+    ]
+  },
+  {
+    "keyword": "word counter & character counter — readability & speaking time",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/word-counter",
+    "targetTool": "word-counter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/word-counter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/word-counter"
+    ]
+  },
+  {
+    "keyword": "character counter — letters, numbers & symbol statistics",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/character-counter",
+    "targetTool": "character-counter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/character-counter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/character-counter"
+    ]
+  },
+  {
+    "keyword": "reading time calculator — estimate reading & speaking duration",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/reading-time-calculator",
+    "targetTool": "reading-time-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/reading-time-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/reading-time-calculator"
+    ]
+  },
+  {
+    "keyword": "remove duplicate lines — deduplicate text lists online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/remove-duplicate-lines",
+    "targetTool": "remove-duplicate-lines",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/remove-duplicate-lines",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/remove-duplicate-lines"
+    ]
+  },
+  {
+    "keyword": "remove empty lines — strip blank lines & whitespace online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/remove-empty-lines",
+    "targetTool": "remove-empty-lines",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/remove-empty-lines",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/remove-empty-lines"
+    ]
+  },
+  {
+    "keyword": "find and replace text online — batch replace with regex support",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/find-and-replace",
+    "targetTool": "find-and-replace",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/find-and-replace",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/find-and-replace"
+    ]
+  },
+  {
+    "keyword": "text compare tool — online diff checker & text difference",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-compare",
+    "targetTool": "text-compare",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-compare",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-compare"
+    ]
+  },
+  {
+    "keyword": "text cleaner — remove extra spaces, tabs, html tags & empty lines",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-cleaner",
+    "targetTool": "text-cleaner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-cleaner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-cleaner"
+    ]
+  },
+  {
+    "keyword": "sort lines online — alphabetical, numeric & reverse line sorter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/sort-lines",
+    "targetTool": "sort-lines",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/sort-lines",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/sort-lines"
+    ]
+  },
+  {
+    "keyword": "lorem ipsum generator — dummy placeholder text generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/lorem-ipsum-generator",
+    "targetTool": "lorem-ipsum-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/lorem-ipsum-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/lorem-ipsum-generator"
+    ]
+  },
+  {
+    "keyword": "markdown editor & live previewer — export md, html & text",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/markdown-editor",
+    "targetTool": "markdown-editor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/markdown-editor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/markdown-editor"
+    ]
+  },
+  {
+    "keyword": "json minifier & compressor — minify json online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-minifier",
+    "targetTool": "json-minifier",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-minifier",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-minifier"
+    ]
+  },
+  {
+    "keyword": "json to xml converter — transform json to xml online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-to-xml",
+    "targetTool": "json-to-xml",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-to-xml",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-to-xml"
+    ]
+  },
+  {
+    "keyword": "xml to json converter — convert xml structure to json online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/xml-to-json",
+    "targetTool": "xml-to-json",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/xml-to-json",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/xml-to-json"
+    ]
+  },
+  {
+    "keyword": "markdown to html converter — parse markdown to clean html",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/markdown-to-html",
+    "targetTool": "markdown-to-html",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/markdown-to-html",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/markdown-to-html"
+    ]
+  },
+  {
+    "keyword": "sql formatter & beautifier — format sql queries online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/sql-formatter",
+    "targetTool": "sql-formatter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/sql-formatter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/sql-formatter"
+    ]
+  },
+  {
+    "keyword": "jwt generator & signer — create signed json web tokens online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/jwt-generator",
+    "targetTool": "jwt-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/jwt-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/jwt-generator"
+    ]
+  },
+  {
+    "keyword": "cron expression generator & explainer — schedule builder",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cron-expression-generator",
+    "targetTool": "cron-expression-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cron-expression-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cron-expression-generator"
+    ]
+  },
+  {
+    "keyword": "hex color code generator — random html & css palette",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/hex-color-generator",
+    "targetTool": "hex-color-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/hex-color-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/hex-color-generator"
+    ]
+  },
+  {
+    "keyword": "rgb color code generator & hex slider converter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/rgb-color-generator",
+    "targetTool": "rgb-color-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/rgb-color-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/rgb-color-generator"
+    ]
+  },
+  {
+    "keyword": "random name picker — lucky draw & raffle winner wheel",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/random-name-picker",
+    "targetTool": "random-name-picker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/random-name-picker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/random-name-picker"
+    ]
+  },
+  {
+    "keyword": "daily calorie intake calculator — bmr & weight loss goal",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/calorie-calculator",
+    "targetTool": "calorie-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/calorie-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/calorie-calculator"
+    ]
+  },
+  {
+    "keyword": "business name generator — creative brand & startup ideas",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/business-name-generator",
+    "targetTool": "business-name-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/business-name-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/business-name-generator"
+    ]
+  },
+  {
+    "keyword": "brand name generator — catchy company & domain names",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/brand-name-generator",
+    "targetTool": "brand-name-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/brand-name-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/brand-name-generator"
+    ]
+  },
+  {
+    "keyword": "online coin flip simulator — 3d heads or tails toss",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/coin-flip",
+    "targetTool": "coin-flip",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/coin-flip",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/coin-flip"
+    ]
+  },
+  {
+    "keyword": "json viewer & tree formatter — interactive object inspector",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-viewer",
+    "targetTool": "json-viewer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-viewer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-viewer"
+    ]
+  },
+  {
+    "keyword": "name picker wheel — random raffle & prize spinner",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/name-picker-wheel",
+    "targetTool": "name-picker-wheel",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/name-picker-wheel",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/name-picker-wheel"
+    ]
+  },
+  {
+    "keyword": "loan eligibility calculator — foir & maximum borrow limit",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/loan-eligibility-calculator",
+    "targetTool": "loan-eligibility-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/loan-eligibility-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/loan-eligibility-calculator"
+    ]
+  },
+  {
+    "keyword": "countdown calculator — exact days, hours & event timer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/countdown-calculator",
+    "targetTool": "countdown-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/countdown-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/countdown-calculator"
+    ]
+  },
+  {
+    "keyword": "online stopwatch — millisecond precision lap timer",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/online-stopwatch",
+    "targetTool": "online-stopwatch",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/online-stopwatch",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/online-stopwatch"
+    ]
+  },
+  {
+    "keyword": "countdown timer — online timer with custom alarm chime",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/countdown-timer",
+    "targetTool": "countdown-timer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/countdown-timer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/countdown-timer"
+    ]
+  },
+  {
+    "keyword": "online clock & world clock — accurate current local time",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/online-clock",
+    "targetTool": "online-clock",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/online-clock",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/online-clock"
+    ]
+  },
+  {
+    "keyword": "time zone converter — world meeting & time zone planner",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/time-zone-converter",
+    "targetTool": "time-zone-converter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/time-zone-converter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/time-zone-converter"
+    ]
+  },
+  {
+    "keyword": "3d dice roller simulator — multi-dice d6, d20 & d100",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/dice-roller",
+    "targetTool": "dice-roller",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/dice-roller",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/dice-roller"
+    ]
+  },
+  {
+    "keyword": "down payment calculator — mortgage savings & upfront cash",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/down-payment-calculator",
+    "targetTool": "down-payment-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/down-payment-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/down-payment-calculator"
+    ]
+  },
+  {
+    "keyword": "cement concrete calculator — bags, sand & gravel volume",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cement-calculator",
+    "targetTool": "cement-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cement-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cement-calculator"
+    ]
+  },
+  {
+    "keyword": "wavelength calculator — light & radio wave frequency",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/wavelength-calculator",
+    "targetTool": "wavelength-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/wavelength-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/wavelength-calculator"
+    ]
+  },
+  {
+    "keyword": "user agent parser — browser, device & os header lookup",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/user-agent-parser",
+    "targetTool": "user-agent-parser",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/user-agent-parser",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/user-agent-parser"
+    ]
+  },
+  {
+    "keyword": "mode calculator — statistical dataset & frequency counter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/mode-calculator",
+    "targetTool": "mode-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/mode-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/mode-calculator"
+    ]
+  },
+  {
+    "keyword": "inductance calculator — coil turns & solenoid formula",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/inductance-calculator",
+    "targetTool": "inductance-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/inductance-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/inductance-calculator"
+    ]
+  },
+  {
+    "keyword": "random letter generator — alphabet picker & word games",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/random-letter-generator",
+    "targetTool": "random-letter-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/random-letter-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/random-letter-generator"
+    ]
+  },
+  {
+    "keyword": "daily water intake calculator — hydration needs by weight",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/water-intake-calculator",
+    "targetTool": "water-intake-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/water-intake-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/water-intake-calculator"
+    ]
+  },
+  {
+    "keyword": "json to yaml converter — format configs & data online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/json-to-yaml",
+    "targetTool": "json-to-yaml",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/json-to-yaml",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/json-to-yaml"
+    ]
+  },
+  {
+    "keyword": "url extractor — scrape & filter web links from raw text",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/url-extractor",
+    "targetTool": "url-extractor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/url-extractor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/url-extractor"
+    ]
+  },
+  {
+    "keyword": "bond yield calculator — current yield & ytm valuation",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/bond-yield-calculator",
+    "targetTool": "bond-yield-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/bond-yield-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/bond-yield-calculator"
+    ]
+  },
+  {
+    "keyword": "cat age calculator — convert feline years to human age",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cat-age-calculator",
+    "targetTool": "cat-age-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cat-age-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cat-age-calculator"
+    ]
+  },
+  {
+    "keyword": "exam score calculator — test grade, percentage & negative marking",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/exam-score-calculator",
+    "targetTool": "exam-score-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/exam-score-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/exam-score-calculator"
+    ]
+  },
+  {
+    "keyword": "cgpa to percentage calculator — university grade points",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/cgpa-calculator",
+    "targetTool": "cgpa-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/cgpa-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/cgpa-calculator"
+    ]
+  },
+  {
+    "keyword": "college gpa calculator – 4.0 scale weighted & semester gpa",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/college-gpa-calculator",
+    "targetTool": "college-gpa-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/college-gpa-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/college-gpa-calculator"
+    ]
+  },
+  {
+    "keyword": "car gas mileage calculator — mpg & fuel economy tracker",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/mileage-calculator",
+    "targetTool": "mileage-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/mileage-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/mileage-calculator"
+    ]
+  },
+  {
+    "keyword": "paint cost & gallon calculator — wall area coverage",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/paint-cost-calculator",
+    "targetTool": "paint-cost-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/paint-cost-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/paint-cost-calculator"
+    ]
+  },
+  {
+    "keyword": "density calculator — mass, volume & material formula",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/density-calculator",
+    "targetTool": "density-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/density-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/density-calculator"
+    ]
+  },
+  {
+    "keyword": "screen size calculator — monitor dimensions, area & ppi",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/screen-size-calculator",
+    "targetTool": "screen-size-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/screen-size-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/screen-size-calculator"
+    ]
+  },
+  {
+    "keyword": "torque calculator — force, lever arm distance & rpm",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/torque-calculator",
+    "targetTool": "torque-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/torque-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/torque-calculator"
+    ]
+  },
+  {
+    "keyword": "linear regression calculator — best fit line y = mx + b",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/linear-regression-calculator",
+    "targetTool": "linear-regression-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/linear-regression-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/linear-regression-calculator"
+    ]
+  },
+  {
+    "keyword": "sha-256 hash generator — real-time checksum verifier",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/sha256-hash-generator",
+    "targetTool": "sha256-hash-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/sha256-hash-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/sha256-hash-generator"
+    ]
+  },
+  {
+    "keyword": "us income tax calculator — latest federal brackets & fica",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/us-income-tax-calculator",
+    "targetTool": "us-income-tax-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/us-income-tax-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/us-income-tax-calculator"
+    ]
+  },
+  {
+    "keyword": "personal loan calculator — monthly emi, apr & net cash",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/personal-loan-calculator",
+    "targetTool": "personal-loan-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/personal-loan-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/personal-loan-calculator"
+    ]
+  },
+  {
+    "keyword": "sale price calculator — stacked coupon discount & tax",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/sale-price-calculator",
+    "targetTool": "sale-price-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/sale-price-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/sale-price-calculator"
+    ]
+  },
+  {
+    "keyword": "md5 hash generator — 128-bit checksum digest lookup",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/md5-hash-generator",
+    "targetTool": "md5-hash-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/md5-hash-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/md5-hash-generator"
+    ]
+  },
+  {
+    "keyword": "wide text generator — fullwidth aesthetic vaporwave font",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/wide-text-generator",
+    "targetTool": "wide-text-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/wide-text-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/wide-text-generator"
+    ]
+  },
+  {
+    "keyword": "typing speed test — test wpm & accuracy online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/typing-speed-test",
+    "targetTool": "typing-speed-test",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/typing-speed-test",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/typing-speed-test"
+    ]
+  },
+  {
+    "keyword": "text reverser — reverse text, words & letters online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-reverser",
+    "targetTool": "text-reverser",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-reverser",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-reverser"
+    ]
+  },
+  {
+    "keyword": "remove line breaks — clean text & paragraph formatter",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/remove-line-breaks",
+    "targetTool": "remove-line-breaks",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/remove-line-breaks",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/remove-line-breaks"
+    ]
+  },
+  {
+    "keyword": "remove extra spaces — clean whitespace & indents",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/remove-extra-spaces",
+    "targetTool": "remove-extra-spaces",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/remove-extra-spaces",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/remove-extra-spaces"
+    ]
+  },
+  {
+    "keyword": "text repeater — repeat words & messages 10,000x times",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-repeater",
+    "targetTool": "text-repeater",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-repeater",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-repeater"
+    ]
+  },
+  {
+    "keyword": "text splitter — split text by delimiter, lines & chunks",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-splitter",
+    "targetTool": "text-splitter",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-splitter",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-splitter"
+    ]
+  },
+  {
+    "keyword": "text joiner — combine lines with custom delimiters",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-joiner",
+    "targetTool": "text-joiner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-joiner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-joiner"
+    ]
+  },
+  {
+    "keyword": "email extractor — scrape & filter emails from text",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/email-extractor",
+    "targetTool": "email-extractor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/email-extractor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/email-extractor"
+    ]
+  },
+  {
+    "keyword": "keyword extractor — extract seo keywords & density",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/keyword-extractor",
+    "targetTool": "keyword-extractor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/keyword-extractor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/keyword-extractor"
+    ]
+  },
+  {
+    "keyword": "html entity encoder & decoder — convert &amp;, &lt;, &gt;",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/html-entity-encoder-decoder",
+    "targetTool": "html-entity-encoder-decoder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/html-entity-encoder-decoder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/html-entity-encoder-decoder"
+    ]
+  },
+  {
+    "keyword": "text to binary converter — convert text to 0s & 1s online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-to-binary",
+    "targetTool": "text-to-binary",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-to-binary",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-to-binary"
+    ]
+  },
+  {
+    "keyword": "binary to text converter — decode 0s & 1s to text online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/binary-to-text",
+    "targetTool": "binary-to-text",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/binary-to-text",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/binary-to-text"
+    ]
+  },
+  {
+    "keyword": "text to hex converter — convert ascii to hexadecimal",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-to-hex",
+    "targetTool": "text-to-hex",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-to-hex",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-to-hex"
+    ]
+  },
+  {
+    "keyword": "hex to text converter — decode hexadecimal to plain text",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/hex-to-text",
+    "targetTool": "hex-to-text",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/hex-to-text",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/hex-to-text"
+    ]
+  },
+  {
+    "keyword": "css minifier — minify css online for faster page speeds",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/css-minifier",
+    "targetTool": "css-minifier",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/css-minifier",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/css-minifier"
+    ]
+  },
+  {
+    "keyword": "javascript minifier — minify js code online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/javascript-minifier",
+    "targetTool": "javascript-minifier",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/javascript-minifier",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/javascript-minifier"
+    ]
+  },
+  {
+    "keyword": "html minifier — compress html online for seo speed",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/html-minifier",
+    "targetTool": "html-minifier",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/html-minifier",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/html-minifier"
+    ]
+  },
+  {
+    "keyword": "sql minifier — compress sql queries to single line",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/sql-minifier",
+    "targetTool": "sql-minifier",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/sql-minifier",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/sql-minifier"
+    ]
+  },
+  {
+    "keyword": "meta tag generator — generate seo & open graph tags",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/meta-tag-generator",
+    "targetTool": "meta-tag-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/meta-tag-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/meta-tag-generator"
+    ]
+  },
+  {
+    "keyword": "robots.txt generator — create seo-friendly robots.txt online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/robots-txt-generator",
+    "targetTool": "robots-txt-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/robots-txt-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/robots-txt-generator"
+    ]
+  },
+  {
+    "keyword": "xml sitemap generator — create google sitemaps free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/xml-sitemap-generator",
+    "targetTool": "xml-sitemap-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/xml-sitemap-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/xml-sitemap-generator"
+    ]
+  },
+  {
+    "keyword": "schema markup generator — json-ld structured data",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/schema-markup-generator",
+    "targetTool": "schema-markup-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/schema-markup-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/schema-markup-generator"
+    ]
+  },
+  {
+    "keyword": "utm campaign url builder — google analytics utm generator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/utm-builder",
+    "targetTool": "utm-builder",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/utm-builder",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/utm-builder"
+    ]
+  },
+  {
+    "keyword": "scientific calculator — free advanced math & trigonometry online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/scientific-calculator",
+    "targetTool": "scientific-calculator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/scientific-calculator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/scientific-calculator"
+    ]
+  },
+  {
+    "keyword": "handwriting to text ocr — extract handwritten notes online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/handwriting-to-text",
+    "targetTool": "handwriting-to-text",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/handwriting-to-text",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/handwriting-to-text"
+    ]
+  },
+  {
+    "keyword": "image to text ocr converter — extract text from photos",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/image-to-text",
+    "targetTool": "image-to-text",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/image-to-text",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/image-to-text"
+    ]
+  },
+  {
+    "keyword": "barcode scanner — scan 1d/2d barcodes online free",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/barcode-scanner",
+    "targetTool": "barcode-scanner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/barcode-scanner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/barcode-scanner"
+    ]
+  },
+  {
+    "keyword": "calendar notes — private monthly calendar & daily planner",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/calendar-notes",
+    "targetTool": "calendar-notes",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/calendar-notes",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/calendar-notes"
+    ]
+  },
+  {
+    "keyword": "clipboard history manager — save & search copied snippets",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/clipboard-history",
+    "targetTool": "clipboard-history",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/clipboard-history",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/clipboard-history"
+    ]
+  },
+  {
+    "keyword": "daily routine planner — morning, afternoon & evening focus",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/daily-planner",
+    "targetTool": "daily-planner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/daily-planner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/daily-planner"
+    ]
+  },
+  {
+    "keyword": "personal expense tracker — income, expenses & budget ledger",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/expense-tracker",
+    "targetTool": "expense-tracker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/expense-tracker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/expense-tracker"
+    ]
+  },
+  {
+    "keyword": "file checksum verifier — verify sha-256, sha-1, sha-512 & md5",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/file-checksum-verifier",
+    "targetTool": "file-checksum-verifier",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/file-checksum-verifier",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/file-checksum-verifier"
+    ]
+  },
+  {
+    "keyword": "daily habit tracker — build habits & track streaks",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/habit-tracker",
+    "targetTool": "habit-tracker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/habit-tracker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/habit-tracker"
+    ]
+  },
+  {
+    "keyword": "monthly budget planner — category spending & expense limits",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/monthly-budget-planner",
+    "targetTool": "monthly-budget-planner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/monthly-budget-planner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/monthly-budget-planner"
+    ]
+  },
+  {
+    "keyword": "memorable passphrase generator — secure diceware words",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/passphrase-generator",
+    "targetTool": "passphrase-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/passphrase-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/passphrase-generator"
+    ]
+  },
+  {
+    "keyword": "password strength checker — entropy & crack time estimator",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/password-strength-checker",
+    "targetTool": "password-strength-checker",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/password-strength-checker",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/password-strength-checker"
+    ]
+  },
+  {
+    "keyword": "pomodoro focus timer — 25-minute work & break intervals",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/pomodoro-timer",
+    "targetTool": "pomodoro-timer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/pomodoro-timer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/pomodoro-timer"
+    ]
+  },
+  {
+    "keyword": "secure offline notes — private encrypted local notepad",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/secure-notes",
+    "targetTool": "secure-notes",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/secure-notes",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/secure-notes"
+    ]
+  },
+  {
+    "keyword": "sha checksum generator — sha-1, sha-256, sha-384 & sha-512",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/sha-checksum-generator",
+    "targetTool": "sha-checksum-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/sha-checksum-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/sha-checksum-generator"
+    ]
+  },
+  {
+    "keyword": "aes text encrypt & decrypt — secure cipher with secret key",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/text-encrypt-decrypt",
+    "targetTool": "text-encrypt-decrypt",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/text-encrypt-decrypt",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/text-encrypt-decrypt"
+    ]
+  },
+  {
+    "keyword": "todo list & task manager — priority checklist & categories",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/todo-list",
+    "targetTool": "todo-list",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/todo-list",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/todo-list"
+    ]
+  },
+  {
+    "keyword": "7-day weekly planner — monday to sunday schedule manager",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/weekly-planner",
+    "targetTool": "weekly-planner",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/weekly-planner",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/weekly-planner"
+    ]
+  },
+  {
+    "keyword": "random text & string generator — custom length & character sets",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/random-text-generator",
+    "targetTool": "random-text-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/random-text-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/random-text-generator"
+    ]
+  },
+  {
+    "keyword": "video subtitle & srt generator — create captions & timestamps",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/subtitle-generator",
+    "targetTool": "subtitle-generator",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/subtitle-generator",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/subtitle-generator"
+    ]
+  },
+  {
+    "keyword": "video aspect ratio converter — 9:16 shorts, reels & 16:9 youtube",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/video-aspect-ratio",
+    "targetTool": "video-aspect-ratio",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/video-aspect-ratio",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/video-aspect-ratio"
+    ]
+  },
+  {
+    "keyword": "video compressor — reduce video file size in browser",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/video-compressor",
+    "targetTool": "video-compressor",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/video-compressor",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/video-compressor"
+    ]
+  },
+  {
+    "keyword": "video to audio extractor — convert mp4 & webm to wav online",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/video-to-audio",
+    "targetTool": "video-to-audio",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/video-to-audio",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/video-to-audio"
+    ]
+  },
+  {
+    "keyword": "video to gif converter — create animated gifs from video clips",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/video-to-gif",
+    "targetTool": "video-to-gif",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/video-to-gif",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/video-to-gif"
+    ]
+  },
+  {
+    "keyword": "video trimmer & cutter — cut video segments in browser",
+    "intent": "Transactional / Direct Interactive Tool Execution",
+    "existingPage": "/video-trimmer",
+    "targetTool": "video-trimmer",
+    "action": "KEEP_EXISTING",
+    "newUrl": "https://www.zubware.com/video-trimmer",
+    "reason": "Direct utility intent fully satisfied by canonical interactive tool page with instant browser processing.",
+    "internalLinks": [
+      "/video-trimmer"
+    ]
+  },
+  {
+    "keyword": "compress pdf 100kb",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/pdf-compressor",
+    "targetTool": "pdf-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/pdf-compressor",
+    "reason": "Thin doorway intent; fully handled by slider/presets inside /pdf-compressor.",
+    "internalLinks": [
+      "/pdf-compressor"
+    ]
+  },
+  {
+    "keyword": "compress pdf 200kb",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/pdf-compressor",
+    "targetTool": "pdf-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/pdf-compressor",
+    "reason": "Thin doorway intent; fully handled by slider/presets inside /pdf-compressor.",
+    "internalLinks": [
+      "/pdf-compressor"
+    ]
+  },
+  {
+    "keyword": "compress pdf 500kb",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/pdf-compressor",
+    "targetTool": "pdf-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/pdf-compressor",
+    "reason": "Thin doorway intent; fully handled by slider/presets inside /pdf-compressor.",
+    "internalLinks": [
+      "/pdf-compressor"
+    ]
+  },
+  {
+    "keyword": "image compressor 20kb",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/image-compressor",
+    "targetTool": "image-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/image-compressor",
+    "reason": "Thin doorway intent; interactive target size input inside /image-compressor solves this.",
+    "internalLinks": [
+      "/image-compressor"
+    ]
+  },
+  {
+    "keyword": "image compressor 50kb",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/image-compressor",
+    "targetTool": "image-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/image-compressor",
+    "reason": "Thin doorway intent; interactive target size input inside /image-compressor solves this.",
+    "internalLinks": [
+      "/image-compressor"
+    ]
+  },
+  {
+    "keyword": "image compressor 100kb",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/image-compressor",
+    "targetTool": "image-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/image-compressor",
+    "reason": "Thin doorway intent; interactive target size input inside /image-compressor solves this.",
+    "internalLinks": [
+      "/image-compressor"
+    ]
+  },
+  {
+    "keyword": "compress pdf free online",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/pdf-compressor",
+    "targetTool": "pdf-compressor",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/pdf-compressor",
+    "reason": "Pure synonym query; canonical /pdf-compressor satisfies without thin doorway page.",
+    "internalLinks": [
+      "/pdf-compressor"
+    ]
+  },
+  {
+    "keyword": "split pdf pages free",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/pdf-split",
+    "targetTool": "pdf-split",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/pdf-split",
+    "reason": "Pure synonym query; canonical /pdf-split satisfies directly.",
+    "internalLinks": [
+      "/pdf-split"
+    ]
+  },
+  {
+    "keyword": "json beautifier online",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/json-formatter",
+    "targetTool": "json-formatter",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/json-formatter",
+    "reason": "Pure synonym query; canonical /json-formatter satisfies directly.",
+    "internalLinks": [
+      "/json-formatter"
+    ]
+  },
+  {
+    "keyword": "free online invoice generator",
+    "intent": "Synonym / Narrow Parameter Doorway Intent",
+    "existingPage": "/gst-invoice-generator",
+    "targetTool": "gst-invoice-generator",
+    "action": "SKIP",
+    "newUrl": "https://www.zubware.com/gst-invoice-generator",
+    "reason": "Synonym query; canonical /gst-invoice-generator satisfies directly.",
+    "internalLinks": [
+      "/gst-invoice-generator"
+    ]
+  }
+]

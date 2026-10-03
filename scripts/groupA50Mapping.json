@@ -1,0 +1,302 @@
+[
+  {
+    "id": "image-compressor",
+    "comp": "ImageCompressorTool",
+    "resolved": "src/components/tools/ImageCompressorTool.tsx",
+    "lines": 683
+  },
+  {
+    "id": "image-converter",
+    "comp": "ImageConverterTool",
+    "resolved": "src/components/tools/ImageConverterTool.tsx",
+    "lines": 742
+  },
+  {
+    "id": "image-resizer",
+    "comp": "ImageResizerTool",
+    "resolved": "src/components/tools/image/ImageResizerTool.tsx",
+    "lines": 648
+  },
+  {
+    "id": "image-to-pdf",
+    "comp": "ImageToPdfTool",
+    "resolved": "src/components/tools/pdf/ImageToPdfTool.tsx",
+    "lines": 384
+  },
+  {
+    "id": "pdf-merge",
+    "comp": "PdfMergeTool",
+    "resolved": "src/components/tools/PdfMergeTool.tsx",
+    "lines": 510
+  },
+  {
+    "id": "pdf-split",
+    "comp": "PdfSplitTool",
+    "resolved": "src/components/tools/PdfSplitTool.tsx",
+    "lines": 624
+  },
+  {
+    "id": "pdf-to-images",
+    "comp": "PdfToImagesTool",
+    "resolved": "src/components/tools/pdf/PdfToImagesTool.tsx",
+    "lines": 286
+  },
+  {
+    "id": "pdf-to-jpg",
+    "comp": "PdfToJpgTool",
+    "resolved": "src/components/tools/pdf/PdfToJpgTool.tsx",
+    "lines": 471
+  },
+  {
+    "id": "decrease-pdf-size",
+    "comp": "DecreasePdfSizeTool",
+    "resolved": "src/components/tools/pdf/DecreasePdfSizeTool.tsx",
+    "lines": 7
+  },
+  {
+    "id": "increase-pdf-size",
+    "comp": "IncreasePdfSizeTool",
+    "resolved": "src/components/tools/pdf/IncreasePdfSizeTool.tsx",
+    "lines": 7
+  },
+  {
+    "id": "json-formatter",
+    "comp": "JsonFormatterTool",
+    "resolved": "src/components/tools/dev/JsonFormatterTool.tsx",
+    "lines": 254
+  },
+  {
+    "id": "json-validator",
+    "comp": "JsonValidatorTool",
+    "resolved": "src/components/tools/dev/JsonValidatorTool.tsx",
+    "lines": 302
+  },
+  {
+    "id": "json-minifier",
+    "comp": "JsonMinifierTool",
+    "resolved": "src/components/tools/dev/JsonMinifierTool.tsx",
+    "lines": 240
+  },
+  {
+    "id": "html-formatter",
+    "comp": "HtmlFormatterTool",
+    "resolved": "src/components/tools/dev/HtmlFormatterTool.tsx",
+    "lines": 232
+  },
+  {
+    "id": "css-formatter",
+    "comp": "CssFormatterTool",
+    "resolved": "src/components/tools/dev/CssFormatterTool.tsx",
+    "lines": 198
+  },
+  {
+    "id": "javascript-formatter",
+    "comp": "JsFormatterTool",
+    "resolved": "src/components/tools/dev/JsFormatterTool.tsx",
+    "lines": 196
+  },
+  {
+    "id": "xml-formatter",
+    "comp": "XmlFormatterTool",
+    "resolved": "src/components/tools/dev/XmlFormatterTool.tsx",
+    "lines": 161
+  },
+  {
+    "id": "base64-encoder-decoder",
+    "comp": "Base64EncoderDecoderTool",
+    "resolved": "src/components/tools/dev/Base64EncoderDecoderTool.tsx",
+    "lines": 3
+  },
+  {
+    "id": "url-encoder-decoder",
+    "comp": "UrlEncoderDecoderTool",
+    "resolved": "src/components/tools/dev/UrlEncoderDecoderTool.tsx",
+    "lines": 3
+  },
+  {
+    "id": "html-escape-unescape",
+    "comp": "HtmlEscapeUnescapeTool",
+    "resolved": "src/components/tools/dev/HtmlEscapeUnescapeTool.tsx",
+    "lines": 3
+  },
+  {
+    "id": "regex-tester",
+    "comp": "RegexTesterTool",
+    "resolved": "src/components/tools/dev/RegexTesterTool.tsx",
+    "lines": 284
+  },
+  {
+    "id": "uuid-generator",
+    "comp": "UuidGeneratorTool",
+    "resolved": "src/components/tools/dev/UuidGeneratorTool.tsx",
+    "lines": 192
+  },
+  {
+    "id": "word-counter",
+    "comp": "WordCounterTool",
+    "resolved": "src/components/tools/text/WordCounterTool.tsx",
+    "lines": 328
+  },
+  {
+    "id": "character-counter",
+    "comp": "CharacterCounterTool",
+    "resolved": "src/components/tools/text/CharacterCounterTool.tsx",
+    "lines": 157
+  },
+  {
+    "id": "case-converter",
+    "comp": "CaseConverterTool",
+    "resolved": "src/components/tools/text/CaseConverterTool.tsx",
+    "lines": 332
+  },
+  {
+    "id": "text-cleaner",
+    "comp": "TextCleanerTool",
+    "resolved": "src/components/tools/text/TextCleanerTool.tsx",
+    "lines": 259
+  },
+  {
+    "id": "sort-lines",
+    "comp": "SortLinesTool",
+    "resolved": "src/components/tools/text/SortLinesTool.tsx",
+    "lines": 301
+  },
+  {
+    "id": "social-media-post-formatter",
+    "comp": "SocialMediaPostFormatterTool",
+    "resolved": "src/components/tools/creator/SocialMediaPostFormatterTool.tsx",
+    "lines": 136
+  },
+  {
+    "id": "qr-generator",
+    "comp": "QrGeneratorTool",
+    "resolved": "src/components/tools/QrGeneratorTool.tsx",
+    "lines": 1588
+  },
+  {
+    "id": "barcode-generator",
+    "comp": "BarcodeGeneratorTool",
+    "resolved": "src/components/tools/business/BarcodeGeneratorTool.tsx",
+    "lines": 278
+  },
+  {
+    "id": "emoji-combiner",
+    "comp": "EmojiCombinerTool",
+    "resolved": "src/components/tools/creator/EmojiCombinerTool.tsx",
+    "lines": 145
+  },
+  {
+    "id": "percentage-calculator",
+    "comp": "PercentageCalculatorTool",
+    "resolved": "src/components/tools/design/PercentageCalculatorTool.tsx",
+    "lines": 348
+  },
+  {
+    "id": "age-calculator",
+    "comp": "AgeCalculatorTool",
+    "resolved": "src/components/tools/design/AgeCalculatorTool.tsx",
+    "lines": 353
+  },
+  {
+    "id": "emi-calculator",
+    "comp": "EmiCalculatorTool",
+    "resolved": "src/components/tools/design/EmiCalculatorTool.tsx",
+    "lines": 397
+  },
+  {
+    "id": "unit-converter",
+    "comp": "UnitConverterTool",
+    "resolved": "src/components/tools/design/UnitConverterTool.tsx",
+    "lines": 376
+  },
+  {
+    "id": "resume-template-gallery",
+    "comp": "ResumeTemplateGalleryTool",
+    "resolved": "src/components/tools/career/ResumeTemplateGalleryTool.tsx",
+    "lines": 119
+  },
+  {
+    "id": "resume-import",
+    "comp": "ResumeImportTool",
+    "resolved": "src/components/tools/career/ResumeImportTool.tsx",
+    "lines": 133
+  },
+  {
+    "id": "resume-export",
+    "comp": "ResumeExportTool",
+    "resolved": "src/components/tools/career/ResumeExportTool.tsx",
+    "lines": 148
+  },
+  {
+    "id": "resume-section-manager",
+    "comp": "ResumeSectionManagerTool",
+    "resolved": "src/components/tools/career/ResumeSectionManagerTool.tsx",
+    "lines": 116
+  },
+  {
+    "id": "youtube-hashtag-generator",
+    "comp": "YouTubeHashtagGeneratorTool",
+    "resolved": "src/components/tools/creator/YouTubeHashtagGeneratorTool.tsx",
+    "lines": 148
+  },
+  {
+    "id": "youtube-playlist-name-generator",
+    "comp": "YouTubePlaylistNameGeneratorTool",
+    "resolved": "src/components/tools/creator/YouTubePlaylistNameGeneratorTool.tsx",
+    "lines": 127
+  },
+  {
+    "id": "thumbnail-text-generator",
+    "comp": "ThumbnailTextGeneratorTool",
+    "resolved": "src/components/tools/creator/ThumbnailTextGeneratorTool.tsx",
+    "lines": 130
+  },
+  {
+    "id": "instagram-username-generator",
+    "comp": "InstagramUsernameGeneratorTool",
+    "resolved": "src/components/tools/creator/InstagramUsernameGeneratorTool.tsx",
+    "lines": 143
+  },
+  {
+    "id": "facebook-hashtag-generator",
+    "comp": "FacebookHashtagGeneratorTool",
+    "resolved": "src/components/tools/creator/FacebookHashtagGeneratorTool.tsx",
+    "lines": 107
+  },
+  {
+    "id": "twitter-bio-generator",
+    "comp": "TwitterBioGeneratorTool",
+    "resolved": "src/components/tools/creator/TwitterBioGeneratorTool.tsx",
+    "lines": 138
+  },
+  {
+    "id": "universal-hashtag-generator",
+    "comp": "UniversalHashtagGeneratorTool",
+    "resolved": "src/components/tools/creator/UniversalHashtagGeneratorTool.tsx",
+    "lines": 149
+  },
+  {
+    "id": "resume-prompt-builder",
+    "comp": "ResumePromptBuilderTool",
+    "resolved": "src/components/tools/prompt/ResumePromptBuilderTool.tsx",
+    "lines": 142
+  },
+  {
+    "id": "cover-letter-prompt-builder",
+    "comp": "CoverLetterPromptBuilderTool",
+    "resolved": "src/components/tools/prompt/CoverLetterPromptBuilderTool.tsx",
+    "lines": 142
+  },
+  {
+    "id": "email-prompt-builder",
+    "comp": "EmailPromptBuilderTool",
+    "resolved": "src/components/tools/prompt/EmailPromptBuilderTool.tsx",
+    "lines": 146
+  },
+  {
+    "id": "image-color-picker",
+    "comp": "ColorPickerTool",
+    "resolved": "src/components/tools/image/ColorPickerTool.tsx",
+    "lines": 264
+  }
+]

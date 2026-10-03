@@ -1,6 +1,7 @@
 import { BlogArticle } from '../types';
+import { EXPANDED_BLOG_ARTICLES } from './expandedBlogArticles';
 
-export const BLOG_ARTICLES: BlogArticle[] = [
+const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     slug: 'how-to-compress-pdf-without-losing-readability',
     title: 'How to Compress a PDF Without Losing Readability',
@@ -519,10 +520,10 @@ Key insight: In the initial years of a 20-year home mortgage, up to 75% of your 
       'down-payment-calculator',
       'personal-loan-calculator',
       'sale-price-calculator',
-      'sip-calculator',
+      'compound-interest-calculator',
       'emi-calculator',
       'gst-invoice-generator',
-      'salary-calculator',
+      'salary-hike-calculator',
       'compound-interest-calculator'
     ],
     howTo: {
@@ -613,7 +614,7 @@ Using Zubware's Remove Extra Spaces and Case Converter cleans and standardizes a
       }
     ],
     relatedToolIds: [
-      'text-diff-checker',
+      'text-compare',
       'word-counter',
       'remove-extra-spaces',
       'case-converter',
@@ -835,8 +836,8 @@ Our [Matching Parts Puzzle Video Maker](/matching-parts-puzzle-video-maker) crea
     ],
     relatedToolIds: [
       'script-to-video-maker',
-      'matching-parts-puzzle-video-maker',
-      'lofi-music-studio',
+      'matching-parts-video-maker',
+      'video-to-audio',
       'slowed-and-reverb',
       'video-to-gif',
       'video-compressor'
@@ -1165,7 +1166,7 @@ Use our suite of dedicated career calculators:
       "pdf-to-word",
       "pdf-to-excel",
       "word-to-pdf",
-      "excel-to-pdf",
+      "pdf-to-excel",
       "pdf-compressor",
       "edit-pdf"
     ],
@@ -1425,7 +1426,7 @@ Use our suite of dedicated career calculators:
     "relatedToolIds": [
       "json-formatter",
       "json-validator",
-      "json-diff",
+      "json-validator",
       "json-to-csv",
       "json-to-xml",
       "xml-to-json"
@@ -1597,12 +1598,12 @@ Use our suite of dedicated career calculators:
       }
     ],
     "relatedToolIds": [
-      "lofi-music-studio",
+      "video-to-audio",
       "lofi-maker",
       "slowed-and-reverb",
-      "audio-joiner",
+      "video-to-gif",
       "video-to-audio",
-      "audio-compressor"
+      "video-compressor"
     ],
     "howTo": {
       "name": "How to Generate Custom Lofi Beats with Zubware",
@@ -1685,11 +1686,11 @@ Use our suite of dedicated career calculators:
     ],
     "relatedToolIds": [
       "slowed-and-reverb",
-      "lofi-music-studio",
-      "audio-compressor",
-      "audio-trimmer",
       "video-to-audio",
-      "audio-joiner"
+      "video-compressor",
+      "video-trimmer",
+      "video-to-audio",
+      "video-to-gif"
     ],
     "howTo": {
       "name": "How to Create Slowed & Reverb Tracks with Zubware",
@@ -1771,7 +1772,7 @@ Use our suite of dedicated career calculators:
       }
     ],
     "relatedToolIds": [
-      "video-aspect-ratio-converter",
+      "video-aspect-ratio",
       "video-compressor",
       "video-trimmer",
       "video-to-gif",
@@ -2294,11 +2295,11 @@ Use our suite of dedicated career calculators:
     ],
     "relatedToolIds": [
       "compound-interest-calculator",
-      "sip-calculator",
+      "compound-interest-calculator",
       "roi-calculator",
-      "inflation-calculator",
-      "investment-calculator",
-      "simple-interest-calculator"
+      "roi-calculator",
+      "loan-calculator",
+      "percentage-calculator"
     ],
     "howTo": {
       "name": "How to Model Your Investment Growth with Zubware",
@@ -2381,10 +2382,10 @@ Use our suite of dedicated career calculators:
     ],
     "relatedToolIds": [
       "emi-calculator",
-      "home-loan-emi-calculator",
-      "car-loan-emi-calculator",
-      "loan-comparison-calculator",
-      "simple-interest-calculator",
+      "emi-calculator",
+      "loan-calculator",
+      "loan-eligibility-calculator",
+      "percentage-calculator",
       "compound-interest-calculator"
     ],
     "howTo": {
@@ -2468,9 +2469,9 @@ Use our suite of dedicated career calculators:
     ],
     "relatedToolIds": [
       "gst-invoice-generator",
-      "gst-calculator",
-      "freelance-rate-calculator",
-      "invoice-generator",
+      "percentage-calculator",
+      "working-days-calculator",
+      "currency-calculator",
       "discount-calculator",
       "percentage-calculator"
     ],
@@ -2815,11 +2816,11 @@ Use our suite of dedicated career calculators:
       }
     ],
     "relatedToolIds": [
-      "bmi-calculator",
       "calorie-calculator",
-      "body-fat-calculator",
+      "calorie-calculator",
+      "weight-gain-calculator",
       "water-intake-calculator",
-      "intermittent-fasting-timer",
+      "water-intake-calculator",
       "weight-gain-calculator"
     ],
     "howTo": {
@@ -2856,6 +2857,8 @@ Use our suite of dedicated career calculators:
     ]
   }
 ];
+
+export const BLOG_ARTICLES: BlogArticle[] = [...BASE_BLOG_ARTICLES, ...EXPANDED_BLOG_ARTICLES];
 
 export function getBlogArticleBySlug(slug: string): BlogArticle | undefined {
   return BLOG_ARTICLES.find(

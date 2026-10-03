@@ -43,5 +43,8 @@
 /dashboard/index.html /dashboard 301
 
 # 6. Tool Pages canonicalization (redirect legacy .html to clean canonical URL)
+/image-color-picker /color-picker 301
+/image-color-picker.html /color-picker 301
 /:slug.html /:slug 301
 /:slug/index.html /:slug 301
+

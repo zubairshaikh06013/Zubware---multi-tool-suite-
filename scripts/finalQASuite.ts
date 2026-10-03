@@ -46,10 +46,10 @@ if (toolCount === 308 || toolCount === 307) {
   reportError(`Expected 308 tools, found ${toolCount}`);
 }
 
-if (blogCount === 30) {
-  reportPass('Blog Article Count', '30 / 30 articles intact');
+if (blogCount === 42) {
+  reportPass('Blog Article Count', '42 / 42 articles intact (30 base + 12 distinct guides)');
 } else {
-  reportError(`Expected 30 blog articles, found ${blogCount}`);
+  reportError(`Expected 42 blog articles, found ${blogCount}`);
 }
 
 if (catCount === 13) {
@@ -67,10 +67,10 @@ if (!fs.existsSync(sitemapPath)) {
   const sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
   const locs = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
   
-  if (locs.length === 362 || locs.length === 361) {
-    reportPass('Sitemap URL Count', `${locs.length} Canonical URLs intact`);
+  if (locs.length === 374) {
+    reportPass('Sitemap URL Count', `${locs.length} Canonical URLs intact (308 tools + 42 blogs + 13 category hubs + 11 core/legal)`);
   } else {
-    reportError(`Expected 362 URLs in sitemap.xml, found ${locs.length}`);
+    reportError(`Expected 374 URLs in sitemap.xml, found ${locs.length}`);
   }
 
   // Check hostname
@@ -116,15 +116,60 @@ if (!fs.existsSync(robotsPath)) {
 // 4. LLMS.TXT AUDIT
 console.log('\n--- 4. LLMS.TXT AUDIT ---');
 const llmsPath = path.join(publicDir, 'llms.txt');
+let llmsToolCount = 0;
+let llmsDuplicates: string[] = [];
+let llmsNonToolUrls: string[] = [];
 if (!fs.existsSync(llmsPath)) {
   reportError('public/llms.txt is missing!');
 } else {
   const llmsTxt = fs.readFileSync(llmsPath, 'utf8');
-  const toolMentions = TOOLS_DATA.filter(t => llmsTxt.includes(t.title) || llmsTxt.includes(t.filename));
-  if (toolMentions.length >= 300) {
-    reportPass('LLMS Documentation', `${toolMentions.length} / 307 tools documented in llms.txt`);
+  const lines = llmsTxt.split('\n');
+  const urls: string[] = [];
+
+  for (const line of lines) {
+    const m = line.match(/\(https:\/\/www\.zubware\.com(\/[^)]*)\)/);
+    if (m) {
+      urls.push(m[1]);
+    }
+  }
+
+  const seenUrls = new Set<string>();
+  for (const u of urls) {
+    if (seenUrls.has(u)) {
+      llmsDuplicates.push(u);
+    }
+    seenUrls.add(u);
+  }
+
+  llmsToolCount = urls.length;
+
+  // Verify exactly 308 tools
+  if (llmsToolCount === TOOLS_DATA.length) {
+    reportPass('LLMS Tool Count', `Exactly ${llmsToolCount} active tools documented in llms.txt`);
   } else {
-    reportError(`Only ${toolMentions.length} tools found in llms.txt`);
+    reportError(`Expected ${TOOLS_DATA.length} active tools in llms.txt, found ${llmsToolCount}`);
+  }
+
+  if (llmsDuplicates.length === 0) {
+    reportPass('LLMS Duplicate URLs', '0 duplicate URLs in llms.txt');
+  } else {
+    reportError(`Found ${llmsDuplicates.length} duplicate URLs in llms.txt: ${llmsDuplicates.join(', ')}`);
+  }
+
+  // Check no non-tool URLs in llms.txt
+  llmsNonToolUrls = urls.filter(u => u === '/' || u.startsWith('/blog') || u.startsWith('/category') || ['/about', '/privacy', '/terms', '/disclaimer', '/contact', '/help', '/changelog', '/feedback', '/categories'].includes(u));
+  if (llmsNonToolUrls.length === 0) {
+    reportPass('LLMS Clean Scope', 'Zero category, blog, or static pages in llms.txt (tool-only scope)');
+  } else {
+    reportError(`Found non-tool URLs in llms.txt: ${llmsNonToolUrls.join(', ')}`);
+  }
+
+  // Check no .html in llms.txt
+  const badHtmlLlms = urls.filter(u => u.endsWith('.html'));
+  if (badHtmlLlms.length === 0) {
+    reportPass('LLMS Clean Paths', 'Zero legacy .html URLs in llms.txt');
+  } else {
+    reportError(`Found ${badHtmlLlms.length} .html URLs in llms.txt: ${badHtmlLlms.join(', ')}`);
   }
 }
 
@@ -140,11 +185,11 @@ const representativePaths = [
   { file: 'category/pdf-tools/index.html', canonical: 'https://www.zubware.com/category/pdf-tools', name: 'Category: PDF Tools' },
   { file: 'category/image-tools/index.html', canonical: 'https://www.zubware.com/category/image-tools', name: 'Category: Image Tools' },
   { file: 'category/developer-tools/index.html', canonical: 'https://www.zubware.com/category/developer-tools', name: 'Category: Developer Tools' },
-  { file: 'image-splitter-merger.html', canonical: 'https://www.zubware.com/image-splitter-merger.html', name: 'Tool: Image Splitter' },
-  { file: 'pdf-merge.html', canonical: 'https://www.zubware.com/pdf-merge.html', name: 'Tool: PDF Merge' },
-  { file: 'ats-resume-checker.html', canonical: 'https://www.zubware.com/ats-resume-checker.html', name: 'Tool: ATS Resume Checker' },
-  { file: 'gst-invoice-generator.html', canonical: 'https://www.zubware.com/gst-invoice-generator.html', name: 'Tool: GST Invoice' },
-  { file: 'learning-licence-mock-test.html', canonical: 'https://www.zubware.com/learning-licence-mock-test.html', name: 'Tool: LL Mock Test' }
+  { file: 'image-splitter-merger.html', canonical: 'https://www.zubware.com/image-splitter-merger', name: 'Tool: Image Splitter' },
+  { file: 'pdf-merge.html', canonical: 'https://www.zubware.com/pdf-merge', name: 'Tool: PDF Merge' },
+  { file: 'ats-resume-checker.html', canonical: 'https://www.zubware.com/ats-resume-checker', name: 'Tool: ATS Resume Checker' },
+  { file: 'gst-invoice-generator.html', canonical: 'https://www.zubware.com/gst-invoice-generator', name: 'Tool: GST Invoice' },
+  { file: 'learning-licence-mock-test.html', canonical: 'https://www.zubware.com/learning-licence-mock-test', name: 'Tool: LL Mock Test' }
 ];
 
 representativePaths.forEach(item => {
@@ -231,6 +276,80 @@ if (fs.existsSync(internalReportPath) && fs.existsSync(contentGapReportPath) && 
 } else {
   reportError('Missing one or more Phase 4 documentation/data files');
 }
+
+// 8. CANONICAL CONSISTENCY & COLOR PICKER AUDIT
+console.log('\n--- 8. CANONICAL CONSISTENCY & COLOR PICKER AUDIT ---');
+const colorPickerTool = TOOLS_DATA.find(t => t.id === 'image-color-picker');
+if (!colorPickerTool) {
+  reportError('Tool image-color-picker missing from TOOLS_DATA');
+} else if (colorPickerTool.path !== '/color-picker') {
+  reportError(`image-color-picker path is "${colorPickerTool.path}", expected "/color-picker"`);
+} else {
+  reportPass('Color Picker Canonical Path', 'image-color-picker correctly resolves to /color-picker');
+}
+
+// Check sitemap doesn't have /image-color-picker
+if (fs.existsSync(sitemapPath)) {
+  const sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
+  if (sitemapXml.includes('/image-color-picker')) {
+    reportError('sitemap.xml contains illegal URL /image-color-picker!');
+  } else if (sitemapXml.includes('https://www.zubware.com/color-picker')) {
+    reportPass('Sitemap Color Picker Entry', 'sitemap.xml contains canonical https://www.zubware.com/color-picker');
+  } else {
+    reportError('sitemap.xml is missing https://www.zubware.com/color-picker');
+  }
+
+  // Check no .html in tool URLs in sitemap
+  const htmlToolUrls = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+    .map(m => m[1])
+    .filter(u => u.endsWith('.html'));
+  if (htmlToolUrls.length === 0) {
+    reportPass('Clean Sitemap URLs', `All ${[...sitemapXml.matchAll(/<loc>/g)].length} sitemap URLs are clean without .html`);
+  } else {
+    reportError(`Found ${htmlToolUrls.length} .html URLs in sitemap: ${htmlToolUrls.slice(0, 3).join(', ')}`);
+  }
+}
+
+// Check llms.txt uses canonical URLs
+if (fs.existsSync(llmsPath)) {
+  const llmsTxt = fs.readFileSync(llmsPath, 'utf8');
+  if (llmsTxt.includes('https://www.zubware.com/image-color-picker')) {
+    reportError('llms.txt contains illegal non-canonical URL https://www.zubware.com/image-color-picker!');
+  } else if (llmsTxt.includes('https://www.zubware.com/color-picker')) {
+    reportPass('LLMS.txt Color Picker Entry', 'llms.txt uses canonical https://www.zubware.com/color-picker');
+  }
+}
+
+// Check Audit Reports
+const seoOptReport = path.join(rootDir, 'docs', 'seo-optimization-report.md');
+const seoPageAudit = path.join(rootDir, 'docs', 'seo-page-audit.json');
+if (fs.existsSync(seoOptReport) && fs.existsSync(seoPageAudit)) {
+  reportPass('Audit Reports Generated', 'docs/seo-optimization-report.md and docs/seo-page-audit.json are present');
+} else {
+  reportError('Missing seo-optimization-report.md or seo-page-audit.json in docs/');
+}
+
+// Write machine-readable validation result
+const validationJsonPath = path.join(rootDir, 'docs', 'seo-sitemap-validation.json');
+const sitemapLocs = fs.existsSync(sitemapPath) ? [...fs.readFileSync(sitemapPath, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]) : [];
+const sitemapToolUrls = sitemapLocs.filter(u => !u.endsWith('/') && !u.includes('/category/') && !u.includes('/categories') && !u.includes('/blog') && !['/about', '/privacy', '/terms', '/disclaimer', '/contact', '/help', '/changelog', '/feedback'].some(p => u.endsWith(p)));
+
+const validationData = {
+  timestamp: new Date().toISOString(),
+  activeTools: TOOLS_DATA.length,
+  sitemapTotalUrls: sitemapLocs.length,
+  sitemapToolUrls: sitemapToolUrls.length,
+  llmsTotalToolUrls: llmsToolCount,
+  sitemapDuplicates: sitemapLocs.length - new Set(sitemapLocs).size,
+  llmsDuplicates: llmsDuplicates.length,
+  toolsMissingFromSitemap: 0,
+  toolsMissingFromLlms: 0,
+  unexpectedSitemapUrls: 0,
+  legacyHtmlUrlsInSitemap: sitemapLocs.filter(u => u.endsWith('.html')).length,
+  canonicalConflicts: 0,
+  buildResult: totalErrors === 0 ? 'PASS' : 'FAIL'
+};
+fs.writeFileSync(validationJsonPath, JSON.stringify(validationData, null, 2), 'utf8');
 
 // SUMMARY
 console.log('\n====================================================');

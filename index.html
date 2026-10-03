@@ -3,22 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MRXVGW45');</script>
+    <!-- Google Tag Manager (Production only) -->
+    <script>
+      (function() {
+        try {
+          var host = window.location.hostname;
+          if (host === 'www.zubware.com' || host === 'zubware.com') {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MRXVGW45');
+          }
+        } catch(e) {}
+      })();
+    </script>
     <!-- End Google Tag Manager -->
     <meta name="theme-color" content="#4f46e5" />
     <title>Zubware — Free Online Multi-Tool Suite</title>
     <meta name="description" content="Zubware is a modern multi-tool suite offering 300+ free online tools for PDF, image processing, developers, video, calculators, and productivity. Fast, private browser processing with local processing for local tools." />
     <link rel="canonical" href="https://www.zubware.com/" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-    <link rel="alternate icon" type="image/png" sizes="32x32" href="favicon.png" />
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" type="image/png" href="/assets/Zzxx.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.json" />
 
     <!-- OpenGraph / Facebook -->
     <meta property="og:site_name" content="Zubware" />
@@ -57,10 +64,6 @@
     </script>
   </head>
   <body class="bg-gray-50 text-gray-900 dark:bg-slate-950 dark:text-slate-100 antialiased min-h-screen">
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MRXVGW45"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

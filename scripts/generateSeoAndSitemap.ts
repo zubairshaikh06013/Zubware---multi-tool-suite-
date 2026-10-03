@@ -10,6 +10,7 @@ import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMa
 import { ToolMeta, BlogArticle } from '../src/types';
 import { CategoryItem } from '../src/data/categoriesData';
 import { SITE_ORIGIN } from '../src/lib/siteConfig';
+import { getToolCanonicalPath, getToolCanonicalUrl } from '../src/lib/paths';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -24,6 +25,69 @@ const NETWORK_DEPENDENT_TOOL_IDS = new Set([
   'website-downloader',
   'http-header-viewer'
 ]);
+
+// Requirement 6: Tool-specific intent-driven SEO Headings
+function getToolHowToHeading(tool: ToolMeta): string {
+  const specificHeadings: Record<string, string> = {
+    'pdf-merge': 'How to Merge Multiple PDF Files Into One',
+    'pdf-split': 'How to Split a PDF Into Separate Pages',
+    'image-compressor': 'How to Compress Images to 20KB, 50KB, 100KB or 200KB',
+    'image-resizer': 'How to Resize an Image Without Losing Its Aspect Ratio',
+    'ats-resume-checker': 'How to Check if Your Resume Is ATS-Friendly',
+    'json-validator': 'How to Validate JSON and Fix Syntax Errors',
+    'qr-generator': 'How to Create a QR Code From a URL or Text',
+    'image-color-picker': 'How to Sample HEX and RGB Colors From an Image',
+    'image-splitter-merger': 'How to Split or Combine Images in Your Browser',
+    'resume-builder': 'How to Build a Professional Resume Online',
+    'gst-invoice-generator': 'How to Generate GST-Compliant Invoices Online',
+    'learning-licence-mock-test': 'How to Practice for the Driving Learning Licence Exam Online'
+  };
+
+  return specificHeadings[tool.id] || `How to Use ${tool.navTitle || tool.title}`;
+}
+
+// Requirement 7: Tool-specific First Answer / Intro Paragraph
+function getToolIntroParagraph(tool: ToolMeta): string {
+  const isNetwork = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
+
+  const priorityIntros: Record<string, string> = {
+    'pdf-merge':
+      'Zubware PDF Merge combines multiple separate PDF documents into a single organized file directly in your browser. Whether you need to compile contracts, scanned receipts, academic assignments, or business reports, you can reorder pages by dragging and dropping multiple files simultaneously. All merging executes locally using client-side WebAssembly and pdf-lib, ensuring your confidential documents are never uploaded to remote servers.',
+    'pdf-split':
+      'Zubware PDF Split extracts specific pages, custom ranges, or separates every individual page from your PDF document into standalone files. Ideal for extracting signed agreement pages or downsizing large multi-chapter reports, it processes files locally in your browser memory with zero server uploads.',
+    'image-compressor':
+      'Zubware Image Compressor reduces the byte size of JPG, PNG, and WebP images to exact targets such as 20KB, 50KB, 100KB, or 200KB without noticeable quality loss. Designed for government exam application forms, passport submissions, and fast-loading web graphics, all compression algorithms run locally in your browser canvas without uploading images to any external server.',
+    'image-resizer':
+      'Zubware Image Resizer modifies image dimensions by exact pixels, percentage, or predefined social media and document presets while preserving original aspect ratios. Designed for photo portals, profile pictures, and banners, resizing happens instantly on your device via HTML5 canvas with zero server uploads.',
+    'ats-resume-checker':
+      'Zubware ATS Resume Checker inspects your resume against Applicant Tracking System criteria, identifying layout flaws, missing industry keywords, and formatting issues that cause rejection by corporate parsers. Get detailed scoring, section-by-section feedback, and keyword density analysis processed securely in your browser.',
+    'json-validator':
+      'Zubware JSON Validator verifies JSON syntax, highlights parse errors with exact line and column numbers, and formats messy code into readable indented structures. Ideal for API debugging and configuration audits, all validation and formatting execute locally in your browser with zero data retention.',
+    'qr-generator':
+      'Zubware QR Code Generator produces high-resolution vector and raster QR codes from URLs, contact vCards, Wi-Fi credentials, and plain text. Customize foreground and background colors, adjust error correction levels for high readability, and download print-ready PNG or SVG files generated instantly on your device.',
+    'image-color-picker':
+      'Zubware Color Picker extracts exact pixel color values from any photo, UI screenshot, or graphic with a real-time 9x magnifying loupe. You can inspect and copy colors across HEX, RGB, HSL, HSV, and CMYK formats, while clicked swatches are automatically saved to your session palette. All pixel sampling runs locally in browser memory.',
+    'image-splitter-merger':
+      'Zubware Image Splitter & Combiner slices images cleanly along any vertical or horizontal line, or merges two images into a seamless composite directly in your browser. With real-time seam positioning and auto-trim padding options, processing executes completely in client memory with zero server uploads.',
+    'resume-builder':
+      'Zubware Resume Builder creates professional, ATS-formatted resumes with real-time typography previews, structured work history sections, and one-click PDF export. All resume data is stored locally in your browser without requiring account creation.',
+    'gst-invoice-generator':
+      'Zubware GST Invoice Generator creates compliant tax invoices with automatic CGST, SGST, IGST calculations, HSN/SAC codes, and instant PDF download. Built for small business owners and freelancers, financial calculation and PDF rendering occur client-side.',
+    'learning-licence-mock-test':
+      'Zubware Learning Licence Mock Test simulates the official RTO computer exam with questions covering mandatory traffic signs, road regulations, and driving rules. Available in bilingual English and Hindi with an optional 15-minute timer and instant score review.'
+  };
+
+  if (priorityIntros[tool.id]) {
+    return priorityIntros[tool.id];
+  }
+
+  const cleanCat = tool.category.replace(/^[^\w]+/, '').trim();
+  const privacyNote = isNetwork
+    ? 'Requests communicate directly from your browser to designated external endpoints without server logging.'
+    : 'All processing takes place client-side in browser memory with zero server uploads.';
+
+  return `${tool.title} provides dedicated online capabilities for ${cleanCat.toLowerCase()} workflows. ${tool.description} ${privacyNote}`;
+}
 
 function escapeHtml(str: string): string {
   return str
@@ -242,7 +306,7 @@ function buildToolJsonLd(tool: ToolMeta, canonicalUrl: string): object {
   if (steps.length > 0) {
     schemas.push({
       '@type': 'HowTo',
-      'name': `How to Use ${tool.navTitle || tool.title}`,
+      'name': getToolHowToHeading(tool),
       'description': tool.description,
       'step': steps.map((s, idx) => ({
         '@type': 'HowToStep',
@@ -343,7 +407,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           Overview &amp; Capabilities
         </h2>
         <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 1rem;">
-          <strong>${escapeHtml(tool.title)}</strong> is an online utility provided by Zubware. ${escapeHtml(tool.description)}
+          ${escapeHtml(getToolIntroParagraph(tool))}
         </p>
         ${tool.features && tool.features.length > 0 ? `
         <h3 style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #475569; margin-bottom: 0.5rem;">
@@ -364,7 +428,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
 
       <section style="margin-bottom: 2rem;">
         <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">
-          How to Use ${escapeHtml(tool.navTitle || tool.title)}
+          ${escapeHtml(getToolHowToHeading(tool))}
         </h2>
         <ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 0.75rem;">
           ${steps.map((s, idx) => `
@@ -409,7 +473,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 0.75rem;">
           ${relatedTools.map(rel => `
-          <a href="${DOMAIN}/${escapeHtml(rel.id)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+          <a href="${DOMAIN}${getToolCanonicalPath(rel)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
             <div style="font-size: 0.9rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.25rem;">
               ${escapeHtml(rel.title)}
             </div>
@@ -943,7 +1007,7 @@ function renderBlogArticleContent(article: BlogArticle): string {
         </h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 0.75rem;">
           ${relatedTools.map(rel => `
-          <a href="${DOMAIN}/${escapeHtml(rel.id)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+          <a href="${DOMAIN}${getToolCanonicalPath(rel)}" style="display: block; padding: 0.875rem 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
             <div style="font-size: 0.9rem; font-weight: 700; color: #4f46e5; margin-bottom: 0.25rem;">
               ${escapeHtml(rel.title)}
             </div>
@@ -996,7 +1060,7 @@ function renderCategoriesPageContent(): string {
             </p>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
               ${catTools.map(tool => `
-              <a href="${DOMAIN}/${escapeHtml(tool.id)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+              <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                   <span style="font-size: 1.5rem;">${tool.icon}</span>
                   ${tool.badge ? `<span style="font-size: 0.7rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.2rem 0.5rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
@@ -1108,7 +1172,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
               ${wf.toolIds.map(tid => {
                 const t = TOOLS_DATA.find(tool => tool.id === tid);
                 if (!t) return '';
-                return `<a href="${DOMAIN}/${escapeHtml(t.id)}" style="font-size: 0.75rem; font-weight: 600; color: #4f46e5; background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.3rem 0.6rem; border-radius: 0.5rem; text-decoration: none;">${escapeHtml(t.navTitle || t.title)} &rarr;</a>`;
+                return `<a href="${DOMAIN}${getToolCanonicalPath(t)}" style="font-size: 0.75rem; font-weight: 600; color: #4f46e5; background: #f8fafc; border: 1px solid #e2e8f0; padding: 0.3rem 0.6rem; border-radius: 0.5rem; text-decoration: none;">${escapeHtml(t.navTitle || t.title)} &rarr;</a>`;
               }).join('')}
             </div>` : ''}
           </div>`).join('\n          ')}
@@ -1125,7 +1189,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem;">
           ${catTools.map(tool => `
-          <a href="${DOMAIN}/${escapeHtml(tool.id)}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.15s ease, border-color 0.15s ease;">
+          <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.15s ease, border-color 0.15s ease;">
             <div>
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
                 <span style="font-size: 1.75rem;">${tool.icon}</span>
@@ -1242,7 +1306,7 @@ function buildCategoryHubJsonLd(cat: CategoryItem, catTools: ToolMeta[], canonic
           '@type': 'ListItem',
           'position': idx + 1,
           'name': t.title,
-          'url': `${DOMAIN}/${t.id}`
+          'url': `${DOMAIN}${getToolCanonicalPath(t)}`
         }))
       }
     },
@@ -1340,7 +1404,7 @@ function renderHomepageContent(): string {
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
               ${catTools.map(tool => `
-              <a href="${DOMAIN}/${escapeHtml(tool.id)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
+              <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                   <span style="font-size: 1.4rem;">${tool.icon}</span>
                   ${tool.badge ? `<span style="font-size: 0.65rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.15rem 0.45rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
@@ -1437,56 +1501,56 @@ function injectMetadataIntoHtml(
   let html = templateHtml;
 
   // 1. Replace <title>
-  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapedTitle}</title>`);
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, () => `<title>${escapedTitle}</title>`);
 
   // 2. Replace meta description
   html = html.replace(
     /<meta\s+name="description"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta name="description" content="${escapedDesc}" />`
+    () => `<meta name="description" content="${escapedDesc}" />`
   );
 
   // 3. Replace canonical
   html = html.replace(
     /<link\s+rel="canonical"\s+href="[\s\S]*?"\s*\/?>/i,
-    `<link rel="canonical" href="${escapedUrl}" />`
+    () => `<link rel="canonical" href="${escapedUrl}" />`
   );
 
   // 4. Replace OpenGraph
   if (ogType) {
     html = html.replace(
       /<meta\s+property="og:type"\s+content="[\s\S]*?"\s*\/?>/i,
-      `<meta property="og:type" content="${escapeHtml(ogType)}" />`
+      () => `<meta property="og:type" content="${escapeHtml(ogType)}" />`
     );
   }
   html = html.replace(
     /<meta\s+property="og:url"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta property="og:url" content="${escapedUrl}" />`
+    () => `<meta property="og:url" content="${escapedUrl}" />`
   );
   html = html.replace(
     /<meta\s+property="og:title"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta property="og:title" content="${escapedTitle}" />`
+    () => `<meta property="og:title" content="${escapedTitle}" />`
   );
   html = html.replace(
     /<meta\s+property="og:description"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta property="og:description" content="${escapedDesc}" />`
+    () => `<meta property="og:description" content="${escapedDesc}" />`
   );
   html = html.replace(
     /<meta\s+property="og:image"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta property="og:image" content="${DOMAIN}/icon.png" />`
+    () => `<meta property="og:image" content="${DOMAIN}/icon.png" />`
   );
 
   // 5. Replace Twitter
   html = html.replace(
     /<meta\s+name="twitter:title"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta name="twitter:title" content="${escapedTitle}" />`
+    () => `<meta name="twitter:title" content="${escapedTitle}" />`
   );
   html = html.replace(
     /<meta\s+name="twitter:description"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta name="twitter:description" content="${escapedDesc}" />`
+    () => `<meta name="twitter:description" content="${escapedDesc}" />`
   );
   html = html.replace(
     /<meta\s+name="twitter:image"\s+content="[\s\S]*?"\s*\/?>/i,
-    `<meta name="twitter:image" content="${DOMAIN}/icon.png" />`
+    () => `<meta name="twitter:image" content="${DOMAIN}/icon.png" />`
   );
 
   // 6. Inject robots, keywords (if present), and JSON-LD schema right after canonical tag
@@ -1502,14 +1566,14 @@ function injectMetadataIntoHtml(
   const injection = `${keywordsTag}${robotsTag}${schemaTag}`;
   html = html.replace(
     /(<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>)/i,
-    `$1${injection}`
+    (match) => `${match}${injection}`
   );
 
   // 7. Inject lightweight semantic static content into body
   if (bodyContent) {
     html = html.replace(
       /<div id="root">[\s\S]*?(?=\s*<script\b|\s*<noscript\b|\s*<\/body>)/i,
-      `<div id="root">\n${bodyContent}\n    </div>\n    `
+      () => `<div id="root">\n${bodyContent}\n    </div>\n    `
     );
   }
 
@@ -1545,17 +1609,8 @@ export function generateLlmsTxt(tools: ToolMeta[]): string {
 - Offline & Local Processing: Document manipulation, image editing, PDF splitting/merging, and data calculations are processed in the user's browser. Files are not uploaded to Zubware remote servers.
 - Network Utilities: For API testing, HTTP inspection, and web scrapers, browser requests are dispatched directly to the user-specified destination without storing request payloads on Zubware servers.
 
-## Dedicated Category Authority Hubs
-${CATEGORIES_DATA.filter(c => c.slug !== 'all').map(c => `- [${c.defaultName}](${DOMAIN}/category/${c.slug}): ${c.description}`).join('\n')}
-
-## In-Depth Guides & Technical Documentation
+## Comprehensive Directory of Tools by Category
 `;
-
-  for (const article of BLOG_ARTICLES) {
-    output += `- [${article.title}](${DOMAIN}${article.canonicalPath}): ${article.description}\n`;
-  }
-
-  output += `\n## Comprehensive Directory of Tools by Category\n`;
 
   for (const cat of sortedCategories) {
     const cleanCategory = cat.replace(/^[^\w]+/, '').trim();
@@ -1563,7 +1618,7 @@ ${CATEGORIES_DATA.filter(c => c.slug !== 'all').map(c => `- [${c.defaultName}]($
     output += `\n### ${cleanCategory} (${catTools.length} tools)\n\n`;
 
     for (const tool of catTools) {
-      const toolUrl = `${DOMAIN}/${tool.id}`;
+      const toolUrl = `${DOMAIN}${getToolCanonicalPath(tool)}`;
       const featureList = tool.features && tool.features.length > 0 ? ` | Key features: ${tool.features.join(', ')}` : '';
       const executionNote = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id) ? ' [Direct API]' : ' [Browser-Side]';
       output += `- [${tool.title}](${toolUrl})${executionNote}: ${tool.description}${featureList}\n`;
@@ -1812,9 +1867,10 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     if (seenFilenames.has(tool.filename)) continue;
     seenFilenames.add(tool.filename);
 
-    const cleanSlug = tool.filename.replace(/\.html$/, '');
+    const canonicalPath = getToolCanonicalPath(tool);
+    const cleanSlug = canonicalPath.replace(/^\//, '');
     const title = getToolSeoTitle(tool);
-    const canonicalUrl = `${DOMAIN}/${cleanSlug}`;
+    const canonicalUrl = `${DOMAIN}${canonicalPath}`;
     const keywords = tool.tags && tool.tags.length > 0 ? tool.tags.join(', ') : undefined;
     const jsonLd = buildToolJsonLd(tool, canonicalUrl);
     const bodyContent = renderStaticToolContent(tool, TOOLS_DATA);

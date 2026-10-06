@@ -156,11 +156,11 @@ export const PdfCompressorTool: React.FC<PdfCompressorToolProps> = ({ onShowToas
       {/* Title Header */}
       <div className="text-center max-w-xl mx-auto mb-6">
         <div className="flex justify-center mb-3"><ToolIcon toolId="pdf-compressor" category="PDF Tools" size="xl" /></div>
-        <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
           PDF Compressor Studio & Size Reducer
-        </h1>
+        </h2>
         <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Shrink large PDF documents while preserving crisp text readability. View live document previews, choose compression levels, or set custom target sizes.
+          Shrink large PDF documents while preserving crisp text readability. View live document previews and choose from Recommended, Extreme, or High Quality presets.
         </p>
       </div>
 

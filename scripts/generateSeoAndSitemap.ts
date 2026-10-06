@@ -31,16 +31,33 @@ function getToolHowToHeading(tool: ToolMeta): string {
   const specificHeadings: Record<string, string> = {
     'pdf-merge': 'How to Merge Multiple PDF Files Into One',
     'pdf-split': 'How to Split a PDF Into Separate Pages',
+    'pdf-compressor': 'How to Compress and Reduce PDF File Size Online',
     'image-compressor': 'How to Compress Images to 20KB, 50KB, 100KB or 200KB',
     'image-resizer': 'How to Resize an Image Without Losing Its Aspect Ratio',
     'ats-resume-checker': 'How to Check if Your Resume Is ATS-Friendly',
     'json-validator': 'How to Validate JSON and Fix Syntax Errors',
-    'qr-generator': 'How to Create a QR Code From a URL or Text',
+    'uuid-generator': 'How to Generate Bulk UUID v4 and v1 Identifiers',
+    'hash-generator': 'How to Generate MD5, SHA-256 and SHA-512 Hashes Online',
+    'jwt-decoder': 'How to Decode and Inspect JSON Web Tokens (JWT) Online',
+    'unix-timestamp-converter': 'How to Convert Unix Timestamps to Human-Readable Dates',
+    'regex-tester': 'How to Test and Debug Regular Expressions Online',
+    'json-formatter': 'How to Format, Beautify, and Validate JSON Online',
+    'json-to-csv': 'How to Convert JSON Data to CSV Online',
+    'csv-to-json': 'How to Convert CSV Spreadsheets to JSON Online',
+    'csv-viewer': 'How to View and Search CSV Files in Your Browser',
+    'base64-encoder-decoder': 'How to Encode and Decode Base64 Strings Online',
+    'url-encoder-decoder': 'How to Encode and Decode URLs and URI Components',
+    'sql-formatter': 'How to Format and Beautify SQL Queries Online',
+    'cron-expression-generator': 'How to Build and Explain Cron Schedule Expressions',
+    'qr-generator': 'How to Create a QR Code Online',
     'image-color-picker': 'How to Sample HEX and RGB Colors From an Image',
     'image-splitter-merger': 'How to Split or Combine Images in Your Browser',
     'resume-builder': 'How to Build a Professional Resume Online',
     'gst-invoice-generator': 'How to Generate GST-Compliant Invoices Online',
-    'learning-licence-mock-test': 'How to Practice for the Driving Learning Licence Exam Online'
+    'learning-licence-mock-test': 'How to Practice for the Driving Learning Licence Exam Online',
+    'signature-resizer': 'How to Resize and Compress a Signature Image for Online Forms',
+    'photo-signature-joiner': 'How to Combine Photo and Signature Into a Single Image for Online Applications',
+    'age-calculator': 'How to Calculate Your Exact Age by Date of Birth'
   };
 
   return specificHeadings[tool.id] || `How to Use ${tool.navTitle || tool.title}`;
@@ -55,26 +72,34 @@ function getToolIntroParagraph(tool: ToolMeta): string {
       'Zubware PDF Merge combines multiple separate PDF documents into a single organized file directly in your browser. Whether you need to compile contracts, scanned receipts, academic assignments, or business reports, you can reorder pages by dragging and dropping multiple files simultaneously. All merging executes locally using client-side WebAssembly and pdf-lib, ensuring your confidential documents are never uploaded to remote servers.',
     'pdf-split':
       'Zubware PDF Split extracts specific pages, custom ranges, or separates every individual page from your PDF document into standalone files. Ideal for extracting signed agreement pages or downsizing large multi-chapter reports, it processes files locally in your browser memory with zero server uploads.',
+    'pdf-compressor':
+      'Zubware PDF Compressor reduces the file size of PDF documents directly in your browser without compromising readable text or vector layouts. Select from Extreme, Recommended, or High Quality compression presets to optimize scanned forms, multi-page reports, and contracts for email attachments and portal upload limits. All compression algorithms run 100% locally in your device memory with zero server uploads.',
     'image-compressor':
-      'Zubware Image Compressor reduces the byte size of JPG, PNG, and WebP images to exact targets such as 20KB, 50KB, 100KB, or 200KB without noticeable quality loss. Designed for government exam application forms, passport submissions, and fast-loading web graphics, all compression algorithms run locally in your browser canvas without uploading images to any external server.',
+      'Zubware Image Compressor reduces the byte size of JPG, PNG, and WebP photos to exact limits like 20KB, 50KB, 100KB, or 200KB without visible quality loss. Designed for government exam application forms (SSC, UPSC, State PSC), job portals, and web optimization, all compression algorithms run 100% locally in your browser memory with zero server uploads.',
     'image-resizer':
       'Zubware Image Resizer modifies image dimensions by exact pixels, percentage, or predefined social media and document presets while preserving original aspect ratios. Designed for photo portals, profile pictures, and banners, resizing happens instantly on your device via HTML5 canvas with zero server uploads.',
     'ats-resume-checker':
-      'Zubware ATS Resume Checker inspects your resume against Applicant Tracking System criteria, identifying layout flaws, missing industry keywords, and formatting issues that cause rejection by corporate parsers. Get detailed scoring, section-by-section feedback, and keyword density analysis processed securely in your browser.',
+      'Zubware ATS Resume Checker is a free online tool that evaluates your resume against target job postings to calculate your ATS compatibility score (0–100%). It scans for technical and soft skill keywords, detects missing qualifications, verifies contact details, and highlights formatting risks before you submit your application. All PDF text extraction and keyword matching run 100% locally in your browser with zero server uploads and complete privacy.',
     'json-validator':
       'Zubware JSON Validator verifies JSON syntax, highlights parse errors with exact line and column numbers, and formats messy code into readable indented structures. Ideal for API debugging and configuration audits, all validation and formatting execute locally in your browser with zero data retention.',
     'qr-generator':
-      'Zubware QR Code Generator produces high-resolution vector and raster QR codes from URLs, contact vCards, Wi-Fi credentials, and plain text. Customize foreground and background colors, adjust error correction levels for high readability, and download print-ready PNG or SVG files generated instantly on your device.',
+      'Zubware QR Code Generator creates high-resolution, customized QR codes instantly from website URLs, plain text, Wi-Fi networks, and contact cards. Designed for businesses, educators, event organizers, and everyday sharing, it runs smoothly on both desktop and mobile browsers. Every QR code is rendered 100% locally in your device memory with zero server uploads, no account registration, and no tracking redirects, giving you permanent, private QR codes that never expire.',
     'image-color-picker':
       'Zubware Color Picker extracts exact pixel color values from any photo, UI screenshot, or graphic with a real-time 9x magnifying loupe. You can inspect and copy colors across HEX, RGB, HSL, HSV, and CMYK formats, while clicked swatches are automatically saved to your session palette. All pixel sampling runs locally in browser memory.',
     'image-splitter-merger':
       'Zubware Image Splitter & Combiner slices images cleanly along any vertical or horizontal line, or merges two images into a seamless composite directly in your browser. With real-time seam positioning and auto-trim padding options, processing executes completely in client memory with zero server uploads.',
     'resume-builder':
-      'Zubware Resume Builder creates professional, ATS-formatted resumes with real-time typography previews, structured work history sections, and one-click PDF export. All resume data is stored locally in your browser without requiring account creation.',
+      'Zubware Resume Builder is a free online CV maker that lets you design professional, ATS-friendly resumes directly in your browser. Choose from 20 modern and classic templates, customize work experience and education sections, tailor skills and certifications, and instantly download a high-resolution PDF or backup JSON file. All data is saved automatically in your browser storage with zero server uploads, no user tracking, and no sign-up required.',
     'gst-invoice-generator':
       'Zubware GST Invoice Generator creates compliant tax invoices with automatic CGST, SGST, IGST calculations, HSN/SAC codes, and instant PDF download. Built for small business owners and freelancers, financial calculation and PDF rendering occur client-side.',
     'learning-licence-mock-test':
-      'Zubware Learning Licence Mock Test simulates the official RTO computer exam with questions covering mandatory traffic signs, road regulations, and driving rules. Available in bilingual English and Hindi with an optional 15-minute timer and instant score review.'
+      'Zubware Learning Licence Mock Test simulates the official RTO computer exam with questions covering mandatory traffic signs, road regulations, and driving rules. Available in bilingual English and Hindi with an optional 15-minute timer and instant score review.',
+    'signature-resizer':
+      'Zubware Signature Resizer is a free online tool designed to crop, resize, and compress scanned signatures for government, exam, and job recruitment portals (including SSC, UPSC, IBPS, NEET, and State PSCs). Adjust dimensions in pixels (px), centimeters (cm), millimeters (mm), or inches, trim empty paper borders automatically, set strict maximum file size caps (such as < 20KB or < 50KB), and export in form-compliant JPG or transparent PNG format. All processing runs 100% locally in your browser with zero server uploads for total identity protection.',
+    'photo-signature-joiner':
+      'Zubware Photo and Signature Joiner is a free browser-based tool that stitches candidate passport photos and scanned signatures into a single unified image for competitive examinations, admit cards, and job applications. Choose between vertical stacked or horizontal side-by-side layouts, apply standard recruitment presets (such as 300×460 px), customize individual dimensions, gaps, and outer borders, and download compliant JPG or PNG files. All image composition executes client-side with zero server uploads.',
+    'age-calculator':
+      'Zubware Age Calculator is a free online tool that calculates your exact chronological age in completed years, months, and days from your date of birth. Compare your age against today\'s date or any custom milestone, track total elapsed days, weeks, and hours, and view the countdown to your next birthday. All calculations execute instantly and privately inside your browser memory with zero server tracking.'
   };
 
   if (priorityIntros[tool.id]) {
@@ -222,6 +247,7 @@ function buildToolJsonLd(tool: ToolMeta, canonicalUrl: string): object {
     '🖼️ Image Tools': 'MultimediaApplication',
     '📄 PDF Tools': 'PDFApplication',
     '⚡ Developer Tools': 'DeveloperApplication',
+    '👨‍💻 Developer Tools': 'DeveloperApplication',
     '🧮 Calculators': 'BusinessApplication',
     '🎥 Video Tools': 'MultimediaApplication',
     '🎵 Audio Tools': 'MultimediaApplication',
@@ -442,6 +468,253 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           </li>`).join('\n          ')}
         </ol>
       </section>
+
+      ${tool.id === 'image-compressor' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          Photo Ka Size Kaise Kam Kare? (Reduce Photo Size to 20KB, 50KB or 100KB)
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Compress Images for Government &amp; Exam Portals
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Most Indian recruitment and academic portals (including SSC, UPSC, State PSC, IBPS, Railway, NEET, JEE, and Passport Seva) strictly mandate that candidate photos be between 20 KB to 50 KB and signatures under 20 KB. Zubware's Target Size mode allows you to pick 20KB or 50KB presets to guarantee your files comply with strict online form requirements.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Mobile Mein Photo Ka Size Kaise Kam Kare?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Aap apne Android ya iPhone browser (Chrome, Safari) mein bina kisi app ke photo compress kar sakte hain. Gallery se photo select karein, 20KB ya 50KB target size chunein, aur Compress par click karein. Files aapke phone ke browser memory mein process hoti hain aur turant download ho jati hain.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Reduce JPG, PNG &amp; WebP File Size
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Supports all standard formats. JPG photos use lossy cosine transform compression for maximum reduction. PNG files retain transparency while reducing color palette weight. WebP output delivers modern high-efficiency compression up to 35% smaller than JPG.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              100% Client-Side Privacy (Zero Server Uploads)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Your personal photographs, ID documents, and signatures are processed entirely in your device's browser memory via HTML5 Canvas and WebAssembly. No files are ever sent to remote cloud servers, ensuring complete document confidentiality.
+            </p>
+          </div>
+        </div>
+      </section>` : ''}
+
+      ${tool.id === 'pdf-compressor' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          PDF Ka Size Kaise Kam Kare? (How to Reduce PDF File Size Online)
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Compress PDFs for Exam Portals, Job Forms &amp; Admissions
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Many online application systems—such as government recruitment portals (UPSC, SSC, State PSC, IBPS, Railways), university admissions, and visa processing services—enforce strict document upload ceilings (typically 1 MB, 2 MB, or 5 MB). Zubware's Extreme and Recommended compression presets swiftly reduce bloated PDF documents down to compliant thresholds while preserving crisp textual legibility.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Mobile Mein PDF Ka Size Kaise Kam Kare?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Aap apne smartphone browser (Chrome ya Safari) mein Zubware open karein. Phone storage ya Files app se PDF document select karein, Recommended (~50%-65% savings) ya Extreme (~70%-85% savings) preset chunein, aur Compress PDF Now tap karein. Files aapke phone ke browser memory mein process hoti hain aur turant download ho jati hain.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Understanding Compression Levels: Recommended, Extreme &amp; Light
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Choose Recommended for balanced ~50% to 65% reduction—ideal for resumes, contracts, and email attachments. Choose Extreme for maximum ~70% to 85% savings when facing strict upload caps. Choose Light for high-quality ~20% to 35% optimization that preserves full graphical resolution.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              100% Client-Side Privacy (Zero Server Uploads)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Your confidential legal agreements, bank statements, tax documents, and academic records are processed 100% locally inside your browser memory using client-side JavaScript and WebAssembly. No files are ever uploaded to remote servers or stored in the cloud.
+            </p>
+          </div>
+        </div>
+      </section>` : ''}
+
+      ${tool.id === 'qr-generator' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          QR Code Kaise Banaye? (How to Create a QR Code Online)
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Create a QR Code From a URL or Website Link
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Whether you need a QR code for your business website, portfolio, Google Drive document, YouTube video, or restaurant menu, generating one takes seconds. Simply paste your complete web link into the input box. The matrix updates in real time with permanent static encoding that never expires.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              QR Code Kaise Banaye? (Website Link &amp; Text Guide)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Website link ya text ka QR code banana behad aasan hai: Content tab mein apni link ya text enter karein, Design tab mein custom colors ya center logo choose karein, live preview ko phone camera se scan karke test karein, aur PNG, Vector SVG, ya PDF format mein save karein. Poora process aapke browser mein bina signup ke hota hai.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              High-Resolution PNG, Scalable SVG &amp; Print-Ready PDF
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Export crisp raster PNG images for digital screens, presentations, and social media. Download scalable vector SVG files for professional commercial printing, merchandise, and signage without pixelation. Print instant A4 PDF sheets for counter displays and event tables.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              100% Client-Side Privacy (Zero Server Storage &amp; No Watermark)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Unlike commercial generators that track user scans or deactivate codes after trial periods, Zubware operates 100% locally in your browser using HTML5 Canvas. Your links, Wi-Fi credentials, and contact cards never touch any external server. All QR codes are permanent, completely unwatermarked, and free forever.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+          <h3 style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+            Explore Related Tools &amp; Security Guides:
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.8rem;">
+            <a href="${DOMAIN}/category/generators" style="color: #4f46e5; text-decoration: underline;">Online Generator Tools</a>
+            <span>•</span>
+            <a href="${DOMAIN}/barcode-generator" style="color: #4f46e5; text-decoration: underline;">Free Barcode Generator</a>
+            <span>•</span>
+            <a href="${DOMAIN}/qr-code-safety-checker" style="color: #4f46e5; text-decoration: underline;">QR Code Safety Checker</a>
+            <span>•</span>
+            <a href="${DOMAIN}/blog/qr-code-security-phishing-prevention" style="color: #4f46e5; text-decoration: underline;">QR Security &amp; Quishing Guide</a>
+          </div>
+        </div>
+      </section>` : ''}
+
+      ${tool.id === 'resume-builder' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          Resume Kaise Banaye? (How to Build a Professional Resume Online)
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              ATS-Friendly Resume Formatting
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Most corporate job applications are parsed by Applicant Tracking Systems (ATS) like Workday, Taleo, and Lever before human review. Zubware Resume Builder formats your document with clean linear structures, standard heading hierarchies (Summary, Experience, Education, Skills), and clean fonts so automated screening systems parse your qualifications seamlessly.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Mobile Aur PC Par Resume Kaise Banaye?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Apne mobile ya PC browser mein Zubware open karein: (1) Contact details, job title aur summary fill karein, (2) Work experience aur education mein key bullet points enter karein, (3) Templates tab se Modern ya Classic design chunein, aur (4) Download PDF par tap karke print-ready CV save karein. Kisi account registration ya subscription ki zaroorat nahi hai.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Resume Format For Freshers &amp; Career Starters
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Freshers and college graduates can highlight education, academic projects, technical skill pills, and internships ahead of professional work history. Use the section order tool to prioritize your strengths and click 'Load Sample' to review pre-formatted bullet points demonstrating strong action verbs and quantifiable results.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              100% Client-Side Privacy (Zero Server Storage)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Unlike commercial resume platforms that lock your download behind an unexpected trial paywall or sell your contact data, Zubware operates 100% locally in your browser memory. Your resumes are auto-saved in your device's localStorage, completely free, with no watermarks and zero server uploads.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+          <h3 style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+            Explore Related Career &amp; Resume Optimization Tools:
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.8rem;">
+            <a href="${DOMAIN}/ats-resume-checker" style="color: #4f46e5; text-decoration: underline;">ATS Resume Checker</a>
+            <span>•</span>
+            <a href="${DOMAIN}/cover-letter-builder" style="color: #4f46e5; text-decoration: underline;">Cover Letter Builder</a>
+            <span>•</span>
+            <a href="${DOMAIN}/cv-builder" style="color: #4f46e5; text-decoration: underline;">Free CV Maker</a>
+            <span>•</span>
+            <a href="${DOMAIN}/resume-keyword-optimizer" style="color: #4f46e5; text-decoration: underline;">Resume Keyword Optimizer</a>
+          </div>
+        </div>
+      </section>` : ''}
+
+      ${tool.id === 'ats-resume-checker' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          Resume ATS Score Kaise Check Kare? (How to Check Your ATS Compatibility Online)
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              What Is an ATS Resume Checker?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              An Applicant Tracking System (ATS) is recruitment software (such as Workday, Taleo, Greenhouse, and Lever) used by employers to parse, filter, and score candidate resumes against job criteria. Zubware ATS Resume Checker scans your resume text against real job postings to measure parsing scannability and keyword alignment before human recruiters review your file.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              What Does an ATS Resume Score Mean?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Your overall ATS Match Score (0–100%) represents a multi-pillar calculation: Hard Technical Skills (45%), Title &amp; Experience Alignment (25%), Soft Skills &amp; Leadership (15%), and Contact &amp; Formatting Safety (15%). Achieving 80%+ indicates strong keyword alignment with the job description.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Resume ATS Score Kaise Check Kare?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Apne mobile ya PC browser mein Zubware kholein: (1) PDF upload karein ya resume text paste karein, (2) Targeted vacancy ka job title aur full description enter karein, (3) Scan ATS Match Compatibility par tap karein, aur (4) Overall score, matched skills, aur missing keywords review karein.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              100% Client-Side Privacy (Zero Server Storage)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Your resume contains confidential contact details, phone numbers, and career history. Unlike third-party resume platforms that upload your documents to cloud databases, Zubware executes all PDF text extraction, parsing, and scoring 100% locally in your device browser with zero server uploads.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+          <h3 style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+            Explore Related Career &amp; Application Tools:
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.8rem;">
+            <a href="${DOMAIN}/resume-builder" style="color: #4f46e5; text-decoration: underline;">Free Resume Builder</a>
+            <span>•</span>
+            <a href="${DOMAIN}/resume-keyword-optimizer" style="color: #4f46e5; text-decoration: underline;">Resume Keyword Optimizer</a>
+            <span>•</span>
+            <a href="${DOMAIN}/cover-letter-builder" style="color: #4f46e5; text-decoration: underline;">Cover Letter Builder</a>
+            <span>•</span>
+            <a href="${DOMAIN}/cv-builder" style="color: #4f46e5; text-decoration: underline;">Free CV Maker</a>
+          </div>
+        </div>
+      </section>` : ''}
 
       ${faqs.length > 0 ? `
       <section style="margin-bottom: 2rem;">

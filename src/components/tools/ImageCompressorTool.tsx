@@ -59,18 +59,52 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
   const [targetFormat, setTargetFormat] = useState<'original' | 'image/jpeg' | 'image/png' | 'image/webp'>('original');
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const handleFilesAdded = (files: File[]) => {
+  const handleFilesAdded = async (files: File[]) => {
     const validFiles = files.filter((f) => f.type.startsWith('image/'));
     if (validFiles.length === 0) {
       onShowToast('Please select valid image files');
       return;
     }
 
-    const newItems: BatchQueueItem[] = validFiles.map((file) => ({
-      id: Math.random().toString(36).substring(2, 9),
-      file,
-      status: 'pending' as const
-    }));
+    const newItems: BatchQueueItem[] = await Promise.all(
+      validFiles.map(async (file) => {
+        let stableFile = file;
+        let thumbUrl: string | undefined = undefined;
+
+        try {
+          // Immediately clone the file into an in-memory buffer while the file handle
+          // is active and freshly granted by Android/mobile file picker.
+          const buffer = await file.arrayBuffer();
+          stableFile = new File([buffer], file.name, {
+            type: file.type || 'image/jpeg',
+            lastModified: file.lastModified || Date.now()
+          });
+        } catch {
+          try {
+            const sliced = file.slice(0, file.size, file.type);
+            stableFile = new File([sliced], file.name, {
+              type: file.type || 'image/jpeg',
+              lastModified: file.lastModified || Date.now()
+            });
+          } catch {
+            stableFile = file;
+          }
+        }
+
+        try {
+          thumbUrl = URL.createObjectURL(stableFile);
+        } catch {
+          // ignore
+        }
+
+        return {
+          id: Math.random().toString(36).substring(2, 9),
+          file: stableFile,
+          thumbnailUrl: thumbUrl,
+          status: 'pending' as const
+        };
+      })
+    );
 
     setItems((prev) => [...prev, ...newItems]);
     onShowToast(`Added ${validFiles.length} image(s) to queue`);
@@ -92,69 +126,132 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
     accuracyMode: 'max' | 'exact',
     format: string
   ): Promise<BatchQueueItem> => {
-    // 1. Helper to safely load image with fallbacks for Android/mobile Chrome
+    // 1. Helper to safely load image with multi-layer fallbacks for Android/mobile Chrome
     const loadImageSource = async (
-      file: File
+      file: File,
+      fallbackUrl?: string
     ): Promise<{
       source: CanvasImageSource;
       width: number;
       height: number;
       cleanup: () => void;
     }> => {
+      const loadFromUrl = (url: string, revokeOnCleanup = false): Promise<{
+        source: HTMLImageElement;
+        width: number;
+        height: number;
+        cleanup: () => void;
+      }> => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          let done = false;
+
+          const finish = () => {
+            if (done) return;
+            done = true;
+            resolve({
+              source: img,
+              width: img.naturalWidth || img.width,
+              height: img.naturalHeight || img.height,
+              cleanup: () => {
+                if (revokeOnCleanup && url.startsWith('blob:')) {
+                  try { URL.revokeObjectURL(url); } catch {}
+                }
+              }
+            });
+          };
+
+          img.onload = finish;
+          img.onerror = () => {
+            if (done) return;
+            done = true;
+            reject(new Error('Image decode failed'));
+          };
+
+          img.src = url;
+
+          if (img.complete && (img.naturalWidth > 0 || img.width > 0)) {
+            finish();
+          }
+        });
+      };
+
+      // Strategy 1: Try createImageBitmap directly
       if (typeof createImageBitmap === 'function') {
         try {
           const bmp = await createImageBitmap(file);
-          return {
-            source: bmp,
-            width: bmp.width,
-            height: bmp.height,
-            cleanup: () => bmp.close?.()
-          };
+          if (bmp && bmp.width > 0 && bmp.height > 0) {
+            return {
+              source: bmp,
+              width: bmp.width,
+              height: bmp.height,
+              cleanup: () => bmp.close?.()
+            };
+          }
         } catch {
-          // Fallback to Image element
+          // Fallback to next strategy
         }
       }
 
+      // Strategy 2: URL.createObjectURL(file)
       try {
         const objUrl = URL.createObjectURL(file);
-        const img = await new Promise<HTMLImageElement>((resolve, reject) => {
-          const el = new Image();
-          el.onload = () => resolve(el);
-          el.onerror = () => reject(new Error('Object URL load failed'));
-          el.src = objUrl;
-        });
-        return {
-          source: img,
-          width: img.naturalWidth || img.width,
-          height: img.naturalHeight || img.height,
-          cleanup: () => URL.revokeObjectURL(objUrl)
-        };
+        return await loadFromUrl(objUrl, true);
       } catch {
+        // Fallback to next strategy
+      }
+
+      // Strategy 3: Read arrayBuffer then create Blob
+      try {
+        const buffer = await file.arrayBuffer();
+        const memBlob = new Blob([buffer], { type: file.type || 'image/jpeg' });
+        const objUrl = URL.createObjectURL(memBlob);
+        return await loadFromUrl(objUrl, true);
+      } catch {
+        // Fallback
+      }
+
+      // Strategy 4: Fallback URL (if already rendered on card/thumbnail)
+      if (fallbackUrl) {
+        try {
+          return await loadFromUrl(fallbackUrl, false);
+        } catch {
+          // Fallback
+        }
+      }
+
+      // Strategy 5: Read as Data URL via FileReader with safe promise
+      try {
         const dataUrl = await new Promise<string>((resolve, reject) => {
           const reader = new FileReader();
-          reader.onload = () => resolve(reader.result as string);
-          reader.onerror = () => reject(new Error('FileReader failed'));
+          reader.onload = () => {
+            if (typeof reader.result === 'string') {
+              resolve(reader.result);
+            } else {
+              reject(new Error('Empty file result'));
+            }
+          };
+          reader.onerror = () => reject(reader.error || new Error('FileReader error'));
           reader.readAsDataURL(file);
         });
 
-        const img = await new Promise<HTMLImageElement>((resolve, reject) => {
-          const el = new Image();
-          el.onload = () => resolve(el);
-          el.onerror = () => reject(new Error('Data URL load failed'));
-          el.src = dataUrl;
-        });
+        return await loadFromUrl(dataUrl, false);
+      } catch {
+        // Fallback
+      }
 
-        return {
-          source: img,
-          width: img.naturalWidth || img.width,
-          height: img.naturalHeight || img.height,
-          cleanup: () => {}
-        };
+      // Strategy 6: file.slice() fallback
+      try {
+        const sliced = file.slice(0, file.size, file.type || 'image/jpeg');
+        const objUrl = URL.createObjectURL(sliced);
+        return await loadFromUrl(objUrl, true);
+      } catch {
+        throw new Error('Unable to read image file. Please re-select the photo.');
       }
     };
 
     try {
-      const { source, width: srcWidth, height: srcHeight, cleanup } = await loadImageSource(item.file);
+      const { source, width: srcWidth, height: srcHeight, cleanup } = await loadImageSource(item.file, item.thumbnailUrl);
 
       let mimeType = format === 'original' ? item.file.type : format;
       if (!mimeType || mimeType === 'image/svg+xml') {

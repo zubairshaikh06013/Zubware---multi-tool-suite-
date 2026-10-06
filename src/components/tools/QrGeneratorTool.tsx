@@ -28,7 +28,6 @@ import {
   FileText,
   RotateCcw
 } from 'lucide-react';
-import { ToolIcon } from '../common/ToolIcon';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface QrGeneratorToolProps {
@@ -636,19 +635,6 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
 
   return (
     <div className="w-full max-w-5xl mx-auto my-6 glass-panel rounded-3xl p-6 sm:p-8 space-y-6">
-      {/* Tool Header */}
-      <div className="text-center max-w-2xl mx-auto mb-4">
-        <div className="flex justify-center mb-3">
-          <ToolIcon toolId="qr-generator" category="Generators" size="xl" />
-        </div>
-        <h1 className="text-2xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-          {t('qrTitle', 'Advanced Vector QR Code Generator')}
-        </h1>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Create high-resolution custom QR codes with logos, custom dot styles, gradients, frames, and multi-format exports (PNG, SVG, PDF).
-        </p>
-      </div>
-
       {/* Main Mode Navigation Tabs */}
       <div className="flex flex-wrap gap-2 justify-center border-b border-slate-200 dark:border-slate-800 pb-3">
         <button

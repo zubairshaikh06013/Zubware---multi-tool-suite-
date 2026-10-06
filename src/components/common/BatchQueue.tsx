@@ -203,14 +203,21 @@ export const BatchQueue: React.FC<BatchQueueProps> = ({
 
     // Fallback: For any image file where createObjectURL might fail on mobile Android Chrome, try FileReader
     items.forEach((item) => {
-      if (item.file && item.file.type.startsWith('image/') && !autoThumbnails[item.id] && item.file.size < 15 * 1024 * 1024) {
+      if (item.file && item.file.type.startsWith('image/') && !item.thumbnailUrl && !autoThumbnails[item.id] && item.file.size < 15 * 1024 * 1024) {
         const reader = new FileReader();
         reader.onload = () => {
           if (!isCancelled && typeof reader.result === 'string') {
             setAutoThumbnails((prev) => ({ ...prev, [item.id]: reader.result as string }));
           }
         };
-        reader.readAsDataURL(item.file);
+        reader.onerror = () => {
+          // ignore background preview reader error
+        };
+        try {
+          reader.readAsDataURL(item.file);
+        } catch {
+          // ignore
+        }
       }
     });
 

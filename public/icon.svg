@@ -1,103 +1,136 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="60 70 870 860" fill="none">
   <defs>
-    <!-- Top Bar Gradient: Electric Azure to Royal Blue -->
-    <linearGradient id="topBarGrad" x1="86" y1="84" x2="426" y2="168" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#00a8ff" />
-      <stop offset="40%" stop-color="#0077ff" />
-      <stop offset="100%" stop-color="#1d4ed8" />
+    <!-- Top Bar Gradient: Cyan to Royal Blue to Purple -->
+    <linearGradient id="topRibbon" x1="120" y1="200" x2="880" y2="150" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00a6ff" />
+      <stop offset="25%" stop-color="#0077ff" />
+      <stop offset="55%" stop-color="#3b49df" />
+      <stop offset="85%" stop-color="#8033eb" />
+      <stop offset="100%" stop-color="#9a30eb" />
     </linearGradient>
 
-    <!-- Diagonal Slash: Royal Blue -> Indigo -> Vivid Violet -->
-    <linearGradient id="diagGrad" x1="380" y1="100" x2="130" y2="412" gradientUnits="userSpaceOnUse">
+    <!-- Diagonal Ribbon: Royal Blue with rich saturation -->
+    <linearGradient id="diagRibbon" x1="720" y1="320" x2="200" y2="880" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#1e40af" />
-      <stop offset="30%" stop-color="#3b82f6" />
-      <stop offset="70%" stop-color="#6366f1" />
-      <stop offset="100%" stop-color="#8b5cf6" />
+      <stop offset="20%" stop-color="#2563eb" />
+      <stop offset="60%" stop-color="#1d4ed8" />
+      <stop offset="85%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#00a6ff" />
     </linearGradient>
 
-    <!-- Bottom Bar Gradient: Indigo to Electric Violet -->
-    <linearGradient id="bottomBarGrad" x1="86" y1="344" x2="426" y2="428" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#4f46e5" />
-      <stop offset="60%" stop-color="#7c3aed" />
+    <!-- Bottom Bar Gradient: Royal Blue to Purple to Vivid Magenta -->
+    <linearGradient id="bottomRibbon" x1="200" y1="670" x2="900" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1d4ed8" />
+      <stop offset="30%" stop-color="#3b82f6" />
+      <stop offset="60%" stop-color="#6366f1" />
+      <stop offset="85%" stop-color="#7c3aed" />
       <stop offset="100%" stop-color="#a855f7" />
     </linearGradient>
 
-    <!-- Top Fold Crease 3D Shadow -->
-    <linearGradient id="topFoldShadow" x1="330" y1="168" x2="260" y2="168" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0b0f3b" stop-opacity="0.6" />
-      <stop offset="100%" stop-color="#0b0f3b" stop-opacity="0" />
+    <!-- Top Right Cylindrical Fold Deep Shadow -->
+    <linearGradient id="topFoldShadow" x1="750" y1="320" x2="650" y2="420" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#080b2b" stop-opacity="0.95" />
+      <stop offset="45%" stop-color="#0d1445" stop-opacity="0.6" />
+      <stop offset="85%" stop-color="#1e1b4b" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#1e1b4b" stop-opacity="0" />
     </linearGradient>
 
-    <!-- Bottom Fold Shadow -->
-    <linearGradient id="bottomFoldShadow" x1="180" y1="344" x2="250" y2="344" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#0b0f3b" stop-opacity="0.6" />
-      <stop offset="100%" stop-color="#0b0f3b" stop-opacity="0" />
+    <!-- Bottom Under-Fold Shadow -->
+    <linearGradient id="bottomFoldShadow" x1="260" y1="670" x2="480" y2="760" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#080b2b" stop-opacity="0.85" />
+      <stop offset="40%" stop-color="#0d1445" stop-opacity="0.4" />
+      <stop offset="80%" stop-color="#0d1445" stop-opacity="0.05" />
+      <stop offset="100%" stop-color="#0d1445" stop-opacity="0" />
     </linearGradient>
 
-    <!-- Subtle Depth Shadow for standalone icon presentation -->
-    <filter id="zElevation" x="-12%" y="-12%" width="124%" height="124%">
-      <feDropShadow dx="0" dy="10" stdDeviation="16" flood-color="#3b82f6" flood-opacity="0.3" />
+    <!-- Top-Right Fold Highlight/Cap -->
+    <linearGradient id="topFoldCap" x1="680" y1="96" x2="900" y2="280" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8033eb" />
+      <stop offset="60%" stop-color="#9a30eb" />
+      <stop offset="100%" stop-color="#a855f7" />
+    </linearGradient>
+
+    <!-- Drop Shadow for Standalone Display -->
+    <filter id="iconGlow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#2563eb" flood-opacity="0.25" />
     </filter>
   </defs>
 
-  <g filter="url(#zElevation)">
-    <!-- Top Horizontal Arm -->
+  <g filter="url(#iconGlow)">
+    <!-- 1. BOTTOM HORIZONTAL ARM (Rear Layer) with sharp 45-degree angled wedge cut on right -->
     <path
-      d="M 128 84
-         L 404 84
-         C 416 84 426 94 426 106
-         L 426 168
-         L 236 168
-         L 128 168
-         C 104.8 168 86 149.2 86 126
-         C 86 102.8 104.8 84 128 84
+      d="M 280 668
+         L 904 668
+         L 760 904
+         L 240 904
+         C 152 904 84 836 84 748
+         C 84 712 100 668 140 668
+         L 280 668
          Z"
-      fill="url(#topBarGrad)"
+      fill="url(#bottomRibbon)"
     />
 
-    <!-- Diagonal Z Slash (Folded Ribbon) -->
+    <!-- 2. BOTTOM FOLD SHADOW -->
     <path
-      d="M 426 84
-         L 426 168
-         L 194 428
-         L 86 428
-         L 86 344
-         L 318 84
+      d="M 140 668
+         L 520 668
+         L 420 780
+         L 190 904
+         C 140 870 84 815 84 748
          Z"
-      fill="url(#diagGrad)"
+      fill="url(#bottomFoldShadow)"
     />
 
-    <!-- Top Fold Shadow under the diagonal fold -->
+    <!-- 3. TOP HORIZONTAL ARM & UPPER FOLD -->
     <path
-      d="M 318 84
-         L 426 168
-         L 370 190
-         L 262 168
+      d="M 88 320
+         L 312 96
+         L 750 96
+         C 836 96 904 164 904 250
+         C 904 336 836 404 750 404
+         L 670 404
+         L 240 904
+         C 152 904 84 836 84 748
+         C 84 700 120 630 180 560
+         L 576 96
+         L 312 96
+         L 88 320
+         Z"
+      fill="url(#topRibbon)"
+    />
+
+    <!-- 4. DIAGONAL BODY (Front Ribbon Overlay with Royal Blue gradient) -->
+    <path
+      d="M 750 96
+         C 836 96 904 164 904 250
+         C 904 300 875 350 820 380
+         L 240 904
+         C 152 904 84 836 84 748
+         C 84 700 120 630 180 560
+         L 576 96
+         Z"
+      fill="url(#diagRibbon)"
+    />
+
+    <!-- 5. TOP INNER FOLD 3D CYLINDRICAL SHADOW -->
+    <path
+      d="M 710 240
+         C 710 240 815 255 820 380
+         C 780 400 730 404 680 404
+         C 620 404 590 350 635 300
          Z"
       fill="url(#topFoldShadow)"
     />
 
-    <!-- Bottom Horizontal Arm -->
+    <!-- 6. TOP-RIGHT PURPLE FOLD CAP -->
     <path
-      d="M 86 344
-         L 276 344
-         L 384 344
-         C 407.2 344 426 362.8 426 386
-         C 426 409.2 407.2 428 384 428
-         L 194 428
-         L 86 428
+      d="M 720 96
+         L 750 96
+         C 836 96 904 164 904 250
+         C 904 300 875 348 830 376
+         C 780 300 720 220 710 170
          Z"
-      fill="url(#bottomBarGrad)"
-    />
-
-    <!-- Bottom Fold Shadow -->
-    <path
-      d="M 194 428
-         L 86 344
-         L 142 322
-         L 250 344
-         Z"
-      fill="url(#bottomFoldShadow)"
+      fill="url(#topFoldCap)"
     />
   </g>
 </svg>

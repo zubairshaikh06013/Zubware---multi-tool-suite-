@@ -10,23 +10,40 @@ import {
   Moon, 
   Compass, 
   Award, 
-  Activity 
+  Activity,
+  RotateCcw
 } from 'lucide-react';
 
 interface AgeCalculatorToolProps {
   onShowToast: (message: string) => void;
 }
 
+const getTodayString = () => {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const parseLocalDate = (dateStr: string) => {
+  if (!dateStr) return null;
+  const parts = dateStr.split('-').map(Number);
+  if (parts.length !== 3 || parts.some(isNaN)) return null;
+  const [y, m, d] = parts;
+  return new Date(y, m - 1, d);
+};
+
 export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToast }) => {
   const [dob, setDob] = useState<string>('1998-05-15');
-  const [targetDate, setTargetDate] = useState<string>(new Date().toISOString().split('T')[0]);
+  const [targetDate, setTargetDate] = useState<string>(getTodayString());
   const [copied, setCopied] = useState<boolean>(false);
 
   const calculateAge = () => {
-    const birth = new Date(dob);
-    const target = new Date(targetDate);
+    const birth = parseLocalDate(dob);
+    const target = parseLocalDate(targetDate);
 
-    if (isNaN(birth.getTime()) || isNaN(target.getTime()) || birth > target) {
+    if (!birth || !target || isNaN(birth.getTime()) || isNaN(target.getTime()) || birth > target) {
       return null;
     }
 
@@ -137,15 +154,31 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
           </p>
         </div>
 
-        {result && (
+        <div className="flex items-center gap-2">
           <button
-            onClick={copyAgeSummary}
-            className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
+            type="button"
+            onClick={() => {
+              setDob('1998-05-15');
+              setTargetDate(getTodayString());
+              onShowToast('Reset to default dates');
+            }}
+            className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
+            title="Reset to default dates"
           >
-            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
-            <span>Copy Age Card</span>
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Reset</span>
           </button>
-        )}
+
+          {result && (
+            <button
+              onClick={copyAgeSummary}
+              className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
+            >
+              {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+              <span>Copy Age Card</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* Date Pickers */}
@@ -164,10 +197,19 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
         </div>
 
         <div className="glass-card p-5 rounded-3xl space-y-2">
-          <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
-            <Clock className="w-4 h-4 text-indigo-500" />
-            <span>Age at Date (Reference Date)</span>
-          </label>
+          <div className="flex items-center justify-between">
+            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+              <Clock className="w-4 h-4 text-indigo-500" />
+              <span>Age at Date (Reference Date)</span>
+            </label>
+            <button
+              type="button"
+              onClick={() => setTargetDate(getTodayString())}
+              className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer"
+            >
+              Set to Today
+            </button>
+          </div>
           <input
             type="date"
             value={targetDate}

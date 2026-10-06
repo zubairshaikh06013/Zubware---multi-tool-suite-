@@ -6,26 +6,33 @@ import { getToolCanonicalPath } from '../lib/paths';
 const RAW_TOOLS_DATA: ToolMeta[] = [
   {
     id: 'image-splitter-merger',
-    title: 'Image Splitter & Combiner',
-    navTitle: 'Image Splitter & Combiner',
-    description: 'Split an image cleanly along any vertical or horizontal line, or combine two images seamlessly into a composite directly in your browser.',
+    title: "Image Splitter & Combiner — Split or Merge Photos Online",
+    navTitle: "Image Split & Combine",
+    description: "Split photos into rows and columns or combine multiple images side-by-side online. Export high-res cuts as a ZIP or single composite in your browser.",
     icon: '✂️',
     path: '/image-splitter-merger.html',
     filename: 'image-splitter-merger.html',
     category: '🖼️ Image Tools',
     badge: 'Original',
-    features: ['Vertical & Horizontal Split', 'Dual Image Combine', 'Auto-trim Padding', 'Drag-to-Adjust Seam', 'Local Browser Processing'],
+    features: [
+      "Dual Split & Merge Operating Modes",
+      "Custom Grid Rows, Columns & Slice Offsets",
+      "Horizontal & Vertical Photo Merging",
+      "Custom Border Gutter & Alignment Spacing",
+      "High-Resolution ZIP & Canvas Image Export",
+      "100% Private Client-Side Browser Processing"
+    ],
     howTo: [
-      { title: "Select Split or Combine Mode", desc: "Choose whether you want to slice a single photo into two halves or merge two photos together." },
-      { title: "Position the Cut or Join Seam", desc: "In Split mode, select horizontal or vertical orientation and drag the divider guide to your cut line. In Combine mode, select side-by-side or stacked layout." },
-      { title: "Download Processed Images", desc: "Click Download to instantly save both separated image pieces or the single combined composite directly to your device." }
+      { title: "Select Split or Merge Mode", desc: "Choose whether you want to slice a single image into multiple pieces or combine multiple photos into a single composite." },
+      { title: "Configure Grid or Alignment Layout", desc: "Set the number of rows and columns for splitting, or choose horizontal/vertical stacking and spacing for merging." },
+      { title: "Preview and Download Slices or Merged File", desc: "Inspect the live canvas preview and download individual image cuts, a packaged ZIP archive, or your combined graphic." }
     ],
     faq: [
-      { question: "Does splitting an image reduce visual quality?", answer: "No. The image is rendered onto an HTML5 canvas at its full source dimensions, preserving original pixel resolution when exporting each half." },
-      { question: "Can I split an image both horizontally and vertically at the same time?", answer: "Currently, the tool slices along one axis per pass (vertical or horizontal). To create a four-quadrant split, download the two halves and run each half through horizontal split mode." },
-      { question: "What does the auto-trim padding option do?", answer: "Auto-trim scans the image perimeter and removes empty transparent or uniform border pixels before cutting, ensuring your split pieces align flush against each other." },
-      { question: "What happens when combining images with different heights or widths?", answer: "The tool scales the smaller image proportionally to match the matching dimension of the other image, preventing stretching or aspect ratio distortion." },
-      { question: "Are my images uploaded to a server during splitting or combining?", answer: "The image is processed locally in your browser using HTML5 Canvas and is not sent to a Zubware server for processing." }
+      { question: "Can I split an image into equal grid tiles for Instagram or social media?", answer: "Yes. You can specify exact row and column counts (such as 3x3 for an Instagram profile grid) and export every tile simultaneously in a single ZIP file." },
+      { question: "Does combining images degrade the original photo resolution?", answer: "No. The merger tool calculates composite canvas dimensions based on the full pixel resolution of your source images, maintaining crisp detail without compression loss." },
+      { question: "Can I merge photos both horizontally side-by-side and vertically stacked?", answer: "Yes. Switch between horizontal alignment (side-by-side) and vertical alignment (stacked vertically) with customizable spacing and background fill colors." },
+      { question: "Which image file formats are supported for splitting and merging?", answer: "You can upload and process PNG, JPG, WebP, SVG, and GIF files. Export options include PNG, JPG, and compressed ZIP archives." },
+      { question: "Are my uploaded photos sent to any external server?", answer: "No. All image slicing, canvas stitching, and ZIP packaging occur strictly in your local browser memory using HTML5 Canvas APIs." }
     ]
   },
   {
@@ -78,14 +85,30 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'image-compressor',
-    title: 'Image Compressor',
+    title: 'Image Compressor – Reduce Image Size Online',
     navTitle: 'Image Compressor',
-    description: 'Compress JPG, PNG, and WebP images to exact file sizes like 20KB, 50KB, 100KB, 200KB, or 500KB without visible quality loss. Free private batch image compressor with zero server uploads.',
+    description: 'Compress JPG, PNG, and WebP images online to 20KB, 50KB, or 100KB for exam and job forms. Free, private in-browser photo compressor with zero server uploads.',
     icon: '🗜️',
     path: '/image-compressor.html',
     filename: 'image-compressor.html',
     category: '🖼️ Image Tools',
     badge: 'Free',
+    tags: [
+      'Image Compressor',
+      'Compress Image Online',
+      'Reduce Image Size',
+      'Photo Compressor',
+      'Compress Image to 20KB',
+      'Compress Image to 50KB',
+      'Compress Image to 100KB',
+      'Photo Ka Size Kaise Kam Kare',
+      'Reduce Photo Size',
+      'JPG Compressor',
+      'PNG Compressor',
+      'WebP Compressor',
+      'Govt Exam Photo Size',
+      'Passport Photo Size'
+    ],
     features: [
       'Target Size Mode (20KB, 50KB, 100KB, 200KB, 500KB)',
       'By Quality % Slider (10-95%)',
@@ -95,16 +118,43 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       'Local Browser Processing'
     ],
     howTo: [
-      { title: "Add Images to Queue", desc: "Drag and drop or select one or multiple JPG, PNG, or WebP images to compress." },
-      { title: "Choose Compression Mode", desc: "Select By Target Size (KB) to hit strict limits like 20KB or 50KB, or adjust the Quality or Percentage reduction sliders." },
-      { title: "Compress and Export", desc: "Review the before/after byte counts and savings percentage, then download individual files or the entire batch as a ZIP." }
+      { title: "Select or Drag Photos", desc: "Drag and drop or select one or multiple JPG, PNG, or WebP images from your phone or desktop." },
+      { title: "Choose Target Size or Quality", desc: "Pick a target limit such as 20KB, 50KB, or 100KB for portal uploads, or adjust the Quality slider to reduce file size." },
+      { title: "Compress and Download", desc: "Inspect before/after file sizes and savings percentage, then download your compressed photos individually or as a ZIP archive." }
     ],
     faq: [
-      { question: "How does Target Size mode compress to an exact KB number?", answer: "The compression engine runs an iterative binary search on encoding quality combined with progressive resolution downscaling until the encoded blob fits within your specified KB threshold." },
-      { question: "Why do PNG files compress less than JPG files?", answer: "PNG uses lossless DEFLATE compression to preserve crisp lines and transparent pixels, whereas JPG uses lossy discrete cosine transform compression that discards imperceptible color details." },
-      { question: "Can I compress multiple photos at the same time?", answer: "Yes. You can queue multiple images, apply a universal target size or quality level, and download all compressed files together in a ZIP package." },
-      { question: "Does image compression remove EXIF camera metadata?", answer: "Yes. Re-encoding the image through HTML5 Canvas strips embedded camera metadata, GPS tags, and device identifiers, further reducing file size." },
-      { question: "Can I compress multiple images without uploading them?", answer: "Yes. The batch image compressor processes all selected PNG, JPG, and WebP files concurrently inside your browser memory using HTML5 canvas and WebAssembly, so your photos are never uploaded to a server." }
+      {
+        question: "How to compress image to 20KB, 50KB, or 100KB online?",
+        answer: "Upload your JPG, PNG, or WebP photo into Zubware Image Compressor, select 'By Target Size (KB)' mode, and choose a preset button (20KB, 50KB, 100KB, or 200KB) or enter your exact required KB value. The tool automatically computes the optimal quality and dimensions to keep your photo under the selected limit without visible distortion."
+      },
+      {
+        question: "Photo ka size kaise kam kare (How to reduce photo size)?",
+        answer: "Photo ka size kam karne ke liye photo ko drag-and-drop ya upload karein, 'By Target Size' option mein jakar apni zaroorat ke mutabiq 20KB, 50KB ya 100KB chunein, aur Compress button dabayein. File bina kisi server upload ke aapke mobile ya computer browser mein turant compress hokar download ho jayegi."
+      },
+      {
+        question: "Can I compress photos for government exams, SSC, UPSC, and job portals?",
+        answer: "Yes. Most Indian government, banking, and recruitment portals (SSC, UPSC, State PSC, IBPS, NTA, Railway, and State Police) enforce strict photo upload limits between 20KB and 50KB, and signatures between 10KB and 20KB. Zubware's Target Size mode is built specifically to meet these exact portal constraints."
+      },
+      {
+        question: "Mobile mein photo ka size kaise kam kare?",
+        answer: "Aap kisi bhi mobile browser (Google Chrome, Safari, ya Firefox) mein Zubware Image Compressor khol sakte hain. Gallery se photo select karein, 20KB ya 50KB target size chunein aur Compress par click karein. Kisi third-party mobile app ya registration ki bilkul zaroorat nahi hai."
+      },
+      {
+        question: "Does compressing an image reduce its visual quality?",
+        answer: "Zubware uses adaptive compression algorithms that discard redundant metadata and imperceptible color details while preserving facial features and sharpness. When compressing a large 5MB photo to 20KB, resolution is progressively scaled to ensure the result looks crisp at document upload sizes."
+      },
+      {
+        question: "Is it safe to compress private photos, ID proofs, and signatures?",
+        answer: "Yes, 100% safe. Unlike traditional online compressors that transmit your images to remote cloud servers, Zubware compresses all files entirely inside your device's browser memory using HTML5 Canvas and WebAssembly. Your photos, signatures, and IDs are never uploaded to any server."
+      },
+      {
+        question: "Which image formats can be compressed and exported?",
+        answer: "Zubware supports compressing standard web image formats including JPG (JPEG), PNG, and WebP. You can choose to maintain the original format or convert between JPG, PNG, and WebP during the compression process."
+      },
+      {
+        question: "Can I compress multiple photos in batch at once?",
+        answer: "Yes. You can upload multiple photos simultaneously, apply a uniform target KB size or quality percentage across the entire batch, and download all compressed images in one click as a ZIP file."
+      }
     ]
   },
   {
@@ -181,50 +231,64 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'rotate-image',
-    title: 'Rotate Image',
-    navTitle: 'Rotate Image',
-    description: 'Rotate single or batch images by 90°, 180°, 270°, or any custom angle slider with bulk download support.',
+    title: "Rotate Image Online — Rotate Photos 90°, 180° or Custom Angles",
+    navTitle: "Rotate Image",
+    description: "Rotate images clockwise, counter-clockwise, or at custom angles online for free. Preview adjustments instantly and download PNG, JPG, or WebP files.",
     icon: '🔄',
     path: '/rotate-image.html',
     filename: 'rotate-image.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['90°, 180°, Custom Angle', 'Batch Support', 'Live Grid Preview', 'Fast Local Processing', 'Bulk Download'],
+    features: [
+      "Instant 90° Clockwise & Counter-Clockwise Rotation",
+      "Full 180° Upside-Down Inversion",
+      "Precision Angle Slider from -180° to +180°",
+      "Batch Rotation for Multiple Files Simultaneously",
+      "PNG, JPG & WebP High-Quality Export",
+      "Zero Server Uploads & Complete Privacy"
+    ],
     howTo: [
-      { title: "Upload Image Files", desc: "Select single or multiple photos that need reorientation." },
-      { title: "Choose Rotation Angle", desc: "Click 90° Clockwise, 90° Counter-Clockwise, or 180° Flip, or use the custom degree slider for fine angles." },
-      { title: "Download Rotated Output", desc: "Preview the corrected orientation and download the rotated image or download the complete batch as a ZIP." }
+      { title: "Upload Image Files", desc: "Drag and drop one or multiple images into the tool or click to select files from your computer or phone." },
+      { title: "Select Rotation Angle", desc: "Click the 90° clockwise or counter-clockwise buttons, or adjust the fine-tuning angle slider to straighten skewed photos." },
+      { title: "Download Rotated Images", desc: "Review the live canvas orientation and download the rotated photos individually or as a batch in your preferred format." }
     ],
     faq: [
-      { question: "Why do photos taken on smartphones sometimes appear sideways?", answer: "Smartphones store orientation in EXIF metadata tags. Some software ignores this tag, displaying the raw sensor orientation. Rotating here writes the correct physical pixel orientation." },
-      { question: "Does rotating an image 90 degrees degrade visual quality?", answer: "No. A 90°, 180°, or 270° rotation maps existing pixels to new coordinates without resampling or blurring the image content." },
-      { question: "Can I straighten a crooked horizon with custom degree angles?", answer: "Yes. The degree slider lets you rotate by arbitrary fine angles between -180° and +180° to level tilted horizon lines." },
-      { question: "Can I rotate multiple photos in a single batch?", answer: "Yes. You can upload several images at once, apply the rotation to the entire queue, and export them together in a ZIP file." },
-      { question: "Can I rotate and level photos without server-side processing?", answer: "Yes. Coordinate transformations and custom angle rotations execute locally in your browser memory, eliminating upload wait times and protecting your privacy." }
+      { question: "Can I rotate an image by custom degrees to straighten a crooked horizon?", answer: "Yes. Use the continuous angle slider to rotate photos by exact fractional degrees between -180° and +180° with live visual feedback." },
+      { question: "Will rotating a transparent PNG keep its transparency?", answer: "Yes. When exporting as PNG, transparent backgrounds are preserved without adding white or black background boxes." },
+      { question: "Can I rotate multiple photos at the same time in batch mode?", answer: "Yes. You can upload multiple image files and apply uniform 90°, 180°, or 270° rotations to all photos in a single click." },
+      { question: "Does rotating reduce the resolution or sharpness of the photo?", answer: "No. Standard 90-degree increments perform lossless pixel coordinate remapping on the full-resolution source file." },
+      { question: "Is there a file size limit for rotating photos in the browser?", answer: "Because processing runs in client-side browser memory, you can comfortably rotate high-resolution photos up to 50MB each." }
     ]
   },
   {
     id: 'flip-image',
-    title: 'Flip Image',
-    navTitle: 'Flip Image',
-    description: 'Flip photos horizontally or vertically to create mirror reflections instantly in your browser.',
+    title: "Flip Image Online — Mirror Photos Horizontally & Vertically",
+    navTitle: "Flip Image",
+    description: "Flip photos horizontally or vertically to create mirror reflections instantly in your browser. Maintain original image quality with no server uploads.",
     icon: '⇄',
     path: '/flip-image.html',
     filename: 'flip-image.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Horizontal Flip', 'Vertical Flip', 'Full Mirror Effect', 'Live Preview', 'One-Click Download'],
+    features: [
+      "Horizontal Flip for Left-to-Right Mirror Reflection",
+      "Vertical Flip for Top-to-Bottom Inversion",
+      "Combined Dual-Axis Flip Transformations",
+      "Live Real-Time Visual Canvas Preview",
+      "Supports JPG, PNG, WebP & SVG Formats",
+      "100% Client-Side In-Browser Processing"
+    ],
     howTo: [
-      { title: "Upload Your Photo", desc: "Drag and drop or select the image you want to mirror or invert." },
-      { title: "Choose Flip Axis", desc: "Click Flip Horizontal to create a left-to-right mirror reflection, or Flip Vertical to turn the image upside-down." },
-      { title: "Save Mirrored File", desc: "Inspect the real-time canvas preview and click Download Flipped Image to save the result." }
+      { title: "Upload Your Photo", desc: "Select or drag and drop any image file from your device into the interactive canvas workspace." },
+      { title: "Choose Flip Direction", desc: "Click Flip Horizontally to mirror left-to-right, or Flip Vertically to invert top-to-bottom." },
+      { title: "Export Mirrored Image", desc: "Inspect the transformed image preview and click Download to save the flipped picture in full resolution." }
     ],
     faq: [
-      { question: "What is the difference between flipping and rotating an image?", answer: "Rotating turns the image around a central pivot point, while flipping creates a mirror reflection across a horizontal or vertical axis." },
-      { question: "Can I apply both horizontal and vertical flips simultaneously?", answer: "Yes. Toggling both Horizontal and Vertical flips mirrors the image across both axes, equivalent to a 180-degree reflection." },
-      { question: "Does flipping an image reverse embedded text?", answer: "Yes. Horizontal mirroring reverses everything in the frame, making readable text appear backwards as if viewed in a physical mirror." },
-      { question: "Does flipping change image resolution or pixel dimensions?", answer: "No. Flipping inverts coordinate indices along the chosen axis, preserving original pixel dimensions and resolution." },
-      { question: "Are mirrored photos generated locally inside the browser?", answer: "Yes. Horizontal and vertical mirroring flip pixel coordinates instantly on your local canvas without sending the image to an external server." }
+      { question: "What is the difference between flipping and rotating an image?", answer: "Flipping creates a mirror reflection across an axis (inverting left and right or top and bottom), whereas rotating turns the image around a central pivot point." },
+      { question: "Can I flip a selfie image to correct inverted front-camera photos?", answer: "Yes. If your smartphone camera mirrored your selfie or flipped text on your clothing, clicking Flip Horizontally restores the natural view." },
+      { question: "Does flipping alter the pixel dimensions or image resolution?", answer: "No. Flipping preserves the exact width, height, and pixel quality of your original image without compression degradation." },
+      { question: "Can I flip transparent PNG logos without adding a solid background?", answer: "Yes. Transparent alpha channels are fully retained when saving flipped graphics in PNG or WebP formats." },
+      { question: "Are my private pictures uploaded to a cloud server to flip?", answer: "No. The transformation executes directly on your device via HTML5 Canvas matrix scaling, ensuring complete privacy." }
     ]
   },
   {
@@ -253,50 +317,64 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'blur-image',
-    title: 'Blur Image',
-    navTitle: 'Blur Image',
-    description: 'Blur sensitive information, faces, or full backgrounds with interactive brush painting, strength slider, and undo/redo stack.',
+    title: "Blur Image Online — Blur Faces, Backgrounds & Sensitive Data",
+    navTitle: "Blur Image",
+    description: "Blur sensitive information, faces, or full backgrounds with an interactive brush online. Adjust blur radius and brush size privately in your browser.",
     icon: '🌫️',
     path: '/blur-image.html',
     filename: 'blur-image.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Interactive Brush Blur', 'Background Blur', 'Strength Slider', 'Undo & Redo Stack', 'Instant Download'],
+    features: [
+      "Selective Brush Tool for Targeted Localized Blurring",
+      "Full-Image Uniform Background Defocus Mode",
+      "Adjustable Blur Radius, Intensity & Feathering",
+      "Brush Size Slider with Dynamic Cursor Preview",
+      "Multi-Step Undo & Redo History Controls",
+      "Secure Client-Side Privacy Without Cloud Upload"
+    ],
     howTo: [
-      { title: "Upload Image", desc: "Select the photo containing elements or personal details you wish to blur." },
-      { title: "Select Blur Mode and Strength", desc: "Choose Entire Image to soften the full background, or Selective Brush to blur specific regions like faces or license plates." },
-      { title: "Brush and Export", desc: "Adjust brush radius, paint directly over confidential areas with undo/redo support, and download the blurred image." }
+      { title: "Load Photo into Canvas", desc: "Upload the image containing sensitive text, private faces, or backgrounds you wish to blur." },
+      { title: "Paint over Sensitive Areas", desc: "Adjust your brush diameter and blur intensity slider, then paint directly over faces, license plates, or confidential numbers." },
+      { title: "Review and Download Image", desc: "Verify the blurred areas with the live preview and download your redacted photo as a high-resolution PNG or JPG." }
     ],
     faq: [
-      { question: "Can someone reverse or unblur an area blurred with this tool?", answer: "No. Blurring mathematically averages neighboring pixel color values on the canvas. The original high-frequency detail is permanently replaced before saving." },
-      { question: "How do I blur out faces, license plates, or credit card numbers?", answer: "Select the Selective Brush mode, set your preferred brush size and blur strength, and paint directly over the sensitive regions you want obscured." },
-      { question: "Can I undo accidental brush strokes?", answer: "Yes. The tool maintains an interactive history stack with Undo and Redo controls so you can step backward if you paint outside the target boundary." },
-      { question: "What is full background blur used for?", answer: "Full background blurring is commonly used to create soft aesthetic backdrops for presentations, social media banners, or portrait depth effects." },
-      { question: "Is interactive blur and redaction applied locally on my device?", answer: "Yes. Gaussian blur convolutions and interactive brush strokes process strictly within browser memory, ensuring confidential redacted information is never transmitted." }
+      { question: "Can I blur only specific parts of a photo like a license plate or credit card?", answer: "Yes. The interactive paint brush lets you paint blur precisely over sensitive areas like ID numbers, faces, addresses, or license plates." },
+      { question: "Can I apply a full-image blur to create an aesthetic background?", answer: "Yes. Switch to Full Image Blur mode and use the intensity slider to create soft, atmospheric background wallpapers for presentations or apps." },
+      { question: "Can someone unblur or reverse the blurred areas after I download the file?", answer: "No. The blur operation permanently recalculates and merges pixel color averages into the rasterized output image, making reversal mathematically impossible." },
+      { question: "Is there an undo option if I accidentally blur the wrong part of an image?", answer: "Yes. Full undo and redo history buttons allow you to step back and reapply brush strokes at any time before exporting." },
+      { question: "Is my confidential or identity document uploaded to a server?", answer: "No. All pixel modifications occur strictly inside your local browser memory, making it safe for medical records, bank statements, and IDs." }
     ]
   },
   {
     id: 'pixelate-image',
-    title: 'Pixelate Image',
-    navTitle: 'Pixelate Image',
-    description: 'Censor photos or create retro pixel art effects with custom pixel block sizes, paint brush tool, and undo history.',
+    title: "Pixelate Image Online — Censor Photos & Create Pixel Art",
+    navTitle: "Pixelate Image",
+    description: "Pixelate sensitive photo areas or craft retro 8-bit art with an adjustable brush online. Control block sizes and export private images with no upload.",
     icon: '👾',
     path: '/pixelate-image.html',
     filename: 'pixelate-image.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Brush Censor Tool', 'Entire Image Pixelate', 'Pixel Size Slider', 'Undo & Redo', 'Instant Export'],
+    features: [
+      "Interactive Brush for Targeted Censor Pixelation",
+      "Full Image Pixel Art & 8-Bit Retro Filter Mode",
+      "Adjustable Pixel Block Size Slider (4px to 64px)",
+      "Customizable Brush Radius with Real-Time Stencil",
+      "Non-Destructive Canvas Undo and Redo Controls",
+      "Zero Cloud Transmission for Complete Data Privacy"
+    ],
     howTo: [
-      { title: "Upload Photo", desc: "Select the image you want to censor or transform into pixel art." },
-      { title: "Set Pixel Block Size", desc: "Use the pixel size slider to determine coarseness, from subtle mosaic softening to heavy censorship blocks." },
-      { title: "Apply and Download", desc: "Click Pixelate Entire Image for retro effects or use the brush tool to redact specific areas, then download your output." }
+      { title: "Upload Image to Workspace", desc: "Select or drag your photo onto the canvas to begin pixelating sensitive details or styling graphics." },
+      { title: "Set Block Size and Paint", desc: "Choose your desired pixel block size and paint directly over faces, logos, or documents to censor them." },
+      { title: "Download Pixelated Photo", desc: "Confirm the redacted areas on the canvas and download the finalized image file in PNG, JPG, or WebP format." }
     ],
     faq: [
-      { question: "Is pixelation secure for redacting sensitive passwords or IDs?", answer: "Yes, provided a sufficiently large pixel block size is used. Larger blocks average hundreds of pixels into uniform color squares, eliminating character shapes." },
-      { question: "What is the difference between blurring and pixelating?", answer: "Blurring applies a smooth Gaussian gradient that softens edges, while pixelation divides the image into a rigid grid of solid-color square mosaic tiles." },
-      { question: "Can I pixelate only a portion of the photo?", answer: "Yes. Use the brush tool to paint mosaic blocks specifically over sensitive information while leaving the rest of the image in full sharpness." },
-      { question: "Can I create full 8-bit retro video game style graphics?", answer: "Yes. Clicking Pixelate Entire Image with an 8px to 16px block size transforms standard photographs into nostalgic pixel art." },
-      { question: "Are pixel censorship blocks rendered locally in the browser?", answer: "Yes. Pixel block calculations and mosaic censor brushes execute locally in browser memory without sending private photos over the network." }
+      { question: "How does pixelation differ from Gaussian blurring for censorship?", answer: "Pixelation groups adjacent pixels into solid color blocks (mosaic tiles), creating high-contrast censorship or a retro 8-bit aesthetic, while blur softens color gradients smoothly." },
+      { question: "Can the pixelated content be recovered or reversed by other software?", answer: "No. Pixelating replaces high-frequency detail across entire blocks with an average color value, discarding original pixel information permanently upon download." },
+      { question: "Can I pixelate an entire photo to make video-game style pixel art?", answer: "Yes. You can apply the pixelation algorithm globally across the entire photo and adjust block size from subtle to extreme retro 8-bit resolution." },
+      { question: "Can I adjust the size of the pixelation blocks?", answer: "Yes. The block size slider lets you dial in everything from tiny micro-mosaics to large, heavy censor blocks." },
+      { question: "Are my private photos stored or transmitted across the web?", answer: "No. All image processing runs strictly within your browser via HTML5 Canvas, ensuring complete confidentiality for private and legal documents." }
     ]
   },
   {
@@ -325,170 +403,219 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'image-color-picker',
-    title: 'Color Picker',
-    navTitle: 'Color Picker',
-    description: 'Pick colors directly from any image to inspect HEX, RGB, HSL, HSV, and CMYK color codes with copy buttons & recent color palette.',
+    title: "Image Color Picker — Extract HEX, RGB & CMYK Colors from Photos",
+    navTitle: "Color Picker",
+    description: "Pick exact colors from any uploaded photo using a zoom loupe eyedropper. Inspect HEX, RGB, HSL, and CMYK color codes with one-click clipboard copying.",
     icon: '🎨',
     path: '/color-picker.html',
     filename: 'color-picker.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['HEX, RGB, HSL, CMYK', 'EyeDropper Tool', 'Recent Color Palette', 'One-Click Copy', 'High Precision'],
+    features: [
+      "Precision Eyedropper with Real-Time Zoom Magnifier",
+      "Simultaneous HEX, RGB, HSL, HSV & CMYK Color Codes",
+      "Recent Color Swatch History & Palette Generator",
+      "One-Click Clipboard Copying for Web Developers",
+      "Supports High-Resolution RAW, PNG, JPG & WebP Files",
+      "100% In-Browser Execution with Zero Server Uploads"
+    ],
     howTo: [
-      { title: "Upload Image", desc: "Select any photo, design screenshot, or graphic from which you need color codes." },
-      { title: "Hover and Sample Pixels", desc: "Move your cursor across the canvas with the 9x magnifying loupe and click on any pixel to lock its color." },
-      { title: "Copy Color Formats", desc: "View instant readouts in HEX, RGB, HSL, and HSV formats, and click any copy button or view your recent palette." }
+      { title: "Upload Any Image or Screenshot", desc: "Drop your design mockup, photograph, or brand asset into the interactive color inspector." },
+      { title: "Hover and Click Exact Pixels", desc: "Use the real-time zoom loupe to inspect individual pixels and click anywhere on the image to sample a color." },
+      { title: "Copy Color Codes or Export Palette", desc: "Click the copy icon beside HEX, RGB, HSL, or CMYK values, or review your session palette history." }
     ],
     faq: [
-      { question: "How accurate is the pixel color selection?", answer: "The color picker uses a 9x real-time magnifying loupe that highlights single individual pixels, ensuring you sample the exact intended color." },
-      { question: "Which color code formats can I copy?", answer: "You can copy HEX (#RRGGBB), RGB (rgb(r, g, b)), HSL (hsl(h, s, l)), and HSV color values directly to your clipboard." },
-      { question: "Does the tool save my previously picked colors?", answer: "Yes. Each clicked color is automatically added to a recent color history palette below the canvas for easy side-by-side comparison." },
-      { question: "Can I sample colors from photos taken in different lighting conditions?", answer: "Yes. Keep in mind that shadows and gradients cause slight color variations across surfaces, so use the loupe to sample neutral, well-lit areas." },
-      { question: "Does the eyedropper color picker inspect pixels without uploading images?", answer: "Yes. Canvas pixel data is read directly from local device memory to extract HEX, RGB, HSL, and CMYK color values without sending the screenshot to a server." }
+      { question: "Does the color picker show a magnified view for single-pixel precision?", answer: "Yes. An interactive zoom loupe follows your cursor, magnifying surrounding pixels so you can sample exact 1px lines and borders effortlessly." },
+      { question: "Which color code formats are generated when I click a pixel?", answer: "The tool instantly computes HEX (with leading #), RGB (r, g, b), HSL (h%, s%, l%), HSV, and print-ready CMYK values." },
+      { question: "Does the tool save a history of colors I have sampled?", answer: "Yes. Every sampled color is added to a visual palette bar at the bottom, allowing you to compare swatches and copy earlier colors anytime." },
+      { question: "Can I pick colors from images with transparent backgrounds?", answer: "Yes. If you click transparent areas, the tool displays transparent alpha channels or background canvas values accurately." },
+      { question: "Are my proprietary design mockups uploaded to Zubware servers?", answer: "No. The eyedropper reads pixel values directly from your browser’s canvas memory using client-side getImageData APIs." }
     ]
   },
   {
     id: 'image-info-viewer',
-    title: 'Image Information Viewer',
-    navTitle: 'Image Information',
-    description: 'Inspect full technical specifications, EXIF tags, dimensions, color depth, transparency, print size, and generate full reports.',
+    title: "Image Information Viewer — Inspect EXIF, Dimensions & Metadata",
+    navTitle: "Image Info Viewer",
+    description: "Inspect image metadata, exact pixel dimensions, color depth, aspect ratio, and EXIF camera tags online. Generate detailed photo diagnostic reports.",
     icon: '🔍',
     path: '/image-info-viewer.html',
     filename: 'image-info-viewer.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Full Technical Specs', 'EXIF Metadata Tags', 'Print Size @ 300 DPI', 'Copy Report', 'Client-Side Processing'],
+    features: [
+      "Exact Pixel Width, Height & Megapixel Calculations",
+      "Aspect Ratio Detection & Standard Print Size Estimates",
+      "Detailed EXIF Camera Data (Shutter, ISO, Aperture, Model)",
+      "MIME Type, File Size in KB/MB & Color Bit Depth",
+      "Transparency Detection for Alpha Channel Assets",
+      "Client-Side Inspection Without Network File Uploads"
+    ],
     howTo: [
-      { title: "Upload Image File", desc: "Select or drag any image file into the viewer." },
-      { title: "Review Technical Specifications", desc: "Examine detailed metrics including width, height, megapixel count, file size, MIME type, and aspect ratio." },
-      { title: "Inspect Camera EXIF & Print Sizing", desc: "Check shooting parameters (ISO, aperture, exposure), calculate physical print dimensions at 300 DPI, and copy report data." }
+      { title: "Select or Drop Image File", desc: "Upload any PNG, JPG, WebP, GIF, or SVG file to analyze its technical properties." },
+      { title: "Review Technical Specifications", desc: "Explore comprehensive data cards detailing dimensions, aspect ratio, file size, color depth, and camera settings." },
+      { title: "Copy Details or Print Diagnostic Summary", desc: "Copy individual metadata attributes or save the complete inspection summary for asset documentation." }
     ],
     faq: [
-      { question: "What technical specifications can I inspect with this tool?", answer: "You can view exact pixel dimensions, aspect ratio, file size in KB/MB, MIME type, bit depth, megapixels, and print size at 300 DPI." },
-      { question: "How is the print size at 300 DPI calculated?", answer: "Print dimensions are derived by dividing pixel width and height by 300, showing the maximum print size in inches or centimeters without quality loss." },
-      { question: "Can I view camera shooting data like ISO and aperture?", answer: "Yes. If the uploaded image retains EXIF metadata, camera brand, model, lens focal length, f-stop, shutter speed, and ISO are parsed and displayed." },
-      { question: "Why does my image show no camera EXIF data?", answer: "Images downloaded from messaging apps, social networks, or edited in web software often have EXIF metadata stripped automatically by those platforms." },
-      { question: "Can I inspect image resolution and metadata without uploading files?", answer: "Yes. The viewer analyzes image headers, color depth, pixel dimensions, and print specs entirely client-side without transmitting the file." }
+      { question: "What technical image details does this tool reveal?", answer: "It displays exact width and height, aspect ratio (e.g. 16:9, 4:3), total megapixels, file size in bytes/KB/MB, MIME type, color bit depth, and alpha transparency." },
+      { question: "Can it read EXIF camera information from smartphone or DSLR photos?", answer: "Yes. If EXIF data is preserved in your JPEG file, it displays camera manufacturer, lens model, ISO speed, shutter speed, f-stop aperture, and capture timestamp." },
+      { question: "Why does my photo show no EXIF data?", answer: "Many social media platforms and messaging apps strip EXIF tags automatically upon upload to protect user privacy. Unaltered camera files retain full tags." },
+      { question: "Can I check whether a graphic has a transparent background?", answer: "Yes. The tool inspects the image buffer for alpha transparency channels and confirms whether transparent pixels are present." },
+      { question: "Is my photo or its private EXIF location sent to a server?", answer: "No. Metadata extraction and dimension calculations occur entirely within your browser via the HTML5 File API and binary buffer readers." }
     ]
   },
   {
     id: 'background-color-changer',
-    title: 'Background Color Changer',
-    navTitle: 'Background Color Changer',
-    description: 'Replace transparent or solid image backgrounds with solid HEX/RGB colors, smooth gradients, or ambient blur.',
+    title: "Background Color Changer — Add Solid Colors & Gradients to Photos",
+    navTitle: "Change BG Color",
+    description: "Replace transparent image backgrounds with solid colors or smooth gradients online. Customize color palettes and export PNG or JPG files instantly.",
     icon: '🎨',
     path: '/background-color-changer.html',
     filename: 'background-color-changer.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Transparent/Solid Keying', 'Solid HEX & RGB', 'Linear Gradient', 'Blurred BG', 'Client-Side Processing'],
+    features: [
+      "Solid Custom HEX & RGB Background Color Application",
+      "Two-Color Linear & Radial Gradient Background Presets",
+      "Passport White, Blue & Gray Background Shortcuts",
+      "Ambient Soft Blur Backdrop Generator",
+      "High-Resolution JPG & Transparent PNG Export",
+      "Client-Side Browser Execution for Complete Privacy"
+    ],
     howTo: [
-      { title: "Upload Cutout or Transparent Photo", desc: "Select a PNG or WebP image with a transparent background, or a photo with a solid background to key out." },
-      { title: "Select Background Fill Style", desc: "Choose a solid color using the color picker or define a linear gradient with start/end colors and angle." },
-      { title: "Export Finished Composite", desc: "Preview the updated background and download your new image in PNG, JPG, or WebP format." }
+      { title: "Upload Transparent Photo or Cutout", desc: "Upload a cutout PNG or transparent portrait image that needs a new background color." },
+      { title: "Select Solid Color or Gradient Preset", desc: "Pick a solid color using the HEX color picker, choose an exam passport color, or configure a smooth gradient." },
+      { title: "Download Image with New Background", desc: "Preview the composite output and download your updated picture as a high-quality JPG or PNG." }
     ],
     faq: [
-      { question: "Can I replace the background on an image that already has transparent cutouts?", answer: "Yes. Transparent regions are immediately replaced with your selected solid color or gradient fill." },
-      { question: "Can this tool replace a solid white or green backdrop?", answer: "Yes. Use Key Color mode, sample the backdrop color with the eyedropper, and adjust the tolerance slider to replace that background." },
-      { question: "What is the difference between solid color and gradient backgrounds?", answer: "Solid mode applies a single uniform color, while gradient mode blends two chosen colors across an adjustable angle (such as 45° or 90°)." },
-      { question: "Which format should I choose when saving the new background?", answer: "Choose JPG or WebP for smaller file sizes when the new background is opaque, or PNG if you need lossless graphic clarity." },
-      { question: "Are background color fills and gradients applied locally?", answer: "Yes. Canvas compositing, solid HEX fills, and linear gradients are rendered directly in browser RAM without server-side image processing." }
+      { question: "Can I add a white or light blue background for passport and visa photos?", answer: "Yes. Dedicated quick-select buttons allow you to apply compliant pure white (HEX #FFFFFF) or official light blue backgrounds for passport applications." },
+      { question: "Does this tool work best with cutout images that already have transparency?", answer: "Yes. It seamlessly fills transparent background areas in PNG and WebP files. You can pair it with Zubware Background Remover for full end-to-end editing." },
+      { question: "Can I create smooth gradient backdrops for product photos?", answer: "Yes. You can select custom start and end gradient colors, adjust angles, and create eye-catching e-commerce product presentations." },
+      { question: "Does changing the background color reduce image quality?", answer: "No. The subject pixels from your original upload are layered at native resolution over the newly rendered background canvas." },
+      { question: "Are my personal portrait photos uploaded to a cloud server?", answer: "No. Layering and compositing occur 100% inside your browser using HTML5 Canvas graphics." }
     ]
   },
   {
     id: 'rounded-corners',
-    title: 'Rounded Corner Generator',
-    navTitle: 'Rounded Corners',
-    description: 'Round photo corners, create circular avatars, or adjust individual corner radii with live preview.',
+    title: "Rounded Corner Generator — Round Photo Corners & Make Circular Avatars",
+    navTitle: "Rounded Corners",
+    description: "Round photo corners and create circular profile avatars online with live preview. Adjust individual corner radii and export transparent PNG images.",
     icon: '⭕',
     path: '/rounded-corners.html',
     filename: 'rounded-corners.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Individual Corner Radius', 'Circle Avatar Mode', 'Transparent / Solid BG', 'Live Canvas Preview', 'Instant Download'],
+    features: [
+      "Uniform Corner Radius Slider with Real-Time Preview",
+      "Independent 4-Corner Radius Controls (TL, TR, BR, BL)",
+      "One-Click Perfect Circle & Ellipse Avatar Mode",
+      "Transparent PNG Cutout or Custom Background Fill",
+      "High-Resolution Image Processing & Download",
+      "Zero Server Uploads for Maximum Photo Privacy"
+    ],
     howTo: [
-      { title: "Upload Image", desc: "Select the photo or banner you want to soften with rounded corners." },
-      { title: "Configure Corner Radii", desc: "Adjust the master radius slider for all four corners, or unlock individual corner sliders (top-left, top-right, etc.)." },
-      { title: "Set Background & Download", desc: "Choose a transparent background (PNG) or solid fill color, preview the curved corners, and download." }
+      { title: "Upload Your Image", desc: "Drag and drop your profile photo, app icon, or graphic into the rounded corner workspace." },
+      { title: "Adjust Corner Radii or Choose Circle Mode", desc: "Move the uniform radius slider to curve edges, or unlock individual corners for asymmetrical design styles." },
+      { title: "Save Rounded Image as PNG", desc: "Download your curved image with transparent rounded corners or a custom border fill color." }
     ],
     faq: [
-      { question: "How do I make sure the corners remain transparent after downloading?", answer: "Select the Transparent Background option and export in PNG format. JPG does not support transparency and will fill corners with white." },
-      { question: "Can I create a circular profile picture or avatar?", answer: "Yes. Enable Circle Avatar mode to crop square photos into a circle with rounded perimeter." },
-      { question: "Can I round only specific corners, like top corners for a card UI?", answer: "Yes. Unlock the individual corner controls to set custom pixel radii for top-left, top-right, bottom-right, and bottom-left independently." },
-      { question: "Does rounding corners change the dimensions of my photo?", answer: "No. The image maintains its original width and height; only the outer corner pixels outside the radius boundary are clipped." },
-      { question: "Are rounded corner masks and circle avatars generated locally?", answer: "Yes. Clipping paths and alpha corner masking execute strictly in your browser canvas without uploading images to any external endpoint." }
+      { question: "How do I create a perfectly circular avatar for social media profiles?", answer: "Click the Circular Avatar toggle button. If your image is square, it crops into a 1:1 circle; if rectangular, it creates a centered circular cutout." },
+      { question: "Can I round only specific corners, like just the top two corners?", answer: "Yes. Unlock the Individual Corners mode to set custom pixel radii for Top-Left, Top-Right, Bottom-Right, and Bottom-Left separately." },
+      { question: "Will the outer cropped corners remain transparent?", answer: "Yes. When you download the image as PNG, the clipped corner areas are completely transparent, perfect for placing on websites or app screens." },
+      { question: "Can I add a solid background color behind the rounded corners instead of transparency?", answer: "Yes. You can toggle between transparent alpha clipping and a custom solid background color fill." },
+      { question: "Are my images processed securely without cloud storage?", answer: "Yes. All clipping path calculations execute client-side in your browser using HTML5 Canvas." }
     ]
   },
   {
     id: 'image-border',
-    title: 'Image Border Generator',
-    navTitle: 'Image Border',
-    description: 'Add solid, dashed, dotted, double, or rounded borders to photos with instant color & width controls.',
+    title: "Image Border Generator — Add Custom Borders & Frames to Photos",
+    navTitle: "Image Border",
+    description: "Add solid, dashed, or double borders to your photos online with full color control. Adjust frame thickness and padding directly inside your browser.",
     icon: '🖼️',
     path: '/image-border.html',
     filename: 'image-border.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Solid, Dashed, Dotted', 'Double & Rounded', 'Custom Border Width', 'HEX/RGB Color Picker', 'PNG/JPG/WebP'],
+    features: [
+      "Solid, Dashed, Dotted & Double Border Styling Presets",
+      "Custom Border Width & Thickness Slider (1px to 100px)",
+      "Full Color Palette with HEX & Opacity Controls",
+      "Inner Padding & Outer Frame Spacing Options",
+      "Preserves Original Aspect Ratio & Pixel Sharpness",
+      "100% In-Browser Execution with Instant Export"
+    ],
     howTo: [
-      { title: "Upload Photo", desc: "Select the image you want to outline or frame." },
-      { title: "Customize Border Settings", desc: "Set border width in pixels, choose border color, select border style (solid, dashed, dotted, double), and adjust corner radius." },
-      { title: "Download Bordered Image", desc: "Choose whether the border extends outward or overlays inward, preview the design, and download your bordered image." }
+      { title: "Load Photo into the Editor", desc: "Upload any image you want to decorate with an outline border or photo frame." },
+      { title: "Configure Border Style, Width & Color", desc: "Choose your preferred border style (solid, dashed, double), pick an outline color, and adjust border thickness." },
+      { title: "Download Framed Picture", desc: "Review the bordered image on the live preview canvas and download your file in PNG or JPG format." }
     ],
     faq: [
-      { question: "What is the difference between inner and outer border placement?", answer: "An outer border expands the canvas dimensions to frame the image on the outside, while an inner border draws over the outer edges without altering original dimensions." },
-      { question: "Which border styles can I apply?", answer: "You can choose between solid lines, dashed outlines, dotted borders, and double borders, with custom thickness and color." },
-      { question: "Can I combine rounded corners with an image border?", answer: "Yes. Adjusting the border radius slider curves both the border and the photo corners together for a modern UI card appearance." },
-      { question: "What export formats are supported for bordered photos?", answer: "You can export your bordered photo in PNG, JPG, or WebP formats at full resolution." },
-      { question: "Can I add decorative borders and frames without uploading photos?", answer: "Yes. Border width offsets, dash patterns, and color strokes are rendered locally on the canvas before instant client-side download." }
+      { question: "Can I add a border without cropping into my original image?", answer: "Yes. The border expands the canvas outwards, preserving 100% of your source photo content without cutting into edges." },
+      { question: "Which border styles can I choose from?", answer: "You can choose between Solid, Dashed, Dotted, Double borders, and Rounded outline frames with customizable corner radii." },
+      { question: "Can I choose any custom color for the border?", answer: "Yes. Use the built-in color picker or enter exact HEX, RGB, or HSL color codes to match your brand identity." },
+      { question: "Can I create a white polaroid-style margin around my photo?", answer: "Yes. Set the border color to white and increase the border width or padding slider to achieve an authentic photographic print border." },
+      { question: "Does adding a border compress or degrade image quality?", answer: "No. The image is rendered onto a high-resolution canvas at native dimensions before exporting." }
     ]
   },
   {
     id: 'image-frame',
-    title: 'Image Frame Generator',
-    navTitle: 'Image Frame',
-    description: 'Transform photos into Polaroid, Shadow, Frosted Glass, Instagram, or Art Gallery framed masterpieces.',
+    title: "Image Frame Generator — Add Decorative Photo Frames Online",
+    navTitle: "Image Frame",
+    description: "Add stylish Polaroid, shadow, and minimalist gallery frames to photos online for free. Customize frame colors, padding, and styles with live preview.",
     icon: '📸',
     path: '/image-frame.html',
     filename: 'image-frame.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Polaroid & Caption', 'Soft Drop Shadow', 'Frosted Glass Frame', 'Instagram Post Style', 'White & Black Gallery'],
+    features: [
+      "Vintage Polaroid Frame with Customizable Bottom Caption Margin",
+      "Modern Gallery Frame with Drop Shadow & Passpartout Border",
+      "Frosted Glass & Minimalist Social Media Framing Styles",
+      "Adjustable Matting Thickness, Padding & Background Fill",
+      "High-Resolution JPG & PNG Image Output",
+      "Client-Side Browser Processing with Zero Server Uploads"
+    ],
     howTo: [
-      { title: "Upload Photo", desc: "Select the picture you want to place inside a decorative frame." },
-      { title: "Select Frame Style & Add Caption", desc: "Choose from Polaroid, Gallery Wood, Soft Shadow, Neon Glow, or Minimalist frames, and optionally add caption text." },
-      { title: "Download Framed Photo", desc: "Preview the framed composition and download high-resolution PNG or JPG files." }
+      { title: "Upload Your Photograph", desc: "Choose any vacation picture, portrait, or artwork to place inside a decorative frame." },
+      { title: "Select Frame Theme and Adjust Spacing", desc: "Pick from Polaroid, Modern Art Gallery, Shadow, or Minimalist frames and fine-tune margin widths." },
+      { title: "Export Framed Masterpiece", desc: "Preview the rendered framed photo and click Download to save the framed image in high resolution." }
     ],
     faq: [
-      { question: "Can I create authentic Polaroid-style prints with handwritten captions?", answer: "Yes. Select the Polaroid preset to generate the classic wide bottom border and type your personalized caption." },
-      { question: "Which framing styles are available?", answer: "Presets include Classic Gallery White, Dark Museum, Polaroid print, Floating Drop Shadow, Frosted Acrylic, and Vibrant Neon glow." },
-      { question: "Does adding a frame reduce the resolution of the original photo?", answer: "No. The frame expands the outer canvas boundaries to accommodate border margins while preserving your photo at original resolution." },
-      { question: "Can I customize caption text size and styling?", answer: "Yes. You can edit the caption string, select from multiple typography options, and preview the final framed layout before downloading." },
-      { question: "Are Polaroid, shadow, and glass photo frames rendered locally?", answer: "Yes. Frame styles, drop shadows, and captions are rendered directly on the browser canvas without sending photos to cloud rendering services." }
+      { question: "Can I make a Polaroid-style photo with an extended bottom margin?", answer: "Yes. The Polaroid preset automatically adds classic photographic borders with an extended bottom margin suitable for handwritten captions." },
+      { question: "Does the gallery frame include realistic drop shadows?", answer: "Yes. The Gallery and Shadow presets add soft Gaussian drop shadows that create a dimensional, floating wall-art look." },
+      { question: "Can I customize the color of the passpartout matting?", answer: "Yes. You can switch between traditional museum white, charcoal black, cream, or any custom color using the color picker." },
+      { question: "Can I frame photos of any aspect ratio (e.g. square, 4:3, 16:9)?", answer: "Yes. The frame generator dynamically adapts to landscape, portrait, and square image dimensions automatically." },
+      { question: "Are my private family photos uploaded to a cloud server?", answer: "No. All canvas layering and shadow effects are generated directly inside your local browser." }
     ]
   },
   {
     id: 'image-collage',
-    title: 'Image Collage Maker',
-    navTitle: 'Collage Maker',
-    description: 'Combine multiple photos into beautiful grid, masonry, vertical or horizontal layouts with custom spacing & corner rounding.',
+    title: "Image Collage Maker — Combine Multiple Photos Online Free",
+    navTitle: "Image Collage",
+    description: "Combine photos into clean grid, vertical, or horizontal collage layouts online. Adjust spacing, borders, and aspect ratios with instant local export.",
     icon: '🧩',
     path: '/image-collage.html',
     filename: 'image-collage.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['2, 3, 4, 6, 9+ Photos', 'Grid & Masonry', 'Spacing & Radius Sliders', 'Background Color', 'PNG/JPG Export'],
+    features: [
+      "Multiple Grid Layouts (2x2, 3x3, Side-by-Side, Vertical Stack)",
+      "Custom Gutter Spacing, Margins & Background Colors",
+      "Adjustable Corner Rounding for Individual Photo Tiles",
+      "Automatic Aspect Ratio Fitting & Smart Crop Centering",
+      "High-Definition PNG & JPG Collage Export",
+      "100% In-Browser Privacy Without Server File Storage"
+    ],
     howTo: [
-      { title: "Upload Multiple Photos", desc: "Select 2 to 6 images from your device to include in the collage." },
-      { title: "Choose Grid Layout & Spacing", desc: "Select a layout preset (such as 2x2 grid, side-by-side, or vertical stack) and adjust cell gap, border radius, and background color." },
-      { title: "Download Finished Collage", desc: "Preview the assembled grid and download your combined photo collage in high-resolution PNG or JPG." }
+      { title: "Upload Multiple Photos", desc: "Select 2 to 9 photos from your device to assemble into an aesthetic photo collage." },
+      { title: "Pick a Layout and Customize Spacing", desc: "Choose a grid structure, adjust the gap spacing between photos, round tile corners, and pick a backdrop color." },
+      { title: "Generate and Download Collage", desc: "Review the merged collage on the real-time canvas and download your high-resolution finished picture." }
     ],
     faq: [
-      { question: "How are images with different aspect ratios fitted into collage cells?", answer: "Images are scaled and center-cropped to fill each grid cell proportionately, ensuring a balanced, aligned collage layout." },
-      { question: "Can I adjust the gap between photos and the outer border?", answer: "Yes. The gap slider controls the spacing between photos, and you can customize the background color shown in the gaps." },
-      { question: "Can I reorder or delete photos in the collage?", answer: "Yes. You can remove individual photos or replace images in specific cells before rendering the final collage." },
-      { question: "How many photos can I include in a single collage?", answer: "The tool supports 2 to 6 photos across versatile grid templates including dual side-by-side, 3-column banners, and 4-picture 2x2 grids." },
-      { question: "Can I build photo collages and grid layouts without uploading images?", answer: "Yes. Multi-image arrangement, grid spacing, and border radius styling are composited locally in browser memory and exported directly." }
+      { question: "How many pictures can I combine into a single collage?", answer: "You can combine anywhere from 2 up to 9 photos across multiple multi-cell grid arrangements and stacked configurations." },
+      { question: "Can I adjust the gap spacing between individual pictures?", answer: "Yes. The spacing slider lets you adjust the gutter from 0px (seamless edge-to-edge) up to wide white border spacing." },
+      { question: "Does the collage maker preserve the sharpness of uploaded pictures?", answer: "Yes. It renders the collage on a high-resolution canvas scaled to match your input photos, avoiding blurry compression." },
+      { question: "Can I change the background color behind the collage gaps?", answer: "Yes. Choose from white, black, pastel tones, or use the HEX color picker for any custom background accent." },
+      { question: "Are my personal images uploaded to any server or database?", answer: "No. All photo tiling, positioning, and final collage rendering take place entirely within your browser memory." }
     ]
   },
   {
@@ -517,26 +644,33 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'svg-optimizer',
-    title: 'SVG Optimizer',
-    navTitle: 'SVG Optimizer',
-    description: 'Clean SVG vector code, strip Inkscape/Illustrator metadata, comments, and empty groups to minimize file size.',
+    title: "SVG Optimizer — Compress & Clean Vector SVG Code Online",
+    navTitle: "SVG Optimizer",
+    description: "Optimize vector SVG graphics by stripping editor metadata, comments, and empty tags. Reduce file size while preserving sharp vector rendering online.",
     icon: '⚡',
     path: '/svg-optimizer.html',
     filename: 'svg-optimizer.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Remove Metadata & Comments', 'Remove Empty Groups', 'Round Path Decimals', 'Before/After Comparison', 'Instant Download'],
+    features: [
+      "Strips Inkscape, Adobe Illustrator & Figma Metadata",
+      "Removes Unnecessary XML Comments & Doctypes",
+      "Eliminates Empty Groups, Unused Defs & Hidden Paths",
+      "Optimizes Path Coordinates with Decimal Precision Control",
+      "Live Side-by-Side Vector Code & Visual Rendering Preview",
+      "100% Client-Side Vector Cleanup with Zero Data Logging"
+    ],
     howTo: [
-      { title: "Paste SVG Code or Upload File", desc: "Upload an .svg vector file or paste raw SVG markup directly into the editor." },
-      { title: "Review Minification Savings", desc: "The optimizer automatically strips XML doctypes, editor metadata, comments, and empty groups, displaying byte reductions." },
-      { title: "Copy Minified Code or Download", desc: "Copy the clean SVG code to your clipboard for inline HTML use or download the optimized .svg file." }
+      { title: "Upload or Paste SVG Vector Code", desc: "Upload an SVG file or paste raw vector XML markup directly into the code editor input." },
+      { title: "Select Optimization Rules", desc: "Toggle metadata stripping, comment removal, and coordinate rounding options to maximize compression." },
+      { title: "Copy Clean Code or Download Optimized SVG", desc: "Review the file size reduction percentage, copy the minified XML, or download your optimized .svg file." }
     ],
     faq: [
-      { question: "How does SVG optimization reduce file size without altering graphics?", answer: "Vector editors like Illustrator and Figma export unnecessary XML headers, editor namespaces, comments, and extra precision decimals. Removing them shrinks file size without changing visual paths." },
-      { question: "Can I use the optimized SVG directly inline in HTML or React?", answer: "Yes. The cleaned markup is sanitized and formatted for direct copy-pasting into HTML files, JSX components, or CSS background-image properties." },
-      { question: "Does optimizing an SVG strip IDs and classes needed for styling?", answer: "Redundant and empty attributes are removed, but functional path data, viewBox attributes, and necessary visual coordinates are preserved." },
-      { question: "What file size reduction can I expect?", answer: "SVGs exported from graphic design software often see file size reductions of 20% to 60%, depending on the volume of embedded metadata." },
-      { question: "Can I clean SVG code and remove vector metadata without uploading files?", answer: "Yes. XML DOM parsing, decimal precision rounding, and metadata cleanup run entirely inside client-side JavaScript." }
+      { question: "Why do exported SVGs from Illustrator or Figma have large file sizes?", answer: "Design tools embed extensive proprietary metadata, editor namespaces, document histories, and redundant grouping tags that are unnecessary for web rendering." },
+      { question: "Does optimizing an SVG reduce visual vector quality?", answer: "No. By removing non-rendering metadata and pruning unused tags, visual vector fidelity remains identical while drastically reducing payload size." },
+      { question: "Can I copy the minified SVG code directly to paste into HTML or React JSX?", answer: "Yes. You can copy the clean inline SVG markup with one click or download the cleaned file as a `.svg` document." },
+      { question: "How much file size reduction can I expect?", answer: "Unoptimized SVGs from design software often see 30% to 70% file size savings after stripping editor overhead." },
+      { question: "Is my proprietary SVG design code transmitted to a server?", answer: "No. Parsing, regex sanitization, and minification execute entirely inside your browser via local DOMParser APIs." }
     ]
   },
   {
@@ -589,26 +723,33 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'compression-comparison',
-    title: 'Compression Comparison',
-    navTitle: 'Compression Comparison',
-    description: 'Interactive split-screen slider comparison of original vs compressed photo pixels with 2x/4x magnification inspection.',
+    title: "Image Compression Comparison — Compare Photo Quality Side-by-Side",
+    navTitle: "Compression Comparison",
+    description: "Compare original and compressed images side-by-side with an interactive split slider. Inspect compression artifacts with 2x and 4x zoom magnification.",
     icon: '🔍',
     path: '/compression-comparison.html',
     filename: 'compression-comparison.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Interactive Split Slider', 'Magnifier Lens', 'Bytes Saved & % Metrics', 'Visual Quality Rating', 'Instant Export'],
+    features: [
+      "Interactive Split-Screen Before & After Slider",
+      "2x and 4x Precision Zoom Loupe for Pixel Inspection",
+      "Exact File Size & Percentage Savings Comparison",
+      "Supports JPG, WebP, PNG & AVIF Image Formats",
+      "Side-by-Side Synchronized Pan and Zoom Navigation",
+      "Zero Cloud Uploads with Local Browser Image Analysis"
+    ],
     howTo: [
-      { title: "Upload Test Image", desc: "Select any high-resolution photo to test compression behavior." },
-      { title: "Adjust Quality and Encoding Format", desc: "Use the quality slider and switch between JPEG and WebP to see real-time file size reductions." },
-      { title: "Compare Split-Screen and Zoom", desc: "Drag the split-screen divider and toggle 2x/4x zoom to inspect pixel sharpness, compression artifacts, and byte savings." }
+      { title: "Upload Original and Compressed Images", desc: "Select your uncompressed source image alongside a compressed version to compare them." },
+      { title: "Drag Split Divider to Inspect Quality", desc: "Slide the interactive vertical divider across the canvas to observe fine details, textures, and edge sharpness." },
+      { title: "Use Zoom Loupe for Micro-Artifact Inspection", desc: "Toggle 2x or 4x magnification to verify that text, gradients, and skin tones remain crisp without blocky artifacts." }
     ],
     faq: [
-      { question: "How does the interactive split slider help find the optimal compression level?", answer: "The split slider shows the uncompressed original on the left and the compressed output on the right, letting you sweep across fine details to spot where artifacts start." },
-      { question: "What visual artifacts should I watch for when compressing images?", answer: "Look for blockiness in solid color areas (macroblocking), halo ringing around high-contrast edges, and banding across smooth sky or wall gradients." },
-      { question: "How does WebP compare to JPEG at identical quality settings?", answer: "WebP typically produces 25% to 35% smaller file sizes than JPEG at the same visual fidelity, while preserving better edge sharpness." },
-      { question: "Can I zoom in to inspect fine textures and text?", answer: "Yes. Activate Zoom mode to inspect high-frequency textures like grass, foliage, and text rendering at magnified scale." },
-      { question: "Does the side-by-side compression comparison run locally in browser memory?", answer: "Yes. Original and compressed canvas layers, split-screen sweeping, and pixel zoom loupes operate entirely in browser memory." }
+      { question: "How does the split-screen slider help evaluate image compression?", answer: "It overlays the original and compressed images on synchronized canvases, allowing you to slide the divider back and forth across identical pixels to spot quality loss." },
+      { question: "What should I look for when comparing compressed photos?", answer: "Watch for color banding in gradients, ringing artifacts around sharp text edges, blockiness in dark shadows, and loss of fine texture in skin or fabric." },
+      { question: "Can I zoom into specific areas to inspect compression artifacts up close?", answer: "Yes. Built-in 2x and 4x zoom magnification allows you to inspect individual pixel clusters with precision." },
+      { question: "Does the tool display exact before-and-after file size numbers?", answer: "Yes. It calculates exact byte differences, file size reductions in KB, and total percentage savings achieved." },
+      { question: "Are my uploaded benchmark images sent to an external server?", answer: "No. Both image files are loaded into browser memory and rendered locally via HTML5 Canvas without network transmission." }
     ]
   },
   {
@@ -638,27 +779,34 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'bulk-image-renamer-resizer',
-    title: 'Bulk Image Renamer & Resizer',
-    navTitle: 'Bulk Renamer & Resizer',
-    description: 'Rename, resize and optimize multiple images at once — directly in your browser.',
+    title: "Bulk Image Renamer & Resizer — Batch Resize and Rename Photos",
+    navTitle: "Bulk Renamer & Resizer",
+    description: "Batch resize, rename, and convert multiple images simultaneously in your browser. Apply sequential numbering, custom dimensions, and download as a ZIP.",
     icon: '⚡',
     path: '/bulk-image-renamer-resizer.html',
     filename: 'bulk-image-renamer-resizer.html',
     category: '🖼️ Image Tools',
     badge: 'New',
-    features: ['Bulk Pattern Renaming', 'Preset & Custom Resizing', 'Social & E-commerce Presets', 'Format Conversion & Quality', 'Local ZIP Export'],
+    features: [
+      "Simultaneous Batch Resizing by Width, Height or Percentage",
+      "Pattern Renaming with Prefixes, Suffixes & Sequential Numbers",
+      "Format Conversion Across JPG, PNG & WebP Files",
+      "Batch Quality Compression Slider for Target File Sizes",
+      "One-Click ZIP Packaging for Fast Bulk Downloads",
+      "100% Client-Side Processing Without Cloud Upload Limits"
+    ],
     tags: ['bulk', 'rename', 'resize', 'images', 'e-commerce', 'property'],
     howTo: [
-      { title: "Upload Photo Batch", desc: "Drag a folder or selection of image files into the batch processing queue." },
-      { title: "Configure Renaming and Resizing Rules", desc: "Set prefix, sequence numbering, casing rules, target dimensions, and format preferences." },
-      { title: "Download Renamed & Resized ZIP", desc: "Preview the new filenames and dimensions in the table, then download the complete organized archive." }
+      { title: "Upload Multiple Photos", desc: "Drag and drop dozens of images into the batch processing queue simultaneously." },
+      { title: "Configure Renaming and Resizing Settings", desc: "Set custom naming patterns (e.g. photo-001), specify max dimensions or scale percentage, and pick output formats." },
+      { title: "Process Queue and Download ZIP", desc: "Click Start Batch Processing and download all resized and renamed photos packaged in a convenient ZIP file." }
     ],
     faq: [
-      { question: "What renaming patterns can I create for my images?", answer: "You can combine a base name, prefix, suffix, incremental numbering sequence (with zero-padding like 001, 002), and text find-and-replace rules." },
-      { question: "How does fit mode handle images with different aspect ratios?", answer: "Fit modes include \"contain\" (scales to fit without cropping), \"cover\" (fills exact dimensions by cropping excess), and \"stretch\" (forces exact dimensions)." },
-      { question: "Can I clean up spaces and special characters for web-friendly filenames?", answer: "Yes. You can replace spaces with hyphens or underscores and strip non-alphanumeric characters to generate SEO- and web-safe filenames." },
-      { question: "Can I convert image formats while renaming and resizing?", answer: "Yes. You can simultaneously convert all files to JPG, PNG, or WebP with custom quality compression settings." },
-      { question: "Can I rename and resize image batches without sending files to a server?", answer: "Yes. Filename formatting rules, canvas resizing, and ZIP packaging operate locally in your browser memory without uploading any photos." }
+      { question: "Can I rename dozens of photos with sequential numbering like image-01, image-02?", answer: "Yes. You can configure custom prefixes, suffixes, start numbers, and digit zero-padding (e.g., photo-001, photo-002)." },
+      { question: "Can I resize all images to a maximum width while maintaining aspect ratio?", answer: "Yes. Specifying a maximum width automatically scales image height proportionally, preventing distortion." },
+      { question: "Does the batch tool convert images to modern WebP format?", answer: "Yes. You can batch convert collections of large JPGs or PNGs into lightweight WebP format to speed up website loading." },
+      { question: "How many photos can I process at one time?", answer: "You can process 50+ images in a single session depending on your device’s available RAM, all without hitting server upload limits." },
+      { question: "Are my bulk image files uploaded to a cloud server?", answer: "No. Every photo is decoded, resized, renamed, and packaged into a ZIP archive entirely within your local browser session." }
     ]
   },
   {
@@ -693,101 +841,129 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'matching-parts-video-maker',
-    title: 'Matching Parts Puzzle Video Maker',
-    navTitle: 'Matching Parts Video Maker',
-    description: 'Create satisfying matching-parts puzzle Shorts and Reels directly in your browser.',
+    title: "Matching Parts Puzzle Video Maker — Create Viral Puzzle Shorts & Reels",
+    navTitle: "Matching Parts Video",
+    description: "Create satisfying vertical matching parts puzzle videos for TikTok, Shorts, and Reels. Customize slice counts, speeds, and audio in your browser.",
     icon: '📹',
     path: '/matching-parts-video-maker.html',
     filename: 'matching-parts-video-maker.html',
     category: '📹 Video Tools',
     badge: 'New',
-    features: ['9:16 Vertical Shorts/Reels', 'Deterministic Animation', 'Grass Lawn & Custom Backgrounds', 'Web Audio Synthesizer Effects', 'Client-Side WebM/MP4 Export'],
+    features: [
+      "9:16 Vertical Video Canvas Optimized for Shorts, Reels & TikTok",
+      "Custom Slice Counts (2 to 6 Horizontal or Vertical Sliding Parts)",
+      "Adjustable Slide Animation Speeds & Reveal Timers",
+      "Custom Headline Banners, Background Colors & Visual Themes",
+      "Background Music & Audio Integration with Real-Time Audio Mixer",
+      "Client-Side Video Rendering via MediaRecorder API"
+    ],
     howTo: [
-      { title: "Upload Character Artwork & Select Layout", desc: "Upload your main puzzle character graphic, choose 9:16 Shorts canvas dimensions, and select background colors." },
-      { title: "Configure Puzzle Pieces & Timer Countdown", desc: "Position cutout puzzle pieces, designate the correct match, set the countdown timer duration, and add reveal effects." },
-      { title: "Preview Animation & Render Video", desc: "Play the interactive puzzle simulation in real-time, then click Render Video to record and export the MP4/WebM video." }
+      { title: "Upload Your Image", desc: "Select an eye-catching photo or artwork that will be sliced into sliding puzzle parts." },
+      { title: "Configure Slice Count and Slide Animations", desc: "Choose how many pieces to slice (e.g. 3 or 4 parts), set sliding speeds, and add a catchy title banner." },
+      { title: "Render and Download Video", desc: "Preview the interactive animation on the canvas and render your vertical MP4 or WebM puzzle video." }
     ],
     faq: [
-      { question: "What are 'Matching Parts' puzzle videos on YouTube Shorts and TikTok?", answer: "They are viral, high-retention short-form videos where viewers are challenged to guess which cutout piece fits into an incomplete character graphic before a countdown timer runs out." },
-      { question: "What video aspect ratio is generated by the puzzle maker?", answer: "The studio defaults to a standard 9:16 vertical resolution (1080x1920 pixels), optimized specifically for YouTube Shorts, Instagram Reels, and TikTok feeds." },
-      { question: "Can I customize the countdown duration and decoy pieces?", answer: "Yes. You can set the countdown length (such as 3 to 10 seconds), rearrange multiple decoy pieces, and configure the winning match reveal timing." },
-      { question: "Can I add background music and sound effects to the puzzle animation?", answer: "Yes. You can attach custom background music tracks and audio cues that play in sync with the countdown ticks and the final puzzle snap." },
-      { question: "How is the puzzle animation exported without server processing?", answer: "The canvas animation is recorded in real time directly inside your browser using the MediaStream Recording API, producing a downloadable video file on your device." }
+      { question: "What is a matching parts puzzle video?", answer: "It is a viral social video format where an image is divided into sliding segments moving at different speeds, challenging viewers to pause the video when all pieces align." },
+      { question: "What video dimensions are generated?", answer: "The maker outputs standard 1080x1920 (9:16 vertical) format, ready for direct upload to YouTube Shorts, Instagram Reels, and TikTok." },
+      { question: "Can I add my own background music or audio to the video?", answer: "Yes. You can upload an audio track or sound effect that plays alongside the sliding animations." },
+      { question: "Can I customize the number of sliding puzzle pieces?", answer: "Yes. You can slice your image into 2, 3, 4, 5, or 6 independent sliding segments with varying movement directions." },
+      { question: "Does video rendering require cloud server processing?", answer: "No. Video frames and audio streams are synthesized in real time directly inside your browser using the MediaRecorder API." }
     ],
     tags: ['video', 'puzzle', 'shorts', 'reels', 'matching parts', 'video generator', 'creator']
   },
   {
     id: 'lofi-song-maker',
-    title: 'Lofi Music Studio',
-    navTitle: 'Lofi Song Maker',
-    description: 'Transform audio with vintage Lofi effects or synthesize original Lofi beats & chill tracks completely in your browser.',
+    title: "Lofi Music Studio — Online Lofi Beat Maker & Ambient Synth",
+    navTitle: "Lofi Studio",
+    description: "Compose chill Lofi beats, ambient synths, and drum patterns directly in your browser. Mix vinyl crackle, rain sounds, and tape filters with zero install.",
     icon: '🎧',
     path: '/lofi-song-maker.html',
     filename: 'lofi-song-maker.html',
     category: '🎵 Audio Tools',
     badge: 'New',
-    features: ['Transform Audio with Lofi FX', 'Original Lofi Algorithmic Synthesizer', 'Vinyl, Tape & Ambient Noise FX', 'Chords, Drums & Melody Generators', 'WAV/MP3 & Lofi Video Exporter'],
+    features: [
+      "Interactive Synth Keyboard with Warm Nostalgic Lofi Tones",
+      "Drum Machine Sequencer (Lofi Kick, Snare, Rimshot, Closed Hat)",
+      "Atmospheric Ambient Soundscape Mixer (Rain, Vinyl Crackle, Tape Hiss)",
+      "Vintage Low-Pass Filter, Wow/Flutter Pitch Wobble & Reverb",
+      "Tempo (BPM) Adjustment & Pattern Sequencer",
+      "Real-Time Audio Recording & WAV File Export"
+    ],
     howTo: [
-      { title: "Select Mood, Key & Chord Progression", desc: "Choose from chillhop, rainy day, or midnight study moods, and pick musical keys and chord progressions." },
-      { title: "Layer Ambient Sounds & Vinyl FX", desc: "Blend customizable ambient layers including vinyl crackle, gentle rain, cafe chatter, and tape flutter." },
-      { title: "Generate & Export Lofi Audio Track", desc: "Play real-time synthesized beats using the Web Audio engine and export as a high-quality WAV audio file." }
+      { title: "Set Tempo and Layer Drum Beats", desc: "Choose your BPM (e.g. 75–85 BPM) and program mellow drum loops on the interactive step sequencer." },
+      { title: "Play Chords and Blend Ambient Textures", desc: "Play dreamy chords on the keyboard synth and blend in soothing rain, crackling vinyl, or tape hiss ambience." },
+      { title: "Record and Export Your Lofi Track", desc: "Hit the record button to capture your live performance and download your unique Lofi composition as a WAV file." }
     ],
     faq: [
-      { question: "How does the Lofi Song Maker generate music without samples?", answer: "It uses the browser's native Web Audio API (AudioContext) to synthesize musical chords, Rhodes piano tones, analog basslines, and drum patterns algorithmically in real time." },
-      { question: "Can I adjust individual volume levels for ambient background layers?", answer: "Yes. Independent audio mixer faders let you balance rain, vinyl static, tape hiss, and cafe ambience against the musical melody." },
-      { question: "Are the generated lofi tracks royalty-free for YouTube and streaming?", answer: "Yes. Music synthesized by this tool is dynamically generated royalty-free audio that you can use in study streams, videos, and podcasts without copyright strikes." },
-      { question: "What audio export format is generated?", answer: "You can download uncompressed 44.1kHz stereo WAV audio files directly to your device." },
-      { question: "Does the audio generator require an ongoing internet connection?", answer: "Once loaded in your browser cache, the algorithmic audio synthesis and DSP effects execute locally in your web browser." }
+      { question: "Do I need any musical instruments or external software to make Lofi beats?", answer: "No. The entire studio runs directly in your browser with built-in synth keys, drums, atmospheric sounds, and audio recording." },
+      { question: "Can I add real vinyl crackle and background rain sounds?", answer: "Yes. Independent ambient volume sliders let you mix soothing rain showers, fireplace crackle, and nostalgic vinyl surface noise." },
+      { question: "What gives Lofi music its signature vintage sound in this studio?", answer: "The studio integrates low-pass analog-style frequency filters, subtle pitch wow and flutter, and warm room reverberation." },
+      { question: "Are the tracks I produce royalty-free?", answer: "Yes. All beats and synthesized melodies you create are 100% royalty-free for your personal projects, study playlists, or videos." },
+      { question: "Can I record and download my tracks?", answer: "Yes. Click Start Recording, perform your sequence, and export the finalized master track directly to an uncompressed WAV file." }
     ],
     tags: ['lofi', 'music maker', 'lofi generator', 'chill beats', 'audio converter', 'lofi studio', 'vinyl', 'creator']
   },
   {
     id: 'lofi-maker',
-    title: 'Lofi Maker',
-    navTitle: 'Lofi Maker',
-    description: 'Turn your song into a smooth Lofi version in one click. Upload an audio file and download your Lofi MP3.',
+    title: "Lofi Maker — Transform Any Song into Chill Lofi Music Online",
+    navTitle: "Lofi Maker",
+    description: "Transform any song into a chill Lofi track with warm vintage filters and tape ambience online. Adjust tempo and vinyl crackle directly in your browser.",
     icon: '🎧',
     path: '/lofi-maker.html',
     filename: 'lofi-maker.html',
     category: '🎵 Audio Tools',
     badge: 'Popular',
-    features: ['One-Click Automatic Lofi Processing', '320 kbps LAME MP3 Export', 'Local Browser Processing', 'Simple Intuitive Controls', 'Mobile Friendly'],
+    features: [
+      "One-Click Lofi Audio Transformation Preset",
+      "Low-Pass EQ Filter to Cut Harsh Highs for Warm Tones",
+      "Adjustable Playback Tempo & Pitch Slowdown Sliders",
+      "Integrated Vinyl Noise & Ambient Rain Texture Overlay",
+      "Spacey Reverb Room Size and Wet/Dry Mix Control",
+      "Export Converted Audio Directly to WAV or MP3"
+    ],
     howTo: [
-      { title: "Upload Any Audio Track", desc: "Select an MP3, WAV, or OGG audio file from your device to transform into a lofi version." },
-      { title: "Apply Lofi DSP Effects & Filters", desc: "Adjust vintage tape pitch wobble, low-pass telephone EQ filter, slow down tempo, and mix vinyl crackle." },
-      { title: "Render & Download Lofi Audio", desc: "Preview your customized sound in real time and export the processed audio file directly to your device." }
+      { title: "Upload Audio Track", desc: "Select any MP3, WAV, or AAC audio file from your device to convert into a chill Lofi version." },
+      { title: "Fine-Tune Vintage Effects", desc: "Adjust the slowdown tempo slider, cut high frequencies with the low-pass filter, and blend vinyl crackle ambience." },
+      { title: "Listen to Preview and Download", desc: "Preview the transformed Lofi music in real time and download the finished audio file to your computer or phone." }
     ],
     faq: [
-      { question: "How does the tool transform standard music into vintage lofi audio?", answer: "It applies digital signal processing (DSP) filters: a Biquad low-pass filter cutting harsh highs, an LFO modulating subtle pitch vibrato (tape flutter), and mixed vinyl surface noise." },
-      { question: "Can I slow down the playback speed and pitch?", answer: "Yes. The tempo and pitch slider lets you slow down playback by 5% to 25% for a signature relaxed chillhop feel." },
-      { question: "Is there a file size limit for uploaded audio?", answer: "The tool processes audio files up to 50MB smoothly using Web Audio API buffer decoding directly in browser memory." },
-      { question: "Can I toggle individual effects on and off?", answer: "Yes. You can independently enable or disable vinyl crackle, cassette tape noise, room reverb, and EQ filtering." },
-      { question: "Is my uploaded song uploaded to any server?", answer: "No. All audio decoding, effects processing, and WAV rendering occur client-side on your computer." }
+      { question: "How does Lofi Maker turn normal music into Lofi audio?", answer: "It applies vintage low-pass filtering to remove harsh treble, slows down playback tempo slightly, and blends in subtle vinyl surface crackle." },
+      { question: "Can I adjust how slow and deep the audio becomes?", answer: "Yes. The speed and pitch slider lets you fine-tune playback between 0.75x and 1.0x to achieve the exact chill vibe you want." },
+      { question: "Can I turn off the background vinyl crackle if I only want the EQ effect?", answer: "Yes. The vinyl noise and ambient sliders are fully adjustable and can be turned down completely if you prefer clean audio." },
+      { question: "Which audio formats can I upload for conversion?", answer: "You can upload MP3, WAV, AAC, M4A, OGG, and WebM audio files." },
+      { question: "Is my audio uploaded to an external server?", answer: "No. All digital audio processing runs locally via the Web Audio API inside your browser, keeping your songs private." }
     ],
     tags: ['lofi', 'lofi maker', 'audio converter', 'lofi effect', 'mp3', 'chill', 'music', 'creator']
   },
   {
     id: 'slowed-and-reverb',
-    title: 'Slowed & Reverb Generator',
-    navTitle: 'Slowed & Reverb',
-    description: 'Slow down your song and add a smooth reverb effect online. Upload an audio file, create a slowed and reverb version, and download it as MP3.',
+    title: "Slowed & Reverb Generator — Create Aesthetic Slowed + Reverb Audio",
+    navTitle: "Slowed & Reverb",
+    description: "Slow down songs and add atmospheric reverb online to create viral aesthetic audio tracks. Customize speed, pitch, and room depth with instant MP3 export.",
     icon: '🎧',
     path: '/slowed-and-reverb.html',
     filename: 'slowed-and-reverb.html',
     category: '🎵 Audio Tools',
     badge: 'New',
-    features: ['Slowed Playback Speed Control', 'Acoustic Reverb Presets', '320 kbps LAME MP3 Export', 'In-Browser Processing', 'Local Browser Processing'],
+    features: [
+      "Precision Speed Reduction Slider (0.70x to 0.95x)",
+      "Coupled Pitch Shifting for Authentic Aesthetic Resonance",
+      "Convolver & Algorithmic Reverb with Room Size Controls",
+      "Wet/Dry Reverb Blend Slider for Ideal Space Balance",
+      "Real-Time Waveform Visualizer & Audio Player Preview",
+      "Direct In-Browser Audio Encoding & Free Download"
+    ],
     howTo: [
-      { title: "Upload Your Song File", desc: "Drag and drop or select an MP3, WAV, or AAC audio track to process." },
-      { title: "Configure Slowdown Speed & Reverb Space", desc: "Adjust the playback speed slider (0.75x to 0.95x) and select reverb space: Bedroom, Church, Cathedral, or Cosmic Echo." },
-      { title: "Process & Export Slowed Audio", desc: "Listen to the live processed audio preview and click Export to download your slowed-and-reverb audio file." }
+      { title: "Upload Your Song", desc: "Drop any MP3 or WAV song file into the slowed and reverb workstation." },
+      { title: "Adjust Speed and Reverb Depth", desc: "Slide the playback speed down (e.g. to 0.85x) and increase the reverb room size and wet mix sliders." },
+      { title: "Preview and Download Track", desc: "Listen to the aesthetic slowed track with the live audio player and export your finished music file." }
     ],
     faq: [
-      { question: "What is the 'Slowed and Reverb' aesthetic?", answer: "Popularized on TikTok and YouTube, slowed and reverb (also known as chopped and screwed derivative) lowers the tempo and pitch of a song while routing it through lush atmospheric reverberation." },
-      { question: "Which reverb algorithm is used by this tool?", answer: "The tool utilizes a Web Audio ConvolverNode with synthetic impulse response convolution, simulating realistic spatial acoustic reflections without robotic metallic artifacts." },
-      { question: "Does slowing down the audio lower its musical pitch?", answer: "Yes. By default, slowing playback resamples the waveform, dropping the pitch proportionately to create a deeper, dreamy vocal timbre." },
-      { question: "What audio output format is generated?", answer: "The processed audio renders into a clean 16-bit 44.1kHz stereo WAV audio file ready for video editing." },
-      { question: "Are my audio files uploaded to a remote cloud server?", answer: "No. File processing is performed within your browser using Web Audio API buffers. Files are not uploaded to Zubware servers." }
+      { question: "What is the \"slowed + reverb\" aesthetic audio style?", answer: "Popularized across TikTok and YouTube, it involves slowing a track by 10% to 20% while applying atmospheric reverb to evoke dreamy nostalgia." },
+      { question: "Can I control the room size and echo depth of the reverb?", answer: "Yes. You can adjust the room impulse size, decay time, and wet/dry mix slider from subtle room acoustic to massive concert hall ambience." },
+      { question: "Does slowing down the song also lower its musical pitch?", answer: "Yes. By default it lowers pitch proportionally with tempo (tape-style slowdown), creating the signature deep, warm vocal tone of the genre." },
+      { question: "Can I listen to changes in real time before downloading?", answer: "Yes. The built-in audio player updates instantaneously as you move sliders, so you can test settings without waiting." },
+      { question: "Are my audio files uploaded or stored on any server?", answer: "No. All DSP convolution, pitch shifting, and export run directly in client-side Web Audio API memory." }
     ],
     tags: ['slowed', 'reverb', 'slowed and reverb', 'mp3', 'audio effect', 'speed changer', 'music', 'creator']
   },
@@ -921,26 +1097,33 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'rotate-pdf',
-    title: 'Rotate PDF',
-    navTitle: 'Rotate PDF',
-    description: 'Rotate PDF pages by 90°, 180°, or 270° clockwise. Apply rotation to all pages or specific selected pages with live visual preview.',
+    title: "Rotate PDF Online — Rotate and Save PDF Pages Permanently Free",
+    navTitle: "Rotate PDF",
+    description: "Rotate PDF pages 90, 180, or 270 degrees clockwise online with instant visual previews. Rotate all pages or selected pages and download updated PDFs free.",
     icon: '🔄',
     path: '/rotate-pdf.html',
     filename: 'rotate-pdf.html',
     category: 'PDF Tools',
     badge: 'New',
-    features: ['90°, 180°, 270° Rotation', 'All or Selected Pages', 'Live Visual Thumbnails', 'Fast Local Processing', 'Local Browser Processing'],
+    features: [
+      "Rotate Clockwise by 90°, 180°, or 270° Degrees",
+      "Rotate All Pages or Specific Individual Pages Selectively",
+      "Visual Interactive Page Thumbnails with Real-Time Rotation",
+      "Preserves Original Vector Text, Bookmarks & Annotations",
+      "High-Speed Local Assembly via pdf-lib in Browser Memory",
+      "100% Private Client-Side Document Processing"
+    ],
     howTo: [
-      { title: 'Load PDF File', desc: 'Upload the document to display thumbnail previews of each page.' },
-      { title: 'Choose Rotation Angle and Scope', desc: 'Select 90°, 180°, or 270° clockwise, and choose whether to apply rotation to all pages or selected pages.' },
-      { title: 'Save Rotated PDF', desc: 'Click Rotate & Download to save the permanently re-oriented PDF document.' }
+      { title: "Upload PDF Document", desc: "Select or drag your PDF file into the rotation tool to load page thumbnails." },
+      { title: "Select Pages and Rotation Angle", desc: "Click individual page thumbnails to rotate specific pages, or use the global 90°/180° buttons to rotate the entire document." },
+      { title: "Save and Download Rotated PDF", desc: "Click Save and Download to compile your permanently rotated PDF document." }
     ],
     faq: [
-      { question: 'Can I rotate individual pages instead of the whole document?', answer: 'Yes. Switch the target scope to Selected Pages and check only the specific pages you wish to rotate.' },
-      { question: 'Is the rotation permanent when the PDF is downloaded?', answer: 'Yes. The tool updates the rotation metadata tag within the PDF structure so that the new orientation is permanently respected in all PDF viewers, printers, and browsers.' },
-      { question: 'Which rotation angles are supported?', answer: 'You can rotate pages by 90 degrees clockwise, 180 degrees (upside down), or 270 degrees clockwise (90 degrees counterclockwise).' },
-      { question: 'Does rotating a PDF degrade the text or image resolution?', answer: 'No. Rotating modifies the viewport orientation dictionary without re-encoding page streams, meaning zero loss of fidelity or clarity.' },
-      { question: 'Can I reset the rotation if I rotate a page too many times?', answer: 'Yes. Each click advances by your chosen rotation angle (90°, 180°, or 270°). Rotating four times (360°) returns pages to their original orientation.' }
+      { question: "Can I rotate only a single upside-down page without changing the rest of the PDF?", answer: "Yes. You can click on any individual page thumbnail to rotate just that single page by 90°, 180°, or 270° without affecting other pages." },
+      { question: "Is the rotation permanent when I open the PDF on another device?", answer: "Yes. The tool modifies the internal PDF page dictionary `/Rotate` attribute, so the pages remain permanently oriented correctly in Adobe Acrobat, Chrome, and print dialogs." },
+      { question: "Does rotating a PDF degrade the text clarity or image resolution?", answer: "No. The rotation adjusts coordinate transformation matrices without recompressing or rasterizing underlying text or images." },
+      { question: "Is there a page limit for rotating PDFs in the browser?", answer: "Documents with dozens or hundreds of pages process smoothly since thumbnail rendering and byte manipulation occur locally in fast WebAssembly/JavaScript." },
+      { question: "Are my confidential PDF documents uploaded to a cloud server?", answer: "No. All PDF page parsing and rewriting happen entirely inside your local browser via pdf-lib." }
     ]
   },
   {
@@ -993,50 +1176,64 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'reorder-pdf-pages',
-    title: 'Reorder PDF Pages',
-    navTitle: 'Reorder Pages',
-    description: 'Rearrange and change page sequence in your PDF document using drag and drop or simple arrow controls.',
+    title: "Reorder PDF Pages — Rearrange, Sort and Organize PDF Pages Online",
+    navTitle: "Reorder Pages",
+    description: "Rearrange, sort, or delete PDF pages using an intuitive visual drag-and-drop thumbnail grid. Save reorganized PDF documents quickly with zero quality loss.",
     icon: '🔀',
     path: '/reorder-pdf-pages.html',
     filename: 'reorder-pdf-pages.html',
     category: 'PDF Tools',
     badge: 'New',
-    features: ['Drag & Drop Reordering', 'Visual Page Grid', 'Instant Local Re-assembly', 'Preserves Quality', 'No Signup Needed'],
+    features: [
+      "Visual Drag-and-Drop Page Grid Reordering",
+      "One-Click Move Controls (Move Forward, Backward, First, Last)",
+      "Selective Page Deletion to Remove Unwanted Sheets",
+      "Reverse Entire Document Page Order in One Click",
+      "Retains All Original Embedded Fonts, Links & Vector Objects",
+      "Completely Private Browser-Based Processing"
+    ],
     howTo: [
-      { title: 'Upload PDF Document', desc: 'Select your file to see thumbnail cards of every page in original sequence.' },
-      { title: 'Rearrange Page Sequence', desc: 'Use the Left and Right arrows beneath thumbnails to reposition pages in your desired sequence.' },
-      { title: 'Export Reordered PDF', desc: 'Click Export PDF to download the document with your new page organization.' }
+      { title: "Upload Multi-Page PDF", desc: "Drag your PDF into the organizer to generate interactive page preview cards." },
+      { title: "Drag or Move Pages to New Sequence", desc: "Drag page thumbnails to your desired order, use arrow shortcuts, or delete blank/unnecessary pages." },
+      { title: "Download Reorganized PDF", desc: "Click Download to compile and save your freshly ordered PDF document with full original formatting." }
     ],
     faq: [
-      { question: 'How do I rearrange pages using this tool?', answer: 'Each page card features left and right arrow buttons. Clicking an arrow shifts that page forward or backward in the sequence.' },
-      { question: 'Can I see visual previews of the pages as I rearrange them?', answer: 'Yes. High-resolution canvas thumbnails display the actual visual contents and original page numbers of each page to make organizing straightforward.' },
-      { question: 'Does reordering alter the text content or formatting of the pages?', answer: 'No. The internal contents of each page remain completely unchanged; only the order in which they appear in the PDF catalog is rearranged.' },
-      { question: 'Is there a page count limit for reordering?', answer: 'You can reorder documents of varying lengths. For very large documents (hundreds of pages), thumbnail rendering speed will depend on your device processing power.' },
-      { question: 'Can I move a page directly toward the beginning or end of a document?', answer: 'Use the arrow buttons to step a page forward or backward through the sequence. For documents with many pages, you can click repeatedly until the page reaches your target position.' }
+      { question: "How do I rearrange pages in my PDF document?", answer: "Simply drag and drop page thumbnails to their new positions in the grid, or use the quick arrow buttons to shift pages forward or backward." },
+      { question: "Can I delete unwanted or blank pages while reordering?", answer: "Yes. Each thumbnail card features a trash icon that removes that specific page from the final compiled document." },
+      { question: "Can I reverse the entire page order of a scanned document?", answer: "Yes. Click the \"Reverse Order\" button to invert the page sequence instantly from last to first." },
+      { question: "Does reordering change the formatting, hyperlinks, or text of the pages?", answer: "No. The tool copies full underlying PDF page object trees without touching text streams, preserving vector fidelity." },
+      { question: "Are my legal contracts or tax files uploaded to a remote server?", answer: "No. Document page trees are restructured entirely within your local browser session using pdf-lib." }
     ]
   },
   {
     id: 'pdf-watermark',
-    title: 'Add Watermark',
-    navTitle: 'Add Watermark',
-    description: 'Add custom text or image logo watermarks to your PDF pages with control over opacity, rotation, font size, position, and color.',
+    title: "Add Watermark to PDF — Stamp Text or Logo Watermarks on PDF Files",
+    navTitle: "Add Watermark",
+    description: "Add custom text or image logo watermarks to PDF documents online. Adjust opacity, rotation angle, position, and color with complete local privacy.",
     icon: '💧',
     path: '/pdf-watermark.html',
     filename: 'pdf-watermark.html',
     category: 'PDF Tools',
     badge: 'New',
-    features: ['Text & Image Logo Support', 'Custom Opacity & Angle', 'Flexible Positions', 'Live Color Picker', 'Batch Applied'],
+    features: [
+      "Text Watermark Mode with Custom Strings (e.g. DRAFT, CONFIDENTIAL)",
+      "Image Logo Watermark Mode Supporting PNG & JPG Graphics",
+      "Precision Opacity Slider from 10% Subtle to 100% Solid",
+      "Diagonal Angle Rotation (e.g. 45° across page)",
+      "Positioning Controls (Center, Corners, Top/Bottom Headers)",
+      "100% Client-Side Processing for Sensitive Documents"
+    ],
     howTo: [
-      { title: 'Load PDF and Choose Type', desc: 'Select your PDF file and choose between Text watermark or Image stamp watermark.' },
-      { title: 'Customize Appearance', desc: 'Configure watermark text, font size, opacity, rotation angle, text color, or upload a custom logo image.' },
-      { title: 'Position and Apply', desc: 'Choose placement (Center, Top-Left, Top-Right, Bottom-Left, Bottom-Right) and download your watermarked PDF.' }
+      { title: "Upload PDF Document", desc: "Select the PDF file you want to protect or brand with a watermark stamp." },
+      { title: "Configure Text or Upload Image Logo", desc: "Type your custom watermark text or upload a transparent PNG logo, then adjust rotation angle, opacity, and color." },
+      { title: "Apply Watermark and Download", desc: "Review the preview and click Download to save the watermarked PDF file." }
     ],
     faq: [
-      { question: 'Can I use both text and image stamps as watermarks?', answer: 'Yes. You can enter custom text (such as CONFIDENTIAL or DRAFT) or upload a logo/stamp image file (PNG, JPG) to overlay on your document.' },
-      { question: 'Can I adjust the transparency and angle of the watermark?', answer: 'Yes. For text watermarks you can adjust opacity (0.1 to 1.0) and rotation angle (e.g., 45° diagonal), as well as font size and color.' },
-      { question: 'Where can the watermark be positioned?', answer: 'You can position the watermark in 5 primary locations: Center, Top-Left, Top-Right, Bottom-Left, or Bottom-Right of each page.' },
-      { question: 'Does the watermark get applied to all pages?', answer: 'Yes, the watermark is rendered across every page in the uploaded PDF document.' },
-      { question: 'Can someone easily remove the watermark?', answer: 'The watermark is embedded directly into the PDF content stream. While sophisticated PDF editing tools can alter non-flattened elements, standard viewers and printers will display it permanently.' }
+      { question: "Can I add a semi-transparent \"CONFIDENTIAL\" or \"DRAFT\" stamp across all pages?", answer: "Yes. Enter your custom text, set the angle to 45 degrees, and adjust the opacity slider to 20–30% for a professional translucent stamp." },
+      { question: "Can I stamp a company logo image instead of text?", answer: "Yes. Switch to Image mode and upload your PNG or JPG logo to overlay it onto every page at your chosen position and opacity." },
+      { question: "Can I choose where the watermark appears on the page?", answer: "Yes. You can position the watermark in the exact center of the page, across the background diagonally, or in header/footer corners." },
+      { question: "Does watermarking affect existing text and signatures in the PDF?", answer: "No. Watermarks are rendered as a clean overlay layer, preserving the clarity and structure of all underlying document content." },
+      { question: "Are my confidential documents uploaded to a cloud server to watermark?", answer: "No. The overlay rendering executes 100% within your browser memory using client-side PDF libraries." }
     ]
   },
   {
@@ -1089,98 +1286,299 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'pdf-metadata',
-    title: 'PDF Metadata Viewer',
-    navTitle: 'PDF Metadata',
-    description: 'Inspect and edit PDF document properties including Title, Author, Subject, Keywords, Creator, and Producer, or clear metadata for privacy.',
+    title: "PDF Metadata Viewer & Editor — View, Edit or Strip PDF Properties",
+    navTitle: "PDF Metadata",
+    description: "Inspect and edit PDF document metadata including title, author, and keywords online for free. Strip all metadata tags for privacy before sharing files.",
     icon: '📋',
     path: '/pdf-metadata.html',
     filename: 'pdf-metadata.html',
     category: 'PDF Tools',
     badge: 'New',
-    features: ['Inspect Full Metadata', 'Edit Title & Author', 'Strip All Metadata', 'Page Size & Version Info', 'Client-Side Processing'],
+    features: [
+      "Inspect Title, Author, Subject, Keywords, Creator & Producer",
+      "Edit Core Document Properties & Custom Metadata Fields",
+      "One-Click \"Strip All Metadata\" Anonymization Tool",
+      "View PDF Version, Page Dimensions & Creation Timestamps",
+      "Preserves Full Page Content, Form Fields & Text Layers",
+      "Zero Cloud Uploads for Total Anonymity & Privacy"
+    ],
     howTo: [
-      { title: 'Upload PDF Document', desc: 'Select your file to inspect existing embedded metadata fields and page dimensions.' },
-      { title: 'Edit or Clear Metadata', desc: 'Modify Title, Author, Subject, Keywords, Creator, and Producer, or click Clear All Metadata for anonymity.' },
-      { title: 'Save Updated PDF', desc: 'Click Save Metadata to download the updated PDF file with your customized metadata tags.' }
+      { title: "Upload PDF File", desc: "Drop your PDF document into the metadata inspector to read its embedded properties." },
+      { title: "View, Modify or Clear Metadata Fields", desc: "Edit document Title, Author, or Keywords, or click Strip All to sanitize personal information." },
+      { title: "Save and Download Cleaned PDF", desc: "Click Save PDF to download your updated or fully anonymized document." }
     ],
     faq: [
-      { question: 'What metadata properties can I view and edit?', answer: 'You can inspect and modify Document Title, Author, Subject, Keywords, Creator application, Producer, Creation Date, Modification Date, and Page Dimensions.' },
-      { question: 'Why should I clear metadata from a PDF before sharing?', answer: 'PDF files often inadvertently contain personal identifiers such as author names, local file paths, software licenses, and creation timestamps. Clearing metadata helps protect your privacy when submitting resumes, tenders, or confidential publications.' },
-      { question: 'Does changing metadata alter the text or appearance of pages?', answer: 'No. Metadata changes only alter internal document header properties without modifying visible page contents or layouts.' },
-      { question: 'Can I use this tool to verify document dimensions?', answer: 'Yes. The tool automatically displays page dimensions in millimeters and PostScript points (e.g., standard A4 210 x 297 mm or Letter size).' },
-      { question: 'Can I remove metadata to pass anonymous review or job application filters?', answer: 'Yes. Clicking Clear All Metadata strips author names, institution identifiers, creation timestamps, and software signatures, creating a sanitized PDF document.' }
+      { question: "What hidden metadata is stored inside PDF files?", answer: "PDFs often contain your full name, software operating system, computer username, software producer (e.g. Word, InDesign), and exact creation timestamps." },
+      { question: "Why should I strip metadata before submitting resumes or research papers?", answer: "Clearing metadata ensures anonymous peer review compliance, prevents employers from seeing past edit histories, and safeguards personal privacy." },
+      { question: "Can I update the Title property so PDF viewers display the correct document name?", answer: "Yes. Updating the Title field ensures web browsers and PDF readers display a clean title in browser tabs rather than random file paths." },
+      { question: "Does modifying metadata alter the visual layout or printable text of the PDF?", answer: "No. Metadata editing updates only the document information dictionary and XMP metadata stream without altering any visible pages." },
+      { question: "Are my sensitive files uploaded to a remote server during inspection?", answer: "No. The metadata dictionary is read and rewritten entirely in client-side memory using pdf-lib." }
     ]
   },
   {
     id: 'qr-generator',
-    title: 'QR Code Generator',
-    navTitle: 'QR Generator',
-    description: 'Generate custom QR codes for URLs, WiFi networks, vCards, UPI payments, emails, and events. High-resolution vector PNG, SVG, and A4 PDF QR code generator with logo embed and custom styles.',
+    title: 'Create a QR Code From a URL or Text',
+    navTitle: 'QR Code Generator',
+    description: 'Create free custom QR codes from URLs, text, WiFi, and vCards online. Fast, private in-browser generation with PNG, vector SVG, and PDF downloads. Zero uploads.',
     icon: '📱',
     path: '/qr-generator.html',
     filename: 'qr-generator.html',
     category: 'Generators',
-    badge: 'Pro',
-    features: ['9 Data Formats (URL, WiFi, vCard, UPI, etc.)', 'Logo Upload & Center Embedding', 'Custom Dots & Corner Eye Styles', 'Linear & Radial Gradient Fills', 'PNG, Scalable SVG & A4 PDF Print'],
+    badge: 'Free',
+    tags: [
+      'QR Code Generator',
+      'Free QR Code Generator',
+      'QR Code Generator Online',
+      'Create QR Code Online',
+      'QR Code Maker',
+      'QR Generator',
+      'Create QR Code from URL',
+      'Create QR Code from Text',
+      'QR Code Kaise Banaye',
+      'Website Link ka QR Code Kaise Banaye',
+      'URL ka QR Code Kaise Banaye',
+      'Free QR Code Generator Online',
+      'QR Generator No Watermark',
+      'Vector SVG QR Code',
+      'Client Side QR Generator'
+    ],
+    features: [
+      'URL, Plain Text, Wi-Fi & vCard Contact Generation',
+      'High-Resolution PNG, Scalable Vector SVG & A4 PDF Exports',
+      'Center Brand Logo Upload with Level-H Error Correction',
+      'Custom Dot Styles, Corner Eye Patterns & Gradient Fills',
+      '100% Local In-Browser Processing (No Server Uploads & No Watermark)'
+    ],
     howTo: [
-      { title: "Select Content Type & Input Data", desc: "Choose from 9 data formats including Website URL, WiFi Network, vCard Contact, UPI Payment, Email, Phone, SMS, Geo Location, or Calendar Event." },
-      { title: "Customize Visual Style, Logo & Frame", desc: "Select color themes or gradients, pick custom dot and corner shapes, upload a center brand logo, and add an optional 'SCAN ME' banner frame." },
-      { title: "Export in PNG, Vector SVG, or PDF", desc: "Inspect the instant live preview and download as high-resolution PNG, infinite-scale SVG vector, or ready-to-print A4 PDF document." }
+      { title: "Enter or Select Content", desc: "Choose your content type (Website URL, Plain Text, Wi-Fi Network, or vCard Contact) and enter your details into the input field." },
+      { title: "Customize Design & Logo (Optional)", desc: "Select custom colors, gradients, dot patterns, eye styles, or upload your center brand logo with automatic high error correction." },
+      { title: "Preview & Scan Test", desc: "Review the instant real-time preview and test-scan the matrix with your smartphone camera to ensure quick readability." },
+      { title: "Download PNG, SVG or PDF", desc: "Export your clean, unwatermarked QR code as a high-resolution PNG image, scalable vector SVG for printing, or printable A4 PDF." }
     ],
     faq: [
-      { question: "What QR error correction levels are supported and why do they matter?", answer: "The generator supports levels L (7%), M (15%), Q (25%), and H (30%). Higher error correction (Q or H) allows the QR code to remain scannable even if damaged, smudged, or partially covered by a logo." },
-      { question: "How does the WiFi QR code connection work?", answer: "Selecting WiFi generates a standardized WIFI: protocol string (SSID, encryption type, password) that smartphones scan to connect to your wireless network automatically without typing passwords." },
-      { question: "Do QR codes generated here ever expire?", answer: "No. These are static direct QR codes where the data is embedded directly into the matrix. They have no expiration date, no scan limits, and no redirect intermediaries." },
-      { question: "Can I download vector SVG files for billboard and packaging printing?", answer: "Yes. SVG vector download guarantees razor-sharp edges at any physical print size from business cards to giant banners." },
-      { question: "Is any tracking data recorded when users scan my QR code?", answer: "No. Because these are direct static QR codes without intermediary redirect servers, scans are completely private and untracked." }
+      {
+        question: "What is a QR code generator?",
+        answer: "A QR code generator is a tool that converts text strings, website URLs, Wi-Fi credentials, contact cards (vCards), or payment details into a two-dimensional matrix barcode that can be scanned by any smartphone camera."
+      },
+      {
+        question: "How do I create a QR code from a URL?",
+        answer: "Select the URL content tab, paste or type your full website address (including https://), and the QR code will instantly generate in real time. You can customize colors, dot styles, or embed a brand logo before downloading."
+      },
+      {
+        question: "How do I create a QR code from plain text?",
+        answer: "In the URL / Text input field, enter any plain text message, note, code, or instruction. The generator encodes your text directly into the matrix, which will display on the user's screen when scanned."
+      },
+      {
+        question: "Is this QR code generator free and unwatermarked?",
+        answer: "Yes, 100% free with no watermarks, no hidden fees, and no scan limits. The generated QR codes belong entirely to you for personal and commercial use."
+      },
+      {
+        question: "Can I create a QR code on my mobile phone?",
+        answer: "Yes. Zubware QR Code Generator is fully responsive and runs on any modern mobile browser including Chrome on Android and Safari on iOS without downloading any mobile app."
+      },
+      {
+        question: "Do I need to sign up or create an account to generate QR codes?",
+        answer: "No account registration, email address, or login is required. You can immediately create, test, and download your QR codes upon opening the page."
+      },
+      {
+        question: "Is my QR code data uploaded to an external server?",
+        answer: "No. All QR encoding and canvas rendering take place entirely inside your device's browser memory. Your links, Wi-Fi passwords, and contact cards are never sent to or stored on any remote server."
+      },
+      {
+        question: "What formats can I download the QR code in?",
+        answer: "You can download your QR code as a high-resolution PNG image, a scalable vector SVG file for infinite-resolution printing, or a print-ready A4 PDF document. You can also copy the image directly to your clipboard."
+      }
     ]
   },
   {
     id: 'resume-builder',
-    title: 'Resume Builder',
+    title: 'Resume Builder — Free Professional CV Maker Online',
     navTitle: 'Resume Builder',
-    description: 'Create beautiful ATS-friendly resumes completely in your browser. Live preview, customizable sections, instant PDF export.',
+    description: 'Free online resume builder to create professional, ATS-friendly resumes in your browser. Live preview, customizable sections, 20 styles, and instant PDF download without sign-up.',
     icon: '📄',
     path: '/resume-builder.html',
     filename: 'resume-builder.html',
     category: '💼 Career Tools',
     badge: 'Core Tool',
-    features: ['ATS Friendly', 'Live Preview', 'PDF Export', 'Custom Sections', 'Client-Side Processing'],
+    tags: [
+      'resume builder',
+      'free resume builder',
+      'resume builder online',
+      'free resume maker',
+      'create resume online',
+      'build resume online',
+      'CV builder',
+      'free CV builder',
+      'resume builder without signup',
+      'resume builder PDF',
+      'download resume as PDF',
+      'ATS friendly resume builder',
+      'resume builder for freshers',
+      'resume kaise banaye',
+      'resume kaise banaye online',
+      'resume kaise banaye PDF',
+      'fresher resume kaise banaye',
+      'job ke liye resume kaise banaye',
+      'client side resume builder',
+      'no signup resume maker'
+    ],
+    features: [
+      '100% Free & No Sign-Up Required',
+      'ATS-Friendly Layouts & Standards',
+      'Instant Download as PDF, HTML & JSON',
+      '20 Design Templates & Layout Presets',
+      'Custom Reorderable Sections & Colors',
+      'Auto-Saved Locally in Browser Storage',
+      'Multi-Language Support (8 Languages)',
+      'Built-in ATS Checklist & Action Verbs'
+    ],
     howTo: [
-      { title: "Fill Contact & Experience Sections", desc: "Input your personal information, work history, education, skills, and certifications into structured form fields." },
-      { title: "Select Professional Template & Theme", desc: "Choose from modern, executive, or technical layouts and customize accent colors, typography, and section order." },
-      { title: "Preview & Download PDF / JSON", desc: "Inspect the real-time A4/Letter resume preview and download a print-ready PDF or save a backup JSON file." }
+      {
+        title: "Fill Contact Information & Personal Details",
+        desc: "Enter your full name, targeted job title, email, phone number, location, and optional links for LinkedIn, GitHub, or portfolio website. Add an optional professional headshot."
+      },
+      {
+        title: "Add Experience, Education & Core Skills",
+        desc: "Add your work history with quantifiable bullet points, education credentials, technical and soft skills, and optional sections like Projects, Certifications, or Awards."
+      },
+      {
+        title: "Pick Template, Customize Styling & Review ATS Checklist",
+        desc: "Choose from 20 templates (Modern, Classic, ATS Clean, Executive), adjust primary colors, font family, margins, and paper format (A4 or Letter). Check the ATS completeness score."
+      },
+      {
+        title: "Download Print-Ready PDF or Export JSON Backup",
+        desc: "Click 'Download PDF' for an immediate print-ready document formatted for job applications. You can also export a JSON backup to edit or update your resume anytime."
+      }
     ],
     faq: [
-      { question: "Is the generated resume formatted to be ATS-friendly?", answer: "Yes. The templates utilize clean single-column or standard two-column structures with selectable text, standard heading hierarchies, and no complex graphical tables that could confuse ATS parsers." },
-      { question: "Can I download my resume as a PDF file?", answer: "Yes. The builder generates a vector PDF document preserving crisp font rendering and standard page margins for job applications." },
-      { question: "Can I save my resume data to continue editing later?", answer: "Yes. Your progress is saved automatically in browser localStorage, and you can export a full JSON backup to reload anytime on any device." },
-      { question: "Can I customize the order of sections (e.g. putting Skills before Experience)?", answer: "Yes. The section manager lets you reorder, rename, or toggle visibility for sections like Projects, Certifications, and Publications." },
-      { question: "Is my personal employment history stored on external servers?", answer: "No. All resume data is stored exclusively in your browser's local storage. Zubware never uploads, stores, or sells your resume data." }
+      {
+        question: "Is this resume builder completely free to use without sign-up or watermark?",
+        answer: "Yes, Zubware Resume Builder is 100% free with no account creation, no email registration, no subscription paywalls, and no watermarks on downloaded PDFs. You can create, edit, and download your resume immediately."
+      },
+      {
+        question: "Are the generated resumes ATS-friendly?",
+        answer: "Yes. The builder uses standardized single-column and clean two-column layouts, standard semantic typography, universal section headers (Experience, Education, Skills), and clean text hierarchy. It avoids complex tables, icons in critical text paths, or multi-layered graphics that confuse Applicant Tracking Systems (ATS)."
+      },
+      {
+        question: "Can I download my resume as a PDF file?",
+        answer: "Yes. Clicking 'Download PDF' compiles your resume into a clean vector PDF formatted for either A4 or US Letter paper size. You can also export your resume as an HTML file or a JSON backup."
+      },
+      {
+        question: "Can freshers with no experience use this resume maker?",
+        answer: "Yes. Freshers and college students can load the pre-filled sample data or start from scratch. Using the section manager, you can reorder sections so Education, Academic Projects, Skills, and Internships appear prominently before Work Experience."
+      },
+      {
+        question: "Online resume kaise banaye? (Mobile aur PC par)",
+        answer: "Zubware par resume banana behad aasan hai: (1) Apne mobile ya computer browser mein tool kholein, (2) Personal details, Education, Skills aur Projects enter karein, (3) 'Templates' tab se manpasand design chunein, aur (4) 'Download PDF' par tap karke print-ready resume turant save karein. Kisi app download ya signup ki zaroorat nahi hai."
+      },
+      {
+        question: "Can I save my resume and edit it later?",
+        answer: "Yes. Your resume data is automatically auto-saved in your browser's local storage (localStorage). When you return on the same browser, your resume reloads automatically. For multi-device use or permanent backup, use 'Export JSON' and 'Import JSON' at any time."
+      },
+      {
+        question: "Can I customize the order of sections or add custom headings?",
+        answer: "Yes. Under the 'Order' and 'More Sections' tabs, you can drag or click to reorder sections, enable or disable sections (such as Certifications, Publications, Languages, and Hobbies), and add custom sections with your own headings and bullet points."
+      },
+      {
+        question: "Is my personal data and employment history private?",
+        answer: "Yes, completely. All resume processing and storage happen 100% on your device inside your web browser. Zubware never uploads, stores, analyzes, or shares your contact information or work history on external servers."
+      }
     ]
   },
   {
     id: 'ats-resume-checker',
-    title: 'ATS Resume Checker',
+    title: 'ATS Resume Checker — Check Your Resume ATS Score Online',
     navTitle: 'ATS Checker',
-    description: 'Scan resume text locally to calculate ATS compatibility score, missing target keywords, contact details, and formatting warnings.',
+    description: 'Free online ATS resume checker. Scan your resume against job postings to calculate your ATS match score, detect missing keywords, and verify formatting in your browser.',
     icon: '🎯',
     path: '/ats-resume-checker.html',
     filename: 'ats-resume-checker.html',
     category: '💼 Career Tools',
-    badge: 'New',
-    features: ['ATS Score (0-100)', 'Missing Keyword Scan', 'Contact Info Check', 'Readability Score', 'Local Browser Scanner'],
+    badge: 'Core Tool',
+    tags: [
+      'ats resume checker',
+      'ats checker',
+      'free ats resume checker',
+      'ats resume checker online',
+      'resume ats score',
+      'ats score checker',
+      'check resume ats score',
+      'ats friendly resume checker',
+      'resume checker online',
+      'resume compatibility checker',
+      'resume scanner',
+      'resume ats test',
+      'check resume for ats',
+      'resume keywords for ats',
+      'ats resume format',
+      'ats friendly resume',
+      'resume ats score kaise check kare',
+      'resume ats friendly hai ya nahi',
+      'ats resume checker kaise use kare',
+      'resume ats score kaise badhaye',
+      'job ke liye ats resume kaise banaye'
+    ],
+    features: [
+      '100% Free & No Sign-Up Required',
+      'Overall ATS Compatibility Score (0-100%)',
+      'Technical & Soft Skills Keyword Breakdown',
+      'Missing Job Keyword Detection',
+      'Experience & Role Title Alignment',
+      'Contact Info & Format Risk Flags',
+      'Instant PDF Match Report Export',
+      '100% Private In-Browser Scanning'
+    ],
     howTo: [
-      { title: "Paste Resume Text or Upload File", desc: "Paste your resume content or upload a text/PDF document into the checker." },
-      { title: "Paste Target Job Description", desc: "Input the job listing to scan for keyword matches, missing skills, and required qualifications." },
-      { title: "Review ATS Compatibility Score & Fixes", desc: "Inspect your overall score (0-100), detected formatting warnings, keyword match percentage, and actionable recommendations." }
+      {
+        title: "Upload Resume or Paste Content",
+        desc: "Upload your resume as a PDF, TXT, or Markdown document, or paste the text directly into the resume input pane. You can also import an active draft from the Zubware Resume Builder."
+      },
+      {
+        title: "Enter Target Job Title & Description",
+        desc: "Paste the full job listing, required qualifications, and key responsibilities for the target role you want to apply for."
+      },
+      {
+        title: "Run the ATS Match Scan",
+        desc: "Click 'Scan ATS Match Compatibility' to analyze keyword frequency, technical skills, soft skills, title alignment, and contact information completeness."
+      },
+      {
+        title: "Review Missing Keywords & Export Report",
+        desc: "Inspect your overall ATS match score, review matched vs missing keywords, implement tailoring recommendations, and download a PDF match report or copy the summary."
+      }
     ],
     faq: [
-      { question: "How does the ATS score calculation work?", answer: "The scoring engine evaluates standard section headers, contact completeness, bullet point metrics, and keyword frequency alignment against the provided job description." },
-      { question: "Does a high score guarantee an interview or job offer?", answer: "No automated tool can guarantee hiring outcomes. The score provides an algorithmic estimate of scannability and keyword relevance to help you optimize your application before applying." },
-      { question: "What formatting issues trigger ATS warnings?", answer: "Warnings are flagged for missing standard headers (e.g. Experience, Education), unquantified bullet points, tables, low keyword density, and missing contact information." },
-      { question: "Can I test multiple versions of my resume for different job postings?", answer: "Yes. You can paste different job descriptions repeatedly to tailor your resume's keyword balance for specific roles." },
-      { question: "Are my resume and target job descriptions kept private?", answer: "Yes. All text parsing, keyword extraction, and scoring algorithms execute locally in your web browser." }
+      {
+        question: "What is an ATS resume checker?",
+        answer: "An ATS (Applicant Tracking System) resume checker is a diagnostic tool that scans your resume against a specific job posting. It evaluates keyword overlap, technical skills, core competencies, contact details, and text formatting to estimate how well automated recruiting software can parse and rank your application."
+      },
+      {
+        question: "What does the ATS resume score mean?",
+        answer: "The ATS match score (0-100%) represents the mathematical alignment between your resume and the target job description. It is calculated from four dimensions: Technical Skills Match (45%), Title & Experience Alignment (25%), Soft Skills & Competencies (15%), and Formatting & Contact Safety (15%). A score of 80%+ indicates strong keyword alignment."
+      },
+      {
+        question: "How do I check if my resume is ATS friendly?",
+        answer: "To test your resume: (1) Upload your PDF or paste your resume text into the checker, (2) Paste the job description you want to apply for, (3) Click 'Scan ATS Match Compatibility'. The tool flags missing keywords, checks for email and phone numbers, and evaluates text content density."
+      },
+      {
+        question: "Is this ATS resume checker free and private?",
+        answer: "Yes, 100% free with no account creation, no email sign-up, and no paid paywalls. Furthermore, all PDF text extraction, keyword parsing, and scoring algorithms execute entirely inside your device's web browser. Your resume and job postings are never uploaded to remote servers or stored in any database."
+      },
+      {
+        question: "Which resume file formats are supported?",
+        answer: "You can upload PDF (.pdf) documents directly, as well as plain text (.txt) and Markdown (.md) files. You can also paste formatted text directly into the editor or load your active draft from the Zubware Resume Builder with one click."
+      },
+      {
+        question: "Does a high ATS score guarantee an interview or job offer?",
+        answer: "No automated tool can guarantee an interview. While high keyword alignment helps your resume pass initial automated filters and reach human recruiters, hiring managers ultimately make decisions based on portfolio quality, measurable achievements, cultural fit, and interview performance."
+      },
+      {
+        question: "How can I improve my ATS resume score?",
+        answer: "Review the 'Missing Keywords' box after scanning and incorporate those exact technical skills, tools, and methodologies into your bullet points where you have authentic experience. Align your summary headline with the targeted job title and ensure your email and phone number are clearly formatted in plain text."
+      },
+      {
+        question: "Resume ATS score kaise check kare? (Mobile aur PC par)",
+        answer: "Apne mobile ya computer browser mein Zubware ATS Resume Checker kholein: (1) Apni resume PDF upload karein ya text paste karein, (2) Job vacancy ka description paste karein, aur (3) 'Scan ATS Match Compatibility' par tap karein. Tool aapko overall ATS score, matched skills, aur missing keywords turant dikha dega."
+      }
     ]
   },
   {
@@ -2563,9 +2961,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'uuid-generator',
-    title: 'UUID Generator',
+    title: 'UUID Generator — Bulk v1 & v4 UUID/GUID Maker Online',
     navTitle: 'UUID Generator',
-    description: 'Generate bulk UUID v4 strings instantly in your browser with download TXT option.',
+    description: 'Generate bulk UUID v4 and v1 strings online in your browser. Fast client-side generation, uppercase/lowercase toggles, hyphens, braces, and instant TXT download.',
     icon: '🔑',
     path: '/uuid-generator.html',
     filename: 'uuid-generator.html',
@@ -2587,9 +2985,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'hash-generator',
-    title: 'Hash Generator',
+    title: 'Hash Generator — MD5, SHA-1, SHA-256 & SHA-512 Hash Maker',
     navTitle: 'Hash Generator',
-    description: 'Generate cryptographic MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes locally in real-time.',
+    description: 'Generate cryptographic MD5, SHA-1, SHA-256, SHA-384, and SHA-512 hashes locally in real-time. Fast browser-based checksum calculations with instant copy and export.',
     icon: '🔒',
     path: '/hash-generator.html',
     filename: 'hash-generator.html',
@@ -2611,9 +3009,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'jwt-decoder',
-    title: 'JWT Decoder',
+    title: 'JWT Decoder — Decode & Inspect JSON Web Tokens Online',
     navTitle: 'JWT Decoder',
-    description: 'Decode JSON Web Tokens locally. Inspect Header, Payload, Expiry, and Issued time without sending data to any server.',
+    description: 'Decode JSON Web Tokens (JWT) locally in your browser. Inspect header, payload claims, expiration status, and issued time with zero server uploads for privacy.',
     icon: '🔏',
     path: '/jwt-decoder.html',
     filename: 'jwt-decoder.html',
@@ -2635,9 +3033,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'unix-timestamp-converter',
-    title: 'Unix Timestamp Converter',
+    title: 'Unix Timestamp Converter — Epoch to Human Date Converter',
     navTitle: 'Timestamp Converter',
-    description: 'Convert Unix epoch timestamps to human-readable dates and vice versa in UTC and local timezone.',
+    description: 'Convert Unix epoch timestamps to human-readable dates and vice versa in UTC or local timezone. Supports seconds, milliseconds, live clock, and date-time picker.',
     icon: '⏰',
     path: '/unix-timestamp-converter.html',
     filename: 'unix-timestamp-converter.html',
@@ -2659,9 +3057,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'regex-tester',
-    title: 'Regex Tester & Explainer',
+    title: 'Regex Tester & Explainer — Test Regular Expressions Online',
     navTitle: 'Regex Tester',
-    description: 'Test regular expressions against sample text with live highlights, capture groups, and plain English token breakdown.',
+    description: 'Test regular expressions against sample text with live highlights, capture groups, and plain English token breakdown. Fast client-side JavaScript regex debugging.',
     icon: '🔍',
     path: '/regex-tester.html',
     filename: 'regex-tester.html',
@@ -2683,9 +3081,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'json-formatter',
-    title: 'JSON Formatter & Tree Viewer',
+    title: 'JSON Formatter & Tree Viewer — Beautify & Validate JSON Online',
     navTitle: 'JSON Formatter',
-    description: 'Beautify, minify, validate, and inspect collapsible JSON node tree structures.',
+    description: 'Beautify, format, validate, and inspect collapsible JSON tree structures in your browser. Clean 2-space or 4-space indentation, minification, and instant copy.',
     icon: '💻',
     path: '/json-formatter.html',
     filename: 'json-formatter.html',
@@ -2707,9 +3105,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'json-validator',
-    title: 'JSON Validator',
+    title: 'JSON Validator — Check JSON Syntax & Line Error Detector',
     navTitle: 'JSON Validator',
-    description: 'Validate JSON syntax locally, pinpoint error line and column numbers, and format valid JSON.',
+    description: 'Validate JSON syntax online, pinpoint exact line and column error coordinates, and repair malformed quotes or trailing commas. Fast and private client-side tool.',
     icon: '✅',
     path: '/json-validator.html',
     filename: 'json-validator.html',
@@ -2731,9 +3129,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'json-to-csv',
-    title: 'JSON to CSV Converter',
+    title: 'JSON to CSV Converter — Convert JSON Array to CSV Online',
     navTitle: 'JSON to CSV',
-    description: 'Convert JSON arrays into CSV spreadsheets with live table preview and instant CSV export.',
+    description: 'Convert JSON arrays and objects into clean CSV spreadsheets with live table preview and instant CSV download. 100% private client-side browser conversion.',
     icon: '📊',
     path: '/json-to-csv.html',
     filename: 'json-to-csv.html',
@@ -2755,9 +3153,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'csv-to-json',
-    title: 'CSV to JSON Converter',
+    title: 'CSV to JSON Converter — Convert CSV Data to JSON Online',
     navTitle: 'CSV to JSON',
-    description: 'Convert CSV spreadsheets or TSV files into clean formatted JSON objects and arrays.',
+    description: 'Convert CSV spreadsheets and TSV files into formatted JSON objects or arrays. Auto-detects delimiters, infers data types, and exports clean JSON in browser.',
     icon: '🔄',
     path: '/csv-to-json.html',
     filename: 'csv-to-json.html',
@@ -2779,9 +3177,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'csv-viewer',
-    title: 'CSV Viewer & Data Grid',
+    title: 'CSV Viewer & Data Grid — Inspect & Search Tabular CSV Online',
     navTitle: 'CSV Viewer',
-    description: 'Inspect, search, sort by column, filter, and paginate large CSV datasets directly in your browser.',
+    description: 'Inspect, search, sort by column, filter, and paginate large CSV datasets directly in your browser. Fast client-side spreadsheet data grid with instant export.',
     icon: '📋',
     path: '/csv-viewer.html',
     filename: 'csv-viewer.html',
@@ -2805,7 +3203,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'website-downloader',
     title: 'Website Downloader — Download Website Assets & HTML into ZIP',
     navTitle: 'Website Downloader',
-    description: 'Download publicly accessible website HTML, CSS, JavaScript, and images into a structured ZIP archive with rewritten relative links directly in your browser.',
+    description: 'Download publicly accessible website HTML, CSS, JavaScript, and images into an organized ZIP archive with relative link rewriting. Fast client-side packaging.',
     icon: '🌐',
     path: '/website-downloader.html',
     filename: 'website-downloader.html',
@@ -2834,9 +3232,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'html-formatter',
-    title: 'HTML Formatter & Preview',
+    title: 'HTML Formatter & Preview — Beautify & Indent HTML Code',
     navTitle: 'HTML Formatter',
-    description: 'Beautify, indent, minify, or preview rendered HTML document markups in real-time.',
+    description: 'Beautify, format, indent, and preview HTML markup code in real-time. Supports custom indentation, tag rules, void element handling, and instant code export.',
     icon: '🌐',
     path: '/html-formatter.html',
     filename: 'html-formatter.html',
@@ -2858,9 +3256,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'css-formatter',
-    title: 'CSS Formatter & Beautifier',
+    title: 'CSS Formatter & Beautifier — Clean & Indent CSS Stylesheet',
     navTitle: 'CSS Formatter',
-    description: 'Format, indent, clean, and minify CSS style rules for maximum readability & performance.',
+    description: 'Format, beautify, and indent CSS stylesheets with expanded or compact styles. Clean up messy declarations, sort properties, and export production-ready code.',
     icon: '🎨',
     path: '/css-formatter.html',
     filename: 'css-formatter.html',
@@ -2882,9 +3280,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'javascript-formatter',
-    title: 'JavaScript Formatter',
+    title: 'JavaScript Formatter — Beautify JS & TypeScript Code Online',
     navTitle: 'JS Formatter',
-    description: 'Format, beautify, un-minify, or compact JavaScript & TypeScript code directly in your browser.',
+    description: 'Beautify, format, un-minify, and indent JavaScript and TypeScript code online. Supports ES6+ syntax, custom quotes, semicolons, and private client execution.',
     icon: '⚡',
     path: '/javascript-formatter.html',
     filename: 'javascript-formatter.html',
@@ -2906,9 +3304,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'xml-formatter',
-    title: 'XML Formatter',
+    title: 'XML Formatter — Beautify & Indent XML Documents Online',
     navTitle: 'XML Formatter',
-    description: 'Beautify and indent raw XML documents with custom spacing options.',
+    description: 'Beautify, format, and indent raw XML documents, RSS feeds, SVG code, and SOAP payloads. Clean attribute alignments, syntax checking, and fast browser export.',
     icon: '📄',
     path: '/xml-formatter.html',
     filename: 'xml-formatter.html',
@@ -2930,9 +3328,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'xml-validator',
-    title: 'XML Validator',
+    title: 'XML Validator — Check XML Syntax & Unmatched Tags Online',
     navTitle: 'XML Validator',
-    description: 'Validate XML syntax and detect unmatched opening or closing tags.',
+    description: 'Validate XML syntax online, detect unmatched opening or closing tags, and identify invalid entities. Fast, private client-side well-formedness XML checker.',
     icon: '🛡️',
     path: '/xml-validator.html',
     filename: 'xml-validator.html',
@@ -2954,9 +3352,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'url-parser',
-    title: 'URL Component Parser',
+    title: 'URL Component Parser — Extract Query Params & Hostname Online',
     navTitle: 'URL Parser',
-    description: 'Break down complex URL strings into protocol, host, port, path, fragment hash, and query parameter pairs.',
+    description: 'Break down complex URL strings into protocol, hostname, port, pathname, hash fragment, and query parameters. Parse, edit, and export parameters in browser.',
     icon: '🔗',
     path: '/url-parser.html',
     filename: 'url-parser.html',
@@ -2978,9 +3376,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'url-encoder-decoder',
-    title: 'URL Encoder / Decoder',
+    title: 'URL Encoder & Decoder — Encode & Decode URI Components Online',
     navTitle: 'URL Encoder',
-    description: 'Encode special characters into web-safe URL formats or decode percent-encoded links back to plain text.',
+    description: 'Encode special characters into percent-encoded URL formats or decode web links back to readable text. Supports encodeURI and encodeURIComponent standards.',
     icon: '🌐',
     path: '/url-encoder-decoder.html',
     filename: 'url-encoder-decoder.html',
@@ -3002,9 +3400,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'base64-encoder-decoder',
-    title: 'Base64 Encoder / Decoder',
+    title: 'Base64 Encoder & Decoder — Encode & Decode Base64 Strings Online',
     navTitle: 'Base64 Tool',
-    description: 'Encode text into Base64 format or decode Base64 strings back to UTF-8 text.',
+    description: 'Encode plain text and files to Base64 or decode Base64 strings back to UTF-8 text and binary files. Supports URL-safe Base64 and instant client-side download.',
     icon: '🔤',
     path: '/base64-encoder-decoder.html',
     filename: 'base64-encoder-decoder.html',
@@ -3026,9 +3424,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'html-escape-unescape',
-    title: 'HTML Escape / Unescape',
+    title: 'HTML Escape & Unescape — Convert Special Characters to Entities',
     navTitle: 'HTML Escape',
-    description: 'Convert HTML markup characters into safe entity codes (&lt;, &gt;, &amp;) or unescape entities back to markup.',
+    description: 'Escape HTML markup characters into safe entity codes (&lt;, &gt;, &amp;, &quot;) or unescape entities back into markup. Fast client-side browser conversion.',
     icon: '🏷️',
     path: '/html-escape-unescape.html',
     filename: 'html-escape-unescape.html',
@@ -3050,9 +3448,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'http-header-viewer',
-    title: 'HTTP Header Viewer',
+    title: 'HTTP Header Viewer — Inspect Response & CORS Headers Online',
     navTitle: 'Header Viewer',
-    description: 'Parse HTTP headers, categorize security & caching rules, and audit security compliance.',
+    description: 'Inspect HTTP response headers, status codes, and latency in your browser. Audit security rules for CSP, HSTS, X-Frame-Options, and Cache-Control headers.',
     icon: '🌐',
     path: '/http-header-viewer.html',
     filename: 'http-header-viewer.html',
@@ -3074,9 +3472,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'api-request-builder',
-    title: 'API Request Builder',
+    title: 'API Request Builder — Test REST API Endpoints in Browser',
     navTitle: 'API Request Builder',
-    description: 'Send HTTP requests (GET, POST, PUT, DELETE) and inspect status, headers, and response payloads directly in browser.',
+    description: 'Send HTTP requests (GET, POST, PUT, DELETE) and inspect status codes, headers, and JSON responses directly in browser. Clean headers and body payload editor.',
     icon: '🚀',
     path: '/api-request-builder.html',
     filename: 'api-request-builder.html',
@@ -3098,9 +3496,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'color-converter',
-    title: 'Color Converter & Contrast',
+    title: 'Color Converter & Contrast — HEX, RGB, HSL, CMYK & WCAG Tool',
     navTitle: 'Color Converter',
-    description: 'Convert colors between HEX, RGB, HSL, and CMYK with WCAG contrast ratio checks.',
+    description: 'Convert colors across HEX, RGB, HSL, and CMYK formats with real-time WCAG accessibility contrast checks. Visual palette swatches and 1-click code copying.',
     icon: '🎨',
     path: '/color-converter.html',
     filename: 'color-converter.html',
@@ -3122,9 +3520,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'qr-code-decoder',
-    title: 'QR Code Decoder',
+    title: 'QR Code Decoder — Scan & Read QR Codes from Images Online',
     navTitle: 'QR Decoder',
-    description: 'Upload any image containing a QR code to extract its underlying text or web link completely client-side.',
+    description: 'Upload any image or screenshot containing a QR code to extract its underlying text or web link completely client-side. Fast, private in-browser QR reading.',
     icon: '📱',
     path: '/qr-code-decoder.html',
     filename: 'qr-code-decoder.html',
@@ -3458,26 +3856,45 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'age-calculator',
-    title: 'Age Calculator',
+    title: 'Age Calculator — Calculate Your Exact Age Online',
     navTitle: 'Age Calculator',
-    description: 'Calculate exact age in years, months, days, total hours & next birthday countdown.',
+    description: 'Calculate your exact age in years, months, and days from your date of birth. Free online age calculator with next birthday countdown, total days, and hours.',
     icon: '🎂',
     path: '/age-calculator.html',
     filename: 'age-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'New',
-    features: ['Years, Months, Days', 'Total Hours & Minutes', 'Next Birthday Timer', 'Day of Week', 'Target Date Comparison'],
+    features: [
+      'Exact Chronological Age in Years, Months, and Days',
+      'Custom Age at Date: Calculate Age on Past or Future Milestones',
+      'Comprehensive Time Units: Total Months, Weeks, Days, Hours, Minutes & Seconds',
+      'Next Birthday Countdown Timer with Day of the Week',
+      'Day of Birth Detection & Astrological Signs (Zodiac, Chinese Zodiac, Birthstone)',
+      'Biological Journey Milestones: Estimated Heartbeats, Breaths & Sleep Time',
+      'One-Click Copy Age Summary Card to Clipboard',
+      '100% Client-Side Browser Processing with Zero Server Tracking'
+    ],
     howTo: [
-      { title: "Select Date of Birth", desc: "Pick your birth date using the calendar picker or enter year, month, and day." },
-      { title: "Choose Target Date", desc: "Leave the target date set to today's date to calculate current age, or select a past or future date to determine age at a specific milestone." },
-      { title: "Review Exact Age Breakdown", desc: "Inspect your exact chronological age in years, months, and days, total elapsed hours and minutes, and the countdown to your next birthday." }
+      { title: "Select Date of Birth", desc: "Pick your birth date using the calendar input or enter your birth year, month, and day." },
+      { title: "Choose Reference Date", desc: "Keep the target date set to today to find your current age, or select any past or future date to determine your exact age at a specific milestone." },
+      { title: "Review Exact Age Breakdown", desc: "Inspect your exact chronological age in completed years, months, and days, along with total elapsed days, weeks, hours, and next birthday countdown." },
+      { title: "Copy or Share Age Card", desc: "Click 'Copy Age Card' to copy your complete age breakdown and milestone statistics to your clipboard." }
     ],
     faq: [
-      { question: "How does the age calculator handle leap years and varying month lengths?", answer: "The algorithm calculates elapsed years and months first, then computes remaining days by referencing the exact calendar day count of the preceding month (including 29 days in February during leap years)." },
-      { question: "Can I calculate how old I will be on a future date?", answer: "Yes. Adjust the 'Age at Date' field to any future date. The tool computes your exact age in years, months, and days on that selected future milestone." },
-      { question: "What detailed time units are included in the age breakdown?", answer: "In addition to primary years, months, and days, the calculator displays total completed months, total elapsed weeks, total calendar days, total hours, minutes, and seconds." },
-      { question: "How is the next birthday countdown determined?", answer: "The tool projects your birth month and day onto the current or upcoming calendar year and calculates the exact remaining months and days until your next anniversary." },
-      { question: "Is my personal birth date saved or tracked?", answer: "No. Your birth date is processed entirely within your local browser session and is never uploaded or saved to external databases." }
+      { question: "How do I calculate my age from my date of birth?", answer: "To calculate your age, enter your birth date into the Date of Birth field. The calculator automatically compares your birth date against today's date (or any custom reference date you select) and displays your exact chronological age in completed years, months, and days." },
+      { question: "How does an online age calculator work?", answer: "An age calculator computes the precise calendar difference between two dates. It first calculates completed full years, then accounts for elapsed months, and finally determines remaining days using the exact day count of each intervening calendar month." },
+      { question: "Can I calculate my exact age in years, months, and days?", answer: "Yes. Unlike rough approximations that simply divide elapsed days by 365, Zubware calculates calendar-accurate years, months, and days, honoring varying month lengths (28, 29, 30, and 31 days) and leap years." },
+      { question: "What is an Online Age Calculator by Date of Birth?", answer: "An Online Age Calculator by Date of Birth is a browser-based utility that takes your birth date and instantly determines your chronological age, day of birth, next birthday countdown, and secondary units like total days, hours, and minutes without requiring manual calendar math." },
+      { question: "Can I calculate my age on a specific future or past date?", answer: "Yes. Change the 'Age at Date (Reference Date)' field to any date. You can calculate how old you will be at retirement, how old you were when graduating, or your age on an official application cutoff date." },
+      { question: "How does the calculator handle leap years and February 29 birthdays?", answer: "The calculator correctly accounts for leap years containing 366 days (with 29 days in February). For individuals born on February 29 (a leap day), age increases by one year on each subsequent February 28 / March 1 depending on common legal calendar convention." },
+      { question: "What is the difference between chronological age and dividing total days by 365?", answer: "A calendar year varies between 365 days (common year) and 366 days (leap year), and months range from 28 to 31 days. Dividing total days by 365 produces a fractional decimal (e.g., 25.42 years) that does not match official calendar birthdays. Chronological age reflects real calendar milestones." },
+      { question: "Can I calculate my age on a mobile phone?", answer: "Yes. Zubware Age Calculator is fully responsive and touch-optimized for iOS and Android smartphones. You can use your mobile browser's native date picker to calculate your age on the go with zero lag and no app installation." },
+      { question: "Can I use this age calculator for exam forms and job applications?", answer: "Yes. Many competitive exams and job applications require applicants to state their exact age as of a specific cutoff date (such as July 1 or January 1). Enter the advertised cutoff date into 'Age at Date' to find your exact years, months, and days for the form." },
+      { question: "Can an age calculator determine official exam or retirement eligibility?", answer: "No. While the calculator gives you mathematically exact chronological age, official eligibility rules, minimum/maximum age limits, and age relaxations (such as category or service quotas) depend entirely on the issuing authority's specific notification." },
+      { question: "What additional time units are displayed in the age breakdown?", answer: "Beyond years, months, and days, the tool displays total completed months, total elapsed weeks, total calendar days, total hours, total minutes, and total seconds lived." },
+      { question: "How is the next birthday countdown calculated?", answer: "The tool determines your upcoming birthday anniversary date in the current or following calendar year and computes the exact remaining calendar days and day of the week it will fall on." },
+      { question: "What is the difference between chronological age and cultural age systems?", answer: "Chronological age starts at zero on your birth date and increases on each annual anniversary (the international standard ISO 8601). Some traditional cultural systems (such as traditional East Asian age reckoning) count an infant as one year old at birth and add a year on the New Year." },
+      { question: "Is my date of birth saved, logged, or shared with external servers?", answer: "No. All date calculations and milestone breakdowns run 100% locally inside your web browser using client-side JavaScript. Your birth date is never transmitted across the network, stored in cookies, or saved to any database." }
     ]
   },
   {
@@ -3554,26 +3971,32 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'tip-calculator',
-    title: 'Tip Calculator',
-    navTitle: 'Tip Calculator',
-    description: 'Calculate tip amounts and split bill totals evenly among friends or group members.',
+    title: "Tip Calculator — Split Bill & Calculate Gratuity Online",
+    navTitle: "Tip Calculator",
+    description: "Calculate tip amounts and split restaurant bills evenly among friends online. Adjust tip percentages and review per-person totals with live calculations.",
     icon: '🍽️',
     path: '/tip-calculator.html',
     filename: 'tip-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'New',
-    features: ['Bill & Tip %', 'Preset Tip Buttons', 'Split Bill Count', 'Per-Person Total & Tip', 'Instant Calculation'],
+    features: [
+      "Instant Tip Amount & Total Bill Calculation",
+      "Even Bill Splitting Across Any Number of People",
+      "Quick-Select Tip Presets (10%, 15%, 18%, 20%, 25%)",
+      "Custom Tip Percentage Slider for Precise Gratuity",
+      "Real-Time Per-Person Cost Breakdown Display",
+      "100% Client-Side In-Browser Calculation"
+    ],
     howTo: [
-      { title: "Enter Bill Subtotal", desc: "Input the pre-tip total amount from your dining, delivery, or service receipt." },
-      { title: "Choose Tip Percentage & Group Size", desc: "Select a standard tip preset (10%, 15%, 18%, 20%, 25%) or enter custom percentage, and input the number of people splitting." },
-      { title: "Inspect Tip Total & Per-Person Split", desc: "Review total tip amount, overall grand total, and the exact individual payment share per person." }
+      { title: "Enter Bill Amount", desc: "Input the total pre-tip check amount from your restaurant, café, or service bill." },
+      { title: "Choose Tip Percentage", desc: "Select a standard gratuity preset or use the slider to set a custom tip rate." },
+      { title: "Set Number of People and Review Totals", desc: "Adjust the group size counter to view total tip, combined bill, and individual cost per person." }
     ],
     faq: [
-      { question: "How is the individual split calculated for dining groups?", answer: "The tool calculates total bill plus tip, then divides both the total check and the tip amount equally by the number of people entered in the party size field." },
-      { question: "Should I calculate the tip on the pre-tax or post-tax bill amount?", answer: "Standard etiquette recommends tipping on the pre-tax food and beverage subtotal. However, you can enter whichever subtotal is printed on your receipt." },
-      { question: "What tip percentages are standard for restaurant dining?", answer: "In North America, 15% to 18% is standard for adequate service, 20% for good service, and 22% to 25% for exceptional hospitality. The preset buttons provide fast access to these tiers." },
-      { question: "Can I enter a custom tip percentage outside the presets?", answer: "Yes. You can type any custom percentage value into the tip percentage box for specialized tipping scenarios." },
-      { question: "Does the calculator handle uneven penny splits?", answer: "Results are calculated with full decimal precision and formatted to standard two decimal places for clear payment settlement." }
+      { question: "How is the total tip and per-person split calculated?", answer: "The tip is calculated by multiplying the bill amount by your chosen tip percentage. Adding the tip to the bill gives the total amount, which is then divided equally by the number of people in your party." },
+      { question: "What is the standard tip percentage in restaurants?", answer: "In the US and Canada, standard restaurant tipping is typically 15% to 20% for good service, with 18% being a common baseline for average dinner service." },
+      { question: "Can I calculate custom tip percentages like 12% or 22%?", answer: "Yes. You can enter any custom percentage value or drag the slider to calculate exact custom tip amounts." },
+      { question: "Does the calculator run privately without saving my financial details?", answer: "Yes. All calculations happen instantly within your browser with zero data stored or sent to any server." }
     ]
   },
   {
@@ -3626,74 +4049,92 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'number-to-words',
-    title: 'Number to Words Converter',
-    navTitle: 'Number to Words',
-    description: 'Convert numbers and currency amounts into plain English words (International & Indian systems) with speech pronunciation.',
+    title: "Number to Words Converter — Convert Numbers to Words Online",
+    navTitle: "Number to Words",
+    description: "Convert numbers and currency into written English words online. Supports International and Indian numbering systems with audio pronunciation and copy.",
     icon: '🔢',
     path: '/number-to-words.html',
     filename: 'number-to-words.html',
     category: '🎨 Design & Utility Tools',
     badge: 'New',
-    features: ['Millions & Lakhs Systems', 'USD, INR, EUR, GBP Currencies', 'Title, Upper & Lower Case', 'Text-to-Speech Pronunciation', 'One-Click Copy'],
+    features: [
+      "Converts Numbers into Written English Words Instantly",
+      "Dual International (Millions, Billions) & Indian (Lakhs, Crores) Systems",
+      "Currency Formats (USD Dollars, INR Rupees, GBP Pounds, EUR Euros)",
+      "Built-in Speech Pronunciation via Web Speech API",
+      "One-Click Clipboard Copying for Checks and Legal Forms",
+      "Handles Large Numbers and Decimal Fractions"
+    ],
     howTo: [
-      { title: "Enter Numeric Digits", desc: "Type or paste any positive or negative integer or decimal number into the input field." },
-      { title: "Select Numbering System & Currency", desc: "Choose International (Millions/Billions) or Indian (Lakhs/Crores) format, select an optional currency (USD, INR, EUR, GBP), and pick letter case." },
-      { title: "Copy Formatted Words String", desc: "Review the generated English text representation and click Copy to transfer the words to your clipboard for checks or legal documents." }
+      { title: "Type or Paste a Number", desc: "Enter any positive, negative, or decimal number into the converter input." },
+      { title: "Select Numbering System and Currency", desc: "Choose between International or Indian numbering systems and pick a currency format if needed." },
+      { title: "Copy or Listen to Words", desc: "Click Copy to paste the written words into legal documents or checks, or click Listen to hear pronunciation." }
     ],
     faq: [
-      { question: "What is the difference between International and Indian numbering systems?", answer: "The International system groups digits by thousands (Thousands, Millions, Billions, Trillions). The Indian numbering system groups by Hundreds, Thousands, Lakhs (100,000), and Crores (10,000,000)." },
-      { question: "How does the tool format currency amounts for check writing?", answer: "When a currency is selected (such as USD or INR), the integer portion is labeled with the primary currency (e.g. 'Dollars' or 'Rupees') and decimal digits are formatted as fractional units (e.g. 'Cents' or 'Paise') followed by 'Only'." },
-      { question: "Can I convert decimal fractions and cents into words?", answer: "Yes. Decimal inputs (such as 1234.56) are accurately parsed into full words for both the integer portion and the fractional decimal components." },
-      { question: "Which letter casing options are available for the output?", answer: "You can toggle output between Title Case ('One Hundred'), Sentence Case ('One hundred'), ALL UPPERCASE ('ONE HUNDRED'), and all lowercase ('one hundred')." },
-      { question: "What is the maximum number size supported for conversion?", answer: "The tool handles numbers up to quadrillions in the International system and Arab/Kharab in the Indian numbering system without arithmetic overflow." }
+      { question: "How do International and Indian numbering systems differ?", answer: "The International system groups digits by thousands (thousands, millions, billions, trillions), whereas the Indian system groups by hundreds after the first thousand (thousands, lakhs, crores)." },
+      { question: "Can I use this tool to write checks and financial vouchers?", answer: "Yes. Selecting currency mode formats amounts with standard banking text (such as \"Five Thousand Dollars and Fifty Cents Only\"), suitable for writing official checks." },
+      { question: "Does the converter support decimal cents or paise?", answer: "Yes. Decimal numbers are accurately converted into cents, paise, or fractional words based on your selected currency." },
+      { question: "Can I hear the words spoken out loud?", answer: "Yes. The built-in audio button uses your browser’s text-to-speech synthesis to pronounce the full converted phrase." }
     ]
   },
   {
     id: 'words-to-number',
-    title: 'Words to Number Converter',
-    navTitle: 'Words to Number',
-    description: 'Convert English written word phrases into numeric digits and formatted numbers instantly.',
+    title: "Words to Number Converter — Convert Written Words to Numbers Online",
+    navTitle: "Words to Number",
+    description: "Convert written English number phrases into numeric digits and formatted numbers online. Parse complex written numbers with instant clipboard copy.",
     icon: '🔤',
     path: '/words-to-number.html',
     filename: 'words-to-number.html',
     category: '🎨 Design & Utility Tools',
     badge: 'New',
-    features: ['Words to Digits', 'Formatted Commas', 'Millions & Crores Support', 'Client-Side Processing', 'One-Click Copy'],
+    features: [
+      "Parses Written Number Words into Accurate Numeric Digits",
+      "Handles Large Magnitudes (Thousands, Millions, Billions, Trillions)",
+      "Supports Decimal Words (e.g. \"point five\", \"and seventy-five hundredths\")",
+      "Negative Number Phrase Detection (e.g. \"minus forty-two\")",
+      "Displays Standard Formatted & Raw Numeric Outputs",
+      "100% In-Browser Natural Language Number Parsing"
+    ],
     howTo: [
-      { title: "Type or Paste Number Words", desc: "Input natural English number words (e.g. 'two million three hundred forty-five thousand')." },
-      { title: "Automatic Text Parsing", desc: "The parser cleans punctuation, handles hyphenated compound words, and aggregates numeric scales." },
-      { title: "Copy Converted Number Digits", desc: "View the converted plain integer string and localized comma-separated format, and copy the result with one click." }
+      { title: "Enter Written Words", desc: "Type or paste number phrases such as \"two million three hundred forty-five thousand\"." },
+      { title: "Automatic Real-Time Parsing", desc: "The tool immediately evaluates written words and calculates the equivalent mathematical value." },
+      { title: "Copy Digits to Clipboard", desc: "Click Copy to copy the formatted number (with commas) or raw integer to your clipboard." }
     ],
     faq: [
-      { question: "Which number scales are supported by the words-to-number parser?", answer: "The parser recognizes standard English scales from units (zero to nine), teens, tens (twenty to ninety), hundreds, thousands, millions, billions, and trillions." },
-      { question: "Does the parser handle hyphenated words like 'twenty-five'?", answer: "Yes. Hyphens are automatically normalized, allowing compound words like 'forty-two' or 'ninety-nine' to be parsed accurately." },
-      { question: "Can the parser process phrases with the word 'and' (such as 'one hundred and twenty')?", answer: "Yes. Connecting words such as 'and' are recognized as conversational syntax and filtered cleanly during numerical evaluation." },
-      { question: "What output formats are generated from the words?", answer: "The tool generates both a raw numeric digit string (e.g. 1500000) for formulas and a localized comma-formatted display (e.g. 1,500,000) for reading clarity." },
-      { question: "Are my entered phrases uploaded to an external server?", answer: "No. The natural language string parsing algorithm runs entirely in your local browser memory." }
+      { question: "Which word formats are recognized by the converter?", answer: "It parses cardinal numbers (one, twenty, hundred), hyphenated compounds (twenty-five), large scale words (million, billion), negative indicators (minus, negative), and decimals (point)." },
+      { question: "Can it convert spoken transcriptions or voice recognition text into numbers?", answer: "Yes. You can paste speech-to-text transcripts containing spoken numbers to transform them into clean numeric digits." },
+      { question: "Does it handle informal phrases like \"a hundred\" or \"a thousand\"?", answer: "Yes. Common English phrasing where \"a\" signifies 1 (such as \"a hundred\" or \"a thousand\") is parsed correctly." },
+      { question: "Is my input text sent across the internet?", answer: "No. Linguistic parsing runs entirely inside your browser using client-side JavaScript regex and vocabulary tokenization." }
     ]
   },
   {
     id: 'roman-numeral-converter',
-    title: 'Roman Numeral Converter',
-    navTitle: 'Roman Numerals',
-    description: 'Convert Hindu-Arabic numbers to Roman numerals and vice versa with year presets and reference charts.',
+    title: "Roman Numeral Converter — Convert Numbers to Roman Numerals Online",
+    navTitle: "Roman Numerals",
+    description: "Convert numbers to Roman numerals and Roman numerals to numbers online. Check date translations, historical year charts, and standard notation rules.",
     icon: '🏛️',
     path: '/roman-numeral-converter.html',
     filename: 'roman-numeral-converter.html',
     category: '🎨 Design & Utility Tools',
     badge: 'New',
-    features: ['Bidirectional Conversion', 'Numbers 1 to 3,999,999', 'Year Quick Presets', 'Roman Reference Chart', 'One-Click Copy'],
+    features: [
+      "Bidirectional Arabic to Roman & Roman to Arabic Conversion",
+      "Validates Roman Numeral Syntax (Subtractive Notation Rules)",
+      "Supports Standard Values from 1 to 3,999 (I to MMMCMXCIX)",
+      "Quick Historical Year Presets (Current Year, Milestones, Centuries)",
+      "Interactive Roman Numeral Reference Symbols & Values Chart",
+      "Instant Conversion with One-Click Clipboard Copying"
+    ],
     howTo: [
-      { title: "Select Conversion Direction", desc: "Choose Number to Roman to convert Arabic digits (e.g. 2026), or Roman to Number to convert Roman numerals (e.g. MMXXVI)." },
-      { title: "Enter Value in Active Field", desc: "Type an integer between 1 and 3999 or valid Roman numeral symbols (I, V, X, L, C, D, M)." },
-      { title: "View Converted Result & Breakdown", desc: "Inspect the converted numeral, read the step-by-step additive value breakdown, and copy the result." }
+      { title: "Enter Number or Roman Numeral", desc: "Type standard digits (e.g., 2026) or a Roman numeral string (e.g., MMXXVI)." },
+      { title: "Review Bidirectional Result", desc: "The tool automatically detects the input format and outputs the corresponding counterpart with syntax validation." },
+      { title: "Copy Converted Text", desc: "Click Copy to paste your Roman numeral for tattoos, clock designs, outlines, or book chapters." }
     ],
     faq: [
-      { question: "What is the valid numerical range for Roman numeral conversion?", answer: "Standard classical Roman numerals support integers from 1 up to 3999 (MMMCMXCIX). Numbers 4000 and above traditionally required vinculum overlines not supported in standard ASCII text." },
-      { question: "How do subtractive notation rules work in Roman numerals?", answer: "Smaller value numerals placed before larger ones indicate subtraction: I before V (4) or X (9); X before L (40) or C (90); and C before D (400) or M (900)." },
-      { question: "What does the calculation breakdown show?", answer: "The tool displays an additive decomposition showing how each individual symbol contributes to the overall sum (for example, MMXXIV = 1000 + 1000 + 10 + 10 + 4 = 2024)." },
-      { question: "Can I enter lowercase Roman letters like 'mmxxiv'?", answer: "Yes. The parser accepts lowercase and uppercase characters automatically and normalizes them into valid uppercase Roman notation." },
-      { question: "Why is there no Roman numeral for zero?", answer: "Classical Romans did not have a numeral symbol for zero; they used the Latin word 'nulla' (meaning none) when referring to an absence of quantity." }
+      { question: "What are the basic Roman numeral symbols and their values?", answer: "The fundamental Roman symbols are I = 1, V = 5, X = 10, L = 50, C = 100, D = 500, and M = 1,000." },
+      { question: "How does subtractive notation work in Roman numerals?", answer: "When a smaller symbol precedes a larger one, it is subtracted rather than added. For example, IV is 4 (5 - 1), IX is 9 (10 - 1), and CM is 900 (1000 - 100)." },
+      { question: "What is the highest number standard Roman numerals can represent?", answer: "In standard classical notation without vinculum overlines, the maximum number is 3,999 (MMMCMXCIX)." },
+      { question: "Can I convert calendar years like 2026 into Roman numerals?", answer: "Yes. Entering 2026 converts to MMXXVI, which is widely used in copyright notices, movie credits, and graduation plaques." }
     ]
   },
   {
@@ -4361,130 +4802,129 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'increase-pdf-size',
-    title: 'Increase PDF Size Online – Make a PDF Larger',
-    navTitle: 'Increase PDF Size',
-    description: 'Increase the file size of a PDF to meet minimum upload size requirements. Process your PDF locally in your browser.',
+    title: "Increase PDF Size Online — Make PDF File Size Larger for Uploads",
+    navTitle: "Increase PDF Size",
+    description: "Increase PDF file size to meet minimum upload requirements on government and exam portals. Inject compliant data safely without altering page layout.",
     icon: '📈',
     path: '/increase-pdf-size.html',
     filename: 'increase-pdf-size.html',
     category: '📄 PDF Tools',
     badge: 'New',
     features: [
-      'Target Size in KB or MB',
-      'Increase to At Least Requested Size',
-      'Preserves All Text, Vectors & Layouts',
-      'No Visible Pages or Content Added',
-      'Client-Side Processing'
+      "Target File Size Specification in Kilobytes (KB) or Megabytes (MB)",
+      "Pads PDF to Meet Minimum Threshold (e.g. Minimum 100KB, 200KB, 500KB)",
+      "Preserves 100% of Original Vector Text, Images & Page Layouts",
+      "Injects Non-Destructive Compliant Metadata Streams",
+      "Validates Output Against Standard PDF Readers and Portals",
+      "100% Client-Side Processing with No Server Uploads"
     ],
     howTo: [
-      { title: 'Select Your PDF', desc: 'Upload the document to inspect its current file size in KB.' },
-      { title: 'Enter Target Minimum Size', desc: 'Specify the required threshold in KB or MB requested by your submission portal.' },
-      { title: 'Generate and Download', desc: 'Produce a standard-compliant PDF padded to meet or exceed your specified file size requirement.' }
+      { title: "Upload Your PDF File", desc: "Select the PDF document that is currently too small for your target application portal." },
+      { title: "Specify Target Minimum Size in KB or MB", desc: "Enter the required minimum file size (e.g., 200KB or 1MB) specified by the exam or job portal." },
+      { title: "Generate and Download Padded PDF", desc: "Click Adjust Size to inflate the file safely and download your larger, compliant PDF." }
     ],
     faq: [
-      {
-        question: 'How does Increase PDF Size make the file larger without altering content?',
-        answer: 'It embeds harmless, standard-compliant non-rendering data and metadata inside the PDF structure. Your visible document pages, layouts, vectors, and text remain untouched and identical.'
-      },
-      {
-        question: 'Why would I need to increase a PDF file size?',
-        answer: 'Certain recruitment portals, government job application forms, tender submissions, and automated scanning systems enforce strict minimum file size thresholds (e.g., must be at least 300 KB or 1 MB) to prevent empty or low-resolution document uploads.'
-      },
-      {
-        question: 'Will the PDF still open in standard PDF viewers?',
-        answer: 'Yes. The generated document remains a strictly valid standard PDF (ISO 32000 compliant) and opens flawlessly in Adobe Acrobat, Google Chrome, Apple Preview, Foxit, and mobile PDF readers.'
-      },
-      {
-        question: 'Does increasing the file size affect print quality or visual layout?',
-        answer: 'No. Because visible page content is neither compressed nor stretched, print quality and on-screen appearance remain identical to your original file.'
-      },
-      {
-        question: 'Can I increase the size of a PDF multiple times?',
-        answer: 'Yes. You can re-adjust the target threshold or upload an already-enlarged PDF if an application portal requires an even higher file size boundary.'
-      }
+      { question: "Why would an online portal require a minimum PDF file size?", answer: "Many government, university, and recruitment portals use automated upload filters that reject files under 100KB or 200KB under the assumption that tiny files are blank or corrupted." },
+      { question: "How does this tool increase PDF file size without changing the visual content?", answer: "It injects safe, compliant uncompressed binary padding streams into the PDF structure, expanding file size while leaving every page, word, and image completely unchanged." },
+      { question: "Will the larger PDF still open in standard viewers like Adobe Acrobat and Chrome?", answer: "Yes. The injected padding conforms strictly to standard ISO 32000 PDF specifications, opening smoothly in all viewers and portal validators." },
+      { question: "Can I increase a PDF from 50KB to 200KB or 500KB accurately?", answer: "Yes. You can enter any target size in KB or MB, and the tool will calculate the exact byte difference needed to hit your target." },
+      { question: "Is my application document uploaded to a server?", answer: "No. The padding injection runs directly in your local browser runtime via pdf-lib and ArrayBuffers." }
     ]
   },
   {
     id: 'decrease-pdf-size',
-    title: 'Decrease PDF Size Online – Compress PDF',
-    navTitle: 'Decrease PDF Size',
-    description: 'Reduce PDF file size online with browser-based compression while preserving quality where possible.',
+    title: "Decrease PDF Size Online — Compress and Reduce PDF File Size",
+    navTitle: "Decrease PDF Size",
+    description: "Compress and reduce PDF file size online while preserving text clarity and document layout. Choose compression presets to meet portal size limits.",
     icon: '📉',
     path: '/decrease-pdf-size.html',
     filename: 'decrease-pdf-size.html',
     category: '📄 PDF Tools',
     badge: 'New',
     features: [
-      'Low, Medium & Strong Compression Presets',
-      'Optional Custom Target Maximum Size',
-      'Preserves Selectable Text & Vector Graphics',
-      'Accurate Side-by-Side Savings Calculator',
-      'Browser-Based Compression'
+      "Multi-Level Compression Presets (Low, Medium, Strong Compression)",
+      "Target Maximum File Size Optimization for Strict Upload Portals",
+      "Maintains Crisp Selectable Vector Text & Document Structure",
+      "Detailed Real-Time File Size Savings & Percentage Metrics",
+      "Removes Redundant Fonts, Unused Objects & Heavy Image Data",
+      "100% In-Browser Execution Ensuring Private Document Security"
     ],
     howTo: [
-      { title: 'Upload PDF Document', desc: 'Select your file to see its original size and page count.' },
-      { title: 'Choose Compression Preset', desc: 'Select Low, Medium, or Strong compression based on your file requirements.' },
-      { title: 'Compress and Download', desc: 'Save your smaller PDF with a real-time savings breakdown showing exact megabytes reduced.' }
+      { title: "Upload Heavy PDF File", desc: "Select the large PDF document you need to shrink for email attachments or upload limits." },
+      { title: "Select Compression Strength Preset", desc: "Choose Low compression for maximum visual sharpness, Medium for balanced quality, or Strong for maximum file size reduction." },
+      { title: "Download Compressed PDF", desc: "Review the before-and-after file size numbers and download your smaller, optimized PDF document." }
     ],
     faq: [
-      {
-        question: 'How does Decrease PDF Size reduce the file size?',
-        answer: 'It applies intelligent stream compression, object stream deduplication, and configurable raster image recompression directly inside your web browser.'
-      },
-      {
-        question: 'Will text and vector quality be preserved?',
-        answer: 'Yes. Unlike basic compressors that rasterize entire documents into low-resolution images, our smart compression preserves selectable text, vector graphics, and document structure wherever possible.'
-      },
-      {
-        question: 'Which compression preset is best for job and university applications?',
-        answer: 'Medium compression is optimal for portal uploads and emails, providing substantial size reductions while keeping text and diagrams sharp.'
-      },
-      {
-        question: 'What if my PDF is already heavily compressed?',
-        answer: 'PDF compression depends heavily on document contents. If a PDF is already heavily optimized (like text-only PDFs), our tool detects this and informs you honestly rather than degrading your document.'
-      },
-      {
-        question: 'Can I see the exact before-and-after file sizes?',
-        answer: 'Yes. The tool displays your original file size, resulting compressed size, and the percentage reduction before you download the file.'
-      }
+      { question: "How does Decrease PDF Size reduce file size in the browser?", answer: "It strips unreferenced font descriptors, optimizes internal PDF object streams, and recompresses embedded raster graphics at efficient quality levels." },
+      { question: "Will my PDF text remain sharp and selectable after compression?", answer: "Yes. Vector text and fonts remain native vector objects and stay perfectly crisp when zoomed or printed." },
+      { question: "Which compression preset should I use for job applications and email attachments?", answer: "Medium compression is ideal for most applications, offering substantial file size savings (typically 40–70%) while keeping graphics clear." },
+      { question: "Can I see the exact before-and-after file size in KB/MB?", answer: "Yes. The interface shows original file size, compressed file size, and the exact percentage reduction achieved." },
+      { question: "Are my private financial records or legal contracts uploaded to a server?", answer: "No. The entire compression process executes strictly within your browser memory with zero network transmission." }
     ]
   },
   {
     id: 'pdf-compressor',
     title: 'PDF Compressor — Compress PDF Files Online Free',
     navTitle: 'PDF Compressor',
-    description: 'Compress PDF files online for free and reduce file size while preserving high visual quality. browser-side processing.',
+    description: 'Compress PDF files online for free. Reduce PDF size with Extreme, Recommended, and High Quality presets. 100% private in-browser compression with zero uploads.',
     icon: '🗜️',
     path: '/pdf-compressor.html',
     filename: 'pdf-compressor.html',
     category: '📄 PDF Tools',
-    badge: 'New',
-    features: ['Adjustable Compression Presets', 'Maximum, Balanced & High Quality', 'Real-time Size Savings Calculator', 'Preserves Document Dimensions', 'Browser-Based Processing'],
+    badge: 'Free',
+    tags: [
+      'PDF Compressor',
+      'Compress PDF Online',
+      'Reduce PDF Size',
+      'PDF Size Reducer',
+      'Compress PDF Free',
+      'PDF Ka Size Kaise Kam Kare',
+      'Shrink PDF File',
+      'Reduce PDF File Size',
+      'Compress PDF for Email',
+      'Government Exam PDF Size',
+      'Client-Side PDF Compressor'
+    ],
+    features: [
+      'Recommended (Balanced), Extreme & High Quality Presets',
+      'Real-time Size Savings & Reduction % Calculator',
+      'Multi-Page Document Stream & Image Optimization',
+      'Preserves Crisp Vector Text, Fonts & Dimensions',
+      '100% Local In-Browser Processing (Zero Server Upload)'
+    ],
     howTo: [
-      { title: 'Select Your PDF', desc: 'Drop or select the PDF file you want to compress.' },
-      { title: 'Choose Compression Level', desc: 'Select from High Quality, Balanced, or Maximum Compression presets.' },
-      { title: 'Download Compressed PDF', desc: 'Inspect the size reduction percentage and save your optimized PDF.' }
+      { title: 'Select or Drag Your PDF', desc: 'Choose a PDF file from your device or drag and drop it directly into the compressor.' },
+      { title: 'Select Compression Strength', desc: 'Pick Recommended (~50-65% reduction), Extreme (maximum savings), or High Quality (light compression) preset.' },
+      { title: 'Compress and Download', desc: 'Click Compress PDF, view the space saved and reduction percentage, then download your optimized document.' }
     ],
     faq: [
       {
-        question: 'How does the PDF Compressor reduce file size?',
-        answer: 'It compresses raster images and document streams using configurable resolution scaling and JPEG compression algorithms directly inside your web browser.'
+        question: 'How does Zubware PDF Compressor reduce file size without losing text quality?',
+        answer: 'Selectable text, fonts, and vector illustrations are stored as mathematical vector paths in PDF documents and remain 100% sharp during compression. The compressor optimizes embedded raster images, downsamples redundant resolution, and strips unreferenced document metadata directly in your browser.'
       },
       {
-        question: 'Does compressing a PDF reduce text clarity?',
-        answer: 'No. Selectable text and font glyphs are stored as vector data and are not blurred during compression. Compression primarily optimizes high-resolution background scans and photos.'
+        question: 'PDF ka size kaise kam kare (How to reduce PDF file size)?',
+        answer: 'PDF ka size kam karne ke liye PDF file ko Zubware PDF Compressor mein select ya drag karein. Portal ya email requirement ke hisaab se Recommended ya Extreme compression preset chunein, aur Compress button dabayein. File bina kisi server upload ke aapke browser mein turant compress hokar download ho jayegi.'
       },
       {
-        question: 'Can I choose different compression levels?',
-        answer: 'Yes. You can select between High Quality (minor compression), Balanced (recommended for emails and portals), and Maximum Compression (for aggressive size reduction).'
+        question: 'Which compression preset should I choose for email attachments and portal uploads?',
+        answer: 'Use the Recommended (Medium) preset for job resumes, contracts, and standard email attachments (~50% to 65% reduction with great visual fidelity). If you are uploading to a government portal or recruitment form with strict upload caps (such as 1MB or 2MB), select Extreme Compression for maximum size reduction (~70% to 85%).'
       },
       {
-        question: 'How much file size reduction can I expect?',
-        answer: 'Image-rich PDFs, presentations, and scanned documents often see reductions between 40% and 80%, while plain text documents may see smaller savings.'
+        question: 'Can I compress multi-page PDF documents and scanned forms?',
+        answer: 'Yes. Zubware PDF Compressor processes multi-page documents all at once. Every page, embedded photo, and internal document stream across the entire file is parsed and optimized simultaneously.'
       },
       {
-        question: 'Can I compress a multi-page document all at once?',
-        answer: 'Yes. The compressor optimizes all pages in the PDF document simultaneously, compressing embedded raster images and streamlining object streams across the entire file.'
+        question: 'Mobile mein PDF ka size kaise kam kare?',
+        answer: 'Aap kisi bhi mobile browser (Google Chrome ya Safari) mein Zubware PDF Compressor open karein. Apne phone storage ya Files app se PDF upload karein, compression strength select karein aur Compress par click karein. Kisi third-party app ya registration ki zaroorat nahi hai.'
+      },
+      {
+        question: 'Are confidential legal contracts, bank statements, and tax documents safe to compress?',
+        answer: 'Yes, 100% safe. Traditional online PDF tools upload your sensitive documents to external cloud servers. Zubware PDF Compressor runs entirely inside your browser memory using client-side JavaScript and WebAssembly. Your files never leave your device and are never sent to any remote server.'
+      },
+      {
+        question: 'Why did my PDF file compress only slightly?',
+        answer: 'PDFs that consist primarily of plain vector text or documents that have already been heavily optimized have few redundant bytes to eliminate. Image-heavy PDFs, presentations, and high-DPI scanned documents experience the highest size reductions (often between 50% and 85%).'
       }
     ]
   },
@@ -4568,41 +5008,33 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'text-to-pdf',
-    title: 'Text to PDF Converter — Convert Plain Text to PDF Free',
-    navTitle: 'Text to PDF',
-    description: 'Convert text, notes, and articles into clean, formatted, printable PDF documents. Customize fonts, margins, page orientation, and numbering.',
+    title: "Text to PDF Converter — Convert Plain Text to PDF Online Free",
+    navTitle: "Text to PDF",
+    description: "Convert plain text, notes, and articles into formatted, printable PDF documents online. Customize fonts, margins, paper sizes, and page numbering free.",
     icon: '📝',
     path: '/text-to-pdf.html',
     filename: 'text-to-pdf.html',
     category: '📄 PDF Tools',
     badge: 'New',
-    features: ['A4, Letter & Legal Paper Sizes', 'Portrait & Landscape Orientation', 'Customizable Typography & Margins', 'Multi-Page Auto Pagination', 'Instant PDF Download', 'Client-Side Processing'],
+    features: [
+      "Standard Paper Sizes (A4, US Letter, Legal)",
+      "Portrait & Landscape Page Orientation Toggles",
+      "Customizable Fonts (Serif, Sans-Serif, Monospace) & Font Sizes",
+      "Adjustable Page Margins, Line Spacing & Document Headers",
+      "Automatic Multi-Page Flow & Pagination Engine",
+      "Instant Local PDF Compilation with Complete Privacy"
+    ],
     howTo: [
-      { title: 'Enter or Paste Text', desc: 'Type directly into the editor or paste your text notes and drafts.' },
-      { title: 'Format Page and Typography', desc: 'Configure document title, paper size (A4, Letter, Legal), orientation, margins, font family, size, alignment, and styling.' },
-      { title: 'Generate and Download', desc: 'Inspect the real-time word count and download the formatted multi-page PDF document.' }
+      { title: "Paste or Upload Text Content", desc: "Type, paste, or upload plain text notes, articles, or code snippets into the text area." },
+      { title: "Configure Page Layout and Typography", desc: "Choose paper size (A4/Letter), orientation, font family, line spacing, margins, and document title." },
+      { title: "Generate and Download Formatted PDF", desc: "Click Convert to PDF and download your clean, printable document instantly." }
     ],
     faq: [
-      {
-        question: 'Does it support multi-page text documents?',
-        answer: 'Yes! The converter automatically flows long text across multiple pages cleanly without cutting off lines.'
-      },
-      {
-        question: 'Can I customize font styling and margins?',
-        answer: 'Yes, you can choose fonts, sizes, line heights, text colors, alignment, and margin presets.'
-      },
-      {
-        question: 'Can I automatically include page numbers?',
-        answer: 'Yes. An optional toggle inserts clean page numbering into the footer of every generated page.'
-      },
-      {
-        question: 'Which paper formats and orientations are available?',
-        answer: 'You can choose between A4, US Letter, and Legal paper dimensions in either Portrait or Landscape orientation.'
-      },
-      {
-        question: 'Can I preview the PDF layout before downloading?',
-        answer: 'Yes. The live PDF preview window renders your formatted document in real-time as you type and adjust typography or margin controls.'
-      }
+      { question: "Does the converter automatically split long text across multiple pages?", answer: "Yes. The pagination engine measures line heights and page margins to break long text seamlessly into sequential pages." },
+      { question: "Can I choose between A4 and US Letter page sizes?", answer: "Yes. You can select A4, US Letter, or Legal page sizes in either Portrait or Landscape orientation." },
+      { question: "Can I convert code snippets using a monospace font?", answer: "Yes. Switch the font family to Monospace to preserve code indentation and column alignment." },
+      { question: "Can I add custom headers, footers, or page numbers?", answer: "Yes. You can configure document header titles and automatic page numbering in the margin settings." },
+      { question: "Is my typed text or document content sent to any server?", answer: "No. All text parsing and PDF synthesis occur client-side inside your browser." }
     ]
   },
   {
@@ -4638,125 +5070,134 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'signature-resizer',
-    title: "Signature Resizer — Resize Signature Images Online Free",
+    title: "Signature Resizer — Resize Signature Images for Online Exam Forms",
     navTitle: "Signature Resizer",
-    description: "Resize signature images to custom pixel dimensions, millimeter/centimeter measurements, and maximum KB file size limits for online application forms and documents.",
+    description: "Resize signature images to required pixel dimensions and KB limits for SSC, UPSC, IBPS, and state exam forms. Auto-crop empty edges with zero server upload.",
     icon: '📏',
     path: '/signature-resizer.html',
     filename: 'signature-resizer.html',
     category: '🖼️ Image Tools',
     badge: 'New',
     features: [
-      "Exact Pixel, CM, MM & Inch Sizing",
-      "Target KB File Size Compression Limit",
-      "Auto-Crop Margins & Background Mode",
-      "Contrast Enhancement for Darker Ink",
-      "JPG, PNG & WebP Output Support",
-      "Client-Side Browser Processing"
+      "Custom Dimensions in Pixels (px), Centimeters (cm), Millimeters (mm) & Inches",
+      "Official Exam Presets for SSC, UPSC, IBPS, Passport/Visa & Application Forms",
+      "Target File Size Limits (< 20 KB, < 50 KB, < 100 KB) with Adaptive JPEG Compression",
+      "Auto-Crop Empty White Margins & Tight Non-Ink Boundary Trimming",
+      "Aspect Ratio Lock & Instant Scaling Percentages (25% to 200%)",
+      "Solid White Background or Transparent Canvas with Direct JPG/PNG Download",
+      "100% Client-Side Browser Processing with Zero Server Uploads & Full Privacy"
     ],
     howTo: [
-      { title: "Upload Signature Image", desc: "Select your digital or scanned signature file (PNG, JPG, or WebP) from your device." },
-      { title: "Set Dimensions & KB Limit", desc: "Specify target width and height in pixels, cm, mm, or inches, and optionally enter a maximum file size limit (e.g. 20KB or 50KB)." },
-      { title: "Crop Margins & Download", desc: "Enable auto-crop margins to remove excess whitespace around strokes, inspect the output size preview, and download your resized signature." }
+      { title: "Upload Scanned Signature Photo", desc: "Select or drop your handwritten signature photo (JPG, PNG, or WebP) captured with a smartphone or flatbed scanner." },
+      { title: "Select Exam Preset or Units", desc: "Choose a recruitment preset (e.g. 140 × 60 px for SSC/IBPS) or enter custom width and height in px, cm, mm, or inches." },
+      { title: "Configure Crop, Background & File Size Cap", desc: "Enable auto-crop to remove blank paper margins, select transparent or white background, and pick a KB limit like < 20 KB." },
+      { title: "Preview Live Dimensions & Download", desc: "Compare original vs output dimensions in the live preview and download your form-compliant JPG or PNG image instantly." }
     ],
     faq: [
-      { question: "How do I resize a signature to meet strict 20KB or 50KB limits?", answer: "Enter your required maximum KB limit in the Max File Size field. The compression engine iteratively scales quality and resolution to keep the exported file under your threshold." },
-      { question: "What measurement units are supported for sizing?", answer: "You can specify signature dimensions in pixels (px), centimeters (cm), millimeters (mm), or inches (in)." },
-      { question: "Will downscaling blur or distort my signature lines?", answer: "Keeping the aspect ratio locked prevents stretching or warping, and the canvas resampling engine maintains stroke contrast for clean, legible ink lines." },
-      { question: "Does this tool guarantee acceptance on specific government portals?", answer: "No tool can guarantee acceptance because individual portals may have varying file name, aspect ratio, or DPI guidelines. This tool formats your image to the dimensions and file size limits you configure." },
-      { question: "Is my signature uploaded to an external server for resizing?", answer: "The image is processed locally in your web browser and is not sent to a Zubware server for processing." }
+      { question: "How do I resize and compress a signature image to under 20KB for SSC, IBPS, or UPSC portals?", answer: "Upload your signature, set the required dimensions (typically 140 × 60 pixels for SSC and IBPS Bank exams), and click the '< 20 KB' button under Target File Size Limit. Zubware automatically adjusts JPEG compression quality in your browser so the resulting file stays strictly below the 20 KB threshold without pixelating or blurring pen strokes." },
+      { question: "What are the standard signature dimensions and file sizes for Indian competitive exams?", answer: "Most major Indian portals require: SSC (CGL, CHSL, MTS, GD) — 140 × 60 px, 10 KB to 20 KB in JPG format; IBPS & SBI Bank exams — 140 × 60 px, 10 KB to 20 KB; UPSC (Civil Services, NDA, CDS) — minimum 350 × 350 px, 20 KB to 300 KB; NTA NEET & JEE — 4 cm × 2 cm (approx. 140 × 70 px), 4 KB to 30 KB; and Railway RRB — 140 × 60 px, 10 KB to 20 KB in JPG format." },
+      { question: "Can I convert signature measurements from centimeters (cm) to pixels (px)?", answer: "Yes. Switch the dimension unit selector to 'cm' or 'mm'. Zubware automatically calculates standard 96 DPI pixel values (for example, 4 cm corresponds to ~151 px and 2 cm corresponds to ~76 px) so you do not have to perform manual mathematical conversions." },
+      { question: "How does the auto-crop margins feature work?", answer: "When taking a mobile photo of a signature on paper, large empty margins often surround the ink strokes. Checking 'Auto-crop empty edges' scans canvas pixel data, identifies bounding ink coordinates, and trims blank white borders before scaling. This ensures your signature fills the designated upload frame rather than appearing as a tiny smudge." },
+      { question: "Should I download my resized signature in JPG or PNG format?", answer: "For government recruitment portals, university admissions, and online exam forms, always select JPG format because most application portals reject PNG files. If you need a transparent signature for PDF contracts or digital document signing, choose PNG format." },
+      { question: "Is my handwritten legal signature uploaded or stored on any server?", answer: "No. All canvas rendering, edge trimming, resizing, and JPEG compression take place 100% locally inside your web browser memory. Your personal handwritten signature is never transmitted across the internet or stored on Zubware servers, eliminating any risk of identity theft or forgery." }
     ]
   },
   {
     id: 'photo-signature-joiner',
-    title: "Photo and Signature Joiner — Combine Images Online Free",
-    navTitle: "Photo + Signature Joiner",
-    description: "Combine passport-style photos and signatures into a single unified image file for job applications, entrance examinations, and verification forms.",
+    title: "Photo and Signature Joiner — Combine Photo & Signature Online Free",
+    navTitle: "Photo & Signature Joiner",
+    description: "Combine candidate passport photos and signatures into a single image for exam portals. Choose vertical or horizontal layout, adjust sizes, and export in JPG.",
     icon: '🪪',
     path: '/photo-signature-joiner.html',
     filename: 'photo-signature-joiner.html',
     category: '🖼️ Image Tools',
     badge: 'New',
     features: [
-      "Vertical (Stacked) & Side-by-Side Layouts",
-      "Custom Dimension Controls",
-      "Exam & Application Presets",
-      "Borders & Spacing Options",
-      "High-Res JPG & PNG Export",
-      "Client-Side Browser Processing"
+      "Vertical Stack Mode (Photo on Top, Signature Below) for Recruitment Admit Cards",
+      "Horizontal Side-by-Side Mode for Identity Badges & Office Credentials",
+      "Application Presets: Exam Portal (300×460), Standard ID (240×390), High Res (400×670)",
+      "Independent Width & Height Sizing Controls for Both Photo and Signature",
+      "Customizable Gap & Padding Spacing Sliders (0px to 40px)",
+      "Adjustable Outer Border Width (0 to 4px) with Custom Color Picker",
+      "Direct Form-Ready JPG or Transparent PNG Download with Zero Watermark",
+      "100% Private Client-Side Processing with No Server Uploads"
     ],
     howTo: [
-      { title: "Upload Photo & Signature", desc: "Select your passport-style portrait in slot 1 and your signature image in slot 2." },
-      { title: "Adjust Layout & Dimensions", desc: "Choose vertical stacked (photo on top, signature below) or side-by-side layout, and customize width, height, gap spacing, and border margins." },
-      { title: "Preview & Download Composite", desc: "Review the live composite image on the canvas and download the joined result in JPG or PNG format." }
+      { title: "Upload Passport Photo & Signature", desc: "Select or drag your candidate passport photo into slot 1 and your scanned signature image into slot 2." },
+      { title: "Choose Layout Arrangement", desc: "Select Vertical (Stacked) for standard exam admit cards, or choose Horizontal for employee and student ID cards." },
+      { title: "Select Preset or Customize Sizing", desc: "Click a standard preset like Exam Portal (300×460 px) or input custom pixel widths and heights for each element." },
+      { title: "Fine-Tune Spacing, Border & Format", desc: "Adjust spacing gap, outer padding, optional separation border color, and choose form-ready JPG format." },
+      { title: "Download Combined Image", desc: "Preview the rendered composite canvas and click Download to save your unified image file for instant form submission." }
     ],
     faq: [
-      { question: "Why do entrance exams and job portals require photo and signature combined?", answer: "Many application portals require a single unified image file containing both the candidate photo and signature to simplify verification on admit cards and candidate records." },
-      { question: "Can I adjust the gap and border between the photo and signature?", answer: "Yes. You can customize the vertical or horizontal gap between images, set outer border thickness, choose border colors, and set the background fill." },
-      { question: "How can I prevent the photo and signature from looking stretched?", answer: "The tool allows you to adjust individual dimensions and provides preset aspect options so both portrait and signature maintain natural proportions without distortion." },
-      { question: "Which file format is recommended for online application forms?", answer: "Most application portals recommend JPG/JPEG format with an opaque white background. You can select JPG export before downloading." },
-      { question: "Can I combine my photo and signature for government exams without server uploads?", answer: "Yes. Both the identification photo and scanned signature are merged onto a single canvas locally in your browser, keeping sensitive exam documents private." }
+      { question: "Why do exam and job recruitment portals require photo and signature in a single image file?", answer: "Several Indian recruitment boards (such as MPPEB/Vyapam, High Court recruitments, State Police boards, and departmental recruitment portals) require candidates to upload a single combined file to ensure the applicant's signature is indelibly joined to their photograph. This prevents impersonation during biometric verification at exam test centers." },
+      { question: "What is the standard vertical layout ratio for combined photo and signature?", answer: "Standard recruitment guidelines typically specify an overall canvas width of 300 pixels and height of 460 pixels (or 400 × 670 pixels for high resolution). In this configuration, the passport photo occupies approximately 300 × 350 pixels on top, and the signature occupies 300 × 100 pixels directly beneath it with a clean gap or border." },
+      { question: "Can I adjust individual photo and signature dimensions independently?", answer: "Yes. Zubware allows you to independently specify photo width, photo height, signature width, and signature height in pixels. The composite canvas dynamically recalculates total width and height in real time." },
+      { question: "Can I add an outer border or change background color?", answer: "Yes. You can customize the outer border thickness (None, 1px, 2px, or 4px) and choose a custom border color using the color picker. You can also toggle between crisp white, light slate, or transparent backgrounds." },
+      { question: "Which format should I use when downloading the combined image for forms?", answer: "Most government application portals mandate JPG/JPEG format for image uploads. Select JPG before clicking download to ensure 100% compatibility with online application verification systems." },
+      { question: "Are my passport photos or signature images uploaded to your servers?", answer: "No. The entire composite image is rendered using HTML5 Canvas directly inside your browser memory. Neither your photograph nor your signature is ever uploaded to or stored on Zubware servers, ensuring complete privacy." }
     ]
   },
   {
     id: 'photo-name-date-joiner',
-    title: "Add Name and Date to Photo Online — Exam Photo Maker",
-    navTitle: "Photo Name & Date",
-    description: "Add candidate name and date of photo (DOP) or date of birth (DOB) to passport-style photos for entrance exams, recruitment portals, and application forms.",
+    title: "Add Name and Date to Photo Online — Exam Photo Editor Free",
+    navTitle: "Name & Date on Photo",
+    description: "Add candidate name and date of photo (DOP) to passport pictures for recruitment exams. Customize date formats and font sizes with instant image export.",
     icon: '📅',
     path: '/photo-name-date-joiner.html',
     filename: 'photo-name-date-joiner.html',
     category: '🖼️ Image Tools',
     badge: 'New',
     features: [
-      "Custom Candidate Name & Date Formatting",
-      "Bottom Strip, Top Strip & Overlay Modes",
-      "Recruitment Exam Photo Preparation",
-      "High-Resolution Vector Typography",
-      "Client-Side Browser Processing"
+      "Compliant White Footer Strip for Candidate Name & Date",
+      "Custom Date Formats (DD/MM/YYYY, MM/DD/YYYY, DOP, DOB)",
+      "Adjustable Font Family, Font Size & Banner Height",
+      "Preset Dimensions for SSC, NEET, UPSC & State PSC Forms",
+      "High-Resolution JPG Export Meeting Portal Requirements",
+      "Zero Cloud Uploads with Local In-Browser Processing"
     ],
     howTo: [
-      { title: "Upload Passport-Style Photo", desc: "Select your portrait photograph from your computer or mobile device." },
-      { title: "Enter Candidate Name & Date", desc: "Type your name, enter the date, select whether to display Date of Photo (DOP) or Date of Birth (DOB), and pick your date format." },
-      { title: "Position Strip & Download", desc: "Adjust bottom strip height, font styling, and border settings, preview the formatted image, and download your form photo." }
+      { title: "Upload Passport Photograph", desc: "Select or drag your passport-style photo into the exam photo formatting tool." },
+      { title: "Enter Candidate Name and Date of Photo", desc: "Type your official name and select the photo capture date (DOP) or date of birth (DOB) as required by notification guidelines." },
+      { title: "Preview and Download Form-Ready Photo", desc: "Adjust text size or banner height on the live preview canvas and download your compliant photo instantly." }
     ],
     faq: [
-      { question: "What is the difference between DOP and DOB on candidate photos?", answer: "DOP stands for Date of Photo (the date the photograph was captured, often requested to be within the last 3 months). DOB stands for Date of Birth." },
-      { question: "Which date formats can I choose for the label?", answer: "The tool supports DD/MM/YYYY, MM/DD/YYYY, YYYY-MM-DD, and DD-MMM-YYYY (e.g. 15-OCT-2024) formats." },
-      { question: "Does adding the name and date strip crop out the face?", answer: "No. The text strip is positioned at the lower margin. You can adjust the strip height percentage and reposition your photo to ensure facial features remain unobscured." },
-      { question: "Can I include a label prefix like \"DOP:\" or \"DOB:\"?", answer: "Yes. You can select prefixes including \"DOP:\", \"DOB:\", \"Date:\", or no prefix to match your application requirements." },
-      { question: "Are candidate names and dates added to exam photos without uploading?", answer: "Yes. Typography rendering, name and date stamping, and official exam dimension constraints are applied strictly in local browser memory." }
+      { question: "Why do exams like SSC, NEET, and police recruitments require name and date on photos?", answer: "Exam commissions mandate printing the candidate’s full name and Date of Photograph (DOP) to verify the photo is recent and prevent impersonation." },
+      { question: "Can I customize the date format to match official notification requirements?", answer: "Yes. You can format the date as DD-MM-YYYY, DD/MM/YYYY, or include custom text prefixes such as \"DOP: 15/08/2026\"." },
+      { question: "Does the white text bar cut into the candidate’s face or chin?", answer: "You can adjust the banner height, font size, and vertical padding to ensure the text strip sits neatly below the chin area." },
+      { question: "Can I adjust the final output image dimensions (e.g. 3.5cm x 4.5cm or 200x230px)?", answer: "Yes. The tool lets you enforce exact pixel dimensions and maximum file size limits required by official upload portals." },
+      { question: "Is my personal identity photograph uploaded to a cloud server?", answer: "No. All text compositing and image generation happen locally in your browser memory." }
     ]
   },
   {
     id: 'text-to-handwriting',
     title: "Text to Handwriting Converter — Create Realistic Handwritten Notes",
     navTitle: "Text to Handwriting",
-    description: "Convert typed digital text into realistic handwritten notes on lined, plain, or vintage paper. Export high-res PNGs or multi-page PDFs.",
+    description: "Convert digital text into realistic handwritten notes on lined or vintage paper online. Choose cursive font styles, ink colors, and export as PDF or PNG.",
     icon: '🖋️',
     path: '/text-to-handwriting.html',
     filename: 'text-to-handwriting.html',
     category: '🖼️ Image Tools',
     badge: 'New',
     features: [
-      "Realistic Handwriting Font Styles",
-      "Gel Blue, Navy, Black & Red Ink Options",
-      "College Ruled Lined, Grid & Plain Paper",
-      "Natural Human Baseline Jitter",
-      "Multi-Page PDF & PNG Export",
-      "Client-Side Browser Processing"
+      "Multiple Realistic Cursive & Print Handwriting Font Styles",
+      "Authentic Paper Backgrounds (Ruled Lines, Red Margin, Plain, Vintage)",
+      "Custom Ink Colors (Classic Blue Ballpoint, Dark Blue, Black Gel, Red)",
+      "Human-Like Ink Jitter, Line Spacing & Word Slant Adjustments",
+      "Multi-Page Document Auto-Pagination with Header Margins",
+      "Export as High-Resolution Printable PNG Images or Multi-Page PDF"
     ],
     howTo: [
-      { title: "Enter or Paste Text", desc: "Type or paste your notes, assignment text, or letter into the text editor." },
-      { title: "Choose Handwriting Style & Paper", desc: "Select from realistic cursive and print fonts, choose ink color (blue, black, red), and pick ruled notebook or plain paper." },
-      { title: "Export PNG or Multi-Page PDF", desc: "Adjust letter spacing and baseline jitter for organic handwriting variations, and download page images or a combined PDF." }
+      { title: "Paste or Type Your Text", desc: "Enter your assignments, letters, notes, or study material into the text editor." },
+      { title: "Choose Handwriting Font and Paper Style", desc: "Select a cursive or neat handwriting style, pick lined or blank paper, and choose blue or black ink." },
+      { title: "Export Handwritten Notes as PDF or PNG", desc: "Review the realistic handwritten pages and download them as high-resolution images or a printable multi-page PDF." }
     ],
     faq: [
-      { question: "Can I download multi-page handwritten notes as a single PDF?", answer: "Yes. The tool automatically paginates longer texts across sequential notebook pages and allows you to download a unified multi-page PDF document." },
-      { question: "What makes the handwriting look authentic rather than computer-generated?", answer: "The engine applies subtle natural baseline jitter, organic letter-spacing variations, authentic ink colors, and realistic ruled notebook margin lines." },
-      { question: "Which paper styles are available?", answer: "You can choose from college-ruled lined notebook paper, plain blank white paper, yellow legal pad, and graph grid paper." },
-      { question: "Can I customize font size and line spacing?", answer: "Yes. You can adjust font size, line spacing, and margin padding to match different notebook sizes and school assignment guidelines." },
-      { question: "Is my typed text or assignment uploaded to a server?", answer: "The text and resulting document are rendered locally in your browser and are not sent to a Zubware server for processing." }
+      { question: "How realistic do the generated handwritten pages look?", answer: "The tool uses authentic human handwriting fonts combined with subtle baseline variations, letter spacing jitter, and genuine paper textures to mimic real handwriting." },
+      { question: "Can I convert long documents spanning multiple pages?", answer: "Yes. The converter automatically calculates page breaks and line wrapping, splitting long text into multiple sequential handwritten pages." },
+      { question: "Which paper backgrounds can I write on?", answer: "You can choose from standard blue lined notebook paper with red left margins, plain clean white sheets, yellow legal pads, or textured vintage parchment." },
+      { question: "Can I download the generated handwritten assignment as a PDF?", answer: "Yes. You can export your pages as a single multi-page PDF document ready for printing or submission, or download individual PNG image sheets." },
+      { question: "Is my typed assignment text stored or sent to an external server?", answer: "No. All typography rendering and PDF document generation occur completely inside your local browser." }
     ]
   },
   {
@@ -4948,80 +5389,64 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'pdf-page-number',
-    title: 'Add Page Numbers to PDF Online Free — Number PDF Pages',
-    navTitle: 'Add Page Numbers',
-    description: 'Insert customizable page numbers into your PDF files. Choose custom formats, positions, margins, fonts, and skip the cover page.',
+    title: "Add Page Numbers to PDF Online — Number PDF Pages Easily",
+    navTitle: "Add Page Numbers",
+    description: "Insert customizable page numbers into multi-page PDF documents online for free. Select custom placement positions, numbering formats, and skip covers.",
     icon: '🔢',
     path: '/pdf-page-number.html',
     filename: 'pdf-page-number.html',
     category: '📄 PDF Tools',
     badge: 'Free',
-    features: ['Custom Number Formats (e.g. Page X of Y)', '6 Position Placements', 'Skip First Page / Cover', 'Custom Starting Number', 'Local Browser Processing'],
+    features: [
+      "6 Standard Placement Positions (Bottom Center, Bottom Right, Top, etc.)",
+      "Multiple Numbering Formats (e.g. \"Page 1 of 10\", \"1 / 10\", \"1\")",
+      "Skip Cover Page / First Page Numbering Toggle",
+      "Custom Starting Page Number & Margin Offsets",
+      "Font Selection, Font Size & Text Color Controls",
+      "100% Client-Side Processing with No Server Uploads"
+    ],
     howTo: [
-      { title: 'Upload Your PDF', desc: 'Select your document to preview total page count and size.' },
-      { title: 'Configure Numbering Settings', desc: 'Choose number format (e.g. Page X of Y), placement position, starting number, and whether to skip the cover page.' },
-      { title: 'Apply and Download', desc: 'Click Add Page Numbers to render the numbering onto every page and download your updated PDF.' }
+      { title: "Upload Multi-Page PDF", desc: "Select the PDF document you want to number from your device." },
+      { title: "Choose Number Format and Position", desc: "Select your preferred position (such as bottom-center), choose a format like \"Page X of Y\", and toggle whether to skip the cover." },
+      { title: "Apply Numbers and Download PDF", desc: "Click Apply Page Numbers and download your newly numbered PDF document immediately." }
     ],
     faq: [
-      {
-        question: 'Can I choose where page numbers appear?',
-        answer: 'Yes, place them at bottom-center, bottom-right, bottom-left, top-right, top-center, or top-left.'
-      },
-      {
-        question: 'Which numbering formats can I choose from?',
-        answer: 'You can select from Page X of Y, Page X, - X -, or plain numeric digits.'
-      },
-      {
-        question: 'Can I skip numbering on the cover or title page?',
-        answer: 'Yes. Toggle Skip First Page / Cover so that your cover page remains unnumbered and numbering begins seamlessly on page 2.'
-      },
-      {
-        question: 'Can I start numbering from a custom number?',
-        answer: 'Yes. You can specify a custom starting number offset (such as starting at 10 for a book section or appendix).'
-      },
-      {
-        question: 'Does adding page numbers modify existing document contents?',
-        answer: 'No. Page numbers are drawn neatly into the margins without altering or compressing the existing document text or images.'
-      }
+      { question: "Can I skip adding page numbers to the cover or title page?", answer: "Yes. Check the \"Skip First Page\" option, and numbering will begin cleanly on page two." },
+      { question: "Can I format page numbers as \"Page X of Y\" with total page count?", answer: "Yes. You can select between \"1\", \"Page 1\", \"Page 1 of 10\", or \"1 / 10\" formatting styles." },
+      { question: "Can I start numbering from a specific number (like starting at page 5)?", answer: "Yes. Enter your custom starting number, and subsequent pages will increment sequentially from that number." },
+      { question: "Does numbering modify or cover existing text on my pages?", answer: "Page numbers are stamped in the margin area. You can adjust margin offsets to ensure numbers never overlap document contents." },
+      { question: "Are my private documents sent to an external server?", answer: "No. Page numbering is calculated and rendered directly in your browser using pdf-lib." }
     ]
   },
   {
     id: 'pdf-compare',
-    title: 'PDF Compare Tool — Compare Two PDF Files Side-by-Side Online',
-    navTitle: 'Compare PDFs',
-    description: 'Compare two versions of a PDF document to find changes, additions, and deletions with side-by-side diff highlighting.',
+    title: "PDF Compare Tool — Compare Two PDF Files Side-by-Side Online",
+    navTitle: "Compare PDFs",
+    description: "Compare two PDF documents side-by-side to highlight text differences, additions, and deletions. View color-coded revision diffs and similarity scores.",
     icon: '⚖️',
     path: '/pdf-compare.html',
     filename: 'pdf-compare.html',
     category: '📄 PDF Tools',
     badge: 'Diff',
-    features: ['Side-by-Side Comparison', 'Color-Coded Additions & Deletions', 'Similarity Percentage Score', 'Page Text Extraction', 'Client-Side Processing'],
+    features: [
+      "Side-by-Side Visual Diff Highlighting for Revisions & Edits",
+      "Color-Coded Additions (Green) and Deletions (Red)",
+      "Similarity Percentage Score & Word Change Metrics",
+      "Page-by-Page Synchronized Text Comparison",
+      "Extracts Text Layers Directly via pdfjs-dist",
+      "100% Client-Side Comparison for Confidential Contracts"
+    ],
     howTo: [
-      { title: 'Upload Both PDF Files', desc: 'Upload the original document as Document A and the revised document as Document B.' },
-      { title: 'Run Text Comparison', desc: 'The tool extracts text streams and computes word-level differences between the two files.' },
-      { title: 'Review Highlighted Differences', desc: 'Inspect additions in green, deletions in red, and check the overall Similarity Score percentage.' }
+      { title: "Upload Original and Modified PDF Files", desc: "Select your baseline PDF document in the first slot and your revised version in the second slot." },
+      { title: "Run Side-by-Side Comparison", desc: "Click Compare to extract text layers and compute differences between the two documents." },
+      { title: "Review Highlighted Changes and Similarity Score", desc: "Inspect color-coded text diffs page by page and review the calculated similarity percentage." }
     ],
     faq: [
-      {
-        question: 'How are differences shown?',
-        answer: 'Additions are highlighted in green, deletions in red, and identical text in neutral gray.'
-      },
-      {
-        question: 'What does the Similarity Percentage Score mean?',
-        answer: 'The Similarity Score reflects the percentage of matching words across both documents, giving an objective index of how much the text has changed.'
-      },
-      {
-        question: 'Can I compare multi-page contracts and reports?',
-        answer: 'Yes. The comparison engine extracts text across all pages in both documents and aligns them sequentially for detailed review.'
-      },
-      {
-        question: 'Can this tool compare scanned documents?',
-        answer: 'The comparison engine operates on text layers. If your PDFs are scans without digital text, run them through Zubware PDF to Text with OCR first.'
-      },
-      {
-        question: 'Can I export or save the comparison report?',
-        answer: 'Yes. Click "Download Diff Report" to save a clean text file showing all additions, deletions, and the overall similarity score.'
-      }
+      { question: "How does the PDF comparison highlight changes between documents?", answer: "It extracts selectable text from both files and runs a diff algorithm, highlighting inserted text in green and deleted text in red." },
+      { question: "Can I compare multi-page legal contracts and agreements?", answer: "Yes. You can navigate through pages sequentially to review clauses that were added, removed, or reworded." },
+      { question: "What does the similarity percentage score represent?", answer: "It measures the proportion of unchanged text relative to total words, giving you an instant metric of how closely the two versions match." },
+      { question: "Can this tool compare scanned documents that are image-only PDFs?", answer: "The comparison works directly on documents with embedded text layers. Scanned PDFs must have OCR text layers to detect differences." },
+      { question: "Are my confidential legal contracts or agreements uploaded to a server?", answer: "No. Text extraction and comparison run entirely inside your browser memory, keeping sensitive legal documents secure." }
     ]
   },
   {
@@ -5161,74 +5586,92 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'reading-time-calculator',
-    title: 'Reading Time Calculator — Estimate Reading & Speaking Duration',
-    navTitle: 'Reading Time Calculator',
-    description: 'Estimate how long it will take an audience to read or listen to your blog post, speech, presentation, or script.',
+    title: "Reading Time Calculator — Estimate Reading Duration Online",
+    navTitle: "Reading Time",
+    description: "Estimate silent reading time and speaking duration for articles, speeches, or scripts online. Calculate total word counts and adjustable reading speeds.",
     icon: '⏱️',
     path: '/reading-time-calculator.html',
     filename: 'reading-time-calculator.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Free',
-    features: ['Custom Words-Per-Minute Slider', 'Silent Reading & Speaking Estimates', 'Fast / Average / Slow Speed Tiers', 'File Upload Support', 'Live Word Count'],
+    features: [
+      "Calculates Silent Reading Time (Adjustable Words Per Minute)",
+      "Estimates Public Speaking & Presentation Duration (130-150 WPM)",
+      "Detailed Text Metrics (Word Count, Character Count, Sentences, Paragraphs)",
+      "Adjustable Reading Speed Slider (Slow, Average, Fast Reader)",
+      "Readability Score and Average Word Length Analytics",
+      "Instant Client-Side Text Processing with Zero Data Logging"
+    ],
     howTo: [
-      { title: "Paste or Type Text Manuscript", desc: "Enter or paste your article, speech, essay, or blog post into the text editor, or upload a text file." },
-      { title: "Adjust Words-Per-Minute (WPM) Speed", desc: "Use the slider to customize reading speed (default 200 WPM) or review presets for speed readers and speaking presentations." },
-      { title: "Review Reading & Speaking Duration", desc: "Inspect total word count, character count, estimated silent reading time, and estimated oral presentation speaking time." }
+      { title: "Paste Text or Script", desc: "Paste your blog post, speech, manuscript, or presentation script into the text analyzer." },
+      { title: "Adjust Reading Speed", desc: "Use the default 200–250 WPM average reading rate or customize reading/speaking speeds." },
+      { title: "Review Duration Metrics", desc: "View estimated reading time in minutes and seconds alongside comprehensive word count analytics." }
     ],
     faq: [
-      { question: "What reading speed (WPM) is standard for online articles and blog posts?", answer: "The standard average silent reading speed for adults is approximately 200 to 250 words per minute (WPM). Zubware defaults to 200 WPM to provide a conservative, accessible reading time estimate." },
-      { question: "How does speech presentation time differ from silent reading time?", answer: "Speaking aloud is significantly slower than reading silently. Speech delivery typically ranges between 130 and 150 WPM to maintain clear articulation, audience pacing, and emphasis." },
-      { question: "How is reading time calculated for articles that take less than a minute?", answer: "The calculator breaks down duration into exact minutes and seconds (e.g. '0 min 45 sec') rather than rounding small snippets up to a full minute." },
-      { question: "Does the calculator count words accurately across punctuation and line breaks?", answer: "Yes. The text parser splits on whitespace and cleans punctuation marks to count distinct lexical words accurately." },
-      { question: "Is my pasted article or speech text uploaded to an external server?", answer: "No. Text parsing, word counting, and reading speed calculations occur locally in your web browser memory." }
+      { question: "What is the average human reading speed used for calculation?", answer: "The standard silent reading speed for adults is between 200 and 250 words per minute (WPM), with 225 WPM commonly used across digital publishing platforms." },
+      { question: "How does speaking duration differ from silent reading time?", answer: "People speak much slower than they read silently. Average public speaking, presentations, and podcast speech run at 130 to 150 words per minute." },
+      { question: "Can I use this tool to time speeches and video voiceovers?", answer: "Yes. The speaking time estimate is ideal for pacing conference presentations, YouTube scripts, and commercial voiceovers." },
+      { question: "Is my written text or unpublished book manuscript uploaded to a server?", answer: "No. All word counting and time calculations execute locally in your browser memory." }
     ]
   },
   {
     id: 'remove-duplicate-lines',
-    title: 'Remove Duplicate Lines — Deduplicate Text Lists Online',
-    navTitle: 'Remove Duplicate Lines',
-    description: 'Deduplicate lines of text, email lists, keywords, and code lists instantly with case sensitivity and trimming options.',
+    title: "Remove Duplicate Lines — Deduplicate Text Lists Online Free",
+    navTitle: "Remove Duplicates",
+    description: "Remove duplicate lines from text lists, emails, keywords, and code online. Configure case sensitivity and trimming options with instant deduplication.",
     icon: '🧹',
     path: '/remove-duplicate-lines.html',
     filename: 'remove-duplicate-lines.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Free',
-    features: ['Case-Sensitive / Insensitive', 'Trim Whitespace Option', 'Duplicate Removal Stats', 'Export Cleaned File', 'Instant Copy'],
+    features: [
+      "Instant One-Click Line Deduplication for Text & Lists",
+      "Case-Sensitive vs Case-Insensitive Matching Toggles",
+      "Trim Leading and Trailing Whitespace Before Comparison",
+      "Preserve Original Line Order or Sort Output Alphabetically",
+      "Detailed Statistics Showing Original, Duplicate & Unique Counts",
+      "100% In-Browser Execution for Private Email and Keyword Lists"
+    ],
     howTo: [
-      { title: "Paste Multi-Line List", desc: "Enter your raw list of URLs, emails, product SKUs, or text items into the input field." },
-      { title: "Configure Deduplication Options", desc: "Toggle Case Sensitive matching, Trim Whitespace, and Preserve Original Order depending on your list requirements." },
-      { title: "Copy Clean Deduplicated Output", desc: "Review the unique lines count and reduction percentage, then click Copy or download the sanitized list." }
+      { title: "Paste Your Text List", desc: "Input lists of emails, URLs, keywords, or code lines into the editor box." },
+      { title: "Choose Deduplication Options", desc: "Toggle case sensitivity, whitespace trimming, and whether to remove empty lines." },
+      { title: "Copy Cleaned Unique Lines", desc: "Review the duplicate count removed and copy the deduplicated list with one click." }
     ],
     faq: [
-      { question: "Does deduplication preserve the original order of list items?", answer: "Yes. By default, the tool retains the first occurrence of each unique item in its original sequence while discarding subsequent duplicates." },
-      { question: "How does the Case Sensitive toggle affect duplicate removal?", answer: "When enabled, 'Item' and 'item' are treated as two distinct unique lines. When disabled, case differences are normalized so only one instance remains." },
-      { question: "Can leading and trailing spaces cause false duplicate mismatches?", answer: "Enabling the 'Trim Whitespace' option strips invisible leading or trailing spaces before comparison, ensuring clean matches across formatted lists." },
-      { question: "Can this tool handle lists with thousands of entries?", answer: "Yes. Using a high-performance JavaScript Set data structure, lists with tens of thousands of rows are deduplicated in fractions of a second." },
-      { question: "Is any list data sent to Zubware servers?", answer: "No. Array filtering and Set lookups are computed in your browser without any network requests." }
+      { question: "How does case sensitivity affect duplicate removal?", answer: "With case sensitivity enabled, \"Apple\" and \"apple\" are treated as distinct lines. In case-insensitive mode, they are identified as duplicates and merged." },
+      { question: "Can I deduplicate massive email or keyword lists safely?", answer: "Yes. The tool runs in client-side JavaScript, meaning lists with thousands of entries are deduplicated in milliseconds without server limits." },
+      { question: "Does the tool preserve the original order of my list?", answer: "Yes. By default it keeps the first occurrence of each unique line in its original order, with an optional toggle to sort alphabetically." },
+      { question: "Are my proprietary email lists or keywords uploaded to Zubware servers?", answer: "No. Deduplication executes entirely in your local browser runtime with zero network data transfer." }
     ]
   },
   {
     id: 'remove-empty-lines',
-    title: 'Remove Empty Lines — Strip Blank Lines & Whitespace Online',
-    navTitle: 'Remove Empty Lines',
-    description: 'Remove blank lines, unnecessary carriage returns, and normalize paragraph spacing in messy text files.',
+    title: "Remove Empty Lines — Strip Blank Lines & Whitespace Online",
+    navTitle: "Remove Empty Lines",
+    description: "Remove empty lines, blank spaces, and unnecessary paragraph breaks from text online. Clean up messy text formatting with one-click clipboard copying.",
     icon: '🗑️',
     path: '/remove-empty-lines.html',
     filename: 'remove-empty-lines.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Free',
-    features: ['Strip All Blank Lines', 'Collapse Multiple Blanks to Single', 'Trim Whitespace Option', 'Instant Copy', 'Local Browser Processing'],
+    features: [
+      "Strips All Blank & Empty Lines with a Single Click",
+      "Normalize Mode: Compresses Multiple Blank Lines into Single Breaks",
+      "Trims Leading & Trailing Whitespace Across All Lines",
+      "Handles Windows (CRLF), Unix (LF) & Mac Line Endings",
+      "Live Metrics for Lines Removed and Resulting Line Count",
+      "Instant In-Browser Text Cleaning with Zero Cloud Logging"
+    ],
     howTo: [
-      { title: "Paste Raw Text with Blank Lines", desc: "Input or paste your document, code snippet, or dataset containing unwanted empty rows." },
-      { title: "Select Line Removal Mode", desc: "Choose whether to remove all blank lines completely, or collapse multiple consecutive empty lines into a single clean line break." },
-      { title: "Copy Cleaned Result", desc: "Inspect the sanitized output in the preview window and click Copy to clipboard." }
+      { title: "Paste Text with Blank Lines", desc: "Paste code, copied documents, or articles containing excessive empty lines." },
+      { title: "Select Cleaning Rule", desc: "Choose to strip all empty lines completely or compress multiple blank lines into a single neat paragraph break." },
+      { title: "Copy Cleaned Text", desc: "Click Copy to take your condensed, cleanly formatted text to your document or code editor." }
     ],
     faq: [
-      { question: "Does the tool remove lines that only contain spaces or tabs?", answer: "Yes. The regex engine detects lines containing only whitespace (spaces, tabs, carriage returns) and removes them alongside completely empty lines." },
-      { question: "What is the difference between Remove All and Collapse Blank Lines?", answer: "Remove All eliminates every empty line to produce a continuous compact block. Collapse Blank Lines condenses 2 or more consecutive blank lines down to 1 single blank separator line." },
-      { question: "Can I use this on programming source code without breaking indentation?", answer: "Yes. Code indentation on non-empty lines is completely preserved; only entirely blank or whitespace-only lines are eliminated." },
-      { question: "Does this utility handle Windows (CRLF) and Unix (LF) line endings?", answer: "Yes. The parser normalizes CRLF and LF delimiters before stripping empty rows, outputting consistent clean line breaks." },
-      { question: "Is my text data processed securely in the browser?", answer: "Yes. String manipulation is executed locally in client-side memory with zero server-side storage or transmission." }
+      { question: "What constitutes an \"empty line\" in this tool?", answer: "An empty line is any line with zero characters or lines containing only whitespace (spaces, tabs, carriage returns) with no visible text." },
+      { question: "Can I keep single paragraph breaks while removing triple or quadruple blank lines?", answer: "Yes. Select the \"Compress Multiple Blank Lines\" option to normalize double or triple line breaks into clean single paragraph spacing." },
+      { question: "Can this tool fix messy text copied from PDFs or OCR scanners?", answer: "Yes. It quickly removes the random empty lines and broken paragraphs frequently introduced when copying from PDF files." },
+      { question: "Is my text stored anywhere online during cleaning?", answer: "No. All string manipulation takes place locally inside your browser memory." }
     ]
   },
   {
@@ -5281,74 +5724,92 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'text-cleaner',
-    title: 'Text Cleaner — Remove Extra Spaces, Tabs, HTML Tags & Empty Lines',
-    navTitle: 'Text Cleaner',
-    description: 'Clean up sloppy, formatted, or copied text by stripping HTML tags, redundant spaces, tabs, duplicate lines, and weird unicode characters.',
+    title: "Text Cleaner — Remove Extra Spaces, Tabs & HTML Tags Online",
+    navTitle: "Text Cleaner",
+    description: "Clean up messy text by stripping redundant spaces, tabs, HTML tags, and line breaks online. Normalize whitespace and formatting with instant preview.",
     icon: '🧼',
     path: '/text-cleaner.html',
     filename: 'text-cleaner.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Popular',
-    features: ['Strip HTML & XML Tags', 'Remove Extra Spaces & Tabs', 'Remove Duplicate Lines', 'Normalize Line Breaks', 'One-Click Clean'],
+    features: [
+      "Removes Consecutive Multiple Spaces and Replaces with Single Space",
+      "Converts Tabs to Spaces & Trims Leading/Trailing Line Whitespace",
+      "Strips HTML, XML & Web Markup Tags from Pasted Content",
+      "Normalizes Curly Quotes, Smart Apostrophes & Dashes",
+      "Removes Empty Blank Lines and Normalizes Paragraph Spacing",
+      "Before & After Character, Word, and Line Reduction Metrics"
+    ],
     howTo: [
-      { title: "Paste Dirty or Scraped Text", desc: "Input unformatted text copied from PDFs, websites, or legacy text files." },
-      { title: "Select Cleaning Rules", desc: "Check desired cleanup filters: Strip HTML tags, remove emojis, decode HTML entities, normalize smart quotes, or strip extra spaces." },
-      { title: "Copy Sanitized Plain Text", desc: "Review the cleaned output in the preview panel and copy it with a single click." }
+      { title: "Paste Unformatted or Scraped Text", desc: "Paste text containing HTML tags, irregular spacing, tabs, or strange quotes." },
+      { title: "Select Cleaning Rules", desc: "Toggle which cleanup operations to apply (strip HTML, remove extra spaces, trim whitespace)." },
+      { title: "Copy Cleaned Text", desc: "Review the character savings and copy your pristine, uniformly formatted text." }
     ],
     faq: [
-      { question: "Does the cleaner remove HTML tags without destroying tag content?", answer: "Yes. It strips HTML tags (such as <div>, <p>, <span>) while retaining the inner readable text content cleanly." },
-      { question: "What does smart quote normalization do?", answer: "It replaces curly quotes (“ ” ‘ ’) and em-dashes with standard ASCII straight quotes (\" ') and hyphens, preventing syntax errors in code and databases." },
-      { question: "Can this tool strip non-ASCII characters and emojis?", answer: "Yes. You can toggle emoji removal and non-ASCII character stripping to prepare pure plain text for strict legacy systems." },
-      { question: "How does it handle mixed line breaks from copied PDF text?", answer: "It unifies carriage returns and joins soft hyphenated line wraps into smooth, readable continuous paragraphs." },
-      { question: "Is my cleaned text stored in any cloud database?", answer: "No. All text scrubbing regexes run client-side in browser memory." }
+      { question: "What types of formatting noise can this text cleaner remove?", answer: "It removes multiple spaces, converts tab indents, strips HTML/XML tags, removes empty lines, and normalizes smart quotes and em-dashes into standard characters." },
+      { question: "Can I strip HTML tags from web pages while keeping the actual text content?", answer: "Yes. The \"Strip HTML Tags\" option strips all markup elements (like `<div>`, `<p>`, `<a>`) while preserving readable text." },
+      { question: "Does this tool fix smart curly quotes for coding?", answer: "Yes. It converts curly quotes (“ ” ‘ ’) into straight ASCII quotation marks (' and \") that won’t trigger syntax errors in code or JSON." },
+      { question: "Are my private documents sent to an external server?", answer: "No. All string cleansing algorithms run strictly in your browser runtime via client-side regex." }
     ]
   },
   {
     id: 'sort-lines',
-    title: 'Sort Lines Online — Alphabetical, Numeric & Reverse Line Sorter',
-    navTitle: 'Sort Lines',
-    description: 'Sort lines of text alphabetically (A-Z or Z-A), numerically (0-9), by length, or randomly shuffle lines with duplicate removal.',
+    title: "Sort Lines Online — Alphabetical & Numeric Line Sorter Free",
+    navTitle: "Sort Lines",
+    description: "Sort lines of text alphabetically, numerically, by length, or in reverse order online. Organize keyword lists and CSV files with instant text sorting.",
     icon: '🔃',
     path: '/sort-lines.html',
     filename: 'sort-lines.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Free',
-    features: ['A-Z & Z-A Alphabetical', 'Numeric 0-9 Ascending & Descending', 'Sort by Line Length', 'Random Shuffle & Reverse', 'Remove Duplicate Lines'],
+    features: [
+      "Alphabetical Sorting (A to Z) & Reverse Alphabetical (Z to A)",
+      "Natural Numeric Sorting (Orders 1, 2, 10 Correctly)",
+      "Sort by Line Length (Shortest to Longest / Longest to Shortest)",
+      "Random Shuffle Mode to Randomize List Order",
+      "Case Sensitive / Insensitive Sorting Toggles",
+      "Optional Integrated Duplicate Removal While Sorting"
+    ],
     howTo: [
-      { title: "Paste Unsorted Lines", desc: "Enter your list of names, numbers, keywords, or filenames into the editor." },
-      { title: "Select Sorting Criteria", desc: "Choose Alphabetical (A-Z or Z-A), Natural Numeric sorting, Line Length, or Random Shuffle, and toggle case sensitivity." },
-      { title: "Copy or Export Sorted List", desc: "Review the reordered list and click Copy to clipboard or download as text." }
+      { title: "Paste Text Lines", desc: "Enter a list of items, names, keywords, or data records." },
+      { title: "Choose Sort Method", desc: "Select alphabetical, reverse, numeric, length-based, or random shuffle order." },
+      { title: "Copy Sorted Output", desc: "Review the newly organized list and copy the sorted lines directly to your clipboard." }
     ],
     faq: [
-      { question: "What is Natural Numeric sorting?", answer: "Natural sorting treats multi-digit numbers intelligently so that 'item 2' appears before 'item 10', unlike standard ASCII sorting which places '10' before '2'." },
-      { question: "Can I sort lines by character length?", answer: "Yes. You can sort from shortest line to longest line, or descending from longest to shortest, useful for domain naming and keyword research." },
-      { question: "Can I shuffle lines randomly?", answer: "Yes. The Shuffle option uses the Fisher-Yates randomization algorithm to randomize row order for giveaways or randomized test lists." },
-      { question: "Does the sorter preserve leading numbers and formatting?", answer: "Yes. Text on each line remains unaltered; only the sequence of the rows is reorganized." },
-      { question: "Is the sorting performed locally on my computer?", answer: "Yes. Array sorting executes in your local JavaScript runtime without external server communication." }
+      { question: "What is natural numeric sorting versus standard alphabetical sorting?", answer: "Standard alphabetical sorting puts \"10\" before \"2\" because \"1\" precedes \"2\". Natural numeric sorting recognizes numerical values, correctly ordering 1, 2, 3... 10." },
+      { question: "Can I randomly shuffle lines to randomize a list?", answer: "Yes. Select Random Shuffle to reorder list items into an unpredictable random sequence using the Fisher-Yates algorithm." },
+      { question: "Can I sort lines by character length?", answer: "Yes. You can sort lines from shortest to longest or longest to shortest, which is useful for domain names and SEO keyword grouping." },
+      { question: "Are large text files supported?", answer: "Yes. Lists with thousands of lines sort in milliseconds within your browser memory." }
     ]
   },
   {
     id: 'lorem-ipsum-generator',
-    title: 'Lorem Ipsum Generator — Dummy Placeholder Text Generator',
-    navTitle: 'Lorem Ipsum Generator',
-    description: 'Generate customizable Latin dummy text by paragraphs, sentences, or word counts for web design and mockup layouts.',
+    title: "Lorem Ipsum Generator — Dummy Placeholder Text Online Free",
+    navTitle: "Lorem Ipsum",
+    description: "Generate custom Latin placeholder dummy text by paragraphs, sentences, or word counts online. Copy formatted mock text for design and layout mockups.",
     icon: '📜',
     path: '/lorem-ipsum-generator.html',
     filename: 'lorem-ipsum-generator.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Free',
-    features: ['Paragraphs, Sentences, or Words', 'Start with "Lorem Ipsum" Toggle', 'One-Click Copy', 'Download as .txt', 'Fast & Lightweight'],
+    features: [
+      "Generate by Exact Paragraphs, Sentences, or Word Counts",
+      "Classic \"Lorem ipsum dolor sit amet...\" Opening Toggle",
+      "Optional HTML Formatting (Wraps Output in <p> Tags)",
+      "Generates Natural Latin Vocabulary Distribution",
+      "One-Click Clipboard Copying for Web Designers and Developers",
+      "Instant Client-Side Generation with Zero Network Delays"
+    ],
     howTo: [
-      { title: "Choose Output Unit & Quantity", desc: "Select whether to generate Paragraphs, Sentences, Words, or List Items, and enter your desired quantity." },
-      { title: "Configure Generation Options", desc: "Toggle whether to start with standard 'Lorem ipsum dolor sit amet...' and whether to wrap output in HTML <p> tags." },
-      { title: "Copy Generated Placeholder Text", desc: "Click Generate, review the dummy text, and click Copy to clipboard for immediate use in mockups and wireframes." }
+      { title: "Select Unit and Quantity", desc: "Choose whether you need paragraphs, sentences, or a specific number of words (e.g. 5 paragraphs)." },
+      { title: "Configure Options", desc: "Toggle whether to start with the classic \"Lorem ipsum\" opening or wrap in HTML markup tags." },
+      { title: "Copy Placeholder Text", desc: "Click Copy to paste dummy filler text into your Figma, Webflow, or code mockup layouts." }
     ],
     faq: [
-      { question: "Where does traditional Lorem Ipsum text originate?", answer: "It derives from sections of Cicero's 45 BC philosophical treatise 'De finibus bonorum et malorum', randomized to simulate natural reading cadence." },
-      { question: "Can I wrap generated dummy text in HTML markup?", answer: "Yes. Check the 'HTML Tags' option to automatically wrap paragraphs in <p>...</p> tags or generate ready-to-use <ul><li>...</li></ul> lists." },
-      { question: "Why use placeholder dummy text instead of real copy?", answer: "Dummy text prevents visual designers, clients, and reviewers from getting distracted by readable copy, keeping focus on layout, typography, and hierarchy." },
-      { question: "Can I generate specific word counts for tight layout mockups?", answer: "Yes. Select 'Words' mode and set your exact word count threshold to test tight button labels, card snippets, or metadata fields." },
-      { question: "Does the generator require an active internet connection?", answer: "No. The Latin vocabulary dictionary is stored locally in the application bundle, allowing instant offline text generation." }
+      { question: "What is Lorem Ipsum and why is it used in graphic design?", answer: "Lorem Ipsum is standard placeholder dummy text derived from Cicero’s 45 BC Latin treatise. Designers use it because its natural letter distribution prevents viewers from getting distracted by readable content." },
+      { question: "Can I generate exact word counts for character-constrained layouts?", answer: "Yes. Switch to Word mode and specify the exact number of words needed for your button, card, or banner design." },
+      { question: "Can it output HTML paragraph tags (<p>)?", answer: "Yes. Enabling the HTML tags option automatically wraps each paragraph in `<p>` and `</p>` tags for immediate pasting into code." },
+      { question: "Is this dummy text generator free with unlimited use?", answer: "Yes. It generates unlimited filler text instantly in your browser with no sign-ups or limits." }
     ]
   },
   {
@@ -5379,7 +5840,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'json-minifier',
     title: 'JSON Minifier & Compressor — Minify JSON Online Free',
     navTitle: 'JSON Minifier',
-    description: 'Minify, compress, and strip unneeded whitespace and line breaks from JSON documents to reduce payload size.',
+    description: 'Minify and compress JSON documents online to reduce payload size. Strips whitespace, tabs, and line breaks while preserving string literals. Fast and free.',
     icon: '⚡',
     path: '/json-minifier.html',
     filename: 'json-minifier.html',
@@ -5403,7 +5864,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'json-to-xml',
     title: 'JSON to XML Converter — Transform JSON to XML Online Free',
     navTitle: 'JSON to XML',
-    description: 'Transform JSON data structures into clean, standardized XML documents with customizable root and item element names.',
+    description: 'Transform JSON data structures into clean, standardized XML documents with custom root tags and attribute mappings. Fast client-side conversion in browser.',
     icon: '🔄',
     path: '/json-to-xml.html',
     filename: 'json-to-xml.html',
@@ -5427,7 +5888,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'xml-to-json',
     title: 'XML to JSON Converter — Convert XML Structure to JSON Online',
     navTitle: 'XML to JSON',
-    description: 'Parse and convert XML feeds and document structures into clean, formatted JSON data objects directly in your browser.',
+    description: 'Parse and convert XML documents, RSS feeds, and SOAP payloads into clean JSON objects directly in your browser. Preserves attributes and hierarchy accurately.',
     icon: '🔀',
     path: '/xml-to-json.html',
     filename: 'xml-to-json.html',
@@ -5451,7 +5912,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'markdown-to-html',
     title: 'Markdown to HTML Converter — Parse Markdown to Clean HTML',
     navTitle: 'Markdown to HTML',
-    description: 'Convert Markdown syntax (.md) into clean, semantic HTML markup with live preview and syntax-highlighted code output.',
+    description: 'Convert Markdown syntax (.md) into clean, semantic HTML markup with live preview and syntax-highlighted code output. Supports GFM tables and code blocks.',
     icon: '📄',
     path: '/markdown-to-html.html',
     filename: 'markdown-to-html.html',
@@ -5475,7 +5936,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'sql-formatter',
     title: 'SQL Formatter & Beautifier — Format SQL Queries Online Free',
     navTitle: 'SQL Formatter',
-    description: 'Format, beautify, and indent SQL queries with customizable uppercase keywords, indentation, and support for MySQL, Postgres, SQLite, and T-SQL.',
+    description: 'Format, beautify, and indent SQL queries online with uppercase keywords and custom indentation. Supports MySQL, PostgreSQL, SQLite, MariaDB, and SQL Server.',
     icon: '🗄️',
     path: '/sql-formatter.html',
     filename: 'sql-formatter.html',
@@ -5499,7 +5960,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'jwt-generator',
     title: 'JWT Generator & Signer — Create Signed JSON Web Tokens Online',
     navTitle: 'JWT Generator',
-    description: 'Create and cryptographically sign JSON Web Tokens (JWT) using HS256, HS384, or HS512 with custom headers, claims, and expiry.',
+    description: 'Create and cryptographically sign JSON Web Tokens (JWT) using HS256, HS384, or HS512 with custom claims, headers, and expiry. Fast client-side HMAC signing.',
     icon: '🛡️',
     path: '/jwt-generator.html',
     filename: 'jwt-generator.html',
@@ -5523,7 +5984,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'cron-expression-generator',
     title: 'Cron Expression Generator & Explainer — Schedule Builder',
     navTitle: 'Cron Generator',
-    description: 'Build, translate, and explain 5-part Unix cron schedule expressions into plain English with upcoming execution time predictions.',
+    description: 'Build, translate, and explain 5-part Unix cron schedule expressions into plain English with next execution time predictions. Visual online schedule builder.',
     icon: '⏱️',
     path: '/cron-expression-generator.html',
     filename: 'cron-expression-generator.html',
@@ -5641,81 +6102,101 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'business-name-generator',
-    title: 'Business Name Generator — Creative Brand & Startup Ideas',
-    navTitle: 'Business Name Gen',
-    description: 'Generate hundreds of catchy, modern, and memorable company brand names for your new startup, online store, or business venture.',
+    title: "Business Name Generator — Catchy Startup & Brand Name Ideas",
+    navTitle: "Business Names",
+    description: "Generate hundreds of catchy, modern company name ideas for your startup or online store. Filter by industry niche and check domain name availability.",
     icon: '💡',
     path: '/business-name-generator.html',
     filename: 'business-name-generator.html',
     category: '💼 Business Tools',
     badge: 'Popular',
-    features: ['Industry & Style Filtering', 'Prefix & Suffix Combinations', 'Domain Availability Checks', 'Favorite Names List', 'Instant Clipboard Copy'],
+    features: [
+      "Hundreds of Categorized Startup & E-Commerce Name Ideas",
+      "Industry Filters (Tech, Retail, Agency, Consulting, Food, Health)",
+      "Naming Style Modes (Modern Blend, Invented, Minimalist, Classic)",
+      "Character Length Filters & Keyword Insertion Support",
+      "One-Click Domain Availability Check Shortcut Links",
+      "Save & Export Favorite Brand Names to Clipboard or Text"
+    ],
     howTo: [
-      { title: "Enter Industry Keywords & Concepts", desc: "Type your business niche, core product offerings, and brand values." },
-      { title: "Select Naming Style & Length", desc: "Filter by Modern Minimalist, Compound Word, Classic Corporate, Tech Syllable Blend, or Invented Abstract." },
-      { title: "Explore Ideas & Check Domain Formats", desc: "Review curated business name suggestions formatted with matching .com and modern TLD concepts, and copy your favorites." }
+      { title: "Enter Keywords and Choose Industry", desc: "Input core keywords describing your business concept and select your commercial sector." },
+      { title: "Browse and Filter Generated Names", desc: "Filter suggestions by naming style (compound, invented, modern) and adjust character count preferences." },
+      { title: "Save Favorites and Check Domains", desc: "Bookmark top name candidates, copy your shortlist, and check domain name availability with one click." }
     ],
     faq: [
-      { question: "How does the business name generator formulate suggestions?", answer: "It uses linguistic word blending, Latin roots, phonetic syllable compounding, and industry keyword associations to produce memorable, brandable company names." },
-      { question: "Can I filter name length by character count?", answer: "Yes. You can specify maximum character length to prioritize short, punchy 5-to-8 character startup names." },
-      { question: "Does the tool check live trademark registers?", answer: "No. The tool generates creative branding concepts; legal trademark availability and corporate registry filings must be conducted through official government trademark offices (e.g. USPTO, EUIPO)." },
-      { question: "Can I bookmark favorite name ideas during my session?", answer: "Yes. Click the star icon on any suggestion to save it to your local favorites list." },
-      { question: "Are my company name ideas recorded by Zubware?", answer: "No. All name generation algorithms execute locally on your machine with complete privacy." }
+      { question: "How does the generator create relevant business names?", answer: "It combines linguistic morphemes, industry power words, modern prefixes, and phonetic word blends tailored to your seed keywords." },
+      { question: "Can I filter business names by specific industries?", answer: "Yes. You can filter by technology, SaaS, e-commerce, consulting, creative agencies, fashion, food and dining, and wellness." },
+      { question: "Can I check if the corresponding .com domain name is available?", answer: "Yes. Clicking the domain lookup shortcut next to any generated name checks registration status instantly on popular registrars." },
+      { question: "Can I save a shortlist of my favorite name ideas?", answer: "Yes. Click the star or heart icon next to any name to save it to your session shortlist, which you can copy or export anytime." },
+      { question: "Is this business name generator free to use without an account?", answer: "Yes. It is completely free with no signup, credit card, or usage restrictions." }
     ]
   },
   {
     id: 'brand-name-generator',
-    title: 'Brand Name Generator — Catchy Company & Domain Names',
-    navTitle: 'Brand Name Gen',
-    description: 'Create unique, premium, and creative brand identity names with linguistic morphemes, blended words, and modern tech vibes.',
+    title: "Brand Name Generator — Creative Company & Product Brand Names",
+    navTitle: "Brand Name Generator",
+    description: "Generate premium brand names, product titles, and company brand identities online for free. Explore invented, compound, and modern name styles instantly.",
     icon: '✨',
     path: '/brand-name-generator.html',
     filename: 'brand-name-generator.html',
     category: '💼 Business Tools',
     badge: 'Creative',
-    features: ['Tech & Luxury Vibe Filters', 'Portmanteau Word Blend', 'Vowel Harmony Engine', 'One-Click Shortlisting', 'Brand Identity Inspiration'],
+    features: [
+      "Sophisticated Linguistic Morpheme & Phonetic Name Synthesis",
+      "Brand Tone Profiles (Luxurious, Modern Tech, Playful, Bold, Organic)",
+      "Syllable Count & Prefix/Suffix Customization Options",
+      "Keyword Seed Insertion with Creative Morphing",
+      "Session Favorites List with One-Click Clipboard Copying",
+      "Fast In-Browser Algorithmic Generation with Zero Delay"
+    ],
     howTo: [
-      { title: "Input Brand Focus & Emotional Vibe", desc: "Enter your product theme and choose an emotional vibe: Luxury & Prestige, Playful & Friendly, High-Tech, or Eco & Organic." },
-      { title: "Choose Naming Architecture", desc: "Select Abstract Neologisms, Real Word Metaphors, Foreign Language Roots, or Clean Acronyms." },
-      { title: "Review & Copy Brand Concepts", desc: "Browse generated brand identities along with sample tagline hooks and copy top candidates." }
+      { title: "Enter Brand Keywords", desc: "Provide one or two words that reflect your core product, service, or brand values." },
+      { title: "Select Brand Personality and Tone", desc: "Pick your preferred tone—such as sleek modern tech, timeless luxury, organic wellness, or energetic bold." },
+      { title: "Curate and Export Your Brand Shortlist", desc: "Review high-scoring brand names, save favorites to your shortlist, and verify trademark and domain viability." }
     ],
     faq: [
-      { question: "What is the difference between a business name and a brand name?", answer: "A business name is often the legal corporate entity (e.g. 'Apex Logistics LLC'), whereas a brand name is the public-facing, emotionally resonant consumer identity (e.g. 'Swiftly')." },
-      { question: "What makes a brand name legally protectable and distinctive?", answer: "Arbitrary and invented names (like 'Kodak' or 'Spotify') receive the strongest legal trademark protection because they do not merely describe the product." },
-      { question: "Can I generate matching brand tagline concepts alongside names?", answer: "Yes. Each generated brand suggestion includes optional paired positioning taglines and brand story cues." },
-      { question: "Can I filter for names with clean pronunciation across multiple languages?", answer: "Yes. Phonetic filtering prioritizes simple consonant-vowel syllable structures that sound natural internationally." },
-      { question: "Is my brand research confidential?", answer: "Yes. All generation occurs entirely in client-side volatile memory." }
+      { question: "What is the difference between a business name and a brand name?", answer: "A business name is often descriptive of corporate operations, whereas a brand name focuses on emotional appeal, phonetics, and memorable product identity." },
+      { question: "Can I generate invented words similar to Spotify or Hulu?", answer: "Yes. Select the \"Invented / Abstract\" style to generate catchy, pronounceable neologisms with strong phonetic rhythm." },
+      { question: "Can I control syllable counts for punchy, short names?", answer: "Yes. Use syllable and character length filters to narrow suggestions down to punchy 1-2 syllable brand candidates." },
+      { question: "Are the generated brand names safe to trademark?", answer: "While names are generated algorithmically, you should always check national trademark databases (like USPTO) before launching commercial products." },
+      { question: "Does the tool require an account or subscription?", answer: "No. The brand name generator is 100% free with unlimited generation rounds and zero sign-in required." }
     ]
   },
   {
     id: 'coin-flip',
-    title: 'Online Coin Flip Simulator — 3D Heads or Tails Toss',
-    navTitle: 'Coin Flip',
-    description: 'Realistic 3D coin toss simulator with heads/tails streak statistics, multiple coin flips, and sound effects for unbiased decision making.',
+    title: "Online Coin Flip Simulator — 3D Heads or Tails Toss Online",
+    navTitle: "Coin Flip",
+    description: "Flip a virtual coin in 3D with realistic physics and sound effects online. Track heads and tails streaks or flip multiple coins for fair decisions.",
     icon: '🪙',
     path: '/coin-flip.html',
     filename: 'coin-flip.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Utility',
-    features: ['3D Coin Animation', 'Multi-coin Flips', 'Heads vs Tails History', 'Probability Statistics', 'Audio Effects'],
+    features: [
+      "Realistic 3D Animated Coin Toss with Dynamic Lighting",
+      "Single and Multi-Coin Modes (Flip 1, 2, 3, 5, or 10 Coins)",
+      "Live Statistical Tracker for Total Flips, Heads, Tails & Streaks",
+      "Realistic Audio Coin Clink Sound Effects via Web Audio API",
+      "Cryptographically Unbiased Random Number Generation",
+      "Instant Flip Animation or Immediate Instant-Result Mode"
+    ],
     howTo: [
-      { title: "Set Flip Count & Options", desc: "Choose single toss or multi-flip simulation (up to 1,000 flips at once) and select custom coin themes." },
-      { title: "Flip Coin with 3D Animation", desc: "Click Flip Coin or press Spacebar to trigger the physics-based 3D coin spin animation." },
-      { title: "Inspect Heads vs Tails Statistics", desc: "View the landed outcome, cumulative win percentages, streaks, and total Heads vs Tails distribution." }
+      { title: "Choose Coin Count", desc: "Select whether to flip a single coin or multiple coins at once." },
+      { title: "Click Flip Coin", desc: "Click the flip button or tap the coin to trigger the 3D spinning animation." },
+      { title: "Review Outcome and Probability Stats", desc: "Observe the Heads or Tails result and monitor your cumulative flip streak and probability percentages." }
     ],
     faq: [
-      { question: "Are coin flip outcomes truly 50/50 fair?", answer: "Yes. Each toss evaluates a cryptographically random bit from window.crypto.getRandomValues, ensuring exactly 50.0% theoretical probability." },
-      { question: "Can I simulate large numbers of coin flips for probability experiments?", answer: "Yes. You can execute batch simulations of up to 10,000 flips instantly to observe the Law of Large Numbers in action." },
-      { question: "Can I customize the coin faces?", answer: "Yes. You can choose between classic Gold Dollar, Silver Quarter, Euro, and custom text labels." },
-      { question: "Does the tool track flip streaks and statistics?", answer: "Yes. The stats dashboard tracks total tosses, current streak, longest streak of Heads or Tails, and percentage distributions." },
-      { question: "Does this simulation require ongoing internet access?", answer: "Once loaded, the 3D CSS animation and cryptographic randomization execute locally in your browser." }
+      { question: "Is this coin flip truly fair and 50/50 unbiased?", answer: "Yes. The coin flip simulator uses modern pseudo-random algorithms providing an exact 50% statistical probability for heads and tails over large sample sizes." },
+      { question: "Can I flip multiple coins at the same time?", answer: "Yes. You can flip up to 10 coins simultaneously to simulate probability experiments or quickly break ties among group members." },
+      { question: "Can I mute the coin flip sound effects?", answer: "Yes. An audio toggle allows you to turn the synthesized coin sound effects on or off at any time." },
+      { question: "Does the tool track my flipping history across the session?", answer: "Yes. It maintains a running counter of total flips, heads count, tails count, win percentages, and consecutive streaks." }
     ]
   },
   {
     id: 'json-viewer',
     title: 'JSON Viewer & Tree Formatter — Interactive Object Inspector',
     navTitle: 'JSON Viewer',
-    description: 'Inspect, validate, and navigate complex JSON data structures with collapsible tree views, search filters, and syntax highlighting.',
+    description: 'Inspect, validate, and navigate complex JSON data structures with collapsible tree views, search filters, and syntax highlighting. 100% private in-browser.',
     icon: '🔍',
     path: '/json-viewer.html',
     filename: 'json-viewer.html',
@@ -5737,26 +6218,32 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'name-picker-wheel',
-    title: 'Name Picker Wheel — Random Raffle & Prize Spinner',
-    navTitle: 'Picker Wheel',
-    description: 'Spin the customizable lucky wheel to pick a random name, winner, decision, or team member with celebratory animations.',
+    title: "Name Picker Wheel — Random Raffle & Prize Spinner Online",
+    navTitle: "Picker Wheel",
+    description: "Spin the customizable lucky wheel to pick a random name, winner, or raffle choice online. Enjoy smooth spin animations, sound, and winner celebration.",
     icon: '🎡',
     path: '/name-picker-wheel.html',
     filename: 'name-picker-wheel.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Interactive',
-    features: ['Colorful Spinning Wheel', 'Custom Slice Names', 'Remove Winner on Spin', 'Confetti Celebration', 'Custom Weights'],
+    features: [
+      "Customizable Wheel Slices with Vibrant Colors and Labels",
+      "Bulk Name Input with Comma or Newline List Pasting",
+      "Smooth Wheel Deceleration Physics & Ticking Sound Effects",
+      "Winner Confetti Celebration Animation & Highlight Modal",
+      "Optional \"Remove Winner on Draw\" Mode for Multi-Round Raffles",
+      "100% In-Browser Execution with No Registration Required"
+    ],
     howTo: [
-      { title: "Input Names or Choices", desc: "Paste your list of options, participants, or decisions into the wheel slice editor." },
-      { title: "Customize Wheel Appearance & Sounds", desc: "Select color themes, configure spin duration (seconds), and toggle audio ticker sound effects." },
-      { title: "Spin the Wheel to Pick a Winner", desc: "Click the center Spin button to start the wheel and celebrate the winner with confetti." }
+      { title: "Add Names or Choices", desc: "Enter names, raffle tickets, team members, or options in the editable slice list." },
+      { title: "Click to Spin the Wheel", desc: "Click Spin to initiate the spinning animation and listen to the ticking indicator." },
+      { title: "Celebrate and Select Next Winner", desc: "View the winning selection in the celebration pop-up, with the option to remove the winner before spinning again." }
     ],
     faq: [
-      { question: "How does the wheel calculate its stopping angle?", answer: "The stopping angle is determined using cryptographic randomization before applying easing physics, ensuring an unbiased outcome across all wheel slices." },
-      { question: "Can I eliminate the winning slice after a spin?", answer: "Yes. You can click 'Remove Winner' in the winner popup to remove that option before spinning again." },
-      { question: "What is the maximum number of slices the wheel can hold?", answer: "The wheel renders smoothly with up to 100 slices, automatically adjusting label typography and slice widths." },
-      { question: "Can I save custom wheel setups for future use?", answer: "Yes. Your current wheel options are saved in local browser storage so your list remains ready for your next session." },
-      { question: "Are names sent to any server during the spin?", answer: "No. Canvas rendering, rotation animations, and outcome calculations run locally in your browser." }
+      { question: "How does the name picker wheel select a winner fairly?", answer: "When you click Spin, the tool generates a random rotational angle with physics-based deceleration. Every slice has an equal chance proportional to its size." },
+      { question: "Can I paste a long list of students or raffle entries at once?", answer: "Yes. You can paste lines of names directly into the input area to populate dozens of wheel segments instantly." },
+      { question: "Can I eliminate winners after each round so they cannot win twice?", answer: "Yes. Enable the \"Remove Winner\" setting, and the selected person will be taken off the wheel for subsequent spins." },
+      { question: "Is there a limit on how many names I can put on the wheel?", answer: "You can comfortably add dozens of names; the wheel dynamically adjusts slice angles and label typography." }
     ]
   },
   {
@@ -5905,26 +6392,32 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'dice-roller',
-    title: '3D Dice Roller Simulator — Multi-Dice D6, D20 & D100',
-    navTitle: 'Dice Roller',
-    description: 'Roll virtual dice for tabletop RPGs, D&D, board games, and probability tests. Supports D4, D6, D8, D10, D12, D20, and D100.',
+    title: "3D Dice Roller Simulator — Roll Virtual D6, D20 & RPG Dice Online",
+    navTitle: "Dice Roller",
+    description: "Roll virtual polyhedral 3D dice for D&D, tabletop RPGs, and board games online. Roll D4, D6, D8, D10, D12, D20, and D100 dice with total score logs.",
     icon: '🎲',
     path: '/dice-roller.html',
     filename: 'dice-roller.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Fun',
-    features: ['RPG Dice (D4 to D100)', 'Sum Totals & Modifiers', 'Roll History & Logs', 'Physical Physics Toss', 'Multiple Dice Sets'],
+    features: [
+      "Full Polyhedral RPG Dice Set (D4, D6, D8, D10, D12, D20, D100)",
+      "Roll Multiple Dice Simultaneously with Modifier Bonuses (+/-)",
+      "Detailed Roll History Log Showing Individual Face Values & Totals",
+      "Realistic 3D Tumbling Physics and Rolling Audio Effects",
+      "One-Click Quick Roll Buttons for Common D&D Checks",
+      "Fair, Cryptographically Random Outcomes in Your Browser"
+    ],
     howTo: [
-      { title: "Select Dice Type & Quantity", desc: "Choose standard D6 gaming dice or tabletop RPG dice (D4, D6, D8, D10, D12, D20, D100) and set quantity." },
-      { title: "Set Modifiers & Roll Options", desc: "Add optional positive or negative score modifiers (+/-) and toggle roll history tracking." },
-      { title: "Roll Dice with 3D Physics", desc: "Click Roll Dice or press Spacebar to watch animated dice rolls and inspect individual values and total sum." }
+      { title: "Choose Dice Type and Quantity", desc: "Click on D4, D6, D8, D10, D12, D20, or D100 and select how many dice you want to throw." },
+      { title: "Add Modifiers (Optional)", desc: "Add bonus points or penalties (+/-) to match your character stats or game rules." },
+      { title: "Roll and Inspect Results", desc: "Click Roll to trigger the roll animation and view the sum total alongside individual dice face results." }
     ],
     faq: [
-      { question: "Which tabletop RPG polyhedral dice are supported?", answer: "The roller supports D4, D6, D8, D10, D12, D20, and percentile D100 dice, suitable for D&D, Pathfinder, and tabletop games." },
-      { question: "How are dice rolls generated for fairness?", answer: "Outcomes are derived from cryptographically strong random values (crypto.getRandomValues), preventing algorithmic roll bias." },
-      { question: "Can I roll multiple dice of different types together?", answer: "Yes. You can roll multiple dice simultaneously (e.g. 3d6 or 1d20 + 2d8) and review individual values alongside combined sums." },
-      { question: "Does the tool support advantage and disadvantage rolls?", answer: "Yes. Tabletop presets let you roll with Advantage (keep highest) or Disadvantage (keep lowest) with automatic highlights." },
-      { question: "Is an internet connection required to roll dice?", answer: "No. All 3D animations and roll calculations execute locally on your device." }
+      { question: "Can I roll multiple dice of different types together?", answer: "Yes. You can configure multi-dice combinations like 2d6 + 1d20 with custom modifiers for complex roleplaying checks." },
+      { question: "What dice are included for Dungeons & Dragons (D&D)?", answer: "The simulator includes the complete standard seven-dice set: D4, D6, D8, D10, D12, D20, and percentile D100." },
+      { question: "Are the virtual dice rolls truly random?", answer: "Yes. Roll outcomes are computed using cryptographically sound random values, ensuring completely unbiased numbers." },
+      { question: "Does the tool keep track of my roll history?", answer: "Yes. A scrolling session log records each roll, showing timestamps, dice rolled, modifiers applied, and final totals." }
     ]
   },
   {
@@ -5977,33 +6470,39 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'wavelength-calculator',
-    title: 'Wavelength Calculator — Light & Radio Wave Frequency',
-    navTitle: 'Wavelength Calc',
-    description: 'Calculate electromagnetic wavelength, frequency, wave speed, and photon energy across radio, microwave, optical, and X-ray spectrums.',
+    title: "Wavelength Calculator — Light & Wave Frequency Online",
+    navTitle: "Wavelength Calc",
+    description: "Calculate electromagnetic wavelength, wave frequency, and photon energy online. Explore presets for radio, microwave, visible light, and X-ray bands.",
     icon: '〰️',
     path: '/wavelength-calculator.html',
     filename: 'wavelength-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Science',
-    features: ['Light & Sound Wave Speeds', 'Spectrum Band Identification', 'Photon Energy (eV & Joules)', 'Scientific Notation Input', 'Instant Unit Switching'],
+    features: [
+      "Calculates Wavelength (λ), Frequency (f) & Wave Speed (v = c)",
+      "Computes Photon Energy (E = hf) in Joules (J) and Electron-Volts (eV)",
+      "Electromagnetic Spectrum Presets (Radio, Microwave, Infrared, Visible, UV, X-Ray)",
+      "Unit Conversion Across Nanometers, Micrometers, Meters, Hz, MHz, GHz & THz",
+      "Color Swatch Display for Frequencies in the Visible Light Spectrum",
+      "Precision Scientific Notation and Floating-Point Math"
+    ],
     howTo: [
-      { title: "Enter Wave Frequency", desc: "Type the frequency value and select the frequency unit (Hz, kHz, MHz, GHz, or THz)." },
-      { title: "Select Wave Medium or Propagation Speed", desc: "Choose a medium preset (Light/Radio in vacuum 3×10⁸ m/s, Sound in air 343 m/s, Sound in water, Sound in steel, or enter custom velocity)." },
-      { title: "Review Calculated Wavelength & Period", desc: "Inspect the calculated wavelength across meters, millimeters, micrometers, and nanometers, along with wave period in seconds." }
+      { title: "Enter Wavelength or Frequency", desc: "Input a known wave value and choose its measurement unit (e.g. 500 nm or 100 MHz)." },
+      { title: "Select Medium or Wave Speed", desc: "Use the speed of light in vacuum (c) or enter a custom wave propagation velocity." },
+      { title: "Review Spectrum Band and Energy", desc: "Inspect the calculated wavelength, frequency, photon energy (eV), and corresponding spectrum classification." }
     ],
     faq: [
-      { question: "What mathematical formula relates wavelength, frequency, and wave speed?", answer: "Wavelength (λ) is calculated using the wave equation: λ = v / f, where v is wave propagation velocity in meters per second and f is frequency in Hertz." },
-      { question: "What wave speed is used for radio waves and light in a vacuum?", answer: "Electromagnetic radiation in a vacuum travels at the constant speed of light: c = 299,792,458 meters per second (~3.0 × 10⁸ m/s)." },
-      { question: "How does the speed of sound differ between air, water, and steel?", answer: "Sound travels at approximately 343 m/s in air at 20°C, 1,482 m/s in fresh water, and 5,960 m/s in solid steel due to differences in density and elastic modulus." },
-      { question: "How is wave period calculated from frequency?", answer: "Wave period (T) is the reciprocal of frequency: T = 1 / f, representing the exact duration in seconds for one complete wave cycle to pass a fixed point." },
-      { question: "Which electromagnetic spectrum bands are classified by this tool?", answer: "The calculator identifies whether electromagnetic inputs fall into Audio, Radio (VLF to EHF), Microwave, Infrared, Visible Light, Ultraviolet, or X-ray bands." }
+      { question: "What is the formula used to calculate wavelength from frequency?", answer: "The wavelength formula is λ = v / f, where λ is wavelength in meters, v is wave velocity (the speed of light c ≈ 3×10^8 m/s in vacuum), and f is wave frequency in Hertz (Hz)." },
+      { question: "How is photon energy calculated from wavelength or frequency?", answer: "Photon energy is determined by Planck’s equation E = h × f = (h × c) / λ, where h is Planck’s constant (6.626×10^-34 J·s), expressed in Joules or electron-volts (eV)." },
+      { question: "Does the calculator show visible light colors?", answer: "Yes. When entering wavelengths between approximately 380 nm and 750 nm, the calculator displays the corresponding visible spectrum color (violet to red)." },
+      { question: "Can I calculate acoustic or sound wave wavelengths?", answer: "Yes. You can enter the speed of sound in air (approximately 343 m/s) as the custom velocity to calculate audio sound wavelengths." }
     ]
   },
   {
     id: 'user-agent-parser',
     title: 'User Agent Parser — Browser, Device & OS Header Lookup',
     navTitle: 'UA Parser',
-    description: 'Parse browser User-Agent strings to detect browser family, layout engine, operating system version, and mobile device hardware model.',
+    description: 'Parse browser User-Agent strings to detect browser family, layout engine, operating system version, and mobile device hardware model. Fast, free online tool.',
     icon: '🕵️',
     path: '/user-agent-parser.html',
     filename: 'user-agent-parser.html',
@@ -6025,50 +6524,62 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'mode-calculator',
-    title: 'Mode Calculator — Statistical Dataset & Frequency Counter',
-    navTitle: 'Mode Calculator',
-    description: 'Find the statistical mode, bimodal/multimodal values, and full frequency table for any raw numeric or categorical dataset.',
+    title: "Mode Calculator — Find Statistical Dataset Mode Online",
+    navTitle: "Mode Calculator",
+    description: "Find the statistical mode and frequency counts for any raw numerical or categorical dataset online. Identify unimodal, bimodal, and multimodal values.",
     icon: '📊',
     path: '/mode-calculator.html',
     filename: 'mode-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Math',
-    features: ['Multimodal Detection', 'Frequency Table Distribution', 'Mean & Median Summary', 'Comma/Space Delimited Inputs', 'Copy Statistical Summary'],
+    features: [
+      "Calculates Statistical Mode for Numeric & Categorical Data",
+      "Detects Unimodal, Bimodal, Multimodal & No-Mode Datasets",
+      "Full Frequency Distribution Table with Counts & Percentages",
+      "Parses Comma, Space, or Newline-Delimited Value Lists",
+      "Summary Metrics for Dataset Size, Unique Items & High Frequency",
+      "Instant Calculations with One-Click Clipboard Copying"
+    ],
     howTo: [
-      { title: "Enter or Paste Numbers Dataset", desc: "Type or paste your raw numbers separated by commas, spaces, semicolons, or line breaks." },
-      { title: "Statistical Evaluation", desc: "The calculator sorts your numbers, tallies frequency distributions, and checks for modal clusters." },
-      { title: "Review Mode, Mean & Median Summary", desc: "Inspect the detected mode value(s), frequency count, distribution classification, arithmetic mean, and median." }
+      { title: "Enter or Paste Dataset", desc: "Input numbers or text categories separated by commas, spaces, or line breaks." },
+      { title: "Analyze Distribution", desc: "The tool counts occurrences and identifies the value or values that appear most frequently." },
+      { title: "Review Mode and Frequency Table", desc: "Inspect the identified mode value(s) alongside the complete sorted frequency distribution table." }
     ],
     faq: [
-      { question: "What is the statistical mode of a dataset?", answer: "The mode is the number that appears most frequently in a dataset. For example, in the set [2, 4, 4, 7, 9], the mode is 4 with a frequency of 2." },
-      { question: "What is the difference between unimodal, bimodal, and multimodal datasets?", answer: "Unimodal datasets have exactly one most frequent value. Bimodal datasets have two distinct values tied for highest frequency. Multimodal datasets have three or more tied modes." },
-      { question: "What happens if every number in the dataset appears only once?", answer: "When all values in a dataset appear with equal frequency (frequency = 1), the distribution has no mode, which the tool identifies explicitly." },
-      { question: "Does the mode calculator also provide mean and median?", answer: "Yes. In addition to mode, the summary panel displays arithmetic mean (average), median (middle value), minimum, maximum, range, and total sample count." },
-      { question: "Can I paste negative numbers and decimal values?", answer: "Yes. The parsing engine recognizes negative values and floating-point decimal numbers separated by any common delimiter." }
+      { question: "What is the statistical mode of a dataset?", answer: "The mode is the value that appears with the highest frequency in a data set. A dataset can have one mode (unimodal), two modes (bimodal), multiple modes (multimodal), or no mode if all values appear equally." },
+      { question: "What happens if every number in my dataset appears only once?", answer: "When all items have the same frequency of occurrence (such as appearing once each), the dataset has no mode, and the calculator clearly reports \"No Mode\"." },
+      { question: "Can this mode calculator handle text or categorical lists?", answer: "Yes. In addition to numbers, you can paste lists of survey responses, colors, or names to find the most frequent categorical answer." },
+      { question: "Does the tool show a full frequency distribution table?", answer: "Yes. It displays every unique item sorted by frequency count, showing exact counts and percentage shares." }
     ]
   },
   {
     id: 'inductance-calculator',
-    title: 'Inductance Calculator — Coil Turns & Solenoid Formula',
-    navTitle: 'Inductance Calc',
-    description: 'Calculate electrical inductance (Henry, mH, µH) of single-layer air-core and magnetic core coils using Wheeler and Solenoid formulas.',
+    title: "Inductance Calculator — Coil Turns & Solenoid Formula Online",
+    navTitle: "Inductance Calc",
+    description: "Calculate electrical inductance in Henrys, mH, or µH for single-layer air-core coils and solenoids online using Wheeler formulas and coil dimensions.",
     icon: '🧲',
     path: '/inductance-calculator.html',
     filename: 'inductance-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Electronics',
-    features: ['Air-Core Solenoids', 'Magnetic Permeability (µr)', 'Wire Length & Resistance', 'Wheeler Approximation', 'µH, mH, Henry Outputs'],
+    features: [
+      "Calculates Inductance for Single-Layer Air-Core Cylindrical Coils",
+      "Uses Wheeler’s Standard Empirical Solenoid Equation",
+      "Calculates Number of Turns Needed for Target Inductance",
+      "Computes Total Wire Length and Aspect Ratio Diagnostics",
+      "Supports Metric (mm, cm) and Imperial (Inches, Mils) Dimensions",
+      "Ideal for RF Electronics, Antenna Chokes & Inductor Prototyping"
+    ],
     howTo: [
-      { title: "Enter Solenoid Coil Dimensions", desc: "Input coil diameter in millimeters and total winding length in millimeters." },
-      { title: "Specify Turn Count & Core Material", desc: "Enter the number of wire turns and set the relative magnetic permeability of the core material (1 for air core)." },
-      { title: "Review Inductance & Wire Length", desc: "Inspect calculated inductance in microhenries (μH), millihenries (mH), and approximate wire length needed for construction." }
+      { title: "Enter Coil Dimensions", desc: "Input coil diameter, coil length, and number of wire turns." },
+      { title: "Select Units of Measurement", desc: "Choose millimeters, centimeters, or inches for coil dimensions." },
+      { title: "Calculate Inductance & Wire Length", desc: "Review the calculated inductance in microhenrys (µH), millihenrys (mH), and total required wire length." }
     ],
     faq: [
-      { question: "Which formula is used to calculate single-layer solenoid inductance?", answer: "The calculator uses Wheeler's continuous coil formula: L (μH) = (μr × d² × n²) / (18d + 40ℓ), where d is coil diameter in inches, ℓ is coil length in inches, n is turn count, and μr is relative permeability." },
-      { question: "What is the relative permeability (μr) of an air-core inductor?", answer: "Air, wood, plastic, and non-magnetic coil formers have a relative permeability of 1.0. Ferrite or iron cores have much higher values (10 to 1,000+), significantly increasing inductance." },
-      { question: "How does doubling the number of turns affect inductance?", answer: "Because turn count is squared in Wheeler's formula (n²), doubling the number of turns quadruples (4x) the resulting inductance if coil dimensions remain similar." },
-      { question: "How is the estimated winding wire length calculated?", answer: "Wire length is estimated by multiplying the circumference of a single circular turn (π × diameter) by the total number of turns: Length ≈ n × π × d." },
-      { question: "Are these calculations suitable for high-frequency RF coil design?", answer: "Wheeler's formula provides high accuracy (typically within 1%) for single-layer helical solenoids where coil length is greater than 0.4 times coil diameter." }
+      { question: "Which formula is used for calculating air-core coil inductance?", answer: "The calculator uses Wheeler’s approximation formula: L (µH) = (d² × n²) / (18d + 40l), where d is coil diameter in inches, l is coil length in inches, and n is total turns." },
+      { question: "Can I calculate the number of turns required to achieve a target inductance?", answer: "Yes. You can enter your desired target inductance, coil diameter, and length to solve for the required turn count." },
+      { question: "Does this calculator apply to coils with ferrite or iron cores?", answer: "This specific tool calculates air-core coils (relative magnetic permeability μr ≈ 1). Coils with ferromagnetic cores require multiplying by the core material’s permeability." },
+      { question: "Why is coil wire length calculated?", answer: "Knowing the total wire length helps electronics hobbyists and RF designers cut the correct length of magnet wire before winding." }
     ]
   },
   {
@@ -6123,7 +6634,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'json-to-yaml',
     title: 'JSON to YAML Converter — Format Configs & Data Online',
     navTitle: 'JSON to YAML',
-    description: 'Convert JSON objects into clean, indented YAML data structures for Kubernetes manifests, Docker Compose, and CI/CD pipelines.',
+    description: 'Convert JSON objects into clean, indented YAML data structures for Kubernetes manifests, Docker Compose, and CI/CD pipelines. Fast client-side tool in browser.',
     icon: '🔁',
     path: '/json-to-yaml.html',
     filename: 'json-to-yaml.html',
@@ -6169,50 +6680,63 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'bond-yield-calculator',
-    title: 'Bond Yield Calculator — Current Yield & YTM Valuation',
-    navTitle: 'Bond Yield Calc',
-    description: 'Calculate bond current yield, Yield to Maturity (YTM), and semi-annual coupon payments for treasury, corporate, and municipal bonds.',
+    title: "Bond Yield Calculator — Current Yield, YTM & Bond Valuation Tool",
+    navTitle: "Bond Yield",
+    description: "Calculate bond current yield, Yield to Maturity (YTM), and coupon payments for corporate or government bonds. Analyze bond valuation with precision math.",
     icon: '📈',
     path: '/bond-yield-calculator.html',
     filename: 'bond-yield-calculator.html',
     category: '💼 Business Tools',
     badge: 'Investing',
-    features: ['Yield to Maturity (YTM)', 'Current Yield vs Coupon', 'Premium / Discount Indicator', 'Annual Cash Flow Schedule', 'Maturity Value Analysis'],
+    features: [
+      "Accurate Yield to Maturity (YTM) Newton-Raphson Calculation",
+      "Current Yield & Nominal Coupon Yield Percentage Metrics",
+      "Annual & Semi-Annual Coupon Payment Frequency Modes",
+      "Par Value, Market Price & Capital Gain/Loss Valuation",
+      "Detailed Cash Flow & Total Return Investment Summary",
+      "Instant In-Browser Calculations with Zero Data Tracking"
+    ],
     howTo: [
-      { title: "Enter Bond Pricing & Face Value", desc: "Input the par face value of the bond (typically $1,000) and its current market trading price." },
-      { title: "Set Coupon Rate & Maturity Duration", desc: "Enter the annual coupon interest rate percentage, remaining years to maturity, and payment frequency (annual or semi-annual)." },
-      { title: "Inspect Current Yield & Yield to Maturity", desc: "Review annual dollar coupon payment, Current Yield percentage, approximate Yield to Maturity (YTM %), and premium/discount status." }
+      { title: "Enter Bond Face Value and Market Price", desc: "Input the bond par value (typically $1,000) and the current market purchase price." },
+      { title: "Input Coupon Rate, Frequency and Maturity", desc: "Provide the annual coupon interest rate percentage, payment schedule (annual/semi-annual), and years remaining to maturity." },
+      { title: "Analyze Yield Metrics and Cash Flows", desc: "Review the calculated Yield to Maturity (YTM), Current Yield, total interest received, and capital gain or discount at par." }
     ],
     faq: [
-      { question: "What is the difference between Coupon Rate, Current Yield, and YTM?", answer: "Coupon Rate is the fixed annual interest percentage paid on face value. Current Yield is annual coupon divided by current market price. Yield to Maturity (YTM) is the total estimated annualized return if held until the bond matures." },
-      { question: "What is the formula used for approximate Yield to Maturity (YTM)?", answer: "The tool uses the standard approximation formula: YTM ≈ [C + (F - P) / n] / [(F + P) / 2], where C is annual coupon, F is face value, P is market price, and n is years to maturity." },
-      { question: "What does it mean when a bond trades at a discount or premium?", answer: "A bond trades at a discount when market price is below face value (P < F, YTM > Coupon Rate). It trades at a premium when market price exceeds face value (P > F, YTM < Coupon Rate)." },
-      { question: "Does this calculator support semi-annual coupon payments?", answer: "Yes. Most US corporate and Treasury bonds pay interest semi-annually; selecting semi-annual frequency splits the annual coupon into two equal distributions per year." },
-      { question: "Does YTM account for reinvestment risk?", answer: "YTM assumes that all periodic coupon payments can be reinvested at the same continuous yield rate until maturity." }
+      { question: "What is the difference between Current Yield and Yield to Maturity (YTM)?", answer: "Current Yield measures annual coupon interest divided by market price, whereas YTM calculates the total annualized rate of return including all future coupons and par capital gain or loss." },
+      { question: "Does this calculator support semi-annual coupon bonds?", answer: "Yes. Most US Treasury and corporate bonds pay coupons semi-annually. Selecting semi-annual compounds the periods and divides coupon rates accurately." },
+      { question: "How is a bond trading at a discount or premium treated?", answer: "If price is below par (discount), YTM exceeds the coupon rate because you gain capital at maturity; if above par (premium), YTM is lower than the coupon rate." },
+      { question: "Can I calculate bond yields for zero-coupon bonds?", answer: "Yes. Setting the coupon rate to 0% calculates the exact compounded annual return between purchase price and face value at maturity." },
+      { question: "Is my financial portfolio data stored or sent to a server?", answer: "No. All financial calculations run in your local browser runtime and are never logged or stored." }
     ]
   },
   {
     id: 'cat-age-calculator',
-    title: 'Cat Age Calculator — Convert Feline Years to Human Age',
-    navTitle: 'Cat Age Calc',
-    description: 'Accurately convert your cat or kitten age into human equivalent years based on veterinary life stages (kitten, junior, adult, senior).',
+    title: "Cat Age Calculator — Convert Cat Years to Human Age Online",
+    navTitle: "Cat Age Calc",
+    description: "Convert your cat or kitten age into human equivalent years based on veterinary life stages. Check health milestones and indoor life expectancy tips.",
     icon: '🐱',
     path: '/cat-age-calculator.html',
     filename: 'cat-age-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Pets',
-    features: ['Veterinary Life Stages', 'Kitten & Senior Care Tips', 'Human Age Equivalency', 'Indoor vs Outdoor Adjustments', 'Health Milestone Guide'],
+    features: [
+      "Veterinary Life Stage Mapping (Kitten, Junior, Prime, Mature, Senior, Geriatric)",
+      "Accurate Dual-Stage Age Curve (1st year = 15 years, 2nd year = 24 years)",
+      "Inputs for Cat Age in Both Years and Fractional Months",
+      "Veterinary Health Milestone Checklist for Each Life Stage",
+      "Indoor vs Outdoor Lifestyle Impact Guidelines",
+      "Instant In-Browser Calculation with Pet Care Advice"
+    ],
     howTo: [
-      { title: "Enter Cat Age in Years & Months", desc: "Input your cat's current chronological age using the years and months number steppers." },
-      { title: "Veterinary Curve Translation", desc: "The tool translates feline developmental milestones into equivalent human biological age." },
-      { title: "Review Equivalent Age & Life Stage", desc: "Inspect your cat's equivalent human years, life stage classification (Kitten, Junior, Prime, Mature, Senior, Geriatric), and health tips." }
+      { title: "Enter Cat Age in Years and Months", desc: "Use the steppers or input fields to specify your feline companion’s current age." },
+      { title: "Review Human Equivalent Age", desc: "See your cat’s equivalent human age calculated using veterinary stage curves." },
+      { title: "Read Life Stage Care Recommendations", desc: "Explore specific nutritional, health screening, and dental milestones recommended for your cat’s age group." }
     ],
     faq: [
-      { question: "Why is cat aging not simply 7 human years per calendar year?", answer: "Cats mature rapidly in their first two years of life. According to the American Association of Feline Practitioners (AAFP), a 1-year-old cat is biologically comparable to a 15-year-old human, and a 2-year-old cat corresponds to about 24 human years." },
-      { question: "How are cat ages calculated beyond age two?", answer: "After reaching full adult maturity at age two (24 human years), each additional calendar year adds approximately 4 human biological years." },
-      { question: "What are the recognized feline life stages?", answer: "The AAFP classifies feline stages as: Kitten (0–6 months), Junior (7 months–2 years), Prime (3–6 years), Mature (7–10 years), Senior (11–14 years), and Geriatric (15+ years)." },
-      { question: "Do indoor cats and outdoor cats age differently?", answer: "Indoor cats generally enjoy longer life expectancies (often 14–18+ years) compared to outdoor cats due to reduced exposure to traffic, predators, and infectious feline diseases." },
-      { question: "Is this calculator a substitute for professional veterinary advice?", answer: "No. This tool provides an educational mathematical estimate based on established veterinary age curves and does not replace regular veterinary checkups." }
+      { question: "Why is a cat’s age not simply calculated by multiplying by 7?", answer: "Cats mature much faster in their first two years. A 1-year-old cat is roughly equivalent to a 15-year-old human, and a 2-year-old cat is comparable to a 24-year-old human. Each subsequent year adds approximately 4 human years." },
+      { question: "What are the main veterinary life stages for domestic cats?", answer: "The American Association of Feline Practitioners (AAFP) defines six stages: Kitten (0-6 months), Junior (7 months - 2 years), Prime (3-6 years), Mature (7-10 years), Senior (11-14 years), and Geriatric (15+ years)." },
+      { question: "Does being an indoor cat increase life expectancy?", answer: "Yes. Indoor cats typically live 12 to 18 years on average, compared to outdoor cats who face higher risks from traffic, predators, and infectious diseases." },
+      { question: "When is a cat considered a senior citizen?", answer: "Veterinarians generally consider cats to enter their senior years around age 11 (equivalent to approximately 60 human years)." }
     ]
   },
   {
@@ -6289,153 +6813,190 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'mileage-calculator',
-    title: 'Car Gas Mileage Calculator — MPG & Fuel Economy Tracker',
-    navTitle: 'Mileage Calculator',
-    description: 'Calculate vehicle fuel economy in Miles Per Gallon (MPG), Liters per 100km (L/100km), and estimated road trip travel costs.',
+    title: "Car Gas Mileage Calculator — MPG, Fuel Economy & Trip Gas Cost",
+    navTitle: "Mileage Calculator",
+    description: "Calculate vehicle fuel economy in MPG or L/100km and estimate road trip gasoline costs online. Compare mileage efficiency with US and metric units.",
     icon: '⛽',
     path: '/mileage-calculator.html',
     filename: 'mileage-calculator.html',
     category: '💼 Business Tools',
     badge: 'Auto',
-    features: ['MPG & L/100km Conversion', 'Trip Fuel Cost Estimation', 'Cost per Mile/Kilometer', 'Fuel Tank Range Forecast', 'Road Trip Planner'],
+    features: [
+      "Miles Per Gallon (MPG) & Liters Per 100km (L/100km) Calculations",
+      "Kilometers Per Liter (km/L) Metric Support",
+      "Road Trip Gas Cost Estimator Based on Fuel Price & Distance",
+      "Cost Per Mile and Cost Per Kilometer Travel Breakdown",
+      "Dual US Imperial (Gallons/Miles) and Metric (Liters/Km) Systems",
+      "Instant Mathematical Results with Complete User Privacy"
+    ],
     howTo: [
-      { title: "Select Unit System", desc: "Choose US Units (Miles, Gallons, $/gal) or Metric Units (Kilometers, Liters, $/L)." },
-      { title: "Enter Trip Distance & Fuel Used", desc: "Input odometer distance traveled, total volume of fuel pumped, and the fuel unit price." },
-      { title: "Review Fuel Economy & IRS Deduction", desc: "Inspect calculated MPG and L/100km fuel economy, cost per mile, total trip fuel expense, and IRS business mileage deduction value." }
+      { title: "Choose Calculation Mode and Unit System", desc: "Select whether you want to calculate fuel economy from a fill-up or estimate the total fuel cost for an upcoming trip." },
+      { title: "Enter Distance Traveled and Fuel Consumed", desc: "Input odometer miles or kilometers along with the gallons or liters of fuel required to refill your gas tank." },
+      { title: "Review Fuel Economy and Cost Per Mile", desc: "View your vehicle’s exact MPG, L/100km rating, cost per mile, and total estimated travel expense." }
     ],
     faq: [
-      { question: "How is fuel economy calculated in MPG and L/100km?", answer: "In US units: MPG = Distance (miles) / Fuel (gallons). In Metric units: L/100km = [Fuel (liters) × 100] / Distance (kilometers). The tool displays both ratings simultaneously." },
-      { question: "What is the standard IRS business mileage rate?", answer: "The default rate is set to the official 2024 IRS standard business mileage rate of $0.67 per mile, which you can adjust if tax authorities update statutory rates." },
-      { question: "How do I accurately calculate my car's true gas mileage?", answer: "Fill your tank completely and reset the trip odometer. Drive normally until the tank is partially empty, refill completely, and record the exact gallons pumped and trip mileage." },
-      { question: "How is trip fuel cost per mile calculated?", answer: "Cost per mile is calculated by dividing total fuel purchase cost by the distance driven, showing exact out-of-pocket fuel costs per mile." },
-      { question: "Can I use this calculator for diesel and hybrid vehicles?", answer: "Yes. The mathematical relationship between distance traveled, liquid fuel volume pumped, and price per unit volume applies to gasoline, diesel, and hybrid cars." }
+      { question: "How do I accurately calculate my car’s real-world gas mileage?", answer: "Fill your tank completely and record your odometer reading. Drive normally until your next fill-up, note the gallons added, and divide total miles driven by gallons used." },
+      { question: "Can I convert between US MPG, UK Imperial MPG, and Liters/100km?", answer: "Yes. The calculator supports both US Imperial and Metric systems, allowing seamless comparison between MPG and L/100km." },
+      { question: "Can this tool calculate how much gas will cost for a long road trip?", answer: "Yes. Enter your trip distance, average MPG, and local price per gallon to calculate total fuel gallons required and total road trip gas cost." },
+      { question: "Why does my car’s calculated MPG differ from the dashboard display?", answer: "In-dash computers often estimate fuel use via throttle sensors, whereas pump-to-pump calculations reflect exact physical fuel volume burned." },
+      { question: "Is any of my vehicle or travel data stored online?", answer: "No. The calculator runs completely in client-side JavaScript with zero tracking or data retention." }
     ]
   },
   {
     id: 'paint-cost-calculator',
-    title: 'Paint Cost & Gallon Calculator — Wall Area Coverage',
-    navTitle: 'Paint Cost Calc',
-    description: 'Estimate how many gallons or liters of paint you need to paint interior rooms, walls, doors, and ceilings, plus total material budget.',
+    title: "Paint Cost Calculator — Room Wall Area & Gallons Needed Online",
+    navTitle: "Paint Cost Calc",
+    description: "Calculate how many gallons or liters of paint you need for interior rooms online. Estimate wall surface area, subtract windows, and compute costs.",
     icon: '🖌️',
     path: '/paint-cost-calculator.html',
     filename: 'paint-cost-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Home',
-    features: ['Room Dimension Inputs', 'Window & Door Deductions', 'Number of Coats (1-3)', 'Gallon & Liter Coverage', 'Total Cost Breakdown'],
+    features: [
+      "Calculates Total Wall Surface Area in Square Feet or Square Meters",
+      "Automatic Deductions for Standard Doors and Windows",
+      "Multi-Coat Support (1, 2, or 3 Coats of Paint)",
+      "Computes Paint Volume Needed in Gallons and Liters",
+      "Material Cost Estimator Based on Price Per Gallon/Can",
+      "100% Client-Side In-Browser Renovation Estimator"
+    ],
     howTo: [
-      { title: "Enter Room Dimensions", desc: "Input the length, width, and wall height of the room in feet." },
-      { title: "Specify Openings, Coats & Material Costs", desc: "Enter the number of doors and windows to subtract, choose 1 to 3 coats of paint, input paint price per gallon, and toggle primer or labor." },
-      { title: "Review Paint Gallons & Budget Estimate", desc: "Inspect net paintable square footage, required paint and primer gallons, paint material cost, estimated labor, and total project budget." }
+      { title: "Enter Room Dimensions", desc: "Input room length, width, and ceiling height in feet or meters." },
+      { title: "Set Openings and Number of Coats", desc: "Specify how many doors and windows are in the room, and choose whether you plan to apply 1, 2, or 3 coats." },
+      { title: "Review Paint Volume and Budget", desc: "Enter paint can price to view the required number of gallons/cans and total estimated project cost." }
     ],
     faq: [
-      { question: "How many square feet does one gallon of paint cover?", answer: "Standard architectural wall paint covers approximately 350 to 400 square feet per gallon on primed, smooth interior drywall." },
-      { question: "How are door and window cutouts subtracted from total wall area?", answer: "Total gross wall area is 2 × (Length + Width) × Height. The calculator subtracts 21 square feet per standard door and 15 square feet per standard window to calculate net paintable surface." },
-      { question: "Should I buy extra paint for touch-ups?", answer: "The calculator rounds gallon requirements up to the nearest whole container and applies standard coverage rates so you have adequate volume for touch-ups." },
-      { question: "When should I include a separate primer coat in the calculation?", answer: "Toggling primer is recommended when painting bare unpainted drywall, patching large plaster repairs, transitioning from dark to light colors, or sealing porous masonry." },
-      { question: "How is the optional professional labor cost estimated?", answer: "When labor is enabled, the tool multiplies your net paintable wall square footage by your custom labor rate per square foot (default $1.75/sq ft)." }
+      { question: "How many square feet does one gallon of paint typically cover?", answer: "A standard gallon of interior wall paint typically covers approximately 350 to 400 square feet with one coat on smooth primed drywall." },
+      { question: "How do doors and windows affect the paint calculation?", answer: "Standard doors subtract roughly 20 square feet each, and average windows subtract about 15 square feet each from total wall surface area." },
+      { question: "Why should I apply two coats of paint instead of one?", answer: "Two coats ensure even color saturation, cover underlying stains, and provide greater durability against scrubbing and scuffs." },
+      { question: "Should I buy a little extra paint beyond the exact calculation?", answer: "Yes. It is standard practice to round up to the next full gallon or add 10% extra for textured walls, touch-ups, and roller absorption." }
     ]
   },
   {
     id: 'density-calculator',
-    title: 'Density Calculator — Mass, Volume & Material Formula',
-    navTitle: 'Density Calculator',
-    description: 'Calculate density (ρ = m / V), mass, or volume with instant unit conversions and reference densities for metals, liquids, and gases.',
+    title: "Density Calculator — Mass, Volume & Density Formula Online",
+    navTitle: "Density Calculator",
+    description: "Calculate density, mass, or volume with instant unit conversions online. Compare material reference densities for metals, liquids, and common solids.",
     icon: '🧪',
     path: '/density-calculator.html',
     filename: 'density-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Science',
-    features: ['Density = Mass / Volume', 'Common Material Presets', 'g/cm³, kg/m³, lb/ft³ Units', 'Solve for Any Variable', 'Buoyancy Indication'],
+    features: [
+      "Solves for Density (ρ = m/V), Mass (m = ρ×V), or Volume (V = m/ρ)",
+      "Extensive Unit Support (g/cm³, kg/m³, lb/ft³, g/mL, kg/L)",
+      "Built-in Reference Density Library (Gold, Iron, Water, Ice, Air, Wood)",
+      "Real-Time Scientific Unit Conversion and Formatting",
+      "Step-by-Step Mathematical Formula Display",
+      "100% In-Browser Execution for Chemistry and Physics Students"
+    ],
     howTo: [
-      { title: "Choose Variable to Solve", desc: "Select whether you want to calculate Density (ρ = m/V), Mass (m = ρ × V), or Volume (V = m/ρ)." },
-      { title: "Enter Input Values & Select Units", desc: "Type known parameters and select appropriate units (e.g. grams, kilograms, cm³, liters, m³) or pick a common material preset." },
-      { title: "Review Calculated Value & Comparisons", desc: "View the computed result in multiple scientific units and compare your material against reference substances like water, steel, and gold." }
+      { title: "Select Calculation Variable", desc: "Choose whether you want to calculate Density, Mass, or Volume." },
+      { title: "Enter the Two Known Values", desc: "Input the measurements and select their units (e.g. grams and cubic centimeters)." },
+      { title: "Review the Calculated Result", desc: "Inspect the resulting value in multiple standard units and compare against common materials." }
     ],
     faq: [
-      { question: "What is the standard formula for physical density?", answer: "Density is defined as mass per unit volume: ρ = m / V, where ρ is density, m is total mass, and V is the physical volume occupied by the object." },
-      { question: "What are the common scientific units for measuring density?", answer: "Standard metric units are grams per cubic centimeter (g/cm³) and kilograms per cubic meter (kg/m³). In imperial units, pounds per cubic foot (lb/ft³) is standard. (1 g/cm³ = 1,000 kg/m³)." },
-      { question: "What is the reference density of pure water?", answer: "Pure liquid water at 4°C has a density of exactly 1.00 g/cm³ (1,000 kg/m³). Substances with density less than 1.0 g/cm³ float in water, while denser materials sink." },
-      { question: "Can I choose from built-in material presets?", answer: "Yes. You can select common material presets including Aluminum (2.70 g/cm³), Steel/Iron (7.87 g/cm³), Copper (8.96 g/cm³), Silver (10.49 g/cm³), Gold (19.32 g/cm³), and Concrete (2.40 g/cm³)." },
-      { question: "Does temperature affect material density?", answer: "Yes. Most materials expand when heated, increasing volume and slightly decreasing density. The reference presets in this tool represent standard room temperature values (20°C)." }
+      { question: "What is the standard formula for calculating density?", answer: "Density is defined as mass per unit volume: ρ = m / V, where ρ (rho) is density, m is mass, and V is volume." },
+      { question: "What is the density of pure water at standard room temperature?", answer: "Pure liquid water has a density of approximately 1.000 g/cm³ (or 1,000 kg/m³ and 1.000 g/mL) at 4°C." },
+      { question: "How do I convert density from g/cm³ to kg/m³?", answer: "To convert from g/cm³ to kg/m³, multiply by 1,000. For example, aluminum has a density of 2.70 g/cm³, which equals 2,700 kg/m³." },
+      { question: "Can I find the volume of an object if I know its weight and material?", answer: "Yes. Set the calculator to solve for Volume (V = m / ρ), select your material from the density library, and enter its mass." }
     ]
   },
   {
     id: 'screen-size-calculator',
-    title: 'Screen Size Calculator — Monitor Dimensions, Area & PPI',
-    navTitle: 'Screen Size Calc',
-    description: 'Calculate monitor physical width, height, surface area, and pixel density (PPI) from diagonal size and aspect ratio.',
+    title: "Screen Size Calculator — Monitor Dimensions, Area & PPI Online",
+    navTitle: "Screen Size Calc",
+    description: "Calculate monitor physical width, height, viewable area, and pixel density (PPI) online from diagonal display size and aspect ratio with zero math.",
     icon: '🖥️',
     path: '/screen-size-calculator.html',
     filename: 'screen-size-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Hardware',
-    features: ['16:9, 21:9, 16:10 Ratios', 'Physical Width & Height', 'Pixel Density (PPI) Matrix', '4K, 1440p, 1080p Presets', 'Display Area in cm² & in²'],
+    features: [
+      "Calculates Physical Screen Width, Height & Total Surface Area",
+      "Pixel Density (PPI / Pixels Per Inch) & Dot Pitch Calculations",
+      "Aspect Ratio Presets (16:9, 16:10, 21:9 Ultrawide, 32:9 Superwide, 4:3)",
+      "Resolution Presets (1080p FHD, 1440p QHD, 4K UHD, 5K, 8K)",
+      "Dual Unit Support in Inches and Centimeters",
+      "Compare Display Real Estate for Dual-Monitor Setups"
+    ],
     howTo: [
-      { title: "Enter Diagonal Screen Size", desc: "Type the screen diagonal measurement in inches (e.g. 24\", 27\", 32\", 55\", 65\")." },
-      { title: "Select Aspect Ratio & Resolution", desc: "Choose an aspect ratio (16:9, 16:10, 21:9, 4:3, 3:2, 19.5:9) and select your display resolution (4K, 1440p, 1080p, Ultrawide, etc.)." },
-      { title: "Review Physical Dimensions & PPI", desc: "Inspect calculated width and height in inches and centimeters, total screen display area, and pixel density (PPI)." }
+      { title: "Enter Diagonal Screen Size", desc: "Type your monitor, laptop, or TV diagonal measurement in inches (e.g. 27\" or 34\")." },
+      { title: "Select Aspect Ratio and Resolution", desc: "Choose your aspect ratio (e.g. 16:9) and screen resolution (e.g. 2560×1440)." },
+      { title: "Review Dimensions and Pixel Density", desc: "Inspect exact physical width, height, surface area in square inches, and pixel density (PPI)." }
     ],
     faq: [
-      { question: "How are screen width and height calculated from diagonal size?", answer: "Using the Pythagorean theorem: Width = Diagonal × [AspectW / √(AspectW² + AspectH²)] and Height = Diagonal × [AspectH / √(AspectW² + AspectH²)]." },
-      { question: "What is Pixels Per Inch (PPI) and why does it matter?", answer: "PPI measures pixel density: PPI = √(ResWidth² + ResHeight²) / Diagonal. Higher PPI results in sharper text and finer visual detail, with 100–140 PPI typical for desktop monitors and 220+ PPI for Retina laptops and smartphones." },
-      { question: "Why do ultrawide 21:9 monitors have less height than 16:9 monitors of the same diagonal?", answer: "A wider aspect ratio stretches the diagonal horizontally. A 34-inch 21:9 monitor has approximately the same vertical height as a 27-inch 16:9 display, but offers 33% more horizontal desktop space." },
-      { question: "Are dimensions displayed in both inches and centimeters?", answer: "Yes. Screen width, height, and diagonal are displayed in both imperial inches and metric centimeters alongside total square area." },
-      { question: "What is dot pitch or pixel pitch?", answer: "Dot pitch is the physical distance between the centers of two adjacent pixels (in millimeters): Dot Pitch = 25.4 mm / PPI. Smaller dot pitch indicates a crisper display." }
+      { question: "Why does an ultrawide 34-inch monitor have a different height than a 16:9 34-inch monitor?", answer: "Because diagonal measurements span corner to corner, wider aspect ratios (like 21:9) distribute diagonal length horizontally, resulting in less vertical height and smaller total surface area than a square-ish 16:9 screen of the same diagonal." },
+      { question: "What is PPI and why does pixel density matter for monitors?", answer: "PPI (Pixels Per Inch) measures display sharpness. Higher PPI values (like 110+ PPI for desktop monitors or 200+ PPI for laptops) result in crisp text without visible pixelation." },
+      { question: "What is the ideal desktop monitor PPI for clear text rendering?", answer: "A density of 100 to 120 PPI is considered the sweet spot for standard desktop viewing distances without requiring OS display scaling." },
+      { question: "Can I calculate dimensions in centimeters instead of inches?", answer: "Yes. The calculator toggles seamlessly between Imperial inches and Metric centimeters." }
     ]
   },
   {
     id: 'torque-calculator',
-    title: 'Torque Calculator — Force, Lever Arm Distance & RPM',
-    navTitle: 'Torque Calculator',
-    description: 'Calculate mechanical rotational torque from applied lever arm force or electrical motor power (kW & RPM).',
+    title: "Torque Calculator — Rotational Force, Distance & RPM Online",
+    navTitle: "Torque Calculator",
+    description: "Calculate mechanical rotational torque from applied force and lever arm radius or motor power and RPM online. Supports metric and imperial units.",
     icon: '⚙️',
     path: '/torque-calculator.html',
     filename: 'torque-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Engineering',
-    features: ['Lever Arm Force & Radius', 'Motor Power (kW) & RPM', 'Newton-Meters (N·m)', 'Foot-Pounds (ft·lb)', 'Angle of Applied Force'],
+    features: [
+      "Calculates Torque from Lever Arm Distance, Force & Angle (τ = r × F × sin θ)",
+      "Calculates Motor Rotational Torque from Horsepower/kW & RPM",
+      "Comprehensive Unit Conversion (N·m, ft-lb, in-lb, kgf·m, dyn·cm)",
+      "Solves for Any Missing Variable (Torque, Force, Radius, or Power)",
+      "Visual Mechanical Diagram and Engineering Formulas",
+      "Instant In-Browser Calculations for Automotive and Physics"
+    ],
     howTo: [
-      { title: "Select Calculation Mode", desc: "Choose Lever Arm Mode (Force × Distance) for mechanical wrenches and levers, or Motor Mode (Power & RPM) for rotating shafts." },
-      { title: "Enter Mechanical Parameters", desc: "Input applied force and lever radius with angle in Lever mode; or input motor power (kW/HP) and rotational speed in RPM in Motor mode." },
-      { title: "Inspect Torque in Multiple Units", desc: "Review calculated torque in Newton-meters (N·m), Foot-pounds (ft·lb), Inch-pounds (in·lb), and Kilogram-force meters (kgf·m)." }
+      { title: "Choose Calculation Mode", desc: "Select whether to calculate torque from mechanical lever force or electric motor power and RPM." },
+      { title: "Input Known Values and Angles", desc: "Enter force, lever arm distance, angle of application, or motor power and speed." },
+      { title: "Review Torque in N·m and ft-lb", desc: "View calculated rotational torque converted across international engineering units." }
     ],
     faq: [
-      { question: "What is the formula for mechanical lever torque?", answer: "Torque is calculated by: τ = r × F × sin(θ), where r is the lever arm radius, F is applied force, and θ is the angle between force vector and lever arm (maximum at 90°)." },
-      { question: "How is motor torque calculated from horsepower and RPM?", answer: "For electric motors and engines: Torque (N·m) = (9,548.8 × Power in kW) / RPM. In imperial units: Torque (ft·lb) = (5,252 × Horsepower) / RPM." },
-      { question: "Why does torque decrease as motor RPM increases at constant power?", answer: "Power is the product of torque and angular velocity (P = τ × ω). If power output is fixed, increasing rotational speed requires torque to drop proportionally." },
-      { question: "How do I convert between Newton-meters (N·m) and Foot-pounds (ft·lb)?", answer: "1 Newton-meter equals approximately 0.73756 Foot-pounds. 1 Foot-pound equals approximately 1.3558 Newton-meters. The tool automatically displays all equivalent units simultaneously." },
-      { question: "Does the angle of force affect torque when using a wrench?", answer: "Yes. Maximum torque occurs when pulling perpendicular to the wrench handle (90°). Pulling at an angle reduces effective torque by the sine of that angle." }
+      { question: "What is the fundamental formula for calculating torque?", answer: "Torque (τ) is calculated as τ = r × F × sin(θ), where r is the lever arm distance, F is the applied force, and θ is the angle between the lever arm and the force vector." },
+      { question: "How do you calculate torque from electric motor horsepower and RPM?", answer: "In imperial units, Torque (ft-lb) = (Horsepower × 5,252) / RPM. In metric units, Torque (N·m) = (Power in Watts × 9.5488) / RPM." },
+      { question: "How do foot-pounds (ft-lb) convert to Newton-meters (N·m)?", answer: "1 foot-pound is approximately equal to 1.3558 Newton-meters (N·m). 1 N·m is equal to approximately 0.7376 ft-lb." },
+      { question: "Why does applying force at 90 degrees produce maximum torque?", answer: "Because the sine of 90 degrees equals 1.0 (sin 90° = 1), delivering 100% of the applied force perpendicularly into rotational work." }
     ]
   },
   {
     id: 'linear-regression-calculator',
-    title: 'Linear Regression Calculator — Best Fit Line y = mx + b',
-    navTitle: 'Linear Regression',
-    description: 'Calculate least squares regression line, slope (m), intercept (b), correlation (r), and R² determination coefficient.',
+    title: "Linear Regression Calculator — Best Fit Line y = mx + b Online",
+    navTitle: "Linear Regression",
+    description: "Calculate linear regression equations, slope, y-intercept, and correlation coefficient r online. Generate trendline plots with value predictions.",
     icon: '📈',
     path: '/linear-regression-calculator.html',
     filename: 'linear-regression-calculator.html',
     category: '🎨 Design & Utility Tools',
     badge: 'Math',
-    features: ['y = mx + b Equation', 'R² Goodness of Fit', 'Pearson Correlation (r)', 'Interactive X Predictor', 'Data Points Parser'],
+    features: [
+      "Computes Least Squares Best Fit Line Equation (y = mx + b)",
+      "Calculates Slope (m), Y-Intercept (b), and Standard Error",
+      "Computes Pearson Correlation (r) & Coefficient of Determination (R²)",
+      "Interactive Scatter Plot with Regression Trendline Visualization",
+      "Value Prediction Tool to Forecast Y for Any Given X Input",
+      "Parses Paired (X, Y) Coordinates from Tables or CSV Paste"
+    ],
     howTo: [
-      { title: "Input Data Coordinates", desc: "Type or paste paired (X, Y) coordinate points separated by commas, spaces, or line breaks into the data editor." },
-      { title: "Least-Squares Line Calculation", desc: "The calculator computes linear regression slope m, y-intercept b, Pearson correlation r, and r² coefficient of determination." },
-      { title: "Predict Y & Copy Regression Stats", desc: "Enter any X value to predict its estimated Y outcome along the trendline and copy full regression statistics to clipboard." }
+      { title: "Enter Paired (X, Y) Data Points", desc: "Type or paste coordinate pairs separated by commas, spaces, or tabs." },
+      { title: "Calculate Best-Fit Equation", desc: "The tool computes least-squares regression statistics, slope, intercept, and correlation coefficient." },
+      { title: "Review Trendline and Forecast Y", desc: "Inspect the scatter chart and enter new X values to predict expected Y outputs." }
     ],
     faq: [
-      { question: "What is the formula for the linear regression trendline?", answer: "The ordinary least-squares line is expressed as y = mx + b, where slope m = [nΣxy - (Σx)(Σy)] / [nΣx² - (Σx)²] and y-intercept b = (Σy - mΣx) / n." },
-      { question: "What does the Pearson correlation coefficient (r) indicate?", answer: "Correlation r ranges from -1.0 to +1.0. A value near +1.0 indicates a strong positive linear relationship, -1.0 indicates a strong negative relationship, and 0 indicates no linear correlation." },
-      { question: "What does the R-squared (r²) value represent?", answer: "The coefficient of determination (r²) represents the proportion of variance in the dependent variable Y that is predictable from independent variable X (e.g. r² = 0.85 means 85% of variance is explained by the model)." },
-      { question: "Can I use the regression equation to predict unknown values?", answer: "Yes. Type any numeric value into the 'Predict Y for X' input box to calculate the exact projected point on the best-fit line." },
-      { question: "What coordinate format should I use when pasting data?", answer: "Enter coordinates as paired values (e.g. '1, 2.5' or '1 2.5') with each pair on a new line or separated by semicolons." }
+      { question: "What does the Pearson correlation coefficient (r) indicate?", answer: "The correlation coefficient r ranges from -1 to +1. Values near +1 indicate a strong positive linear relationship, values near -1 indicate a strong negative relationship, and values near 0 indicate no linear correlation." },
+      { question: "What is the meaning of the R² (coefficient of determination) value?", answer: "R² measures the proportion of variance in the dependent variable (Y) that is predictable from the independent variable (X). An R² of 0.85 means 85% of variance is explained by the linear model." },
+      { question: "Can I use this calculator to predict future values?", answer: "Yes. Use the built-in prediction box to plug in any X value into the resulting y = mx + b equation to calculate the predicted Y value." },
+      { question: "How many data points are needed for linear regression?", answer: "You need at least two distinct points to form a line, but 5 or more points are recommended for meaningful statistical correlation." }
     ]
   },
   {
     id: 'sha256-hash-generator',
     title: 'SHA-256 Hash Generator — Real-Time Checksum Verifier',
     navTitle: 'SHA-256 Generator',
-    description: 'Generate 256-bit cryptographic SHA-256 checksum hashes in real-time with Web Crypto API and verify matching digests.',
+    description: 'Generate 256-bit cryptographic SHA-256 checksum hashes in real-time with Web Crypto API and verify matching digests. Free, private client-side browser tool.',
     icon: '🛡️',
     path: '/sha256-hash-generator.html',
     filename: 'sha256-hash-generator.html',
@@ -6531,7 +7092,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'md5-hash-generator',
     title: 'MD5 Hash Generator — 128-Bit Checksum Digest Lookup',
     navTitle: 'MD5 Hash Generator',
-    description: 'Generate 128-bit MD5 message digest hash checksums instantly with real-time verification and casing options.',
+    description: 'Generate 128-bit MD5 message digest hash checksums instantly with real-time verification and casing options. Fast, private client-side tool with instant copy.',
     icon: '#️⃣',
     path: '/md5-hash-generator.html',
     filename: 'md5-hash-generator.html',
@@ -6553,26 +7114,32 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'wide-text-generator',
-    title: 'Wide Text Generator — Fullwidth Aesthetic Vaporwave Font',
-    navTitle: 'Wide Text Gen',
-    description: 'Convert standard text into fullwidth Unicode aesthetic text (ｗｉｄｅ　ｔｅｘｔ) and spaced typography.',
+    title: "Wide Text Generator — Fullwidth Aesthetic Vaporwave Font Online",
+    navTitle: "Wide Text",
+    description: "Convert normal text into aesthetic fullwidth vaporwave text and spaced characters online. Copy wide aesthetic typography for social bios and usernames.",
     icon: '🔤',
     path: '/wide-text-generator.html',
     filename: 'wide-text-generator.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Creative',
-    features: ['Fullwidth Unicode (0xFF01-0xFF5E)', 'Spaced & Double Spaced', 'Squared Unicode Box Letters', 'One-Click Copy', 'Aesthetic Presets'],
+    features: [
+      "Converts Text to Unicode Fullwidth Characters (ｆｕｌｌｗｉｄｔｈ)",
+      "Aesthetic Spaced Letter Mode (w i d e  t e x t) with Custom Spacing",
+      "Universal Unicode Compatibility Across Discord, Twitter, Instagram & TikTok",
+      "Real-Time Instant Preview as You Type",
+      "One-Click Copy Button with Visual Feedback",
+      "100% Client-Side In-Browser Typography Transformer"
+    ],
     howTo: [
-      { title: "Type Standard Text", desc: "Input alphanumeric text or messages into the text editor." },
-      { title: "Select Fullwidth Aesthetic Style", desc: "Choose classic Fullwidth Vaporwave spacing, spaced letters, or aesthetic block characters." },
-      { title: "Copy Wide Text for Social Media", desc: "Click Copy to grab the transformed fullwidth Unicode string ready for Discord, Twitter, or Instagram bios." }
+      { title: "Enter Normal Text", desc: "Type or paste standard words, usernames, or quotes into the input field." },
+      { title: "Choose Aesthetic Style", desc: "Select Fullwidth Japanese Zenkaku characters or spaced letter mode." },
+      { title: "Copy Aesthetic Text", desc: "Click Copy to use your vaporwave styled text on social media profiles, Discord, or gaming handles." }
     ],
     faq: [
-      { question: "How does the Wide Text Generator create aesthetic vaporwave text?", answer: "It maps standard ASCII character codes to the Unicode Halfwidth and Fullwidth Forms block (U+FF01 to U+FF5E), creating wide monospace characters." },
-      { question: "Will wide text display correctly across all devices and phones?", answer: "Yes. Fullwidth glyphs are part of the universal Unicode standard supported natively on iOS, Android, macOS, Windows, and Linux." },
-      { question: "Can I use wide text in Discord nicknames, usernames, and game handles?", answer: "Yes. Most gaming platforms and social apps accept fullwidth Unicode characters in status messages, bios, and display names." },
-      { question: "Does the generator alter numbers and punctuation?", answer: "Yes. Fullwidth numbers (０-９) and punctuation marks (！, ？, ：) are mapped alongside alphabetical letters for consistent wide spacing." },
-      { question: "Is text conversion performed locally?", answer: "Yes. Character mapping is computed instantly client-side without any server API calls." }
+      { question: "What is fullwidth Unicode text (ｗｉｄｅ ｔｅｘｔ)?", answer: "Fullwidth characters originate from CJK (Chinese, Japanese, Korean) computing, where characters occupy the same width as Kanji glyphs. In internet culture, they are popular for vaporwave aesthetics." },
+      { question: "Will wide text display properly on phones and social media apps?", answer: "Yes. Because they are standard Unicode characters (U+FF01 to U+FF5E), they render natively across modern operating systems, Discord, Instagram, and TikTok." },
+      { question: "Can I use wide text in gaming handles like Steam or Discord?", answer: "Yes. Many gamers use fullwidth characters to create distinctive usernames and Discord nicknames." },
+      { question: "Can I adjust the spacing between characters?", answer: "Yes. You can switch to spaced typography mode and adjust the spacing slider for custom text width." }
     ]
   },
   {
@@ -6601,50 +7168,62 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'text-reverser',
-    title: 'Text Reverser — Reverse Text, Words & Letters Online',
-    navTitle: 'Text Reverser',
-    description: 'Flip and reverse characters, words, lines, or mirror text backwards instantly with 1-click clipboard copy.',
+    title: "Text Reverser — Reverse Words, Letters & Backwards Text Online",
+    navTitle: "Text Reverser",
+    description: "Reverse text, flip word order, mirror letters backwards, or turn text upside down online. Transform sentences instantly with one-click clipboard copy.",
     icon: '🔄',
     path: '/text-reverser.html',
     filename: 'text-reverser.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Utility',
-    features: ['Reverse Characters & Letters', 'Reverse Word Order', 'Reverse Lines Upside Down', 'Live Character & Word Counts', 'Instant Copy & Download'],
+    features: [
+      "Reverse Character Order (Reverses Letters Completely Backwards)",
+      "Reverse Word Order (Maintains Letter Spelling, Reverses Sequence)",
+      "Flip Text Upside Down Using Unicode Inverted Glyphs",
+      "Reverse Each Line Individually for Code and Data Lists",
+      "Instant Real-Time Reversal as You Type",
+      "One-Click Clipboard Copying with Character Counter"
+    ],
     howTo: [
-      { title: "Input Text to Reverse", desc: "Type or paste words, phrases, or multi-line paragraphs into the input box." },
-      { title: "Choose Reversal Direction", desc: "Select Reverse Entire Text, Reverse Each Word, Reverse Word Order Only, or Flip Upside Down." },
-      { title: "Copy Reversed Output", desc: "Inspect the flipped or reversed text and click Copy to clipboard." }
+      { title: "Paste Text to Reverse", desc: "Type or paste any phrase, sentence, or list into the input box." },
+      { title: "Select Reversal Mode", desc: "Choose to reverse all characters, reverse word order, flip upside down, or reverse lines." },
+      { title: "Copy Transformed Text", desc: "Click Copy to use your backwards text for puzzles, social media posts, or coding tests." }
     ],
     faq: [
-      { question: "What is the difference between reversing text and reversing word order?", answer: "Reversing text turns 'hello world' into 'dlrow olleh' (character level). Reversing word order turns 'hello world' into 'world hello' while keeping individual words readable." },
-      { question: "How does the Reverse Each Word mode work?", answer: "It preserves sentence word sequence while reversing the internal letters of each individual word (e.g. 'hello world' becomes 'olleh dlrow')." },
-      { question: "Does the reverser support multi-line poems and paragraphs?", answer: "Yes. You can choose whether to reverse line order from bottom to top or maintain paragraph line structure." },
-      { question: "How does upside-down text flipping work?", answer: "It maps standard Latin alphabet characters to phonetic upside-down Unicode equivalents (such as ɐ for a and ɥ for h)." },
-      { question: "Are my messages processed securely?", answer: "Yes. String reversal algorithms run client-side in browser memory with zero network footprint." }
+      { question: "What is the difference between reversing characters and reversing word order?", answer: "Reversing characters inverts every letter (\"hello world\" becomes \"dlrow olleh\"), while reversing word order maintains individual word spelling but flips sentence order (\"world hello\")." },
+      { question: "How does the upside-down text mode work?", answer: "It maps standard Latin letters to equivalent upside-down Unicode characters (e.g. \"a\" becomes \"ɐ\", \"e\" becomes \"ǝ\") and reverses character direction." },
+      { question: "Can this tool be used for testing palindromes?", answer: "Yes. If a word or phrase produces the exact same string when reversed (ignoring spaces), it is a valid palindrome." },
+      { question: "Are my private text inputs uploaded to a remote server?", answer: "No. All string manipulations execute strictly within your browser runtime with zero network requests." }
     ]
   },
   {
     id: 'remove-line-breaks',
-    title: 'Remove Line Breaks — Clean Text & Paragraph Formatter',
-    navTitle: 'Remove Line Breaks',
-    description: 'Remove line breaks, carriage returns, and newlines from messy copied text, PDF text, or code with customizable separators.',
+    title: "Remove Line Breaks — Clean Text & Paragraph Formatter Online",
+    navTitle: "Remove Line Breaks",
+    description: "Remove line breaks, carriage returns, and newlines from messy copied text online. Replace breaks with spaces or custom delimiters with instant preview.",
     icon: '↩️',
     path: '/remove-line-breaks.html',
     filename: 'remove-line-breaks.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Cleaner',
-    features: ['Strip All Line Breaks', 'Preserve Double Paragraph Breaks', 'Custom Delimiter Replacement', 'Trim Extra Whitespace', 'Instant Export'],
+    features: [
+      "Strips Hard Line Breaks, Carriage Returns & Newlines (\\n, \\r\\n)",
+      "Replaces Line Breaks with Single Spaces, Commas, or Custom Delimiters",
+      "Preserves Double Paragraph Breaks Option for Article Formatting",
+      "Removes Trailing and Consecutive Whitespace Automatically",
+      "Character and Word Count Summary Cards",
+      "100% In-Browser Execution for Private Documents and Code"
+    ],
     howTo: [
-      { title: "Paste Segmented Text", desc: "Input paragraphs copied from PDF columns, OCR scans, or emails that have broken lines." },
-      { title: "Select Line Break Replacement", desc: "Choose to replace line breaks with spaces, completely remove them, or preserve double paragraph breaks while removing single wraps." },
-      { title: "Copy Reflowed Paragraphs", desc: "Review the unified, continuous text block and click Copy to clipboard." }
+      { title: "Paste Copied Text", desc: "Paste messy text copied from PDF files, emails, or terminal outputs with broken line wraps." },
+      { title: "Choose Replacement Delimiter", desc: "Select whether to replace line breaks with spaces, commas, or semicolons, and choose if paragraphs should be preserved." },
+      { title: "Copy Formatted Text", desc: "Click Copy to take your seamless, continuous text to Word, Google Docs, or email drafts." }
     ],
     faq: [
-      { question: "Why do texts copied from PDF documents contain unwanted line breaks?", answer: "PDF files store text using physical print coordinates rather than semantic paragraph flow, causing line breaks at every visual margin wrap." },
-      { question: "Can I preserve paragraph separations while fixing broken single lines?", answer: "Yes. The 'Preserve Paragraphs' option retains double line breaks (\n\n) while joining single broken line ends into smooth continuous sentences." },
-      { question: "Does the tool automatically clean up hyphenated words broken across lines?", answer: "Yes. It detects trailing hyphens at line endings (e.g. 'infor-\nmation') and merges them back into single unbroken words ('information')." },
-      { question: "Can I replace line breaks with custom delimiters like commas or semicolons?", answer: "Yes. You can specify a custom character or string delimiter to replace every newline character." },
-      { question: "Is any text stored on external servers?", answer: "No. Regex string normalization executes completely in your web browser." }
+      { question: "Why does text copied from PDF files often have awkward line breaks?", answer: "PDFs store text in fixed-width visual layout lines rather than flowing paragraphs. Copying text brings along hard line breaks at the end of every line." },
+      { question: "Can I keep paragraph breaks while removing line wraps within paragraphs?", answer: "Yes. Enable the \"Preserve Paragraph Breaks\" setting to merge single line breaks into flowing sentences while retaining empty lines between paragraphs." },
+      { question: "Can I replace line breaks with commas to format spreadsheet lists?", answer: "Yes. Choose \"Comma\" as the replacement delimiter to convert a vertical list of items into a clean comma-separated list." },
+      { question: "Is there any character limit on the text I can clean?", answer: "Because the tool runs in local browser memory, you can clean articles, essays, and legal agreements of any length within seconds." }
     ]
   },
   {
@@ -6673,98 +7252,122 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'text-repeater',
-    title: 'Text Repeater — Repeat Words & Messages 10,000x Times',
-    navTitle: 'Text Repeater',
-    description: 'Repeat any word, phrase, emoji, or text string up to 10,000 times with newlines, spaces, or custom separators.',
+    title: "Text Repeater — Repeat Words & Messages 10,000x Times Online",
+    navTitle: "Text Repeater",
+    description: "Repeat words, phrases, emojis, or text strings up to 10,000 times online. Choose custom separators, line breaks, or numbering with one-click copying.",
     icon: '🔁',
     path: '/text-repeater.html',
     filename: 'text-repeater.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Generator',
-    features: ['Repeat up to 10,000 Times', 'Custom Separators & Newlines', 'Number Each Repetition Option', 'Quick Count Presets', 'One-Click Copy & Download'],
+    features: [
+      "Repeats Any Word, Phrase, Emoji or String up to 10,000 Times",
+      "Custom Delimiters (Newline, Space, Comma, Period, Custom Text)",
+      "Optional Sequential Line Numbering (1., 2., 3...)",
+      "Instant In-Browser Assembly with No Processing Lag",
+      "One-Click Clipboard Copying with Total Character Count",
+      "Perfect for Messaging, Stress Testing & Social Media Posts"
+    ],
     howTo: [
-      { title: "Enter Message or Text to Repeat", desc: "Type words, phrases, or emojis that you want to duplicate." },
-      { title: "Set Repetition Count & Delimiter", desc: "Specify the number of repeats (e.g. 10 to 10,000) and choose separation: Space, Newline, Comma, or Custom delimiter." },
-      { title: "Generate and Copy Repeated Text", desc: "Click Repeat, inspect the output character count, and click Copy to clipboard." }
+      { title: "Enter Text to Repeat", desc: "Type any message, word, emoji, or phrase into the text input field." },
+      { title: "Set Repetition Count and Delimiter", desc: "Specify how many times to repeat (e.g. 100 or 1,000) and choose your separator (newline, space, comma)." },
+      { title: "Copy Repeated Message", desc: "Click Copy to take your repeated text string directly to WhatsApp, Discord, or code editors." }
     ],
     faq: [
-      { question: "What is the maximum number of times I can repeat text?", answer: "You can repeat text up to 10,000 times safely without browser freezing or memory overflow." },
-      { question: "Can I add numbering or index tags to each repeated line?", answer: "Yes. Toggling the 'Add Line Numbers' option prepends sequential numbers (1., 2., 3.) before each repeated instance." },
-      { question: "Can I repeat emojis and special characters?", answer: "Yes. Full Unicode and emoji sequences are supported without corruption or encoding issues." },
-      { question: "How fast is generating thousands of repeated words?", answer: "Generation is virtually instantaneous, utilizing native JavaScript array creation and string joining." },
-      { question: "Is repeated text sent to any server?", answer: "No. All text repetition string construction executes client-side in browser memory." }
+      { question: "Can I repeat emojis as well as standard text words?", answer: "Yes. You can repeat emojis, symbols, custom strings, or complete multi-line paragraphs up to 10,000 times." },
+      { question: "Can I put each repetition on a new line with line numbers?", answer: "Yes. Select the \"New Line\" separator and toggle \"Add Line Numbers\" to generate numbered lists automatically." },
+      { question: "Will repeating text 1,000 or 10,000 times freeze my browser?", answer: "No. The repeater uses optimized array joining in JavaScript that compiles thousands of repetitions in a fraction of a second." },
+      { question: "Is there any limit or payment required?", answer: "No. The tool is 100% free with unlimited generation rounds and zero sign-ups." }
     ]
   },
   {
     id: 'text-splitter',
-    title: 'Text Splitter — Split Text by Delimiter, Lines & Chunks',
-    navTitle: 'Text Splitter',
-    description: 'Split text, lists, CSVs, or logs by character, comma, newline, regex delimiter, or fixed character chunk size.',
+    title: "Text Splitter — Split Text by Delimiter, Lines & Chunks Online",
+    navTitle: "Text Splitter",
+    description: "Split text, lists, and CSV data by delimiter, newline, regex, or character chunk size online. Inspect and copy split text chunks in your browser.",
     icon: '✂️',
     path: '/text-splitter.html',
     filename: 'text-splitter.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Utility',
-    features: ['Split by Delimiter or Regex', 'Split by Fixed Character Chunk Size', 'Preview Chunks with Length Stats', 'Copy Individual or All Chunks', 'ZIP / TXT Export'],
+    features: [
+      "Split by Character Delimiter (Comma, Semicolon, Pipe, Space, Tab)",
+      "Split by Regex Pattern or Custom String Sequences",
+      "Fixed-Length Character Chunk Splitting (e.g. 1,000 Characters Per Chunk)",
+      "Live Chunk Counter & Chunk Length Statistics",
+      "One-Click Copy Individual Chunks or Export All as List",
+      "100% In-Browser Execution for Large Data Files and Logs"
+    ],
     howTo: [
-      { title: "Paste Raw Text Block", desc: "Enter a large block of text, CSV records, or code into the input pane." },
-      { title: "Choose Splitting Delimiter or Size", desc: "Split by Newline, Comma, Custom Character/Regex, or by fixed Character/Word count chunks." },
-      { title: "Inspect Segments & Copy Results", desc: "Review individual segment cards, view chunk counts, and copy individual pieces or export all chunks as files." }
+      { title: "Paste Text to Split", desc: "Input text, CSV records, comma-separated lists, or long articles." },
+      { title: "Choose Splitting Method", desc: "Select whether to split by a delimiter (like comma or newline) or divide into fixed character chunks." },
+      { title: "Review and Copy Chunks", desc: "Inspect the segmented pieces and copy individual chunks or the complete split list." }
     ],
     faq: [
-      { question: "Can I split text into chunks suitable for AI prompt token limits?", answer: "Yes. You can specify a maximum character or word threshold per chunk to partition large documents into manageable sections for AI chat tools." },
-      { question: "Does the splitter support regular expressions as delimiters?", answer: "Yes. You can enter custom regex patterns (like \\d+\\. or ;\\s*) to split on complex headings or numbering systems." },
-      { question: "How does word-aware chunk splitting work?", answer: "When splitting by size, word-boundary preservation ensures the tool does not chop words in half, finding the nearest preceding space." },
-      { question: "Can I download each chunk as an individual text file?", answer: "Yes. You can export all split parts as a zipped archive of individual .txt files for batch processing." },
-      { question: "Is my document data kept private?", answer: "Yes. All string partitioning and array transformations occur strictly in browser memory." }
+      { question: "Why would I split text by fixed character chunks?", answer: "Splitting long texts into chunks (such as 2,000 or 4,000 characters) is useful for pasting text into AI chatbots with prompt size limits or sending long SMS messages." },
+      { question: "Can I split comma-separated values (CSV) into separate lines?", answer: "Yes. Set the delimiter to a comma, and the tool will split the list into individual items on separate lines." },
+      { question: "Does the tool support custom regular expressions (regex)?", answer: "Yes. You can define custom regex split patterns to handle complex multi-delimiter text structures." },
+      { question: "Are my files or text blocks sent to any server?", answer: "No. String segmentation occurs completely within your browser runtime." }
     ]
   },
   {
     id: 'text-joiner',
-    title: 'Text Joiner — Combine Lines with Custom Delimiters',
-    navTitle: 'Text Joiner',
-    description: 'Merge and concatenate list items, lines of text, or values using commas, tabs, semicolons, or custom prefixes/suffixes.',
+    title: "Text Joiner — Combine Lines with Custom Delimiters Online",
+    navTitle: "Text Joiner",
+    description: "Join and merge multiple lines of text with commas, semicolons, tabs, or custom separators online. Concatenate list items with prefix and suffix options.",
     icon: '🔗',
     path: '/text-joiner.html',
     filename: 'text-joiner.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Utility',
-    features: ['Join with Comma, Semicolon, Space or Custom Separator', 'Prefix and Suffix Enclosing', 'Trim Whitespace & Skip Empty Lines', 'Real-Time Merging', '1-Click Copy'],
+    features: [
+      "Join Separate Lines into a Single Delimited String",
+      "Preset Delimiters: Comma, Comma+Space, Semicolon, Tab, Pipe (|)",
+      "Custom String Delimiter Option with Custom Padding",
+      "Add Custom Prefix and Suffix to Each Line (e.g. Quotes 'value')",
+      "Optional Empty Line Removal & Whitespace Trimming",
+      "Instant Real-Time Concatenation with One-Click Copying"
+    ],
     howTo: [
-      { title: "Input Lines or Segments", desc: "Paste individual lines, list items, or sentences that need combining." },
-      { title: "Select Join Delimiter & Enclosure", desc: "Choose join delimiter: Comma, Semicolon, Space, Pipe (|), or Custom string, and optionally wrap each item in quotes." },
-      { title: "Copy Merged Single-Line Output", desc: "Review the joined string in the output box and click Copy to clipboard for SQL IN queries, CSV arrays, or code lists." }
+      { title: "Paste Multi-Line List", desc: "Paste a list of items, IDs, emails, or names (one per line)." },
+      { title: "Select Separator Delimiter", desc: "Choose a delimiter like comma, comma-space (\", \"), semicolon, or enter a custom separator." },
+      { title: "Copy Merged Text", desc: "Review the joined string and click Copy to paste into spreadsheets, SQL IN clauses, or code arrays." }
     ],
     faq: [
-      { question: "Can this tool format items for SQL IN clauses?", answer: "Yes. Select comma as delimiter and enable single quote enclosure to format items instantly as 'val1', 'val2', 'val3'." },
-      { question: "Does the joiner skip empty lines automatically?", answer: "Yes. An optional 'Ignore Empty Lines' toggle prevents redundant adjacent delimiters from appearing in your joined output." },
-      { question: "Can I wrap items in custom prefix and suffix characters?", answer: "Yes. You can specify custom prefixes and suffixes (such as parentheses, brackets, or double quotes) around each individual line item." },
-      { question: "Can I sort lines before joining them?", answer: "Yes. An integrated sort toggle organizes list items alphabetically before merging." },
-      { question: "Are list items transmitted to an external server?", answer: "No. Array filtering, mapping, and joining execute entirely in client-side JavaScript." }
+      { question: "How do I convert a vertical column of IDs into a SQL IN clause list?", answer: "Paste your list of IDs, choose comma as the delimiter, and set single quotes (') as the prefix and suffix to output `'id1', 'id2', 'id3'`." },
+      { question: "Can I join text lines with custom text like \" AND \" or \" OR \"?", answer: "Yes. You can type any custom word or character sequence into the custom delimiter box." },
+      { question: "Can I remove blank lines automatically before joining?", answer: "Yes. The \"Ignore Empty Lines\" toggle ensures blank rows do not create unwanted double commas or delimiters." },
+      { question: "Is my data private when using this tool?", answer: "Yes. All line merging runs in client-side JavaScript inside your browser with zero server logging." }
     ]
   },
   {
     id: 'email-extractor',
-    title: 'Email Extractor — Scrape & Filter Emails from Text',
-    navTitle: 'Email Extractor',
-    description: 'Extract all valid email addresses from raw text, HTML documents, or spreadsheets with domain filtering and deduplication.',
+    title: "Email Extractor — Scrape & Filter Emails from Text Online",
+    navTitle: "Email Extractor",
+    description: "Extract all valid email addresses from raw text, documents, and web source code online. Automatically deduplicate and sort emails with one-click export.",
     icon: '📧',
     path: '/email-extractor.html',
     filename: 'email-extractor.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Scraper',
-    features: ['RFC 5322 Compliant Email Extraction', 'Automatic Duplicate Removal', 'Domain Grouping & Filtering', 'Alphabetical Sorting', 'Export to CSV & TXT'],
+    features: [
+      "Extracts All Valid Email Addresses from Unstructured Text & HTML",
+      "Automatic Deduplication of Redundant Email Entries",
+      "Sort Extracted Emails Alphabetically (A to Z) or Keep Found Order",
+      "Domain Extension Filtering (.com, .org, .edu, .io, custom)",
+      "Export Results as Newline-Separated or Comma-Separated Lists",
+      "100% In-Browser Execution Safeguarding Contact Data Privacy"
+    ],
     howTo: [
-      { title: "Paste Raw Text or Document Source", desc: "Input raw text, scraped web pages, email correspondence, or support ticket dumps." },
-      { title: "Configure Extraction and Filter Rules", desc: "Toggle Deduplicate Emails, Sort Alphabetically, and filter by specific top-level domain or company domain name." },
-      { title: "Copy Clean Email Addresses", desc: "Review the verified address count and click Copy or download a newline-separated list." }
+      { title: "Paste Raw Text or Source Code", desc: "Paste articles, contact pages, HTML source, or email headers containing email addresses." },
+      { title: "Configure Filters and Sorting", desc: "Toggle automatic deduplication, alphabetical sorting, or filter by specific top-level domains." },
+      { title: "Copy or Export Unique Emails", desc: "Inspect the list of discovered emails, view total count, and copy clean emails to your clipboard." }
     ],
     faq: [
-      { question: "What regular expression standard is used to identify email addresses?", answer: "The extractor uses an RFC-5322 compliant regex pattern that reliably matches standard alphanumeric usernames, subdomains, and modern generic TLDs." },
-      { question: "Can I filter extracted emails to specific domain names?", answer: "Yes. Enter a domain filter (e.g. 'gmail.com' or 'company.org') to isolate only emails matching your target organization." },
-      { question: "How does the tool handle obfuscated emails (like user [at] domain [dot] com)?", answer: "The de-obfuscation feature normalizes common anti-spam formatting into standard usable email syntax before extraction." },
-      { question: "Does the email extractor eliminate duplicates?", answer: "Yes. Case-insensitive deduplication ensures each distinct email address appears only once in your final output." },
-      { question: "Are extracted emails uploaded or harvested to a server?", answer: "No. Scanning and extraction occur locally in your browser session. Zubware does not collect, record, or store extracted addresses." }
+      { question: "How does the email extractor identify valid email addresses?", answer: "It uses standardized RFC-compliant regular expressions to find email patterns (username@domain.tld) embedded within messy text or HTML code." },
+      { question: "Does the tool automatically remove duplicate email addresses?", answer: "Yes. Deduplication is enabled by default, ensuring every extracted email address appears only once in your final list." },
+      { question: "Can I filter for specific corporate or academic email domains?", answer: "Yes. You can filter results to display only emails matching specific domain extensions like `.edu` or specific companies." },
+      { question: "Are extracted contact lists uploaded or saved anywhere?", answer: "No. All regex parsing executes entirely in your local browser memory to ensure confidential contact lists remain completely private." }
     ]
   },
   {
@@ -6795,7 +7398,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'html-entity-encoder-decoder',
     title: 'HTML Entity Encoder & Decoder — Convert &amp;, &lt;, &gt;',
     navTitle: 'HTML Entity Tool',
-    description: 'Encode special characters to HTML entities (&amp;, &lt;, &gt;, &quot;) or decode named and numeric entities back to text.',
+    description: 'Encode special characters to HTML entities (&amp;, &lt;, &gt;, &quot;) or decode named and numeric entities back to text. Fast and private client-side tool.',
     icon: '🔣',
     path: '/html-entity-encoder-decoder.html',
     filename: 'html-entity-encoder-decoder.html',
@@ -6819,7 +7422,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'text-to-binary',
     title: 'Text to Binary Converter — Convert Text to 0s & 1s Online',
     navTitle: 'Text to Binary',
-    description: 'Convert ASCII and UTF-8 text strings to 8-bit binary code with space, comma, or continuous formatting.',
+    description: 'Convert ASCII and UTF-8 text strings to 8-bit binary code with space, comma, or continuous formatting. Fast in-browser encoding with instant copy and download.',
     icon: '0️⃣',
     path: '/text-to-binary.html',
     filename: 'text-to-binary.html',
@@ -6843,7 +7446,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'binary-to-text',
     title: 'Binary to Text Converter — Decode 0s & 1s to Text Online',
     navTitle: 'Binary to Text',
-    description: 'Translate binary code (0s and 1s) back into readable English text with auto-delimiter detection and error handling.',
+    description: 'Translate binary code (0s and 1s) back into readable English text with auto-delimiter detection and error handling. Fast, private client-side binary decoder.',
     icon: '1️⃣',
     path: '/binary-to-text.html',
     filename: 'binary-to-text.html',
@@ -6867,7 +7470,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'text-to-hex',
     title: 'Text to Hex Converter — Convert ASCII to Hexadecimal',
     navTitle: 'Text to Hex',
-    description: 'Convert plain text and strings to hexadecimal values with uppercase/lowercase, space, colon, or 0x prefixes.',
+    description: 'Convert plain text and strings to hexadecimal values with uppercase/lowercase, space, colon, or 0x prefixes. Fast, private client-side ASCII to hex converter.',
     icon: '🔤',
     path: '/text-to-hex.html',
     filename: 'text-to-hex.html',
@@ -6891,7 +7494,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'hex-to-text',
     title: 'Hex to Text Converter — Decode Hexadecimal to Plain Text',
     navTitle: 'Hex to Text',
-    description: 'Decode hexadecimal strings, byte codes, and hex dumps back into readable ASCII/UTF-8 plain text.',
+    description: 'Decode hexadecimal strings, byte codes, and hex dumps back into readable ASCII and UTF-8 plain text. Supports 0x prefixes, spaces, and colons in your browser.',
     icon: '#️⃣',
     path: '/hex-to-text.html',
     filename: 'hex-to-text.html',
@@ -6915,7 +7518,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'css-minifier',
     title: 'CSS Minifier — Minify CSS Online for Faster Page Speeds',
     navTitle: 'CSS Minifier',
-    description: 'Compress and minify CSS stylesheets by stripping comments, redundant whitespace, and semicolons for production.',
+    description: 'Compress and minify CSS stylesheets online by stripping comments, redundant whitespace, and semicolons. Boost page speed and Core Web Vitals with free tool.',
     icon: '🎨',
     path: '/css-minifier.html',
     filename: 'css-minifier.html',
@@ -6939,7 +7542,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'javascript-minifier',
     title: 'JavaScript Minifier — Minify JS Code Online Free',
     navTitle: 'JavaScript Minifier',
-    description: 'Minify JavaScript code by stripping comments and extraneous whitespace while preserving syntactical keyword boundaries.',
+    description: 'Minify JavaScript code online by stripping comments and whitespace while preserving syntax boundaries and semicolons. Boost page speed with free in-browser tool.',
     icon: '⚡',
     path: '/javascript-minifier.html',
     filename: 'javascript-minifier.html',
@@ -6963,7 +7566,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'html-minifier',
     title: 'HTML Minifier — Compress HTML Online for SEO Speed',
     navTitle: 'HTML Minifier',
-    description: 'Minify HTML markup, strip comments, and eliminate whitespace while protecting pre, code, and script blocks.',
+    description: 'Minify HTML markup, strip comments, and eliminate whitespace while protecting pre, code, and script blocks. Optimize web page speed with fast in-browser tool.',
     icon: '🌐',
     path: '/html-minifier.html',
     filename: 'html-minifier.html',
@@ -6987,7 +7590,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'sql-minifier',
     title: 'SQL Minifier — Compress SQL Queries to Single Line',
     navTitle: 'SQL Minifier',
-    description: 'Minify SQL queries, remove comments, and convert multi-line statements into single-line queries while protecting string literals.',
+    description: 'Minify SQL queries, strip comments, and convert multi-line statements into single-line queries while protecting string literals. Fast, free client-side tool.',
     icon: '🗄️',
     path: '/sql-minifier.html',
     filename: 'sql-minifier.html',
@@ -7011,7 +7614,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'meta-tag-generator',
     title: 'Meta Tag Generator — Generate SEO & Open Graph Tags',
     navTitle: 'Meta Tag Generator',
-    description: 'Generate Google SEO meta tags, Open Graph tags, and Twitter Cards with live SERP and social share previews.',
+    description: 'Generate Google SEO meta tags, Open Graph tags, and Twitter Cards with live SERP and social share previews. Copy ready-to-use HTML head tags in your browser.',
     icon: '🔍',
     path: '/meta-tag-generator.html',
     filename: 'meta-tag-generator.html',
@@ -7035,7 +7638,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'robots-txt-generator',
     title: 'Robots.txt Generator — Create SEO-Friendly Robots.txt Online',
     navTitle: 'Robots.txt Generator',
-    description: 'Generate optimized robots.txt files for Googlebot and search crawlers with presets, disallow paths, and sitemap directives.',
+    description: 'Generate optimized robots.txt files for Googlebot and search crawlers with presets, disallow paths, and sitemap directives. Download valid robots.txt online.',
     icon: '🤖',
     path: '/robots-txt-generator.html',
     filename: 'robots-txt-generator.html',
@@ -7059,7 +7662,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'xml-sitemap-generator',
     title: 'XML Sitemap Generator — Create Google Sitemaps Free',
     navTitle: 'XML Sitemap Generator',
-    description: 'Generate Google Search Console compliant XML sitemaps with priority, change frequency, and bulk URL importing.',
+    description: 'Generate Google Search Console compliant XML sitemaps with priority, change frequency, and bulk URL importing. Download standardized sitemap.xml in browser.',
     icon: '🗺️',
     path: '/xml-sitemap-generator.html',
     filename: 'xml-sitemap-generator.html',
@@ -7083,7 +7686,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'schema-markup-generator',
     title: 'Schema Markup Generator — JSON-LD Structured Data',
     navTitle: 'Schema Generator',
-    description: 'Generate Google Rich Results JSON-LD schema markup for Organizations, Articles, FAQ Pages, Products, and Local Businesses.',
+    description: 'Generate Google Rich Results JSON-LD schema markup for Organizations, Articles, FAQ Pages, Products, and Local Businesses. Ready for Google Search Console.',
     icon: '📑',
     path: '/schema-markup-generator.html',
     filename: 'schema-markup-generator.html',
@@ -7107,7 +7710,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     id: 'utm-builder',
     title: 'UTM Campaign URL Builder — Google Analytics UTM Generator',
     navTitle: 'UTM Link Builder',
-    description: 'Build trackable marketing campaign URLs with UTM parameters (source, medium, campaign, term, content) and history tracking.',
+    description: 'Build trackable marketing campaign URLs with UTM parameters (source, medium, campaign, term, content) and saved history. Free link builder for Google Analytics.',
     icon: '🎯',
     path: '/utm-builder.html',
     filename: 'utm-builder.html',
@@ -7201,122 +7804,153 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'barcode-scanner',
-    title: 'Barcode Scanner — Scan 1D/2D Barcodes Online Free',
-    navTitle: 'Barcode Scanner',
-    description: 'Scan and decode 1D & 2D barcodes from camera or uploaded images with automatic barcode format detection and Google lookup.',
+    title: "Barcode Scanner Online — Scan 1D & 2D Barcodes Free in Browser",
+    navTitle: "Barcode Scanner",
+    description: "Scan and decode 1D and 2D barcodes using your device camera or uploaded images online. Read UPC, EAN, Code 128, and QR codes directly in your browser.",
     icon: '📱',
     path: '/barcode-scanner.html',
     filename: 'barcode-scanner.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Scanner',
-    features: ['Live Camera & Image File Scanning', 'BarcodeDetector API with jsQR Fallback', 'Scanned Barcodes History', 'Google Product Search & Copy'],
+    features: [
+      "Real-Time Live Camera Barcode Scanning on Mobile & Desktop",
+      "Upload & Decode Image Files (PNG, JPG, WebP)",
+      "Supports 1D Barcodes (UPC-A, EAN-13, Code 128, Code 39, ITF)",
+      "Supports 2D Barcodes (QR Code, Data Matrix, PDF417)",
+      "One-Click Clipboard Copying & Google Product Search Link",
+      "100% Client-Side Barcode Recognition with Zero Server Uploads"
+    ],
     howTo: [
-      { title: "Allow Camera Access or Upload Image", desc: "Point your smartphone or webcam at any barcode, or upload a photo containing a barcode." },
-      { title: "Align Barcode in Scanner Viewfinder", desc: "Position the 1D barcode or 2D QR code within the visual bounding box for instant recognition." },
-      { title: "Copy Decoded Data or Open Link", desc: "Review the decoded alphanumeric payload, detect barcode symbology type, and copy or search the code." }
+      { title: "Enable Camera or Upload an Image", desc: "Point your camera at a barcode or drop an image file containing a barcode into the scanner." },
+      { title: "Automatic Detection and Decode", desc: "The tool uses hardware-accelerated computer vision to locate and decode the barcode format." },
+      { title: "Copy Scanned Data or Search Product", desc: "Copy the numeric code or text to your clipboard, or click Search to look up product information." }
     ],
     faq: [
-      { question: "Which barcode formats can this scanner decode?", answer: "It scans 1D formats including EAN-13, UPC-A, Code 128, Code 39, and ITF, as well as 2D formats including QR Code, Data Matrix, and PDF417." },
-      { question: "Can I scan barcodes from saved image files and photos?", answer: "Yes. You can upload or paste image files (JPG, PNG, WebP) directly without using a live camera." },
-      { question: "How does the scanner achieve instant detection?", answer: "It uses modern WebAssembly-accelerated barcode decoding libraries and the browser's native BarcodeDetector API when available." },
-      { question: "Is camera video recorded or sent to a server?", answer: "No. Video frames are processed in volatile memory on your device; no video streams or captured photos are transmitted over the internet." },
-      { question: "Does the tool support continuous scanning for inventory counts?", answer: "Yes. Toggle 'Continuous Scan' to rapidly beep and log sequential product barcodes into an exportable list." }
+      { question: "Which barcode formats are supported by this scanner?", answer: "It decodes common retail 1D barcodes (UPC-A, UPC-E, EAN-13, EAN-8), industrial barcodes (Code 128, Code 39, ITF), and 2D matrices (QR codes, Data Matrix)." },
+      { question: "Can I scan barcodes using my smartphone camera?", answer: "Yes. The scanner works in mobile web browsers (Safari, Chrome, Firefox) using native WebRTC camera streams." },
+      { question: "Is my camera video stream or barcode data sent to a server?", answer: "No. Camera frames are processed entirely on your device via client-side Barcode Detection and WebAssembly libraries." },
+      { question: "Can I scan a barcode from an image or screenshot saved on my computer?", answer: "Yes. You can drag and drop any image file to read barcodes without needing a webcam." }
     ]
   },
   {
     id: 'calendar-notes',
-    title: 'Calendar Notes — Private Monthly Calendar & Daily Planner',
-    navTitle: 'Calendar Notes',
-    description: 'Organize your schedule and write private daily notes on an interactive monthly calendar stored securely in your browser.',
+    title: "Calendar Notes — Private Monthly Calendar & Daily Planner Online",
+    navTitle: "Calendar Notes",
+    description: "Organize daily tasks and journal notes on an interactive monthly calendar online. Keep notes stored locally in your browser with private offline access.",
     icon: '📅',
     path: '/calendar-notes.html',
     filename: 'calendar-notes.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Planner',
-    features: ['Interactive Monthly Calendar Grid', 'Per-Day Private Note Autosave', 'Month-by-Month Navigation', 'Client-Side Autosave — Local Storage'],
+    features: [
+      "Interactive Full-Month Calendar View with Date Highlighting",
+      "Dedicated Daily Journaling & Task Checklist Notes",
+      "Visual Activity Dots Indicating Days with Saved Notes",
+      "Local Browser Persistence with Zero Account Requirements",
+      "Export and Backup Notes to Text or JSON Files",
+      "100% Private Offline Execution Protecting Personal Schedules"
+    ],
     howTo: [
-      { title: "Select Calendar Date", desc: "Navigate through months and click any day on the interactive monthly calendar grid." },
-      { title: "Write Date-Specific Notes & Reminders", desc: "Add rich text notes, checklists, meeting notes, and tag items with color-coded categories." },
-      { title: "Review Monthly Schedule & Export", desc: "Inspect calendar badges showing days with active notes and export your notes as a backup file." }
+      { title: "Select a Calendar Date", desc: "Click on any day of the current, past, or future month to open its daily notes panel." },
+      { title: "Write Daily Notes and Reminders", desc: "Type meeting notes, daily priorities, journal thoughts, or tasks for that specific date." },
+      { title: "Navigate Months and Export Data", desc: "Browse between months with indicator dots showing active notes, and backup your entries anytime." }
     ],
     faq: [
-      { question: "Are my calendar notes stored privately on my device?", answer: "Yes. All notes, dates, and event tags are stored exclusively in your browser's local storage (localStorage) with zero server synchronization." },
-      { question: "Can I color-code notes by category (e.g. Work, Personal, Health)?", answer: "Yes. You can assign custom color badges to organize different categories across the calendar grid." },
-      { question: "Can I export all my calendar notes to a backup file?", answer: "Yes. The 'Export Backup' button lets you save a clean JSON file of all your notes, which you can restore anytime." },
-      { question: "Does the calendar highlight today's date automatically?", answer: "Yes. Today's date is dynamically highlighted, and days with recorded notes display visual indicator dots." },
-      { question: "Does this calendar tool require an account or login?", answer: "No. It is a completely private, offline-capable calendar tool requiring no email, account, or cloud subscription." }
+      { question: "Where are my daily calendar notes stored?", answer: "All notes are stored in your web browser’s local storage (LocalStorage). Your entries are never uploaded or synced to external servers." },
+      { question: "Will my calendar notes be saved if I close or refresh the tab?", answer: "Yes. Your notes persist automatically in your browser on this device across browser restarts." },
+      { question: "Can I export a backup of all my calendar entries?", answer: "Yes. You can export all your notes into a clean JSON or text backup file to transfer or archive your records." },
+      { question: "How do I identify which dates have notes attached?", answer: "Dates with saved notes display a visual marker dot on the calendar grid, making it easy to see your active days at a glance." }
     ]
   },
   {
     id: 'clipboard-history',
-    title: 'Clipboard History Manager — Save & Search Copied Snippets',
-    navTitle: 'Clipboard History',
-    description: 'Store frequently used text snippets, code blocks, and notes locally with instant search and one-click re-copying.',
+    title: "Clipboard History Manager — Save & Search Copied Snippets Online",
+    navTitle: "Clipboard History",
+    description: "Store and organize copied text snippets, code blocks, and templates locally online. Search your personal clipboard history with one-click re-copying.",
     icon: '📋',
     path: '/clipboard-history.html',
     filename: 'clipboard-history.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Utility',
-    features: ['Instant Snippet Storage & Local Persistence', 'Real-Time Text Search', 'One-Click Copy Back to Clipboard', 'Manage & Delete Saved Items'],
+    features: [
+      "Save and Organize Frequently Used Text Snippets and Code",
+      "Instant Real-Time Search Across Snippet Titles & Contents",
+      "One-Click Re-Copy to System Clipboard with Visual Toast Feedback",
+      "Custom Categorization and Tagging for Quick Access",
+      "Local Browser Storage with Import & Export Backup Support",
+      "Complete Privacy with Zero Cloud Synchronization"
+    ],
     howTo: [
-      { title: "Save Copied Text Snippets", desc: "Paste or capture text snippets, code blocks, URLs, and templates into the clipboard manager." },
-      { title: "Organize, Pin & Search Snippets", desc: "Pin frequently used items to the top, tag snippets by category, and search your clipboard archive." },
-      { title: "One-Click Copy Back to Clipboard", desc: "Click any snippet card to copy it back to your active system clipboard instantly." }
+      { title: "Add a Copied Snippet", desc: "Paste any text, email response, code block, or message template into the manager." },
+      { title: "Organize and Tag Items", desc: "Assign descriptive titles or category tags so you can find them easily later." },
+      { title: "Search and One-Click Copy", desc: "Use the instant search bar to find any saved snippet and click Copy to place it back onto your clipboard." }
     ],
     faq: [
-      { question: "Where is my clipboard history stored?", answer: "All snippets are stored locally in your browser's local storage; no text is ever uploaded to Zubware servers." },
-      { question: "Can I pin frequently used boilerplate text to the top?", answer: "Yes. Click the Pin icon on any snippet to keep key email templates, addresses, or code snippets permanently at the top of your list." },
-      { question: "Is there a limit on how many items I can save?", answer: "The manager stores up to 200 recent snippets smoothly with instant instant-search filtering." },
-      { question: "Can I clear my entire clipboard history with one click?", answer: "Yes. Click 'Clear History' to wipe all unpinned snippets from your local browser storage immediately." },
-      { question: "Can I export my saved snippets to a text or JSON file?", answer: "Yes. You can export your curated clipboard collection as a backup file to transfer between devices." }
+      { question: "Can this tool replace repetitive typing of email replies and code templates?", answer: "Yes. It acts as a personal snippet library where you can keep canned responses, frequently used links, and code snippets ready for instant copying." },
+      { question: "Is my clipboard data transmitted across the internet?", answer: "No. Everything stays in your browser’s local storage on your device. No text or snippets are ever transmitted to any server." },
+      { question: "Can I search through my saved snippets?", answer: "Yes. The real-time search filter checks snippet titles and text bodies instantly as you type." },
+      { question: "How do I backup or transfer my snippets to another device?", answer: "You can export all your saved items into a JSON backup file and import it into another browser anytime." }
     ]
   },
   {
     id: 'daily-planner',
-    title: 'Daily Routine Planner — Morning, Afternoon & Evening Focus',
-    navTitle: 'Daily Planner',
-    description: 'Structure your day into Morning, Afternoon, and Evening priorities with persistent task checkboxes and daily notes.',
+    title: "Daily Routine Planner — Morning, Afternoon & Evening Focus Online",
+    navTitle: "Daily Planner",
+    description: "Structure your daily schedule into Morning, Afternoon, and Evening focus blocks online. Track task checkboxes and priorities stored in your browser.",
     icon: '☀️',
     path: '/daily-planner.html',
     filename: 'daily-planner.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Routine',
-    features: ['Morning, Afternoon & Evening Task Sections', 'Daily Priority Scratchpad', 'Task Checkboxes & Local Persistence', 'Clean Distraction-Free Design'],
+    features: [
+      "Time-Blocked Sections for Morning, Afternoon & Evening Focus",
+      "Daily Top 3 Priorities Highlight Card for Goal Alignment",
+      "Interactive Checkboxes with Progress Percentage Tracking",
+      "Dedicated Notes and Daily Gratitude Journaling Section",
+      "Automatic Local Browser Storage for Seamless Daily Routines",
+      "100% Private Offline Planning Without Account Sign-In"
+    ],
     howTo: [
-      { title: "Set Daily Top 3 Priority Goals", desc: "Define your primary focus tasks for the day to anchor your productivity." },
-      { title: "Schedule Hourly Time Blocks", desc: "Assign tasks across Morning, Afternoon, and Evening time slots from 6:00 AM to 10:00 PM." },
-      { title: "Track Water, Habits & Daily Notes", desc: "Check off hydration glasses, daily habit streaks, and jot evening reflections." }
+      { title: "Set Top 3 Daily Priorities", desc: "Define the three most critical goals you want to accomplish today." },
+      { title: "Organize Tasks by Time Blocks", desc: "Add morning, afternoon, and evening action items into dedicated time blocks." },
+      { title: "Check Off Completed Items", desc: "Mark tasks complete throughout the day and monitor your daily productivity progress." }
     ],
     faq: [
-      { question: "Why does the planner emphasize the 'Rule of 3' daily priorities?", answer: "Focusing on 3 high-impact outcomes prevents task overwhelm and ensures key objectives get accomplished before secondary busywork." },
-      { question: "Is my daily schedule stored locally and privately?", answer: "Yes. All schedule items, checkboxes, and reflection notes persist securely in your browser's local storage." },
-      { question: "Can I print my daily plan onto paper?", answer: "Yes. The print-optimized layout formats your daily agenda cleanly onto standard A4 or Letter paper for physical desk planning." },
-      { question: "Can I clear completed items for tomorrow with one click?", answer: "Yes. Click 'Reset Day' to clear completed checkboxes and start a fresh daily schedule while keeping recurring habits." },
-      { question: "Does the planner function without an active internet connection?", answer: "Once cached in your browser, the daily planner functions as a standalone browser productivity workspace." }
+      { question: "Why is time blocking into Morning, Afternoon, and Evening effective?", answer: "Breaking your day into three structured blocks prevents overwhelm, aligns high-energy tasks with morning hours, and gives clear structure to your day." },
+      { question: "What is the purpose of setting \"Top 3 Priorities\"?", answer: "Focusing on three core priorities ensures you achieve your most important outcomes each day even if minor errands get rescheduled." },
+      { question: "Will my daily routine planner save my tasks if I close the browser?", answer: "Yes. All daily tasks, priorities, and notes are saved automatically in your browser’s local storage." },
+      { question: "Can I clear my tasks at the end of the day to start fresh tomorrow?", answer: "Yes. A one-click reset option allows you to clear completed items or reset the planner for a productive new morning." }
     ]
   },
   {
     id: 'expense-tracker',
-    title: 'Personal Expense Tracker — Income, Expenses & Budget Ledger',
-    navTitle: 'Expense Tracker',
-    description: 'Track daily expenses and income, view real-time balance metrics, and export categorized financial transactions to CSV.',
+    title: "Personal Expense Tracker — Track Daily Income, Expenses & Budget",
+    navTitle: "Expense Tracker",
+    description: "Log daily personal expenses and income with real-time balance tracking and category breakdowns online. Export financial records to CSV with zero server sync.",
     icon: '💰',
     path: '/expense-tracker.html',
     filename: 'expense-tracker.html',
     category: '💼 Business Tools',
     badge: 'Finance',
-    features: ['Live Income, Expense & Balance Summary', 'Categorized Transaction Logging', 'Export Transaction History to CSV', 'Local Browser Storage'],
+    features: [
+      "Log Daily Income & Expense Transactions with Date Tags",
+      "Comprehensive Spending Categories (Housing, Food, Utilities, Transport)",
+      "Real-Time Net Balance, Total Income & Expense Summaries",
+      "Interactive Spending Breakdown by Category",
+      "Export Transaction History Directly to CSV Spreadsheet",
+      "Persistent Local Storage in Browser Without Remote Cloud Sync"
+    ],
     howTo: [
-      { title: "Log Inflow & Outflow Transactions", desc: "Enter transaction description, dollar amount, date, and category (Groceries, Housing, Utilities, Dining, Income)." },
-      { title: "Inspect Visual Spending Analytics", desc: "View real-time donut charts and category breakdown graphs showing where your money is allocated." },
-      { title: "Filter by Date Range & Export CSV", desc: "Filter expenses by month or custom date range, and export a clean spreadsheet CSV report." }
+      { title: "Record a Transaction", desc: "Enter transaction amount, description, date, and select whether it is income or an expense." },
+      { title: "Assign Category and Payment Method", desc: "Tag entries with categories such as Groceries, Rent, Salary, or Utilities to organize your cash flow." },
+      { title: "Monitor Financial Balances and Export", desc: "Track your live net cash balance, review category spending totals, and export records to CSV anytime." }
     ],
     faq: [
-      { question: "Are my personal financial transactions uploaded to a server?", answer: "No. Your transactions, expense records, and income data are stored exclusively in your browser's local storage (localStorage). No financial data is ever transmitted to Zubware servers." },
-      { question: "Can I export my expense log to Excel or Google Sheets?", answer: "Yes. Click 'Export CSV' to download a standard comma-separated spreadsheet containing dates, categories, descriptions, and amounts." },
-      { question: "Can I create custom spending categories?", answer: "Yes. You can add, edit, or delete expense categories and assign custom color tags to match your personal budget." },
-      { question: "Does the tool require connecting my bank account?", answer: "No. It is a completely private, offline-capable manual expense tracker requiring no bank logins, third-party aggregators, or account creation." },
-      { question: "How do I backup my expense data across devices?", answer: "Use the 'Export JSON' feature to save a complete backup file to your computer, which you can import on another device anytime." }
+      { question: "Where is my private personal financial data stored?", answer: "All transaction records are saved exclusively in your browser’s local storage (LocalStorage). No financial records are ever sent to Zubware servers." },
+      { question: "Can I export my logged expenses to Excel or Google Sheets?", answer: "Yes. Click the Export CSV button to download a spreadsheet-compatible file containing dates, categories, descriptions, and amounts." },
+      { question: "Can I delete or edit past transactions?", answer: "Yes. Each transaction entry in the history table has an individual delete button to remove mistakes or update records." },
+      { question: "Will my expense data be saved if I close or refresh the browser?", answer: "Yes. Because data persists in your browser’s local storage, your records will be right there when you return on the same device." },
+      { question: "Do I need to connect a bank account or credit card?", answer: "No. This is a private, manual ledger tool requiring zero bank logins, passwords, or third-party financial API access." }
     ]
   },
   {
@@ -7345,50 +7979,63 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'habit-tracker',
-    title: 'Daily Habit Tracker — Build Habits & Track Streaks',
-    navTitle: 'Habit Tracker',
-    description: 'Cultivate positive daily habits, maintain consecutive streaks, and monitor your personal consistency over time.',
+    title: "Daily Habit Tracker — Build Positive Habits & Track Streaks Online",
+    navTitle: "Habit Tracker",
+    description: "Track daily habits, build consistent routines, and celebrate streak milestones online. View weekly completion progress stored privately in your browser.",
     icon: '🔥',
     path: '/habit-tracker.html',
     filename: 'habit-tracker.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Habits',
-    features: ['Daily Streak Counters with Flame Icons', 'One-Click Habit Check-Off', 'Persistent Habit Management', 'Historical Completion Tracking'],
+    features: [
+      "Track Unlimited Custom Daily Habits (Health, Work, Learning, Fitness)",
+      "Consecutive Day Streak Counters & Longest Streak Records",
+      "Weekly Multi-Day Completion Grid Visualization",
+      "Daily Completion Percentage Progress Bar",
+      "Persistent Local Storage in Browser Without Cloud Accounts",
+      "Fast, Intuitive One-Click Check-In Interface"
+    ],
     howTo: [
-      { title: "Create Daily Habits & Goals", desc: "Add habits you want to build (e.g. Exercise, Read 20 Mins, Drink 2L Water, Meditate) and assign color tags." },
-      { title: "Check Off Daily Completions", desc: "Click the completion circles for each day of the week to record your consistency." },
-      { title: "Track Consecutive Streaks & Trends", desc: "Monitor your current active streak, best streak, and monthly completion rate percentages." }
+      { title: "Add Your Target Habits", desc: "Create habits you want to cultivate (e.g. Read 20 Mins, Drink Water, Morning Workout)." },
+      { title: "Check In Daily", desc: "Click each habit’s checkbox every day you complete it to maintain your streak." },
+      { title: "Monitor Streaks and Consistency", desc: "Review your 7-day completion grid and watch your consecutive streak counts grow." }
     ],
     faq: [
-      { question: "How does the habit streak calculation work?", answer: "The streak counter tallies consecutive daily completions; missing a scheduled day resets the active streak counter while preserving your all-time best record." },
-      { question: "Are my personal habits and routines private?", answer: "Yes. All habit names, completion checkboxes, and streak analytics are stored strictly in your browser's local storage." },
-      { question: "Can I set habits for specific days of the week (e.g. weekdays only)?", answer: "Yes. You can configure habit frequency to daily, weekdays only, or custom weekly target counts." },
-      { question: "Can I export my habit tracking data as a backup?", answer: "Yes. Export your habit log as a JSON file to prevent accidental data loss if you clear browser cache." },
-      { question: "Is there any limit to the number of habits I can track?", answer: "You can track multiple daily routines simultaneously. Designed to handle multiple routines efficiently." }
+      { question: "How do habit streaks help build lasting routines?", answer: "Visual streak counters create positive behavioral reinforcement, motivating you to maintain daily consistency and avoid breaking the chain." },
+      { question: "How many habits should I track simultaneously?", answer: "Behavioral experts recommend starting with 3 to 5 key habits to build solid momentum before adding additional routines." },
+      { question: "Where is my habit history stored?", answer: "All habit definitions, completion checks, and streak records are stored exclusively in your browser’s LocalStorage on this device." },
+      { question: "Can I edit or delete habits later?", answer: "Yes. You can edit habit names or delete completed habit goals at any time." }
     ]
   },
   {
     id: 'monthly-budget-planner',
-    title: 'Monthly Budget Planner — Category Spending & Expense Limits',
-    navTitle: 'Budget Planner',
-    description: 'Plan monthly expenditures by category, monitor actual spending against budgeted limits, and avoid overspending.',
+    title: "Monthly Budget Planner — Category Spending Limits & 50/30/20 Rule",
+    navTitle: "Budget Planner",
+    description: "Plan monthly household budgets and track spending limits by category online for free. Follow the 50/30/20 rule and monitor savings goals in your browser.",
     icon: '💳',
     path: '/monthly-budget-planner.html',
     filename: 'monthly-budget-planner.html',
     category: '💼 Business Tools',
     badge: 'Budget',
-    features: ['Category Budget Allocations', 'Visual Progress Bars & Over-Budget Alerts', 'Total Budget vs Actual Spent Overview', 'Persistent Local Browser Storage'],
+    features: [
+      "Custom Category Budget Allocations (Needs, Wants, Savings)",
+      "Built-in 50/30/20 Budgeting Rule Calculation Framework",
+      "Visual Progress Bars & Over-Budget Warning Indicators",
+      "Total Budget vs Actual Spent Financial Overview",
+      "Net Monthly Income Surplus & Deficit Calculations",
+      "Local Browser Persistence with Total Personal Privacy"
+    ],
     howTo: [
-      { title: "Enter Monthly Net Income", desc: "Input your expected monthly take-home income from salary, freelance, or investments." },
-      { title: "Allocate Category Spending Limits", desc: "Set budget targets across Fixed Needs (50%), Wants & Lifestyle (30%), and Savings & Investments (20%)." },
-      { title: "Track Remaining Cash & Surplus", desc: "Monitor visual progress bars to see real-time unallocated cash and prevent monthly overspending." }
+      { title: "Enter Monthly Take-Home Pay", desc: "Input your total monthly net income after taxes to establish your available spending baseline." },
+      { title: "Allocate Category Budget Limits", desc: "Set target budgets for housing, groceries, transport, utilities, dining out, and emergency savings." },
+      { title: "Review Budget Health and Surpluses", desc: "Check the 50/30/20 breakdown, monitor category progress bars, and ensure your monthly budget balances to zero." }
     ],
     faq: [
-      { question: "What is the 50/30/20 budgeting rule built into this planner?", answer: "The 50/30/20 guideline recommends allocating 50% of net income to essential Needs (rent, groceries, debt minimums), 30% to Wants (dining, hobbies), and 20% to Savings and debt acceleration." },
-      { question: "Does the planner support zero-based budgeting?", answer: "Yes. The zero-based budgeting indicator tracks unallocated income in real time until every dollar of your net income is assigned to a specific category." },
-      { question: "Can I duplicate last month's budget to the new month?", answer: "Yes. One-click rollover clones your existing category limits to save time setting up upcoming months." },
-      { question: "Are there any financial advisory guarantees provided?", answer: "No. This tool is a mathematical personal budgeting calculator; it does not provide certified financial, investment, tax, or legal advice." },
-      { question: "Is my personal salary and budget data private?", answer: "Yes. All calculations, budget caps, and income entries remain strictly in your browser's local storage." }
+      { question: "How does the 50/30/20 budgeting rule work in this planner?", answer: "It divides your after-tax income into 50% for essential Needs, 30% for discretionary Wants, and 20% for Savings and debt repayment, helping you maintain balanced finances." },
+      { question: "Can I add custom spending categories beyond the default list?", answer: "Yes. You can customize category names, assign specific monthly spending caps, and track expenses across your household priorities." },
+      { question: "What happens if I allocate more money than my monthly income?", answer: "The planner immediately highlights a deficit warning indicator, showing the exact dollar amount needed to balance your monthly budget." },
+      { question: "Is my salary and personal budget data sent to any third party?", answer: "No. All budget numbers and allocations remain stored locally inside your browser session with zero server tracking." },
+      { question: "Can I use this budget planner on my smartphone or tablet?", answer: "Yes. The responsive design allows you to manage and review your monthly budget seamlessly across mobile phones, tablets, and desktop computers." }
     ]
   },
   {
@@ -7441,57 +8088,69 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'pomodoro-timer',
-    title: 'Pomodoro Focus Timer — 25-Minute Work & Break Intervals',
-    navTitle: 'Pomodoro Timer',
-    description: 'Enhance focus and productivity with 25-minute Pomodoro sessions, short and long breaks, and synthesized audio chimes.',
+    title: "Pomodoro Focus Timer — 25-Minute Work & Break Intervals Online",
+    navTitle: "Pomodoro Timer",
+    description: "Boost productivity with 25-minute Pomodoro focus intervals and structured breaks online. Features customizable session timers and soothing audio chimes.",
     icon: '⏱️',
     path: '/pomodoro-timer.html',
     filename: 'pomodoro-timer.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Focus',
-    features: ['25m Focus, 5m Short Break & 15m Long Break', 'Custom Session Duration Setting', 'Synthesized Web Audio Completion Chime', 'Clean Play, Pause & Reset Controls'],
+    features: [
+      "Standard 25-Minute Focus, 5-Minute Short Break & 15-Minute Long Break",
+      "Customizable Interval Durations for Flexible Deep Work Workflows",
+      "Pleasant Audio Chime Notifications via Web Audio Synthesis",
+      "Circular Countdown Visual Progress Indicator with Pause & Reset",
+      "Completed Pomodoro Session Counter Tracking Daily Focus",
+      "Zero Ads, Signups, or Disruptions in a Clean Minimalist UI"
+    ],
     howTo: [
-      { title: "Select Session Mode", desc: "Choose Focus (25 mins), Short Break (5 mins), or Long Break (15 mins), or configure custom session durations." },
-      { title: "Start Timer & Work on Single Task", desc: "Click Start or press Spacebar to begin countdown with visual progress ring and audio chime alerts." },
-      { title: "Complete Pomodoro Rounds & Take Breaks", desc: "Track completed focus sessions, take prescribed rest intervals, and maintain productivity momentum." }
+      { title: "Select a Focus Session", desc: "Start with the classic 25-minute Pomodoro interval or adjust custom minutes." },
+      { title: "Focus Without Distraction", desc: "Work on your single primary task until the timer chimes signaling the session end." },
+      { title: "Take a Rest and Repeat", desc: "Take a 5-minute short break to refresh. After 4 completed pomodoros, enjoy an extended 15-minute long break." }
     ],
     faq: [
-      { question: "What is the Pomodoro Technique?", answer: "Developed by Francesco Cirillo, the Pomodoro Technique structures work into 25-minute uninterrupted focus intervals followed by 5-minute restorative breaks to sustain mental stamina." },
-      { question: "Does the timer play an audible completion alert?", answer: "Yes. The timer uses the Web Audio API to play gentle, pleasant synthesized chime notifications when focus and break intervals conclude." },
-      { question: "Can I customize the focus and break lengths?", answer: "Yes. You can adjust focus sessions (e.g. 50 minutes for deep work) and break times (e.g. 10 minutes) to fit your personal workflow." },
-      { question: "Does the timer continue running if I switch browser tabs?", answer: "Yes. The timer calculates elapsed time against system clock timestamps, keeping time completely accurate even when the tab is running in the background." },
-      { question: "Does the page title show the remaining countdown time?", answer: "Yes. The browser tab title updates continuously (e.g. '24:59 - Focus') so you can monitor progress while working in other windows." }
+      { question: "What is the Pomodoro Technique and how does it improve productivity?", answer: "Developed by Francesco Cirillo, it uses 25-minute intervals of focused deep work separated by 5-minute breaks to maintain high concentration and prevent mental fatigue." },
+      { question: "Can I customize the timer lengths for work and break periods?", answer: "Yes. You can adjust the minutes for focus sessions, short breaks, and long breaks to fit your personal workflow rhythm." },
+      { question: "Does the timer play an audible alert when a session ends?", answer: "Yes. It plays a gentle synthesized audio chime when each interval finishes, with an optional mute toggle." },
+      { question: "Does the timer continue running if I switch to another tab?", answer: "Yes. The timer updates continuously in background browser tabs and updates the page title with remaining time." }
     ]
   },
   {
     id: 'secure-notes',
-    title: 'Secure Offline Notes — Private Encrypted Local Notepad',
-    navTitle: 'Secure Notes',
-    description: 'Draft, organize, and pin private notes stored entirely on your device with text search and instant export.',
+    title: "Secure Offline Notes — Private Local Browser Notepad Online",
+    navTitle: "Secure Notes",
+    description: "Write, organize, and pin private notes stored safely in your browser memory online. Search notes instantly and export text with zero cloud storage.",
     icon: '📝',
     path: '/secure-notes.html',
     filename: 'secure-notes.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Private',
-    features: ['Multi-Note Management with Pinning', 'Instant Search Across Titles & Content', 'Export as Text File or Backup JSON', 'Local Browser Storage'],
+    features: [
+      "Private Browser Notepad with Zero Server Transmission",
+      "Instant Full-Text Search Across Note Titles and Bodies",
+      "Pin Important Notes to the Top of Your Workspace",
+      "Export Notes to TXT Files or Complete JSON Backup",
+      "Clean Distraction-Free Markdown-Friendly Writing Canvas",
+      "Automatic Local Storage Saving on Every Keystroke"
+    ],
     howTo: [
-      { title: "Set Master Encryption Password", desc: "Create a strong personal passphrase used to derive cryptographic AES-256 encryption keys." },
-      { title: "Write Private Notes & Credentials", desc: "Compose sensitive notes, code snippets, recovery keys, and confidential checklists in the private editor." },
-      { title: "Lock Notes with AES-256 Encryption", desc: "Click Lock to encrypt all note data in browser storage; notes cannot be decrypted without your master password." }
+      { title: "Create a New Note", desc: "Click New Note to start drafting thoughts, draft messages, or meeting notes." },
+      { title: "Organize and Pin Essentials", desc: "Assign titles, format text, and click the pin icon to keep high-priority notes at the top." },
+      { title: "Search or Export Anytime", desc: "Use instant search to retrieve notes and download text backups whenever needed." }
     ],
     faq: [
-      { question: "What encryption standard is used to protect secure notes?", answer: "Notes are encrypted with AES-256-GCM using keys derived from your master password via PBKDF2 with 100,000 hashing iterations using the browser's native Web Crypto API." },
-      { question: "Can Zubware or server administrators recover my forgotten master password?", answer: "No. This is a zero-knowledge local architecture. Your password is never stored or transmitted; if you lose your master password, encrypted notes cannot be decrypted by anyone." },
-      { question: "Where are the encrypted notes saved?", answer: "Encrypted ciphertext blobs are saved exclusively in your browser's local storage (localStorage)." },
-      { question: "Can I export an encrypted backup file to my computer?", answer: "Yes. You can export an encrypted JSON backup file that can be restored on another device using your master password." },
-      { question: "Does the tool auto-lock after a period of inactivity?", answer: "Yes. You can configure an inactivity auto-lock timer to lock your notes automatically if you step away from your computer." }
+      { question: "Are my notes stored on any cloud server or database?", answer: "No. Notes are stored exclusively inside your device browser’s local storage. Nobody else can access or view your private notes." },
+      { question: "Do I need an account or login to write and save notes?", answer: "No. The notepad is completely serverless and requires no login, email address, or account setup." },
+      { question: "Can I export my notes to transfer them to another device?", answer: "Yes. You can export individual notes as text files or download all notes as a JSON backup to import onto another computer." },
+      { question: "What happens if I accidentally close the tab while writing?", answer: "Your text saves automatically with every keystroke, so your notes will be right where you left them when you return." }
     ]
   },
   {
     id: 'sha-checksum-generator',
     title: 'SHA Checksum Generator — SHA-1, SHA-256, SHA-384 & SHA-512',
     navTitle: 'SHA Checksum Suite',
-    description: 'Generate SHA-1, SHA-256, SHA-384, and SHA-512 cryptographic hashes simultaneously for strings or uploaded files.',
+    description: 'Generate SHA-1, SHA-256, SHA-384, and SHA-512 cryptographic hashes simultaneously for text or files. Fast client-side checksum verification in your browser.',
     icon: '#️⃣',
     path: '/sha-checksum-generator.html',
     filename: 'sha-checksum-generator.html',
@@ -7537,74 +8196,92 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'todo-list',
-    title: 'Todo List & Task Manager — Priority Checklist & Categories',
-    navTitle: 'Todo List',
-    description: 'Stay organized with priority task tagging, custom category grouping, active/completed filters, and persistent local storage.',
+    title: "Todo List & Task Manager — Priority Checklist Online Free",
+    navTitle: "Todo List",
+    description: "Organize daily tasks with priority tags, category filters, and progress tracking online. Manage your personal to-do list stored safely in your browser.",
     icon: '✅',
     path: '/todo-list.html',
     filename: 'todo-list.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Tasks',
-    features: ['Priority Tagging (Low, Medium, High)', 'Custom Task Categories', 'Filter by All, Active, or Completed', 'Instant Local Browser Persistence'],
+    features: [
+      "Priority Level Tagging (High, Medium, Low Priority)",
+      "Custom Task Categorization (Work, Personal, Errands, Projects)",
+      "Filter Views for Active, Completed & All Task Items",
+      "Visual Progress Bar Indicating Completed Task Percentages",
+      "Persistent Local Storage in Browser with One-Click Clear Completed",
+      "100% Private Offline Task Management Without Cloud Sync"
+    ],
     howTo: [
-      { title: "Add Tasks with Priority & Due Dates", desc: "Type task names, select priority (High, Medium, Low), and assign optional due dates and project tags." },
-      { title: "Organize, Filter & Reorder Checklist", desc: "Filter tasks by status (All, Active, Completed), drag to prioritize, and search across your task list." },
-      { title: "Check Off Completed Tasks", desc: "Click task checkboxes to mark items done and review completion metrics and progress bars." }
+      { title: "Add a New Task", desc: "Type your task description, select a priority level, and choose a category." },
+      { title: "Organize and Filter Tasks", desc: "Filter by priority or active status to focus on your most critical immediate objectives." },
+      { title: "Check Off Completed Items", desc: "Check off finished tasks and watch your daily progress bar reach 100%." }
     ],
     faq: [
-      { question: "Are my tasks and to-do lists stored privately?", answer: "Yes. All task data, priorities, and completion timestamps are stored exclusively in your browser's local storage (localStorage) with zero external tracking." },
-      { question: "Can I categorize tasks by project or category tags?", answer: "Yes. You can assign custom category tags (e.g. Work, Personal, Errands) and filter your task view by tag." },
-      { question: "Does the to-do list support drag-and-drop reordering?", answer: "Yes. You can drag and drop tasks vertically to organize your immediate daily execution order." },
-      { question: "Can I export my task list as a backup or to-do file?", answer: "Yes. You can export your tasks as a JSON backup or clean text checklist." },
-      { question: "Does this to-do app require creating an account?", answer: "No. It is completely free, privacy-first, and requires no account, email, or login." }
+      { question: "How do priority levels help manage daily task lists?", answer: "Tagging tasks as High, Medium, or Low allows you to focus on urgent items first and filter out less important tasks during busy days." },
+      { question: "Is my to-do list saved automatically?", answer: "Yes. All tasks, priority flags, and completion states are stored in your browser’s local storage on this computer." },
+      { question: "Can I clear all completed tasks at once?", answer: "Yes. Click \"Clear Completed\" to tidy up your list and remove checked-off items while keeping active tasks in place." },
+      { question: "Do I need to sign up for an account to use this task manager?", answer: "No. The tool is 100% free and ready to use immediately without any sign-up or subscription." }
     ]
   },
   {
     id: 'weekly-planner',
-    title: '7-Day Weekly Planner — Monday to Sunday Schedule Manager',
-    navTitle: 'Weekly Planner',
-    description: 'Map out your schedule and tasks across all 7 days of the week with easy per-day task entries and browser storage.',
+    title: "7-Day Weekly Planner — Schedule Monday to Sunday Online Free",
+    navTitle: "Weekly Planner",
+    description: "Plan your weekly schedule and daily commitments across Monday through Sunday online. Organize weekly tasks and checklists stored locally in your browser.",
     icon: '🗓️',
     path: '/weekly-planner.html',
     filename: 'weekly-planner.html',
     category: '🔒 Security, Privacy & Productivity',
     badge: 'Weekly',
-    features: ['7-Day Overview (Monday through Sunday)', 'Quick Task Addition & Removal Per Day', 'Persistent Local Browser Storage', 'Clean Responsive Layout'],
+    features: [
+      "7 Dedicated Columns for Monday Through Sunday Scheduling",
+      "Per-Day Task Creation with Checkboxes and Completion Tracking",
+      "Weekly Priority Focus Banner for Key Milestones",
+      "Week-by-Week Navigation and Historical Review",
+      "Automatic Local Browser Storage for Complete Schedule Privacy",
+      "Clean Responsive Layout Optimized for Desktop & Mobile"
+    ],
     howTo: [
-      { title: "View 7-Day Weekly Grid", desc: "Inspect the organized Monday-to-Sunday weekly view with daily schedule columns." },
-      { title: "Schedule Tasks, Meetings & Objectives", desc: "Add specific appointments, deadlines, and workout plans under each day of the week." },
-      { title: "Check Off Items & Roll Over Pending Tasks", desc: "Mark completed items and roll unfinished tasks forward to upcoming days to maintain momentum." }
+      { title: "Set Your Weekly Priority", desc: "Define the overarching goal or main milestone you want to achieve this week." },
+      { title: "Map Tasks Across the 7 Days", desc: "Add appointments, workouts, deadlines, and study sessions under each specific day of the week." },
+      { title: "Track Daily Progress and Check Off Items", desc: "Check off tasks as you move through Monday to Sunday to maintain weekly momentum." }
     ],
     faq: [
-      { question: "How does the weekly planner help manage workload balance?", answer: "Seeing all 7 days side-by-side allows you to distribute deadlines evenly, prevent meeting congestion on single days, and reserve designated focus blocks." },
-      { question: "Are weekly planner entries stored locally on my device?", answer: "Yes. All entries, schedules, and checklists persist safely in browser local storage without server synchronization." },
-      { question: "Can I print a physical weekly agenda sheet?", answer: "Yes. The print stylesheet formats the full 7-day grid onto a clean landscape A4/Letter page for physical desk use." },
-      { question: "Can I set recurring weekly routines?", answer: "Yes. You can designate recurring weekly items (e.g. Team Standup on Monday, Gym on Wednesday) that populate each week automatically." },
-      { question: "Can I export a backup of my weekly plan?", answer: "Yes. You can download a JSON backup file to archive previous weeks or restore across devices." }
+      { question: "How does a 7-day weekly planner differ from a daily to-do list?", answer: "A weekly planner lets you balance workloads across the entire week, ensuring you don’t overload single days and can easily schedule recurring commitments." },
+      { question: "Where is my weekly schedule stored?", answer: "All weekly items and checklists are saved inside your browser’s local storage on your device. Nothing is stored on external cloud servers." },
+      { question: "Can I view or plan upcoming weeks in advance?", answer: "Yes. Week navigation buttons let you switch between weeks to plan ahead or review past achievements." },
+      { question: "Can I use this planner on a mobile phone or tablet?", answer: "Yes. The layout adapts responsively to smartphones and tablets, allowing easy mobile scheduling on the go." }
     ]
   },
   {
     id: 'random-text-generator',
-    title: 'Random Text & String Generator — Custom Length & Character Sets',
-    navTitle: 'Random Text Generator',
-    description: 'Generate cryptographically random strings, alphanumeric keys, and passwords with customizable length and character sets.',
+    title: "Random Text & String Generator — Custom Alphanumeric Strings Online",
+    navTitle: "Random Text",
+    description: "Generate cryptographically random strings, alphanumeric keys, and dummy text online. Customize string length, character sets, and count in your browser.",
     icon: '🎲',
     path: '/random-text-generator.html',
     filename: 'random-text-generator.html',
     category: '✍️ Text & Writing Tools',
     badge: 'Generator',
-    features: ['Custom Length up to 1024 Characters', 'Uppercase, Lowercase, Numbers & Symbols', 'Hex, Base64 & Alphanumeric Presets', 'Instant Copy & Download as Text File'],
+    features: [
+      "Generates Cryptographically Secure Random Strings & Tokens",
+      "Configurable Character Sets (Uppercase, Lowercase, Numbers, Symbols)",
+      "Custom Character Length Slider (1 to 1,000+ Characters)",
+      "Generate Multiple Unique Strings Simultaneously (1 to 100 Keys)",
+      "Exclude Confusing Characters Option (e.g. 0, O, 1, l, I)",
+      "Powered by Web Crypto API for High-Entropy Randomness"
+    ],
     howTo: [
-      { title: "Choose Generation Type & Length", desc: "Select Random Words, Alphanumeric Strings, Hexadecimal Hashes, or Mixed Passwords, and set length." },
-      { title: "Configure Character Set Options", desc: "Toggle uppercase letters, lowercase letters, numbers, and special symbols to customize the generated string." },
-      { title: "Generate and Copy Random Text", desc: "Click Generate, inspect the entropy strength, and copy the randomized string to your clipboard." }
+      { title: "Choose String Length and Quantity", desc: "Select desired string length (e.g. 16 or 32 characters) and how many strings to generate." },
+      { title: "Select Character Sets", desc: "Check boxes for uppercase, lowercase, numbers, or symbols, or define a custom character set." },
+      { title: "Generate and Copy Strings", desc: "Click Generate to produce high-entropy strings and copy individual items or the full list." }
     ],
     faq: [
-      { question: "How random are the generated strings?", answer: "Strings are produced using the browser's cryptographically secure pseudo-random number generator (window.crypto.getRandomValues), ensuring high cryptographic entropy." },
-      { question: "Can I generate pronounceable random words for testing?", answer: "Yes. Switch to 'Word' mode to generate pseudo-pronounceable syllable chains or random dictionary terms for mockup placeholder data." },
-      { question: "What character sets are supported?", answer: "You can toggle uppercase Latin (A-Z), lowercase (a-z), digits (0-9), and special ASCII symbols (!@#$%^&*), or provide a custom character pool." },
-      { question: "Can I generate multiple random strings at once?", answer: "Yes. Set the batch count to generate up to 1,000 distinct random strings formatted on separate lines." },
-      { question: "Are generated random strings stored or transmitted?", answer: "No. All randomization occurs client-side in browser memory with zero server transmission." }
+      { question: "How secure are the generated random strings?", answer: "The generator uses the browser’s native `window.crypto.getRandomValues()` API, which provides cryptographically secure pseudo-random numbers suitable for API tokens and temporary keys." },
+      { question: "Can I generate strings without ambiguous characters like O, 0, I, and l?", answer: "Yes. You can toggle the \"Exclude Ambiguous Characters\" option to prevent visually similar characters that cause transcription errors." },
+      { question: "Can I generate random strings using only numbers or only hex characters?", answer: "Yes. You can select only numbers for random numeric PINs, or define custom characters (like `0123456789abcdef` for hex hashes)." },
+      { question: "Are generated strings or keys logged to a server?", answer: "No. Every string is generated on your local CPU and is never transmitted or logged." }
     ]
   },
   {
@@ -7681,50 +8358,64 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     id: 'video-to-audio',
-    title: 'Video to Audio Extractor — Convert MP4 & WebM to WAV Online',
-    navTitle: 'Video to Audio',
-    description: 'Extract audio tracks, background music, and speech from video files into high-quality WAV audio directly in your browser.',
+    title: "Video to Audio Extractor — Extract Audio from MP4 & WebM Videos Online",
+    navTitle: "Video to Audio",
+    description: "Extract high-quality audio tracks and speech from MP4 or WebM videos online. Convert video files to uncompressed WAV audio directly in your browser.",
     icon: '🎵',
     path: '/video-to-audio.html',
     filename: 'video-to-audio.html',
     category: '📹 Video Tools',
     badge: 'Extractor',
-    features: ['Lossless Web Audio API Decoding', 'Built-in Audio Player for Instant Preview', 'Export to Standard WAV Audio Format', 'Fast Local Processing in Browser'],
+    features: [
+      "Extracts Audio from MP4, WebM, MOV & MKV Video Files",
+      "Pristine Uncompressed WAV Audio Output with Full Dynamic Range",
+      "Browser Web Audio API Hardware-Accelerated Decoding",
+      "No File Size Restrictions from External Cloud Queues",
+      "Visual Audio Waveform & Playback Inspection",
+      "100% Private Offline Processing Without Server Uploads"
+    ],
     howTo: [
-      { title: "Select Video File", desc: "Choose or drop an MP4, WebM, or MOV video containing the audio track you wish to extract." },
-      { title: "Choose Audio Format & Bitrate", desc: "Select high-fidelity uncompressed WAV audio for studio editing or lightweight WebM audio for quick listening." },
-      { title: "Extract and Download Audio Track", desc: "Click Extract Audio to decode the sound stream with Web Audio APIs and save the audio file directly to your device." }
+      { title: "Upload Your Video File", desc: "Select or drag any MP4, WebM, or MOV video into the audio extraction workspace." },
+      { title: "Decode and Extract Audio Track", desc: "Click Extract Audio to decode the embedded audio stream locally in browser memory." },
+      { title: "Listen to Preview and Download WAV", desc: "Play the extracted soundtrack in the built-in media player and download your crystal-clear audio file." }
     ],
     faq: [
-      { question: "Does extracting audio from a video reduce sound quality?", answer: "Exporting to WAV produces lossless uncompressed PCM audio decoded directly from the source video's audio stream without adding extra compression artifacts." },
-      { question: "Can I extract stereo channels and background music accurately?", answer: "Yes. The browser's native Web Audio API preserves multichannel stereo sound, vocal tracks, and background music at the original sampling rate (typically 44.1kHz or 48kHz)." },
-      { question: "What happens if I upload a video that does not contain audio?", answer: "The extractor will inspect the video container; if no active audio stream is detected, it will display a notification informing you that the file contains no audio to extract." },
-      { question: "Can I import the extracted WAV audio into audio editing software?", answer: "Yes. Standard WAV audio files are universally compatible with Audacity, Adobe Audition, Premiere Pro, DaVinci Resolve, Final Cut Pro, and mobile editing applications." },
-      { question: "Is my video uploaded to any server during the extraction process?", answer: "No. Audio stream extraction and WAV file generation run locally on your computer or phone using native Web Audio and TypedArray buffers." }
+      { question: "Which video formats can I extract sound from?", answer: "The tool supports all browser-decodable video formats including MP4 (H.264/AAC), WebM (VP8/VP9/Opus), and compatible MOV files." },
+      { question: "What audio format does this tool produce?", answer: "It extracts and encodes audio into clean, uncompressed 16-bit PCM WAV audio, preserving full acoustic fidelity without lossy artifacts." },
+      { question: "Can I extract background music or speech from phone camera recordings?", answer: "Yes. Simply drop your smartphone video clip into the tool to extract speeches, interviews, voice memos, or background tracks." },
+      { question: "Is there a limit on how long the video can be?", answer: "Because decoding relies on your local computer memory, video clips up to several hundred megabytes process smoothly within seconds." },
+      { question: "Are my private video files uploaded to a remote server?", answer: "No. The entire decoding pipeline executes locally via the Web Audio API and AudioContext, ensuring 100% confidentiality." }
     ]
   },
   {
     id: 'video-to-gif',
-    title: 'Video to GIF Converter — Create Animated GIFs from Video Clips',
-    navTitle: 'Video to GIF',
-    description: 'Turn video clips into smooth animated GIFs with customizable start/end trim times, frame rate, and resolution options.',
+    title: "Video to GIF Converter — Create Animated GIFs from Video Clips",
+    navTitle: "Video to GIF",
+    description: "Convert video clips into smooth animated GIFs with custom trim times and frame rates. Adjust resolution scale and download GIFs with no server upload.",
     icon: '🎞️',
     path: '/video-to-gif.html',
     filename: 'video-to-gif.html',
     category: '📹 Video Tools',
     badge: 'Converter',
-    features: ['Interactive Start & End Trimming Handles', 'Adjustable Frame Rate (FPS) & Dimensions', 'High-Quality Client-Side GIF Encoding', 'Instant Animated Preview & Download'],
+    features: [
+      "Converts MP4, WebM & MOV Clips into High-Quality GIFs",
+      "Precise Video Trimming with Start and End Timestamp Sliders",
+      "Custom Frame Rate Controls (10 FPS, 15 FPS, 24 FPS)",
+      "Resolution Scale Options (Original, 480p, 360p, 240p)",
+      "Looping Options & Color Quantization Optimization",
+      "In-Browser Canvas Frame Extraction with Zero Server Logging"
+    ],
     howTo: [
-      { title: "Upload Video Clip", desc: "Select an MP4, WebM, or MOV video file to load the video playback and animation controls." },
-      { title: "Configure Trim, Resolution & Frame Rate", desc: "Set the start and end trim timestamps, choose target pixel width (e.g., 320px, 480px, 640px), and set frame rate (10 to 20 FPS)." },
-      { title: "Render & Download Animated GIF", desc: "Click Convert to GIF to extract frames, compile the color palette, and download your animated GIF image." }
+      { title: "Load Video Clip", desc: "Upload an MP4 or WebM video file you want to turn into an animated looping GIF." },
+      { title: "Trim Clip and Configure Frame Rate", desc: "Set start and end times to isolate the exact moment, then select your desired FPS and resolution scale." },
+      { title: "Generate and Download GIF", desc: "Click Convert to GIF, watch the encoding progress, preview the looping animation, and download your GIF." }
     ],
     faq: [
-      { question: "Why should video clips for GIF conversion be kept short?", answer: "The GIF format does not use modern inter-frame compression algorithms. Every frame stores individual bitmap color tables, meaning long clips or high resolutions quickly result in multi-megabyte files." },
-      { question: "How does the frame rate (FPS) setting affect GIF file size?", answer: "Higher FPS (such as 20 FPS) delivers ultra-smooth animation but doubles the total frame count and file size compared to 10 FPS. For memes and website embeds, 10 to 12 FPS provides great motion at a lightweight file size." },
-      { question: "Does the converted GIF file include audio?", answer: "No. The GIF specification (GIF89a) is strictly an animated image standard that does not support audio tracks. If you need sound, use the Video Trimmer tool to create short video clips." },
-      { question: "What is the best width setting for web and email GIFs?", answer: "A width between 320px and 480px is optimal for newsletters, email signatures, and web articles, providing crisp visual clarity without causing slow email loading." },
-      { question: "Are video frames sent to an external server during GIF conversion?", answer: "No. Frame sampling, color quantization, and GIF binary encoding execute entirely in your browser's JavaScript environment." }
+      { question: "How do I select only a short portion of my video to make a GIF?", answer: "Use the interactive start and end trim sliders (or enter exact seconds) to isolate short, high-impact moments between 1 and 10 seconds." },
+      { question: "How does frame rate (FPS) affect GIF file size?", answer: "Higher frame rates (24 FPS) provide ultra-smooth animation but increase file size, while 10 to 15 FPS offers a great balance of smoothness and compact file size." },
+      { question: "Can I resize the GIF dimensions to reduce file size for Discord or Twitter?", answer: "Yes. You can scale resolution down to 480p or 360p, significantly shrinking GIF payload size for forums and social chats." },
+      { question: "Will the created GIF loop continuously?", answer: "Yes. The generated GIF files are encoded with standard infinite loop flags so they play seamlessly on websites and messaging platforms." },
+      { question: "Are my video clips uploaded to an external server to encode?", answer: "No. Video frame capture and palette quantization execute entirely inside your local browser via HTML5 Canvas." }
     ]
   },
   {

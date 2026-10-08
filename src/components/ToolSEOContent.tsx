@@ -5,6 +5,7 @@ import { getLinkUrl, getToolCanonicalPath, getToolHowToHeading, getToolIntroPara
 import { BLOG_ARTICLES } from '../data/blogArticles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
 import { ToolIcon } from './common/ToolIcon';
+import { getToolSeoData } from '../data/toolSeoData';
 
 interface ToolSEOContentProps {
   tool: ToolMeta;
@@ -20,6 +21,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const isNetworkTool = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
+  const seoData = getToolSeoData(tool.id);
+  const toolFaqs = (tool.faq && tool.faq.length > 0) ? tool.faq : seoData.faq;
+  const toolHowTo = (tool.howTo && tool.howTo.length > 0) ? tool.howTo : seoData.howTo;
 
   // Generate dynamic FAQs if not provided on tool object
   const defaultFaqs: FAQItem[] = [
@@ -45,7 +49,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     }
   ];
 
-  const faqsToUse = tool.faq && tool.faq.length > 0 ? tool.faq : defaultFaqs;
+  const faqsToUse = toolFaqs && toolFaqs.length > 0 ? toolFaqs : defaultFaqs;
 
   const isFileTool =
     tool.category.includes('PDF') ||
@@ -60,8 +64,8 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     tool.category.includes('Financial') ||
     /calculator|converter/i.test(tool.title);
 
-  const howToSteps = tool.howTo && tool.howTo.length > 0
-    ? tool.howTo
+  const howToSteps = toolHowTo && toolHowTo.length > 0
+    ? toolHowTo
     : isFileTool
     ? [
         { title: 'Select or Drag Files', desc: `Open ${tool.title} in your browser and select or drop your files into the workspace.` },

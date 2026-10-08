@@ -83,21 +83,6 @@ export default defineConfig(() => {
               if (id.includes('lucide-react')) {
                 return 'vendor-icons';
               }
-              if (id.includes('motion')) {
-                return 'vendor-motion';
-              }
-              if (id.includes('jspdf') || id.includes('pdf-lib') || id.includes('pdfjs-dist')) {
-                return 'vendor-pdf';
-              }
-              if (id.includes('html2canvas') || id.includes('heic2any') || id.includes('omggif')) {
-                return 'vendor-graphics';
-              }
-              if (id.includes('qrcode') || id.includes('jsqr') || id.includes('jsbarcode')) {
-                return 'vendor-codes';
-              }
-              if (id.includes('tesseract.js')) {
-                return 'vendor-ocr';
-              }
             }
           }
         }

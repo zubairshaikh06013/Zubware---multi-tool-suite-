@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Search, X, ArrowRight, Tag, History, Star, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 import { getTranslatedTools } from '../data/toolsData';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
@@ -83,28 +82,20 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
     return matchesTitle || matchesNav || matchesId || matchesDesc || matchesCategory || matchesTags || matchesFeatures;
   });
 
+  if (!isOpen) return null;
+
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="search-modal-title"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.18 }}
-          onClick={onClose}
-          className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 px-4 bg-slate-950/40 backdrop-blur-xl"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: -12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.96, y: -12 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh]"
-          >
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="search-modal-title"
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-start justify-center pt-16 sm:pt-20 px-4 bg-slate-950/40 backdrop-blur-xl animate-in fade-in duration-150"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-2xl bg-white/85 dark:bg-slate-900/85 backdrop-blur-2xl border border-white/60 dark:border-white/10 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[85vh] animate-in zoom-in-95 duration-150"
+      >
             {/* Input header */}
             <div className="p-3.5 sm:p-4 border-b border-slate-200/70 dark:border-slate-800/70 space-y-3 bg-slate-50/50 dark:bg-slate-900/50">
               <div className="flex items-center gap-2.5 sm:gap-3 bg-white dark:bg-slate-950/80 p-1.5 sm:p-2 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 shadow-xs focus-within:ring-1 focus-within:ring-slate-300 dark:focus-within:ring-slate-700 focus-within:border-slate-300 dark:focus-within:border-slate-700 transition-all">
@@ -196,13 +187,11 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                 filteredTools.map((tool) => {
                   const fav = isFavorite(tool.id);
                   return (
-                    <motion.button
+                    <button
                       key={tool.id}
-                      whileHover={{ scale: 1.01, x: 2 }}
-                      whileTap={{ scale: 0.99 }}
                       onClick={() => handleToolClick(tool)}
                       aria-label={`Open ${tool.title}`}
-                      className="w-full text-left p-3.5 rounded-2xl hover:bg-indigo-50/80 dark:hover:bg-indigo-950/50 transition-all flex items-center gap-3 group border border-transparent hover:border-indigo-200/50 dark:hover:border-indigo-800/50 cursor-pointer"
+                      className="w-full text-left p-3.5 rounded-2xl hover:bg-indigo-50/80 dark:hover:bg-indigo-950/50 transition-all flex items-center gap-3 group border border-transparent hover:border-indigo-200/50 dark:hover:border-indigo-800/50 cursor-pointer active:scale-[0.99] hover:translate-x-0.5"
                     >
                       <ToolIcon toolId={tool.id} category={tool.category} size="md" />
                       <div className="flex-1 min-w-0">
@@ -226,7 +215,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                         )}
                       </div>
                       <ArrowRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors shrink-0" />
-                    </motion.button>
+                    </button>
                   );
                 })
               ) : (
@@ -244,9 +233,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
               <span>Press <kbd className="px-1.5 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-mono font-bold">Esc</kbd> to exit</span>
             </div>
 
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+      </div>
+    </div>
   );
 };

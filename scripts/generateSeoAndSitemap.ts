@@ -1,13 +1,30 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { TOOLS_DATA, HOMEPAGE_FAQS } from '../src/data/toolsData';
+import { TOOLS_DATA as BASE_TOOLS_DATA, HOMEPAGE_FAQS } from '../src/data/toolsData';
+import { getToolSeoData } from '../src/data/toolSeoData';
+import { ToolMeta } from '../src/types';
+
+function getFullToolDetails(tool: ToolMeta): ToolMeta {
+  const seo = getToolSeoData(tool.id);
+  return {
+    ...tool,
+    faq: tool.faq || seo.faq,
+    howTo: tool.howTo || seo.howTo
+  };
+}
+
+function getLocalFullToolsData(): ToolMeta[] {
+  return BASE_TOOLS_DATA.map(getFullToolDetails);
+}
+
+const TOOLS_DATA = getLocalFullToolsData();
 import { BLOG_ARTICLES } from '../src/data/blogArticles';
 import { CATEGORIES_DATA, getCategoryForTool } from '../src/data/categoriesData';
 import { CATEGORY_AUTHORITY_MAP } from '../src/data/categoryAuthorityData';
 import { getToolSeoTitle } from '../src/lib/seoTitles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
-import { ToolMeta, BlogArticle } from '../src/types';
+import { BlogArticle } from '../src/types';
 import { CategoryItem } from '../src/data/categoriesData';
 import { SITE_ORIGIN } from '../src/lib/siteConfig';
 import { getToolCanonicalPath, getToolCanonicalUrl } from '../src/lib/paths';

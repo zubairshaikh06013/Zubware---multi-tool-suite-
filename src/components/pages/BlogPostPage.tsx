@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { BlogArticle } from '../../types';
 import { TOOLS_DATA } from '../../data/toolsData';
-import { BLOG_ARTICLES } from '../../data/blogArticles';
+import { BLOG_ARTICLES, getBlogArticleBySlug } from '../../data/blogArticles';
 import { SEOHead } from '../SEOHead';
 import { Breadcrumb } from '../Breadcrumb';
 import { getLinkUrl } from '../../lib/paths';
@@ -40,21 +40,43 @@ function getCategoryHubForBlog(categoryStr: string): { name: string; path: strin
 }
 
 interface BlogPostPageProps {
-  article: BlogArticle;
+  article?: BlogArticle;
+  articleSlug?: string;
   onNavigate: (path: string) => void;
 }
 
-export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article, onNavigate }) => {
+export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article: propArticle, articleSlug, onNavigate }) => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const catHub = useMemo(() => getCategoryHubForBlog(article.category), [article.category]);
+  const article = useMemo(() => {
+    if (propArticle) return propArticle;
+    if (articleSlug) return getBlogArticleBySlug(articleSlug);
+    return undefined;
+  }, [propArticle, articleSlug]);
+
+  const catHub = useMemo(() => getCategoryHubForBlog(article?.category || ''), [article?.category]);
 
   const breadcrumbs = useMemo(() => [
     { label: 'Home', path: getLinkUrl('/') },
     { label: 'Guides & Articles', path: getLinkUrl('/blog') },
     { label: catHub.name, path: getLinkUrl(catHub.path) },
-    { label: article.title }
-  ], [catHub, article.title]);
+    { label: article?.title || 'Guide' }
+  ], [catHub, article?.title]);
+
+  if (!article) {
+    return (
+      <div className="text-center py-16 space-y-4">
+        <h2 className="text-2xl font-bold text-slate-900 dark:text-white">Article Not Found</h2>
+        <p className="text-slate-500 text-sm">The guide you are looking for does not exist or has been moved.</p>
+        <button
+          onClick={() => onNavigate(getLinkUrl('/blog'))}
+          className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-xs"
+        >
+          View All Guides
+        </button>
+      </div>
+    );
+  }
 
   // Resolve related tools from tool IDs
   const relatedTools = useMemo(() => {

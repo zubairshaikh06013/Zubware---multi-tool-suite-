@@ -1,18 +1,19 @@
 import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
-import { SearchModal } from './components/SearchModal';
 import { Breadcrumb } from './components/Breadcrumb';
 import { BackButton } from './components/BackButton';
 import { SEOHead } from './components/SEOHead';
 import { ToolRecommendations } from './components/ToolRecommendations';
-import { InstallBanner } from './components/InstallBanner';
-import { KeyboardShortcutsModal } from './components/KeyboardShortcutsModal';
 import { AccessibilityWrapper } from './components/AccessibilityWrapper';
 import { toggleFavorite } from './lib/userStore';
 import { ToolErrorBoundary } from './components/ToolErrorBoundary';
 import { lazyWithRetry } from './lib/lazyWithRetry';
+
+// Lazy loaded modals & platform overlays
+const SearchModal = lazy(() => import('./components/SearchModal').then(m => ({ default: m.SearchModal })));
+const KeyboardShortcutsModal = lazy(() => import('./components/KeyboardShortcutsModal').then(m => ({ default: m.KeyboardShortcutsModal })));
+const InstallBanner = lazy(() => import('./components/InstallBanner').then(m => ({ default: m.InstallBanner })));
 
 // Platform Pages
 const DashboardPage = lazy(() => import('./components/pages/DashboardPage').then(m => ({ default: m.DashboardPage })));
@@ -376,7 +377,7 @@ const LoadingFallback = () => (
 );
 
 import { TOOLS_DATA, HOMEPAGE_FAQS, getTranslatedTools, getTranslatedFaqs } from './data/toolsData';
-import { getBlogArticleBySlug, BLOG_ARTICLES } from './data/blogArticles';
+import { HOMEPAGE_BLOG_PREVIEWS } from './data/blogPreviews';
 import { getToolSeoTitle } from './lib/seoTitles';
 import { getCategoryBySlug, getCategoryForTool } from './data/categoriesData';
 import { detectBrowserLanguage, LanguageCode, getTranslation } from './lib/i18n';
@@ -576,8 +577,7 @@ export default function App() {
   const isBlogIndexPage = cleanPathLower === '/blog' || cleanPathLower === '/blog.html' || cleanPathLower === '/blog/index.html';
   const isBlogPostPath = cleanPathLower.startsWith('/blog/') && !isBlogIndexPage;
   const blogArticleSlug = isBlogPostPath ? cleanPathLower.replace(/^\/blog\//, '').replace(/\.html$/, '') : undefined;
-  const activeBlogArticle = blogArticleSlug ? getBlogArticleBySlug(blogArticleSlug) : undefined;
-  const isBlogPostPage = isBlogPostPath && !!activeBlogArticle;
+  const isBlogPostPage = isBlogPostPath && !!blogArticleSlug;
   const isBlogPage = isBlogIndexPage || isBlogPostPage;
 
   // Platform Feature Page checks
@@ -615,6 +615,17 @@ export default function App() {
 
   const activeCategorySlug = isCategoryPage ? getCategorySlugFromPath(currentPath) || 'all' : undefined;
   const activeCategoryItem = activeCategorySlug ? getCategoryBySlug(activeCategorySlug) : undefined;
+
+  const activeBlogArticle = useMemo(() => {
+    if (!blogArticleSlug) return undefined;
+    const matched = HOMEPAGE_BLOG_PREVIEWS.find(p => p.slug === blogArticleSlug);
+    if (matched) return matched;
+    const cleanTitle = blogArticleSlug
+      .split('-')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    return { title: cleanTitle };
+  }, [blogArticleSlug]);
 
   // Dynamic breadcrumb generator
   const buildBreadcrumbItems = () => {
@@ -678,21 +689,15 @@ export default function App() {
         </div>
 
         {/* Glass Toast Banner */}
-        <AnimatePresence>
-          {toastMsg && (
-            <motion.div
-              role="status"
-              aria-live="polite"
-              initial={{ opacity: 0, y: 40, scale: 0.9, x: '-50%' }}
-              animate={{ opacity: 1, y: 0, scale: 1, x: '-50%' }}
-              exit={{ opacity: 0, y: 20, scale: 0.95, x: '-50%' }}
-              transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-              className="fixed bottom-6 left-1/2 z-50 px-5 py-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-white/10 text-slate-900 dark:text-white font-bold text-xs sm:text-sm shadow-2xl shadow-indigo-500/20 flex items-center gap-2"
-            >
-              <span className="text-emerald-500 font-black" aria-hidden="true">✓</span> {toastMsg}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {toastMsg && (
+          <div
+            role="status"
+            aria-live="polite"
+            className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-white/60 dark:border-white/10 text-slate-900 dark:text-white font-bold text-xs sm:text-sm shadow-2xl shadow-indigo-500/20 flex items-center gap-2 transition-all animate-in fade-in slide-in-from-bottom-4 duration-200"
+          >
+            <span className="text-emerald-500 font-black" aria-hidden="true">✓</span> {toastMsg}
+          </div>
+        )}
 
         {/* Sticky Header Container */}
         <div className="sticky top-0 z-50 w-full">
@@ -729,7 +734,7 @@ export default function App() {
 
               <Suspense fallback={<LoadingFallback />}>
                 {isBlogIndexPage && <BlogIndexPage onNavigate={navigateTo} />}
-                {isBlogPostPage && activeBlogArticle && <BlogPostPage article={activeBlogArticle} onNavigate={navigateTo} />}
+                {isBlogPostPage && <BlogPostPage articleSlug={blogArticleSlug} onNavigate={navigateTo} />}
                 {isDashboardPage && <DashboardPage onNavigate={navigateTo} onShowToast={triggerToast} />}
                 {isCategoryPage && <CategoryPage categorySlug={activeCategorySlug} onNavigate={navigateTo} onShowToast={triggerToast} />}
                 {isHelpPage && <HelpPage onNavigate={navigateTo} />}
@@ -954,7 +959,7 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {BLOG_ARTICLES.slice(0, 6).map((article) => (
+                  {HOMEPAGE_BLOG_PREVIEWS.map((article) => (
                     <a
                       key={article.slug}
                       href={getLinkUrl(article.canonicalPath)}
@@ -1017,21 +1022,13 @@ export default function App() {
                           <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${isOpen ? 'rotate-180 text-indigo-600' : ''}`} />
                         </button>
 
-                        <AnimatePresence>
-                          {isOpen && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: 'auto' }}
-                              exit={{ opacity: 0, height: 0 }}
-                              transition={{ duration: 0.2 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 leading-relaxed">
-                                {faq.answer}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                        {isOpen && (
+                          <div className="overflow-hidden animate-in fade-in duration-200">
+                            <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800/60 leading-relaxed">
+                              {faq.answer}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     );
                   })}
@@ -1462,20 +1459,26 @@ export default function App() {
         </main>
 
         {/* Search Modal */}
-        <SearchModal
-          isOpen={searchOpen}
-          onClose={() => setSearchOpen(false)}
-          onSelectTool={navigateTo}
-        />
+        <Suspense fallback={null}>
+          <SearchModal
+            isOpen={searchOpen}
+            onClose={() => setSearchOpen(false)}
+            onSelectTool={navigateTo}
+          />
+        </Suspense>
 
         {/* Keyboard Shortcuts Help Modal */}
-        <KeyboardShortcutsModal
-          isOpen={shortcutsOpen}
-          onClose={() => setShortcutsOpen(false)}
-        />
+        <Suspense fallback={null}>
+          <KeyboardShortcutsModal
+            isOpen={shortcutsOpen}
+            onClose={() => setShortcutsOpen(false)}
+          />
+        </Suspense>
 
         {/* Offline & PWA Install Banner */}
-        <InstallBanner />
+        <Suspense fallback={null}>
+          <InstallBanner />
+        </Suspense>
 
         {/* Footer */}
         <Footer onNavigate={navigateTo} />

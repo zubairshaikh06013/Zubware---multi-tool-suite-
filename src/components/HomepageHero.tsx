@@ -1,6 +1,5 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Search, X, Sparkles, ArrowRight, ShieldCheck, Zap, Layers, CheckCircle2, ChevronRight, CornerDownLeft } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
 import { ToolMeta } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { getTranslation } from '../lib/i18n';
@@ -227,84 +226,78 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
           {/* ========================================================
               LIVE SEARCH RESULTS DROPDOWN
               ======================================================== */}
-          <AnimatePresence>
-            {isFocused && searchQuery.trim().length > 0 && (
-              <motion.div
-                ref={resultsContainerRef}
-                initial={{ opacity: 0, y: -6, scale: 0.98 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -6, scale: 0.98 }}
-                transition={{ duration: 0.15 }}
-                className="absolute left-0 right-0 top-full mt-2 z-50 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden text-left"
-              >
-                {/* Header with match count */}
-                <div className="px-4 sm:px-6 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-50/50 dark:bg-slate-900/50">
-                  <span>
-                    Found <strong className="text-indigo-600 dark:text-indigo-400">{searchResults.length}</strong> matching tools
-                  </span>
-                  <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-400">
-                    <span>Use ↑↓ to navigate,</span>
-                    <CornerDownLeft className="w-3 h-3 inline" />
-                    <span>Enter to open</span>
-                  </span>
-                </div>
+          {isFocused && searchQuery.trim().length > 0 && (
+            <div
+              ref={resultsContainerRef}
+              className="absolute left-0 right-0 top-full mt-2 z-50 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden text-left animate-in fade-in zoom-in-95 duration-150"
+            >
+              {/* Header with match count */}
+              <div className="px-4 sm:px-6 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-50/50 dark:bg-slate-900/50">
+                <span>
+                  Found <strong className="text-indigo-600 dark:text-indigo-400">{searchResults.length}</strong> matching tools
+                </span>
+                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-400">
+                  <span>Use ↑↓ to navigate,</span>
+                  <CornerDownLeft className="w-3 h-3 inline" />
+                  <span>Enter to open</span>
+                </span>
+              </div>
 
-                {/* Results list */}
-                <div className="max-h-80 sm:max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/80 p-1.5 sm:p-2">
-                  {searchResults.length > 0 ? (
-                    searchResults.map((tool, idx) => (
-                      <div
-                        key={tool.id}
-                        onMouseEnter={() => setHighlightedIndex(idx)}
-                        onClick={() => handleSelectTool(tool)}
-                        className={`group flex items-center justify-between gap-3 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl cursor-pointer transition-all ${
-                          highlightedIndex === idx
-                            ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-100'
-                            : 'hover:bg-slate-50 dark:hover:bg-slate-800/60'
-                        }`}
-                      >
-                        <div className="flex items-center gap-3 min-w-0">
-                          <ToolIcon toolId={tool.id} category={tool.category} size="md" className="group-hover:scale-105 transition-transform" />
-                          <div className="min-w-0">
-                            <div className="flex items-center gap-2 flex-wrap">
-                              <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                                {tool.title}
-                              </h4>
-                              {tool.badge && (
-                                <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300">
-                                  {tool.badge}
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-md mt-0.5">
-                              {tool.description}
-                            </p>
+              {/* Results list */}
+              <div className="max-h-80 sm:max-h-96 overflow-y-auto divide-y divide-slate-100 dark:divide-slate-800/80 p-1.5 sm:p-2">
+                {searchResults.length > 0 ? (
+                  searchResults.map((tool, idx) => (
+                    <div
+                      key={tool.id}
+                      onMouseEnter={() => setHighlightedIndex(idx)}
+                      onClick={() => handleSelectTool(tool)}
+                      className={`group flex items-center justify-between gap-3 p-3 sm:p-3.5 rounded-xl sm:rounded-2xl cursor-pointer transition-all ${
+                        highlightedIndex === idx
+                          ? 'bg-indigo-50 dark:bg-indigo-950/50 text-indigo-900 dark:text-indigo-100'
+                          : 'hover:bg-slate-50 dark:hover:bg-slate-800/60'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <ToolIcon toolId={tool.id} category={tool.category} size="md" className="group-hover:scale-105 transition-transform" />
+                        <div className="min-w-0">
+                          <div className="flex items-center gap-2 flex-wrap">
+                            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                              {tool.title}
+                            </h4>
+                            {tool.badge && (
+                              <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300">
+                                {tool.badge}
+                              </span>
+                            )}
                           </div>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-md mt-0.5">
+                            {tool.description}
+                          </p>
                         </div>
-
-                        <button
-                          type="button"
-                          className="shrink-0 flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 transition-all cursor-pointer"
-                        >
-                          <span>Open</span>
-                          <ChevronRight className="w-3.5 h-3.5" />
-                        </button>
                       </div>
-                    ))
-                  ) : (
-                    <div className="p-8 text-center space-y-2">
-                      <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
-                        No tools found matching &ldquo;{searchQuery}&rdquo;
-                      </p>
-                      <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                        Try searching for general keywords like &ldquo;PDF&rdquo;, &ldquo;Image&rdquo;, &ldquo;Split&rdquo;, &ldquo;Converter&rdquo;, or &ldquo;Calculator&rdquo;.
-                      </p>
+
+                      <button
+                        type="button"
+                        className="shrink-0 flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 px-3 py-1.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/80 hover:bg-indigo-600 hover:text-white dark:hover:bg-indigo-600 transition-all cursor-pointer"
+                      >
+                        <span>Open</span>
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </button>
                     </div>
-                  )}
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                  ))
+                ) : (
+                  <div className="p-8 text-center space-y-2">
+                    <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
+                      No tools found matching &ldquo;{searchQuery}&rdquo;
+                    </p>
+                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                      Try searching for general keywords like &ldquo;PDF&rdquo;, &ldquo;Image&rdquo;, &ldquo;Split&rdquo;, &ldquo;Converter&rdquo;, or &ldquo;Calculator&rdquo;.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Popular Quick Suggestions */}
           <div className="mt-3 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 text-xs">

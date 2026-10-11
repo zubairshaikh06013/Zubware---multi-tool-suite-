@@ -14,16 +14,14 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'delete-pdf-pages': ['pdf-split', 'extract-pdf-pages', 'pdf-merge', 'reorder-pdf-pages'],
   'reorder-pdf-pages': ['pdf-merge', 'pdf-split', 'rotate-pdf', 'extract-pdf-pages'],
   'rotate-pdf': ['pdf-merge', 'reorder-pdf-pages', 'pdf-split', 'pdf-compressor'],
-  'protect-pdf': ['unlock-pdf', 'sign-pdf', 'pdf-compressor', 'pdf-merge'],
+  'protect-pdf': ['unlock-pdf', 'signature-maker', 'pdf-compressor', 'pdf-merge'],
   'unlock-pdf': ['protect-pdf', 'pdf-compressor', 'pdf-merge', 'edit-pdf'],
-  'sign-pdf': ['protect-pdf', 'pdf-compressor', 'edit-pdf', 'watermark-pdf'],
-  'edit-pdf': ['pdf-compressor', 'pdf-merge', 'sign-pdf', 'watermark-pdf'],
-  'watermark-pdf': ['sign-pdf', 'protect-pdf', 'pdf-compressor', 'flatten-pdf'],
-  'pdf-page-numberer': ['pdf-merge', 'pdf-compressor', 'reorder-pdf-pages', 'watermark-pdf'],
-  'pdf-to-word': ['word-to-pdf', 'pdf-to-jpg', 'pdf-compressor', 'extract-pdf-pages'],
+  'edit-pdf': ['pdf-compressor', 'pdf-merge', 'signature-maker', 'pdf-watermark'],
+  'pdf-watermark': ['signature-maker', 'protect-pdf', 'pdf-compressor', 'pdf-merge'],
+  'pdf-to-word': ['pdf-to-jpg', 'pdf-compressor', 'extract-pdf-pages'],
   'word-to-pdf': ['pdf-to-word', 'pdf-compressor', 'pdf-merge', 'protect-pdf'],
-  'pdf-to-jpg': ['jpg-to-pdf', 'extract-pdf-pages', 'pdf-compressor', 'image-converter'],
-  'jpg-to-pdf': ['pdf-to-jpg', 'pdf-merge', 'pdf-compressor', 'image-compressor'],
+  'pdf-to-jpg': ['image-to-pdf', 'extract-pdf-pages', 'pdf-compressor', 'image-converter'],
+  'image-to-pdf': ['pdf-to-jpg', 'pdf-merge', 'pdf-compressor', 'image-compressor'],
 
   // Image Processing Clusters
   'image-splitter-merger': ['crop-image', 'image-resizer', 'image-compressor', 'background-remover'],
@@ -37,13 +35,15 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'background-color-changer': ['background-remover', 'passport-photo-maker', 'image-compressor'],
   'heic-to-jpg': ['image-compressor', 'image-converter', 'image-resizer', 'exif-remover'],
   'bulk-image-renamer-resizer': ['image-resizer', 'image-compressor', 'image-converter'],
-  'passport-photo-maker': ['background-remover', 'crop-image', 'image-resizer', 'background-color-changer'],
+  'passport-photo-maker': ['background-remover', 'crop-image', 'image-resizer', 'photo-signature-joiner', 'signature-resizer'],
+  'photo-signature-joiner': ['signature-resizer', 'passport-photo-maker', 'image-compressor', 'background-remover', 'crop-image'],
+  'signature-resizer': ['photo-signature-joiner', 'passport-photo-maker', 'image-compressor', 'signature-maker', 'background-color-changer'],
   'image-watermark': ['image-compressor', 'crop-image', 'blur-image', 'pixelate-image'],
   'blur-image': ['pixelate-image', 'image-watermark', 'crop-image'],
   'pixelate-image': ['blur-image', 'image-watermark', 'crop-image'],
   'exif-remover': ['image-info-viewer', 'image-compressor', 'heic-to-jpg'],
-  'image-info-viewer': ['exif-remover', 'color-picker', 'image-resizer'],
-  'color-picker': ['image-info-viewer', 'background-color-changer', 'random-color-generator'],
+  'image-info-viewer': ['exif-remover', 'image-color-picker', 'image-resizer'],
+  'image-color-picker': ['image-info-viewer', 'background-color-changer', 'random-color-generator'],
   'rounded-corners': ['image-resizer', 'crop-image', 'background-remover'],
 
   // Audio & Video Media Clusters
@@ -56,26 +56,27 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'json-formatter': ['jwt-decoder', 'base64-encoder-decoder', 'hash-generator', 'regex-tester', 'sql-formatter'],
   'jwt-decoder': ['json-formatter', 'base64-encoder-decoder', 'hash-generator', 'url-encoder-decoder'],
   'base64-encoder-decoder': ['jwt-decoder', 'url-encoder-decoder', 'hash-generator', 'json-formatter'],
-  'url-encoder-decoder': ['base64-encoder-decoder', 'html-entity-encoder', 'slug-generator'],
-  'html-entity-encoder': ['url-encoder-decoder', 'html-formatter', 'markdown-editor'],
+  'url-encoder-decoder': ['base64-encoder-decoder', 'html-escape-unescape', 'text-cleaner'],
+  'html-escape-unescape': ['url-encoder-decoder', 'html-formatter', 'markdown-editor'],
   'sql-formatter': ['json-formatter', 'xml-formatter', 'html-formatter'],
   'html-formatter': ['css-formatter', 'sql-formatter', 'xml-formatter', 'json-formatter'],
-  'css-formatter': ['html-formatter', 'json-formatter', 'color-picker'],
+  'css-formatter': ['html-formatter', 'json-formatter', 'image-color-picker'],
   'xml-formatter': ['json-formatter', 'html-formatter', 'sql-formatter'],
-  'regex-tester': ['json-formatter', 'text-diff-checker', 'word-counter'],
-  'hash-generator': ['uuid-generator', 'password-generator', 'base64-encoder-decoder', 'jwt-decoder'],
-  'uuid-generator': ['hash-generator', 'password-generator', 'slug-generator'],
-  'timestamp-converter': ['online-clock', 'stopwatch', 'working-days-calculator'],
+  'regex-tester': ['json-formatter', 'text-compare', 'word-counter'],
+  'hash-generator': ['uuid-generator', 'random-password-generator', 'base64-encoder-decoder', 'jwt-decoder'],
+  'uuid-generator': ['hash-generator', 'random-password-generator', 'url-encoder-decoder'],
+  'unix-timestamp-converter': ['online-clock', 'online-stopwatch', 'working-days-calculator'],
 
   // Financial & Business Calculator Clusters
-  'sip-calculator': ['emi-calculator', 'compound-interest-calculator', 'salary-calculator', 'gst-invoice-generator'],
-  'emi-calculator': ['sip-calculator', 'compound-interest-calculator', 'salary-calculator', 'loan-amortization-calculator'],
-  'compound-interest-calculator': ['sip-calculator', 'emi-calculator', 'percentage-calculator'],
-  'gst-invoice-generator': ['invoice-generator', 'receipt-maker', 'emi-calculator', 'salary-calculator'],
-  'invoice-generator': ['gst-invoice-generator', 'receipt-maker', 'business-card-generator'],
-  'salary-calculator': ['salary-hike-calculator', 'ctc-calculator', 'working-days-calculator'],
+  'emi-calculator': ['compound-interest-calculator', 'ctc-calculator', 'loan-calculator', 'gst-invoice-generator'],
+  'compound-interest-calculator': ['emi-calculator', 'percentage-calculator', 'loan-calculator'],
+  'gst-invoice-generator': ['discount-calculator', 'percentage-calculator', 'emi-calculator', 'ctc-calculator'],
+  'salary-hike-calculator': ['ctc-calculator', 'experience-calculator', 'working-days-calculator'],
+  'ctc-calculator': ['salary-hike-calculator', 'notice-period-calculator', 'working-days-calculator'],
   'percentage-calculator': ['discount-calculator', 'compound-interest-calculator', 'scientific-calculator'],
+  'scientific-calculator': ['percentage-calculator', 'college-gpa-calculator', 'age-calculator', 'cement-calculator'],
   'discount-calculator': ['percentage-calculator', 'gst-invoice-generator'],
+  'learning-licence-mock-test': ['photo-signature-joiner', 'signature-resizer', 'passport-photo-maker', 'age-calculator'],
 
   // Career & Resume Clusters
   'ats-resume-checker': ['resume-builder', 'cover-letter-builder', 'resume-score-analyzer', 'resume-keyword-optimizer'],
@@ -85,30 +86,28 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'cover-letter-templates': ['cover-letter-builder', 'resume-builder'],
   'resume-keyword-optimizer': ['ats-resume-checker', 'resume-builder', 'resume-score-analyzer'],
   'resume-score-analyzer': ['ats-resume-checker', 'resume-keyword-optimizer', 'resume-builder'],
-  'salary-hike-calculator': ['ctc-calculator', 'salary-calculator', 'experience-calculator'],
-  'ctc-calculator': ['salary-hike-calculator', 'salary-calculator', 'notice-period-calculator'],
   'experience-calculator': ['salary-hike-calculator', 'working-days-calculator'],
   'notice-period-calculator': ['working-days-calculator', 'experience-calculator'],
-  'working-days-calculator': ['notice-period-calculator', 'experience-calculator', 'timestamp-converter'],
+  'working-days-calculator': ['notice-period-calculator', 'experience-calculator', 'unix-timestamp-converter'],
 
   // Text & Writing Clusters
-  'word-counter': ['social-character-counter', 'case-converter', 'remove-extra-spaces', 'text-diff-checker'],
+  'word-counter': ['social-character-counter', 'case-converter', 'text-cleaner', 'text-compare'],
   'social-character-counter': ['word-counter', 'case-converter', 'youtube-title-generator'],
-  'case-converter': ['remove-extra-spaces', 'word-counter', 'slug-generator', 'text-diff-checker'],
-  'remove-extra-spaces': ['case-converter', 'word-counter', 'text-diff-checker', 'duplicate-line-remover'],
-  'text-diff-checker': ['word-counter', 'remove-extra-spaces', 'case-converter'],
-  'slug-generator': ['case-converter', 'url-encoder-decoder', 'remove-extra-spaces'],
-  'duplicate-line-remover': ['remove-extra-spaces', 'line-sorter', 'word-counter'],
-  'line-sorter': ['duplicate-line-remover', 'remove-extra-spaces'],
+  'case-converter': ['text-cleaner', 'word-counter', 'text-compare', 'url-encoder-decoder'],
+  'text-cleaner': ['case-converter', 'word-counter', 'text-compare', 'remove-duplicate-lines'],
+  'text-compare': ['word-counter', 'text-cleaner', 'case-converter'],
+  'remove-duplicate-lines': ['text-cleaner', 'word-counter', 'sort-lines'],
+  'sort-lines': ['remove-duplicate-lines', 'text-cleaner'],
 
   // QR, Security & Productivity Clusters
-  'qr-generator': ['barcode-generator', 'wifi-qr-code', 'password-generator', 'qr-code-scanner'],
-  'barcode-generator': ['qr-generator', 'barcode-scanner', 'wifi-qr-code'],
-  'wifi-qr-code': ['qr-generator', 'password-generator'],
-  'qr-code-scanner': ['qr-generator', 'barcode-scanner'],
-  'barcode-scanner': ['barcode-generator', 'qr-code-scanner'],
-  'password-generator': ['password-strength-checker', 'hash-generator', 'qr-generator'],
-  'password-strength-checker': ['password-generator', 'hash-generator']
+  'qr-generator': ['barcode-generator', 'qr-business-card-generator', 'random-password-generator', 'qr-code-decoder'],
+  'barcode-generator': ['qr-generator', 'barcode-scanner', 'qr-business-card-generator'],
+  'qr-code-decoder': ['qr-generator', 'barcode-scanner', 'qr-code-safety-checker'],
+  'barcode-scanner': ['barcode-generator', 'qr-code-decoder'],
+  'random-password-generator': ['password-strength-checker', 'hash-generator', 'passphrase-generator', 'text-encrypt-decrypt'],
+  'password-strength-checker': ['random-password-generator', 'hash-generator', 'passphrase-generator'],
+  'passphrase-generator': ['random-password-generator', 'password-strength-checker', 'text-encrypt-decrypt'],
+  'text-encrypt-decrypt': ['random-password-generator', 'password-strength-checker', 'hash-generator']
 };
 
 /**
@@ -185,8 +184,24 @@ export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: 
  * Returns matching cornerstone blog articles for a tool.
  */
 export function getMatchingGuidesForTool(tool: ToolMeta, articles: BlogArticle[], maxCount: number = 2): BlogArticle[] {
-  // 1. Articles that explicitly reference this tool
-  const explicit = articles.filter((a) => a.relatedToolIds && a.relatedToolIds.includes(tool.id));
+  const toolCat = tool.category.toLowerCase().replace(/^[^\w]+/, '').trim();
+  const toolWords = tool.title.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+
+  // 1. Articles that explicitly reference this tool, sorted by topical relevance
+  const explicit = articles
+    .filter((a) => a.relatedToolIds && a.relatedToolIds.includes(tool.id))
+    .sort((a, b) => {
+      let scoreA = 0;
+      let scoreB = 0;
+      if (a.category.toLowerCase().includes(toolCat)) scoreA += 5;
+      if (b.category.toLowerCase().includes(toolCat)) scoreB += 5;
+      for (const w of toolWords) {
+        if (a.title.toLowerCase().includes(w)) scoreA += 2;
+        if (b.title.toLowerCase().includes(w)) scoreB += 2;
+      }
+      return scoreB - scoreA;
+    });
+
   if (explicit.length >= maxCount) return explicit.slice(0, maxCount);
 
   const matched = [...explicit];

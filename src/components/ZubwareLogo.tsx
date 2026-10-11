@@ -12,6 +12,10 @@ export const ZubwareLogo: React.FC<ZubwareLogoProps> = ({ className = 'w-9 h-9',
     <img
       src="/favicon.svg?v=2"
       alt="Zubware Logo"
+      width={size || 36}
+      height={size || 36}
+      decoding="async"
+      fetchPriority="high"
       className={`${className} shrink-0`}
       style={style}
       aria-label="Zubware Logo"

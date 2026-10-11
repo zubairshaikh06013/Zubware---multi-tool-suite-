@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import { ToolMeta } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
+import { getRelatedTools } from '../lib/workflowMap';
 import { ArrowRight, Layers } from 'lucide-react';
 import { ToolIcon } from './common/ToolIcon';
 
@@ -19,56 +20,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
   const { t } = useLanguage();
 
   const relatedTools = useMemo(() => {
-    const pool = allTools.filter((t) => t.id !== currentTool.id);
-    const seen = new Set<string>();
-    const result: ToolMeta[] = [];
-
-    // 1. Same category tools
-    const categoryTools = pool.filter((t) => t.category === currentTool.category);
-    for (const tool of categoryTools) {
-      if (result.length >= 6) break;
-      if (!seen.has(tool.id)) {
-        seen.add(tool.id);
-        result.push(tool);
-      }
-    }
-
-    // 2. Matching tags tools
-    if (result.length < 6 && currentTool.tags && currentTool.tags.length > 0) {
-      const tagTools = pool.filter(
-        (t) => t.tags && t.tags.some((tag) => currentTool.tags?.includes(tag))
-      );
-      for (const tool of tagTools) {
-        if (result.length >= 6) break;
-        if (!seen.has(tool.id)) {
-          seen.add(tool.id);
-          result.push(tool);
-        }
-      }
-    }
-
-    // 3. Trending/Featured fallback
-    if (result.length < 6) {
-      const popular = pool.filter((t) => t.trending || t.featured || t.editorsPick);
-      for (const tool of popular) {
-        if (result.length >= 6) break;
-        if (!seen.has(tool.id)) {
-          seen.add(tool.id);
-          result.push(tool);
-        }
-      }
-    }
-
-    // 4. Fill to 6 if needed
-    for (const tool of pool) {
-      if (result.length >= 6) break;
-      if (!seen.has(tool.id)) {
-        seen.add(tool.id);
-        result.push(tool);
-      }
-    }
-
-    return result;
+    return getRelatedTools(currentTool, allTools, 6);
   }, [allTools, currentTool]);
 
   if (relatedTools.length === 0) return null;

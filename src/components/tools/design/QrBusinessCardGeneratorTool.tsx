@@ -89,7 +89,7 @@ export const QrBusinessCardGeneratorTool: React.FC<QrBusinessCardGeneratorToolPr
   const [phone, setPhone] = useState<string>('+1 (555) 234-5678');
   const [mobilePhone, setMobilePhone] = useState<string>('+1 (555) 987-6543');
   const [email, setEmail] = useState<string>('alex.morgan@zubware.com');
-  const [website, setWebsite] = useState<string>('https://zubware.com');
+  const [website, setWebsite] = useState<string>('https://www.zubware.com');
   const [address, setAddress] = useState<string>('742 Innovation Blvd, San Francisco, CA');
   const [linkedIn, setLinkedIn] = useState<string>('linkedin.com/in/alexmorgan');
 

@@ -22,9 +22,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <Lock className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 {t('zeroServerUploads', 'Client-Side Privacy')}
-              </h4>
+              </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                 {t('zeroServerUploadsDesc', 'Processing happens locally in your browser for offline tools; files are not uploaded to Zubware servers.')}
               </p>
@@ -36,9 +36,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <Zap className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 {t('instantSpeed', 'Fast Processing')}
-              </h4>
+              </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                 {t('instantSpeedDesc', 'Optimized browser-based execution using modern WebAssembly and Canvas APIs without upload bottlenecks.')}
               </p>
@@ -50,9 +50,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
                 {t('freeForever', 'Free Online Tools')}
-              </h4>
+              </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                 {t('freeForeverDesc', 'No subscription, watermarks, or daily caps. High quality output for creators and professionals.')}
               </p>
@@ -82,9 +82,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Col 2 Image Tools */}
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
               {t('imageTools', 'Image Tools')}
-            </h5>
+            </h3>
             <ul className="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
               <li>
                 <a href={getLinkUrl('/image-splitter-merger')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/image-splitter-merger')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
@@ -106,9 +106,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Col 3 PDF & Utilities */}
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
               {t('pdfAndUtilities', 'PDF & Utilities')}
-            </h5>
+            </h3>
             <ul className="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
               <li>
                 <a href={getLinkUrl('/pdf-merge')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/pdf-merge')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
@@ -135,9 +135,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* Col 4 Platform & Legal */}
           <div>
-            <h5 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white mb-3">
               {t('platformAndSupport', 'Platform & Support')}
-            </h5>
+            </h3>
             <ul className="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
               <li>
                 <a href={getLinkUrl('/dashboard')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/dashboard')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 font-bold text-indigo-600 dark:text-indigo-400 transition-colors">

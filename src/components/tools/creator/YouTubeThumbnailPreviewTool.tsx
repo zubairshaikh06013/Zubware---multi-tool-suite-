@@ -42,7 +42,7 @@ export const YouTubeThumbnailPreviewTool: React.FC<{ onShowToast: (msg: string) 
           </span>
         </div>
         <a
-          href="/youtube-thumbnail-simulator.html"
+          href="/youtube-thumbnail-simulator"
           className="px-3.5 py-1.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-bold text-xs shrink-0 shadow-sm transition-all"
         >
           Open Mobile Feed Simulator →

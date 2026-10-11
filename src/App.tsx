@@ -25,7 +25,7 @@ const FeedbackPage = lazy(() => import('./components/pages/FeedbackPage').then(m
 // Lazy loaded tool components
 const ImageSplitterMergerTool = lazy(() => import('./components/tools/ImageSplitterMergerTool').then(m => ({ default: m.ImageSplitterMergerTool })));
 const BackgroundRemoverTool = lazy(() => import('./components/tools/image/BackgroundRemoverTool').then(m => ({ default: m.BackgroundRemoverTool })));
-const ImageCompressorTool = lazy(() => import('./components/tools/ImageCompressorTool').then(m => ({ default: m.ImageCompressorTool })));
+const ImageCompressorTool = lazyWithRetry(() => import('./components/tools/ImageCompressorTool').then(m => ({ default: m.ImageCompressorTool })));
 const ImageConverterTool = lazy(() => import('./components/tools/ImageConverterTool').then(m => ({ default: m.ImageConverterTool })));
 const ImageResizerTool = lazy(() => import('./components/tools/image/ImageResizerTool').then(m => ({ default: m.ImageResizerTool })));
 const CropImageTool = lazy(() => import('./components/tools/image/CropImageTool').then(m => ({ default: m.CropImageTool })));
@@ -380,6 +380,7 @@ import { TOOLS_DATA, HOMEPAGE_FAQS, getTranslatedTools, getTranslatedFaqs } from
 import { HOMEPAGE_BLOG_PREVIEWS } from './data/blogPreviews';
 import { getToolSeoTitle } from './lib/seoTitles';
 import { getCategoryBySlug, getCategoryForTool } from './data/categoriesData';
+import { getToolSeoData } from './data/toolSeoData';
 import { detectBrowserLanguage, LanguageCode, getTranslation } from './lib/i18n';
 import { LanguageProvider } from './context/LanguageContext';
 import { normalizePath, getLinkUrl, getToolCanonicalPath, getToolHowToHeading } from './lib/paths';
@@ -472,6 +473,8 @@ export default function App() {
       if (t.id === 'online-stopwatch' && (pathSegment === 'stopwatch.html' || pathSegment === 'stopwatch')) return true;
       if (t.id === 'time-zone-converter' && (pathSegment === 'timezone-converter.html' || pathSegment === 'timezone-converter')) return true;
       if (t.id === 'image-splitter-merger' && pathSegment === 'image-splitter-merger.html') return true;
+      if (t.id === 'qr-generator' && (pathSegment === 'qr-code-generator' || pathSegment === 'qr-code-generator.html')) return true;
+      if (t.id === 'photo-signature-joiner' && (pathSegment === 'photo-and-signature-joiner' || pathSegment === 'photo-and-signature-joiner.html')) return true;
       if (t.id === 'youtube-thumbnail-simulator' && (pathSegment.includes('thumbnail-simulator') || pathSegment.includes('youtube-thumbnail-feed-simulator'))) return true;
       if (t.id === 'youtube-banner-safe-area' && (pathSegment.includes('banner-safe-area') || pathSegment.includes('youtube-banner'))) return true;
       if (t.id === 'matching-parts-video-maker' && pathSegment.includes('matching-parts')) return true;
@@ -907,7 +910,7 @@ export default function App() {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-10">
                   <div className="glass-card p-5 rounded-2xl">
                     <Shield className="w-7 h-7 text-indigo-600 dark:text-indigo-400 mb-3" />
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'zeroServerUploads', 'Private In-Browser Processing for Local Tools')}</h4>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'zeroServerUploads', 'Private In-Browser Processing for Local Tools')}</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                       {getTranslation(currentLang, 'zeroServerUploadsDesc', 'For local tools, processing happens locally in your browser. Files and inputs are not uploaded to Zubware servers.')}
                     </p>
@@ -915,7 +918,7 @@ export default function App() {
 
                   <div className="glass-card p-5 rounded-2xl">
                     <Zap className="w-7 h-7 text-amber-500 mb-3" />
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'instantSpeed', 'In-Browser Execution')}</h4>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'instantSpeed', 'In-Browser Execution')}</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                       {getTranslation(currentLang, 'instantSpeedDesc', 'No server upload wait times or cloud queue bottlenecks for local tools. Processing speed depends on your device and browser.')}
                     </p>
@@ -923,7 +926,7 @@ export default function App() {
 
                   <div className="glass-card p-5 rounded-2xl">
                     <Sparkles className="w-7 h-7 text-emerald-500 mb-3" />
-                    <h4 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'freeForever', 'Free to Use')}</h4>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white">{getTranslation(currentLang, 'freeForever', 'Free to Use')}</h3>
                     <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
                       {getTranslation(currentLang, 'freeForeverDesc', 'No mandatory accounts, paywalls, or forced watermarks across our browser utilities.')}
                     </p>
@@ -974,7 +977,7 @@ export default function App() {
                           <span className="font-extrabold text-[10px] uppercase px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/70 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
                             {article.category}
                           </span>
-                          <span className="text-slate-400 text-[11px] font-medium">
+                          <span className="text-slate-500 dark:text-slate-400 text-[11px] font-medium">
                             {article.readingTime}
                           </span>
                         </div>
@@ -1061,11 +1064,23 @@ export default function App() {
               activeTool.category.includes('Financial') ||
               /calculator|converter/i.test(activeTool.title);
 
+            const seoData = getToolSeoData(activeTool.id);
+            const toolFaqs = (activeTool.faq && activeTool.faq.length > 0)
+              ? activeTool.faq
+              : (seoData.faq && seoData.faq.length > 0)
+              ? seoData.faq
+              : undefined;
+            const toolHowToSteps = (activeTool.howTo && activeTool.howTo.length > 0)
+              ? activeTool.howTo
+              : (seoData.howTo && seoData.howTo.length > 0)
+              ? seoData.howTo
+              : undefined;
+
             const toolHowToSchema = {
               name: getToolHowToHeading(activeTool),
               description: activeTool.description,
-              steps: activeTool.howTo && activeTool.howTo.length > 0
-                ? activeTool.howTo.map(s => ({ name: s.title, text: s.desc }))
+              steps: toolHowToSteps && toolHowToSteps.length > 0
+                ? toolHowToSteps.map(s => ({ name: s.title, text: s.desc }))
                 : isFileTool
                 ? [
                     { name: 'Select or Upload Files', text: `Open ${activeTool.title} in your browser and select or drop your files into the workspace.` },
@@ -1092,7 +1107,7 @@ export default function App() {
                   description={activeTool.description}
                   canonicalPath={getToolCanonicalPath(activeTool)}
                   toolMeta={activeTool}
-                  faqs={activeTool.faq}
+                  faqs={toolFaqs}
                   breadcrumbs={toolBreadcrumbList}
                   howTo={toolHowToSchema}
                 />

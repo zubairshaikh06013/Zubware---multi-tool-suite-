@@ -40,12 +40,12 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Security, Signatures & Access Control',
         description: 'Add password encryption, draw electronic signatures, apply watermarks, or unlock password-protected archives.',
-        toolIds: ['protect-pdf', 'unlock-pdf', 'sign-pdf', 'watermark-pdf']
+        toolIds: ['protect-pdf', 'unlock-pdf', 'signature-maker', 'pdf-watermark']
       },
       {
         title: 'Cross-Format Document Conversion',
         description: 'Convert PDFs to editable Word documents, transform image scans into PDF packages, or export pages as high-resolution images.',
-        toolIds: ['pdf-to-word', 'word-to-pdf', 'pdf-to-jpg', 'jpg-to-pdf']
+        toolIds: ['pdf-to-word', 'word-to-pdf', 'pdf-to-jpg', 'image-to-pdf']
       }
     ],
     faqs: [
@@ -79,7 +79,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Modern Format Conversion',
         description: 'Seamlessly interchange between WebP, PNG, JPEG, SVG, and iPhone HEIC formats without loss of color fidelity.',
-        toolIds: ['image-converter', 'heic-to-jpg', 'svg-to-png', 'png-to-svg']
+        toolIds: ['image-converter', 'heic-to-jpg', 'batch-image-converter', 'svg-optimizer']
       },
       {
         title: 'Canvas Manipulation & Dimensions',
@@ -187,12 +187,12 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Invoicing & Tax Calculations',
         description: 'Create professional invoices with automated GST breakdown, currency selection, and instant PDF download.',
-        toolIds: ['gst-invoice-generator', 'invoice-generator', 'receipt-maker']
+        toolIds: ['gst-invoice-generator', 'discount-calculator', 'percentage-calculator']
       },
       {
         title: 'Brand Collateral & Networking',
         description: 'Design elegant print-ready business cards and corporate identity essentials in seconds.',
-        toolIds: ['business-card-generator']
+        toolIds: ['qr-business-card-generator']
       }
     ],
     faqs: [
@@ -218,12 +218,12 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Case Transformation & Whitespace Sanitization',
         description: 'Convert between camelCase, PascalCase, snake_case, UPPERCASE, and remove duplicate spaces or blank lines.',
-        toolIds: ['case-converter', 'remove-extra-spaces', 'duplicate-line-remover', 'line-sorter']
+        toolIds: ['case-converter', 'remove-extra-spaces', 'remove-duplicate-lines', 'sort-lines']
       },
       {
         title: 'Diff Analysis & Markup Editing',
         description: 'Highlight additions and deletions between two text blocks or preview rendered markdown documents.',
-        toolIds: ['text-diff-checker', 'markdown-editor', 'slug-generator']
+        toolIds: ['text-compare', 'markdown-editor', 'text-cleaner']
       }
     ],
     faqs: [
@@ -254,7 +254,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Compensation & Timeline Calculators',
         description: 'Evaluate salary hike offers, in-hand paycheck deductions, notice period last working days, and accrued experience.',
-        toolIds: ['salary-hike-calculator', 'ctc-calculator', 'salary-calculator', 'notice-period-calculator', 'working-days-calculator']
+        toolIds: ['salary-hike-calculator', 'ctc-calculator', 'notice-period-calculator', 'working-days-calculator', 'experience-calculator']
       }
     ],
     faqs: [
@@ -280,17 +280,17 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Token Inspection & String Encoders',
         description: 'Decode JWT headers and claims, encode URL components, convert Base64 strings, and escape HTML entities.',
-        toolIds: ['jwt-decoder', 'base64-encoder-decoder', 'url-encoder-decoder', 'html-entity-encoder']
+        toolIds: ['jwt-decoder', 'base64-encoder-decoder', 'url-encoder-decoder', 'html-escape-unescape']
       },
       {
         title: 'Cryptography, Hashes & UUIDs',
         description: 'Compute MD5, SHA-256, and SHA-512 hashes, generate cryptographically random UUID v4 identifiers, and test passwords.',
-        toolIds: ['hash-generator', 'uuid-generator', 'password-generator', 'password-strength-checker']
+        toolIds: ['hash-generator', 'uuid-generator', 'random-password-generator', 'password-strength-checker']
       },
       {
         title: 'Debugging, Regex & Network Utilities',
         description: 'Test regular expressions in real-time, inspect HTTP response headers, and convert Unix epoch timestamps.',
-        toolIds: ['regex-tester', 'text-diff-checker', 'timestamp-converter', 'http-header-viewer']
+        toolIds: ['regex-tester', 'text-compare', 'unix-timestamp-converter', 'http-header-viewer']
       }
     ],
     faqs: [
@@ -315,7 +315,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Color Palettes & Harmonies',
         description: 'Sample HEX/RGB/HSL codes, generate complimentary palettes, and test contrast ratios for WCAG compliance.',
-        toolIds: ['color-picker', 'random-color-generator']
+        toolIds: ['image-color-picker', 'random-color-generator']
       },
       {
         title: 'CSS Geometry & Code Snippets',
@@ -367,7 +367,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Body Composition & Caloric Targets',
         description: 'Determine Basal Metabolic Rate (BMR) and Total Daily Energy Expenditure (TDEE) based on activity level and goals.',
-        toolIds: ['calorie-calculator', 'macro-calculator', 'bmi-calculator']
+        toolIds: ['calorie-calculator', 'weight-gain-calculator', 'water-intake-calculator']
       }
     ],
     faqs: [
@@ -388,12 +388,12 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       {
         title: 'Codes & Quick Scanners',
         description: 'Generate high-resolution vector QR codes with embedded logos and format standard retail barcodes.',
-        toolIds: ['qr-generator', 'barcode-generator', 'wifi-qr-code', 'qr-code-scanner', 'barcode-scanner']
+        toolIds: ['qr-generator', 'barcode-generator', 'qr-business-card-generator', 'qr-code-decoder', 'barcode-scanner']
       },
       {
         title: 'Security, Passwords & Secrets',
         description: 'Generate high-entropy randomized credentials and evaluate dictionary attack resilience.',
-        toolIds: ['password-generator', 'password-strength-checker']
+        toolIds: ['random-password-generator', 'password-strength-checker']
       }
     ],
     faqs: [

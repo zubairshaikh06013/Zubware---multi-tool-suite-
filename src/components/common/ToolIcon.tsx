@@ -579,7 +579,7 @@ const SIZE_MAP = {
   '2xl': { container: 'w-16 h-16 rounded-3xl', icon: 'w-8 h-8' }
 };
 
-export const ToolIcon: React.FC<ToolIconProps> = ({
+export const ToolIcon: React.FC<ToolIconProps> = React.memo(({
   toolId,
   category,
   className = '',
@@ -649,4 +649,4 @@ export const ToolIcon: React.FC<ToolIconProps> = ({
       />
     </div>
   );
-};
+});

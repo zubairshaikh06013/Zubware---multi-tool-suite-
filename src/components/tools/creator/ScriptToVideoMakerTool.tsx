@@ -85,7 +85,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
     navTitle: 'Script to Video',
     description: 'Turn any script into a scrolling text video with your own background, fonts, colors, and logo overlay — perfect for Reels, Shorts, and TikTok.',
     icon: '📜',
-    path: '/script-to-video-maker.html',
+    path: '/script-to-video-maker',
     filename: 'script-to-video-maker.html',
     category: '📱 Creator & Social Media Tools',
     badge: 'New',

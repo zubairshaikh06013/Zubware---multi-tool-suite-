@@ -6,6 +6,10 @@ import { BLOG_ARTICLES } from '../data/blogArticles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
 import { ToolIcon } from './common/ToolIcon';
 import { getToolSeoData } from '../data/toolSeoData';
+import { ImageToolsSEOSection } from './seo/ImageToolsSEOSections';
+import { VideoBusinessSEOSection } from './seo/VideoBusinessSEOSections';
+import { PdfToolsSEOSection } from './seo/PdfToolsSEOSections';
+import { DesignUtilitySecuritySEOSection } from './seo/DesignUtilitySecuritySEOSections';
 
 interface ToolSEOContentProps {
   tool: ToolMeta;
@@ -201,6 +205,18 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           ))}
         </ol>
       </section>
+
+      {/* 3.4 DEDICATED IN-DEPTH EVERGREEN GUIDES FOR PRIORITY IMAGE TOOLS */}
+      <ImageToolsSEOSection tool={tool} onNavigate={onNavigate} />
+
+      {/* 3.45 DEDICATED IN-DEPTH EVERGREEN GUIDES FOR PRIORITY VIDEO & BUSINESS TOOLS */}
+      <VideoBusinessSEOSection tool={tool} onNavigate={onNavigate} />
+
+      {/* 3.46 DEDICATED IN-DEPTH EVERGREEN GUIDES FOR PRIORITY PDF TOOLS (BATCH 4) */}
+      <PdfToolsSEOSection tool={tool} onNavigate={onNavigate} />
+
+      {/* 3.47 DEDICATED IN-DEPTH EVERGREEN GUIDES FOR DESIGN, UTILITY & SECURITY TOOLS (BATCH 5 & 6) */}
+      <DesignUtilitySecuritySEOSection tool={tool} onNavigate={onNavigate} />
 
       {/* 3.5 DEDICATED IMAGE COMPRESSOR IN-DEPTH GUIDE (Targeting High-Intent Regional & Global Queries) */}
       {tool.id === 'image-compressor' && (
@@ -1380,6 +1396,527 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 </span>
                 <span className="text-slate-500 dark:text-slate-400 text-[11px]">
                   Calculate percentage increase, differences, and fractions instantly.
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3.6 DEDICATED LEARNING LICENCE MOCK TEST IN-DEPTH GUIDE (India-First & Exam Practice Curriculum) */}
+      {tool.id === 'learning-licence-mock-test' && (
+        <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 border border-emerald-200/50 dark:border-emerald-900/40">
+          <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
+            <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+              RTO Exam Preparation &amp; Road Safety Curriculum
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+              Learning Licence Mock Test Online — RTO Test Questions &amp; Road Rules Guide
+            </h2>
+          </div>
+
+          {/* Official Government Disclaimer Box */}
+          <div className="p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 space-y-2">
+            <div className="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-bold text-sm">
+              <span className="text-lg">⚠️</span>
+              <span>Important Disclaimer: Zubware is an Independent Educational Practice Tool</span>
+            </div>
+            <p className="text-xs sm:text-sm text-amber-900/80 dark:text-amber-200/80 leading-relaxed">
+              Zubware is <strong>not affiliated with, endorsed by, or connected to</strong> the Ministry of Road Transport and Highways (MoRTH), Parivahan Sewa, Sarathi portal, or any State Regional Transport Office (RTO). This tool is a <strong>free educational mock practice test</strong> designed solely to help candidates learn traffic signs and general road rules. Passing this practice test does not guarantee passing the official RTO examination, nor does it issue any official license. Official application submission, fee payment, slot booking, and computer tests must be conducted through official government portals (<a href="https://parivahan.gov.in" target="_blank" rel="noopener noreferrer" className="underline font-semibold hover:text-amber-950">parivahan.gov.in</a>) or your local RTO.
+            </p>
+          </div>
+
+          {/* Exam Overview & Format */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="text-emerald-600">🚦</span> What is a Learning Licence (LL) Mock Test?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Before obtaining a permanent Driving Licence (DL) in India, applicants must first pass a computer-based <strong>Learner&rsquo;s Licence (LL / LLR) test</strong> administered by their local RTO or online via the Parivahan Sarathi system. The test evaluates your fundamental knowledge of the <strong>Motor Vehicles Act, traffic signals, road signs, and safe driving etiquette</strong>.
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Zubware&rsquo;s mock test mirrors this computer test environment with a curated 40+ question bank, randomized 15-question test sessions, an optional 15-minute timer, and instant performance analysis in both <strong>English and Hindi (हिंदी)</strong>.
+              </p>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="text-emerald-600">📋</span> Computer Exam Structure &amp; Passing Criteria
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                While specific question numbers vary slightly across Indian states, standard RTO computerized exams follow this pattern:
+              </p>
+              <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 list-disc list-inside">
+                <li><strong>Number of Questions:</strong> Typically 15 to 20 multiple-choice questions (MCQs).</li>
+                <li><strong>Passing Marks:</strong> Usually <strong>60%</strong> (9 correct out of 15, or 12 correct out of 20).</li>
+                <li><strong>Time Allocation:</strong> Approximately 30 to 45 seconds per question (or 15–20 minutes total).</li>
+                <li><strong>Format:</strong> Computer screen interface with multiple-choice options.</li>
+                <li><strong>Syllabus Coverage:</strong> ~50% road safety regulations &amp; ~50% traffic signs identification.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Traffic Signs Master Guide */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+            <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-3">
+              <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">
+                Visual Road Signs Syllabus
+              </span>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
+                The Three Categories of Indian Traffic Signs
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Every RTO exam candidate must be able to recognize and differentiate between mandatory, cautionary, and informatory road signs:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-rose-600 dark:text-rose-400">1. Mandatory Signs</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/60 text-rose-600 font-bold">Circular</span>
+                </div>
+                <h4 className="font-bold text-slate-900 dark:text-white text-sm">Regulatory &amp; Legal Orders</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  These signs specify what you <strong>MUST or MUST NOT do</strong>. Violating a mandatory sign is a punishable offence under the Motor Vehicles Act.
+                </p>
+                <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+                  <p><strong>Examples:</strong> Stop (Octagonal), Give Way (Inverted Triangle), No Entry, One Way, Speed Limit (50/60/80), Horn Prohibited, No Overtaking.</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400">2. Cautionary Signs</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/60 text-amber-600 font-bold">Triangular</span>
+                </div>
+                <h4 className="font-bold text-slate-900 dark:text-white text-sm">Warning &amp; Hazard Alerts</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  These signs warn drivers of <strong>upcoming hazards, road geometry changes, or special zones</strong> so you can slow down in advance.
+                </p>
+                <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+                  <p><strong>Examples:</strong> Narrow Bridge, School Ahead, Pedestrian Crossing, Sharp Left/Right Curve, Steep Ascent/Descent, Slippery Road, Roundabout Ahead.</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">3. Informatory Signs</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-blue-50 dark:bg-blue-950/60 text-blue-600 font-bold">Rectangular</span>
+                </div>
+                <h4 className="font-bold text-slate-900 dark:text-white text-sm">Facilities &amp; Directions</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                  These signs guide drivers with <strong>useful information regarding distances, nearby facilities, and emergency services</strong>.
+                </p>
+                <div className="text-[11px] text-slate-500 space-y-1 pt-1 border-t border-slate-100 dark:border-slate-800">
+                  <p><strong>Examples:</strong> Hospital Ahead, Petrol Pump, First Aid Post, Eating Place, Public Telephone, Parking Area, Resting Place.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Common Mistakes & Traps */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span className="text-rose-500">❌</span> Top 5 Common Traps in the RTO Computer Exam
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              Many learners fail on their first attempt due to tricky wording or confusing subtle differences between traffic signals:
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wide">Trap 1: Flashing Red vs Flashing Yellow</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  A <strong>Flashing Red Light</strong> requires a complete stop before the stop line, proceeding only when safe. A <strong>Flashing Yellow Light</strong> means slow down and proceed through the junction with extra caution without needing to stop completely.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wide">Trap 2: Overtaking on the Left Side</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Overtaking from the left is normally prohibited. The <strong>only legal exception</strong> is when the vehicle in front is signaling and initiating a right turn, leaving sufficient clear space on the left.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wide">Trap 3: Roundabout Right of Way</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Traffic that is <strong>already circulating inside the roundabout</strong> always has priority over vehicles waiting to enter the roundabout from approaching roads.
+                </p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1.5">
+                <h4 className="text-xs font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wide">Trap 4: Mandatory L-Plate Rules</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Learners must paint or affix red &lsquo;L&rsquo; plates on a white background on <strong>both the front and rear</strong> of the vehicle, and must be accompanied by an instructor holding a valid permanent DL.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Practice vs Official Test Comparison Table */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+              Practice Test vs Official RTO Computer Test
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm text-slate-600 dark:text-slate-300 border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-bold">
+                    <th className="py-3 px-4">Feature / Parameter</th>
+                    <th className="py-3 px-4 text-emerald-600 dark:text-emerald-400">Zubware Mock Simulator</th>
+                    <th className="py-3 px-4">Official RTO Examination</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100 dark:divide-slate-800/60">
+                  <tr>
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">Purpose</td>
+                    <td className="py-3 px-4">Study preparation, practice &amp; self-evaluation</td>
+                    <td className="py-3 px-4">Statutory licensing evaluation</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">Language Support</td>
+                    <td className="py-3 px-4">English &amp; Hindi (bilingual switch)</td>
+                    <td className="py-3 px-4">English, Hindi &amp; state regional languages</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">Sign-Up &amp; Aadhaar Required</td>
+                    <td className="py-3 px-4 font-bold text-emerald-600">None (100% Free &amp; Private)</td>
+                    <td className="py-3 px-4">Aadhaar authentication / application login required</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">Question Review</td>
+                    <td className="py-3 px-4">Instant review with correct answers highlighted</td>
+                    <td className="py-3 px-4">Pass/Fail result screen at end of session</td>
+                  </tr>
+                  <tr>
+                    <td className="py-3 px-4 font-semibold text-slate-900 dark:text-white">Retake Limits</td>
+                    <td className="py-3 px-4">Unlimited free retries anytime</td>
+                    <td className="py-3 px-4">Re-attempt fee and waiting period apply</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* State Guidelines Note */}
+          <div className="glass-card p-6 rounded-2xl space-y-3">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span>🏛️</span> State-Wise Guidelines &amp; Official Verification
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+              Whether you are preparing for RTO tests in <strong>Uttar Pradesh (UP), Bihar, Maharashtra, Rajasthan, Delhi, Madhya Pradesh, Gujarat, Haryana, West Bengal, Karnataka, or other Indian states</strong>, the underlying road safety rules and sign categories are governed nationally by the Indian Motor Vehicles Act. However, slot booking procedures, touch screen interfaces, and question languages can vary across states. We advise all applicants to download their state transport department&rsquo;s official question handbook on <a href="https://parivahan.gov.in" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold underline">parivahan.gov.in</a> before scheduling their test.
+            </p>
+          </div>
+
+          {/* Related Tools for Indian Exam & License Applications */}
+          <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+              <span>🔗</span> Tools for Driving Licence &amp; Government Form Applications
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
+              <a
+                href={getLinkUrl('/photo-signature-joiner')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/photo-signature-joiner')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 block mb-1">
+                  Photo &amp; Signature Joiner →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Combine photo and signature into a single file for online application portals.
+                </span>
+              </a>
+
+              <a
+                href={getLinkUrl('/signature-resizer')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/signature-resizer')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 block mb-1">
+                  Signature Resizer →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Resize and compress signatures under 20KB for recruitment and Parivahan forms.
+                </span>
+              </a>
+
+              <a
+                href={getLinkUrl('/passport-photo-maker')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/passport-photo-maker')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 block mb-1">
+                  Passport Photo Maker →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Create printable 3.5×4.5 cm passport-size photos with white backgrounds.
+                </span>
+              </a>
+
+              <a
+                href={getLinkUrl('/age-calculator')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/age-calculator')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emerald-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 block mb-1">
+                  Age Calculator →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Check exact age eligibility (16 years for 50cc, 18 years for geared vehicles).
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3.7 DEDICATED SCIENTIFIC CALCULATOR IN-DEPTH GUIDE (Global-First & Advanced Math Curriculum) */}
+      {tool.id === 'scientific-calculator' && (
+        <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 border border-indigo-200/50 dark:border-indigo-900/40">
+          <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
+            <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+              Advanced Mathematics &amp; Computational Guide
+            </span>
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
+              Online Scientific Calculator — Formulas, Functions &amp; Trigonometry Guide
+            </h2>
+          </div>
+
+          {/* What is a Scientific Calculator vs Basic */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="text-indigo-600">🧮</span> What is a Scientific Calculator?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                A scientific calculator is an advanced mathematical computing tool designed to solve multi-step problems in <strong>algebra, trigonometry, physics, engineering, statistics, and calculus</strong>.
+              </p>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Unlike standard four-function calculators that compute numbers strictly from left to right as keys are pressed, Zubware&rsquo;s Scientific Calculator evaluates complete mathematical expressions using the <strong>Shunting-Yard algorithm</strong>, guaranteeing strict adherence to algebraic operator precedence (<strong>PEMDAS / BODMAS</strong>).
+              </p>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="text-indigo-600">⚡</span> Basic Calculator vs Scientific Calculator
+              </h3>
+              <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+                <li><strong>Order of Operations:</strong> Basic calculators compute <code>2 + 3 × 4 = 20</code> (immediate execution). Scientific calculators correctly evaluate <code>2 + 3 × 4 = 14</code> by prioritizing multiplication.</li>
+                <li><strong>Trigonometric Functions:</strong> Evaluates sine, cosine, tangent, and their inverses across Degree and Radian modes.</li>
+                <li><strong>Logarithmic Powers:</strong> Handles base-10 common logs (log₁₀) and natural logs (ln with base e).</li>
+                <li><strong>Nested Parentheses:</strong> Allows arbitrary nesting of expressions like <code>(5 + 3) / (4 - 2)</code>.</li>
+                <li><strong>Memory &amp; History:</strong> Stores running totals in memory registers (MC, MR, M+, M-) and records up to 15 calculations in local browser storage.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Trigonometry & Angle Modes Explained */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6">
+            <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-3">
+              <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
+                Trigonometric Architecture
+              </span>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
+                Degrees (DEG) vs Radians (RAD): Angle Mode Guide
+              </h3>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
+                Selecting the incorrect angle mode is the single most common cause of error in trigonometric calculations:
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Degree Mode (DEG)</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 font-bold">Standard School Math</span>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  In Degree mode, a full circle represents <strong>360 degrees (360°)</strong>. This mode is standard in high school geometry, navigation, surveying, and everyday engineering.
+                </p>
+                <div className="text-xs font-mono bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl space-y-1 text-slate-800 dark:text-slate-200">
+                  <p>• sin(30°) = 0.5</p>
+                  <p>• cos(60°) = 0.5</p>
+                  <p>• tan(45°) = 1</p>
+                </div>
+              </div>
+
+              <div className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Radian Mode (RAD)</span>
+                  <span className="text-xs px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950 text-emerald-600 font-bold">Calculus &amp; Physics</span>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+                  In Radian mode, an angle is measured by the arc length subtended on a unit circle, where a full revolution is <strong>2π radians (≈ 6.28318 rad)</strong>. This mode is mandatory in calculus, differential equations, and harmonic motion.
+                </p>
+                <div className="text-xs font-mono bg-slate-50 dark:bg-slate-800 p-2.5 rounded-xl space-y-1 text-slate-800 dark:text-slate-200">
+                  <p>• sin(π / 6) = 0.5 (since π/6 rad = 30°)</p>
+                  <p>• cos(π) = -1 (since π rad = 180°)</p>
+                  <p>• tan(π / 4) = 1 (since π/4 rad = 45°)</p>
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-slate-500 dark:text-slate-400 italic">
+              💡 Tip: Click the &ldquo;RAD / DEG&rdquo; toggle button in the top-left of the calculator display to switch instantly between angle units.
+            </p>
+          </div>
+
+          {/* Logarithms & Exponential Math */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="text-indigo-600">📈</span> Common Log (log₁₀) vs Natural Log (ln)
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Logarithms answer the question: <em>&ldquo;To what power must the base be raised to obtain this number?&rdquo;</em>
+              </p>
+              <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+                <li><strong>Common Logarithm (log₁₀):</strong> Base 10. Frequently used in chemistry (pH scale), acoustics (decibels), and earthquake intensity (Richter scale). Example: <code>log(100) = 2</code>, because 10² = 100.</li>
+                <li><strong>Natural Logarithm (ln):</strong> Base <em>e</em> (Euler&rsquo;s number ≈ 2.71828). Essential for exponential growth, radioactive decay, continuous compounding, and calculus derivatives. Example: <code>ln(e) = 1</code>, <code>ln(e²) = 2</code>.</li>
+              </ul>
+            </div>
+
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <span className="text-indigo-600">🔢</span> Powers, Roots &amp; Factorials
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Perform higher-order algebraic computations with single-button operations:
+              </p>
+              <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
+                <li><strong>Exponentiation (xʸ / ^):</strong> Raise any base to an arbitrary positive, negative, or fractional power. Example: <code>2^8 = 256</code>; <code>9^0.5 = 3</code>.</li>
+                <li><strong>Square Root (√x):</strong> Compute principal non-negative square roots. Example: <code>sqrt(144) = 12</code>.</li>
+                <li><strong>Factorial (n!):</strong> Computes the product of all positive integers up to <em>n</em>. Indispensable for permutations and combinations. Example: <code>5! = 5 × 4 × 3 × 2 × 1 = 120</code>.</li>
+                <li><strong>Mathematical Constants:</strong> Built-in exact definitions for Pi (<code>π ≈ 3.14159265</code>) and Euler&rsquo;s number (<code>e ≈ 2.71828182</code>).</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Verified Worked Examples */}
+          <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span className="text-emerald-500">✓</span> Mathematically Verified Benchmark Examples
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
+              Verify accuracy against these verified reference calculations:
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-1">
+              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Trigonometry</span>
+                <p className="text-sm font-mono font-bold text-slate-900 dark:text-white">sin(30°) in DEG</p>
+                <p className="text-base font-black text-emerald-600 font-mono">= 0.5</p>
+                <p className="text-[11px] text-slate-500">Exact half-unit ratio.</p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Logarithm</span>
+                <p className="text-sm font-mono font-bold text-slate-900 dark:text-white">log(1000)</p>
+                <p className="text-base font-black text-emerald-600 font-mono">= 3</p>
+                <p className="text-[11px] text-slate-500">Base-10 cube (10³ = 1000).</p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Factorial</span>
+                <p className="text-sm font-mono font-bold text-slate-900 dark:text-white">6!</p>
+                <p className="text-base font-black text-emerald-600 font-mono">= 720</p>
+                <p className="text-[11px] text-slate-500">6 × 5 × 4 × 3 × 2 × 1.</p>
+              </div>
+
+              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">Order of Operations</span>
+                <p className="text-sm font-mono font-bold text-slate-900 dark:text-white">2 + 3 × (4^2) - 10</p>
+                <p className="text-base font-black text-emerald-600 font-mono">= 40</p>
+                <p className="text-[11px] text-slate-500">2 + 3×16 - 10 = 2+48-10 = 40.</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Keyboard Shortcuts Reference */}
+          <div className="glass-card p-6 rounded-2xl space-y-3">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <span>⌨️</span> Desktop Keyboard Shortcuts
+            </h3>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              For rapid data entry on laptop and desktop computers, use your physical keyboard:
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+              <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <code className="font-bold text-indigo-600">0 - 9</code>: Numbers
+              </div>
+              <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <code className="font-bold text-indigo-600">+ - * /</code>: Basic Operators
+              </div>
+              <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <code className="font-bold text-indigo-600">( ) ^ %</code>: Parens, Power &amp; Mod
+              </div>
+              <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <code className="font-bold text-indigo-600">Enter</code>: Calculate (=)
+              </div>
+              <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <code className="font-bold text-indigo-600">Backspace</code>: Delete Last Char
+              </div>
+              <div className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                <code className="font-bold text-indigo-600">Esc</code>: Clear All (C)
+              </div>
+            </div>
+          </div>
+
+          {/* Related Math & Calculation Tools */}
+          <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
+              <span>🔗</span> Explore Related Mathematics &amp; Calculation Tools
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
+              <a
+                href={getLinkUrl('/percentage-calculator')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/percentage-calculator')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 block mb-1">
+                  Percentage Calculator →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Calculate percentage increase, markdown discounts, and relative proportions.
+                </span>
+              </a>
+
+              <a
+                href={getLinkUrl('/college-gpa-calculator')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/college-gpa-calculator')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 block mb-1">
+                  College GPA Calculator →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Compute weighted grade point averages and assess graduation academic honors.
+                </span>
+              </a>
+
+              <a
+                href={getLinkUrl('/age-calculator')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/age-calculator')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 block mb-1">
+                  Age Calculator →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Determine exact chronological age in completed years, months, and calendar days.
+                </span>
+              </a>
+
+              <a
+                href={getLinkUrl('/cement-calculator')}
+                onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/cement-calculator')); }}
+                className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all block text-xs group"
+              >
+                <span className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 block mb-1">
+                  Cement Concrete Calculator →
+                </span>
+                <span className="text-slate-500 dark:text-slate-400 text-[11px]">
+                  Calculate cement, sand, gravel volume and standard mix ratios (M15, M20, M25).
                 </span>
               </a>
             </div>

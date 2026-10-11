@@ -29,6 +29,18 @@ const INK_COLORS: Record<InkColor, { label: string; hex: string }> = {
 export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const { t } = useLanguage();
 
+  // On-demand load handwriting fonts
+  useEffect(() => {
+    const fontId = 'zubware-handwriting-fonts';
+    if (!document.getElementById(fontId)) {
+      const link = document.createElement('link');
+      link.id = fontId;
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Homemade+Apple&family=Kalam:wght@300;400;700&family=Sacramento&display=swap';
+      document.head.appendChild(link);
+    }
+  }, []);
+
   const [text, setText] = useState(
     'Assignment 1: Quantum Physics Overview\n\nIn physics, a quantum is the minimum amount of any physical entity involved in an interaction. The fundamental notion that a physical property may be "quantized" is referred to as the hypothesis of quantization.\n\nKey Concepts:\n1. Wave-particle duality of matter and radiation\n2. Heisenberg Uncertainty Principle\n3. Planck constant and energy quanta: E = h * f\n\nPlease submit all tutorial problem sets by next Tuesday morning.'
   );

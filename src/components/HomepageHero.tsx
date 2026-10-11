@@ -236,7 +236,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                 <span>
                   Found <strong className="text-indigo-600 dark:text-indigo-400">{searchResults.length}</strong> matching tools
                 </span>
-                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-400">
+                <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400">
                   <span>Use ↑↓ to navigate,</span>
                   <CornerDownLeft className="w-3 h-3 inline" />
                   <span>Enter to open</span>
@@ -261,9 +261,9 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                         <ToolIcon toolId={tool.id} category={tool.category} size="md" className="group-hover:scale-105 transition-transform" />
                         <div className="min-w-0">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <h4 className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                            <span className="text-sm font-bold text-slate-900 dark:text-white truncate group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                               {tool.title}
-                            </h4>
+                            </span>
                             {tool.badge && (
                               <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-md bg-indigo-100 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-300">
                                 {tool.badge}
@@ -290,7 +290,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                     <p className="text-sm font-bold text-slate-700 dark:text-slate-300">
                       No tools found matching &ldquo;{searchQuery}&rdquo;
                     </p>
-                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                    <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
                       Try searching for general keywords like &ldquo;PDF&rdquo;, &ldquo;Image&rdquo;, &ldquo;Split&rdquo;, &ldquo;Converter&rdquo;, or &ldquo;Calculator&rdquo;.
                     </p>
                   </div>

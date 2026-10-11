@@ -28,6 +28,10 @@ import { BlogArticle } from '../src/types';
 import { CategoryItem } from '../src/data/categoriesData';
 import { SITE_ORIGIN } from '../src/lib/siteConfig';
 import { getToolCanonicalPath, getToolCanonicalUrl } from '../src/lib/paths';
+import { getStaticImageToolSectionHtml } from './staticImageToolsContent';
+import { getStaticVideoBusinessSectionHtml } from './staticVideoBusinessContent';
+import { getStaticPdfToolSectionHtml } from './staticPdfToolsContent';
+import { getStaticDesignUtilitySecuritySectionHtml } from './staticDesignUtilitySecurityContent';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,6 +52,20 @@ function getToolHowToHeading(tool: ToolMeta): string {
   const specificHeadings: Record<string, string> = {
     'pdf-merge': 'How to Merge Multiple PDF Files Into One',
     'pdf-split': 'How to Split a PDF Into Separate Pages',
+    'image-to-pdf': 'How to Convert and Combine Images into a Single PDF',
+    'pdf-to-images': 'How to Convert PDF Pages into High-Resolution PNG & JPG Images',
+    'delete-pdf-pages': 'How to Delete and Remove Specific Pages from a PDF',
+    'extract-pdf-pages': 'How to Extract and Save Selected Pages from a PDF',
+    'protect-pdf': 'How to Encrypt and Password-Protect a PDF Document',
+    'unlock-pdf': 'How to Unlock and Remove Passwords from a PDF File',
+    'pdf-size-adjuster': 'How to Adjust PDF File Size to an Exact Target KB or MB',
+    'pdf-to-jpg': 'How to Convert PDF Pages into High-Quality JPG Images',
+    'edit-pdf': 'How to Add Text, Draw, and Annotate a PDF Online',
+    'pdf-to-word': 'How to Convert PDF Documents into Editable Word (.DOCX) Files',
+    'word-to-pdf': 'How to Convert Word (.DOCX) Documents into Vector PDF Files',
+    'pdf-to-text': 'How to Extract Plain Text and Scanned OCR from a PDF',
+    'pdf-to-excel': 'How to Extract PDF Tables into Excel (.XLSX) and CSV Spreadsheets',
+    'pdf-signature': 'How to Electronically Sign and Place Signatures on a PDF',
     'pdf-compressor': 'How to Compress and Reduce PDF File Size Online',
     'image-compressor': 'How to Compress Images to 20KB, 50KB, 100KB or 200KB',
     'image-resizer': 'How to Resize an Image Without Losing Its Aspect Ratio',
@@ -70,11 +88,54 @@ function getToolHowToHeading(tool: ToolMeta): string {
     'image-color-picker': 'How to Sample HEX and RGB Colors From an Image',
     'image-splitter-merger': 'How to Split or Combine Images in Your Browser',
     'resume-builder': 'How to Build a Professional Resume Online',
+    'subtitle-generator': 'How to Create, Sync, and Export Video Subtitles (.SRT & .VTT)',
+    'video-aspect-ratio': 'How to Convert Video Aspect Ratios for Reels, Shorts & YouTube',
+    'video-compressor': 'How to Compress and Reduce Video File Size Online',
+    'video-trimmer': 'How to Trim, Cut, and Split Video Clips in Your Browser',
     'gst-invoice-generator': 'How to Generate GST-Compliant Invoices Online',
+    'omr-sheet-generator': 'How to Generate and Print Custom OMR Answer Sheets & Keys',
+    'barcode-generator': 'How to Generate High-Resolution 1D Barcodes in SVG and PNG',
+    'loan-eligibility-calculator': 'How to Calculate Your Maximum Loan Eligibility and Borrowing Power',
+    'down-payment-calculator': 'How to Calculate Your Home Down Payment and Savings Target',
+    'us-income-tax-calculator': 'How to Calculate Federal & State Income Taxes and Paycheck Take-Home Pay',
+    'personal-loan-calculator': 'How to Calculate Personal Loan EMI, APR, and Amortization',
+    'sale-price-calculator': 'How to Calculate Sale Prices with Stacked Discounts and Sales Tax',
     'learning-licence-mock-test': 'How to Practice for the Driving Learning Licence Exam Online',
     'signature-resizer': 'How to Resize and Compress a Signature Image for Online Forms',
     'photo-signature-joiner': 'How to Combine Photo and Signature Into a Single Image for Online Applications',
-    'age-calculator': 'How to Calculate Your Exact Age by Date of Birth'
+    'age-calculator': 'How to Calculate Your Exact Age by Date of Birth',
+    'college-gpa-calculator': 'How to Calculate Your College Semester & Cumulative GPA',
+    'heic-to-jpg': 'How to Convert iPhone HEIC Photos to JPG Online',
+    'background-remover': 'How to Remove Background from Images with AI Online',
+    'crop-image': 'How to Crop and Trim Photos Online',
+    'signature-maker': 'How to Create a Digital Signature Online',
+    'discount-calculator': 'How to Calculate Discounted Sale Prices and Savings',
+    'cgpa-calculator': 'How to Convert 10-Point CGPA to Percentage Online',
+    'notice-period-calculator': 'How to Calculate Your Last Working Day and Notice Period',
+    'salary-hike-calculator': 'How to Calculate Salary Hike Percentage and New CTC',
+    'exam-score-calculator': 'How to Calculate Competitive Exam Marks with Negative Marking',
+    'qr-business-card-generator': 'How to Create a Contact vCard QR Business Card',
+    'contrast-checker': 'How to Check WCAG Color Contrast Ratios for Web Accessibility',
+    'unit-converter': 'How to Convert Units Across Metric and Imperial Measurement Systems',
+    'percentage-calculator': 'How to Calculate Percentages, Percentage Increase & Decrease, and Differences',
+    'emi-calculator': 'How to Calculate Loan EMI, Total Interest, and Prepayment Savings',
+    'currency-calculator': 'How to Calculate Currency Conversions and Foreign Exchange Rates',
+    'loan-calculator': 'How to Calculate Mortgage & Loan Amortization Schedules',
+    'roi-calculator': 'How to Calculate Return on Investment (ROI), Profit Margins, and Markup',
+    'compound-interest-calculator': 'How to Calculate Compound Interest Growth and Annualized CAGR',
+    'countdown-calculator': 'How to Calculate Exact Days, Hours, and Time Remaining to an Event',
+    'online-stopwatch': 'How to Time Splits and Record Laps with Millisecond Precision',
+    'countdown-timer': 'How to Set a Countdown Timer with Custom Alarm Chimes and Notifications',
+    'online-clock': 'How to Check Current Local Time and Synchronized World Clocks',
+    'time-zone-converter': 'How to Convert Time Zones and Plan International Meetings',
+    'cement-calculator': 'How to Calculate Concrete Volume, Cement Bags, Sand, and Gravel Quantities',
+    'random-letter-generator': 'How to Pick Random Alphabet Letters with Custom Case and Filters',
+    'qr-code-safety-checker': 'How to Scan and Inspect QR Codes for Malicious Links and Quishing Threats',
+    'typing-speed-test': 'How to Measure Words Per Minute (WPM) and Keystroke Accuracy Online',
+    'file-checksum-verifier': 'How to Calculate and Verify File Checksums (SHA-256, SHA-512, SHA-1, MD5)',
+    'passphrase-generator': 'How to Generate Cryptographically Secure Diceware Passphrases',
+    'password-strength-checker': 'How to Test Password Strength, Shannon Entropy, and Brute-Force Crack Time',
+    'text-encrypt-decrypt': 'How to Encrypt and Decrypt Confidential Text with AES Symmetric Keys',
   };
 
   return specificHeadings[tool.id] || `How to Use ${tool.navTitle || tool.title}`;
@@ -89,6 +150,34 @@ function getToolIntroParagraph(tool: ToolMeta): string {
       'Zubware PDF Merge combines multiple separate PDF documents into a single organized file directly in your browser. Whether you need to compile contracts, scanned receipts, academic assignments, or business reports, you can reorder pages by dragging and dropping multiple files simultaneously. All merging executes locally using client-side WebAssembly and pdf-lib, ensuring your confidential documents are never uploaded to remote servers.',
     'pdf-split':
       'Zubware PDF Split extracts specific pages, custom ranges, or separates every individual page from your PDF document into standalone files. Ideal for extracting signed agreement pages or downsizing large multi-chapter reports, it processes files locally in your browser memory with zero server uploads.',
+    'image-to-pdf':
+      'Zubware Image to PDF Converter compiles photos, scanned forms, receipts, and screenshots into standardized, multi-page PDF documents directly in your browser. Choose standard ISO page sizes (A4, US Letter, or Fit to Image), customize margin padding, reorder pictures intuitively, and export print-ready PDFs without uploading private photos to external servers.',
+    'pdf-to-images':
+      'Zubware PDF to Images extracts and rasterizes PDF document pages into high-resolution PNG or JPG images directly in your browser memory. Choose from 1x, 2x, or 3x DPI resolution multipliers for crystal-clear presentations and print graphics, and download individual pages or a consolidated ZIP archive with zero cloud bottlenecks.',
+    'delete-pdf-pages':
+      'Zubware Delete PDF Pages removes unwanted, blank, duplicate, or confidential pages from PDF documents with visual thumbnail previews and range selection. Reconstructs a clean, optimized PDF omitting deleted pages entirely, reducing file weight and protecting sensitive records with 100% private in-browser processing.',
+    'extract-pdf-pages':
+      'Zubware Extract PDF Pages isolates specific target pages, chapters, or signed agreement sheets from multi-page PDFs and compiles them into a standalone document. Select pages visually or input custom ranges (e.g., 1, 4-6, 11) while preserving original fonts, vector sharpness, and metadata with zero server uploads.',
+    'protect-pdf':
+      'Zubware Protect PDF encrypts sensitive financial statements, contracts, and confidential records with standard 128-bit and 256-bit AES encryption. Set user passwords for viewing access, configure owner passwords with granular restrictions against unauthorized printing or copying, and safeguard documents with 100% private browser WebAssembly cryptography.',
+    'unlock-pdf':
+      'Zubware Unlock PDF permanently strips password encryption and security restrictions from authorized PDF documents directly in your browser. By entering your known password once, it decrypts the document in memory and saves a clean, unencrypted PDF that opens friction-free on any device with zero server tracking.',
+    'pdf-size-adjuster':
+      'Zubware PDF Size Adjuster modifies PDF document weights to exact target KB or MB thresholds mandated by government exam portals (UPSC, SSC, IBPS, State PSCs) and university upload systems. Expand file size safely using standard PDF private data streams without blurring text or degrading visual layout, or compress oversized documents below upload limits with complete browser privacy.',
+    'pdf-to-jpg':
+      'Zubware PDF to JPG Converter transforms PDF document pages into universally compatible JPEG images with customizable compression quality (High 100%, Medium 80%, Low 60%) and multi-scale DPI resolution. Render crisp presentation graphics with automated white background filling, and download single pages or bulk ZIP archives directly from browser memory.',
+    'edit-pdf':
+      'Zubware Online PDF Editor provides an intuitive client-side workspace to add custom text overlays, draw freehand pen annotations, sketch arrows, and stamp signatures onto PDF documents. Permanently flattens edits directly into the PDF content stream with zero watermarks, zero logins, and complete device privacy.',
+    'pdf-to-word':
+      'Zubware PDF to Word Converter parses digital text, headings, and paragraph structures from PDF files and compiles them into native OpenXML Microsoft Word (.docx) documents. Inspect converted pages in an interactive reading pane and export clean, editable documents for MS Word and Google Docs with zero cloud uploads.',
+    'word-to-pdf':
+      'Zubware Word to PDF Converter transforms Microsoft Word (.docx) files into clean, standardized vector PDF documents directly in your browser. Unzips OpenXML packages, preserves headings, paragraphs, bulleted lists, and data tables, and generates print-ready vector PDFs with customizable page geometry (A4 or Letter) and margin formatting.',
+    'pdf-to-text':
+      'Zubware PDF to Text Converter extracts text from research papers, ebooks, and documents using a dual-engine architecture: instantaneous digital vector text extraction via pdfjs-dist, and client-side neural optical character recognition (OCR) via Tesseract.js for scanned, image-only documents across multiple languages with complete privacy.',
+    'pdf-to-excel':
+      'Zubware PDF to Excel Converter reconstructs tabular data from PDF invoices, bank account statements, and tax forms into editable spreadsheets. Groups text coordinates into rows and columns, provides an interactive table editor, and exports directly to Microsoft Excel (.xlsx) and CSV formats in browser memory.',
+    'pdf-signature':
+      'Zubware Sign PDF Online provides a fast, privacy-focused electronic signing workflow with 3 signature creation methods (draw with mouse/touchscreen, type cursive script, or upload signature image) and multi-page placement controls. Embeds signatures directly into PDF documents using client-side WebAssembly with zero server storage.',
     'pdf-compressor':
       'Zubware PDF Compressor reduces the file size of PDF documents directly in your browser without compromising readable text or vector layouts. Select from Extreme, Recommended, or High Quality compression presets to optimize scanned forms, multi-page reports, and contracts for email attachments and portal upload limits. All compression algorithms run 100% locally in your device memory with zero server uploads.',
     'image-compressor':
@@ -108,7 +197,29 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'resume-builder':
       'Zubware Resume Builder is a free online CV maker that lets you design professional, ATS-friendly resumes directly in your browser. Choose from 20 modern and classic templates, customize work experience and education sections, tailor skills and certifications, and instantly download a high-resolution PDF or backup JSON file. All data is saved automatically in your browser storage with zero server uploads, no user tracking, and no sign-up required.',
     'gst-invoice-generator':
-      'Zubware GST Invoice Generator creates compliant tax invoices with automatic CGST, SGST, IGST calculations, HSN/SAC codes, and instant PDF download. Built for small business owners and freelancers, financial calculation and PDF rendering occur client-side.',
+      'Zubware GST Invoice Generator creates legally structured Indian tax invoices with automatic CGST, SGST, and IGST tax bifurcation, HSN/SAC code classification, dynamic UPI payment QR codes, and instant vector PDF downloads. Purpose-built for Indian small business owners, freelancers, GST-registered traders, and consultancies, financial calculations and high-resolution PDF rendering execute 100% locally in your web browser memory with complete data privacy.',
+    'subtitle-generator':
+      'Zubware Video Subtitle & SRT Generator creates, synchronizes, and exports timed caption tracks for your videos directly in your browser. Load MP4, WebM, or MOV files into the synchronized player, dictate dialogue in real time using the browser Web Speech API, fine-tune timestamps down to tenths of a second, and download standardized SubRip (.srt) or WebVTT (.vtt) files for YouTube Studio and video editors with zero cloud uploads.',
+    'video-aspect-ratio':
+      'Zubware Video Aspect Ratio Converter reframes video footage for modern social media platforms including 9:16 vertical (TikTok, Instagram Reels, YouTube Shorts), 16:9 widescreen, 1:1 square, and 4:5 portrait posts. Choose between Contain mode with real-time blurred ambient padding or Cover mode for center cropping, and re-encode high-bitrate WebM video with synchronized audio directly in your browser.',
+    'video-compressor':
+      'Zubware Video Compressor reduces MP4, WebM, and MOV video file sizes directly in your browser without uploading private footage to remote cloud servers. Select from High, Medium, or Low bitrate presets, scale video dimensions to 75% or 50%, and preserve clear audio tracks while shrinking byte weights to fit under strict Discord, Gmail, and messaging upload limits.',
+    'video-trimmer':
+      'Zubware Video Trimmer & Cutter cuts, extracts, and slices video clips with frame-accurate precision directly in your browser. Drag interactive timeline scrubber handles, enter exact second and decimal cut points, test isolated looping previews, and export pristine trimmed WebM video clips with audio preserved and zero watermarks.',
+    'omr-sheet-generator':
+      'Zubware OMR Sheet Generator creates customizable, print-ready Optical Mark Recognition answer sheets and master answer keys for schools, coaching institutes, and competitive exam practice. Configure 20 to 150 questions, 4 to 6 options (A–D, A–E, A–F), student roll number grids, test booklet set codes, and corner fiducial registration marks, and export crisp 300 DPI A4 PDF documents ready for standard laser printers.',
+    'barcode-generator':
+      'Zubware Free Barcode Generator creates high-resolution vector SVG and raster PNG 1D barcodes across 9 standardized linear symbologies, including Code 128, EAN-13, UPC-A, Code 39, and ITF-14. Customize bar dimensions, colors, and human-readable text labels for warehouse inventory, shipping cartons, and retail product labeling with 100% private in-browser generation.',
+    'loan-eligibility-calculator':
+      'Zubware Loan Eligibility Calculator computes your maximum borrowing capacity and maximum allowable monthly installment (EMI) based on net take-home salary, existing loan commitments, expected interest rates, tenure, and lender Debt-to-Income (DTI / FOIR) caps. Evaluate current vs projected debt ratios and borrowing headroom with complete financial privacy.',
+    'down-payment-calculator':
+      'Zubware Down Payment Calculator determines required upfront cash for purchasing real estate, evaluating loan presets (Conventional 20% no-PMI, 3% minimum, FHA 3.5%, VA 0%), estimated closing costs (2%–5%), and compound savings growth in a High-Yield Savings Account (HYSA). Calculate exact monthly savings targets to reach your homebuying goal on time.',
+    'us-income-tax-calculator':
+      'Zubware US Income Tax Calculator models official IRS federal tax brackets for 2025 and 2026, standard deductions across all four filing statuses (Single, Married Joint, Married Separate, Head of Household), FICA Social Security and Medicare payroll taxes, and state income taxes across all 50 US states to calculate true take-home pay per paycheck.',
+    'personal-loan-calculator':
+      'Zubware Personal Loan Calculator computes fixed monthly payments (EMI), total interest costs, true APR incorporating upfront lender origination fees, and net disbursed funds. Model early loan payoff with extra monthly principal contributions and inspect a complete month-by-month amortization schedule with CSV spreadsheet export.',
+    'sale-price-calculator':
+      'Zubware Sale Price Calculator computes sequential retail markdowns, stacked promotional coupon codes, sales tax / VAT, and total out-of-pocket register costs across international currencies. Understand true effective discount percentages on clearance doorbusters with instantaneous browser calculations.',
     'learning-licence-mock-test':
       'Zubware Learning Licence Mock Test simulates the official RTO computer exam with questions covering mandatory traffic signs, road regulations, and driving rules. Available in bilingual English and Hindi with an optional 15-minute timer and instant score review.',
     'signature-resizer':
@@ -116,7 +227,71 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'photo-signature-joiner':
       'Zubware Photo and Signature Joiner is a free browser-based tool that stitches candidate passport photos and scanned signatures into a single unified image for competitive examinations, admit cards, and job applications. Choose between vertical stacked or horizontal side-by-side layouts, apply standard recruitment presets (such as 300×460 px), customize individual dimensions, gaps, and outer borders, and download compliant JPG or PNG files. All image composition executes client-side with zero server uploads.',
     'age-calculator':
-      'Zubware Age Calculator is a free online tool that calculates your exact chronological age in completed years, months, and days from your date of birth. Compare your age against today\'s date or any custom milestone, track total elapsed days, weeks, and hours, and view the countdown to your next birthday. All calculations execute instantly and privately inside your browser memory with zero server tracking.'
+      'Zubware Age Calculator is a free online tool that calculates your exact chronological age in completed years, months, and days from your date of birth. Compare your age against today\'s date or any custom milestone, track total elapsed days, weeks, and hours, and view the countdown to your next birthday. All calculations execute instantly and privately inside your browser memory with zero server tracking.',
+    'college-gpa-calculator':
+      'Zubware College GPA Calculator computes your semester grade point average (GPA) and cumulative college GPA on a standard 4.0 weighted scale. Add credit hours and letter grades (A+ to F) for each course to calculate quality points, assess graduation academic honors (Cum Laude, Magna Cum Laude, Summa Cum Laude), and plan upcoming semester target grades. All calculations execute instantly and privately in your browser memory with zero server tracking.',
+    'heic-to-jpg':
+      'Zubware HEIC to JPG Converter transforms Apple iPhone HEIC and HEIF photos into universal high-resolution JPG images directly in your browser. Batch convert multiple live photos or camera roll exports simultaneously without quality loss, account logins, or file size paywalls. All conversion algorithms execute 100% locally on your device with zero server uploads.',
+    'background-remover':
+      'Zubware Background Remover isolates subjects and removes image backgrounds automatically using client-side machine learning. Whether preparing product listings for e-commerce, creating passport photos, or designing social media graphics, you can download transparent PNGs instantly with zero watermarks. All neural network processing executes privately on your device via WebAssembly.',
+    'crop-image':
+      'Zubware Crop Image trims photos to custom pixel dimensions or preset social media aspect ratios (1:1 square, 4:5 vertical, 16:9 widescreen) directly in your browser. Preview your composition in real time and download high-resolution crops in JPG, PNG, or WebP format with zero server uploads.',
+    'signature-maker':
+      'Zubware Digital Signature Maker creates professional electronic signatures for legal contracts, PDF forms, and online employment applications. Draw your autograph using a touchscreen or mouse, type your name using elegant cursive fonts, or scan and clean a paper signature with transparent PNG export. All signature rendering happens locally inside your browser sandbox.',
+    'discount-calculator':
+      'Zubware Discount Calculator determines final retail checkout prices and total monetary savings across percentage discounts, flat cash price drops, stacked coupons, and local sales tax rates. Switch between single product calculations and multi-item shopping cart breakdowns with instant local browser computation.',
+    'cgpa-calculator':
+      'Zubware CGPA Calculator converts 10-point scale CGPA into equivalent percentage marks for Indian university students and competitive exam applications (CBSE, VTU, Mumbai University, AKTU). Calculate aggregate percentages with standard university multipliers (such as 9.5x) or custom conversion formulas with zero server tracking.',
+    'notice-period-calculator':
+      'Zubware Notice Period Calculator determines your exact Last Working Day (LWD) and remaining calendar days upon submitting a job resignation. Factor in contractual notice periods (30, 60, or 90 days), weekend policies, paid leave adjustments, and early release buyout estimates with complete privacy.',
+    'salary-hike-calculator':
+      'Zubware Salary Hike Calculator evaluates your annual appraisal increment, new gross salary, and percentage appraisal hike. Compare pre-hike and post-hike CTC compensation packages, monthly in-hand take-home changes, and job switch offers with zero server storage.',
+    'exam-score-calculator':
+      'Zubware Exam Score Calculator computes total raw scores, penalty deductions for incorrect responses, and net percentages for competitive entrance exams (such as SSC, UPSC, NEET, JEE, and Banking). Input attempted questions, correct answers, and negative penalty ratios to verify answer keys instantly.',
+    'qr-business-card-generator':
+      'Zubware QR Business Card Generator creates standardized vCard 3.0 digital contact barcodes for print and mobile networking. Encode full names, job titles, companies, telephone numbers, emails, addresses, and websites into scannable QR symbols with customizable dimensions, error correction levels, and vector SVG and high-resolution PNG downloads without cloud tracking.',
+    'contrast-checker':
+      'Zubware Contrast Checker calculates mathematically precise color contrast ratios between foreground text and background elements using the W3C sRGB relative luminance standard. Instantly evaluate WCAG 2.1 Level AA and Level AAA compliance across normal text, large headlines, and graphical user interface components with live visual card previews and complete browser privacy.',
+    'unit-converter':
+      'Zubware Unit Converter provides instantaneous two-way conversion across 7 core measurement categories: Length, Mass/Weight, Temperature, Volume, Area, Speed, and Digital Storage. Designed with high floating-point precision and standardized international conversion factors, all unit calculations run 100% locally in your browser with zero latency.',
+    'percentage-calculator':
+      'Zubware Percentage Calculator solves multi-scenario percentage math including finding percentages of values, calculating what percentage one number is of another, evaluating percentage increase and decrease, and compounding additions or discounts. Features clear step-by-step mathematical explanations and immediate client-side calculations.',
+    'emi-calculator':
+      'Zubware EMI Calculator computes equated monthly installments for home mortgages, auto loans, and personal loans using standard monthly reducing balance formulas. Input principal, annual interest rate, and tenure to evaluate monthly payments, total interest payable, annual amortization schedules, and interest saved through extra monthly prepayments.',
+    'currency-calculator':
+      'Zubware Currency Calculator performs instantaneous fiat currency conversions across major international currencies including USD, EUR, GBP, INR, JPY, CAD, AUD, and AED. Features benchmark foreign exchange rates, custom bank spread adjustments, and instant reciprocal rate comparisons without external network latency or tracker cookies.',
+    'loan-calculator':
+      'Zubware Loan & Mortgage Calculator provides comprehensive financial amortization modeling for residential home loans, commercial mortgages, and fixed-rate borrowing. Analyze monthly principal and interest payments, total lifetime financing costs, and accelerated payoff schedules achieved through recurring extra principal contributions.',
+    'roi-calculator':
+      'Zubware ROI & Profit Margin Calculator analyzes commercial profitability across three dedicated financial modes: Gross Profit Margin vs Markup %, Return on Investment (ROI) %, and Break-Even Unit Volume Analysis. Compare revenue gains against cost outlays with mathematically rigorous formulas and complete client-side data privacy.',
+    'compound-interest-calculator':
+      'Zubware Compound Interest & CAGR Calculator models exponential long-term wealth accumulation and annualized investment returns. Simulate initial deposits with recurring monthly contributions across daily, monthly, quarterly, or annual compounding frequencies, or calculate exact historical Compound Annual Growth Rates (CAGR) without server logging.',
+    'countdown-calculator':
+      'Zubware Countdown Calculator measures exact remaining time until future deadlines, exams, holidays, and milestones, or calculates elapsed time since past events. Breaks down calendar intervals into days, hours, minutes, seconds, total weeks, and working business days with live real-time ticking and zero cloud storage.',
+    'online-stopwatch':
+      'Zubware Online Stopwatch delivers high-resolution millisecond timing powered by the browser\'s performance.now() engine and requestAnimationFrame. Features start, pause, resume, and split lap recording with automated fastest/slowest lap identification and one-click clipboard export for athletic and productivity training.',
+    'countdown-timer':
+      'Zubware Countdown Timer provides precision duration countdowns with quick presets (including a 25-minute Pomodoro study timer) and custom hour/minute/second configurations. Features local Web Audio API synthesized chime alerts, HTML5 desktop notifications, and distraction-free fullscreen presentation mode with 100% offline functionality.',
+    'online-clock':
+      'Zubware Online Clock & World Clock displays accurate local system time down to the second with 12-hour (AM/PM) and 24-hour military toggles, full date formatting, and local time zone detection. Add multiple global cities (London, New York, Tokyo, Sydney, Mumbai, Dubai) to monitor real-time international business hours with zero server tracking.',
+    'time-zone-converter':
+      'Zubware Time Zone Converter coordinates cross-border meetings and global schedules using the international IANA time zone database. Compare source times against multiple target cities, account for seasonal Daylight Saving Time (DST) shifts, highlight standard 9-to-5 working hour overlaps, and copy meeting invitations directly to your clipboard.',
+    'cement-calculator':
+      'Zubware Cement Concrete Calculator estimates volumetric concrete requirements and raw material batches for slabs, footings, retaining walls, and columns. Supports Metric and Imperial units, standard nominal mix ratios (M15, M20, M25), dry volume void coefficients (1.54 factor), and wastage contingency buffers with complete in-browser calculation.',
+    'random-letter-generator':
+      'Zubware Random Letter Generator draws randomized letters from the English alphabet for word games, classroom phonics, vocabulary drills, and creative prompts. Configure uppercase, lowercase, or mixed casing, filter by vowels or consonants, control duplicate sampling, and choose custom delimiters with instant client-side generation.',
+    'qr-code-safety-checker':
+      'Zubware QR Code Safety Checker inspects QR code payloads safely inside an isolated browser sandbox before you open links. Decode QR codes via image upload, device camera, or text input, and evaluate structural security flags including insecure protocols, IP hostnames, URL shorteners, and credential phishing indicators with zero cloud data transmission.',
+    'typing-speed-test':
+      'Zubware Typing Speed Test evaluates keyboarding proficiency across 15, 30, and 60-second typing assessments. Calculates Net WPM, Gross WPM, percentage accuracy, and error counts using standardized 5-character word metrics with live visual feedback, multiple practice passages, and zero server logging.',
+    'file-checksum-verifier':
+      'Zubware File Checksum Verifier validates file integrity and verifies software downloads against published hashes using the browser\'s native Web Crypto API. Calculate SHA-256, SHA-512, SHA-1, and MD5 digests for large installers and disk images directly in browser RAM without uploading a single byte to external servers.',
+    'passphrase-generator':
+      'Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 8 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.',
+    'password-strength-checker':
+      'Zubware Password Strength Checker evaluates credential security in real-time through client-side heuristic inspection and Shannon entropy analysis. Detect common keyboard sequences, dictionary words, and character pool vulnerabilities, and review estimated brute-force resistance against offline GPU cracking clusters with zero network transmission.',
+    'text-encrypt-decrypt':
+      'Zubware AES Text Encrypt & Decrypt provides client-side symmetric-key cryptography to secure confidential notes, messages, and credentials with a private secret key. Transform plaintext into clean Base64-encoded ciphertext or decrypt cipher payloads in local browser memory with zero tracking and zero server storage.',
   };
 
   if (priorityIntros[tool.id]) {
@@ -414,6 +589,74 @@ function buildStaticPageJsonLd(page: StaticPageMeta, canonicalUrl: string): obje
   };
 }
 
+function renderStaticSiteFooter(): string {
+  return `
+    <footer style="margin-top: 4rem; border-top: 1px solid #e2e8f0; background-color: #f8fafc; padding: 3rem 1.5rem 2rem 1.5rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.85rem; color: #475569;">
+      <div style="max-width: 64rem; margin: 0 auto;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
+          <div>
+            <div style="font-size: 1.25rem; font-weight: 900; color: #0f172a; margin-bottom: 0.5rem; letter-spacing: -0.02em;">
+              Zubware
+            </div>
+            <p style="font-size: 0.8rem; color: #64748b; line-height: 1.5; margin: 0 0 1rem 0;">
+              Over ${TOOLS_DATA.length} free browser utilities for creators, developers, designers, and students with private client-side processing.
+            </p>
+            <div style="display: inline-block; font-size: 0.7rem; font-weight: 700; color: #166534; background: #dcfce7; padding: 0.2rem 0.5rem; border-radius: 0.375rem; border: 1px solid #bbf7d0;">
+              ✓ 100% Client-Side Privacy
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
+              Tool Categories
+            </h4>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><a href="${DOMAIN}/category/pdf-tools" style="color: inherit; text-decoration: none;">PDF Tools &amp; Utilities</a></li>
+              <li><a href="${DOMAIN}/category/image-tools" style="color: inherit; text-decoration: none;">Image &amp; Photo Tools</a></li>
+              <li><a href="${DOMAIN}/category/developer-tools" style="color: inherit; text-decoration: none;">Developer Utilities</a></li>
+              <li><a href="${DOMAIN}/category/design-tools" style="color: inherit; text-decoration: none;">Design &amp; Utility Tools</a></li>
+              <li><a href="${DOMAIN}/category/business-tools" style="color: inherit; text-decoration: none;">Business &amp; Invoicing Tools</a></li>
+              <li><a href="${DOMAIN}/categories" style="color: #4f46e5; font-weight: 700; text-decoration: none;">Explore All Categories &rarr;</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
+              Popular Utilities
+            </h4>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><a href="${DOMAIN}/pdf-merge" style="color: inherit; text-decoration: none;">PDF Merge Tool</a></li>
+              <li><a href="${DOMAIN}/pdf-split" style="color: inherit; text-decoration: none;">PDF Splitter &amp; Extractor</a></li>
+              <li><a href="${DOMAIN}/image-compressor" style="color: inherit; text-decoration: none;">Image Compressor</a></li>
+              <li><a href="${DOMAIN}/image-converter" style="color: inherit; text-decoration: none;">Online Image Converter</a></li>
+              <li><a href="${DOMAIN}/qr-generator" style="color: inherit; text-decoration: none;">QR Code Generator</a></li>
+              <li><a href="${DOMAIN}/resume-builder" style="color: inherit; text-decoration: none;">ATS Resume Builder</a></li>
+              <li><a href="${DOMAIN}/dashboard" style="color: #4f46e5; font-weight: 700; text-decoration: none;">User Dashboard</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
+              Platform &amp; Legal
+            </h4>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><a href="${DOMAIN}/blog" style="color: inherit; text-decoration: none;">Guides &amp; Articles</a></li>
+              <li><a href="${DOMAIN}/about" style="color: inherit; text-decoration: none;">About Zubware</a></li>
+              <li><a href="${DOMAIN}/contact" style="color: inherit; text-decoration: none;">Contact Us</a></li>
+              <li><a href="${DOMAIN}/privacy" style="color: inherit; text-decoration: none;">Privacy Policy</a></li>
+              <li><a href="${DOMAIN}/terms" style="color: inherit; text-decoration: none;">Terms of Service</a></li>
+              <li><a href="${DOMAIN}/disclaimer" style="color: inherit; text-decoration: none;">Disclaimer</a></li>
+              <li><a href="${DOMAIN}/help" style="color: inherit; text-decoration: none;">Help &amp; FAQ</a></li>
+              <li><a href="${DOMAIN}/changelog" style="color: inherit; text-decoration: none;">Changelog</a></li>
+              <li><a href="${DOMAIN}/feedback" style="color: inherit; text-decoration: none;">Send Feedback</a></li>
+            </ul>
+          </div>
+        </div>
+        <div style="border-top: 1px solid #e2e8f0; padding-top: 1.5rem; text-align: center; font-size: 0.75rem; color: #94a3b8;">
+          © 2026 Zubware.com. All Rights Reserved. Instant, private browser utilities.
+        </div>
+      </div>
+    </footer>
+  `;
+}
+
 function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
   const cleanCategory = tool.category.replace(/^[^\w]+/, '').trim();
   const toolCat = getCategoryForTool(tool.category);
@@ -485,6 +728,11 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           </li>`).join('\n          ')}
         </ol>
       </section>
+
+      ${getStaticImageToolSectionHtml(tool.id, DOMAIN)}
+      ${getStaticVideoBusinessSectionHtml(tool.id, DOMAIN)}
+      ${getStaticPdfToolSectionHtml(tool.id, DOMAIN)}
+      ${getStaticDesignUtilitySecuritySectionHtml(tool.id, DOMAIN)}
 
       ${tool.id === 'image-compressor' ? `
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
@@ -733,6 +981,119 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
         </div>
       </section>` : ''}
 
+      ${tool.id === 'learning-licence-mock-test' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          Learning Licence Mock Test Online — RTO Test Questions &amp; Road Rules Guide
+        </h2>
+        <div style="padding: 1rem; background-color: #fffbeb; border: 1px solid #fde68a; border-radius: 0.75rem; margin-bottom: 1.25rem; font-size: 0.85rem; color: #92400e; line-height: 1.6;">
+          <strong>Important Government Disclaimer:</strong> Zubware is an independent educational practice platform and is not affiliated with the Ministry of Road Transport and Highways (MoRTH), Parivahan Sewa, Sarathi portal, or any State RTO. This mock test is for study and preparation purposes only. Passing this practice test does not guarantee passing the official government test or issue any official licence. Verify official procedures at <a href="https://parivahan.gov.in" target="_blank" rel="noopener noreferrer" style="color: #b45309; font-weight: 700; text-decoration: underline;">parivahan.gov.in</a>.
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              What Is a Learning Licence (LL) Mock Test?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Before obtaining a permanent driving licence in India, applicants must pass a computer-based Learner's Licence (LL / LLR) examination testing basic traffic laws, mandatory road signs, and safe driving protocols under the Motor Vehicles Act. Zubware's simulator provides 40+ verified exam questions in bilingual English and Hindi with an optional 15-minute timer and instant answer reviews.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Three Classes of Indian Traffic Signs
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              1. <strong>Mandatory Signs:</strong> Circular with red borders (Stop, Speed Limit, No Entry) that are legally enforceable. 2. <strong>Cautionary Signs:</strong> Triangular with red borders (Narrow Bridge, School Ahead, Sharp Curve) warning of upcoming hazards. 3. <strong>Informatory Signs:</strong> Rectangular blue/green signs (Hospital, Petrol Pump) providing facility locations.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Common Traps in the RTO Exam
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              A flashing red signal mandates a complete stop before proceeding, while flashing yellow permits proceeding with caution. Overtaking on the left is only legal when the vehicle ahead signals a right turn. Inside roundabouts, circulating traffic always holds right of way over entering vehicles.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              State-Wise Context &amp; Verification
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Candidates preparing for tests across Uttar Pradesh (UP), Bihar, Maharashtra, Rajasthan, Delhi, Madhya Pradesh, Gujarat, Haryana, and other states face uniform national traffic laws, but passing thresholds (usually 60%) and computerized interface languages may differ by regional transport office. Always check your state transport portal for local procedures.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+          <h3 style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+            Explore Related Application Tools:
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.8rem;">
+            <a href="${DOMAIN}/photo-signature-joiner" style="color: #4f46e5; text-decoration: underline;">Photo &amp; Signature Joiner</a>
+            <span>•</span>
+            <a href="${DOMAIN}/signature-resizer" style="color: #4f46e5; text-decoration: underline;">Signature Resizer</a>
+            <span>•</span>
+            <a href="${DOMAIN}/passport-photo-maker" style="color: #4f46e5; text-decoration: underline;">Passport Photo Maker</a>
+            <span>•</span>
+            <a href="${DOMAIN}/age-calculator" style="color: #4f46e5; text-decoration: underline;">Age Calculator</a>
+          </div>
+        </div>
+      </section>` : ''}
+
+      ${tool.id === 'scientific-calculator' ? `
+      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
+        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
+          Online Scientific Calculator — Formulas, Functions &amp; Trigonometry Guide
+        </h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              What Is a Scientific Calculator?
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              A scientific calculator evaluates complex multi-step expressions in algebra, trigonometry, logarithms, roots, and physics. Built with a safe Shunting-Yard parser, Zubware Scientific Calculator strictly adheres to algebraic operator precedence (PEMDAS / BODMAS) rather than evaluating keystrokes from left to right.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Degrees (DEG) vs Radians (RAD)
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              In Degree mode, angles are measured on a 360° circle (sin(30°) = 0.5, tan(45°) = 1). In Radian mode, angles correspond to unit circle arc length where 2π radians = 360° (sin(π/6) = 0.5, cos(π) = -1). Click the DEG/RAD badge on display to toggle angle modes before trigonometric evaluations.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Logarithms &amp; Exponential Math
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Common log (log₁₀) computes base-10 powers (e.g. log(100) = 2, because 10² = 100), widely used in acoustics (dB) and chemistry (pH). Natural log (ln) computes base-e powers using Euler's constant e ≈ 2.71828 (e.g. ln(e) = 1), essential for calculus, growth, and decay formulas.
+            </p>
+          </div>
+          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
+            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
+              Powers, Roots &amp; Memory Registers
+            </h3>
+            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
+              Easily compute powers (xʸ), square roots (√x), and factorials (n! e.g. 5! = 120). Manage running totals with memory registers: MC (clear), MR (recall), M+ (add), and M- (subtract). All calculations are stored locally in your browser history with one-click reload.
+            </p>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+          <h3 style="font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+            Explore Related Calculation &amp; Academic Tools:
+          </h3>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; font-size: 0.8rem;">
+            <a href="${DOMAIN}/percentage-calculator" style="color: #4f46e5; text-decoration: underline;">Percentage Calculator</a>
+            <span>•</span>
+            <a href="${DOMAIN}/college-gpa-calculator" style="color: #4f46e5; text-decoration: underline;">College GPA Calculator</a>
+            <span>•</span>
+            <a href="${DOMAIN}/age-calculator" style="color: #4f46e5; text-decoration: underline;">Age Calculator</a>
+            <span>•</span>
+            <a href="${DOMAIN}/cement-calculator" style="color: #4f46e5; text-decoration: underline;">Cement Concrete Calculator</a>
+          </div>
+        </div>
+      </section>` : ''}
+
       ${faqs.length > 0 ? `
       <section style="margin-bottom: 2rem;">
         <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem;">
@@ -791,7 +1152,8 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           </a>`).join('\n          ')}
         </div>
       </section>` : ''}
-    </main>`;
+    </main>
+    ${renderStaticSiteFooter()}`;
 }
 
 function renderStaticPageContent(page: StaticPageMeta): string {
@@ -930,7 +1292,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
           <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
               <div style="font-size: 0.75rem; font-weight: 800; color: #4f46e5; margin-bottom: 0.25rem;">VERSION 2.0 • LATEST RELEASE</div>
-              <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 0 0 0.5rem 0;">307 Active Web Tools &amp; Authority Architecture</h3>
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin: 0 0 0.5rem 0;">308 Active Web Tools &amp; Authority Architecture</h3>
               <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">Added 13 dedicated category authority hubs, 30 technical guides, machine-readable llms.txt index, enhanced schema structured data, and offline WASM image pipelines.</p>
             </div>
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
@@ -1017,7 +1379,8 @@ function renderStaticPageContent(page: StaticPageMeta): string {
         ${escapeHtml(page.description)}
       </p>
       ${specificBody}
-    </main>`;
+    </main>
+    ${renderStaticSiteFooter()}`;
 }
 
 function buildBlogIndexJsonLd(canonicalUrl: string): object {
@@ -1093,7 +1456,8 @@ function renderBlogIndexContent(): string {
         </article>
         `).join('\n')}
       </div>
-    </main>`;
+    </main>
+    ${renderStaticSiteFooter()}`;
 }
 
 function buildBlogArticleJsonLd(article: BlogArticle, canonicalUrl: string): object {
@@ -1307,7 +1671,8 @@ function renderBlogArticleContent(article: BlogArticle): string {
           </a>`).join('\n          ')}
         </div>
       </section>` : ''}
-    </main>`;
+    </main>
+    ${renderStaticSiteFooter()}`;
 }
 
 // Generate categories.html content
@@ -1366,7 +1731,8 @@ function renderCategoriesPageContent(): string {
           </div>`;
         }).join('\n        ')}
       </section>
-    </main>`;
+    </main>
+    ${renderStaticSiteFooter()}`;
 }
 
 // Generate rich category authority hub HTML
@@ -1556,6 +1922,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
         </div>
       </section>
     </main>
+    ${renderStaticSiteFooter()}
   `;
 }
 
@@ -1767,7 +2134,8 @@ function renderHomepageContent(): string {
           </div>`).join('\n          ')}
         </div>
       </section>
-    </main>`;
+    </main>
+    ${renderStaticSiteFooter()}`;
 }
 
 function injectMetadataIntoHtml(

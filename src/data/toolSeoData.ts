@@ -52,76 +52,116 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "learning-licence-mock-test": {
     "howTo": [
       {
-        "title": "Choose Test Mode & Language",
-        "desc": "Select the comprehensive Mock Test or the Traffic Signs practice test, and choose English or Hindi language."
+        "title": "Select Language & Practice Mode",
+        "desc": "Choose between English and Hindi (हिंदी) language, and select either the 15-question Comprehensive Mock Test or the visual Traffic Signs Mode."
       },
       {
-        "title": "Answer Practice Questions",
-        "desc": "Read each road scenario or traffic sign prompt and select your answer before the countdown timer runs out."
+        "title": "Configure the Exam Timer",
+        "desc": "Toggle the optional 15-minute exam countdown timer to simulate real computer test pressure, or leave it off for relaxed untimed study."
       },
       {
-        "title": "Review Score & Detailed Explanations",
-        "desc": "Review your passing status, total score, and inspect explanations for any missed questions to prepare for your test."
+        "title": "Answer Road Rule & Traffic Sign Questions",
+        "desc": "Read each driving scenario or road sign illustration carefully and select your response from the four options provided."
+      },
+      {
+        "title": "Review Score, Pass Status & Detailed Answers",
+        "desc": "Check your final score against the 60% (9/15) passing threshold, and review every question to inspect the correct answers and explanations."
       }
     ],
     "faq": [
       {
         "question": "Is this an official government driving licence examination?",
-        "answer": "No. This is an educational practice simulator designed to help learners study road safety rules, traffic signals, and common exam questions before taking an official RTO exam."
+        "answer": "No. Zubware's Learning Licence Mock Test is an independent, free educational simulator designed for practice and preparation. It is not affiliated with the Ministry of Road Transport and Highways (MoRTH), Parivahan Sewa, Sarathi portal, or any state RTO. Official computer tests must be taken through authorized state transport authorities."
       },
       {
-        "question": "Can I practice traffic signs and road symbol questions separately?",
-        "answer": "Yes. Switch to the Traffic Signs tab to test your recognition of mandatory, cautionary, and informatory road signs with visual sign illustrations."
+        "question": "What is the typical passing score for the RTO Learner's Licence test in India?",
+        "answer": "In most Indian states, the official computer test presents 15 to 20 multiple-choice questions, with a minimum passing requirement of 60% (typically 9 out of 15, or 12 out of 20 correct answers). Our mock test uses the standard 60% passing mark."
       },
       {
-        "question": "Can I take the practice test in Hindi as well as English?",
-        "answer": "Yes. Use the language selector at the top to toggle between English and Hindi for all questions and explanations."
+        "question": "Can I practice the mock test in Hindi as well as English?",
+        "answer": "Yes. Our practice simulator provides full bilingual support. You can switch between English and Hindi (हिंदी) at any time to view questions, options, and explanations in your preferred language."
       },
       {
-        "question": "Can I take the practice test without a time limit?",
-        "answer": "Yes. You can disable the 30-second question timer to study and review question explanations at your own comfortable pace."
+        "question": "Does this test cover both two-wheeler (MCWG) and car (LMV) exam questions?",
+        "answer": "Yes. The core curriculum of the RTO learner's test—including road safety principles, right-of-way rules, overtaking laws, lane discipline, alcohol limits, and traffic signs—is universal across two-wheelers (Motorcycle with/without Gear) and Light Motor Vehicles (LMV)."
       },
       {
-        "question": "Is my test score or personal information stored on a server?",
-        "answer": "All test questions, timer state, and score calculations run locally inside your web browser without requiring an account or storing test results on a server."
+        "question": "What are the three main classes of traffic signs tested in the RTO exam?",
+        "answer": "Traffic signs in India are divided into: 1. Mandatory/Regulatory Signs (circular, red borders—e.g., Stop, No Entry, Speed Limit), which are legally enforceable; 2. Cautionary/Warning Signs (triangular, red borders—e.g., School Ahead, Sharp Curve), which alert you to road hazards; and 3. Informatory Signs (rectangular, blue/green—e.g., Hospital, Parking, First Aid)."
+      },
+      {
+        "question": "Can I practice traffic sign recognition questions separately?",
+        "answer": "Yes. Switch to the 'Traffic Signs' mode tab to test your recognition of visual road sign symbols, including speed limits, give way, narrow bridges, and regulatory prohibitions."
+      },
+      {
+        "question": "Do RTO exam questions and procedures vary between Indian states?",
+        "answer": "While fundamental traffic laws and road signs are governed nationally by the Motor Vehicles Act, specific test software, question counts, and passing criteria can vary slightly by state (such as Uttar Pradesh, Maharashtra, Bihar, Rajasthan, Delhi, Madhya Pradesh, or Karnataka). Always check your state transport department or Parivahan portal for local instructions."
+      },
+      {
+        "question": "Can I take this practice test without a time limit?",
+        "answer": "Yes. By default, the 15-minute countdown timer is optional. You can practice in untimed mode to read and understand each question thoroughly, or turn the timer on when you want to simulate real exam conditions."
+      },
+      {
+        "question": "Does passing this mock test guarantee passing the official RTO exam?",
+        "answer": "No. While regular practice on our simulator helps build confidence, speed, and knowledge of road regulations and traffic signs, passing an online mock test does not guarantee success on the official government test. Candidates should thoroughly study official driver manuals."
+      },
+      {
+        "question": "Is my test progress or personal information stored on a server?",
+        "answer": "No. All question randomization, timers, scoring, and reviews operate 100% locally inside your device browser. Zubware does not collect names, phone numbers, Aadhaar numbers, or test scores."
       }
     ]
   },
   "background-remover": {
     "howTo": [
       {
-        "title": "Upload Photo",
-        "desc": "Select or drag and drop a JPG, PNG, or WebP photo with a distinct foreground subject into the workspace."
+        "title": "Upload or Drag Your Image",
+        "desc": "Select or drag-and-drop a JPG, PNG, or WebP photo up to 20MB. Clear portraits, product photos, and distinct subjects yield the sharpest cutouts."
       },
       {
-        "title": "Automatic AI Subject Isolation",
-        "desc": "The client-side machine learning model analyzes the image and segments people, products, animals, or objects from the background."
+        "title": "Automatic In-Browser AI Segmentation",
+        "desc": "The client-side machine learning neural network segments foreground people, products, clothing, or objects from the background in seconds."
       },
       {
-        "title": "Preview & Download Transparent PNG",
-        "desc": "Use the comparison slider to inspect cutout edges, then download the resulting image as a transparent 32-bit PNG."
+        "title": "Inspect with Comparison Slider & Backdrops",
+        "desc": "Evaluate edge smoothness by switching between checkerboard, white, black, and grey preview backdrops, or drag the interactive before/after split slider."
+      },
+      {
+        "title": "Download Transparent PNG",
+        "desc": "Click 'Download' to save your high-resolution 32-bit transparent PNG cutout with alpha channel, ready for e-commerce, logos, or passport photos."
       }
     ],
     "faq": [
       {
-        "question": "What types of photos yield the cleanest background removal?",
-        "answer": "Images with sharp contrast between the subject and background, good lighting, and clear subject boundaries produce the highest quality cutouts."
+        "question": "How do I remove the background from an image for free?",
+        "answer": "Upload your photo into Zubware Background Remover. The browser-based AI model detects the foreground subject automatically and erases the background without requiring account sign-up, subscriptions, or watermarks. Once processing finishes, click 'Download' to get your transparent PNG."
       },
       {
-        "question": "Does the output file have a true transparent background?",
-        "answer": "Yes. The result is exported as a 32-bit PNG with an alpha channel, so you can place it over any backdrop, presentation, or design mockup."
+        "question": "Is my photo uploaded to an external server or cloud service?",
+        "answer": "No. Zubware's background removal engine runs 100% locally in your browser memory via WebAssembly and client-side machine learning. Your confidential photos, portraits, and product mockups never leave your device."
       },
       {
-        "question": "Why do fine hair strands or translucent fabrics sometimes show slight artifacts?",
-        "answer": "Hair and semi-transparent fabrics blend background and foreground pixels. In high-frequency areas, automated segmentation may retain slight edge fringing."
+        "question": "Does the downloaded image have a real transparent background?",
+        "answer": "Yes. The exported file is a true 32-bit PNG image with an alpha transparency channel (RGBA). You can place the cutout over website headers, marketing flyers, colored backdrops, or e-commerce white backgrounds without edge halos."
+      },
+      {
+        "question": "What types of photos yield the cleanest AI cutouts?",
+        "answer": "Photos with good contrast between the foreground subject and background, balanced lighting, and clear subject boundaries produce the cleanest results. Product photos, studio portraits, headshots, and animal photos work exceptionally well."
+      },
+      {
+        "question": "Can I use this tool to make white background passport photos?",
+        "answer": "Yes. Once the background is removed, you can switch the preview to white or take the transparent PNG into Zubware Passport & Visa Photo Maker to place it onto an official white or light grey passport backdrop."
       },
       {
         "question": "What image formats and file size limits are supported?",
-        "answer": "You can upload JPG, JPEG, PNG, and WebP images up to 20MB in size."
+        "answer": "Zubware supports JPG, JPEG, PNG, and WebP files up to 20MB. For maximum speed on mobile devices, photos between 1MB and 5MB process in under 3 to 5 seconds."
       },
       {
-        "question": "Is my photo sent to an external AI server for processing?",
-        "answer": "The image is processed in your browser using a client-side WebAssembly neural model and is not sent to a Zubware server for processing."
+        "question": "Why do fine hair strands or sheer fabrics sometimes show slight artifacts?",
+        "answer": "Semi-transparent fabrics and flyaway hair blend foreground and background pixels at high optical frequencies. If slight fringing occurs, previewing against a matching solid backdrop or increasing source image resolution helps minimize edge artifacts."
+      },
+      {
+        "question": "Can I remove backgrounds on mobile phones without installing an app?",
+        "answer": "Yes. Zubware is fully mobile-responsive and works directly inside Chrome, Safari, and Firefox on iPhone, iPad, and Android without downloading any app or software."
       }
     ]
   },
@@ -178,114 +218,150 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "image-converter": {
     "howTo": [
       {
-        "title": "Upload Source Files",
-        "desc": "Add one or more images in formats like PNG, JPG, WebP, GIF, BMP, or SVG."
+        "title": "Upload Images or Paste from Clipboard",
+        "desc": "Drag and drop, browse files, or press Ctrl+V / Cmd+V to paste images in PNG, JPG, WebP, GIF, BMP, AVIF, or SVG format."
       },
       {
-        "title": "Select Target Output Format",
-        "desc": "Choose a global target format such as WebP, JPG, or PNG, or specify different formats for individual queue items."
+        "title": "Choose Target Format & Compression Quality",
+        "desc": "Select your desired global target format (WebP, JPG, PNG, BMP, ICO, AVIF) and adjust the compression quality slider from 1% to 100%."
       },
       {
-        "title": "Convert and Download",
-        "desc": "Click Convert to encode the files in your browser, then download each converted file or download all as a ZIP archive."
+        "title": "Configure Background Color & Dimension Constraints",
+        "desc": "When converting transparent PNGs to opaque JPG or BMP, choose a solid matte color (default white). Optionally set max width and height limits."
+      },
+      {
+        "title": "Convert & Download Individually or as ZIP",
+        "desc": "Process your queue in seconds and download converted files one by one or click 'Download All as ZIP' for bulk archive export."
       }
     ],
     "faq": [
       {
-        "question": "Which image formats can I convert between?",
-        "answer": "The converter supports reading and exporting standard web image formats including JPG, PNG, WebP, GIF, BMP, and ICO."
+        "question": "How do I convert images between JPG, PNG, and WebP online?",
+        "answer": "Upload your photos into Zubware Image Converter, select your target output format (WebP, JPG, PNG, BMP, ICO, or AVIF) from the dropdown, adjust the quality slider, and click Convert. You can download individual converted images or save the entire batch in a single ZIP file."
       },
       {
-        "question": "What happens to transparency when converting a transparent PNG to JPG?",
-        "answer": "Because the JPEG format does not support alpha transparency channels, transparent areas are automatically filled with a clean white background."
+        "question": "Which image format should I convert to for web performance?",
+        "answer": "Modern WebP is recommended for website graphics, blogs, and e-commerce stores because it is typically 25% to 35% smaller than comparable JPGs and PNGs while retaining crisp visual quality and alpha transparency."
       },
       {
-        "question": "Does converting a JPG to PNG improve its image quality?",
-        "answer": "No. Converting to PNG prevents further quality loss during future edits, but cannot restore detail already lost in original JPEG compression."
+        "question": "What happens to transparency when converting PNG to JPG?",
+        "answer": "Because the JPEG format does not support alpha transparency channels, transparent areas are automatically matted onto a solid background. Zubware lets you pick your exact matte color (default clean white #FFFFFF) so your subject never gets surrounded by black artifacts."
       },
       {
-        "question": "Why should I convert existing images to WebP?",
-        "answer": "WebP provides 25% to 35% smaller file sizes than JPG and PNG at equivalent visual fidelity, speeding up website page loads."
+        "question": "Can I convert images to a Windows Favicon (.ico) file?",
+        "answer": "Yes. Select 'image/x-icon' (.ico) as your target format, and choose your preferred icon resolution (16x16, 32x32, 48x48, 64x64, 128x128, or 256x256 px). The tool creates a compliant ICO binary file for browser tabs and desktop shortcuts."
       },
       {
-        "question": "Can I convert photos between PNG, JPG, and WebP without uploading files?",
-        "answer": "Yes. All image decoding and re-encoding between PNG, JPG, WebP, GIF, and BMP formats happen locally inside your browser memory with zero file uploads."
+        "question": "Are my files uploaded to a remote server during conversion?",
+        "answer": "No. All image format parsing, canvas rasterization, and binary encoding execute 100% locally in your browser memory using HTML5 Canvas and WebAssembly. Your photos and graphics never touch any external server."
+      },
+      {
+        "question": "Can I convert SVG vector files to PNG or JPG images?",
+        "answer": "Yes. Upload any SVG graphic and select PNG or JPG as the output format. You can set max width and height dimensions to rasterize the SVG at crisp high-definition resolutions without pixelation."
+      },
+      {
+        "question": "Is there a limit on how many images I can convert at once?",
+        "answer": "There is no artificial limit. Because all conversions occur on your local device hardware, you can queue dozens of files and download the entire batch as a ZIP archive."
       }
     ]
   },
   "image-resizer": {
     "howTo": [
       {
-        "title": "Upload Your Image",
-        "desc": "Select the image you want to resize from your computer or mobile device."
+        "title": "Upload Photos to Resize",
+        "desc": "Drag and drop or select one or multiple images from your device. Clipboard paste (Ctrl+V / Cmd+V) is also supported."
       },
       {
-        "title": "Set Target Dimensions or Scale",
-        "desc": "Input custom pixel width and height with aspect ratio locked or unlocked, or scale by percentage."
+        "title": "Select Resizing Mode (Dimensions, %, or Presets)",
+        "desc": "Choose between Exact Dimensions (width and height in px with aspect ratio lock), Percentage Scaling (1% to 500%), or Social Media Presets."
       },
       {
-        "title": "Select Format and Download",
-        "desc": "Pick your preferred export format (PNG, JPEG, WebP), adjust quality if needed, and click Download Resized Image."
+        "title": "Pick Social Media or Display Preset",
+        "desc": "Quickly apply presets like Instagram Square (1080x1080), Instagram Story (1080x1920), YouTube Thumbnail (1280x720), LinkedIn Header, Full HD, or 4K."
+      },
+      {
+        "title": "Select Output Format & Download",
+        "desc": "Choose WebP, JPEG, PNG, or BMP export, fine-tune the quality slider, and download resized pictures individually or as a ZIP package."
       }
     ],
     "faq": [
       {
-        "question": "How can I prevent my resized image from looking stretched or distorted?",
-        "answer": "Keep the Lock Aspect Ratio toggle enabled. When you enter a new width, the corresponding height calculates automatically to maintain exact natural proportions."
+        "question": "How do I resize an image without losing quality or stretching?",
+        "answer": "Upload your picture to Zubware Image Resizer and ensure the 'Lock Aspect Ratio' toggle is enabled (chain link icon). When you enter a new width, the height calculates automatically based on the original proportions, preventing distortion or stretching."
       },
       {
-        "question": "What happens if I enlarge an image beyond its original resolution?",
-        "answer": "Enlarging (upscaling) an image interpolates existing pixels, which can introduce blurriness or soft edges because the original file does not contain extra detail."
+        "question": "What is the best photo resolution for Instagram posts and stories?",
+        "answer": "For standard feed square posts, use 1080×1080 px (1:1). For portrait posts, use 1080×1350 px (4:5). For Instagram Stories and Reels, use 1080×1920 px (9:16). Zubware includes one-click presets for all of these standard social media dimensions."
       },
       {
-        "question": "Can I resize by percentage instead of exact pixels?",
-        "answer": "Yes. Switch to Percentage mode and use the scale slider (e.g., 50% for half size or 200% for double size) to scale both dimensions uniformly."
+        "question": "Can I resize photos by percentage instead of exact pixels?",
+        "answer": "Yes. Switch to 'Percentage' mode and use the slider or input field to scale your image up or down (e.g., 25%, 50%, 75%, 200%). Both width and height scale proportionately."
       },
       {
-        "question": "Which format should I select when saving my resized image?",
-        "answer": "Choose PNG if your image contains text, sharp graphics, or transparency; choose JPG or WebP for photographs to keep file size compact."
+        "question": "Can I resize multiple photos simultaneously in batch?",
+        "answer": "Yes. Add multiple images to the queue and configure your target width, height, or preset. All images will be resized simultaneously, and you can download them all together in a single ZIP archive."
       },
       {
-        "question": "Can I preserve the original aspect ratio while resizing photos locally?",
-        "answer": "Yes. Locking the aspect ratio automatically calculates proportional height for any width you enter, and all pixel scaling takes place directly in your browser without uploading."
+        "question": "Will resizing photos reduce their file size in megabytes?",
+        "answer": "Yes. Scaling down pixel dimensions (e.g., reducing a 4000×3000 camera photo to 1920×1440) drastically decreases pixel count and file size, making photos faster to email, post on social media, or upload to websites."
+      },
+      {
+        "question": "Are my images stored or tracked on any server?",
+        "answer": "No. Zubware Image Resizer executes completely inside your browser memory using HTML5 Canvas bicubic interpolation. Your photos remain 100% private on your own device."
+      },
+      {
+        "question": "Can I resize photos on iPhone and Android mobile browsers?",
+        "answer": "Yes. The tool is fully responsive and touch-friendly. You can select photos directly from your smartphone camera roll, apply mobile presets, and save resized images back to your gallery."
       }
     ]
   },
   "crop-image": {
     "howTo": [
       {
-        "title": "Upload Image",
-        "desc": "Select or drop the photo you need to crop into the interactive canvas."
+        "title": "Select or Drag Your Image",
+        "desc": "Upload a JPG, PNG, or WebP photo into the workspace. The interactive cropping canvas will initialize immediately."
       },
       {
-        "title": "Adjust Crop Box or Select Aspect Preset",
-        "desc": "Drag the handles to frame your subject, or pick a preset ratio such as 1:1 square, 16:9 widescreen, or 4:3 standard."
+        "title": "Select Aspect Ratio Preset or Freeform Crop",
+        "desc": "Choose Freeform, 1:1 Square (Instagram), 4:3, 16:9 (YouTube), 9:16 (Reels/Shorts), or A4 document ratio to lock the selection bounds."
       },
       {
-        "title": "Crop and Download",
-        "desc": "Optionally zoom or rotate the orientation, review the pixel dimensions of the crop selection, and download the cropped file."
+        "title": "Adjust Position, Zoom & Rotation",
+        "desc": "Drag the crop frame handles to reposition your crop. Use 90° rotation buttons or zoom controls to frame the subject perfectly."
+      },
+      {
+        "title": "Export Cropped Image in PNG, JPG, or WebP",
+        "desc": "Preview the live cropped result and click 'Download' to save the high-resolution cropped image directly to your device."
       }
     ],
     "faq": [
       {
-        "question": "Can I crop to specific social media ratios like Instagram or YouTube?",
-        "answer": "Yes. The preset menu includes 1:1 (Instagram feed), 16:9 (YouTube thumbnails & widescreen), 4:3, 3:2, and freeform custom cropping."
+        "question": "How do I crop an image into a 1:1 square online?",
+        "answer": "Upload your photo into Zubware Crop Image and click the '1:1 (Square)' preset button. The selection box locks to equal width and height. Drag the box over your subject and click 'Download' to get a crisp square photo perfect for Instagram or profile avatars."
       },
       {
-        "question": "Does cropping an image reduce its file size?",
-        "answer": "Yes. Discarding pixels outside the crop boundary lowers overall pixel count, which typically results in a smaller saved file size."
+        "question": "What aspect ratio should I use for YouTube video thumbnails?",
+        "answer": "YouTube thumbnails require a 16:9 widescreen aspect ratio (standard resolution is 1280×720 pixels). Click the '16:9' preset button in Zubware Crop Image to ensure your thumbnail crops without black sidebars."
       },
       {
-        "question": "Can I zoom and pan inside the crop frame before saving?",
-        "answer": "Yes. You can use the zoom slider and pan controls to fine-tune your subject placement within the crop frame before exporting."
+        "question": "Can I rotate my image before cropping?",
+        "answer": "Yes. Use the Rotate 90° button to orient sideways or upside-down photos correctly before finalizing your crop boundary."
       },
       {
-        "question": "Does cropping a transparent PNG preserve its transparency?",
-        "answer": "Yes. If you crop a PNG file and export in PNG format, the alpha transparency channel in the cropped region remains fully intact."
+        "question": "Can I crop photos into vertical 9:16 for TikTok and Instagram Reels?",
+        "answer": "Yes. Select the '9:16' preset to crop vertical smartphone video cover frames, Instagram Stories, and TikTok banners."
       },
       {
-        "question": "Does cropping execute locally without uploading my photo to cloud servers?",
-        "answer": "Yes. Crop boundaries, aspect ratio presets, and pixel slicing are executed entirely on an in-memory HTML5 canvas without transmitting image data."
+        "question": "Does cropping reduce the resolution or clarity of my picture?",
+        "answer": "Cropping extracts original pixels from inside the selection area without re-scaling or pixel degradation. The exported image maintains 100% of the original sensor clarity within the cropped boundary."
+      },
+      {
+        "question": "Is my photo uploaded to any cloud server?",
+        "answer": "No. All canvas rendering, bounding-box calculation, and image clipping execute 100% locally inside your browser memory. Your images remain private."
+      },
+      {
+        "question": "Which export formats can I download?",
+        "answer": "You can download your cropped picture in lossless PNG, standard JPG, or modern WebP format."
       }
     ]
   },
@@ -368,38 +444,54 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "image-watermark": {
     "howTo": [
       {
-        "title": "Upload Base Photo",
-        "desc": "Select the photograph or graphic you want to brand and protect."
+        "title": "Upload Your Base Image",
+        "desc": "Select the photo, artwork, or document you want to protect from unauthorized copying or distribution."
       },
       {
-        "title": "Configure Watermark Text or Logo",
-        "desc": "Choose text or image watermark, customize font styling, color, opacity, rotation angle, and canvas placement."
+        "title": "Choose Watermark Type (Text or Image Logo)",
+        "desc": "Select 'Text' to type custom copyright text, company names, or dates, or choose 'Image' to upload a transparent PNG brand logo."
       },
       {
-        "title": "Apply and Download",
-        "desc": "Review the live watermarked preview on the canvas and click Download Watermarked Image."
+        "title": "Customize Typography, Opacity & Rotation",
+        "desc": "Adjust font size, font family, text color, drop shadow, transparency percentage (0-100%), and angle rotation (-180° to +180°)."
+      },
+      {
+        "title": "Select Placement or Tiled Diagonal Repeat",
+        "desc": "Place the watermark in the Center, Top-Left, Top-Right, Bottom-Left, Bottom-Right, or choose 'Repeat' to tile diagonal watermarks across the entire photo."
+      },
+      {
+        "title": "Download High-Resolution Protected PNG",
+        "desc": "Inspect the live canvas preview and download your watermarked image in full resolution with zero server uploads."
       }
     ],
     "faq": [
       {
-        "question": "Can I use a transparent PNG as an image watermark logo?",
-        "answer": "Yes. Uploading a PNG logo with transparency allows your graphic or emblem to overlay cleanly onto photos without a solid rectangular background."
+        "question": "How do I add a transparent watermark to my photos online for free?",
+        "answer": "Upload your photo into Zubware Watermark Image, enter your watermark text or upload a transparent PNG logo, adjust the opacity slider to 40%–60%, and pick your placement. The watermark blends seamlessly into the image, and you can download the result instantly."
       },
       {
-        "question": "What does the Tile Repeat pattern do?",
-        "answer": "The Tile option repeats your watermark across the entire image at regular intervals, preventing unauthorized cropping of corner marks."
+        "question": "How can I prevent people from cropping out my watermark?",
+        "answer": "Select the 'Repeat' position mode. This tiles your watermark diagonally across the entire photo at your chosen rotation angle and opacity, making it virtually impossible for content scrapers to crop out your copyright mark."
       },
       {
-        "question": "How transparent should a protective watermark be?",
-        "answer": "An opacity between 25% and 40% usually offers effective copyright protection while keeping the underlying photo content clearly visible."
+        "question": "Can I use my own company logo as a watermark?",
+        "answer": "Yes. Switch the Watermark Type to 'Image' and upload your company logo (PNG with transparent background is recommended). You can adjust its scale, transparency, rotation, and position."
       },
       {
-        "question": "Can I customize the watermark font, color, and drop shadow?",
-        "answer": "Yes. You can select font families, change text color, add a subtle drop shadow for legibility over bright backgrounds, and rotate the mark."
+        "question": "Does adding a watermark lower the quality of my original photo?",
+        "answer": "No. Zubware creates an HTML5 canvas matching the natural pixel dimensions of your original photo, ensuring your image remains sharp and uncompressed."
       },
       {
-        "question": "Can I apply text or logo watermarks without sending graphics to a server?",
-        "answer": "Yes. Both text rendering and PNG logo overlay compositing occur directly on your local device canvas without cloud processing."
+        "question": "Are my original and watermarked photos uploaded to any server?",
+        "answer": "No. All watermarking operations happen 100% locally in your device's browser memory. Zubware never stores, transmits, or logs your images."
+      },
+      {
+        "question": "Can I add text shadows so the watermark is readable on light and dark backgrounds?",
+        "answer": "Yes. Zubware includes an automatic text drop-shadow toggle that adds a subtle dark outline, ensuring white watermark text is clearly readable even against bright white clouds or snow."
+      },
+      {
+        "question": "Can I watermark photos on iPhone or Android mobile devices?",
+        "answer": "Yes. The tool is fully mobile-responsive and works directly inside Chrome, Safari, and Firefox on mobile phones and tablets."
       }
     ]
   },
@@ -482,38 +574,50 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "exif-remover": {
     "howTo": [
       {
-        "title": "Select Photos",
-        "desc": "Upload one or multiple camera or smartphone images containing embedded metadata."
+        "title": "Select Photos to Sanitize",
+        "desc": "Upload one or multiple photos from your phone, digital camera, or computer. Batch processing is fully supported."
       },
       {
-        "title": "Inspect Detected Metadata",
-        "desc": "Review identified EXIF tags including camera make, shutter speed, date/time, and GPS coordinates."
+        "title": "Inspect Embedded EXIF Metadata Tags",
+        "desc": "The tool scans each image for hidden GPS coordinates, camera hardware details, timestamps, device serial numbers, and software history."
       },
       {
-        "title": "Strip EXIF and Download",
-        "desc": "Click to sanitize your photos, removing all tracking metadata, and download the cleaned files or a ZIP bundle."
+        "title": "Automatic In-Browser Metadata Stripping",
+        "desc": "Zubware re-encodes the image data onto a clean canvas buffer, purging all binary EXIF, IPTC, and XMP metadata chunks while retaining 100% visual pixel quality."
+      },
+      {
+        "title": "Download Cleaned Images Individually or Batch",
+        "desc": "Compare original vs cleaned byte sizes, and download sanitized photos with '_no_exif' filenames individually or all at once."
       }
     ],
     "faq": [
       {
-        "question": "What private information is stored in photo EXIF data?",
-        "answer": "EXIF metadata commonly contains exact GPS latitude and longitude coordinates, capture timestamps, camera/phone serial numbers, and device settings."
+        "question": "Why should I remove EXIF data before posting photos online?",
+        "answer": "Modern smartphones and digital cameras embed sensitive personal data inside photo files, including exact GPS latitude/longitude (pinpointing your home or school), camera make and model, date and time, and device serial numbers. Stripping EXIF protects your location privacy and personal security."
       },
       {
-        "question": "Does stripping EXIF data reduce the visual quality of my photo?",
+        "question": "Does removing EXIF metadata reduce image quality?",
         "answer": "No. EXIF data is non-visual header metadata. Removing it strips hidden tags without altering pixel resolution or image clarity."
       },
       {
-        "question": "Why should I remove EXIF data before uploading photos online?",
-        "answer": "Removing EXIF protects your privacy by preventing strangers or scrapers from discovering where you live, work, or took the photograph."
+        "question": "Does this tool remove GPS location coordinates from iPhone and Android photos?",
+        "answer": "Yes. All GPS geotags, including altitude, latitude, longitude, and location timestamps, are completely stripped from the output file."
       },
       {
-        "question": "Can I sanitize multiple photos at once?",
-        "answer": "Yes. You can upload batches of photos, strip metadata from all files in one operation, and download them together in a ZIP file."
+        "question": "Are my private photos uploaded to a server to remove EXIF data?",
+        "answer": "No. Zubware EXIF Remover executes 100% locally in your browser memory using HTML5 Canvas. Your photos are never uploaded to any remote server or stored in the cloud."
       },
       {
-        "question": "Can I strip GPS location and camera metadata without uploading my photos?",
-        "answer": "Yes. The EXIF scrubber reads the binary JPEG/PNG byte stream and removes metadata headers locally in browser memory before you download the clean image."
+        "question": "Can I remove EXIF data from multiple photos at the same time?",
+        "answer": "Yes. You can select multiple images simultaneously. Each photo is sanitized in the background, and you can download them one by one or click 'Download Cleaned' for batch export."
+      },
+      {
+        "question": "Does removing EXIF data make photo file sizes smaller?",
+        "answer": "Yes. Metadata headers, embedded camera thumbnails, and color profiles can consume between 10KB and 150KB of unnecessary data per image. Removing them reduces file size slightly while boosting privacy."
+      },
+      {
+        "question": "Which image file formats are supported?",
+        "answer": "Zubware supports all standard camera and web photo formats, including JPG (JPEG), PNG, and WebP."
       }
     ]
   },
@@ -786,38 +890,50 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "favicon-generator": {
     "howTo": [
       {
-        "title": "Upload Square Icon or Logo",
-        "desc": "Select a high-resolution square graphic (512x512 PNG recommended) for your website favicon."
+        "title": "Upload High-Resolution Logo or Icon",
+        "desc": "Select or drag a square PNG, JPG, WebP, or SVG logo (recommended 512x512 px with a transparent background) into the generator."
       },
       {
-        "title": "Review Generated Sizes",
-        "desc": "Inspect the automatically generated icon sizes including 16x16, 32x32, 48x48, 180x180 Apple Touch, and 192x192 Android."
+        "title": "Inspect Multi-Resolution Previews",
+        "desc": "Review live visual previews across all standard sizes: 16x16 browser tab, 32x32 taskbar bookmark, 48x48 desktop shortcut, 180x180 iOS Apple Touch, and 192x192 / 512x512 Android PWA icons."
       },
       {
-        "title": "Download ZIP & Copy HTML",
-        "desc": "Download the complete icon package as a ZIP archive and copy the ready-to-paste HTML <link> tags for your website header."
+        "title": "Configure Web App Manifest Settings",
+        "desc": "Customize your app name, short name, theme color, and background color to automatically generate a compliant site.webmanifest file."
+      },
+      {
+        "title": "Download Favicon Suite & Copy HTML Head Code",
+        "desc": "Download the complete favicon_package.zip containing binary favicon.ico, all PNG sizes, and manifest, then copy the ready-to-paste HTML <link> tags."
       }
     ],
     "faq": [
       {
-        "question": "What file formats and sizes are included in the generated ZIP?",
-        "answer": "The bundle includes standard 16x16 and 32x32 favicons, a 48x48 icon, a 180x180 Apple Touch Icon, and a 192x192 Android Chrome icon."
+        "question": "What files and sizes are included in the generated favicon package?",
+        "answer": "The ZIP archive includes the classic multi-resolution binary favicon.ico (16x16, 32x32, 48x48), individual high-DPI PNGs (16x16, 32x32, 48x48, 64x64, 128x128, 180x180 Apple Touch, 192x192 Android, 512x512 PWA splash), and a pre-configured site.webmanifest."
       },
       {
-        "question": "Why does my website need multiple favicon sizes?",
-        "answer": "Different platforms require specific resolutions: browser tabs use 16x16, bookmarks use 32x32, iPhones use 180x180, and Android home screens use 192x192."
+        "question": "Why do modern websites require both favicon.ico and PNG icons?",
+        "answer": "Legacy desktop browsers and search engine crawlers (including Googlebot) look specifically for favicon.ico at your root domain, whereas iOS Safari, iPadOS, and Android Chrome PWA home screens require dedicated high-resolution PNG icons declared via <link rel='apple-touch-icon'> and web app manifests."
       },
       {
-        "question": "How do I add the generated favicons to my website?",
-        "answer": "Unzip the files into your website root directory, copy the provided <link> meta tags, and paste them inside your HTML <head> section."
+        "question": "Where should I place the favicon files in my website project?",
+        "answer": "Place all extracted files directly in your website public root directory (e.g. /public in Vite, Next.js, and Nuxt, or /public_html on Apache/Nginx). This ensures legacy browsers can fetch /favicon.ico automatically."
       },
       {
         "question": "What is the best source image to upload for favicon generation?",
-        "answer": "A high-contrast square PNG with a transparent background, at least 512x512 pixels, provides the sharpest downsampled icons across all sizes."
+        "answer": "A square 512x512 pixel PNG with a transparent background, high visual contrast, and bold graphic shapes works best. Fine text or intricate details become illegible when downscaled to 16x16 pixels."
       },
       {
-        "question": "Are multi-resolution icons and favicon.ico files generated locally?",
-        "answer": "Yes. Icon scaling (16x16 to 512x512) and binary ICO bundling execute completely in your browser without uploading brand logos."
+        "question": "How do I add the generated HTML code to my web pages?",
+        "answer": "Copy the provided HTML code snippet from Zubware and paste it inside the <head>...</head> tags of your HTML template or root layout component before publishing."
+      },
+      {
+        "question": "Why is my new favicon not updating in my browser?",
+        "answer": "Browsers aggressively cache favicons. To see your update immediately, clear your browser cache, perform a hard refresh (Ctrl+F5 or Cmd+Shift+R), or test the URL in an Incognito / Private browsing window."
+      },
+      {
+        "question": "Are my proprietary logos or brand graphics uploaded to any server?",
+        "answer": "No. All canvas downsampling, color space preservation, and binary ICO generation execute 100% locally inside your browser memory with zero cloud uploads."
       }
     ]
   },
@@ -862,76 +978,108 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "gif-maker": {
     "howTo": [
       {
-        "title": "Upload Animation Frames",
-        "desc": "Select or drag multiple sequential photos or illustrations into the frame timeline."
+        "title": "Upload Sequence of Images or Photos",
+        "desc": "Select or drag multiple sequential photos, illustrations, or meme frames (JPG, PNG, WebP) into the upload area."
       },
       {
-        "title": "Configure Speed & Direction",
-        "desc": "Adjust frame delay (milliseconds per frame), set playback direction (Forward, Reverse, Ping-Pong), and preview the animation."
+        "title": "Arrange and Reorder Timeline Frames",
+        "desc": "Drag frames into your desired chronological order or use the forward/backward arrows to adjust sequence timing and delete unwanted shots."
       },
       {
-        "title": "Generate and Download GIF",
-        "desc": "Click Download Animated .GIF to compile and save your animated GIF file directly from your browser."
+        "title": "Configure Delay, Speed & Loop Direction",
+        "desc": "Set frame delay in milliseconds (e.g. 100ms for smooth 10 FPS), pick playback direction (Forward, Reverse, or seamless Ping-Pong bounce), and set infinite or fixed looping."
+      },
+      {
+        "title": "Select Output Resolution & Dimensions",
+        "desc": "Choose target canvas dimensions (Original, 480p, 360p, or 240p) to optimize animation fidelity versus final download file size."
+      },
+      {
+        "title": "Compile & Download High-Quality Animated GIF",
+        "desc": "Preview playback live in the embedded player, then click Create GIF to compile with client-side omggif and download your animated file with zero watermarks."
       }
     ],
     "faq": [
       {
-        "question": "What frame delay setting produces a smooth animated GIF?",
-        "answer": "A delay between 80ms and 150ms per frame (roughly 7 to 12 frames per second) produces natural animation for photo sequences and stop-motion."
+        "question": "What frame delay setting produces the smoothest animated GIF?",
+        "answer": "A delay of 80ms to 120ms per frame (roughly 8 to 12 frames per second) produces natural motion for stop-motion, photo slideshows, and memes. For high-speed action, use 50ms (20 FPS); for slow presentations, use 250ms to 500ms."
       },
       {
-        "question": "What does the Ping-Pong playback mode do?",
-        "answer": "Ping-Pong plays the frames from first to last, then plays them in reverse back to the start, creating an endless, seamless bounce loop."
+        "question": "How does the Ping-Pong (Bounce) playback mode work?",
+        "answer": "Ping-Pong plays the sequence from frame 1 to the end, then immediately reverses playback back to frame 1. This creates a seamless infinite looping bounce without harsh abrupt cuts."
       },
       {
-        "question": "Can I reorder or delete specific frames before generating the GIF?",
-        "answer": "Yes. You can remove individual frames or rearrange their sequence in the timeline before compiling the animation."
+        "question": "Does Zubware add a watermark or branding logo to generated GIFs?",
+        "answer": "No. All animated GIFs created on Zubware are 100% clean and free of watermarks, logos, or forced overlays, making them ready for professional use, websites, and social sharing."
       },
       {
-        "question": "How do I keep my animated GIF file size manageable?",
-        "answer": "To keep file size compact, limit the total number of frames, use consistent canvas dimensions, and avoid unnecessary high-resolution source images."
+        "question": "How do I prevent my animated GIF from having an excessively large file size?",
+        "answer": "GIF file size grows with resolution and frame count. To keep files under 5MB or 10MB, choose the 360p or 480p resolution preset, limit your sequence to 10–30 keyframes, and crop out static background borders."
       },
       {
-        "question": "Are my image frames uploaded to a server to compile the GIF?",
-        "answer": "The image is processed in your browser using a client-side GIF encoder and is not sent to a Zubware server for processing."
+        "question": "Can I mix different image dimensions and formats in the same GIF?",
+        "answer": "Yes. You can upload a mixture of JPG, PNG, and WebP files. The generator automatically normalizes all frames to fit the selected canvas bounds with aspect ratio preservation."
+      },
+      {
+        "question": "Can I reorder or remove individual frames after uploading?",
+        "answer": "Yes. Each uploaded frame card features delete and position reorder buttons, allowing you to fine-tune the exact sequence order before compiling."
+      },
+      {
+        "question": "Are my personal pictures or proprietary frames uploaded to a cloud server?",
+        "answer": "No. The entire animation compilation—including frame palette quantization and binary GIF encoding—runs 100% locally in your browser memory via WebAssembly and JavaScript."
       }
     ]
   },
   "batch-image-converter": {
     "howTo": [
       {
-        "title": "Add Images to Batch Queue",
-        "desc": "Drag and drop multiple images in JPG, PNG, WebP, GIF, or BMP formats into the converter."
+        "title": "Select or Drop Multiple Image Files",
+        "desc": "Drag and drop dozens of images or select entire folders containing JPG, PNG, WebP, GIF, or BMP pictures into the batch queue."
       },
       {
-        "title": "Select Output Format & Quality",
-        "desc": "Choose a target format (PNG, JPG, or WebP) for the entire batch and adjust the quality slider."
+        "title": "Choose Target Output Format",
+        "desc": "Select your universal target format: modern lightweight WebP (ideal for web performance), universal JPG (for broad compatibility), or lossless PNG."
       },
       {
-        "title": "Convert and Download ZIP",
-        "desc": "Process all images concurrently in your browser and download individual files or the entire batch as a ZIP."
+        "title": "Adjust Compression Quality & Alpha Fill",
+        "desc": "Set your desired compression quality slider (10% to 100%) and specify an optional background color fill for transparent images converted to JPG."
+      },
+      {
+        "title": "Process Batch Queue & Monitor Progress",
+        "desc": "Watch real-time client-side conversion progress bars, track file size savings per photo, and verify processed thumbnails."
+      },
+      {
+        "title": "Download All Converted Images as a ZIP Archive",
+        "desc": "Click Download All as ZIP to export every converted file in a single consolidated archive, or download specific pictures individually."
       }
     ],
     "faq": [
       {
-        "question": "How many images can I convert at the same time?",
-        "answer": "You can convert dozens of images simultaneously. Because processing executes locally in your browser memory, performance depends on your device RAM."
+        "question": "How many photos can I convert simultaneously in a single batch?",
+        "answer": "You can convert dozens of images at once (typically 50+ photos depending on your device RAM). Because processing runs locally in browser memory, there are no server queues or artificial daily limits."
       },
       {
-        "question": "Can I mix different input formats in the same batch queue?",
-        "answer": "Yes. You can upload a mixture of JPG, PNG, and WebP files together and convert them all into a unified target format."
+        "question": "Can I upload a mixture of different file formats in the same batch?",
+        "answer": "Yes. You can upload JPG, PNG, WebP, BMP, and GIF files together in the same queue and convert all of them into a single unified format like WebP or JPG."
       },
       {
-        "question": "What happens to transparent backgrounds when batch converting to JPG?",
-        "answer": "Since JPG does not support transparency, transparent areas in PNG or WebP files are automatically rendered with a clean white background."
+        "question": "What happens to transparent backgrounds when batch converting PNG to JPG?",
+        "answer": "Since the JPEG specification does not support transparent alpha channels, transparent areas are automatically filled with a clean solid background color (white by default, or your custom chosen hex color)."
       },
       {
-        "question": "Can I download all converted images in a single archive?",
-        "answer": "Yes. Click Download All as ZIP to export every converted file in an organized ZIP package with one click."
+        "question": "Why should I batch convert my website images to WebP?",
+        "answer": "WebP images are typically 25% to 35% smaller than equivalent JPGs and up to 80% smaller than PNGs while preserving identical visual fidelity, dramatically improving Google PageSpeed Insights and Core Web Vitals scores."
       },
       {
-        "question": "Does batch image conversion process multiple photos without server uploads?",
-        "answer": "Yes. All queued JPG, PNG, and WebP photos are converted concurrently using your browser WebAssembly and canvas engines with zero server uploads."
+        "question": "Can I download all converted pictures in a single ZIP file?",
+        "answer": "Yes. Zubware automatically packages all converted files into converted_images.zip using client-side JSZip so you can save your entire image library with one click."
+      },
+      {
+        "question": "Does batch converting images degrade original photo resolution?",
+        "answer": "No. The pixel dimensions (width and height) of your original photos are strictly preserved unless you adjust compression quality. All image metadata stripping is handled safely."
+      },
+      {
+        "question": "Are my confidential or personal photos uploaded to remote servers during batch conversion?",
+        "answer": "No. Every image is decoded, transformed on an HTML5 canvas, and encoded into the target format entirely on your device with 100% privacy and zero network transmission."
       }
     ]
   },
@@ -976,38 +1124,50 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "heic-to-jpg": {
     "howTo": [
       {
-        "title": "Upload iPhone HEIC Photos",
-        "desc": "Select or drag Apple HEIC or HEIF images from your iPhone or iPad."
+        "title": "Select or Drag Apple HEIC / HEIF Photos",
+        "desc": "Drop iPhone camera roll pictures, Live Photos, or iPad HEIC / HEIF files into the upload box (batch upload supported)."
       },
       {
-        "title": "Configure Quality and Dimensions",
-        "desc": "Adjust JPG quality, select target dimensions (Original, 4K, 1080p), and choose whether to strip metadata."
+        "title": "Choose JPG Compression Quality",
+        "desc": "Select a quality preset (High 90% for printing, Balanced 80% for sharing, Web 65% for compact file sizes) or use the custom slider."
       },
       {
-        "title": "Convert and Download",
-        "desc": "Convert the files locally in your browser and download individual JPGs or all files in a ZIP archive."
+        "title": "Convert Locally in Browser WebAssembly",
+        "desc": "Watch real-time client-side conversion as your device decodes high-efficiency HEIC containers into standard universal JPEG images."
+      },
+      {
+        "title": "Download Converted JPGs or ZIP Archive",
+        "desc": "Preview converted photos instantly, download individual JPG files, or click Download All as ZIP to save your entire photo batch at once."
       }
     ],
     "faq": [
       {
-        "question": "Why can some Windows computers and Android phones not open HEIC files?",
-        "answer": "HEIC (High Efficiency Image Coding) is Apple default image container. Many non-Apple applications and web forms require standard JPEG format for compatibility."
+        "question": "Why can some Windows PCs, Android phones, and websites not open HEIC files?",
+        "answer": "Apple iOS devices capture photos in HEIC (High Efficiency Image Container) by default to save storage. However, many Windows PCs without paid codec extensions, Android phones, government portals, and web forms do not natively support HEIC and mandate standard JPG or PNG format."
       },
       {
-        "question": "Does converting HEIC to JPG reduce photo clarity?",
-        "answer": "Converting to JPG at 90% or higher quality retains excellent visual fidelity indistinguishable from the original HEIC capture."
+        "question": "Does converting HEIC to JPG degrade photo resolution or clarity?",
+        "answer": "No. When converted at 85% to 90% quality, Zubware preserves full image resolution (e.g. 12MP or 48MP iPhone captures), color depth, and sharpness with zero visible degradation."
       },
       {
-        "question": "Can I batch convert multiple HEIC photos at once?",
-        "answer": "Yes. You can upload multiple HEIC photos, convert them in sequence, and download all resulting JPGs packaged in a single ZIP."
+        "question": "Can I convert multiple iPhone HEIC photos simultaneously?",
+        "answer": "Yes. You can upload batches of 20+ HEIC files at once. Each photo is processed sequentially in your browser and bundled into converted_photos.zip for immediate download."
       },
       {
-        "question": "Can I resize the photo dimensions during conversion?",
-        "answer": "Yes. You can keep original dimensions or downscale to standard presets like 4K or 1080p Full HD to reduce file size."
+        "question": "How do I transfer HEIC photos from my iPhone to this converter?",
+        "answer": "You can open Zubware directly in Safari or Chrome on your iPhone and select photos from your Photo Library, or AirDrop / transfer them to your computer and drag them into the browser."
       },
       {
-        "question": "Can I convert Apple HEIC and HEIF photos without uploading them to cloud servers?",
-        "answer": "Yes. The libheif WebAssembly decoder runs directly inside your browser to convert iPhone HEIC photos into standard JPGs with complete privacy."
+        "question": "Are Live Photos and burst shots supported?",
+        "answer": "Yes. The still keyframe of Apple Live Photos and burst captures saved as .heic or .heif can be converted into standard JPEG format seamlessly."
+      },
+      {
+        "question": "Is there a file size limit or fee for converting HEIC files on Zubware?",
+        "answer": "No. Zubware is 100% free with no file size paywalls, no daily conversion limits, and no email registration requirements."
+      },
+      {
+        "question": "Are my private personal pictures uploaded to remote servers during conversion?",
+        "answer": "No. The heic2any WebAssembly binary decodes and converts Apple HEIC photos 100% locally in your device browser RAM. No photo data ever leaves your device."
       }
     ]
   },
@@ -1052,38 +1212,54 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "passport-photo-maker": {
     "howTo": [
       {
-        "title": "Upload Portrait Photo",
-        "desc": "Select a clear, front-facing portrait photo with even lighting and a neutral expression."
+        "title": "Upload Front-Facing Portrait Photo",
+        "desc": "Select a clear, well-lit portrait photo with eyes open, direct camera gaze, and a neutral facial expression."
       },
       {
-        "title": "Select Dimension Preset & Align Face",
-        "desc": "Choose a standard passport-style preset (such as 2x2 inches or 35x45 mm) and align your face using the framing guide."
+        "title": "Select Country & Visa Preset",
+        "desc": "Choose official standard presets: India Passport (35x45mm), India Visa / OCI (2x2\" / 51x51mm), US Passport / Visa (2x2\"), Schengen Visa (35x45mm), UK, Canada, Australia, or custom dimensions."
       },
       {
-        "title": "Arrange Sheet & Download",
-        "desc": "Select your preferred background shade, choose single photo or multi-photo printable sheet layout, and download as JPG or PDF."
+        "title": "Align Face with Biometric Guide Overlay",
+        "desc": "Use the visual biometric head framing guide (chin line, crown line, eye level) with intuitive zoom, rotation, and pan controls to ensure 70%–80% facial coverage."
+      },
+      {
+        "title": "Choose Official Background Tone",
+        "desc": "Select the required official background shade: Plain White, Off-White, Light Grey, or Light Blue according to consular requirements."
+      },
+      {
+        "title": "Export Single Photo or Printable Sheet",
+        "desc": "Download an individual compliant JPG/PNG with custom target KB compression (e.g. 20KB–50KB for online portals) or a multi-photo 4x6\" printable grid with cut marks."
       }
     ],
     "faq": [
       {
-        "question": "Can I create multiple passport-style photos on one printable sheet?",
-        "answer": "Yes. You can arrange multiple copies of your photo onto standard 4x6 inch, 5x7 inch, or A4 sheets with optional cut marks for convenient home or photo lab printing."
+        "question": "What are the official passport photo dimensions for India, the US, and Schengen countries?",
+        "answer": "India Passport online applications mandate 35x45 mm (or 2x2 inches / 51x51 mm for Indian Visa / OCI). The US Passport and Visa require exactly 2x2 inches (51x51 mm / 600x600 px at 300 DPI). Schengen European Visa applications strictly require 35x45 mm with 70%–80% head coverage."
       },
       {
-        "question": "Which common document size presets are available?",
-        "answer": "The tool provides presets for common document sizes including 2x2 inches (51x51 mm), 35x45 mm, and 3.5x4.5 cm, as well as custom pixel and millimeter dimensions."
+        "question": "What is the biometric head ratio rule for passport photos?",
+        "answer": "Most passport and immigration authorities require the applicant's head (from the bottom of the chin to the top of the head/hair) to occupy between 70% and 80% of the total photograph height. Zubware's biometric overlay guide helps you align your face to meet these exact proportions."
       },
       {
-        "question": "Does this tool guarantee official acceptance by passport authorities?",
-        "answer": "No automated tool can guarantee official acceptance. Different passport and visa agencies have strict physical lighting, expression, and head-measurement rules. This tool helps you format, crop, and arrange photos according to common dimensions before submission."
+        "question": "Can I print multiple passport photos on standard 4x6 inch photo paper?",
+        "answer": "Yes. Zubware automatically lays out multiple passport photos (typically 6 to 8 photos) onto a standardized 4x6 inch (10x15 cm) sheet complete with thin scissor cut lines, allowing inexpensive printing at local pharmacy kiosks or home photo printers."
       },
       {
-        "question": "Can I adjust lighting and change background shades?",
-        "answer": "Yes. You can fine-tune brightness, contrast, and warmth, and select standard plain white, off-white, light blue, or neutral gray backdrops."
+        "question": "Can I compress the passport photo to under 50KB or 100KB for government portals?",
+        "answer": "Yes. Indian portals (Passport Seva, SSC, UPSC, State PSCs) and visa upload sites often cap photo file sizes between 20KB and 50KB or 100KB. Zubware allows you to fine-tune JPEG quality to meet exact byte ceilings."
       },
       {
-        "question": "Are passport and visa application photos processed securely without server uploads?",
-        "answer": "Yes. Official dimension cropping, biometric centering guidelines, and printable multi-photo sheets are generated entirely in your browser memory."
+        "question": "What are the rules regarding spectacles, jewelry, and head coverings?",
+        "answer": "Most countries (including the US and India) prohibit tinted sunglasses or glare on eyeglasses. Prescription glasses should be removed if glare obscures the eyes. Religious head coverings are permitted if the full face from forehead to chin is unobstructed."
+      },
+      {
+        "question": "Can I change my photo background to pure white?",
+        "answer": "Yes. The tool lets you replace or adjust background shading to compliant Plain White, Off-White, or Light Grey to satisfy strict consular criteria."
+      },
+      {
+        "question": "Are my sensitive identity photos uploaded to any server or stored online?",
+        "answer": "No. All cropping, biometric scaling, color tuning, and printable sheet synthesis occur 100% locally inside your device browser memory. Your personal identity documents and photos remain completely private."
       }
     ]
   },
@@ -1242,190 +1418,354 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "gst-invoice-generator": {
     "howTo": [
       {
-        "title": "Enter Supplier & Customer Details",
-        "desc": "Add your business name, GSTIN, address, state of supply, and customer billing information."
+        "title": "Enter Supplier Profile & GSTIN",
+        "desc": "Input your registered business name, 15-character GSTIN (state code auto-detected), official address, state, contact info, and upload your company logo."
       },
       {
-        "title": "Add Line Items & Tax Slabs",
-        "desc": "Enter item descriptions, HSN/SAC codes, quantities, and rates. The system automatically calculates CGST/SGST or IGST based on place of supply."
+        "title": "Fill Customer Billing & Shipping Information",
+        "desc": "Add client name, billing address, buyer GSTIN if B2B registered, separate delivery/shipping address if applicable, and verify Place of Supply."
       },
       {
-        "title": "Add Payment Details & Download PDF",
-        "desc": "Include bank details, UPI QR code, terms, and authorized signature, then click Download PDF or Print Invoice."
+        "title": "Add Itemized Line Items & HSN/SAC Codes",
+        "desc": "Enter item descriptions, mandatory HSN or SAC codes, quantities, billing units (PCS, KGS, NOS, HRS), unit rate, discounts, and assign applicable GST slab (0%, 5%, 12%, 18%, 28%)."
+      },
+      {
+        "title": "Configure Bank Details & Dynamic UPI Payment QR",
+        "desc": "Add bank name, beneficiary account number, IFSC code, and payee UPI VPA ID to generate an instant scannable UPI QR code embedded with invoice total."
+      },
+      {
+        "title": "Download PDF or Print Compliant Invoice",
+        "desc": "Review automatic CGST/SGST vs IGST tax split, set reverse charge if applicable, add terms and conditions, and click Download PDF or Print for instant A4 export."
       }
     ],
     "faq": [
       {
-        "question": "How does the tool calculate CGST, SGST, and IGST?",
-        "answer": "The tool compares the supplier state with the place of supply. For intra-state transactions, the tax rate is split equally into CGST and SGST. For inter-state transactions, the full rate is applied as IGST."
+        "question": "How does the generator automatically determine whether to charge CGST + SGST or IGST?",
+        "answer": "Under Indian GST legislation, tax bifurcation depends on the location of the supplier versus the Place of Supply (POS). When both are within the same Indian state or Union Territory (intra-state transaction), GST is split equally into Central GST (CGST) and State GST (SGST). When the supplier state and Place of Supply differ (inter-state transaction), Integrated GST (IGST) is levied at the full applicable tax rate."
       },
       {
-        "question": "Can I generate a scannable UPI payment QR code on the invoice?",
-        "answer": "Yes. Entering your UPI ID automatically generates a dynamic payment QR code with the invoice amount embedded so customers can scan and pay instantly."
+        "question": "What is the difference between a Tax Invoice and a Bill of Supply under Indian GST rules?",
+        "answer": "A Tax Invoice is issued by regular GST-registered businesses selling taxable goods or services, allowing the buyer to claim Input Tax Credit (ITC). A Bill of Supply is issued for exempt goods/services or by businesses enrolled under the GST Composition Scheme, where no GST is charged to the customer and no ITC can be claimed."
       },
       {
-        "question": "Can I save invoice drafts and resume editing later?",
-        "answer": "Yes. Click Save Draft to store your current invoice in your browser local storage. You can restore your draft anytime to make updates or reprint."
+        "question": "Why are HSN and SAC codes mandatory on GST invoices?",
+        "answer": "Harmonized System of Nomenclature (HSN) for goods and Services Accounting Code (SAC) for services are standardized classification systems mandated by the CBIC. Businesses with annual turnover up to ₹5 Crores must include 4-digit codes on B2B invoices, while businesses above ₹5 Crores turnover must display 6-digit codes to ensure uniform tax administration."
       },
       {
-        "question": "What export and printing options are available?",
-        "answer": "You can download the invoice as a formatted PDF file or use the direct Print option to print on standard A4 paper."
+        "question": "How does the dynamic UPI QR code work on the generated invoice?",
+        "answer": "The tool encodes standard NPCI UPI intent parameters (payee VPA address, payee business name, invoice reference, and exact calculated invoice amount) directly into a scannable QR code. When the customer scans the code with PhonePe, Google Pay, Paytm, or BHIM, the exact payable balance is pre-populated without manual entry errors."
       },
       {
-        "question": "Is my confidential business or customer billing data sent to a server?",
-        "answer": "The invoice is generated entirely within your browser. Your customer lists, bank accounts, and billing numbers are not uploaded to Zubware servers."
+        "question": "What are the mandatory fields required for a legally valid GST invoice under Section 31 of the CGST Act?",
+        "answer": "Section 31 and Rule 46 of CGST Rules mandate: consecutive invoice serial number unique for a financial year, date of issue, supplier name, address, and GSTIN, recipient name, address, and GSTIN (if registered), Place of Supply along with state name and state code, HSN/SAC code, description of goods/services, total quantity and unit, taxable value, applicable tax rates, amount of tax broken down by CGST/SGST/IGST, and authorized signature."
+      },
+      {
+        "question": "Does this invoice generator upload my client list, sales revenue, or bank details to an external server?",
+        "answer": "No. The invoice generator executes 100% locally in your web browser memory. Your client contact books, line-item pricing, bank account details, and turnover metrics are never sent, logged, or stored on Zubware servers."
+      },
+      {
+        "question": "Can I save my invoice as a draft to update or re-print later?",
+        "answer": "Yes. Clicking Save Draft stores your current invoice details directly in your browser's private LocalStorage. When you return to the page, you can reload your saved draft to make additions or generate recurring invoices."
+      },
+      {
+        "question": "Does this tool submit invoices to the Government GST Portal (e-Invoice IRN portal)?",
+        "answer": "No. This tool generates printable PDF tax invoices and bills of supply for business recordkeeping and direct client delivery. It does not connect to the Government GSTN e-Invoice portal (IRN/QR code) required for businesses with aggregate turnover exceeding the statutory mandatory e-invoicing threshold (₹5 Crores)."
+      },
+      {
+        "question": "How is GST calculated when both line-item discounts and overall cash discounts are offered?",
+        "answer": "Under Section 15 of the CGST Act, discounts recorded on the invoice before or at the time of supply reduce the taxable value before GST is calculated. The tool calculates line item discounts (either percentage or fixed currency amount) to derive the net taxable base upon which statutory GST slabs are applied."
+      },
+      {
+        "question": "What is Reverse Charge Mechanism (RCM) and how is it reflected on the invoice?",
+        "answer": "Reverse Charge applies when the liability to pay GST to the government shifts from the supplier to the recipient (e.g. goods transport agencies, specific legal services, or unregistered supplies under Section 9(3)/9(4)). The invoice includes a dedicated Reverse Charge indicator ('Yes' or 'No') as required by tax audit guidelines."
+      },
+      {
+        "question": "Can composition scheme dealers use this GST invoice generator?",
+        "answer": "Yes. Composition dealers should select 'Bill of Supply' as the invoice document type and enter a 0% tax rate, as composition taxpayers cannot charge GST from customers or claim input tax credit."
+      },
+      {
+        "question": "How do I print the invoice on standard A4 paper without cutting off borders or text?",
+        "answer": "Click the Print Invoice button. In your browser's print dialog, select Paper Size as 'A4', set Margins to 'Default' or 'Minimum', and check 'Print backgrounds' or 'Background graphics' so table headers and company colors print crisply."
       }
     ]
   },
   "pdf-merge": {
     "howTo": [
       {
-        "title": "Upload PDF Documents",
-        "desc": "Select or drag multiple PDF files from your device into the merge queue."
+        "title": "Upload Multiple PDF Documents",
+        "desc": "Drag and drop your PDF files into the upload dropzone, or click Browse to select files from your computer or mobile device."
       },
       {
-        "title": "Arrange Document Order",
-        "desc": "Use the Up and Down arrow buttons to set your preferred file order, or remove unwanted documents."
+        "title": "Audit Document Page Counts",
+        "desc": "Inspect each uploaded file card to verify its detected title, total page count, and byte size."
       },
       {
-        "title": "Merge and Download",
-        "desc": "Click Merge PDFs to combine all documents into a single PDF directly in your browser."
+        "title": "Arrange Document Merge Sequence",
+        "desc": "Use the Up and Down arrow buttons on each listed file to organize the exact chronological order in which pages should appear."
+      },
+      {
+        "title": "Execute Client-Side Merge",
+        "desc": "Click the Merge PDFs button to trigger local WebAssembly page extraction and sequential document assembly."
+      },
+      {
+        "title": "Download Combined PDF",
+        "desc": "Save your unified PDF file directly to your downloads folder with 100% vector typography and embedded links preserved."
       }
     ],
     "faq": [
       {
-        "question": "How does the PDF Merge tool combine multiple documents?",
-        "answer": "It loads the byte streams of your selected PDF files into memory and appends pages in sequence into a new combined PDF using client-side WebAssembly, preserving text, vector lines, and embedded images."
+        "question": "How does Zubware PDF Merge combine multiple files without uploading them?",
+        "answer": "The tool uses client-side WebAssembly via pdf-lib. It reads the binary object streams of your uploaded files in browser RAM, extracts the page tree structures, and serializes them into a single continuous PDF document without transmitting a single byte to an external server."
       },
       {
-        "question": "Can I change the document order before merging?",
-        "answer": "Yes. Use the move up and move down arrow buttons on each listed file to organize the exact sequence before combining."
+        "question": "Can I reorder documents before merging them?",
+        "answer": "Yes. Each file in the merge queue features dedicated Up and Down arrow controls. You can adjust the file sequence as needed before initiating the merge."
       },
       {
-        "question": "Is there a limit on how many PDF files I can merge at once?",
-        "answer": "You can merge multiple files in a single session. Because all processing runs directly in your browser memory, performance depends primarily on your device available RAM."
+        "question": "Is there a limit on how many PDF files or pages I can combine?",
+        "answer": "There are no arbitrary software paywalls or file count caps. Processing occurs directly in your browser memory, so modern laptops and smartphones can comfortably merge dozens of files spanning hundreds of pages."
       },
       {
-        "question": "Will hyperlinks and visual assets survive the merge process?",
-        "answer": "Core page contents, text, and visual assets are fully preserved. Complex interactive cross-document bookmarks may be flattened to fit the combined file structure."
+        "question": "Will vector text, form fields, and hyperlinks survive the merge process?",
+        "answer": "Yes. Unlike tools that rasterize pages into flattened images, our engine performs PDF-level object cloning. Selectable text, embedded font subsets, vector paths, and internal hyperlinks remain intact."
+      },
+      {
+        "question": "Can I merge PDF documents that have different page orientations?",
+        "answer": "Yes. If some files are formatted in Portrait (vertical) and others in Landscape (horizontal), each page preserves its native orientation and dimensions in the output document."
       },
       {
         "question": "Can I merge password-protected PDF files?",
-        "answer": "Encrypted or password-protected PDFs must be unlocked before merging. Use the Zubware Unlock PDF tool first to remove password restrictions, then add the files to the merge queue."
+        "answer": "Encrypted or password-locked PDFs cannot be read until their encryption dictionaries are removed. Use our Unlock PDF tool to decrypt the files with your known password before merging."
+      },
+      {
+        "question": "Does merging reduce the resolution of embedded photos or scans?",
+        "answer": "No. The underlying image streams are copied losslessly. Original JPEG, PNG, or CCITT Fax compressed scans retain their exact native DPI and visual clarity."
+      },
+      {
+        "question": "What happens if an uploaded PDF is corrupted or malformed?",
+        "answer": "The parser audits file headers upon selection. If an invalid or corrupted file is detected, an informative alert is displayed so you can remove or replace that specific file before merging."
+      },
+      {
+        "question": "Can I remove a file from the merge queue if I added it by mistake?",
+        "answer": "Yes. Every file item in the list features a trash icon that removes the document from your merge queue immediately."
+      },
+      {
+        "question": "Does Zubware add a watermark or branding stamp to merged files?",
+        "answer": "No. All generated PDFs are 100% clean, professional, and free of any watermarks, stamps, or advertising."
+      },
+      {
+        "question": "Can I merge PDF files on an iPhone, iPad, or Android device?",
+        "answer": "Yes. The interface is fully responsive and operates smoothly on Safari for iOS, Chrome for Android, and all modern mobile web browsers without installing extra apps."
       }
     ]
   },
   "pdf-split": {
     "howTo": [
       {
-        "title": "Select Your PDF",
-        "desc": "Upload or drop a multi-page PDF document to inspect its total page count."
+        "title": "Select Multi-Page PDF",
+        "desc": "Upload or drag your PDF document into the workspace to inspect its total page count and preview thumbnails."
       },
       {
-        "title": "Choose Split Mode",
-        "desc": "Select All Pages to separate every page individually, or choose Custom Page Range to define specific pages (e.g., 1-3, 5)."
+        "title": "Choose Preferred Split Mode",
+        "desc": "Select Extract All Pages (every page as a separate PDF), Custom Page Ranges, or Split by Interval."
       },
       {
-        "title": "Extract and Save",
-        "desc": "Process the file to download selected pages as a new PDF or download all separated pages in a ZIP archive."
+        "title": "Define Target Page Ranges",
+        "desc": "If using custom ranges, enter syntax like 1-4, 7, 10-15 or specify an interval like every 2 pages."
+      },
+      {
+        "title": "Preview Thumbnail Breakdown",
+        "desc": "Review interactive page cards and verify that the target pages match your intended document division."
+      },
+      {
+        "title": "Download Standalone Files or ZIP",
+        "desc": "Download individual split PDF documents or click Download All (ZIP) to receive all partitions in an organized archive."
       }
     ],
     "faq": [
       {
-        "question": "What is the difference between splitting all pages and custom ranges?",
-        "answer": "All Pages separates every individual page into its own standalone PDF file bundled in a ZIP archive, whereas Custom Page Range extracts only specified page numbers into a single new PDF document."
+        "question": "What are the 3 splitting modes available in Zubware PDF Split?",
+        "answer": "1) Extract All Pages breaks every page into an individual 1-page PDF. 2) Custom Page Ranges lets you define comma-separated boundaries (e.g., 1-3, 5, 8-12) to create specific documents. 3) Split by Interval automatically cuts the file into chunks of N pages (e.g., every 5 pages)."
       },
       {
         "question": "How should I format custom page ranges?",
-        "answer": "You can use comma-separated page numbers and hyphenated ranges such as 1-3, 5, 8-10 to pinpoint exact pages."
+        "answer": "Use comma-separated numbers and hyphenated spans, such as '1-4, 7, 10-15'. Spaces are handled gracefully, and overlapping or duplicate entries are normalized."
       },
       {
-        "question": "Does splitting a PDF affect the quality or resolution of its contents?",
-        "answer": "No. Page extraction directly copies existing document streams without rasterizing or recompressing text or images, so quality remains identical to the original."
+        "question": "Does splitting a PDF degrade text quality or alter formatting?",
+        "answer": "No. The engine copies the underlying PDF page tree and content streams directly. Vector fonts, line art, high-resolution photos, and hyperlinks remain identical to the original."
+      },
+      {
+        "question": "Can I extract just a single page from a 100-page document?",
+        "answer": "Yes. Switch to Custom Page Ranges and enter that single number (e.g., '14'). The output will be a clean 1-page PDF containing only that page."
+      },
+      {
+        "question": "How are multiple split files delivered when I split all pages?",
+        "answer": "All generated PDF files are automatically compiled into a single, clean ZIP archive using client-side JSZip, allowing you to download everything in one click."
+      },
+      {
+        "question": "Can I preview pages before splitting them?",
+        "answer": "Yes. The tool renders visual canvas thumbnails of every page directly in your browser memory so you can confirm page numbers and content before dividing."
+      },
+      {
+        "question": "What happens if I specify page numbers that exceed the total page count?",
+        "answer": "The parser validates inputs against total pages. Any out-of-bounds page requests are highlighted with an informative warning so you can correct your range."
       },
       {
         "question": "Can I split password-protected PDFs?",
-        "answer": "If the PDF requires a password to open, unlock it first using Zubware Unlock PDF before splitting."
+        "answer": "Encrypted PDFs must be unlocked before splitting. Please use our Unlock PDF tool first to remove password locks, then load the decrypted file."
       },
       {
-        "question": "Can I extract just a single page out of a large document?",
-        "answer": "Yes. Switch to Custom Page Range mode and enter that specific page number (e.g. 4) to extract just that single page into a new PDF."
+        "question": "Are my split documents saved on Zubware servers?",
+        "answer": "No. All PDF stream extraction and ZIP packaging execute 100% locally on your device with zero cloud storage or telemetry."
+      },
+      {
+        "question": "Can I re-merge the split files later?",
+        "answer": "Yes. You can use our PDF Merge tool at any time to recombine any split pages or files into a new document in any custom order."
+      },
+      {
+        "question": "Will bookmarks and table-of-contents trees carry over to split files?",
+        "answer": "Individual pages carry their full visual and structural contents. Complex global document outline bookmarks that reference pages outside the split range are safely omitted to prevent broken navigation."
       }
     ]
   },
   "image-to-pdf": {
     "howTo": [
       {
-        "title": "Add Images",
-        "desc": "Upload JPG, PNG, WebP, BMP, or GIF images into the conversion list."
+        "title": "Add Image Files",
+        "desc": "Upload JPG, JPEG, PNG, or WebP photos by dragging them into the dropzone or clicking Browse."
       },
       {
-        "title": "Customize Layout",
-        "desc": "Choose paper size (A4 or Letter), orientation (Portrait or Landscape), margins, and image fit mode (Contain, Cover, Fill)."
+        "title": "Arrange Image Order",
+        "desc": "Use the Up and Down arrow buttons on each photo card to organize the sequential page order."
       },
       {
-        "title": "Convert and Download",
-        "desc": "Click Create PDF to generate the unified PDF document directly in your browser."
+        "title": "Select Paper Size & Orientation",
+        "desc": "Choose A4, US Letter, or Fit to Image dimensions, and select Portrait, Landscape, or Auto orientation."
+      },
+      {
+        "title": "Configure Margins and Fit",
+        "desc": "Select margin padding (None for full bleed, Small 10pt, or Large 20pt) and image scaling behavior."
+      },
+      {
+        "title": "Convert & Download PDF",
+        "desc": "Click Create PDF to generate and download your multi-page vector-wrapped PDF document."
       }
     ],
     "faq": [
       {
-        "question": "Which image formats are supported?",
-        "answer": "The tool supports standard web and photo formats including JPG/JPEG, PNG, WebP, BMP, and GIF."
+        "question": "Which image formats can I convert to PDF?",
+        "answer": "The tool supports universal photo and graphic formats including JPG, JPEG, PNG, and modern WebP images."
       },
       {
-        "question": "Can I adjust margins and page orientation?",
-        "answer": "Yes. You can select document-wide page dimensions (A4 or US Letter), portrait or landscape orientation, margin sizes (None, Small, Large), and fit modes (Contain, Cover, Fill)."
+        "question": "What is the difference between A4, US Letter, and Fit to Image paper sizes?",
+        "answer": "A4 (210×297 mm) is the international standard, US Letter (8.5×11 inches) is standard in North America, and Fit to Image creates custom PDF page boundaries matching the exact pixel aspect ratio of each photo with zero letterboxing."
       },
       {
-        "question": "Can I reorder the images before generating the PDF?",
-        "answer": "Yes. Use the move up and move down controls on each image card to arrange your photos into your preferred sequence."
+        "question": "Can I combine multiple pictures into a single multi-page PDF document?",
+        "answer": "Yes. You can upload dozens of photos at once. Each image becomes a distinct page in the unified PDF in the sequence you specify."
       },
       {
-        "question": "What is the difference between Contain, Cover, and Fill fit modes?",
-        "answer": "Contain scales the image to fit entirely within the page margins without cropping. Cover expands the image to fill the entire page area while trimming excess edges. Fill stretches the image to touch all margins."
+        "question": "How do margin presets affect printing?",
+        "answer": "None (0pt) creates full-bleed edge-to-edge pages suitable for photography. Small (10pt) provides safe margins for standard office desktop printers. Large (20pt) creates clean framing for presentation dossiers."
       },
       {
-        "question": "Is any watermark added to the created PDF?",
-        "answer": "No. All generated documents are completely clean with zero watermarks or Zubware branding stamps."
+        "question": "Can I mix portrait and landscape images in the same PDF?",
+        "answer": "Yes. When set to Auto orientation, each page adapts to match the orientation of its respective image, ensuring horizontal photos don't appear squished on vertical pages."
+      },
+      {
+        "question": "Does converting images to PDF reduce their visual sharpness?",
+        "answer": "No. Images are embedded directly into the PDF container using native binary compression, preserving original pixel resolution, color profiles, and detail."
+      },
+      {
+        "question": "Can I convert photos taken on an iPhone or Android phone?",
+        "answer": "Yes. Upload camera roll photos directly. For Apple HEIC files, convert them to JPG using our HEIC to JPG tool first before building your PDF."
+      },
+      {
+        "question": "Is there a limit on how many images I can convert at once?",
+        "answer": "There are no arbitrary file limits. You can process batches of 10, 20, or 50+ images smoothly, governed only by your device's available RAM."
+      },
+      {
+        "question": "Are my uploaded photos stored or viewed on any server?",
+        "answer": "No. The entire PDF compilation runs 100% locally in your browser memory. Your personal photos, ID cards, and receipts are never transmitted to cloud servers."
+      },
+      {
+        "question": "Will transparent PNG backgrounds turn black in the PDF?",
+        "answer": "No. Transparent PNG areas are composited cleanly onto a solid white background layer, avoiding unsightly black alpha channel artifacts."
+      },
+      {
+        "question": "Can I edit or add text to the PDF after generating it?",
+        "answer": "Yes. You can immediately load your created PDF into our Online PDF Editor or Sign PDF tool to add captions, signatures, or page annotations."
       }
     ]
   },
   "pdf-to-images": {
     "howTo": [
       {
-        "title": "Upload Your PDF",
-        "desc": "Select or drop a PDF file to inspect its pages and document details."
+        "title": "Upload PDF Document",
+        "desc": "Select or drag your PDF into the converter to initialize canvas rasterization in browser memory."
       },
       {
-        "title": "Choose Image Format",
-        "desc": "Select PNG (lossless), JPEG (compressed), or WebP output format."
+        "title": "Select Output Image Format",
+        "desc": "Choose Lossless PNG for crisp text and line art, or Compressed JPG for lighter file sizes."
       },
       {
-        "title": "Render and Export",
-        "desc": "Download individual page images or export all converted pages bundled in a single ZIP file."
+        "title": "Choose Resolution Multiplier (DPI)",
+        "desc": "Select 1x for standard web viewing (~72 DPI), 2x for retina screens (~150 DPI), or 3x for high-res print (~300 DPI)."
+      },
+      {
+        "title": "Preview Rendered Pages",
+        "desc": "Inspect generated thumbnail cards in the visual gallery to verify clarity and page numbering."
+      },
+      {
+        "title": "Download Single Pages or Full ZIP",
+        "desc": "Download individual high-res image files or click Download All (ZIP) to save all pages in one archive."
       }
     ],
     "faq": [
       {
-        "question": "What image formats can I export PDF pages into?",
-        "answer": "You can export pages as PNG (lossless with crisp text), JPEG (compact file size), or modern WebP images."
+        "question": "Should I choose PNG or JPG when converting PDF pages to images?",
+        "answer": "Choose PNG if your document contains sharp text, tables, architectural blueprints, or logos where pixel-perfect edges are critical. Choose JPG if the PDF contains continuous-tone photography and you need smaller file weights."
       },
       {
-        "question": "Can I preview the pages before downloading?",
-        "answer": "Yes. The tool renders a visual gallery of all converted pages with interactive preview modals so you can inspect quality before saving."
+        "question": "What do the 1x, 2x, and 3x resolution scale settings mean?",
+        "answer": "1x renders pages at standard 72 DPI screen resolution. 2x renders at ~150 DPI for retina displays and PowerPoint decks. 3x renders at ~300 DPI for high-definition desktop publishing and commercial printing."
       },
       {
-        "question": "Can I download all converted pages at once?",
-        "answer": "Yes. Click Download All as ZIP to receive an archive containing all exported page images organized sequentially."
+        "question": "Does this tool extract embedded photo assets or convert whole pages?",
+        "answer": "This tool rasterizes the entire page—including text typography, vector diagrams, background colors, and graphics—into an exact visual image replica of the PDF page."
       },
       {
-        "question": "What resolution are the output images rendered at?",
-        "answer": "Pages are rendered using high-density canvas scaling (1.8x supersampling) to ensure text, diagrams, and small prints remain crisp and readable."
+        "question": "Can I download all converted pages in a single ZIP file?",
+        "answer": "Yes. Click 'Download All (ZIP)' to package every rendered page image into an organized archive without waiting for individual downloads."
       },
       {
-        "question": "How does this tool differ from extracting embedded photos?",
-        "answer": "This tool renders each complete PDF page into a high-resolution image including fonts, vector lines, and layouts, rather than pulling raw embedded photo files."
+        "question": "Can I convert multi-page documents containing dozens of pages?",
+        "answer": "Yes. Multi-page PDFs are rendered sequentially with a real-time progress indicator. You can preview and download any page as soon as its rendering finishes."
+      },
+      {
+        "question": "Will transparent PDF backgrounds render as black boxes?",
+        "answer": "No. Our canvas pipeline enforces an automatic white backdrop fill, ensuring transparent page layers render cleanly with realistic white margins."
+      },
+      {
+        "question": "Can I convert password-protected PDFs to images?",
+        "answer": "Password-locked files must be unlocked first. Please use our Unlock PDF tool to decrypt the document before converting pages to images."
+      },
+      {
+        "question": "Are my confidential PDF pages uploaded to cloud rendering servers?",
+        "answer": "No. All rasterization is performed locally inside your device browser using pdfjs-dist and HTML5 canvas APIs with zero server transmission."
+      },
+      {
+        "question": "Can I convert images back into a PDF later?",
+        "answer": "Yes. You can use our Image to PDF tool to recompile any set of rendered PNG or JPG images into a fresh PDF at any time."
+      },
+      {
+        "question": "What is the maximum file size supported?",
+        "answer": "Since processing occurs in client memory, files up to 50MB–100MB process comfortably on modern hardware without upload lag."
+      },
+      {
+        "question": "Can I use this tool on a mobile smartphone?",
+        "answer": "Yes. It runs smoothly on iOS Safari and Android Chrome, letting you save individual PDF pages straight to your smartphone photo gallery."
       }
     ]
   },
@@ -1470,76 +1810,140 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "delete-pdf-pages": {
     "howTo": [
       {
-        "title": "Upload PDF Document",
-        "desc": "Load your file to display interactive page thumbnails in a visual grid."
+        "title": "Upload Multi-Page PDF",
+        "desc": "Select or drag your PDF into the tool to load interactive page thumbnails in the visual workspace."
       },
       {
-        "title": "Mark Pages to Remove",
-        "desc": "Click on any page thumbnail to flag it for deletion with a red outline and trash icon."
+        "title": "Select Pages to Delete",
+        "desc": "Click individual page cards to mark them for removal, or type comma-separated numbers/ranges (e.g., 2, 5-7, 12)."
       },
       {
-        "title": "Export Cleaned PDF",
-        "desc": "Click Delete & Export to download a fresh PDF with the selected pages omitted."
+        "title": "Review Remaining Page Count",
+        "desc": "Verify the live counter of pages slated for removal and remaining pages to ensure no critical sections are missed."
+      },
+      {
+        "title": "Reconstruct Clean Document",
+        "desc": "Click Delete Pages to compile a brand-new PDF omitting all deleted pages and associated orphan assets."
+      },
+      {
+        "title": "Download Sanitized PDF",
+        "desc": "Save your cleaned PDF file locally with consecutive page numbers and full vector fidelity preserved."
       }
     ],
     "faq": [
       {
-        "question": "How do I select which pages to delete?",
-        "answer": "Simply click directly on any page thumbnail in the grid. The thumbnail will highlight in red with a trash badge indicating it is marked for removal. Click again to unmark."
+        "question": "How do I mark specific pages for deletion in Zubware Delete PDF Pages?",
+        "answer": "You can either click directly on thumbnail cards in the visual grid (which badges them in red with a trash icon) or type exact numbers and ranges into the range input field (e.g., 2, 4-6, 11). Both selection methods stay in sync."
       },
       {
-        "question": "Can I delete all pages in the PDF?",
-        "answer": "No. A valid PDF requires at least one remaining page, so the tool prevents deleting the entire document."
+        "question": "Can I delete all pages in a PDF document?",
+        "answer": "No. Under ISO PDF standards, a document must contain at least one valid page. The tool disables export if all pages are selected for deletion to prevent generating corrupted zero-byte files."
       },
       {
-        "question": "Does deleting pages renumber the remaining pages?",
-        "answer": "The remaining pages automatically collapse into consecutive order in the output document."
+        "question": "Does deleting pages renumber the remaining pages consecutively?",
+        "answer": "Yes. The output document re-indexes the remaining pages consecutively so page transitions flow seamlessly in Adobe Acrobat and web viewers."
       },
       {
         "question": "Will deleting pages reduce the overall PDF file size?",
-        "answer": "Yes. Removing unwanted pages strips their content streams and associated embedded assets, resulting in a lighter file."
+        "answer": "Yes. The tool completely omits deleted page content streams and unreferenced embedded assets (such as high-res images and font subsets) during serialization, resulting in a lighter file."
       },
       {
         "question": "Can I select multiple non-adjacent pages to delete?",
-        "answer": "Yes. Simply click on each thumbnail card you wish to remove. Each selected page is highlighted with a red outline and trash icon until exported."
+        "answer": "Yes. You can select non-consecutive pages such as 1, 4, 9, 15 either by clicking each card individually or typing comma-separated numbers into the range box."
+      },
+      {
+        "question": "Is deleting pages reversible after downloading?",
+        "answer": "The exported PDF will no longer contain the deleted pages. However, your original source file stored on your computer or phone remains completely untouched and safe."
+      },
+      {
+        "question": "Does deleting pages affect text formatting, bookmarks, or hyperlinks on remaining pages?",
+        "answer": "No. Remaining pages retain their original vector fonts, crisp typography, line art, and internal links. Links pointing to deleted pages are safely ignored."
+      },
+      {
+        "question": "Can I delete blank pages scanned from an automatic document feeder (ADF)?",
+        "answer": "Yes. This is one of the most popular use cases. Quickly scan the thumbnail gallery, click the accidental blank pages, and export a clean PDF without wasted space."
+      },
+      {
+        "question": "Can I delete pages from a password-protected PDF?",
+        "answer": "Encrypted files must be unlocked before editing. Please use our Unlock PDF tool first with your known password, then remove pages from the decrypted file."
+      },
+      {
+        "question": "Are my sensitive or confidential PDF files uploaded to a remote server?",
+        "answer": "No. The entire page pruning and re-serialization pipeline executes 100% locally in your browser memory via pdf-lib with zero cloud transmission."
+      },
+      {
+        "question": "Can I use Delete PDF Pages on an iPhone, iPad, or Android phone?",
+        "answer": "Yes. The visual card grid supports touch selection on mobile browsers, making it easy to prune pages on the go without desktop software."
       }
     ]
   },
   "extract-pdf-pages": {
     "howTo": [
       {
-        "title": "Upload Your PDF",
-        "desc": "Drop or select the document to preview all page thumbnails."
+        "title": "Upload Source PDF Document",
+        "desc": "Drag and drop your PDF into the extraction workspace to generate interactive thumbnail previews."
       },
       {
-        "title": "Select Pages to Extract",
-        "desc": "Click thumbnails or enter custom page numbers/ranges (e.g., 1, 3-5) into the range input."
+        "title": "Select Target Pages to Extract",
+        "desc": "Click specific page thumbnails to highlight them in blue, or enter comma-separated numbers and ranges (e.g., 1, 3-5, 9)."
       },
       {
-        "title": "Download Extracted PDF",
-        "desc": "Click Extract Pages to generate and download a new PDF containing only your chosen pages."
+        "title": "Verify Target Page Order",
+        "desc": "Review the summary of selected pages to confirm the extracted sequence matches your requirements."
+      },
+      {
+        "title": "Extract Page Streams",
+        "desc": "Click Extract Pages to copy only the chosen page object trees into a new standalone PDF document."
+      },
+      {
+        "title": "Download Isolated PDF",
+        "desc": "Save your new PDF document with embedded fonts, vector artwork, and formatting completely intact."
       }
     ],
     "faq": [
       {
+        "question": "What is the difference between Extract PDF Pages and Split PDF?",
+        "answer": "Extract Pages isolates specific chosen pages (e.g., pages 3, 7, and 12) into a single new consolidated PDF document. Split PDF breaks the entire file into multiple files or extracts all individual pages into a ZIP archive."
+      },
+      {
         "question": "How do I specify which pages to extract?",
-        "answer": "You can either click on thumbnail cards directly or type page ranges into the range input field (for example: 1, 3-5, 8). The visual selector and text input stay synchronized."
+        "answer": "You can either click on thumbnail cards directly in the visual grid or type page ranges into the text input (for example: 1, 4-7, 12). Both selection controls stay synchronized."
       },
       {
-        "question": "What is the difference between Extract Pages and Split PDF?",
-        "answer": "Extract Pages allows you to selectively pull specific non-consecutive or consecutive pages into a single new consolidated PDF file, whereas Split PDF typically segments files or outputs all individual pages into a ZIP archive."
+        "question": "Does extracting pages modify my original PDF file?",
+        "answer": "No. Your original file remains untouched on your local disk. The tool reads data in browser RAM and creates a brand-new PDF containing only the pages you selected."
       },
       {
-        "question": "Does extracting pages keep the original PDF file intact?",
-        "answer": "Yes. Your original file on your computer is completely untouched. The tool creates a new separate PDF file containing only your selected pages."
+        "question": "Are text layers, vector diagrams, and fonts preserved in the extracted PDF?",
+        "answer": "Yes. Our engine performs PDF-level object cloning, ensuring full vector typography, sharp diagrams, form layouts, and clickable links are preserved."
       },
       {
-        "question": "Are text layers, fonts, and form fields preserved?",
-        "answer": "Yes. Pages are copied structurally using PDF-level cloning, retaining embedded vector fonts, vector lines, and page formatting."
+        "question": "Can I extract non-consecutive pages together into one PDF?",
+        "answer": "Yes. You can extract pages like 1, 5, 8, and 14 into a single unified 4-page PDF without having to extract them into separate files."
       },
       {
-        "question": "Can I reorder pages while extracting them?",
-        "answer": "Extracted pages maintain their relative order in the output document. To freely customize the sequence of pages, use the dedicated Zubware Reorder PDF Pages tool."
+        "question": "Can I extract pages from scanned PDF documents?",
+        "answer": "Yes. Scanned pages are extracted with their full high-resolution photographic bitmaps preserved without recompression or quality loss."
+      },
+      {
+        "question": "What is the maximum page count supported for extraction?",
+        "answer": "You can process large documents containing hundreds of pages smoothly, as parsing and rendering run locally in browser WebAssembly."
+      },
+      {
+        "question": "Can I extract pages from password-protected PDF files?",
+        "answer": "Encrypted files cannot be read without entering the password. Use our Unlock PDF tool first to decrypt the document, then extract your chosen pages."
+      },
+      {
+        "question": "Does Zubware store copies of extracted pages on any cloud server?",
+        "answer": "No. All extraction operations occur entirely within your local browser sandbox with zero network telemetry or cloud uploads."
+      },
+      {
+        "question": "Can I reorder the extracted pages during extraction?",
+        "answer": "Pages are extracted in chronological sequence. If you want to rearrange their order, you can pass the extracted file to our Reorder PDF Pages or PDF Merge tool."
+      },
+      {
+        "question": "Does the extracted file include watermarks or branding?",
+        "answer": "No. All output PDFs are completely clean, professional, and free of any Zubware branding or watermarks."
       }
     ]
   },
@@ -1623,75 +2027,139 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {
         "title": "Upload PDF Document",
-        "desc": "Select your file to inspect its structure and page count."
+        "desc": "Drag and drop your sensitive PDF file into the security workspace to inspect document properties."
       },
       {
-        "title": "Set Encryption Password",
-        "desc": "Enter and confirm your password, check the real-time strength score, and optionally configure permission flags."
+        "title": "Set User Open Password",
+        "desc": "Enter and confirm your chosen password required to view and render document pages in PDF readers."
       },
       {
-        "title": "Encrypt and Download",
-        "desc": "Apply AES-256 encryption client-side and save your password-locked PDF."
+        "title": "Configure Owner Permissions",
+        "desc": "Optionally enter a separate owner password and toggle restrictions for printing, text copying, or content modifying."
+      },
+      {
+        "title": "Execute WebAssembly Encryption",
+        "desc": "Click Protect PDF to apply standards-compliant AES encryption directly inside browser memory."
+      },
+      {
+        "title": "Download Encrypted PDF",
+        "desc": "Save your password-locked PDF file locally, ready for confidential sharing via email or cloud storage."
       }
     ],
     "faq": [
       {
-        "question": "What encryption algorithm is used to protect the PDF?",
-        "answer": "By default, the tool applies modern AES-256 standard encryption, which is supported by all standard PDF readers such as Adobe Acrobat, Apple Preview, and modern web browsers."
-      },
-      {
-        "question": "What permissions can I restrict on the PDF?",
-        "answer": "Under advanced options, you can selectively control permissions for printing, text/graphics copying, annotating, and modifying document content."
-      },
-      {
-        "question": "Can Zubware recover my password if I forget it?",
-        "answer": "No. Encryption is applied using strong cryptographic algorithms inside your browser. Zubware does not store your passwords or documents, so forgotten passwords cannot be recovered."
+        "question": "What encryption standard is applied to protected PDF documents?",
+        "answer": "The tool uses industry-standard 128-bit and 256-bit AES encryption via @pdfsmaller/pdf-encrypt. This standard is universally supported by Adobe Acrobat, Apple Preview, Google Chrome, and standard mobile document viewers."
       },
       {
         "question": "What is the difference between a User Password and an Owner Password?",
-        "answer": "A User Password (open password) is required to open and read the PDF. An Owner Password (permissions password) allows unrestricted editing and printing rights even if permissions are locked for regular viewers."
+        "answer": "A User Password (open password) restricts viewing; anyone opening the document must enter it to render pages. An Owner Password (permissions password) governs permissions, allowing you to restrict printing, copying text, or altering pages while letting authorized users read the document."
       },
       {
-        "question": "How is encryption handled by this tool?",
-        "answer": "Files are processed in your browser and are not sent to a Zubware server for processing. Encryption is applied directly inside your browser using standard AES-256 cryptographic algorithms."
+        "question": "What specific permissions can I disable on the PDF?",
+        "answer": "You can selectively disable high-resolution printing, disallow copying text and graphic assets to clipboard, and block document modifications or page extraction."
+      },
+      {
+        "question": "Can Zubware recover my password if I forget it?",
+        "answer": "No. Encryption is performed cryptographically inside your device's browser memory. Zubware never sees, stores, or logs your passwords or documents. Always save your passphrase in a secure password manager."
+      },
+      {
+        "question": "Will password protection affect document readability or image clarity?",
+        "answer": "No. Strong AES encryption scrambles the raw binary byte stream of the PDF file container. When the correct password is provided, the document decrypts with 100% of its original vector lines, text, and photos intact."
+      },
+      {
+        "question": "Can recipient mobile devices open encrypted PDFs?",
+        "answer": "Yes. Standard mobile PDF readers (including Safari on iOS, Files app, Android PDF Viewer, and Google Drive) prompt for the password and decrypt AES-protected PDFs natively."
+      },
+      {
+        "question": "What happens if I try to protect an already-encrypted PDF?",
+        "answer": "The tool detects existing encryption dictionaries and displays an informative warning. You must unlock the PDF with its original password before applying new protection settings."
+      },
+      {
+        "question": "Are my confidential legal or financial files uploaded to external servers?",
+        "answer": "No. All key derivation, cipher initialization, and stream encryption routines run 100% locally in your browser sandbox using WebAssembly with zero network transmission."
+      },
+      {
+        "question": "Can I remove the password later if I no longer need protection?",
+        "answer": "Yes. You can use our Unlock PDF tool at any time by entering your known password once to permanently strip encryption and save an unprotected PDF."
+      },
+      {
+        "question": "Does password protection prevent someone from taking a screenshot of the document?",
+        "answer": "No digital PDF security standard can prevent operating-system level screen captures or external camera photography. Password protection secures files against unauthorized transmission, automated text scraping, and unauthorized viewing."
+      },
+      {
+        "question": "How long does encryption take for large files?",
+        "answer": "Because AES encryption executes in compiled WebAssembly on your local CPU, most multi-page documents encrypt in under 1 to 2 seconds."
       }
     ]
   },
   "unlock-pdf": {
     "howTo": [
       {
-        "title": "Upload Locked PDF",
-        "desc": "Select your password-protected or permission-restricted PDF document."
+        "title": "Upload Password-Protected PDF",
+        "desc": "Select or drag your encrypted or permission-restricted PDF document into the tool."
       },
       {
-        "title": "Enter Password if Required",
-        "desc": "If the document requires an open password, type it into the password field; owner permissions restrictions are detected automatically."
+        "title": "Enter Authorized Document Password",
+        "desc": "Type the known password into the secure password prompt to authorize local browser decryption."
       },
       {
-        "title": "Decrypt and Save",
-        "desc": "Click Unlock PDF to remove encryption and download a clean, unprotected PDF."
+        "title": "Verify Decryption Status",
+        "desc": "The engine tests the password against PDF encryption dictionaries and confirms authorization."
+      },
+      {
+        "title": "Strip Encryption Dictionaries",
+        "desc": "Click Unlock PDF to remove security handlers, permission locks, and cipher tags in client memory."
+      },
+      {
+        "title": "Download Unrestricted PDF",
+        "desc": "Save your clean, unencrypted PDF file that opens instantly across all devices without password prompts."
       }
     ],
     "faq": [
       {
-        "question": "Can this tool unlock a PDF without knowing the password?",
-        "answer": "If the document is restricted only by permissions (printing or copying locks without an open password), it can often be unlocked directly. However, if the PDF is protected by an open/read password, you must enter the valid password once to decrypt and remove the lock."
+        "question": "Can Zubware Unlock PDF unlock a file without knowing the password?",
+        "answer": "No. This tool is designed for authorized document owners to eliminate repetitive password prompts on their own files. If a document requires an open password, you must enter that valid password once so our engine can decrypt the byte stream."
       },
       {
-        "question": "What happens to the password once I unlock the PDF?",
-        "answer": "A new, unencrypted copy of the document is generated. The downloaded PDF will open freely in any viewer without asking for a password in the future."
+        "question": "What happens to the password after I unlock the document?",
+        "answer": "The tool generates a completely fresh, unencrypted copy of the document. The downloaded PDF will open freely in any viewer without ever asking for a password in the future."
       },
       {
-        "question": "Will unlocking affect the formatting or layout of the document?",
-        "answer": "No. Decryption restores the native content stream, keeping all pages, text formatting, and images identical to the original."
+        "question": "Will unlocking affect the document formatting, fonts, or image quality?",
+        "answer": "No. Decryption restores the native content streams losslessly, keeping all pages, text typography, vectors, and embedded images identical to the original."
       },
       {
-        "question": "How are passwords verified in this tool?",
-        "answer": "Files are processed in your browser and are not sent to a Zubware server for processing. Password checks and decryption operations run locally within your browser memory."
+        "question": "Can this tool remove owner permission restrictions (e.g., printing or copying locks)?",
+        "answer": "Yes. If a document allows viewing but restricts printing or copying text, entering the owner password or unlocking the document strips all permission flags, restoring full editing and printing capabilities."
       },
       {
-        "question": "What should I do if the tool says the password is incorrect?",
-        "answer": "Verify caps lock and spelling. PDF passwords are strictly case-sensitive."
+        "question": "Are passwords case-sensitive?",
+        "answer": "Yes. PDF passwords strictly distinguish between uppercase and lowercase letters. If decryption fails, verify Caps Lock and ensure no accidental spaces were copied."
+      },
+      {
+        "question": "Are my sensitive bank statements or payslips sent to a cloud server?",
+        "answer": "No. Decryption is performed entirely in your browser memory via pdfjs-dist and pdf-lib. Your confidential financial records and entered passwords never leave your device."
+      },
+      {
+        "question": "Why does my utility company or bank password-protect my PDF statements?",
+        "answer": "Financial institutions commonly password-protect statements using your date of birth or tax ID to protect files while in transit over email. Unlocking them locally lets you organize them in your private tax folder without recurring password prompts."
+      },
+      {
+        "question": "Can I merge an unlocked PDF with other documents?",
+        "answer": "Yes! Once decrypted, the unlocked PDF can be merged, split, converted, or annotated using any of our other PDF tools without restriction."
+      },
+      {
+        "question": "What should I do if the tool reports 'Incorrect Password'?",
+        "answer": "Double-check your credentials. Some financial institutions use combinations of postal codes, birth years, or last 4 digits of account numbers. Re-enter the exact string carefully."
+      },
+      {
+        "question": "Can I unlock PDFs on my smartphone?",
+        "answer": "Yes. Zubware Unlock PDF runs entirely inside your mobile web browser (iOS Safari, Android Chrome) with touch keypad support."
+      },
+      {
+        "question": "Does unlocking a PDF change its digital signatures?",
+        "answer": "If a PDF contained a cryptographic PKI certificate stamp, stripping the encryption container will invalidate the original cryptographic hash. Visual signature overlays remain completely intact."
       }
     ]
   },
@@ -5260,43 +5728,75 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "contrast-checker": {
-    "howTo": [
-      {
-        "title": "Select Foreground & Background Colors",
-        "desc": "Input HEX, RGB, or HSL codes for your text color and background surface."
-      },
-      {
-        "title": "Inspect WCAG 2.1 Ratio Score",
-        "desc": "Review the calculated contrast ratio (e.g. 4.5:1 or 7:1) and check pass/fail badges for Normal Text, Large Text, and UI Components."
-      },
-      {
-        "title": "Test Live Typography Preview",
-        "desc": "Inspect simulated headings, body paragraphs, and button components to ensure real-world legibility."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What are the WCAG 2.1 contrast ratio requirements?",
-        "answer": "WCAG AA requires a minimum ratio of 4.5:1 for normal body text and 3.0:1 for large text (18pt+ or 14pt bold). WCAG AAA requires 7.0:1 for normal text and 4.5:1 for large text."
-      },
-      {
-        "question": "How is relative luminance calculated for contrast ratios?",
-        "answer": "The tool calculates CIE relative luminance (L) from linearized sRGB color coordinates: Ratio = (L1 + 0.05) / (L2 + 0.05), where L1 is the lighter color."
-      },
-      {
-        "question": "Can I swap foreground and background colors with one click?",
-        "answer": "Yes. Click the Swap button to instantly reverse foreground and background values to check inverse button and dark mode states."
-      },
-      {
-        "question": "Does the tool suggest accessible color adjustments if contrast fails?",
-        "answer": "Yes. The auto-adjust recommendation provides the closest lighter or darker shade that satisfies WCAG AA compliance."
-      },
-      {
-        "question": "Is contrast checking performed locally?",
-        "answer": "Yes. The mathematical formula evaluates in your browser instantly without server roundtrips."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Pick or Input Foreground Color",
+      "desc": "Enter a 6-digit hex color code or use the color picker to select your text or UI element color."
+    },
+    {
+      "title": "Pick or Input Background Color",
+      "desc": "Enter the hex color code or use the picker to set your card, button, or page background."
+    },
+    {
+      "title": "Review Calculated Contrast Ratio",
+      "desc": "Inspect the mathematical contrast ratio calculated from 1:1 up to 21:1 based on standard sRGB relative luminance."
+    },
+    {
+      "title": "Verify WCAG 2.1 Compliance Levels",
+      "desc": "Check real-time pass/fail indicators across Normal Text AA (4.5:1), Normal Text AAA (7:1), Large Text AA (3:1), and UI Components (3:1)."
+    },
+    {
+      "title": "Test Live Preview & Swap Colors",
+      "desc": "Preview typography legibility on the interactive sample card and click Swap Colors to test inverse color schemes."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How is the WCAG color contrast ratio calculated?",
+      "answer": "The contrast ratio is calculated using the W3C formula (L1 + 0.05) / (L2 + 0.05), where L1 is the relative luminance of the lighter color and L2 is the relative luminance of the darker color, yielding values from 1:1 (zero contrast) to 21:1 (black on white)."
+    },
+    {
+      "question": "What is the difference between WCAG AA and AAA compliance?",
+      "answer": "WCAG Level AA requires a minimum contrast of 4.5:1 for normal text and 3:1 for large text (18pt or 14pt bold). Level AAA represents the enhanced accessibility standard, requiring 7:1 for normal text and 4.5:1 for large text."
+    },
+    {
+      "question": "What qualifies as 'Large Text' under WCAG guidelines?",
+      "answer": "Large text is defined as at least 18pt (24px) regular font weight, or at least 14pt (approximately 18.66px) bold font weight. Because larger strokes are easier to read, lower contrast ratios are permitted."
+    },
+    {
+      "question": "Does this contrast checker evaluate graphical user interface components?",
+      "answer": "Yes. Under WCAG 2.1 Success Criterion 1.4.11 (Non-text Contrast), user interface components such as button borders, active form input outlines, and icons must achieve at least a 3:1 contrast ratio against adjacent backgrounds."
+    },
+    {
+      "question": "Can an automated contrast check guarantee complete digital accessibility compliance?",
+      "answer": "No. While color contrast is a critical requirement of WCAG, full compliance also requires semantic HTML, keyboard navigability, screen reader compatibility, focus indicators, and testing across color vision deficiencies."
+    },
+    {
+      "question": "Does color contrast apply to disabled buttons and placeholder text?",
+      "answer": "WCAG 2.1 specifically exempts inactive or disabled user interface components. However, accessible design best practice recommends ensuring form placeholder text achieves at least 4.5:1 contrast for clear readability."
+    },
+    {
+      "question": "How does relative luminance account for human eye color perception?",
+      "answer": "Relative luminance calculates photometric brightness by weighting sRGB color channels (0.2126 Red, 0.7152 Green, 0.0722 Blue) to reflect human retinal sensitivity, which is far more sensitive to green wavelengths than red or blue."
+    },
+    {
+      "question": "Can I test semi-transparent (RGBA) colors with this tool?",
+      "answer": "The contrast checker calculates mathematically precise ratios using 6-digit hex color values. When using semi-transparent colors, calculate the resulting blended hex color against the background before testing."
+    },
+    {
+      "question": "Why does dark mode require different contrast considerations than light mode?",
+      "answer": "In dark mode, pure white text (#ffffff) on pitch black (#000000) achieves a 21:1 contrast ratio that can cause visual halation (glowing/fuzziness) for users with astigmatism. Off-white text (#e2e8f0) on dark slate (#0f172a) often provides better reading comfort."
+    },
+    {
+      "question": "Are color values or tested palettes saved or sent to any server?",
+      "answer": "No. All relative luminance calculations, ratio evaluations, and live preview rendering occur completely client-side in your browser."
+    },
+    {
+      "question": "Can I use the Contrast Checker on mobile devices and tablets?",
+      "answer": "Yes. The interface is fully responsive, featuring touch-friendly color pickers and instant contrast calculations on smartphones and tablets."
+    }
+  ]
+},
   "random-color-generator": {
     "howTo": [
       {
@@ -5336,119 +5836,215 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "qr-business-card-generator": {
-    "howTo": [
-      {
-        "title": "Enter Contact Information",
-        "desc": "Fill in your full name, job title, company, phone number, email address, website, and social links."
-      },
-      {
-        "title": "Customize QR Styling & Colors",
-        "desc": "Select foreground and background colors, choose dot corner styling, and optionally add your logo emblem."
-      },
-      {
-        "title": "Download Print-Ready vCard QR Code",
-        "desc": "Scan the preview with a smartphone camera to test instant contact saving, then download as high-res PNG or SVG."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What happens when someone scans this QR code with their phone?",
-        "answer": "The phone's native camera opens an 'Add to Contacts' prompt, pre-filling your name, phone number, email, company, and website into their address book without typing."
-      },
-      {
-        "question": "Which standard vCard format is embedded in the QR code?",
-        "answer": "It uses the universal vCard 3.0 / MeCard protocol, natively supported by Apple iOS Contacts, Google Android Contacts, and Outlook."
-      },
-      {
-        "question": "Can I customize the QR code color to match my company brand?",
-        "answer": "Yes. You can customize foreground and background colors, ensuring sufficient contrast so barcode scanners read it reliably."
-      },
-      {
-        "question": "Does the QR business card ever expire?",
-        "answer": "No. The QR code is a static direct-data code containing the literal contact information; it never expires and requires no monthly subscription or hosting."
-      },
-      {
-        "question": "Are my personal contact details stored on a database?",
-        "answer": "No. The vCard payload is encoded directly into QR pixel matrices client-side in your browser. No personal data is stored on Zubware servers."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Enter Personal & Contact Details",
+      "desc": "Fill in your full name, job title, company name, department, phone numbers, and email addresses."
+    },
+    {
+      "title": "Add Web & Physical Address Information",
+      "desc": "Input your personal or corporate website URL, office address, and optional bio or notes."
+    },
+    {
+      "title": "Customize QR Dimensions & Visual Styling",
+      "desc": "Set your target pixel size (180px to 400px), margin padding, foreground color, and background color."
+    },
+    {
+      "title": "Select Error Correction Level",
+      "desc": "Choose between L (7%), M (15%), Q (25%), or H (30%) error correction to guarantee scanning reliability."
+    },
+    {
+      "title": "Export Vector SVG, PNG, or Copy vCard Text",
+      "desc": "Download print-ready vector SVG for business cards, high-resolution PNG for digital sharing, or copy raw vCard text."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is a vCard QR Code and how does it work when scanned?",
+      "answer": "A vCard QR code encodes structured electronic business card text (vCard 3.0 standard). When scanned with an iPhone or Android camera, the phone automatically prompts the user to save the contact directly into their contacts app without manual typing."
+    },
+    {
+      "question": "What is the difference between encoding a vCard vs encoding a website URL?",
+      "answer": "A URL QR code redirects the scanner to a webpage. A vCard QR code embeds the contact information (name, phone, email, company, address) directly inside the QR symbol itself, functioning offline without requiring an internet connection."
+    },
+    {
+      "question": "Which contact fields are supported by this generator?",
+      "answer": "The generator supports Full Name, Job Title, Company, Department, Work Phone, Mobile Phone, Work Email, Personal Email, Website URL, Physical Street Address, and Notes/Bio."
+    },
+    {
+      "question": "Why should I use Vector SVG format for printed business cards?",
+      "answer": "SVG is an infinitely scalable vector format that will not pixelate or blur at any print resolution. Commercial printers require vector formats to ensure crisp edges at 300+ DPI on luxury card stock."
+    },
+    {
+      "question": "What is Error Correction Level and which setting is recommended?",
+      "answer": "Error correction (Reed-Solomon algorithm) allows the QR code to be scanned even if smudged, creased, or partially obscured. Level M (15% recovery) or Level Q (25% recovery) is ideal for printed business cards."
+    },
+    {
+      "question": "Is there a character limit for contact data stored in a business card QR code?",
+      "answer": "Standard QR codes can store thousands of characters, but dense data creates smaller, more intricate modules that require careful scanning. Keeping bio notes concise ensures quick scanning across all smartphone cameras."
+    },
+    {
+      "question": "Do I need a special app to scan the generated QR business card?",
+      "answer": "No. Modern iOS (iPhone camera app) and Android (Google Lens / native camera) natively recognize vCard QR codes and provide an instant 'Add to Contacts' banner."
+    },
+    {
+      "question": "Can I change my contact details after printing the QR code?",
+      "answer": "Because this creates a direct static vCard QR code with your data stored inside the barcode pattern, printed cards cannot be edited dynamically. Always double-check phone numbers and email spelling before sending cards to print."
+    },
+    {
+      "question": "Are my personal contact details stored on Zubware servers?",
+      "answer": "No. The vCard string generation and QR matrix rendering execute 100% locally in your web browser. No contact information, phone numbers, or emails are transmitted or saved."
+    },
+    {
+      "question": "What is the minimum physical size for printing a vCard QR code on a card?",
+      "answer": "For standard vCard data density, print the QR code at a minimum size of 0.8 x 0.8 inches (20 x 20 mm) with adequate white space margin to ensure seamless optical camera autofocus."
+    },
+    {
+      "question": "Does this tool charge any recurring fees or subscription to keep the QR code working?",
+      "answer": "No. Unlike commercial dynamic QR services that disable codes after free trials, static vCard QR codes generated here never expire and remain functional forever."
+    }
+  ]
+},
   "unit-converter": {
-    "howTo": [
-      {
-        "title": "Select Unit Measurement Category",
-        "desc": "Choose from 8 unit families: Length, Weight & Mass, Temperature, Area, Volume, Speed, Digital Data, or Time."
-      },
-      {
-        "title": "Choose Source and Target Units",
-        "desc": "Pick your originating unit in the 'From' dropdown and your desired destination unit in the 'To' dropdown."
-      },
-      {
-        "title": "Input Value & Copy Converted Output",
-        "desc": "Type any numeric value into the input field to view the instant converted result and click Copy to clipboard."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Which measurement categories are supported by the unit converter?",
-        "answer": "The tool supports 8 categories: Length (mm to miles), Weight & Mass (mg to tons), Temperature (Celsius, Fahrenheit, Kelvin), Area, Volume, Speed (m/s, km/h, mph, knots), Digital Data (Bytes to TB), and Time."
-      },
-      {
-        "question": "How are temperature conversions calculated between Celsius and Fahrenheit?",
-        "answer": "Temperature conversions use precise affine formulas: °F = (°C × 9/5) + 32, °C = (°F - 32) × 5/9, and Kelvin = °C + 273.15, correctly accounting for non-zero baseline offsets."
-      },
-      {
-        "question": "Can I swap the source and target units with one click?",
-        "answer": "Yes. Click the Swap button between the unit selectors to instantly reverse the conversion direction."
-      },
-      {
-        "question": "How is conversion decimal precision handled?",
-        "answer": "Results are calculated with full 64-bit floating-point precision and formatted cleanly, omitting unnecessary trailing zeroes while avoiding rounding distortion."
-      },
-      {
-        "question": "Are my conversion values uploaded to a server?",
-        "answer": "No. All conversion factors and formulas are evaluated entirely within your local browser JavaScript engine."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Measurement Category",
+      "desc": "Choose from Length, Mass/Weight, Temperature, Volume, Area, Speed, or Digital Storage."
+    },
+    {
+      "title": "Input Value to Convert",
+      "desc": "Type the numeric value you want to convert into the input field."
+    },
+    {
+      "title": "Choose Source & Destination Units",
+      "desc": "Select your starting unit and target unit from the organized dropdown menus."
+    },
+    {
+      "title": "Inspect Instant Conversion Result",
+      "desc": "Review the calculated output with exact conversion factors and mathematical precision."
+    },
+    {
+      "title": "Swap Units or Copy Output",
+      "desc": "Click the Swap button to reverse the conversion direction or Copy to copy the result to your clipboard."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Which measurement categories are supported by this Unit Converter?",
+      "answer": "The converter supports 7 primary categories: Length (meters, km, miles, feet, inches), Mass/Weight (kg, grams, pounds, ounces), Temperature (Celsius, Fahrenheit, Kelvin), Volume (liters, gallons, cups, cubic meters), Area (sq meters, sq feet, acres, hectares), Speed (m/s, km/h, mph, knots), and Digital Storage (bytes, KB, MB, GB, TB)."
+    },
+    {
+      "question": "What is the scientific distinction between mass and weight in unit conversion?",
+      "answer": "Scientifically, mass is the quantity of matter in an object (measured in kilograms or grams), whereas weight is the gravitational force acting on that mass (measured in Newtons). In everyday commercial conversion, pounds and kilograms are treated as equivalent mass-to-mass standards on Earth."
+    },
+    {
+      "question": "How is Temperature converted between Celsius, Fahrenheit, and Kelvin?",
+      "answer": "Temperature conversions use affine formulas: Fahrenheit = (Celsius * 9/5) + 32; Celsius = (Fahrenheit - 32) * 5/9; Kelvin = Celsius + 273.15. Unlike length or mass, temperature scales have differing zero reference points."
+    },
+    {
+      "question": "Does the volume converter use US Customary or Imperial British gallons?",
+      "answer": "The volume converter uses US Customary units where 1 US Gallon = 3.78541 liters (and 1 US Cup = 236.588 ml), which is standard across North American engineering and consumer packaging."
+    },
+    {
+      "question": "How does the Digital Storage converter handle Decimal vs Binary byte prefixes?",
+      "answer": "The converter follows the standard decimal metric system (1 KB = 1,000 Bytes, 1 MB = 1,000,000 Bytes, 1 GB = 1,000,000,000 Bytes) used by hard drive manufacturers and networking standards."
+    },
+    {
+      "question": "How many decimal places of precision does the calculator preserve?",
+      "answer": "Calculations are performed with high floating-point precision and formatted cleanly to eliminate recurring float rounding anomalies while preserving scientific accuracy."
+    },
+    {
+      "question": "Can I convert negative values with this tool?",
+      "answer": "Yes, negative values are fully supported for temperature scales (such as sub-zero Celsius and Fahrenheit) and differential measurements."
+    },
+    {
+      "question": "Does this tool require an internet connection or send data to a server?",
+      "answer": "No. All conversion factors and mathematical calculations run 100% locally inside your web browser."
+    },
+    {
+      "question": "Can I use the Unit Converter on mobile phones and tablets?",
+      "answer": "Yes. The interface is responsive and touch-optimized for fast lookups on Android and iOS devices."
+    },
+    {
+      "question": "What is the conversion factor between kilometers and miles?",
+      "answer": "1 mile is equal to exactly 1.609344 kilometers. Conversely, 1 kilometer is approximately equal to 0.621371 miles."
+    },
+    {
+      "question": "What is the conversion factor between kilograms and pounds?",
+      "answer": "1 kilogram is internationally defined as approximately 2.20462262 pounds (avoirdupois). Conversely, 1 pound is exactly 0.45359237 kilograms."
+    }
+  ]
+},
   "percentage-calculator": {
-    "howTo": [
-      {
-        "title": "Select Percentage Mode",
-        "desc": "Choose from four calculation modes: find X% of Y, determine what percentage X is of Y, calculate percentage increase or decrease, or find percentage difference."
-      },
-      {
-        "title": "Enter Numerical Values",
-        "desc": "Type your base numbers and percentage values into the designated input fields for your chosen calculation mode."
-      },
-      {
-        "title": "View & Copy Calculated Result",
-        "desc": "Review the instant real-time calculation displayed with full decimal precision and copy the result to your clipboard."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How do I calculate what percentage one number is of another?",
-        "answer": "Use Mode 2 ('X is what % of Y'). The calculator divides X by Y and multiplies the quotient by 100 to yield the exact percentage share."
-      },
-      {
-        "question": "How does the percentage increase and decrease mode work?",
-        "answer": "Mode 3 subtracts the initial value X from the final value Y, divides the difference by X, and multiplies by 100. Positive results indicate a percentage increase, while negative numbers represent a percentage drop."
-      },
-      {
-        "question": "What is the difference between percentage change and percentage difference?",
-        "answer": "Percentage change (Mode 3) tracks relative growth or drop from an initial starting point X to Y. Percentage difference (Mode 4) compares two independent values against their mutual average (|X - Y| / ((X + Y) / 2) * 100)."
-      },
-      {
-        "question": "Does the calculator support decimal numbers and negative values?",
-        "answer": "Yes. You can enter positive or negative decimal numbers into any input field; calculations update dynamically on every keystroke."
-      },
-      {
-        "question": "Are my calculation numbers transmitted to a remote server?",
-        "answer": "No. All arithmetic operations are performed locally in your browser memory using JavaScript floating-point math."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Choose Your Calculation Scenario",
+      "desc": "Select among 4 calculation modes: P% of X, X is what % of Y, Percentage Increase/Decrease, or Add/Subtract %."
+    },
+    {
+      "title": "Enter First Value (Base or Percentage)",
+      "desc": "Input your first number into the designated field with decimal or integer values."
+    },
+    {
+      "title": "Enter Second Value (Comparison or Total)",
+      "desc": "Input the second number to complete the mathematical formula."
+    },
+    {
+      "title": "Review Instant Calculation Result",
+      "desc": "Inspect the calculated output along with the visual indicator of change."
+    },
+    {
+      "title": "Examine Step-by-Step Formula & Copy",
+      "desc": "Read the clear mathematical breakdown showing the exact equation used, and copy the result."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the mathematical difference between percentage change and percentage points?",
+      "answer": "Percentage change measures the relative proportional change between two numbers (e.g., from 10% to 15% is a 50% relative increase). Percentage points refer to the simple arithmetic difference between two percentage values (15% minus 10% = 5 percentage points)."
+    },
+    {
+      "question": "How do you calculate percentage increase or decrease between two numbers?",
+      "answer": "The formula is: Percentage Change = ((New Value - Old Value) / |Old Value|) * 100. If the result is positive, it represents an increase; if negative, it represents a decrease."
+    },
+    {
+      "question": "How do you find what percentage one number is of another?",
+      "answer": "Divide the part by the whole and multiply by 100: Percentage = (Part / Whole) * 100. For example, 30 out of 200 is (30 / 200) * 100 = 15%."
+    },
+    {
+      "question": "How do you calculate a percentage of a given number?",
+      "answer": "Multiply the number by the percentage expressed as a decimal: Result = Number * (Percent / 100). For example, 15% of 200 is 200 * 0.15 = 30."
+    },
+    {
+      "question": "Why does adding 20% and then subtracting 20% not return to the original number?",
+      "answer": "Because the base changes. If you start with 100 and add 20%, you get 120. Subtracting 20% of 120 (which is 24) leaves you with 96. Percentage decreases operate on the new, larger base."
+    },
+    {
+      "question": "Can percentage increase exceed 100%?",
+      "answer": "Yes. Any time a value more than doubles, the percentage increase exceeds 100%. For example, an increase from 50 to 150 represents a 200% increase."
+    },
+    {
+      "question": "Can percentage decrease exceed 100% in real-world scenarios?",
+      "answer": "For standard positive quantities (prices, weights, populations), a decrease cannot exceed 100% because reaching zero is a 100% decrease. Exceeding 100% would imply entering negative values."
+    },
+    {
+      "question": "How do you reverse calculate original price before a percentage discount?",
+      "answer": "To find original price from a discounted price: Original Price = Discounted Price / (1 - (Discount% / 100)). For example, if you paid $80 after a 20% discount, the original price was $80 / 0.80 = $100."
+    },
+    {
+      "question": "Does this percentage calculator support negative numbers and decimals?",
+      "answer": "Yes. You can input positive, negative, and decimal values across all four calculation modes."
+    },
+    {
+      "question": "Are calculation inputs or financial data stored on any server?",
+      "answer": "No. All percentage calculations execute purely client-side in your device's browser memory."
+    },
+    {
+      "question": "Can I use the Percentage Calculator for grade marks and exam percentages?",
+      "answer": "Yes. Use the 'X is what % of Y' mode, entering your scored marks in X and total possible marks in Y to find your exact exam percentage."
+    }
+  ]
+},
   "age-calculator": {
     "howTo": [
       {
@@ -5528,119 +6124,215 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "emi-calculator": {
-    "howTo": [
-      {
-        "title": "Enter Loan Principal Amount",
-        "desc": "Input your total desired loan or mortgage borrowing amount."
-      },
-      {
-        "title": "Set Interest Rate & Tenure",
-        "desc": "Specify the annual interest rate percentage and your repayment duration in years."
-      },
-      {
-        "title": "Review Monthly EMI & Amortization",
-        "desc": "Inspect your fixed monthly EMI, total interest payable over the loan life, and review the year-by-year amortization schedule."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Which mathematical formula is used to calculate monthly EMI?",
-        "answer": "The calculator uses the standard reducing-balance EMI formula: E = [P × r × (1 + r)^n] / [(1 + r)^n - 1], where P is principal, r is monthly interest rate (annual rate / 12 / 100), and n is total monthly installments (tenure in years × 12)."
-      },
-      {
-        "question": "How does changing loan tenure affect my monthly EMI and total interest?",
-        "answer": "A longer tenure lowers your monthly payment by spreading repayments over more months, but significantly increases the cumulative interest paid to the lender."
-      },
-      {
-        "question": "Does the calculated EMI include bank processing fees, insurance, or taxes?",
-        "answer": "No. The calculator estimates the pure principal and interest payment. Bank-specific origination fees, mortgage insurance (PMI), stamp duty, and local taxes must be added separately."
-      },
-      {
-        "question": "What information does the yearly amortization schedule show?",
-        "answer": "The schedule details the beginning balance, total principal repaid, interest paid to the lender, and closing loan balance for each individual year of the loan term."
-      },
-      {
-        "question": "Are loan interest rates fixed or floating in this calculator?",
-        "answer": "The tool assumes a constant fixed interest rate over the full tenure. For floating rate loans, recalculate whenever your lender adjusts the benchmark interest rate."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Input Principal Loan Amount",
+      "desc": "Enter the total loan amount you intend to borrow from a bank or lending institution."
+    },
+    {
+      "title": "Set Annual Interest Rate",
+      "desc": "Enter the lender's annual percentage interest rate (fixed or floating rate basis)."
+    },
+    {
+      "title": "Specify Loan Tenure in Years",
+      "desc": "Input your intended loan repayment duration in years."
+    },
+    {
+      "title": "Add Optional Monthly Prepayment",
+      "desc": "Enter an extra monthly payment amount to test how prepayments accelerate loan payoff and save interest."
+    },
+    {
+      "title": "Analyze Monthly EMI & Amortization Schedule",
+      "desc": "Review your monthly EMI, total interest payable, overall repayment, and year-by-year amortization table."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is an Equated Monthly Installment (EMI) and how is it calculated?",
+      "answer": "An EMI is a fixed monthly payment made by a borrower to a lender. It is calculated using the standard formula: EMI = [P * r * (1 + r)^n] / [(1 + r)^n - 1], where P is Principal, r is monthly interest rate (annual rate / 12 / 100), and n is total months."
+    },
+    {
+      "question": "Why is the interest portion higher in early EMI payments and principal higher later?",
+      "answer": "In early months, the outstanding loan balance is at its peak, so monthly interest charges are highest. As regular monthly payments reduce the principal balance, the monthly interest charge decreases, allowing a larger portion of each payment to amortize principal."
+    },
+    {
+      "question": "How does making extra monthly prepayments impact total loan cost?",
+      "answer": "Extra prepayments directly reduce the principal balance. Because subsequent monthly interest is computed on a smaller outstanding principal, you significantly reduce overall interest paid and shorten the total loan tenure."
+    },
+    {
+      "question": "Does this EMI calculator include processing fees, GST, or insurance charges?",
+      "answer": "No. This tool calculates pure principal and interest repayment. Banks and NBFCs may add one-time processing fees (typically 0.5% - 2%), statutory taxes (such as GST in India), and mandatory loan insurance premiums."
+    },
+    {
+      "question": "What is the difference between a Fixed-Rate and Floating-Rate loan?",
+      "answer": "In a fixed-rate loan, the interest rate and EMI remain constant throughout the tenure. In a floating-rate loan, the rate fluctuates with benchmark indices (such as the RBI repo rate or US Federal Reserve prime rate), causing the EMI or tenure to adjust."
+    },
+    {
+      "question": "Can I use this calculator for Home Loans, Car Loans, and Personal Loans?",
+      "answer": "Yes. The mathematical reducing-balance EMI formula is universal and applies to home mortgages, automobile loans, personal loans, and education loans."
+    },
+    {
+      "question": "How do I calculate total interest paid over the entire life of the loan?",
+      "answer": "Total Interest Paid = (Monthly EMI * Total Months) - Original Principal Loan Amount. The calculator displays this figure automatically."
+    },
+    {
+      "question": "What is an Amortization Schedule?",
+      "answer": "An amortization schedule is an itemized year-by-year or month-by-month table showing each payment's allocation between principal reduction and interest, alongside the remaining loan balance."
+    },
+    {
+      "question": "Does this calculator guarantee that a bank will approve my loan?",
+      "answer": "No. The calculator provides mathematical estimates based on user inputs. Loan approval depends on credit scores (CIBIL/FICO), debt-to-income ratios, employment stability, and underwriting criteria."
+    },
+    {
+      "question": "Is my personal loan or financial data stored or transmitted to external servers?",
+      "answer": "No. All financial calculations occur strictly client-side in your web browser. No personal data or financial figures leave your device."
+    },
+    {
+      "question": "What is a good Debt-to-Income (DTI) ratio when planning an EMI?",
+      "answer": "Most financial advisors recommend keeping total monthly EMI obligations under 40% to 50% of your net monthly income to maintain healthy financial buffers for emergencies and living expenses."
+    }
+  ]
+},
   "discount-calculator": {
-    "howTo": [
-      {
-        "title": "Enter Original Price",
-        "desc": "Type the sticker or list price of the product or service before any discounts."
-      },
-      {
-        "title": "Set Discount & Sales Tax Rates",
-        "desc": "Input the percentage discount being offered and enter your applicable local sales tax rate."
-      },
-      {
-        "title": "View Final Price & Net Savings",
-        "desc": "Review the discounted subtotal, total dollar amount saved, sales tax added, and the final checkout price."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How is the final checkout price calculated with discount and sales tax?",
-        "answer": "The calculator first subtracts the discount percentage from the original price to find the discounted subtotal. It then applies your sales tax percentage to that discounted price to determine the final amount due."
-      },
-      {
-        "question": "Can I use the tool if there is no sales tax?",
-        "answer": "Yes. Simply set the sales tax field to 0% to calculate pure markdown savings and post-discount price."
-      },
-      {
-        "question": "How are cents and rounding handled in the discount calculation?",
-        "answer": "Calculations maintain full precision internally and format results to standard two decimal currency places (cents) for accurate shopping estimates."
-      },
-      {
-        "question": "Can I calculate stacked discounts (such as 20% off plus an extra 10% coupon)?",
-        "answer": "This tool calculates single percentage markdowns. For stacked store discounts with secondary coupon codes, use the Sale Price Calculator tool."
-      },
-      {
-        "question": "Does this tool support different world currencies?",
-        "answer": "Yes. The mathematical percentages apply identically regardless of whether your values are in Dollars, Euros, Pounds, Rupees, or Yen."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Currency & Calculation Mode",
+      "desc": "Choose your preferred currency symbol and toggle between Single Item mode and Shopping Cart mode."
+    },
+    {
+      "title": "Input Original Retail Price",
+      "desc": "Enter the original pre-discount sticker price of the product or service."
+    },
+    {
+      "title": "Choose Discount Type (Percentage or Flat)",
+      "desc": "Select percentage off (% discount) or a flat monetary discount ($ / € / ₹ off)."
+    },
+    {
+      "title": "Apply Stacked Discounts & Sales Tax",
+      "desc": "Optionally add a secondary coupon discount (e.g., extra 10% off) and input local sales tax or VAT percentage."
+    },
+    {
+      "title": "Inspect Final Price & Total Savings",
+      "desc": "Review your final checkout price, total monetary savings, effective discount percentage, and tax breakdown."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do you calculate a percentage discount on an item?",
+      "answer": "Multiply the original price by the discount percentage divided by 100 to find savings: Savings = Original Price * (Discount% / 100). Subtract savings from the original price to find the final price: Final Price = Original Price - Savings."
+    },
+    {
+      "question": "How do stacked or double discounts work (e.g., 20% off plus an extra 10% off)?",
+      "answer": "Stacked discounts are applied sequentially, not additively. For example, on a $100 item, 20% off reduces the price to $80. The extra 10% discount is applied to $80 ($8 discount), resulting in a final price of $72 (an effective 28% total discount, not 30%)."
+    },
+    {
+      "question": "How does sales tax affect the discounted purchase price?",
+      "answer": "In most jurisdictions, sales tax or VAT is calculated on the discounted sale price, not the original sticker price. Final Checkout Cost = Discounted Price * (1 + (Sales Tax% / 100))."
+    },
+    {
+      "question": "What is the difference between a percentage discount and a flat cash discount?",
+      "answer": "A percentage discount scales proportionally with the price (e.g., 25% off $200 saves $50). A flat discount subtracts a fixed dollar or rupee amount (e.g., $25 off) regardless of total item value."
+    },
+    {
+      "question": "How do you calculate the original price if you only know the discounted price?",
+      "answer": "Original Price = Discounted Price / (1 - (Discount% / 100)). For example, if you paid $75 after a 25% discount, the original price was $75 / 0.75 = $100."
+    },
+    {
+      "question": "How is 'Buy One Get One Free' (BOGO) calculated as a percentage discount?",
+      "answer": "A true 'Buy One, Get One Free' promotion across two identically priced items represents exactly a 50% discount on the total purchase. 'Buy One, Get One 50% Off' represents an effective 25% overall discount."
+    },
+    {
+      "question": "Can I use the Shopping Cart mode for multiple products?",
+      "answer": "Yes. Switch to Cart Mode to enter multiple items with differing individual prices and discount rates to calculate total basket savings."
+    },
+    {
+      "question": "Does this calculator support international currencies like INR, EUR, and GBP?",
+      "answer": "Yes. The tool includes a currency selector supporting USD ($), EUR (€), GBP (£), INR (₹), JPY (¥), CAD, AUD, and more."
+    },
+    {
+      "question": "Why do some retail stores calculate sales tax before coupons?",
+      "answer": "Store policies vary: manufacturer coupons in some US states may be taxable on the pre-coupon amount, whereas store discounts reduce the taxable base. This calculator applies tax to the net sale price."
+    },
+    {
+      "question": "Is any shopping or price data sent to a server?",
+      "answer": "No. All discount, tax, and cart calculations are processed locally inside your web browser."
+    },
+    {
+      "question": "Can I use the Discount Calculator on mobile devices while shopping in stores?",
+      "answer": "Yes. The mobile-responsive interface allows you to quickly calculate clearance rack savings and final register prices directly on your phone."
+    }
+  ]
+},
   "currency-calculator": {
-    "howTo": [
-      {
-        "title": "Enter Starting Amount",
-        "desc": "Type the numeric cash amount you wish to convert."
-      },
-      {
-        "title": "Select Base & Target Currencies",
-        "desc": "Choose your source currency (e.g. USD, EUR, GBP, INR) and your target conversion currency from the dropdown menus."
-      },
-      {
-        "title": "View Converted Value & Adjust Rates",
-        "desc": "Inspect the converted amount immediately, or open rate settings to override baseline exchange rates with custom bank rates."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Which currencies are supported by this calculator?",
-        "answer": "The tool supports major world currencies including US Dollar (USD), Euro (EUR), British Pound (GBP), Indian Rupee (INR), Canadian Dollar (CAD), Australian Dollar (AUD), Japanese Yen (JPY), Swiss Franc (CHF), and Singapore Dollar (SGD)."
-      },
-      {
-        "question": "Can I customize or update the exchange rates?",
-        "answer": "Yes. Clicking the Settings button allows you to input custom live bank or bureau de change rates against USD, which are saved in your local browser storage."
-      },
-      {
-        "question": "Does the calculator include credit card foreign transaction fees?",
-        "answer": "No. The tool computes pure exchange parity. Banks and card issuers typically add a 1% to 3.5% foreign transaction fee or exchange markup above mid-market rates."
-      },
-      {
-        "question": "Can I invert the conversion with one click?",
-        "answer": "Yes. Click the Swap button between the currency selectors to instantly reverse source and target currencies."
-      },
-      {
-        "question": "Can I use this currency converter offline without internet access?",
-        "answer": "Yes. Because default baseline rates are stored locally in the application, conversions execute instantaneously without requiring active network requests."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Input Conversion Amount",
+      "desc": "Type the monetary amount you wish to convert into the amount field."
+    },
+    {
+      "title": "Select Base Currency (From)",
+      "desc": "Choose the starting currency from the organized global currency selector."
+    },
+    {
+      "title": "Select Target Currency (To)",
+      "desc": "Choose the destination currency you want to convert into."
+    },
+    {
+      "title": "Inspect Instant Converted Total & Inverse Rate",
+      "desc": "Review the converted total, the direct exchange rate, and the inverse exchange rate."
+    },
+    {
+      "title": "Optionally Customize Exchange Rates",
+      "desc": "Open Rate Settings to input your bank's specific markup rate or test hypothetical exchange scenarios."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Currency Calculator determine exchange rates?",
+      "answer": "The tool utilizes benchmark reference foreign exchange rates stored in the application. Users can also open Rate Settings to enter customized exchange rates or account for bank foreign transaction spreads."
+    },
+    {
+      "question": "Why do actual bank and credit card exchange rates differ from benchmark rates?",
+      "answer": "Commercial banks, credit card processors, and airport currency booths add a foreign exchange spread (typically 1.5% to 4%) plus international transaction fees above mid-market interbank rates."
+    },
+    {
+      "question": "What is the 'Mid-Market Rate' (Interbank Rate)?",
+      "answer": "The mid-market rate is the midpoint between global wholesale buy and sell rates in international currency markets. It represents the fairest exchange benchmark before retail markups."
+    },
+    {
+      "question": "Which global currencies are supported by this calculator?",
+      "answer": "The calculator supports major international currencies including US Dollar (USD), Euro (EUR), British Pound (GBP), Indian Rupee (INR), Japanese Yen (JPY), Canadian Dollar (CAD), Australian Dollar (AUD), Swiss Franc (CHF), Chinese Yuan (CNY), UAE Dirham (AED), and Singapore Dollar (SGD)."
+    },
+    {
+      "question": "Can I swap the source and target currencies quickly?",
+      "answer": "Yes. Click the Swap button to instantly reverse the conversion direction and inspect the inverse exchange rate."
+    },
+    {
+      "question": "Does this tool require an internet connection or send financial data to servers?",
+      "answer": "No. Conversion calculations run locally in your web browser, allowing immediate lookups without network latency."
+    },
+    {
+      "question": "How do I calculate foreign transaction fees on international purchases?",
+      "answer": "You can adjust the conversion rate in Rate Settings to include your credit card's fee (e.g. adding 3% to the exchange rate) to see the exact cost on your monthly statement."
+    },
+    {
+      "question": "Does the calculator support cryptocurrency conversions like Bitcoin?",
+      "answer": "This tool is focused specifically on major fiat sovereign currencies. Cryptocurrency valuations are not included in this calculator."
+    },
+    {
+      "question": "Can I use the Currency Calculator on mobile devices while traveling abroad?",
+      "answer": "Yes. The tool runs smoothly on mobile browsers, making it ideal for quick price comparisons and travel budgeting on the go."
+    },
+    {
+      "question": "What is an Inverse Exchange Rate?",
+      "answer": "The inverse rate is the reciprocal of the direct exchange rate (1 / Rate). For example, if 1 USD = 0.92 EUR, the inverse rate is 1 EUR = 1.087 USD."
+    },
+    {
+      "question": "Can I copy the calculated currency conversion result?",
+      "answer": "Yes. Click the Copy button next to the result to place the formatted converted total onto your device's clipboard."
+    }
+  ]
+},
   "tip-calculator": {
     "howTo": [
       {
@@ -5854,119 +6546,215 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "loan-calculator": {
-    "howTo": [
-      {
-        "title": "Enter Loan & Mortgage Parameters",
-        "desc": "Input your loan principal balance, annual interest rate percentage, and loan term in years."
-      },
-      {
-        "title": "Add Optional Extra Monthly Payments",
-        "desc": "Enter an additional monthly payment amount to test how extra principal payments accelerate debt payoff."
-      },
-      {
-        "title": "Analyze Payoff Timeline & Amortization",
-        "desc": "Review your base monthly payment, total interest saved, years cut off your mortgage, and yearly amortization table."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How do extra monthly payments reduce my total mortgage interest?",
-        "answer": "Extra payments go directly toward reducing loan principal balance. Because monthly interest is calculated on remaining balance, lowering principal accelerates amortization and reduces total interest owed."
-      },
-      {
-        "question": "How is the base monthly payment calculated?",
-        "answer": "The calculator uses standard monthly amortization: M = P[r(1+r)^n] / [(1+r)^n - 1], where P is loan amount, r is monthly rate, and n is total months."
-      },
-      {
-        "question": "Does this mortgage calculator include property taxes and homeowner insurance?",
-        "answer": "This tool calculates principal and interest (P&I). Escrow items like property taxes, home insurance, and HOA dues vary by municipality and should be budgeted alongside P&I."
-      },
-      {
-        "question": "Can I see how many years an extra payment cuts off my loan?",
-        "answer": "Yes. When you enter an extra monthly payment, the summary card displays the exact number of years and months saved off your original repayment term."
-      },
-      {
-        "question": "Can I download or copy the amortization schedule?",
-        "answer": "Yes. The amortization table displays yearly starting balance, principal paid, interest paid, and end balance across the entire loan lifespan."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Input Principal Loan / Mortgage Amount",
+      "desc": "Enter the total loan amount needed for your home purchase, refinance, or personal borrowing."
+    },
+    {
+      "title": "Set Annual Interest Rate",
+      "desc": "Enter the annual interest rate offered by your mortgage lender or bank."
+    },
+    {
+      "title": "Specify Loan Term in Years",
+      "desc": "Choose your loan repayment term (such as 15 or 30 years for mortgages, or 3 to 7 years for personal loans)."
+    },
+    {
+      "title": "Add Extra Monthly Principal Payments",
+      "desc": "Optionally enter an extra monthly payment to simulate accelerated loan payoff and interest savings."
+    },
+    {
+      "title": "Review Monthly Payment & Complete Amortization",
+      "desc": "Inspect your monthly principal and interest payment, lifetime interest cost, and annual amortization schedule."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the difference between a 15-year and a 30-year mortgage?",
+      "answer": "A 30-year mortgage offers lower monthly payments because repayment is spread over a longer period, but incurs significantly higher total interest. A 15-year mortgage has higher monthly payments but saves tens of thousands in lifetime interest and builds equity much faster."
+    },
+    {
+      "question": "What is included in a mortgage monthly payment calculation?",
+      "answer": "This calculator determines the core Principal and Interest (P&I) payment. Full mortgage escrow payments (PITI) also typically include Property Taxes, Homeowners Insurance, and Private Mortgage Insurance (PMI) if down payment is under 20%."
+    },
+    {
+      "question": "How does making extra payments accelerate loan payoff?",
+      "answer": "Extra monthly payments go 100% toward principal reduction. Because interest is calculated on the remaining balance, every extra dollar reduces future compounding interest, shaving years off your repayment timeline."
+    },
+    {
+      "question": "What is an Amortization Schedule and how do I read it?",
+      "answer": "An amortization schedule details each year's payments, showing how much money goes toward paying off the loan balance versus how much is lost to interest charges, along with the ending principal balance."
+    },
+    {
+      "question": "Does this loan calculator apply to auto loans and personal loans?",
+      "answer": "Yes. The mathematical reducing balance formula is identical for auto loans, fixed-rate personal loans, student loans, and home mortgages."
+    },
+    {
+      "question": "Can I calculate the exact payoff date of my loan?",
+      "answer": "Yes. By entering your loan term and any extra payments, the calculator displays the accelerated payoff horizon and total months saved."
+    },
+    {
+      "question": "What is Private Mortgage Insurance (PMI) and when does it apply?",
+      "answer": "In the United States, lenders typically require PMI on conventional loans when the down payment is less than 20% of the home value. PMI is an added monthly fee that protects the lender until you reach 20% home equity."
+    },
+    {
+      "question": "Does using this loan calculator impact my credit score?",
+      "answer": "No. This is an informational client-side mathematical calculator that does not perform credit inquiries or connect to credit reporting bureaus."
+    },
+    {
+      "question": "Are loan figures or property details uploaded to any cloud server?",
+      "answer": "No. All loan amounts, interest rates, and schedule tables are computed locally inside your browser memory."
+    },
+    {
+      "question": "What formula is used to calculate monthly mortgage payments?",
+      "answer": "Payment = P * [r(1 + r)^n] / [(1 + r)^n - 1], where P is Principal, r is the monthly interest rate (annual rate / 12), and n is total monthly payments."
+    },
+    {
+      "question": "Can I print or copy the calculated amortization schedule?",
+      "answer": "Yes. The schedule is rendered in an accessible table format that you can copy or print directly from your browser."
+    }
+  ]
+},
   "roi-calculator": {
-    "howTo": [
-      {
-        "title": "Select Analysis Tab",
-        "desc": "Choose ROI & Profit Margin for commercial product pricing, Annualized ROI for investments, or Break-Even for volume planning."
-      },
-      {
-        "title": "Input Financial Figures",
-        "desc": "Enter cost price, selling price, units, overhead expenses, initial investment capital, or fixed costs."
-      },
-      {
-        "title": "Inspect Margins & Return Percentages",
-        "desc": "Review gross profit, net profit margin %, markup %, annualized rate of return, or minimum break-even sales volume."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What is the difference between Profit Margin and Markup?",
-        "answer": "Profit Margin is profit divided by selling price (Profit / Revenue × 100). Markup is profit divided by cost price (Profit / Cost × 100). A product costing $50 and sold for $100 has a 50% margin but a 100% markup."
-      },
-      {
-        "question": "How is simple ROI calculated versus Annualized ROI?",
-        "answer": "Simple ROI is (Net Profit / Initial Investment) × 100. Annualized ROI incorporates investment duration to calculate the compound annual return: [(Final Value / Initial Value)^(1 / Years) - 1] × 100."
-      },
-      {
-        "question": "How does the Break-Even analysis work?",
-        "answer": "Break-even units are calculated by dividing Total Fixed Costs by the Contribution Margin per unit (Selling Price - Variable Cost per unit), showing exact sales needed to cover costs."
-      },
-      {
-        "question": "Can I factor in secondary business expenses?",
-        "answer": "Yes. The commercial mode includes fields for shipping, advertising, packaging, or transaction overhead to determine true net profit."
-      },
-      {
-        "question": "Are calculated financial projections stored on any server?",
-        "answer": "No. All margin calculations, ROI percentages, and break-even tables execute locally in your browser memory."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Choose Calculator Mode",
+      "desc": "Select between Margin & Markup, Return on Investment (ROI), or Break-Even Analysis."
+    },
+    {
+      "title": "Input Financial Parameters",
+      "desc": "Enter Cost Price and Selling Price (for Margin), Investment and Revenue (for ROI), or Fixed and Variable Costs (for Break-Even)."
+    },
+    {
+      "title": "Inspect Calculated Metrics",
+      "desc": "Review Profit Margin %, Markup %, Net Profit, ROI %, or Break-Even unit thresholds."
+    },
+    {
+      "title": "Examine Financial Formulas",
+      "desc": "Read the clear mathematical explanations showing the exact differences between margin, markup, and ROI."
+    },
+    {
+      "title": "Copy Summary Results",
+      "desc": "Click the Copy button to copy key financial metrics to your clipboard for business planning."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the critical difference between Profit Margin and Markup?",
+      "answer": "Profit Margin is profit divided by Selling Price (Profit / Revenue * 100), measuring how much of every sales dollar is profit. Markup is profit divided by Cost Price (Profit / Cost * 100), measuring the percentage added on top of cost to set the selling price."
+    },
+    {
+      "question": "How is Return on Investment (ROI) calculated?",
+      "answer": "ROI = ((Net Gain from Investment - Initial Investment Cost) / Initial Investment Cost) * 100. A positive percentage indicates profit, while a negative percentage indicates a net loss."
+    },
+    {
+      "question": "How is Break-Even Point calculated in business economics?",
+      "answer": "Break-Even Units = Total Fixed Costs / (Selling Price per Unit - Variable Cost per Unit). Break-Even Revenue = Break-Even Units * Selling Price per Unit. This represents the volume where total revenues equal total costs."
+    },
+    {
+      "question": "Why can profit margin never exceed 100% while markup can?",
+      "answer": "Because profit cannot exceed total revenue (unless cost is negative), profit margin can never reach 100%. In contrast, markup has no ceiling: an item costing $1 sold for $10 has a 900% markup and a 90% profit margin."
+    },
+    {
+      "question": "What is a healthy profit margin for retail and ecommerce businesses?",
+      "answer": "According to industry benchmarks, a 10% net profit margin is considered average, 20% is considered strong, and margins above 20% are high. Gross margins in retail typically range from 30% to 50%."
+    },
+    {
+      "question": "Does ROI take into account the time horizon of an investment?",
+      "answer": "Standard simple ROI does not account for time. For multi-year investments, annualized ROI or Compound Annual Growth Rate (CAGR) should be used to compare investments of differing durations."
+    },
+    {
+      "question": "What are Fixed Costs versus Variable Costs in break-even analysis?",
+      "answer": "Fixed costs remain constant regardless of production volume (e.g., rent, insurance, software subscriptions). Variable costs scale directly with unit production (e.g., raw materials, packaging, transaction fees)."
+    },
+    {
+      "question": "Does this calculator distinguish Gross Margin from Net Margin?",
+      "answer": "The Margin mode calculates Gross Profit Margin based on product cost and selling price. To calculate Net Margin, subtract operating overhead and taxes from gross profit."
+    },
+    {
+      "question": "Are financial projections or proprietary pricing figures sent to a server?",
+      "answer": "No. All formulas and computations execute purely client-side in your web browser. No confidential commercial data is transmitted."
+    },
+    {
+      "question": "Can I use custom currency symbols with this calculator?",
+      "answer": "Yes. The tool allows you to toggle currency symbols including $, €, £, ₹, or ¥."
+    },
+    {
+      "question": "Can I use the ROI Calculator for marketing and advertising campaigns (ROAS)?",
+      "answer": "Yes. By inputting total ad spend as investment cost and attributed revenue as return, you can calculate marketing campaign ROI and Return on Ad Spend (ROAS)."
+    }
+  ]
+},
   "compound-interest-calculator": {
-    "howTo": [
-      {
-        "title": "Choose Calculator Mode",
-        "desc": "Select Compound Interest to project savings growth over time, or CAGR to calculate historical compound annual growth rate."
-      },
-      {
-        "title": "Set Principal, Rate & Contributions",
-        "desc": "Input your starting deposit, monthly addition, expected annual return %, duration in years, and compounding frequency."
-      },
-      {
-        "title": "Examine Growth Projection & Yearly Table",
-        "desc": "Review total accumulated balance, total principal invested, compound interest earned, and the yearly growth schedule."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How does compounding frequency affect investment returns?",
-        "answer": "More frequent compounding (e.g. monthly or daily vs annually) applies interest to newly earned interest sooner, yielding a slightly higher Effective Annual Rate (EAR) and larger final balance."
-      },
-      {
-        "question": "What mathematical formula is used for regular monthly contributions?",
-        "answer": "Future value combines principal compounding A = P(1 + r/n)^(nt) with future value of an annuity series PMT × [((1 + r/n)^(nt) - 1) / (r/n)] adjusted for deposit timing."
-      },
-      {
-        "question": "What is CAGR and when should I use it?",
-        "answer": "Compound Annual Growth Rate (CAGR) measures the geometric mean annual return of an investment over multiple years: CAGR = (End Value / Start Value)^(1 / Years) - 1."
-      },
-      {
-        "question": "Does the calculator factor in investment management fees or taxes?",
-        "answer": "The tool computes gross mathematical compounding. To reflect advisory fees or capital gains taxes, reduce your annual interest rate input accordingly."
-      },
-      {
-        "question": "Can I model savings with zero monthly contributions?",
-        "answer": "Yes. Leave monthly contributions set to 0 to simulate pure lump-sum compound interest on your initial principal deposit."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Choose Compound Interest or CAGR Tab",
+      "desc": "Select the Compound tab to simulate long-term investment growth or the CAGR tab to calculate historical annual returns."
+    },
+    {
+      "title": "Input Initial Principal Investment",
+      "desc": "Enter your starting investment deposit or savings balance."
+    },
+    {
+      "title": "Add Monthly Contributions & Interest Rate",
+      "desc": "Enter optional recurring monthly deposits and the expected annual interest rate percentage."
+    },
+    {
+      "title": "Select Compounding Frequency & Years",
+      "desc": "Choose compounding frequency (Annually, Quarterly, Monthly, or Daily) and investment horizon in years."
+    },
+    {
+      "title": "Analyze Growth Trajectory & Final Balance",
+      "desc": "Inspect your total future value, total contributions, total compound interest earned, and annual growth schedule."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is Compound Interest and how does it differ from Simple Interest?",
+      "answer": "Simple interest is calculated only on the initial principal. Compound interest calculates interest on both the initial principal and the accumulated interest from prior periods ('interest on interest'), resulting in exponential growth over time."
+    },
+    {
+      "question": "What is the Compound Interest formula?",
+      "answer": "The formula without additional deposits is: A = P * (1 + r/n)^(n*t), where A is future value, P is principal, r is annual interest rate as a decimal, n is compounding frequency per year, and t is time in years."
+    },
+    {
+      "question": "What is CAGR (Compound Annual Growth Rate) and how is it calculated?",
+      "answer": "CAGR represents the annualized rate of geometric return over a period of time: CAGR = ((End Value / Start Value)^(1 / Years)) - 1. It smooths out market fluctuations to show steady annual compounding."
+    },
+    {
+      "question": "How does compounding frequency (Monthly vs Annually) impact returns?",
+      "answer": "More frequent compounding generates higher returns because interest is credited and reinvested sooner. Compounding monthly or daily yields slightly more than annual compounding at the same nominal rate."
+    },
+    {
+      "question": "What is the 'Rule of 72' in compound interest?",
+      "answer": "The Rule of 72 is a quick mental math shortcut to estimate how many years it takes for an investment to double at a fixed rate: Years to Double ≈ 72 / Annual Rate. At 8% return, an investment doubles in about 72 / 8 = 9 years."
+    },
+    {
+      "question": "How do monthly contributions amplify compound interest?",
+      "answer": "Regular monthly contributions continually increase the compounding base. Over decades, regular small deposits often generate far more wealth than a single lump sum because they benefit from dollar-cost averaging and compounding."
+    },
+    {
+      "question": "Does this calculator account for inflation or taxes?",
+      "answer": "This tool calculates nominal gross returns. To estimate real purchasing power, subtract expected inflation (e.g. 2-3%) or capital gains taxes from your estimated annual rate."
+    },
+    {
+      "question": "Does historical CAGR guarantee future investment returns?",
+      "answer": "No. Historical CAGR reflects past performance over a specific period. Past performance does not guarantee future financial market returns."
+    },
+    {
+      "question": "Are investment amounts or portfolio figures uploaded to any server?",
+      "answer": "No. All compound growth simulations and CAGR equations run locally in your browser memory."
+    },
+    {
+      "question": "Can I use this calculator for retirement planning (401k, IRA, PPF, SIP)?",
+      "answer": "Yes. The calculator is ideal for simulating SIP (Systematic Investment Plans), 401(k), IRA, PPF, and mutual fund wealth accumulation over 5 to 40 years."
+    },
+    {
+      "question": "What is the difference between Arithmetic Average Return and CAGR?",
+      "answer": "Arithmetic average return sums all annual returns and divides by the number of years, which exaggerates performance when volatility is present. CAGR accounts for compounding and sequence of returns, reflecting true wealth growth."
+    }
+  ]
+},
   "chatgpt-prompt-builder": {
     "howTo": [
       {
@@ -6728,43 +7516,75 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "qr-code-safety-checker": {
-    "howTo": [
-      {
-        "title": "Upload QR Image or Scan via Camera",
-        "desc": "Upload a photo/screenshot of a QR code or scan it live using your device's webcam."
-      },
-      {
-        "title": "Inspect Decoded URL & Security Audit",
-        "desc": "Review the full decoded destination URL, domain reputation, protocol safety (HTTPS), and URL redirect hops."
-      },
-      {
-        "title": "Verify Safety Before Visiting",
-        "desc": "Check security indicators for deceptive homograph domains, executable downloads, and known phishing patterns."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Why should I inspect a QR code with a safety checker before opening it on my phone?",
-        "answer": "Malicious QR codes (quishing) can disguise harmful phishing websites, malicious app installation links, or payment redirect traps behind innocent-looking physical stickers."
-      },
-      {
-        "question": "Can the checker detect deceptive lookalike (homograph) domain attacks?",
-        "answer": "Yes. It inspects internationalized domain names (IDN) and Punycode representations to detect deceptive lookalike characters used to impersonate legitimate brands."
-      },
-      {
-        "question": "Does the tool automatically expand shortened redirect links?",
-        "answer": "The audit analyzes known short-link services and displays destination parameters to alert you to multi-hop redirects."
-      },
-      {
-        "question": "Can I scan QR codes using my laptop or phone camera?",
-        "answer": "Yes. You can use your device's camera stream with client-side barcode scanning, or simply drop a screenshot into the tool."
-      },
-      {
-        "question": "Is the scanned QR image uploaded to a server?",
-        "answer": "No. Image decoding runs locally in your browser using JavaScript QR matrix parsers."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload QR Image, Scan via Camera, or Paste Raw Data",
+      "desc": "Choose between uploading a saved QR image file, scanning live with your device camera, or pasting decoded text."
+    },
+    {
+      "title": "Inspect Decoded Content Safely",
+      "desc": "View the exact decoded URL or payload in an isolated preview sandbox without auto-executing or opening it."
+    },
+    {
+      "title": "Analyze Risk Score & Threat Indicators",
+      "desc": "Review the heuristic security assessment evaluating protocol safety, domain reputation, and URL shorteners."
+    },
+    {
+      "title": "Examine Protocol & Obfuscation Flags",
+      "desc": "Inspect granular checks for non-standard schemes (javascript:, data:), suspicious TLDs, and IP-address hostnames."
+    },
+    {
+      "title": "Copy Decoded URL or Reset Scanner",
+      "desc": "Safely copy verified destination text or clear the sandbox to scan another QR code."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What does the QR Code Safety Checker detect?",
+      "answer": "The tool performs client-side heuristic inspection of decoded QR payloads, checking for insecure HTTP, malicious URI schemes (javascript:, data:, tel:, sms:), IP-address hostnames, excessive subdomains, known URL shorteners, and credential phishing patterns."
+    },
+    {
+      "question": "Can this tool guarantee that a QR code destination is 100% safe?",
+      "answer": "No automated tool can provide an absolute guarantee of safety. While our scanner identifies structural red flags and phishing patterns, zero-day malware or newly registered phishing domains require ongoing vigilance."
+    },
+    {
+      "question": "Why are URL shorteners (like bit.ly or tinyurl) flagged as caution items in QR codes?",
+      "answer": "URL shorteners conceal the true destination domain until followed. Attackers frequently use shorteners to mask phishing websites or malicious redirect chains."
+    },
+    {
+      "question": "Does the safety checker check links against live cloud malware databases?",
+      "answer": "The checker performs comprehensive local structural and pattern heuristics in your browser to maintain privacy. It does not transmit scanned URLs to third-party reputation databases."
+    },
+    {
+      "question": "What is 'Quishing' (QR code phishing)?",
+      "answer": "Quishing is a social engineering attack where malicious actors replace legitimate QR codes (such as parking meters, restaurant menus, or email login prompts) with rogue QR codes directing victims to credential-harvesting phishing sites."
+    },
+    {
+      "question": "Does the scanner automatically open or navigate to the scanned link?",
+      "answer": "No. The safety scanner deliberately sandboxes the decoded payload, displaying the raw text and destination domain without executing scripts or triggering browser navigation."
+    },
+    {
+      "question": "Can I scan physical QR codes using my phone or laptop camera?",
+      "answer": "Yes. Toggle the Camera tab to activate client-side camera scanning using HTML5 video streams with privacy-preserving local decoding."
+    },
+    {
+      "question": "Are scanned QR images or personal links uploaded to any server?",
+      "answer": "No. All QR image decoding (via jsQR) and URL analysis run 100% locally in your browser memory. No camera feeds, photos, or URLs are ever transmitted."
+    },
+    {
+      "question": "What should I do if a QR code is flagged as High Risk or Dangerous?",
+      "answer": "Do not navigate to the URL. If the QR code was physically placed over a legitimate sticker (such as at a parking kiosk or storefront), notify facility staff of potential tampering."
+    },
+    {
+      "question": "Can this tool inspect non-URL QR codes like Wi-Fi credentials or vCards?",
+      "answer": "Yes. The scanner decodes Wi-Fi configuration strings, vCard contact cards, plain text, and cryptocurrency addresses, displaying their raw parameters safely."
+    },
+    {
+      "question": "Why are raw IP addresses (e.g. http://192.168.1.1 or http://45.33.32.156) flagged as dangerous?",
+      "answer": "Legitimate businesses rarely direct customers to raw IP addresses instead of registered domain names. Attackers use raw IP addresses to bypass standard DNS-based security filters."
+    }
+  ]
+},
   "weight-gain-calculator": {
     "howTo": [
       {
@@ -6804,43 +7624,79 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "pdf-size-adjuster": {
-    "howTo": [
-      {
-        "title": "Upload PDF File",
-        "desc": "Select or drag your PDF into the tool to inspect its current size."
-      },
-      {
-        "title": "Set Target Size and Mode",
-        "desc": "Enter your desired size in KB or MB, and choose automatic detection, size increase, or compression mode."
-      },
-      {
-        "title": "Process and Download",
-        "desc": "Click Adjust PDF Size to generate and download the calibrated PDF file."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How does the PDF Size Adjuster determine whether to increase or reduce size?",
-        "answer": "The tool automatically compares your target file size against the actual uploaded file size. If your target is larger than your original file, it initiates harmless padding expansion. If your target is smaller, it applies browser-side compression."
-      },
-      {
-        "question": "Will expanding or increasing the PDF alter its visible pages or text?",
-        "answer": "No. Increase mode adds non-rendering, ISO-compliant private data structures to the PDF catalog. Your document pages, text, vectors, images, and fonts remain untouched and identical."
-      },
-      {
-        "question": "What file-size units does the tool use?",
-        "answer": "The tool strictly follows the standard decimal convention where 1 KB = 1,000 bytes and 1 MB = 1,000,000 bytes, matching government and job application upload thresholds."
-      },
-      {
-        "question": "Why do recruitment and government portals enforce PDF size boundaries?",
-        "answer": "Portals specify file size floors and ceilings to prevent empty placeholder uploads, avoid corrupted scans, and prevent database saturation."
-      },
-      {
-        "question": "What happens if my original PDF is already within the target size range?",
-        "answer": "The tool analyzes your file size upon upload. If your document already satisfies your target criteria, no unnecessary padding or compression is applied."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload Target PDF File",
+      "desc": "Select or drag and drop your PDF into the tool to inspect its exact original file size, page count, and PDF specification version."
+    },
+    {
+      "title": "Set Target File Size and Unit",
+      "desc": "Enter your target size value and choose between KB and MB (using standard decimal notation where 1 KB = 1,000 bytes)."
+    },
+    {
+      "title": "Choose Adjustment Mode",
+      "desc": "Let the tool auto-detect whether your document requires client-side stream compression or harmless structural padding, or manually select your mode."
+    },
+    {
+      "title": "Process In Browser RAM",
+      "desc": "Click Adjust PDF Size to calculate and adjust the PDF byte structure locally without transmitting any file data to external servers."
+    },
+    {
+      "title": "Inspect Output & Download",
+      "desc": "Verify the resulting file size, byte reduction or expansion ratio, and download the calibrated PDF ready for strict upload portals."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the PDF Size Adjuster determine whether to increase or reduce size?",
+      "answer": "The tool compares your target file size against the actual uploaded file size. If your target is larger than your original file, it initiates harmless padding expansion. If your target is smaller, it applies browser-side stream compression."
+    },
+    {
+      "question": "How does the tool increase PDF file size without corrupting the document?",
+      "answer": "Increase mode injects non-rendering, ISO 32000 compliant private data structures and metadata objects into the PDF catalog. Your document pages, typography, images, and layout remain completely untouched and identical."
+    },
+    {
+      "question": "How does the client-side compression mode reduce PDF file size?",
+      "answer": "Compression mode parses the document structure to eliminate unreferenced objects, strip redundant metadata, and optimize FlateDecode stream compression while preserving vector text and layout integrity."
+    },
+    {
+      "question": "Why do government, exam, and job recruitment portals enforce minimum and maximum PDF size limits?",
+      "answer": "Portals like UPSC, SSC, IBPS, state civil services, and banking recruitment portals enforce strict file size boundaries (e.g. between 100 KB and 300 KB) to prevent empty uploads, verify scan quality, and avoid server storage exhaustion."
+    },
+    {
+      "question": "Will increasing or reducing the PDF size affect text sharpness, fonts, or vector graphics?",
+      "answer": "No. Because text, fonts, and line vector art in PDFs are stored as mathematical vector commands, adjusting byte structures or stream compression does not pixelate or alter text clarity."
+    },
+    {
+      "question": "What file-size calculation standard does Zubware PDF Size Adjuster follow?",
+      "answer": "The tool strictly follows the standard decimal convention where 1 KB = 1,000 bytes and 1 MB = 1,000,000 bytes, matching modern operating system file explorers and recruitment portal server validators."
+    },
+    {
+      "question": "Can I adjust password-protected or encrypted PDF files?",
+      "answer": "Encrypted PDFs must be unlocked before their internal byte streams can be adjusted. You can use Zubware Unlock PDF first to remove password encryption, then calibrate file size."
+    },
+    {
+      "question": "Does adjusting the file size remove digital signatures or fillable form fields?",
+      "answer": "Modifying binary byte structures can invalidate cryptographic digital certificate signatures. However, standard visual annotations and static form field contents remain completely intact."
+    },
+    {
+      "question": "What should I do if an image-dense PDF cannot reach an aggressively low target KB limit?",
+      "answer": "If a document with high-resolution scans cannot be compressed below an extreme threshold without loss, use Zubware PDF to Images or Image Compressor to downsample the image DPI first before recompiling to PDF."
+    },
+    {
+      "question": "Is my uploaded resume, bank statement, or application form sent to any cloud server?",
+      "answer": "No. All byte adjustments, stream compression, and structural padding execute entirely inside your device's browser memory via WebAssembly and pdf-lib. No document data leaves your computer or phone."
+    },
+    {
+      "question": "Can I use the PDF Size Adjuster on Android smartphones and Apple iPhones?",
+      "answer": "Yes. The tool runs directly in modern mobile web browsers like Safari and Chrome, allowing you to calibrate PDF sizes on the go without installing native apps."
+    },
+    {
+      "question": "Is the adjusted PDF compatible with official document verification systems and Adobe Acrobat?",
+      "answer": "Yes. The exported PDF adheres strictly to the ISO PDF standard and opens seamlessly in Adobe Acrobat Reader, Google Chrome, Mozilla Firefox, Apple Preview, and institutional upload portals."
+    }
+  ]
+},
   "increase-pdf-size": {
     "howTo": [
       {
@@ -6964,81 +7820,153 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "pdf-to-jpg": {
-    "howTo": [
-      {
-        "title": "Upload Your PDF",
-        "desc": "Drag or select the document to load its pages into the workspace."
-      },
-      {
-        "title": "Configure Resolution and Range",
-        "desc": "Adjust scaling factor (up to 300 DPI equivalent), JPG quality slider, and select All Pages or custom page ranges."
-      },
-      {
-        "title": "Convert and Download",
-        "desc": "Download individual page JPGs or save all converted pages bundled in a ZIP archive."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Does this tool extract embedded images or convert the entire page?",
-        "answer": "It renders each complete PDF page—including text, layout, headers, and graphics—into a unified high-resolution JPG image."
-      },
-      {
-        "question": "Can I choose specific pages to convert?",
-        "answer": "Yes! You can convert all pages or enter a custom page range such as 1-5, 8, 12."
-      },
-      {
-        "question": "Can I download all converted pages in one click?",
-        "answer": "Yes, click Download All as ZIP to save all converted JPG images bundled together in a single archive."
-      },
-      {
-        "question": "How do I ensure small text remains legible in the JPG?",
-        "answer": "You can increase the scale slider to 1.5x or 2.0x (300 DPI equivalent) to render ultra-sharp text and detailed graphics."
-      },
-      {
-        "question": "Can I zoom in and preview converted JPG pages before saving?",
-        "answer": "Yes. Clicking on any converted thumbnail card opens a full-screen preview modal where you can inspect text legibility and image quality."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload PDF Document",
+      "desc": "Drag and drop your PDF into the workspace to render instant thumbnail previews of each page in browser memory."
+    },
+    {
+      "title": "Configure Rendering Resolution (Scale/DPI)",
+      "desc": "Adjust the resolution scale slider from 1.0x (standard 72 DPI for web) up to 3.0x (ultra-sharp print fidelity)."
+    },
+    {
+      "title": "Set JPG Quality Percentage",
+      "desc": "Use the quality slider (50% to 100%, recommended 85%) to balance image sharpness against target file size."
+    },
+    {
+      "title": "Inspect Full-Size Page Preview",
+      "desc": "Click the preview icon on any rendered page card to open a full-resolution modal to verify text legibility and graphic clarity."
+    },
+    {
+      "title": "Download JPGs Individually or All as ZIP",
+      "desc": "Save single page images directly or click Download All as ZIP to archive all converted JPG pages in one compressed package."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Does this tool extract embedded images or convert each entire PDF page?",
+      "answer": "It renders each complete PDF page—including typography, styling, vector tables, headers, footers, and illustrations—into a unified high-resolution JPG image."
+    },
+    {
+      "question": "What rendering scale should I choose for web display versus professional printing?",
+      "answer": "Use 1.0x to 1.5x (72 to 110 DPI) for fast web sharing, email attachments, and online application portals. Choose 2.0x to 3.0x (150 to 300 DPI equivalent) for high-resolution presentations and professional printing."
+    },
+    {
+      "question": "How does the JPG compression quality setting affect visual fidelity and file size?",
+      "answer": "A setting of 85% provides the optimal sweet spot between crisp text and compact file sizes. Raising quality to 95%-100% preserves subtle photographic gradients at the expense of larger file sizes."
+    },
+    {
+      "question": "Can I convert a specific page without processing the entire document?",
+      "answer": "Yes. Every converted page is rendered into its own card with an independent Download button, allowing you to save only the exact pages you need."
+    },
+    {
+      "question": "How does the \"Download All as ZIP\" feature work?",
+      "answer": "When converting multi-page documents, clicking Download All as ZIP utilizes client-side JSZip to bundle all rendered JPG images into a single clean ZIP archive named after your document."
+    },
+    {
+      "question": "Can I preview converted JPG images before downloading them?",
+      "answer": "Yes. Clicking the preview eye icon on any page card opens a full-screen zoom modal where you can inspect fine text, diagram lines, and color accuracy before exporting."
+    },
+    {
+      "question": "Why does text look pixelated if I zoom in too much on a converted JPG?",
+      "answer": "Unlike PDFs which store text as infinitely scalable vector mathematics, JPG files are raster bitmaps. To achieve razor-sharp zoom, increase the rendering scale slider to 2.0x or 3.0x before converting."
+    },
+    {
+      "question": "Does this tool support multi-page PDFs with mixed portrait and landscape orientations?",
+      "answer": "Yes. The rendering engine detects each individual page's bounding box and rotation attributes, rendering landscape and portrait pages accurately at their native aspect ratios."
+    },
+    {
+      "question": "Can I convert encrypted or password-protected PDF files to JPG?",
+      "answer": "Password-protected PDFs must have security removed before rendering. Use Zubware Unlock PDF with the correct authorized password first, then convert the pages to JPG."
+    },
+    {
+      "question": "Are my documents or exported JPG photos uploaded to any external server?",
+      "answer": "No. Conversion executes 100% locally on your device via HTML5 canvas and pdfjs-dist. Neither your original PDF nor the generated JPG images ever leave your browser."
+    },
+    {
+      "question": "Why choose JPG over PNG for PDF document exports?",
+      "answer": "JPG is the universal standard for photographic and general document scans because it produces substantially smaller file sizes than lossless PNG while maintaining excellent visual readability."
+    },
+    {
+      "question": "Does PDF to JPG work smoothly on mobile browsers like iOS Safari and Android Chrome?",
+      "answer": "Yes. The responsive interface is optimized for touchscreen interactions, allowing you to upload PDFs and download individual JPGs or ZIP files directly on your mobile device."
+    }
+  ]
+},
   "edit-pdf": {
-    "howTo": [
-      {
-        "title": "Upload PDF Document",
-        "desc": "Select your file to open the interactive canvas editing workspace."
-      },
-      {
-        "title": "Add Annotations and Markup",
-        "desc": "Insert custom text notes, highlight areas, draw freehand signatures, or insert image stamps."
-      },
-      {
-        "title": "Save and Download",
-        "desc": "Click Save PDF to export your updated document with all annotations permanently baked in."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What can I edit with this online PDF editor?",
-        "answer": "You can add text notes, draw signatures, insert images/stamps, highlight areas, rotate pages, and remove or reorder pages."
-      },
-      {
-        "question": "Does this modify existing embedded PDF text?",
-        "answer": "This tool performs client-side overlay editing and annotation. Direct vector editing of existing embedded text is not supported."
-      },
-      {
-        "question": "Can I sign documents on a mobile device or touch screen?",
-        "answer": "Yes. The interactive signature pad supports touch gestures, stylus input, and mouse drawing for quick and natural signing."
-      },
-      {
-        "question": "Are annotations permanently embedded in the downloaded file?",
-        "answer": "Yes. When you download the document, annotations and signature layers are written directly into the PDF page definitions so they appear in all viewers and printers."
-      },
-      {
-        "question": "Can I undo or clear annotations before exporting?",
-        "answer": "Yes. You can select any text note, highlight, or image stamp on the canvas and remove it before saving your edited document."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Open PDF in the Online Editor",
+      "desc": "Select or drop your PDF into the editor to load all pages into an interactive canvas workspace."
+    },
+    {
+      "title": "Manage Page Order & Orientation",
+      "desc": "Navigate pages, rotate misaligned or upside-down scans by 90-degree increments, or delete superfluous pages."
+    },
+    {
+      "title": "Add Text Notes & Adjust Typography",
+      "desc": "Select the Text tool, enter your annotations, and customize font size, color, and positioning anywhere on the page."
+    },
+    {
+      "title": "Highlight Content, Draw & Add Stamps",
+      "desc": "Use the translucent Highlight tool to mark essential terms, freehand Draw for initials or sketches, or upload image stamps."
+    },
+    {
+      "title": "Save and Export Updated Vector PDF",
+      "desc": "Click Save PDF to permanently embed all annotations into the document stream while preserving underlying vector text."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What editing actions can I perform with Zubware Online PDF Editor?",
+      "answer": "You can add custom text notes, insert digital signatures, highlight document text, draw freehand annotations, place image stamps/logos, rotate individual pages (90°, 180°, 270°), reorder pages, and delete unwanted pages."
+    },
+    {
+      "question": "Can I edit existing original text in a PDF or does this tool add layered annotations?",
+      "answer": "This editor applies layered client-side annotations and overlays on top of the document. Modifying the underlying typographical vector streams of existing text requires full desktop publishing software."
+    },
+    {
+      "question": "How do I rotate sideways or upside-down scanned pages?",
+      "answer": "Navigate to the misaligned page in the editor and click the Rotate button to turn the page 90 degrees clockwise until it reaches the correct reading orientation."
+    },
+    {
+      "question": "Can I delete or reorder pages directly inside this editor?",
+      "answer": "Yes. The editor includes page management controls allowing you to remove individual pages and reorganize the sequence of your document before saving."
+    },
+    {
+      "question": "How do I add freehand drawings, annotations, or handwritten signatures?",
+      "answer": "Select the Draw tool from the toolbar, choose your desired stroke color and line width, and use your mouse, touchscreen, or stylus to write directly onto the document."
+    },
+    {
+      "question": "Can I upload an image stamp, company logo, or seal onto my PDF document?",
+      "answer": "Yes. Switch to the Image tool, select a PNG or JPG file from your device, and position and scale the stamp anywhere on the canvas."
+    },
+    {
+      "question": "Are added text annotations and drawings permanently embedded in the exported PDF?",
+      "answer": "Yes. When you download the document, pdf-lib burns annotations directly into the PDF content stream so they render consistently in all PDF readers and print jobs."
+    },
+    {
+      "question": "Can I undo or remove annotations before saving the document?",
+      "answer": "Yes. You can select any individual annotation on the canvas to reposition or delete it, or use the clear button to reset markups on that page."
+    },
+    {
+      "question": "Does editing a PDF alter its interactive form fields, bookmarks, or hyperlinks?",
+      "answer": "Standard annotations are added as new content layers. While existing text links remain functional, saving modified pages may flatten interactive acroform fields."
+    },
+    {
+      "question": "Is an account, software install, or subscription required to edit PDFs?",
+      "answer": "No. Zubware Online PDF Editor is completely free, requires no sign-up or credit card, and functions entirely within your web browser."
+    },
+    {
+      "question": "Are my private contracts or tax forms uploaded to third-party cloud servers during editing?",
+      "answer": "No. All canvas rendering, markup layering, and PDF generation occur strictly in your browser's local memory. Your documents never touch our servers."
+    },
+    {
+      "question": "Can I edit and annotate PDF documents on an iPad, tablet, or touchscreen smartphone?",
+      "answer": "Yes. The canvas workspace supports touch gestures and Apple Pencil/stylus input for smooth freehand drawing, signing, and markup."
+    }
+  ]
+},
   "text-to-pdf": {
     "howTo": [
       {
@@ -7080,38 +8008,54 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "signature-maker": {
     "howTo": [
       {
-        "title": "Choose Signature Mode",
-        "desc": "Select Draw to sign with your mouse, finger, or stylus; Type to generate cursive scripts; or Upload to scan an ink signature from paper."
+        "title": "Select Your Creation Mode",
+        "desc": "Choose Draw (to sign by hand using mouse, finger, or stylus), Type (to generate cursive handwriting from your typed name), or Scan & Clean (to photograph an ink signature on paper)."
       },
       {
-        "title": "Customize Style & Transparency",
-        "desc": "Choose ink color (black, blue, red), stroke width, cursive font style, and toggle auto-crop margins with a transparent background."
+        "title": "Draw, Type, or Upload Your Signature",
+        "desc": "Draw with smooth bezier curves and custom pen widths; type your name and test 10+ elegant calligraphy fonts; or upload a phone snapshot of your paper autograph."
       },
       {
-        "title": "Download Digital Signature",
-        "desc": "Preview your clean signature on the canvas and download it as a transparent PNG or high-resolution JPG ready for documents and forms."
+        "title": "Customize Ink Color and Background Transparency",
+        "desc": "Pick your desired ink shade (Executive Black, Royal Blue, Navy, or Custom Hex), toggle Transparent Background for PDF overlays, or select solid White."
+      },
+      {
+        "title": "Clean Paper Shadows (For Scanned Signatures)",
+        "desc": "If uploading from paper, adjust the adaptive binarization threshold slider to eliminate yellow paper grain and shadows, leaving pure crisp ink strokes."
+      },
+      {
+        "title": "Download Transparent PNG, JPG, or SVG",
+        "desc": "Preview your finalized autograph on light and dark backdrops and download in transparent 32-bit PNG, solid JPG, or scalable vector SVG format."
       }
     ],
     "faq": [
       {
-        "question": "Can I draw my signature using a mouse, stylus, or touchscreen?",
-        "answer": "Yes. The drawing canvas supports mouse input, touchscreens on phones and tablets, and digital stylus pens with smooth stroke interpolation."
+        "question": "Can I draw my signature using a smartphone touchscreen or stylus?",
+        "answer": "Yes. The HTML5 drawing canvas is fully touch-optimized for smartphones, iPads, Android tablets, and digital stylus pens (like Apple Pencil or S-Pen) with real-time bezier curve smoothing."
       },
       {
-        "question": "Can I create a typed cursive signature?",
-        "answer": "Yes. Switch to Type mode, enter your name, and select from cursive and calligraphy font styles with adjustable ink color and slant."
+        "question": "How do I create a transparent PNG signature for PDF contracts and Word documents?",
+        "answer": "Select the Transparent Background option before exporting. The resulting PNG file has zero background pixels, allowing you to insert it cleanly over signature lines in Adobe Acrobat, DocuSign, Microsoft Word, or Google Docs without covering underlying text."
       },
       {
-        "question": "Can I download my signature with a transparent background?",
-        "answer": "Yes. Select the Transparent background option and download as PNG. The exported file has no white background box and can be placed cleanly over document signature lines."
+        "question": "Can I convert my typed name into a realistic cursive signature?",
+        "answer": "Yes. In Type mode, simply type your name or initials. You can browse over 10 curated cursive and calligraphy handwriting font styles (such as Caveat, Dancing Script, and Great Vibes) and adjust letter slant and scale."
       },
       {
-        "question": "How does paper signature scanning and cleanup work?",
-        "answer": "Upload a photo of your signature on paper, then adjust the background threshold slider to isolate the dark ink strokes onto a clean transparent background."
+        "question": "How does the paper signature scanning and cleanup tool work?",
+        "answer": "Sign a white piece of paper with a ballpoint or gel pen and snap a quick photo on your smartphone. Upload it to Zubware, and the tool uses adaptive contrast thresholding to strip away paper shadows, creases, and lighting unevenness, leaving only pure transparent ink."
       },
       {
-        "question": "Is my digital signature stored or sent to a server?",
-        "answer": "No. The signature is created, smoothed, and exported entirely within your browser memory and is not transmitted to Zubware servers."
+        "question": "Is an electronic signature created with Zubware legally binding?",
+        "answer": "In many jurisdictions (including under the US ESIGN Act, UETA, EU eIDAS regulations, and Indian Information Technology Act 2000), electronic signatures are recognized for general commercial contracts, invoices, agreements, and online job forms. Certain high-security government deeds or notarized affidavits may mandate certified cryptographic digital signatures (DSC)."
+      },
+      {
+        "question": "Which file formats are supported for signature export?",
+        "answer": "You can export your completed signature as a transparent PNG (best for documents), solid white JPG (standard image), or infinite-resolution vector SVG (best for graphic designers and high-DPI printing)."
+      },
+      {
+        "question": "Is my personal signature uploaded, logged, or saved on any server?",
+        "answer": "Never. Your signature drawing strokes, typed text, and scanned images are processed 100% locally in your device browser RAM. No biometric data or signature images are ever transmitted to or stored on Zubware servers."
       }
     ]
   },
@@ -7290,193 +8234,373 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "omr-sheet-generator": {
     "howTo": [
       {
-        "title": "Set Exam Header & Question Count",
-        "desc": "Enter your institution name, exam title, subject, test date, and choose total questions (20 to 150) with 4 or 5 options."
+        "title": "Enter Assessment & Institution Header Details",
+        "desc": "Input your school, university, or coaching academy name, examination title, subject/course name, and test date to generate a customized header."
       },
       {
-        "title": "Configure Roll Number & Booklet Code",
-        "desc": "Toggle roll number bubble grid (5-10 digits), question booklet set codes (A-D), instructions, and invigilator signature boxes."
+        "title": "Select Question Count & Bubble Options",
+        "desc": "Choose quick presets for 20, 50, 100, 120, or 150 questions (or set custom 10 to 200), and configure 4 (A–D), 5 (A–E), or 6 (A–F) multiple choice bubble options."
       },
       {
-        "title": "Export Blank Sheet or Answer Key",
-        "desc": "Switch between blank candidate sheet mode or mark correct answers in Answer Key mode, then download as printable A4 PDF or PNG."
+        "title": "Configure Student Info Blocks & Columns",
+        "desc": "Toggle the student Roll Number bubble grid (4 to 10 numerical digits), Test Booklet Set code bubbles (Set A, B, C, D), candidate/invigilator signature blocks, and arrange in 1 to 4 columns."
+      },
+      {
+        "title": "Choose Mode: Blank Test Sheet vs Answer Key",
+        "desc": "Keep Blank Sheet mode for student examination printouts, or toggle to Answer Key mode to click and fill in the correct answer circles to create a teacher grading master."
+      },
+      {
+        "title": "Download High-Resolution A4 PDF or Print",
+        "desc": "Click Download PDF to export a 300 DPI vector-crisp A4 document with corner optical fiducial registration marks, or click Print for direct laser printer output."
       }
     ],
     "faq": [
       {
-        "question": "Can I generate both blank candidate answer sheets and marked answer keys?",
-        "answer": "Yes. Use Blank Sheet mode to print clean test sheets for students, or switch to Answer Key mode to click and fill the correct bubbles for scoring reference."
+        "question": "Can I print these OMR sheets on standard office A4 paper and desktop printers?",
+        "answer": "Yes. The OMR sheets are mathematically rendered to standard ISO A4 paper dimensions (210 × 297 mm). You can print them on standard laser, inkjet, or commercial digital copiers using regular 75 to 80 GSM white copy paper."
       },
       {
-        "question": "What question counts and bubble choice options are supported?",
-        "answer": "You can configure sheets for 20, 50, 100, 120, or 150 questions, with either 4 options (A, B, C, D) or 5 options (A, B, C, D, E) arranged in 1 to 4 clean columns."
+        "question": "What are the solid black squares on the four corners of the OMR sheet?",
+        "answer": "Those are optical fiducial registration marks. Optical Mark Recognition hardware and document cameras rely on these four corner calibration markers to detect sheet orientation, calibrate rotational skew, and establish coordinate anchors across the bubble matrix."
       },
       {
-        "question": "Can students bubble their roll number and exam set code?",
-        "answer": "Yes. You can enable a roll number bubble grid with 5 to 10 digits and question paper set code options (Set A, B, C, D) for candidate identification."
+        "question": "How does Master Answer Key mode work?",
+        "answer": "Selecting Answer Key mode enables interactive clicking on the preview canvas. Teachers can click specific bubbles for each question (e.g. Question 1 = B, Question 2 = D) to shade them solid black and print an authoritative answer key sheet for physical overlay or grading reference."
       },
       {
-        "question": "Can the generated OMR sheet be printed on standard A4 paper?",
-        "answer": "Yes. The tool formats the sheet specifically for standard A4 paper dimensions and exports a print-ready vector PDF document or high-resolution PNG image."
+        "question": "What question configurations and option letters are supported?",
+        "answer": "The generator provides quick presets for 20, 50, 100, 120, and 150 questions, and supports custom counts up to 200 questions. You can configure 4 options (A, B, C, D), 5 options (A, B, C, D, E), or 6 options (A, B, C, D, E, F) per question."
       },
       {
-        "question": "Is my test or institute data uploaded to an external server?",
-        "answer": "The OMR sheet is generated and rendered directly in your web browser using HTML5 Canvas and client-side PDF libraries, without sending data to Zubware servers."
+        "question": "How does the candidate Roll Number bubble grid work?",
+        "answer": "When enabled, a vertical 0–9 numerical bubbling grid is rendered at the top of the sheet. You can configure between 4 and 10 digits to match your institution's student enrollment, registration, or seat numbering convention."
+      },
+      {
+        "question": "Does this tool automatically scan, evaluate, or score physical sheets using a mobile camera?",
+        "answer": "No. This tool is a dedicated OMR Sheet and Answer Key generator that designs and exports print-ready sheets and master keys in PDF and PNG. It does not perform automated camera scanning or computerized algorithmic grading of filled student sheets."
+      },
+      {
+        "question": "Should candidates use a black ballpoint pen, blue ballpoint pen, or pencil to fill bubbles?",
+        "answer": "Standard instructions recommend a black or dark blue ballpoint pen for high-contrast optical density. Avoid gel pens or fountain pens that cause ink bleeding through paper fibers, and instruct candidates to darken the entire circle completely without stray marks."
+      },
+      {
+        "question": "How does the multi-column layout optimize space for 100 or 150 questions?",
+        "answer": "For 20–25 questions, a single column is used. For 50 questions, a 2-column layout ensures clean spacing. For 100 questions, 3 columns fit comfortably on A4, and for 120–150 questions, a 4-column layout fits all bubbles on a single page while maintaining legible spacing."
+      },
+      {
+        "question": "Can I include Booklet Set Codes for multiple test versions?",
+        "answer": "Yes. Toggle the Set Code option to display bubble circles for Set A, Set B, Set C, and Set D. This allows examination administrators to distribute shuffled question booklets while students clearly identify their version."
+      },
+      {
+        "question": "Is institution name, student data, or answer keys uploaded to external servers?",
+        "answer": "No. All canvas rendering and PDF generation execute locally in your web browser memory using HTML5 Canvas and jsPDF. No test papers, teacher answer keys, or school credentials are saved to external databases."
+      },
+      {
+        "question": "How can I avoid paper scaling or distortion when printing from Adobe Acrobat or Chrome?",
+        "answer": "In your print settings dialog, always select 'Actual Size' or 'Scale: 100%'. Do not select 'Fit to Printable Area' or 'Shrink Oversized Pages', as scaling can distort the fixed millimeter distances between registration marks and question bubbles."
+      },
+      {
+        "question": "Can I use this tool to create mock test sheets for competitive exams like NEET, JEE, and UPSC?",
+        "answer": "Yes. Coaching centers and students frequently generate 100-question and 150-question 4-option sheets to simulate realistic offline competitive exam conditions (NEET, JEE Mains, SSC CGL, Banking, and State PSCs)."
       }
     ]
   },
   "pdf-to-word": {
-    "howTo": [
-      {
-        "title": "Upload Your PDF",
-        "desc": "Drop or select a PDF containing text and paragraphs from your device."
-      },
-      {
-        "title": "Reconstruct Document Structure",
-        "desc": "The client-side engine parses text items, lines, and formatting per page in browser memory."
-      },
-      {
-        "title": "Download DOCX File",
-        "desc": "Download the generated Microsoft Word (.docx) document compatible with Word, Google Docs, and LibreOffice."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How does PDF to Word conversion work without uploading?",
-        "answer": "Zubware parses text elements directly in browser WebAssembly memory and constructs a valid OpenXML Word document (.docx) package locally."
-      },
-      {
-        "question": "Can I edit the generated Word file in Microsoft Word and Google Docs?",
-        "answer": "Yes! The exported .docx file is compatible with Microsoft Word, LibreOffice, and Google Docs."
-      },
-      {
-        "question": "Does the converted Word document preserve page breaks?",
-        "answer": "Yes. The engine identifies PDF page boundaries and inserts corresponding OpenXML page breaks to maintain the original pagination."
-      },
-      {
-        "question": "Can scanned PDFs without selectable text be converted?",
-        "answer": "This tool is optimized for digital PDFs with embedded text layers. If your PDF is a flat scan or photo of a page, use the Zubware PDF to Text with OCR tool to extract character data first."
-      },
-      {
-        "question": "How does the converter handle tables and bulleted lists?",
-        "answer": "The text extraction engine identifies paragraph breaks and structured text lines, formatting them into editable Word paragraphs that you can style or turn into tables in Word."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload Your PDF File",
+      "desc": "Select or drop your PDF document to initiate instant client-side text and structural parsing in your browser."
+    },
+    {
+      "title": "Analyze Layout & Heading Hierarchy",
+      "desc": "The client-side parser scans text coordinates, font metrics, line breaks, and page boundaries to detect paragraph flows."
+    },
+    {
+      "title": "Review Extracted Document Preview",
+      "desc": "Inspect detected headings, paragraphs, and text formatting in the live browser preview pane."
+    },
+    {
+      "title": "Select Output Word Format (.DOCX or .DOC)",
+      "desc": "Choose modern Microsoft Word (.docx) for full OpenXML compatibility or legacy (.doc) format."
+    },
+    {
+      "title": "Download Editable Word Document",
+      "desc": "Save your editable Word file directly to your device, ready to edit in Microsoft Word, Google Docs, or LibreOffice."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does PDF to Word conversion work locally in the browser without server uploads?",
+      "answer": "The tool utilizes pdfjs-dist in client-side WebAssembly memory to extract text elements and spatial coordinates. It then constructs a genuine OpenXML package (.docx) containing valid word/document.xml and relationship structures using JSZip."
+    },
+    {
+      "question": "Can I edit the converted .docx file in Microsoft Word, Google Docs, and LibreOffice?",
+      "answer": "Yes. The generated .docx package complies with standard ISO/IEC 29500 Office Open XML specifications, ensuring seamless compatibility across Microsoft Word, Google Docs, Apple Pages, and LibreOffice."
+    },
+    {
+      "question": "How accurately does the converter preserve headings, fonts, and paragraph styles?",
+      "answer": "The layout parser evaluates font heights, weights, and vertical spacing to categorize text into Heading 1, Heading 2, Heading 3, and standard body paragraphs."
+    },
+    {
+      "question": "Does the converter preserve original document page breaks?",
+      "answer": "Yes. The engine identifies individual PDF page boundaries and inserts corresponding OpenXML w:pageBreak tags to maintain the original pagination flow in Word."
+    },
+    {
+      "question": "Can scanned PDFs or image-only documents be converted directly to Word?",
+      "answer": "This tool is optimized for native digital PDFs that contain embedded selectable text. For scanned paper documents or photo PDFs, run the file through Zubware PDF to Text with OCR first to extract the character data."
+    },
+    {
+      "question": "How does the converter handle tables and multi-column document layouts?",
+      "answer": "The text extraction engine groups spatially aligned text items into structured paragraphs and tab-aligned lines, allowing you to easily convert them into Word tables after opening."
+    },
+    {
+      "question": "Are embedded photos and graphics preserved in the exported Word document?",
+      "answer": "The primary converter focuses on extracting selectable text, titles, headings, and paragraph hierarchies. Embedded raster images are not packaged into the lightweight .docx output."
+    },
+    {
+      "question": "Why does text occasionally wrap slightly differently in Word than in the original PDF?",
+      "answer": "PDFs utilize absolute geometric positioning for every character glyph, whereas Word documents use flowing paragraph reflow. Minor differences in local font metrics can cause slight variations in line wrap points."
+    },
+    {
+      "question": "Is there any document file size or page count limitation?",
+      "answer": "There are no arbitrary software limits or paywalls. Processing occurs in your browser RAM, so documents with dozens of pages and thousands of words convert in just seconds."
+    },
+    {
+      "question": "Can I convert password-protected PDF files to Word?",
+      "answer": "Encrypted documents must have password restrictions removed before conversion. Use Zubware Unlock PDF first, then upload the unlocked file to convert it to Word."
+    },
+    {
+      "question": "How does Zubware guarantee confidential document privacy during Word conversion?",
+      "answer": "Because conversion executes 100% locally inside your web browser, confidential legal briefs, patient records, and financial statements are never uploaded to any remote server or third-party cloud."
+    },
+    {
+      "question": "Can I convert PDF files to Word on a mobile phone or Chromebook?",
+      "answer": "Yes. The responsive web application works smoothly on modern mobile browsers (iOS Safari, Android Chrome) and ChromeOS without installing desktop extensions or software."
+    }
+  ]
+},
   "word-to-pdf": {
-    "howTo": [
-      {
-        "title": "Upload Word Document",
-        "desc": "Select a modern .docx Word file from your computer or phone."
-      },
-      {
-        "title": "Configure Layout",
-        "desc": "Review parsed headings, paragraphs, and tables, and choose your preferred paper size and margins."
-      },
-      {
-        "title": "Export PDF",
-        "desc": "Click Download PDF to export a clean vector PDF directly from your browser."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Which Word document formats are supported?",
-        "answer": "The tool supports standard modern .docx files (Microsoft Word 2007 and newer, Google Docs exports, and LibreOffice Writer files)."
-      },
-      {
-        "question": "Will headings, paragraphs, and bulleted lists be preserved?",
-        "answer": "Yes. The browser parser interprets Heading 1, 2, 3 tags, body paragraphs, bullet lists, and tables directly from the OpenXML structure."
-      },
-      {
-        "question": "Can I adjust margins and paper size for the PDF?",
-        "answer": "Yes. You can choose between A4 and US Letter sizes, and configure custom page margins in millimeters."
-      },
-      {
-        "question": "Does this tool require Microsoft Office to be installed on my computer?",
-        "answer": "No. The parser reads and converts the document package entirely inside your web browser without requiring Office or third-party software."
-      },
-      {
-        "question": "Can I convert documents created in Google Docs or LibreOffice?",
-        "answer": "Yes. Export your document as a standard .docx file from Google Docs or LibreOffice Writer, then upload it to this tool for instant vector PDF generation."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload Microsoft Word Document",
+      "desc": "Drag and drop your .docx Word file into the converter dropzone."
+    },
+    {
+      "title": "Unpack & Parse OpenXML Structure",
+      "desc": "The in-browser parser unzips the Word package and extracts headings, body paragraphs, bullet lists, and character styles."
+    },
+    {
+      "title": "Configure Paper Size & Typography",
+      "desc": "Choose between A4 and US Letter page standards, set base font size (10-14 pt), and customize page margins in millimeters."
+    },
+    {
+      "title": "Review Real-Time Vector PDF Preview",
+      "desc": "Inspect the rendered vector document in the live preview window to verify typography, pagination, and spacing."
+    },
+    {
+      "title": "Export & Download Crisp PDF",
+      "desc": "Click Download PDF to generate a universally compatible vector PDF ready for emailing, printing, or formal submissions."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Which Microsoft Word file formats does this converter support?",
+      "answer": "The converter supports modern OpenXML Microsoft Word documents (.docx) created in Microsoft Word 2007 through Office 365, Google Docs exports, and LibreOffice Writer files."
+    },
+    {
+      "question": "Do I need Microsoft Word, Office 365, or Adobe Acrobat installed on my computer?",
+      "answer": "No. The document parser reads OpenXML structures and renders vector PDF pages completely inside your web browser using jsPDF and JSZip."
+    },
+    {
+      "question": "Will headings, bullet points, bold styling, and italics be preserved in the PDF?",
+      "answer": "Yes. The parser recognizes OpenXML heading styles (Heading 1, 2, 3), bullet list hierarchies, paragraph spacing, and inline text formatting such as bold and italic runs."
+    },
+    {
+      "question": "Can I customize the output PDF page size between A4 and US Letter?",
+      "answer": "Yes. You can toggle between standard international A4 (210 x 297 mm) and North American US Letter (8.5 x 11 inches) dimensions to match your regional printing standards."
+    },
+    {
+      "question": "How can I adjust page margins and body text font size before exporting?",
+      "answer": "The tool provides interactive controls to adjust base body font size (from 10 pt to 14 pt) and page margins (from 10 mm to 25 mm) to fit content neatly across pages."
+    },
+    {
+      "question": "Can I convert .docx files created in Google Docs or LibreOffice Writer?",
+      "answer": "Yes. Simply download or save your file as a standard Microsoft Word (.docx) document from Google Docs or LibreOffice, then upload it here for instant conversion."
+    },
+    {
+      "question": "Why is the converted PDF rendered with crisp vector typography?",
+      "answer": "The tool generates native vector typography streams rather than converting pages into pixelated images. Text remains sharp at 1000% zoom and looks pristine when printed."
+    },
+    {
+      "question": "Are embedded images and tables included in the converted PDF?",
+      "answer": "The converter focuses on extracting text content, headings, styled runs, and lists. Complex multi-nested tables and inline vector diagrams may render with simplified formatting."
+    },
+    {
+      "question": "Why should I convert Word documents to PDF before sharing or submitting them?",
+      "answer": "Word documents can shift margins, reflow lines, and substitute missing fonts when opened on different computers. Converting to PDF locks layout, fonts, and pagination permanently across all devices."
+    },
+    {
+      "question": "Are my sensitive Word resumes, contracts, or business proposals uploaded to any server?",
+      "answer": "No. Word to PDF conversion runs 100% client-side in your device's browser memory. Your confidential files never touch our servers."
+    },
+    {
+      "question": "Can I convert Word documents on an iPhone, iPad, or Android device?",
+      "answer": "Yes. You can select Word files from your phone's file manager or cloud drives and convert them into PDF files directly within mobile Safari or Chrome."
+    },
+    {
+      "question": "What should I do if my document contains complex Word macros or legacy .doc formatting?",
+      "answer": "Legacy binary .doc files (Word 97-2003) or macro-enabled .docm files should first be saved as standard .docx in your word processor before uploading to the converter."
+    }
+  ]
+},
   "pdf-to-text": {
-    "howTo": [
-      {
-        "title": "Upload PDF Document",
-        "desc": "Select your PDF file to detect total page count and layout."
-      },
-      {
-        "title": "Select Extraction Mode",
-        "desc": "Choose Digital Text for selectable PDFs or Scanned OCR for image-based documents, and pick your language."
-      },
-      {
-        "title": "Extract and Copy",
-        "desc": "Review the extracted page-by-page text breakdown, copy text to clipboard, or download as a .txt file."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What is the difference between Digital Mode and Scanned OCR Mode?",
-        "answer": "Digital Mode instantly extracts pre-existing digital text streams from computer-generated PDFs. Scanned OCR Mode uses optical character recognition to read text from scanned documents, photos, and rasterized pages."
-      },
-      {
-        "question": "Can this read scanned PDFs and photos of documents?",
-        "answer": "Yes! Toggle OCR Mode to run client-side Tesseract.js optical character recognition on scanned pages directly in your browser."
-      },
-      {
-        "question": "What languages are supported in OCR mode?",
-        "answer": "OCR mode supports multiple language training sets including English, Spanish, French, German, Italian, Portuguese, and Simplified Chinese."
-      },
-      {
-        "question": "Can I copy the extracted text or download it as a file?",
-        "answer": "Both options are supported: you can copy the full text or individual page text to your clipboard, or click Download TXT to save a clean text file."
-      },
-      {
-        "question": "Can I extract text from specific pages instead of the whole file?",
-        "answer": "In Digital Mode, you can copy text from individual pages using the per-page copy buttons or copy the consolidated text across all pages at once."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload PDF Document",
+      "desc": "Select or drag your PDF into the converter to analyze its digital structure and total page count."
+    },
+    {
+      "title": "Select Extraction Mode (Digital vs OCR)",
+      "desc": "Choose Digital Mode for born-digital PDFs with selectable text, or OCR Mode for scanned papers and photo documents."
+    },
+    {
+      "title": "Select OCR Language (For Scans)",
+      "desc": "When OCR Mode is active, select your document's primary language (e.g. English, Spanish, French, German) for optimal recognition."
+    },
+    {
+      "title": "Process & Review Page-by-Page Output",
+      "desc": "Monitor real-time extraction progress and inspect extracted text organized by individual pages or combined full text."
+    },
+    {
+      "title": "Copy Text to Clipboard or Download TXT",
+      "desc": "Click Copy to Clipboard to paste text directly into your notes or click Download TXT to save a clean text file."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the fundamental difference between Digital Mode and Scanned OCR Mode?",
+      "answer": "Digital Mode reads pre-existing digital text streams and unicode characters embedded in native PDFs instantly. Scanned OCR Mode uses Tesseract.js optical character recognition to read letterforms from scanned paper pages and photo documents."
+    },
+    {
+      "question": "Can this tool extract text from scanned paper documents, receipts, and book photos?",
+      "answer": "Yes. Toggle OCR Mode to activate client-side optical character recognition, allowing the tool to parse scanned contracts, invoices, book pages, and photographed forms."
+    },
+    {
+      "question": "Which languages are supported for scanned PDF optical character recognition?",
+      "answer": "OCR Mode supports major international language recognition packages including English (eng), Spanish (spa), French (fra), German (deu), Italian (ita), Portuguese (por), and Simplified Chinese (chi_sim)."
+    },
+    {
+      "question": "How accurate is the client-side OCR engine on low-resolution or skewed scans?",
+      "answer": "Tesseract.js delivers high accuracy on standard 150-300 DPI scans with clear contrast. Skewed or blurry scans may experience minor character misreadings; ensuring high contrast optimizes recognition."
+    },
+    {
+      "question": "Does PDF to Text preserve tables, columns, and paragraph formatting?",
+      "answer": "The extraction engine outputs structured plain text with line breaks between paragraphs. For preserving structured tabular grid columns, use Zubware PDF to Excel Converter instead."
+    },
+    {
+      "question": "Can I extract text from multi-page PDF documents in a single operation?",
+      "answer": "Yes. The tool processes multi-page documents sequentially, providing both an organized page-by-page breakdown and a consolidated full-document text view."
+    },
+    {
+      "question": "Can I copy extracted text directly to my clipboard without downloading a file?",
+      "answer": "Yes. Click the Copy button to place the extracted text immediately onto your system clipboard, accompanied by a visual confirmation checkmark."
+    },
+    {
+      "question": "Can I extract text from a specific page instead of the entire document?",
+      "answer": "Yes. Each page card in the results panel features a dedicated copy button, allowing you to extract and copy text from a single page without copying the full file."
+    },
+    {
+      "question": "Does this tool support password-protected or restricted PDF files?",
+      "answer": "Encrypted documents must have security unlocked before character streams can be read. Run your file through Zubware Unlock PDF first, then extract text."
+    },
+    {
+      "question": "Are my research papers, legal transcripts, or medical records stored on any server?",
+      "answer": "No. Both Digital parsing and Tesseract.js OCR run entirely within your web browser using local WebAssembly workers. Zero document bytes are transmitted to any cloud server."
+    },
+    {
+      "question": "Can I run PDF to Text OCR on mobile browsers like Safari or Chrome?",
+      "answer": "Yes. The tool operates on modern mobile web browsers. Note that OCR processing on image-heavy documents is memory intensive, so processing speed depends on your mobile device's processor."
+    },
+    {
+      "question": "Why do some digital PDFs produce unusual characters or broken words upon text extraction?",
+      "answer": "Some specialized PDFs use non-standard font encoding schemes or custom Type 3 glyph maps that lack standard Unicode translation tables. In such cases, switching to OCR Mode will read the visual letterforms accurately."
+    }
+  ]
+},
   "pdf-to-excel": {
-    "howTo": [
-      {
-        "title": "Upload Your PDF",
-        "desc": "Select a document containing invoices, bank statements, or data tables."
-      },
-      {
-        "title": "Inspect Detected Table",
-        "desc": "Review aligned columns and rows in the live interactive spreadsheet grid and edit cells if needed."
-      },
-      {
-        "title": "Export to XLSX or CSV",
-        "desc": "Download an Excel (.xlsx) workbook, save as CSV, or copy tab-separated values to clipboard."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Does this convert multi-column tables?",
-        "answer": "Yes, our extraction engine analyzes spatial coordinate bounding boxes to align columns into spreadsheet rows."
-      },
-      {
-        "question": "Can I edit table cells before exporting?",
-        "answer": "Yes. The interactive spreadsheet viewer allows you to click into cells to correct text, add new rows, or remove unnecessary header rows before downloading."
-      },
-      {
-        "question": "What spreadsheet formats can I download?",
-        "answer": "You can download an authentic Microsoft Excel workbook (.xlsx), a standard CSV file, or copy tab-delimited data directly into your clipboard."
-      },
-      {
-        "question": "Does it support multi-page tables and financial statements?",
-        "answer": "Yes. You can navigate across pages using the page selector and process tabular data from multi-page PDF documents."
-      },
-      {
-        "question": "Can I add new rows or remove extra rows in the table before exporting?",
-        "answer": "Yes. The interactive spreadsheet interface lets you click \"+ Add Row\" or click the trash icon on any row to clean up headers and footers before saving as XLSX or CSV."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload PDF Statement or Report",
+      "desc": "Drop your PDF containing tabular data, bank statements, invoices, or numerical reports into the workspace."
+    },
+    {
+      "title": "Automatic Row & Column Coordinate Detection",
+      "desc": "The engine analyzes spatial bounding boxes and text coordinate alignment to detect table structures."
+    },
+    {
+      "title": "Review & Edit in Interactive Spreadsheet Grid",
+      "desc": "Inspect the detected table in your browser, click into cells to edit numbers, or add/delete rows to clean up headers."
+    },
+    {
+      "title": "Choose Export Format (XLSX, CSV, or Clipboard)",
+      "desc": "Select native Microsoft Excel (.xlsx) workbook, standard CSV file, or tab-delimited clipboard copy."
+    },
+    {
+      "title": "Download Spreadsheet File",
+      "desc": "Save your clean spreadsheet directly to your device, ready for immediate formula calculations in Excel, Sheets, or Numbers."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the PDF to Excel converter detect table rows and columns without server software?",
+      "answer": "The client-side engine uses pdfjs-dist to extract text fragments and their precise geometric coordinates (X and Y positions). It clusters aligned horizontal positions into rows and matching vertical lines into spreadsheet columns."
+    },
+    {
+      "question": "Can I edit table cells in the browser before exporting to Excel?",
+      "answer": "Yes. The interactive spreadsheet editor allows you to click directly into any cell to correct misread characters, update numerical figures, or fix column alignments before exporting."
+    },
+    {
+      "question": "What spreadsheet formats can I download from this tool?",
+      "answer": "You can download an authentic Microsoft Excel workbook (.xlsx) packaged via JSZip, a universal comma-separated value (.csv) file, or copy tab-delimited data directly to your clipboard."
+    },
+    {
+      "question": "Can I copy the detected table directly into Google Sheets or Apple Numbers without downloading?",
+      "answer": "Yes. Click Copy Table to place tab-delimited spreadsheet data onto your clipboard. You can then paste (Ctrl+V or Cmd+V) directly into Google Sheets, Microsoft Excel, or Apple Numbers."
+    },
+    {
+      "question": "How does the converter handle multi-page tables and financial statements?",
+      "answer": "Use the page selector dropdown to navigate between pages. The engine analyzes and extracts tabular data for each page, allowing you to review and export tables individually."
+    },
+    {
+      "question": "Can I add new rows or delete unnecessary header/footer rows before downloading?",
+      "answer": "Yes. The editor includes a \"+ Add Row\" button to insert missing entries, as well as trash can icons on each row to remove boilerplate document headers, disclaimers, or page numbers."
+    },
+    {
+      "question": "Does this converter preserve numbers, currency symbols, and percentage values?",
+      "answer": "Yes. Numerical digits, decimal points, currency marks ($ € £ ₹), and percentages are extracted verbatim as editable data entries rather than static images."
+    },
+    {
+      "question": "Does this tool work on scanned PDF documents and photo invoices?",
+      "answer": "This converter requires digital selectable text layers to identify coordinates. For scanned PDFs without text layers, run the file through Zubware PDF to Text with OCR first."
+    },
+    {
+      "question": "Is my confidential financial data, bank statements, or payroll information sent to any server?",
+      "answer": "No. All spatial coordinate analysis, cell mapping, and XLSX generation run strictly within your device's browser memory. Your sensitive financial data remains 100% private."
+    },
+    {
+      "question": "Why do some PDF tables import with misaligned columns in generic converters?",
+      "answer": "Generic converters often rely on naive whitespace spacing, which breaks when table headers have multiline wraps. Our coordinate bounding-box grouping ensures text items sharing similar vertical columns align properly."
+    },
+    {
+      "question": "Can I convert PDF tables to Excel on a tablet or mobile device?",
+      "answer": "Yes. The spreadsheet interface is fully responsive, allowing you to inspect tables, edit cells, and export XLSX or CSV files on iPads, iPhones, and Android devices."
+    },
+    {
+      "question": "What should I do if a PDF page contains multiple separate tables?",
+      "answer": "You can use the interactive row deletion and cell editing controls to isolate the primary table, export it to Excel, and repeat for secondary tables as needed."
+    }
+  ]
+},
   "pdf-page-number": {
     "howTo": [
       {
@@ -7554,78 +8678,150 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "pdf-signature": {
-    "howTo": [
-      {
-        "title": "Upload PDF Document",
-        "desc": "Select the file and navigate to the page where your signature is required."
-      },
-      {
-        "title": "Create Your Signature",
-        "desc": "Draw your signature on the drawing pad, type your name in cursive typography, or upload a signature image stamp."
-      },
-      {
-        "title": "Position and Sign",
-        "desc": "Adjust position and scale sliders to place your signature accurately on the page, then click Sign & Download."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Are my signatures legally valid?",
-        "answer": "Electronic signatures placed on PDFs are widely used and accepted for informal agreements, commercial invoices, timesheets, and internal sign-offs."
-      },
-      {
-        "question": "Can I draw, type, or upload a signature image?",
-        "answer": "Yes. You can draw your signature with a mouse or touch stylus, type your name using a cursive font, or upload a transparent PNG signature stamp."
-      },
-      {
-        "question": "Can I choose which page to place my signature on?",
-        "answer": "Yes. Use the page selector to navigate directly to the specific page that needs your signature."
-      },
-      {
-        "question": "Can I reposition and resize the signature on the page?",
-        "answer": "Yes. Use the horizontal and vertical position sliders as well as the signature scale slider to fit your signature precisely onto the signature line."
-      },
-      {
-        "question": "Are signature drawings or documents stored on any server?",
-        "answer": "Files are processed in your browser and are not sent to a Zubware server for processing. Your signature is rendered directly into the PDF in browser memory."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Upload Document to Sign",
+      "desc": "Select or drop your PDF contract, NDA, lease agreement, or waiver into the signing studio."
+    },
+    {
+      "title": "Navigate to Signature Page",
+      "desc": "Use the page selector to jump directly to the signature block or endorsement page that requires signing."
+    },
+    {
+      "title": "Create Your Signature (Draw, Type, or Upload)",
+      "desc": "Draw your signature with a touch pen/mouse, type your name in elegant cursive script, or upload a PNG signature stamp."
+    },
+    {
+      "title": "Position & Scale Signature on the Document",
+      "desc": "Drag or use position sliders (X% and Y%) and the scale slider to place your signature accurately on the line."
+    },
+    {
+      "title": "Embed Signature & Download Signed PDF",
+      "desc": "Click Sign & Download to burn the signature into the vector document stream and save your legally signed PDF file."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Are electronic signatures created with Zubware legally recognized and valid?",
+      "answer": "Yes. Electronic signatures (e-signatures) placed on agreements are legally valid in most jurisdictions worldwide, including under the US ESIGN Act, the Uniform Electronic Transactions Act (UETA), and EU eIDAS regulations for standard business agreements."
+    },
+    {
+      "question": "Can I draw my signature on a touchscreen smartphone, tablet, or with a computer mouse?",
+      "answer": "Yes. The Draw mode features an HTML5 canvas with stroke smoothing that supports finger gestures on smartphones, Apple Pencil and styluses on tablets, or mouse drawing on desktops."
+    },
+    {
+      "question": "How does the typed cursive signature feature work?",
+      "answer": "Type your full legal name into the input field, and the tool renders your name into a stylized cursive script signature that can be positioned directly on your document."
+    },
+    {
+      "question": "Can I upload an existing scanned image or photo of my handwritten signature?",
+      "answer": "Yes. Select Upload mode to import a transparent PNG or JPG image of your real handwritten signature or official corporate stamp."
+    },
+    {
+      "question": "Can I choose exactly which page and coordinate position my signature appears on?",
+      "answer": "Yes. Use the page selector dropdown to navigate to the exact signing page, then adjust horizontal and vertical coordinates or drag to place your signature precisely on the dotted line."
+    },
+    {
+      "question": "Can I resize and adjust the dimensions of the signature to fit small signature lines?",
+      "answer": "Yes. The signature scale slider allows you to enlarge or shrink your signature smoothly (from 0.5x to 2.0x) so it fits neatly into standard signature blocks and witness boxes."
+    },
+    {
+      "question": "Does adding a signature degrade original document quality or flatten vector text into an image?",
+      "answer": "No. The signing engine uses pdf-lib to insert the signature image directly into the PDF content stream at exact dimensions, preserving all existing text layers, fonts, and vector sharpness."
+    },
+    {
+      "question": "Are my signed contracts, signatures, or personal identity documents uploaded to any server?",
+      "answer": "No. All canvas drawing, signature rendering, and PDF assembly happen 100% locally in your device's browser memory. Your contracts and signatures never touch our servers."
+    },
+    {
+      "question": "Can I sign multiple pages or add initials throughout a multi-page document?",
+      "answer": "Yes. You can position your signature or initial stamp on the first page, sign, and then navigate to subsequent pages to add additional endorsements."
+    },
+    {
+      "question": "Is an account, credit card, or third-party software installation required to sign PDFs?",
+      "answer": "No. Zubware Sign PDF is completely free, requires no user registration or recurring subscriptions, and works in any modern web browser without downloads."
+    },
+    {
+      "question": "What is the difference between an electronic signature (e-sign) and a cryptographic digital certificate?",
+      "answer": "An electronic signature is a visual symbol or mark placed on a document to indicate consent and agreement. A digital signature is a cryptographic certificate issued by a trust authority. Zubware provides standard electronic signatures suitable for standard commercial agreements."
+    },
+    {
+      "question": "How does Zubware Sign PDF compare to paid signing services like DocuSign or Adobe Sign?",
+      "answer": "Unlike paid platforms that charge monthly fees, require multi-step recipient email authentication, and store your contracts in cloud databases, Zubware offers instant, zero-cost, zero-upload signing directly inside your browser."
+    }
+  ]
+},
   "barcode-generator": {
     "howTo": [
       {
-        "title": "Select Barcode Standard",
-        "desc": "Choose Code 128, EAN-13, UPC-A, Code 39, ITF-14, or Pharmacode."
+        "title": "Select Barcode Standard Symbology",
+        "desc": "Choose Code 128 (universal/alphanumeric), EAN-13 (global retail), UPC-A (North American retail), EAN-8 (small goods), Code 39, ITF-14 (cartons), MSI, Pharmacode, or Codabar."
       },
       {
-        "title": "Enter Data & Configure Dimensions",
-        "desc": "Input your numeric or alphanumeric SKU code, adjust bar height and width, and toggle text label display."
+        "title": "Enter Product SKU, Serial or Numeric String",
+        "desc": "Type or paste your alphanumeric code or GTIN string. The tool validates formatting rules and calculates checksums in real-time."
       },
       {
-        "title": "Download High-Res Barcode Image",
-        "desc": "Preview the rendered barcode and click Download as crisp SVG, PNG, or print-ready PDF."
+        "title": "Customize Bar Dimensions & Human-Readable Text",
+        "desc": "Adjust bar thickness width (1 to 4 px) and bar height (30 to 160 px), toggle human-readable numeric text visibility, and adjust font size."
+      },
+      {
+        "title": "Customize Foreground & Background Colors",
+        "desc": "Select dark high-contrast bar line colors and white or light backgrounds to guarantee 100% optical scanner readability."
+      },
+      {
+        "title": "Download High-Resolution SVG or PNG",
+        "desc": "Click Download SVG for infinitely scalable vector packaging layouts, Download PNG for raster label printers, or copy vector data directly to your clipboard."
       }
     ],
     "faq": [
       {
-        "question": "Which barcode formats are supported by this generator?",
-        "answer": "The generator supports Code 128 (general inventory and shipping), EAN-13 (international retail products), UPC-A (North American retail), Code 39, ITF-14, and MSI Plessey."
+        "question": "What is the difference between generating a barcode image and purchasing an official GS1 barcode?",
+        "answer": "This tool generates the visual graphic representation (vector SVG or raster PNG) of standardized barcode symbologies. However, to sell products in major retail supermarkets or marketplaces (Amazon, Walmart, Target), your numbers must be officially registered with GS1 (Global Standards 1) with an authorized Company Prefix. For internal warehouse tracking, serial numbers, event badges, and asset management, you can generate and print barcodes freely using any internal scheme."
       },
       {
-        "question": "How does the tool validate EAN-13 and UPC-A check digits?",
-        "answer": "It automatically computes and verifies the modulo-10 checksum digit required by GS1 standards, preventing invalid retail barcodes."
+        "question": "Which barcode symbology should I use for retail products in North America vs internationally?",
+        "answer": "For commercial retail sales in the United States and Canada, UPC-A (12-digit Universal Product Code) is standard. For retail products sold in Europe, the United Kingdom, India, Australia, and worldwide, EAN-13 (13-digit European Article Number) is standard. Modern point-of-sale laser scanners read both interchangeably."
       },
       {
-        "question": "Can I download vector barcodes for high-DPI packaging printing?",
-        "answer": "Yes. Exporting in SVG vector format ensures razor-sharp bar edges at any scale without raster blur or scan degradation."
+        "question": "What makes Code 128 the most versatile 1D barcode format?",
+        "answer": "Code 128 is a high-density linear barcode capable of encoding all 128 ASCII characters (letters A-Z uppercase and lowercase, numbers 0-9, and punctuation). It automatically switches between sub-charsets A, B, and C to achieve maximum compression density, making it ideal for shipping labels, logistics tracking, and serial numbers."
       },
       {
-        "question": "Can I hide the human-readable text below the bars?",
-        "answer": "Yes. You can toggle the text label on or off and customize font size and text positioning."
+        "question": "How does the generator calculate and validate EAN-13 and UPC-A check digits?",
+        "answer": "EAN-13 and UPC-A use a standardized modulo-10 algorithm. Digits in odd and even positions are multiplied alternately by 1 and 3, summed, and subtracted from the next multiple of 10. The generator automatically validates this trailing check digit to prevent unreadable, defective labels."
       },
       {
-        "question": "Is barcode data transmitted to an external server?",
-        "answer": "No. Barcode encoding and canvas/SVG rendering execute locally in your web browser."
+        "question": "Why should I download SVG vector format for product packaging and label printing?",
+        "answer": "SVG (Scalable Vector Graphics) defines barcode bars using mathematical vector paths rather than pixel rasters. When exported to Adobe Illustrator, InDesign, or commercial flexographic plate systems, vector bars never pixelate or blur, guaranteeing crisp 600+ DPI edge definition essential for laser scanners."
+      },
+      {
+        "question": "What is ITF-14 and why is it used on corrugated shipping cartons?",
+        "answer": "ITF-14 (Interleaved 2 of 5, 14 digits) encodes the packaging-level GTIN onto outer transit cartons and master cases. Its wide bars and high tolerance withstand printing onto low-grade corrugated cardboard packaging where laser scanners must read codes at a distance."
+      },
+      {
+        "question": "What is a 'quiet zone' and why is it critical for barcode scanners?",
+        "answer": "A quiet zone is the clear, unprinted white margin on both sides of the barcode bars. Optical scanners require this margin (at least 10 times the width of the narrowest bar or ~2.5mm minimum) to distinguish the start and stop characters from surrounding packaging artwork."
+      },
+      {
+        "question": "Can I print barcodes in colors other than black and white?",
+        "answer": "While the generator allows custom hex colors, retail scanners use red laser light (around 660nm). The bars must absorb red light (black, dark blue, dark green), while the background must reflect red light (white, yellow, light red). Never use red or orange bars, or dark backgrounds, as scanners will see them as completely invisible."
+      },
+      {
+        "question": "Which format is best for internal warehouse inventory, asset tags, and serial numbers?",
+        "answer": "Code 128 is the industry standard for internal inventory, bin locations, and asset tags due to its support for alphanumeric characters. If your scanning hardware only supports legacy equipment, Code 39 is also supported."
+      },
+      {
+        "question": "Is my barcode data, SKU inventory, or product pricing stored on remote servers?",
+        "answer": "No. Barcode encoding runs 100% locally in your web browser memory using JsBarcode. Your internal product numbers, serial lists, and SKU codes never transmit across the network to Zubware servers."
+      },
+      {
+        "question": "How can I verify that my barcode will scan before printing thousands of labels?",
+        "answer": "Always print a single test proof at 100% scale and test it with a physical handheld USB/Bluetooth barcode scanner or a mobile scanner app. Ensure bars are not distorted or compressed by printer scaling options."
+      },
+      {
+        "question": "Can this tool generate 2D matrix codes like QR codes?",
+        "answer": "This tool is dedicated to 1D linear barcodes. If you need 2D square matrix codes for URLs, Wi-Fi networks, or business vCards, use the Zubware QR Code Generator tool."
       }
     ]
   },
@@ -8664,231 +9860,427 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "loan-eligibility-calculator": {
     "howTo": [
       {
-        "title": "Enter Net Monthly Income & Debts",
-        "desc": "Input your monthly take-home salary or income, along with your existing monthly loan EMIs and credit commitments."
+        "title": "Enter Net Monthly Income",
+        "desc": "Input your monthly take-home salary or net business profits after tax and statutory deductions (or combined income if applying jointly)."
       },
       {
-        "title": "Set Loan Terms & DTI Threshold",
-        "desc": "Specify the expected annual interest rate, proposed tenure in years, and select your bank's maximum allowable DTI/FOIR ratio (e.g. 45% or 50%)."
+        "title": "Add Existing Monthly EMIs & Debts",
+        "desc": "Enter current monthly debt obligations including existing personal loans, car loan EMIs, student loans, and credit card minimum payments."
       },
       {
-        "title": "Review Maximum Borrowing Capacity",
-        "desc": "Inspect your estimated maximum loan amount eligibility, maximum permissible monthly EMI, and residual disposable income."
+        "title": "Set Loan Tenure & Expected Interest Rate",
+        "desc": "Specify your proposed repayment duration in years (e.g. 5, 10, 20, or 30 years) and the lender's benchmark annual interest rate percentage."
+      },
+      {
+        "title": "Adjust Lender DTI / FOIR Ratio Limit",
+        "desc": "Set the lender's maximum allowable Debt-to-Income / Fixed Obligation to Income Ratio cap (typically 40% to 55% depending on income bracket)."
+      },
+      {
+        "title": "Review Maximum Borrowing Capacity & Headroom",
+        "desc": "Inspect your maximum eligible principal loan amount, maximum new monthly EMI headroom, current vs projected DTI ratio, and disposable balance."
       }
     ],
     "faq": [
       {
-        "question": "What is FOIR or Debt-to-Income (DTI) ratio in loan eligibility?",
-        "answer": "Fixed Obligation to Income Ratio (FOIR) or Debt-to-Income (DTI) is the maximum percentage of your monthly income lenders permit toward all combined debt payments (typically 40% to 50%)."
+        "question": "What is the mathematical formula used to calculate maximum loan eligibility?",
+        "answer": "Lenders determine your maximum affordable monthly installment (EMI) using the formula: Max New EMI = (Net Monthly Income × DTI%) - Existing Monthly EMIs. The principal loan capacity is then calculated using the Present Value annuity formula: P = EMI × [(1 + r)^n - 1] / [r × (1 + r)^n], where r is the monthly interest rate (annual rate / 12 / 100) and n is total months (years × 12)."
       },
       {
-        "question": "How does existing debt affect my maximum borrowing limit?",
-        "answer": "Existing monthly loan and credit card EMIs reduce the remaining monthly surplus available for new debt, directly lowering the maximum loan amount a bank will approve."
+        "question": "What is Debt-to-Income (DTI) or Fixed Obligation to Income Ratio (FOIR)?",
+        "answer": "DTI (commonly referred to as FOIR by Indian and international banks) is the maximum percentage of your gross or net monthly income that a lender permits to be consumed by total combined debt payments. Banks generally cap this ratio between 40% and 50% for standard applicants and up to 55% or 60% for high-net-worth earners."
       },
       {
-        "question": "How does increasing loan tenure increase eligibility?",
-        "answer": "A longer tenure lowers the required monthly EMI per dollar borrowed, allowing your available monthly repayment surplus to qualify for a larger principal loan amount."
+        "question": "How do existing loans and credit card dues directly decrease borrowing capacity?",
+        "answer": "Every dollar or rupee already committed to existing debts reduces your available monthly debt servicing headroom. For example, an existing $500/month car loan directly reduces your allowable new mortgage EMI by $500, which can lower your total loan principal eligibility by $75,000 to $90,000 over a 20-year mortgage."
       },
       {
-        "question": "Does this calculator guarantee formal loan approval by a bank?",
-        "answer": "No. This tool provides an estimate based on income and mathematical ratios. Final lender approval depends on credit bureau score (CIBIL/FICO), employment stability, and property collateral valuation."
+        "question": "How does choosing a longer loan tenure increase eligible borrowing amount?",
+        "answer": "Because standard amortized loans spread principal repayment across more months, the monthly EMI per dollar borrowed is smaller for longer tenures. An available $2,000/month EMI surplus qualifies for approximately $170,000 on a 10-year loan at 7.5%, but qualifies for over $250,000 on a 20-year loan at the same interest rate."
       },
       {
-        "question": "Can co-applicant income be added to boost loan eligibility?",
-        "answer": "Yes. You can enter combined household income into the monthly income field if applying jointly with a spouse or co-borrower."
+        "question": "Does calculating high eligibility guarantee loan approval from a bank or NBFC?",
+        "answer": "No. This calculator models mathematical borrowing capacity based on stated income and debt ratios. Real-world formal bank approval requires satisfying credit underwriting criteria, including a strong credit score (750+ CIBIL or 700+ FICO), continuous employment verification, property legal clearance, and Loan-to-Value (LTV) collateral appraisal."
+      },
+      {
+        "question": "How does my CIBIL score or FICO credit score affect loan eligibility?",
+        "answer": "Your credit score directly dictates both lender approval and the interest rate offered. Borrowers with excellent credit (750+ CIBIL or 740+ FICO) qualify for prime interest rates and maximum allowable DTI caps (up to 50–55%), while lower credit scores may trigger risk markups or stricter borrowing caps (35–40% DTI)."
+      },
+      {
+        "question": "Can I add a co-applicant or spouse's income to boost our loan eligibility?",
+        "answer": "Yes. Applying jointly with a earning spouse, parent, or sibling allows you to combine net monthly salaries, effectively doubling or significantly expanding your allowable monthly repayment ceiling and eligible loan amount."
+      },
+      {
+        "question": "What is the difference between home loan eligibility and personal loan eligibility?",
+        "answer": "Home loans are secured by real estate collateral, offering lower interest rates (typically 7%–9%) and extended tenures (up to 30 years). Personal loans are unsecured, carrying higher risk for lenders, which results in higher interest rates (typically 10%–20%), shorter tenures (1 to 5 years), and tighter DTI underwriting."
+      },
+      {
+        "question": "How do banks treat variable income like bonuses, overtime, or freelance earnings?",
+        "answer": "Most institutional lenders require a 2-year track record for variable income (annual bonuses, sales commissions, freelancing) and apply a haircut (often counting only 50% to 75% of variable income) to account for potential income volatility."
+      },
+      {
+        "question": "What are Loan-to-Value (LTV) limits and how do they cap property borrowing?",
+        "answer": "Even if your monthly salary qualifies you for a $500,000 loan, banking regulations (such as RBI in India or Fannie Mae/FHA in the US) enforce strict LTV ceilings (typically 75% to 90% of the property's appraised valuation). You must provide the remaining 10% to 25% as an upfront down payment."
+      },
+      {
+        "question": "How does an interest rate hike affect my eligible loan amount?",
+        "answer": "When interest rates rise, a higher portion of each monthly payment goes toward interest rather than principal reduction. A 1% increase in interest rate typically reduces a borrower's maximum borrowing capacity by approximately 7% to 10% for the same monthly EMI payment."
+      },
+      {
+        "question": "Is my personal salary, debt, or financial planning data stored on your servers?",
+        "answer": "No. All loan calculations execute 100% locally in your web browser. Zubware does not capture, track, or share your financial figures, income statements, or borrowing queries with banks or credit bureaus."
       }
     ]
   },
   "countdown-calculator": {
-    "howTo": [
-      {
-        "title": "Enter Event Name",
-        "desc": "Type a descriptive title for your upcoming occasion, deadline, holiday, or personal milestone."
-      },
-      {
-        "title": "Select Target Date & Time",
-        "desc": "Use the calendar picker to specify the exact future date and time for the countdown."
-      },
-      {
-        "title": "Monitor Live Countdown",
-        "desc": "Watch the animated real-time ticker displaying remaining days, hours, minutes, and seconds, and copy the shareable summary."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How accurate is the real-time countdown timer?",
-        "answer": "The countdown recalculates remaining time every 1,000 milliseconds by comparing your device's system clock against the target timestamp in UTC epoch time."
-      },
-      {
-        "question": "What happens when the countdown reaches zero?",
-        "answer": "When the clock expires, the timer stops ticking and displays a celebratory event completion notice."
-      },
-      {
-        "question": "Does the countdown work across different time zones?",
-        "answer": "The date picker records local device time. When shared or calculated, time differences are computed against your computer's local clock timezone."
-      },
-      {
-        "question": "Can I track total days or hours remaining instead of broken-down units?",
-        "answer": "Yes. The summary statistics panel displays total aggregate calendar days, total hours, and total minutes remaining until the event."
-      },
-      {
-        "question": "Is my personal event information saved on a server?",
-        "answer": "No. The event title and target date run strictly within your client browser session without server communication."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Enter Event Name",
+      "desc": "Type a descriptive title for your target event, holiday, deadline, or milestone."
+    },
+    {
+      "title": "Pick Target Date and Time",
+      "desc": "Use the interactive date and time picker to select the exact moment of the event."
+    },
+    {
+      "title": "Inspect Live Time Remaining",
+      "desc": "Review the dynamic countdown showing exact days, hours, minutes, and seconds remaining."
+    },
+    {
+      "title": "Review Alternative Time Units",
+      "desc": "Inspect total days, total weeks, total hours, and business days until the target date."
+    },
+    {
+      "title": "Share or Copy Countdown Summary",
+      "desc": "Click Copy to copy the formatted countdown summary to your clipboard."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Countdown Calculator compute time remaining?",
+      "answer": "The calculator calculates the millisecond difference between the user's current local device time and the specified target date, breaking down the difference into days, hours, minutes, and seconds."
+    },
+    {
+      "question": "How does the tool handle past dates?",
+      "answer": "If the target date has already occurred, the calculator detects this and displays how many days, hours, and minutes have elapsed since the event passed."
+    },
+    {
+      "question": "Does the countdown account for leap years and daylight saving time?",
+      "answer": "Yes. Because date differences are calculated using the browser's native Date object and UTC epoch timestamps, leap years and local daylight saving time transitions are automatically handled."
+    },
+    {
+      "question": "Can I calculate business days remaining until a deadline?",
+      "answer": "Yes. The tool includes an alternative units panel that calculates working business days (excluding Saturdays and Sundays) until your target date."
+    },
+    {
+      "question": "What happens if I change my computer's clock or time zone?",
+      "answer": "The calculator reads the local system clock provided by your browser. Changing your device clock will alter the calculated remaining time."
+    },
+    {
+      "question": "Can I use the Countdown Calculator for exams, weddings, and product launches?",
+      "answer": "Yes. You can enter any custom event name and future date to track project deadlines, competitive exam dates, vacations, or product launch milestones."
+    },
+    {
+      "question": "Does the countdown continue to tick in real-time?",
+      "answer": "Yes. The counter updates every second in real-time while the page is open."
+    },
+    {
+      "question": "Are my event dates or personal schedules saved to any cloud database?",
+      "answer": "No. All countdown calculations run locally in your web browser. No personal event data is transmitted or stored on external servers."
+    },
+    {
+      "question": "Can I copy the countdown summary to paste into an email or messaging app?",
+      "answer": "Yes. Click the Copy button to copy the event name and remaining time formatted cleanly for easy sharing."
+    },
+    {
+      "question": "Can I use this tool on mobile phones and tablets?",
+      "answer": "Yes. The countdown calculator is fully responsive and supports touch-friendly date selection on iOS and Android devices."
+    },
+    {
+      "question": "What is the difference between Countdown Calculator and Countdown Timer?",
+      "answer": "The Countdown Calculator measures time until a specific future calendar date (e.g. Dec 31, 2026), whereas the Countdown Timer counts down a specific duration of hours, minutes, and seconds (e.g. a 25-minute Pomodoro timer)."
+    }
+  ]
+},
   "online-stopwatch": {
-    "howTo": [
-      {
-        "title": "Start Elapsed Timer",
-        "desc": "Click Start to initiate millisecond-precision stopwatch timing."
-      },
-      {
-        "title": "Record Lap & Split Times",
-        "desc": "Click Lap while running to record individual split times and total cumulative time without pausing the clock."
-      },
-      {
-        "title": "Pause, Copy or Reset",
-        "desc": "Click Pause to halt timing, copy your complete lap history to clipboard, or click Reset to return to zero."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What time precision does this digital stopwatch offer?",
-        "answer": "The stopwatch measures time with centisecond (hundredths of a second, 10ms) display precision using the browser's performance timestamp API."
-      },
-      {
-        "question": "What is the difference between Lap Time and Overall Time?",
-        "answer": "Lap Time measures the specific duration of the single current lap or segment. Overall Time measures cumulative elapsed time since the stopwatch was started."
-      },
-      {
-        "question": "Can I copy my recorded lap times?",
-        "answer": "Yes. Click Copy Laps to export a formatted list of all recorded split times, lap numbers, and total times to your clipboard."
-      },
-      {
-        "question": "Does the stopwatch continue running if I switch browser tabs?",
-        "answer": "Yes. Because elapsed time is calculated from wall-clock timestamps rather than setInterval ticks, background tab throttling does not cause the stopwatch to lose time."
-      },
-      {
-        "question": "How are fastest and slowest laps highlighted?",
-        "answer": "The lap table automatically detects the minimum and maximum lap durations, highlighting your fastest split in green and slowest split in amber."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Start the Stopwatch",
+      "desc": "Click the Start button to begin high-resolution millisecond timing."
+    },
+    {
+      "title": "Record Lap Split Times",
+      "desc": "Click the Lap button while running to record individual split times without stopping the main timer."
+    },
+    {
+      "title": "Pause and Resume Timing",
+      "desc": "Click Pause to freeze elapsed time, and click Resume to continue from the exact millisecond."
+    },
+    {
+      "title": "Inspect Fastest & Slowest Laps",
+      "desc": "Review the lap history table highlighting the fastest lap in green and slowest lap in red."
+    },
+    {
+      "title": "Reset Timer or Copy Lap History",
+      "desc": "Click Reset to clear the timer to zero, or click Copy Laps to copy formatted split times to your clipboard."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is the timing precision of the Zubware Online Stopwatch?",
+      "answer": "The stopwatch utilizes the browser's high-resolution performance.now() API and requestAnimationFrame, providing millisecond (0.001 second) precision far superior to basic setInterval timers."
+    },
+    {
+      "question": "How does the Lap Timing feature work?",
+      "answer": "Clicking Lap captures the current timestamp. The tool computes both the individual lap duration (time since last lap) and the total cumulative elapsed time, automatically highlighting the fastest and slowest laps."
+    },
+    {
+      "question": "Does the stopwatch lose accuracy if I switch browser tabs?",
+      "answer": "Modern browsers throttle background tab timers to save battery. However, our stopwatch calculates elapsed time by comparing high-resolution delta timestamps against performance.now(), ensuring that when you return to the tab, the displayed time is accurate."
+    },
+    {
+      "question": "Can I use the stopwatch for athletic training, track splits, and workouts?",
+      "answer": "Yes. The high-contrast, responsive interface and lap recording make it ideal for interval training, track runs, swimming splits, and HIIT workouts."
+    },
+    {
+      "question": "Can I copy or export recorded lap times?",
+      "answer": "Yes. Click the Copy Laps button to copy the complete list of lap numbers, split durations, and total times to your clipboard for spreadsheets or training logs."
+    },
+    {
+      "question": "Does the stopwatch support keyboard shortcuts?",
+      "answer": "Yes. You can press the Spacebar to Start/Pause and the 'L' key to record a lap for fast, keyboard-driven operation."
+    },
+    {
+      "question": "Does the stopwatch consume battery or send data to servers?",
+      "answer": "No. The stopwatch runs 100% locally in your web browser with zero server uploads and optimized frame rendering."
+    },
+    {
+      "question": "What is the maximum duration the stopwatch can record?",
+      "answer": "The stopwatch can record continuously for hundreds of hours, displaying hours, minutes, seconds, and milliseconds."
+    },
+    {
+      "question": "Is this stopwatch considered laboratory-grade calibration equipment?",
+      "answer": "While browser timing using performance.now() is accurate to fractions of a millisecond, operating system thread scheduling and hardware display refresh rates mean it should be used for sports, study, and productivity rather than certified scientific laboratory calibration."
+    },
+    {
+      "question": "Can I use the Online Stopwatch on an iPhone or Android phone?",
+      "answer": "Yes. The stopwatch is touch-optimized with large tap targets for seamless use on smartphones and tablets."
+    },
+    {
+      "question": "Does the stopwatch continue running if my device goes into deep sleep?",
+      "answer": "If your operating system enters deep sleep or hibernates, system clocks pause hardware execution. We recommend keeping your display active during active timing sessions."
+    }
+  ]
+},
   "countdown-timer": {
-    "howTo": [
-      {
-        "title": "Set Timer Duration",
-        "desc": "Choose a quick preset (10s, 1m, 5m, 15m, 25m Pomodoro, 1h) or enter custom hours, minutes, and seconds."
-      },
-      {
-        "title": "Configure Sound & Alerts",
-        "desc": "Enable the audio chime sound and grant browser notification permissions for background completion alerts."
-      },
-      {
-        "title": "Start & Monitor Progress",
-        "desc": "Click Start to begin countdown. Watch the circular progress ring and receive an audible alarm when time expires."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Will the alarm sound if my browser tab is in the background?",
-        "answer": "Yes. As long as your browser window remains open and audio is not muted, the Web Audio synthesized chime will play when the timer completes."
-      },
-      {
-        "question": "How do desktop notifications work with this timer?",
-        "answer": "Clicking the Bell icon requests standard browser notification permission. When granted, Zubware sends a desktop notification card when time runs out."
-      },
-      {
-        "question": "What is the 25-minute preset used for?",
-        "answer": "The 25-minute preset corresponds to the standard Pomodoro Technique interval for focused work sprints followed by a short rest break."
-      },
-      {
-        "question": "Can I pause and resume the timer midway?",
-        "answer": "Yes. Click Pause at any time to freeze the countdown, and click Resume to continue from the exact second remaining."
-      },
-      {
-        "question": "Can I set multi-hour timers for cooking or studying?",
-        "answer": "Yes. You can enter any combination of hours (up to 99), minutes (up to 59), and seconds (up to 59) in the custom input fields."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Preset or Set Custom Duration",
+      "desc": "Choose a quick preset (1m, 5m, 15m, 25m Pomodoro) or input custom Hours, Minutes, and Seconds."
+    },
+    {
+      "title": "Start the Countdown",
+      "desc": "Click the Start button to begin counting down to zero with real-time circular visual progress."
+    },
+    {
+      "title": "Pause, Resume, or Add Time",
+      "desc": "Click Pause to pause the timer, Resume to continue, or '+1 Min' to add extra time on the fly."
+    },
+    {
+      "title": "Audio Chime & Desktop Notification Alert",
+      "desc": "When the timer reaches zero, an audio chime sounds and an optional browser notification is triggered."
+    },
+    {
+      "title": "Reset or Enter Fullscreen Mode",
+      "desc": "Click Reset to clear the timer, or toggle Fullscreen mode for distraction-free study and presentations."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Countdown Timer alert me when time expires?",
+      "answer": "The timer triggers an audible chime synthesized locally via the Web Audio API (requiring no external audio file downloads). If permission is granted, it also sends a desktop notification."
+    },
+    {
+      "question": "Will the audio alarm work if my browser tab is in the background?",
+      "answer": "Yes. The Web Audio API synthesizer sounds even when the tab is in the background, provided audio has not been muted in your browser tab settings."
+    },
+    {
+      "question": "How do browser notification permissions work for this timer?",
+      "answer": "The timer requests standard HTML5 Notification permission. When allowed, an alert appears on your operating system desktop when time expires, even if you are working in another application."
+    },
+    {
+      "question": "What is the Pomodoro Technique and does this timer support it?",
+      "answer": "The Pomodoro Technique is a time-management method using 25-minute focused work intervals followed by 5-minute breaks. The timer includes a dedicated 25-minute Pomodoro preset button."
+    },
+    {
+      "question": "Does the timer lose seconds if I switch tabs on my computer or phone?",
+      "answer": "No. The countdown engine tracks actual elapsed system time rather than relying on uncalibrated intervals, ensuring exact second-by-second accuracy when returning to the tab."
+    },
+    {
+      "question": "Can I enter custom durations exceeding 24 hours?",
+      "answer": "Yes. You can enter custom hours, minutes, and seconds for long-running countdowns, cooking, baking, study sessions, or lab procedures."
+    },
+    {
+      "question": "Can I use the timer in Fullscreen mode during presentations or classrooms?",
+      "answer": "Yes. Click the Fullscreen icon to expand the countdown display to fill your entire monitor, making it visible across classrooms and meeting rooms."
+    },
+    {
+      "question": "Does the Countdown Timer require an internet connection after loading?",
+      "answer": "No. Once loaded, the timer is fully functional offline because audio synthesis and timing logic run entirely inside client-side browser memory."
+    },
+    {
+      "question": "Are timer sessions or productivity habits tracked on any server?",
+      "answer": "No. All timer operations execute locally on your device with complete user privacy."
+    },
+    {
+      "question": "Can I quickly add extra time without resetting the timer?",
+      "answer": "Yes. Click the '+1 Min' button while the timer is running or paused to immediately extend the session by 60 seconds."
+    },
+    {
+      "question": "Can I use the Countdown Timer on mobile Safari and Chrome?",
+      "answer": "Yes. The responsive design works smoothly on mobile browsers. Note that mobile operating systems require an initial user tap to allow audio playback."
+    }
+  ]
+},
   "online-clock": {
-    "howTo": [
-      {
-        "title": "View Current Local Time",
-        "desc": "Inspect the large real-time digital clock displaying hours, minutes, seconds, and full date."
-      },
-      {
-        "title": "Toggle 12-Hour or 24-Hour Format",
-        "desc": "Switch between standard 12-hour AM/PM format and 24-hour military time."
-      },
-      {
-        "title": "Add World Cities to Clock Grid",
-        "desc": "Search and add international cities (e.g. London, Tokyo, New York, Dubai) to monitor worldwide time zones simultaneously."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How does the online clock synchronize its current time?",
-        "answer": "The clock reads your computer or smartphone's operating system hardware clock, formatted through JavaScript's internationalization (Intl) time APIs."
-      },
-      {
-        "question": "How do world city clocks handle daylight saving time (DST)?",
-        "answer": "The world clock uses IANA timezone identifiers (e.g. America/New_York, Europe/London), which automatically apply regional Daylight Saving Time offsets."
-      },
-      {
-        "question": "Can I copy the current timestamp with one click?",
-        "answer": "Yes. Click the Copy Time button to copy the exact formatted time and date string directly to your clipboard."
-      },
-      {
-        "question": "Are my saved world cities preserved between browser visits?",
-        "answer": "Yes. Your selected world cities and 12/24-hour display preferences are saved in browser local storage for subsequent visits."
-      },
-      {
-        "question": "Does this clock consume background battery power?",
-        "answer": "No. The clock uses lightweight requestAnimationFrame scheduling that updates only once per second with minimal CPU and battery consumption."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "View Current Local Time & Date",
+      "desc": "Inspect your precise local time down to seconds, alongside the full day, month, date, and year."
+    },
+    {
+      "title": "Toggle 12-Hour (AM/PM) vs 24-Hour Military Time",
+      "desc": "Switch between 12-hour format with AM/PM indicators and 24-hour military time format with one click."
+    },
+    {
+      "title": "Inspect Local Time Zone & UTC Offset",
+      "desc": "Review your system's detected IANA time zone identifier and current UTC offset."
+    },
+    {
+      "title": "Add World Clock Cities",
+      "desc": "Click Add Clock to select major global cities (New York, London, Tokyo, Paris, Sydney, Mumbai, etc.)."
+    },
+    {
+      "title": "Monitor Synchronized Global Times",
+      "desc": "Track multiple international time zones simultaneously with day/night status indicators."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Where does the Online Clock get its time data?",
+      "answer": "The clock reads the local hardware system time and time zone configuration provided by your device's browser, synchronizing continuously down to the second."
+    },
+    {
+      "question": "How accurate is this online clock compared to official atomic clocks?",
+      "answer": "The clock's accuracy matches your device's internal operating system clock, which is typically synchronized with network time protocol (NTP) servers maintained by Apple, Microsoft, or Google."
+    },
+    {
+      "question": "How does the World Clock handle Daylight Saving Time (DST)?",
+      "answer": "The World Clock utilizes the international IANA Time Zone Database (Intl API) built into modern browsers, which automatically accounts for regional daylight saving time transitions."
+    },
+    {
+      "question": "Can I customize the clock between 12-hour and 24-hour display?",
+      "answer": "Yes. Toggle the 24-Hour button to switch seamlessly between standard 12-hour time (with AM/PM) and 24-hour military time."
+    },
+    {
+      "question": "Which global cities can I add to the World Clock panel?",
+      "answer": "You can add major international financial and business centers including London (GMT/BST), New York (EST/EDT), Tokyo (JST), Paris (CET/CEST), Sydney (AEST/AEDT), Dubai (GST), Mumbai (IST), and Singapore (SGT)."
+    },
+    {
+      "question": "Does the World Clock indicate whether it is day or night in other cities?",
+      "answer": "Yes. Each world clock card features visual day and night indicators so you can quickly see whether business partners or loved ones are in daylight or nighttime."
+    },
+    {
+      "question": "Can I remove or reorder world clock cities?",
+      "answer": "Yes. You can remove any saved city from your world clock panel with a single click."
+    },
+    {
+      "question": "Does this clock require an internet connection to keep time?",
+      "answer": "No. Once loaded in your browser, the clock continues running accurately using your device's internal clock without network access."
+    },
+    {
+      "question": "Are my saved world clock preferences sent to any server?",
+      "answer": "No. Your preferences and saved cities are managed locally in browser state and are never transmitted to external servers."
+    },
+    {
+      "question": "Can I use the Online Clock as a full-screen desk clock?",
+      "answer": "Yes. The large, high-contrast digital typography makes it ideal for keeping open on a secondary monitor or tablet as an aesthetic desk clock."
+    },
+    {
+      "question": "What is UTC and how does it relate to local time zones?",
+      "answer": "Coordinated Universal Time (UTC) is the primary time standard by which the world regulates clocks. Local time zones are expressed as positive or negative offsets from UTC (e.g. New York is UTC-5 or UTC-4, Mumbai is UTC+5:30)."
+    }
+  ]
+},
   "time-zone-converter": {
-    "howTo": [
-      {
-        "title": "Set Origin Date, Time & Zone",
-        "desc": "Choose your base date, hour, minute, and your starting local time zone."
-      },
-      {
-        "title": "Add Target Cities & Time Zones",
-        "desc": "Select destination cities across North America, Europe, Asia, Australia, and Africa to compare matching local hours."
-      },
-      {
-        "title": "Plan Meetings Across Time Zones",
-        "desc": "Review synchronized time cards with day/night status and working-hours indicators to find ideal meeting windows."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How does the time zone converter handle date changes across the International Date Line?",
-        "answer": "When converting to time zones that cross midnight, the tool displays an explicit '+1 Day' or '-1 Day' badge alongside the target city's calendar date."
-      },
-      {
-        "question": "How does the working-hours indicator help meeting planners?",
-        "answer": "Each destination card highlights whether the converted hour falls within standard business hours (9:00 AM to 5:00 PM), early morning, evening, or nighttime sleep hours."
-      },
-      {
-        "question": "Are daylight saving adjustments handled automatically?",
-        "answer": "Yes. Conversions are processed through standard IANA timezone databases that apply accurate seasonal daylight saving offsets for every selected date."
-      },
-      {
-        "question": "Can I swap the origin and destination time zones?",
-        "answer": "Yes. You can reassign any destination city as your new base timezone with one click to plan return communications."
-      },
-      {
-        "question": "Can I copy meeting schedule details to share with attendees?",
-        "answer": "Yes. Click Copy Summary to copy a formatted multi-city time comparison block ready to paste into calendar invites or emails."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Base Date and Time",
+      "desc": "Choose the starting date and time you want to convert or schedule a meeting for."
+    },
+    {
+      "title": "Select Source Time Zone",
+      "desc": "Choose your origin time zone (e.g., America/New_York, Europe/London, Asia/Kolkata)."
+    },
+    {
+      "title": "Add Destination Time Zones",
+      "desc": "Add target comparison zones for international team members, clients, or travel destinations."
+    },
+    {
+      "title": "Inspect Meeting Overlap & Business Hours",
+      "desc": "Review synchronized time cards highlighting typical working hours (9 AM - 5 PM) across all cities."
+    },
+    {
+      "title": "Copy Formatted Meeting Schedule",
+      "desc": "Click Copy Times to copy a clear multi-zone meeting invitation summary to your clipboard."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Time Zone Converter calculate time across international regions?",
+      "answer": "The tool uses the browser's native Intl.DateTimeFormat API and the global IANA Time Zone Database to calculate exact local times, UTC offsets, and dates across all global regions."
+    },
+    {
+      "question": "Does the converter automatically account for Daylight Saving Time (DST) changes?",
+      "answer": "Yes. Because calculations are grounded in the IANA time zone database for the exact date entered, seasonal DST transitions (spring forward, fall back) in Europe, North America, and Australasia are automatically factored in."
+    },
+    {
+      "question": "How do I identify suitable meeting times across disparate time zones?",
+      "answer": "The tool visually highlights standard business hours (9:00 AM to 5:00 PM) for each target city, allowing you to quickly spot mutual waking and working hours between international colleagues."
+    },
+    {
+      "question": "Does the converter handle half-hour and 45-minute offset time zones?",
+      "answer": "Yes. Non-integer UTC offset zones such as India Standard Time (UTC+5:30), Iran (UTC+3:30), Nepal (UTC+5:45), and Australian Central Time (UTC+9:30) are calculated with 100% accuracy."
+    },
+    {
+      "question": "Can I convert times for past or future calendar dates?",
+      "answer": "Yes. You can select any date in the calendar picker to test historical times or plan international flights and webinars months in advance."
+    },
+    {
+      "question": "What is the difference between Time Zone Abbreviations (EST, EDT) and IANA IDs?",
+      "answer": "Abbreviations like 'EST' can be ambiguous (e.g. Eastern Standard Time in US vs Australian Eastern Standard Time). IANA identifiers (like 'America/New_York' or 'Australia/Sydney') are globally unique and track historical DST rules."
+    },
+    {
+      "question": "Can I copy the converted time schedule for a meeting invitation?",
+      "answer": "Yes. Click the Copy button to generate a clean, formatted text block listing the meeting time across all selected cities ready to paste into calendar invites or emails."
+    },
+    {
+      "question": "Does this tool send schedule information or meeting details to external servers?",
+      "answer": "No. All time zone conversions and date arithmetic run strictly client-side inside your web browser."
+    },
+    {
+      "question": "Can I switch between 12-hour (AM/PM) and 24-hour military time formats?",
+      "answer": "Yes. The tool features an instant 12h/24h toggle that updates all displayed times simultaneously."
+    },
+    {
+      "question": "What happens when a conversion crosses the International Date Line?",
+      "answer": "The converter displays the exact local calendar date for each city, clearly indicating whether a participant is in 'Today', 'Tomorrow', or 'Yesterday'."
+    },
+    {
+      "question": "Can I use the Time Zone Converter on mobile devices?",
+      "answer": "Yes. The interface is optimized for touchscreen interactions on mobile Safari and Chrome for quick scheduling while traveling."
+    }
+  ]
+},
   "dice-roller": {
     "howTo": [
       {
@@ -8926,79 +10318,147 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "down-payment-calculator": {
     "howTo": [
       {
-        "title": "Enter Target Purchase Price",
-        "desc": "Input the expected total price of the home, real estate property, or vehicle you plan to purchase."
+        "title": "Enter Target Home Purchase Price",
+        "desc": "Input the estimated contract purchase price of the single-family home, condo, or property you intend to buy."
       },
       {
-        "title": "Set Down Payment & Closing Cost Rates",
-        "desc": "Choose your target down payment percentage (e.g. 3.5%, 5%, 10%, 20%), estimated closing costs (typically 2–4%), and savings timeframe."
+        "title": "Select Down Payment Percentage or Loan Preset",
+        "desc": "Choose quick loan presets: Conventional Standard (20% no PMI), Conventional Minimum (3%), FHA Loan (3.5%), VA Loan (0% for veterans), Jumbo (15%), or set a custom percentage."
       },
       {
-        "title": "Review Total Upfront Cash Needed",
-        "desc": "Inspect required down payment cash, estimated closing fees, total cash required at closing, and the monthly savings required to hit your target."
+        "title": "Factor in Estimated Closing Costs",
+        "desc": "Include estimated buyer closing expenses (typically 2% to 5% of purchase price) to cover loan origination, appraisal, title insurance, and escrow reserves."
+      },
+      {
+        "title": "Enter Current Liquid Savings & Timeframe",
+        "desc": "Input your current bank balances already saved and your targeted buying deadline in months to model required monthly deposit targets."
+      },
+      {
+        "title": "Review Cash to Close & High-Yield APY Growth",
+        "desc": "Inspect total down payment dollars, remaining mortgage balance, total cash required at closing, PMI indicator, and monthly savings target factoring in compound interest."
       }
     ],
     "faq": [
       {
-        "question": "Why is a 20% down payment traditionally recommended for home purchases?",
-        "answer": "Putting 20% down eliminates the requirement for Private Mortgage Insurance (PMI) on conventional loans, lowers your monthly mortgage payment, and reduces total lifetime interest."
+        "question": "Why is a 20% down payment historically considered the gold standard for home mortgages?",
+        "answer": "Putting down at least 20% on a conventional mortgage permanently eliminates the requirement for Private Mortgage Insurance (PMI), which typically saves buyers $100 to $300+ every month. It also secures the lowest interest rates from lenders, creates immediate home equity buffer against market downturns, and reduces total lifetime interest paid."
       },
       {
-        "question": "What are typical closing costs on a real estate purchase?",
-        "answer": "Buyer closing costs typically range between 2% and 5% of the purchase price, covering lender origination fees, appraisal, title search, escrow reserves, and transfer taxes."
+        "question": "What is Private Mortgage Insurance (PMI) and how does down payment affect it?",
+        "answer": "PMI is an insurance premium paid by the borrower that protects the mortgage lender if the homeowner defaults. It is strictly required on conventional home loans whenever the down payment is less than 20% (Loan-to-Value ratio greater than 80%). Once your mortgage balance reaches 78% to 80% of original value, PMI can be cancelled."
       },
       {
-        "question": "How is the monthly savings target calculated?",
-        "answer": "The tool subtracts your current saved funds from the total cash needed (down payment + closing costs) and divides the shortfall by your timeframe in months."
+        "question": "What is the difference between a down payment and closing costs?",
+        "answer": "The down payment is direct cash equity that reduces your loan balance (Purchase Price - Down Payment = Mortgage Amount). Closing costs are third-party administrative and transaction fees (typically 2% to 5% of purchase price) that cover appraisal, title search, attorney fees, lender origination, recording taxes, and pre-paid homeowner insurance and property tax escrows. You must bring both amounts together as 'Total Cash to Close'."
       },
       {
-        "question": "Can I calculate down payments for lower down payment loans like FHA?",
-        "answer": "Yes. Preset buttons provide quick calculation for low down payment loans including 3.5% (FHA minimum), 5%, 10%, and standard 20% conventional loans."
+        "question": "Can I buy a home with less than 20% down payment?",
+        "answer": "Yes! Millions of homebuyers purchase properties with much less down: Conventional loans allow as little as 3% down for first-time buyers; FHA loans backed by the Federal Housing Administration require only 3.5% down with credit scores as low as 580; and VA loans (for eligible US military veterans and service members) and USDA rural loans require 0% down payment."
       },
       {
-        "question": "Does the calculator account for interest earned on savings deposits?",
-        "answer": "This tool calculates the direct linear cash required. Any high-yield savings interest earned on your deposits will help you reach your down payment goal even faster."
+        "question": "How does the compound savings formula calculate my required monthly contribution?",
+        "answer": "The calculator projects the future value of your current liquid savings growing at your specified High-Yield Savings Account (HYSA) APY rate: FV = Current Savings × (1 + r)^n. It then solves for the required monthly annuity contribution PMT = Shortfall × r / [(1 + r)^n - 1], showing how compound interest helps fund your down payment faster than simple linear math."
+      },
+      {
+        "question": "How does a larger down payment reduce monthly mortgage payments and lifetime interest?",
+        "answer": "A larger down payment shrinks the borrowed principal. On a $400,000 home at 7% interest over 30 years: putting down 5% ($20,000) leaves a $380,000 mortgage with a monthly principal & interest payment of $2,528. Putting down 20% ($80,000) reduces the loan to $320,000 with a monthly payment of $2,129—saving $399 every month and over $143,000 in lifetime interest, plus eliminating monthly PMI."
+      },
+      {
+        "question": "What are allowable sources for down payment funds?",
+        "answer": "Mortgage underwriters allow down payment funds from verified personal checking and savings accounts, investment sales, retirement account withdrawals (such as penalty-free 401(k) first-time homebuyer allowances), and formal gift funds from family members documented with an official lender Gift Letter."
+      },
+      {
+        "question": "What is an Earnest Money Deposit (EMD) and does it count toward the down payment?",
+        "answer": "Yes. An Earnest Money Deposit (usually 1% to 2% of purchase price) is paid when your purchase offer is accepted to demonstrate good faith and is held in escrow. At final closing, the entire EMD is credited directly toward your required down payment and closing cash."
+      },
+      {
+        "question": "What down payment is required for an investment property or second home?",
+        "answer": "Non-owner-occupied investment properties carry higher default risk. Lenders generally require a minimum 15% to 25% down payment for single-family rental properties, and 25% or more for multi-unit (2–4 unit) investment real estate."
+      },
+      {
+        "question": "How much emergency cash reserve should I keep after paying down payment and closing costs?",
+        "answer": "Financial planners strongly advise never draining your bank account to zero at closing. Maintain at least 3 to 6 months of living expenses (mortgage, utilities, food, insurance) as an emergency reserve for unexpected home maintenance, appliances, or medical emergencies."
+      },
+      {
+        "question": "Does a 0% down payment with a VA or USDA loan mean buying a home with zero cash?",
+        "answer": "No. While you do not need an equity down payment, buyers with 0% down loans must still pay closing costs (or negotiate seller concessions), appraisal fees, home inspection costs, and earnest money deposits unless the seller covers all closing expenses."
+      },
+      {
+        "question": "Is my down payment savings target or property price data stored on Zubware servers?",
+        "answer": "No. All financial calculations, savings compound simulations, and down payment targets are processed strictly inside your device's browser memory with zero tracking or server transmission."
       }
     ]
   },
   "cement-calculator": {
-    "howTo": [
-      {
-        "title": "Select Unit System & Structure Dimensions",
-        "desc": "Choose Imperial (feet and inches) or Metric (meters and centimeters) and input the length, width, and thickness of your slab or footing."
-      },
-      {
-        "title": "Set Wastage & Concrete Bag Size",
-        "desc": "Include a safety wastage allowance (typically 5% to 10%) and select your pre-mixed bag size (80lb, 60lb, or 50kg)."
-      },
-      {
-        "title": "View Required Bags & Material Volumes",
-        "desc": "Inspect total concrete volume in cubic yards or cubic meters, total pre-mixed bags needed, or raw sand and gravel component weights."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How is total concrete volume calculated from slab dimensions?",
-        "answer": "For imperial units: Volume (cu ft) = Length (ft) × Width (ft) × [Thickness (in) / 12]. Divide by 27 to obtain Cubic Yards. For metric: Volume (cu m) = Length (m) × Width (m) × [Thickness (cm) / 100]."
-      },
-      {
-        "question": "How many 80lb or 60lb bags of concrete make one cubic yard?",
-        "answer": "One 80-lb bag yields approximately 0.60 cubic feet (requiring 45 bags per cubic yard). One 60-lb bag yields approximately 0.45 cubic feet (requiring 60 bags per cubic yard)."
-      },
-      {
-        "question": "Why should I add a wastage factor to my concrete estimate?",
-        "answer": "Sub-base soil variations, formwork deflection, spillage, and excavation irregularities typically consume 5% to 10% more concrete than theoretical dimensions."
-      },
-      {
-        "question": "What is the standard 1:2:3 volumetric concrete mix ratio?",
-        "answer": "A standard structural concrete mix consists of 1 part Portland cement, 2 parts clean sand, and 3 parts coarse aggregate/gravel by volume, yielding approximately 3,000 PSI strength."
-      },
-      {
-        "question": "Can I calculate concrete for post holes and footings?",
-        "answer": "Yes. Enter the cross-sectional area and depth of your footing into the dimension fields to calculate volume and bag counts for fence posts and deck piers."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Unit System (Metric or Imperial)",
+      "desc": "Choose Metric (meters, cm, m³) or Imperial (feet, inches, cubic yards) based on your regional construction standards."
+    },
+    {
+      "title": "Input Structure Dimensions",
+      "desc": "Enter Length, Width, and Thickness (Depth) of your planned concrete slab, footing, or driveway."
+    },
+    {
+      "title": "Set Wastage Allowance Percentage",
+      "desc": "Specify recommended contingency wastage (typically 5% to 10%) to account for uneven subgrades and spillage."
+    },
+    {
+      "title": "Select Concrete Mix Ratio Grade",
+      "desc": "Choose standard nominal mix ratios: M15 (1:2:4), M20 (1:1.5:3 general structural), or M25 (1:1:2 high strength)."
+    },
+    {
+      "title": "Review Material Quantities & Bag Counts",
+      "desc": "Inspect total concrete volume, required 50kg cement bags (or 80lb premix bags), sand volume, and coarse gravel aggregate."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do you calculate the volume of concrete needed for a slab?",
+      "answer": "Concrete Volume = Length * Width * Thickness. In metric, multiplying meters gives cubic meters (m³). In imperial, multiplying dimensions in feet (thickness in feet = inches / 12) gives cubic feet, which is divided by 27 to obtain cubic yards."
+    },
+    {
+      "question": "Why does dry concrete material volume need to be 54% greater than wet volume?",
+      "answer": "When water is added to dry cement, sand, and gravel, the fine particles fill the interstitial voids between coarse aggregates, causing a volumetric shrinkage of roughly 30% to 35%. A dry volume factor of 1.54 is standard in civil engineering calculations."
+    },
+    {
+      "question": "What do nominal concrete mix ratios like 1:2:4 and 1:1.5:3 mean?",
+      "answer": "The ratio represents volumetric proportions of Cement : Sand (Fine Aggregate) : Gravel (Coarse Aggregate). For example, M20 mix (1:1.5:3) uses 1 part cement, 1.5 parts sand, and 3 parts gravel."
+    },
+    {
+      "question": "How many 50kg cement bags are in one cubic meter of concrete?",
+      "answer": "For standard M20 (1:1.5:3) concrete, approximately 8 to 8.4 bags of 50kg cement are required per cubic meter of finished wet concrete, depending on specific gravity and dry volume coefficient."
+    },
+    {
+      "question": "How many 80 lb or 60 lb premix bags are needed per cubic yard?",
+      "answer": "One cubic yard of concrete requires approximately forty-five 60-pound premix bags, or thirty-four 80-pound premix bags of ready-to-use concrete mix."
+    },
+    {
+      "question": "Why should I always add 5% to 10% wastage allowance?",
+      "answer": "Excavations and subgrades are rarely perfectly level, formwork can bow under hydraulic pressure, and spillage occurs during pouring. Ordering without a 10% buffer risks running short mid-pour, creating cold joints."
+    },
+    {
+      "question": "Can I calculate concrete for cylindrical columns or round post footings?",
+      "answer": "For round footings, calculate volume using the cylinder formula: Volume = π * (Radius)² * Depth. For example, a 12-inch diameter sonotube post has a 0.5-foot radius."
+    },
+    {
+      "question": "What is the recommended water-to-cement ratio for concrete mixing?",
+      "answer": "A water-cement ratio of 0.45 to 0.55 by weight is standard. Adding too much water makes concrete easier to pour but drastically reduces final compressive strength and promotes cracking."
+    },
+    {
+      "question": "Are calculator outputs guaranteed structural engineering specifications?",
+      "answer": "No. The calculator provides material estimation guidance. Commercial high-rise structures, bridges, and load-bearing foundations require certified structural engineering mix designs and laboratory slump tests."
+    },
+    {
+      "question": "Does this tool send my construction site dimensions to any server?",
+      "answer": "No. All volumetric and material proportion calculations run 100% locally inside your web browser."
+    },
+    {
+      "question": "Can I convert between cubic yards and cubic meters with this tool?",
+      "answer": "Yes. Toggling the unit system converts all dimensional inputs and outputs between imperial cubic yards and metric cubic meters."
+    }
+  ]
+},
   "wavelength-calculator": {
     "howTo": [
       {
@@ -9140,43 +10600,75 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "random-letter-generator": {
-    "howTo": [
-      {
-        "title": "Choose Alphabet & Language Set",
-        "desc": "Select standard English (A-Z) or international alphabets, and toggle uppercase or lowercase letters."
-      },
-      {
-        "title": "Configure Quantity & Exclusions",
-        "desc": "Specify how many letters to generate, toggle vowels-only or consonants-only, and exclude specific letters."
-      },
-      {
-        "title": "Generate and Copy Letters",
-        "desc": "Click Generate to reveal randomized letters for word games, educational quizzes, or creative prompts."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Can I generate vowels-only or consonants-only?",
-        "answer": "Yes. Filtering toggles allow you to restrict output strictly to vowels (A, E, I, O, U) or consonants for word games like Scrabble."
-      },
-      {
-        "question": "Can I generate non-repeating unique letters?",
-        "answer": "Yes. Enabling the 'Unique Letters' toggle ensures no letter appears more than once in a single draw."
-      },
-      {
-        "question": "Can I exclude difficult letters from the draw?",
-        "answer": "Yes. You can specify a blacklist of letters (such as Q, X, Z) to omit from generation."
-      },
-      {
-        "question": "Is this tool suitable for classroom and word games?",
-        "answer": "Yes. Large display typography and one-click re-draws make it popular for teachers, trivia hosts, and language learners."
-      },
-      {
-        "question": "Are random letters generated locally?",
-        "answer": "Yes. Random indexing executes client-side using browser cryptographic randomness."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Letter Casing",
+      "desc": "Choose between Uppercase (A-Z), Lowercase (a-z), or Mixed case letters."
+    },
+    {
+      "title": "Choose Character Filter",
+      "desc": "Filter by All 26 alphabet letters, Vowels only (A, E, I, O, U), or Consonants only."
+    },
+    {
+      "title": "Set Quantity of Letters",
+      "desc": "Select how many random letters you wish to generate (from 1 up to 100 letters)."
+    },
+    {
+      "title": "Configure Duplicates & Delimiter",
+      "desc": "Choose whether to allow duplicate letters and pick your separator (Space, Comma, Newline, or None)."
+    },
+    {
+      "title": "Generate and Copy Results",
+      "desc": "Click Generate to pick randomized letters instantly, and click Copy to copy them to your clipboard."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Random Letter Generator generate randomized letters?",
+      "answer": "The tool uses JavaScript's pseudo-random number generator (Math.random()) to select letters with uniform distribution from the specified alphabet subset."
+    },
+    {
+      "question": "Is this letter generator cryptographically secure?",
+      "answer": "This tool is designed for educational exercises, games (such as Scrabble or Boggle), creative writing prompts, and classroom activities. For cryptographic keys or password generation, use our dedicated Password or Passphrase Generator."
+    },
+    {
+      "question": "What is the difference between sampling with and without duplicates?",
+      "answer": "With duplicates allowed (sampling with replacement), the same letter can appear multiple times. Without duplicates (sampling without replacement), each letter is drawn at most once from the 26-letter pool."
+    },
+    {
+      "question": "Can I generate only vowels or only consonants?",
+      "answer": "Yes. You can filter the candidate alphabet to vowels only (A, E, I, O, U) or consonants only (B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z)."
+    },
+    {
+      "question": "What output delimiters are supported?",
+      "answer": "You can separate generated letters with spaces, commas, new lines (one per line), or with no delimiter (a continuous string of characters)."
+    },
+    {
+      "question": "What is the maximum number of letters I can generate at once?",
+      "answer": "You can generate up to 100 letters at once when duplicates are allowed, or up to 26 unique letters when duplicates are disallowed."
+    },
+    {
+      "question": "Can I use this tool for phonics teaching and word games?",
+      "answer": "Yes. Teachers and students frequently use it for phonics spelling drills, vocabulary games, Scattergories, anagram solving, and random letter prompts."
+    },
+    {
+      "question": "Are generated letters or game prompts sent to any server?",
+      "answer": "No. All randomization occurs completely client-side in your web browser."
+    },
+    {
+      "question": "Can I generate lowercase or mixed case letters?",
+      "answer": "Yes. You can select Uppercase, Lowercase, or Mixed case (randomly assigning upper or lower case to each letter)."
+    },
+    {
+      "question": "Does the generator favor certain letters or have weighted frequencies?",
+      "answer": "No. The generator uses an unweighted uniform distribution where every available letter has an equal mathematical probability of being selected."
+    },
+    {
+      "question": "Can I use the Random Letter Generator on mobile devices?",
+      "answer": "Yes. The interface is lightweight and responsive for fast random letter drawing on smartphones and tablets."
+    }
+  ]
+},
   "water-intake-calculator": {
     "howTo": [
       {
@@ -9727,113 +11219,225 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {
         "title": "Enter Gross Annual Income",
-        "desc": "Input your total yearly pre-tax earnings from wages, salaries, and business income."
+        "desc": "Input your total yearly earnings from W-2 salaries, 1099 contractor income, business profits, or tips before taxes."
       },
       {
-        "title": "Select Filing Status & Deductions",
-        "desc": "Choose Single, Married Filing Jointly, Married Filing Separately, or Head of Household, and enter pre-tax deductions (401k, HSA, health insurance)."
+        "title": "Select Filing Status & Tax Year",
+        "desc": "Choose Single, Married Filing Jointly, Married Filing Separately, or Head of Household for official tax year 2025 or 2026."
       },
       {
-        "title": "Review Federal Tax & FICA Breakdown",
-        "desc": "Inspect your standard deduction, taxable income, federal income tax brackets, FICA taxes (Social Security & Medicare), and estimated take-home pay."
+        "title": "Apply Deductions & Retirement Contributions",
+        "desc": "Select the standard deduction or input custom pre-tax deductions including traditional 401(k), 403(b), Traditional IRA, HSA, and health insurance premiums."
+      },
+      {
+        "title": "Select State for State Income Tax",
+        "desc": "Choose any of the 50 US states (including 0% tax states like Texas, Florida, Nevada, Washington) or input a custom local income tax rate."
+      },
+      {
+        "title": "Review Federal, FICA & Net Paycheck Breakdown",
+        "desc": "Inspect progressive marginal federal brackets (10% to 37%), FICA Social Security & Medicare taxes, effective tax rate, and take-home pay per annual, monthly, bi-weekly, and weekly pay periods."
       }
     ],
     "faq": [
       {
         "question": "Which tax year and brackets are implemented in this calculator?",
-        "answer": "This tool implements official IRS federal income tax brackets for 2025 and 2026 (10%, 12%, 22%, 24%, 32%, 35%, and 37%), as well as reference 2024 brackets."
+        "answer": "This calculator models official IRS federal income tax brackets for Tax Year 2025 (IRS Revenue Procedure 2024-40) and projected Tax Year 2026 inflation adjustments (10%, 12%, 22%, 24%, 32%, 35%, and 37%), as well as historical 2024 reference rates."
       },
       {
-        "question": "What are the latest standard deduction amounts?",
-        "answer": "For 2025, standard deductions are: Single ($15,000), Married Filing Jointly ($30,000), Married Filing Separately ($15,000), and Head of Household ($22,500)."
-      },
-      {
-        "question": "How are FICA Social Security and Medicare taxes calculated?",
-        "answer": "Social Security tax is 6.2% on earnings up to the IRS wage base limit ($176,100 for 2025). Medicare tax is 1.45% on all earnings, plus an additional 0.9% surtax for high earners above threshold limits."
+        "question": "What are the official IRS standard deduction amounts for 2025 and 2026?",
+        "answer": "For 2025: Single ($15,000), Married Filing Jointly ($30,000), Married Filing Separately ($15,000), and Head of Household ($22,500). For 2026 projected: Single ($15,400), Married Filing Jointly ($30,800), Married Filing Separately ($15,400), and Head of Household ($23,100)."
       },
       {
         "question": "What is the difference between Marginal Tax Rate and Effective Tax Rate?",
-        "answer": "Your Marginal Tax Rate is the highest tax bracket applied to your top dollar of income. Your Effective Tax Rate is the actual blended percentage of total income paid in tax (Total Tax / Gross Income × 100)."
+        "answer": "Your Marginal Tax Rate is the highest federal bracket applied strictly to your last dollar of taxable income. Your Effective Tax Rate is the actual weighted average percentage of total income paid in tax (Total Tax Paid ÷ Gross Income × 100). Because lower brackets tax your first dollars at 10% and 12%, your effective tax rate is always substantially lower than your marginal tax rate."
       },
       {
-        "question": "Does this calculator include state or local income taxes?",
-        "answer": "Yes! This tool includes an integrated state income tax simulator featuring states with 0% tax (like Texas and Florida) as well as common progressive and flat tax states."
+        "question": "How do progressive federal tax brackets work?",
+        "answer": "The US federal tax system is progressive. You do not pay your highest bracket rate on all your income. For example, a single filer in the 22% bracket pays 10% on their first $11,925 (2025), 12% on income between $11,925 and $48,475, and 22% only on the portion of taxable income exceeding $48,475."
+      },
+      {
+        "question": "How are FICA Social Security and Medicare payroll taxes calculated?",
+        "answer": "Under the Federal Insurance Contributions Act (FICA), W-2 employees pay 6.2% for Social Security on wages up to the statutory annual wage base cap ($176,100 for 2025) and 1.45% for Medicare on all earned wages with no cap. Employers match these exact percentages."
+      },
+      {
+        "question": "What is the Additional Medicare Tax and when does it apply?",
+        "answer": "The Affordable Care Act mandates an Additional Medicare Tax of 0.9% on earned income exceeding statutory threshold amounts: $200,000 for single and head of household filers, and $250,000 for married couples filing jointly. This surtax applies only to employees (no employer match)."
+      },
+      {
+        "question": "Which US states have 0% state income tax on earned wages?",
+        "answer": "Nine states do not levy a state income tax on individual earned wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. Selecting any of these states in the tool applies a 0% state tax rate."
+      },
+      {
+        "question": "How do pre-tax contributions to a 401(k), HSA, or Traditional IRA reduce taxes?",
+        "answer": "Contributions made to pre-tax retirement accounts (up to the annual IRS elective deferral limit) and Health Savings Accounts (HSAs) are deducted straight from your gross income, lowering your adjusted gross income (AGI) and exempting those dollars from federal and state income taxes in the current tax year."
+      },
+      {
+        "question": "What qualifies someone to file as Head of Household (HOH)?",
+        "answer": "To qualify for Head of Household, you must be unmarried or considered unmarried on the last day of the tax year, have paid more than half the cost of keeping up a home for the year, and have a qualifying child or dependent relative living with you for more than half the year. HOH provides wider tax brackets and a larger standard deduction than Single status."
+      },
+      {
+        "question": "How does self-employment tax differ from W-2 employee payroll withholding?",
+        "answer": "W-2 employees split FICA taxes evenly with their employers (6.2% + 1.45% employee, matched by employer). Self-employed individuals (1099 contractors, freelancers, sole proprietors) pay both halves as Self-Employment Tax (15.3%), though they can deduct the employer-equivalent portion (7.65%) when calculating adjusted gross income."
+      },
+      {
+        "question": "How does the calculator determine net take-home pay across paycheck frequencies?",
+        "answer": "After calculating total annual federal tax, state income tax, and FICA payroll deductions, the net take-home salary is divided by standard US payroll pay periods: 12 for monthly, 24 for semi-monthly, 26 for bi-weekly (every two weeks), and 52 for weekly paychecks."
+      },
+      {
+        "question": "Does this calculator account for capital gains taxes or investment income?",
+        "answer": "This calculator focuses on ordinary earned income from wages, salaries, and operating business profits. Long-term capital gains and qualified dividends are taxed at preferential separate rates (0%, 15%, or 20%) under separate IRS rules."
+      },
+      {
+        "question": "Is my salary, deduction, or tax return data stored or shared with the IRS or third parties?",
+        "answer": "No. The US Income Tax Calculator operates 100% locally in your client web browser memory. Zubware never stores, transmits, or shares your personal income figures, salary data, or state selections with any external entity."
       }
     ]
   },
   "personal-loan-calculator": {
     "howTo": [
       {
-        "title": "Enter Loan Amount & Interest Rate",
-        "desc": "Input the requested personal loan borrowing amount and the lender's annual percentage rate (APR)."
+        "title": "Enter Loan Principal & Interest Rate",
+        "desc": "Input the requested borrowing amount (e.g. $5,000 to $100,000) and the lender's fixed annual interest rate (APR)."
       },
       {
-        "title": "Set Loan Duration & Origination Fee",
-        "desc": "Select the loan term in months (e.g. 12, 24, 36, 48, 60 months) and enter any upfront origination fee percentage."
+        "title": "Select Repayment Term in Months",
+        "desc": "Choose your loan term length (e.g. 12, 24, 36, 48, 60, 72, or 84 months) to balance monthly installment affordability against total interest."
       },
       {
-        "title": "Review Monthly Payment & Net Cash",
-        "desc": "Inspect your fixed monthly payment, total interest cost, upfront fee deducted, and the net cash actually disbursed to your bank account."
+        "title": "Input Upfront Lender Origination Fee",
+        "desc": "Enter any administrative origination fee percentage (typically 1% to 8%) to calculate net disbursed funds deposited to your account."
+      },
+      {
+        "title": "Add Optional Extra Monthly Prepayment",
+        "desc": "Enter an extra monthly principal contribution (e.g. $50/mo or $100/mo) to model early loan payoff and total interest savings."
+      },
+      {
+        "title": "Review Amortization Schedule & Export CSV",
+        "desc": "Inspect fixed monthly EMI, total interest paid, total repayment cost, effective APR, months shaved off loan term, and download the full monthly amortization table."
       }
     ],
     "faq": [
       {
-        "question": "What is a personal loan origination fee?",
-        "answer": "An origination fee is an upfront administrative fee charged by lenders (typically 1% to 8%) deducted directly from your loan proceeds before funds are disbursed."
+        "question": "How is the fixed monthly personal loan payment (EMI) calculated?",
+        "answer": "Monthly personal loan installments use the standard fixed amortization formula: EMI = P × [r × (1 + r)^n] ÷ [(1 + r)^n - 1], where P is loan principal, r is monthly interest rate (annual interest rate ÷ 12 ÷ 100), and n is total loan duration in months."
       },
       {
-        "question": "How does the origination fee affect net disbursed cash?",
-        "answer": "If you borrow $10,000 with a 5% origination fee, $500 is deducted upfront and you receive $9,500 in cash, while you repay interest and principal on the full $10,000."
+        "question": "What is an origination fee and how does it reduce the cash disbursed to my bank account?",
+        "answer": "An origination fee is an upfront administrative charge levied by online lenders and peer-to-peer platforms (typically 1% to 8% of the borrowed amount) that is deducted directly from your loan payout. For example, borrowing $20,000 with a 3% origination fee means the lender withholds $600 and deposits $19,400 to your bank account, while you repay interest and principal on the full $20,000."
       },
       {
-        "question": "How is the monthly personal loan installment calculated?",
-        "answer": "The payment is calculated using standard fixed monthly amortization: EMI = P × r × (1+r)^n / [(1+r)^n - 1], where P is loan principal, r is monthly interest rate, and n is loan term in months."
+        "question": "What is the difference between nominal interest rate and Annual Percentage Rate (APR)?",
+        "answer": "The nominal interest rate is the base percentage charged on your outstanding balance. The Annual Percentage Rate (APR) reflects the true annual cost of borrowing by factoring in both the nominal interest rate and upfront lender fees (such as origination or processing fees). APR is always higher than the nominal rate when upfront fees exist."
       },
       {
-        "question": "Can I pay off my personal loan early to save interest?",
-        "answer": "Most modern personal loans have no prepayment penalties. Paying extra principal early reduces remaining balance and shortens your repayment period."
+        "question": "How does making extra monthly payments accelerate personal loan payoff?",
+        "answer": "Extra monthly payments go 100% toward principal reduction rather than interest. Lowering the principal balance immediately shrinks the interest accrued in every subsequent month, allowing you to pay off the debt months or years ahead of schedule and save substantial money in finance charges."
       },
       {
-        "question": "Does this calculator check or affect my credit score?",
-        "answer": "No. This is a local mathematical planning tool running in your browser; it does not connect to credit bureaus or perform credit inquiries."
+        "question": "How does the amortization schedule distribute monthly payments between principal and interest?",
+        "answer": "In the early months of a personal loan, the outstanding principal balance is highest, meaning a larger portion of your fixed monthly payment covers accrued interest. As you pay down principal each month, the interest portion gradually decreases and the principal reduction portion increases until the loan is fully repaid."
+      },
+      {
+        "question": "Are there prepayment penalties for paying off a personal loan ahead of schedule?",
+        "answer": "The vast majority of modern personal loan lenders (including SoFi, Marcus, Discover, Upgrade, and major credit unions) charge zero prepayment penalties. You can make extra principal payments or pay off the entire remaining balance at any time without fees."
+      },
+      {
+        "question": "What is considered a good interest rate for an unsecured personal loan?",
+        "answer": "Personal loan interest rates generally range from 6% to 36% depending on creditworthiness. Borrowers with excellent credit (720+ FICO) typically qualify for competitive rates between 7% and 12%, while fair or poor credit scores may receive offers between 18% and 30%."
+      },
+      {
+        "question": "How does loan term length affect monthly payment versus total interest cost?",
+        "answer": "A shorter loan term (e.g. 24 or 36 months) yields higher monthly payments but drastically lowers total interest paid. A longer term (e.g. 60 or 72 months) reduces your required monthly payment for immediate budget breathing room, but significantly increases the total interest accumulated over the life of the loan."
+      },
+      {
+        "question": "Can I export the month-by-month amortization schedule for my records?",
+        "answer": "Yes. Clicking the Export CSV button downloads a complete spreadsheet breakdown showing month number, payment amount, principal applied, interest paid, and remaining principal balance for every month of the repayment term."
+      },
+      {
+        "question": "What is the difference between a secured personal loan and an unsecured personal loan?",
+        "answer": "An unsecured personal loan requires no collateral and is approved based solely on your credit history, income, and debt-to-income ratio. A secured personal loan requires pledging an asset (such as a savings account, certificate of deposit, or vehicle) which the lender can seize if you fail to repay, but often offers lower interest rates."
+      },
+      {
+        "question": "How does debt consolidation with a personal loan help save money?",
+        "answer": "If you carry high-interest credit card debt (averaging 21% to 28% APR), consolidating multiple balances into a single personal loan with a fixed 9% to 12% APR can cut your interest rate by more than half, lower your monthly outlay, and establish a clear, fixed debt-free date."
+      },
+      {
+        "question": "Does using this calculator perform a hard credit inquiry or save my data?",
+        "answer": "No. This tool is a 100% private client-side mathematical calculator. It does not contact credit bureaus (Equifax, Experian, TransUnion), run credit checks, or transmit your financial information to lenders or third parties."
       }
     ]
   },
   "sale-price-calculator": {
     "howTo": [
       {
-        "title": "Enter Original Item Price",
-        "desc": "Input the initial retail sticker price of the merchandise."
+        "title": "Select Currency & Enter Original Sticker Price",
+        "desc": "Choose your currency (USD $, EUR €, GBP £, INR ₹, CAD, AUD) and input the item's original retail tag price and quantity."
       },
       {
-        "title": "Add Primary Discount & Stacked Coupon",
-        "desc": "Enter the store markdown percentage (e.g. 25%) and input an additional promo code or store coupon percentage (e.g. 10%)."
+        "title": "Set Primary Store Markdown Discount",
+        "desc": "Enter the store discount percentage (e.g. 25% off) or a fixed cash markdown amount (e.g. $15 off)."
       },
       {
-        "title": "Review Savings & Final Register Price",
-        "desc": "Review your initial discount, secondary coupon savings, total combined percentage saved, sales tax, and final checkout price."
+        "title": "Add Secondary Stacked Promo Coupon",
+        "desc": "Enter an additional promotional coupon or VIP member discount percentage (e.g. extra 10% off) applied consecutively to the markdown subtotal."
+      },
+      {
+        "title": "Configure Local Sales Tax or VAT",
+        "desc": "Select a common sales tax preset (US average 8.25%, CA/NY 8.875%, UK VAT 20%, India GST 18%, EU 21%) or enter custom local tax rates."
+      },
+      {
+        "title": "Review Detailed Savings Breakdown & Checkout Total",
+        "desc": "Inspect original gross total, first markdown savings, stacked coupon savings, total combined effective percentage off, sales tax amount, and final cash register price."
       }
     ],
     "faq": [
       {
-        "question": "How do stacked discounts calculate (e.g. 25% off plus extra 10% coupon)?",
-        "answer": "Retailers apply the secondary coupon to the already-discounted price, not the original price. For a $100 item: 25% off = $75, then 10% off $75 = $7.50, resulting in a $67.50 price (32.5% effective savings, not 35%)."
+        "question": "How do stacked or consecutive discounts work (e.g. 30% off clearance plus 20% coupon)?",
+        "answer": "Retail point-of-sale systems apply stacked discounts consecutively, not additively. For a $100 item with 30% off, the price is first reduced to $70. The secondary 20% coupon is then applied to the $70 subtotal (saving $14), resulting in a pre-tax price of $56. The total effective discount is 44%, not 50%."
       },
       {
-        "question": "How does sales tax apply to discounted merchandise?",
-        "answer": "In most retail jurisdictions, sales tax is assessed on the final discounted price after all coupons have been deducted."
+        "question": "Why is a 30% discount plus a 20% coupon not equal to 50% off?",
+        "answer": "Because the second discount is calculated on the already-discounted price rather than the original sticker price. An extra 20% off $70 saves $14, whereas 20% off the original $100 would have saved $20. Combining 30% and 20% sequentially yields an effective 44% total reduction."
       },
       {
-        "question": "Can I calculate single-discount sales without a coupon?",
-        "answer": "Yes. Simply leave the extra coupon percentage field set to 0% to calculate standard single-discount sale prices."
+        "question": "How is sales tax or VAT applied to discounted merchandise?",
+        "answer": "In most retail jurisdictions (including US states and European VAT systems), sales tax is calculated strictly on the final net transaction price after all store discounts and coupons have been deducted. The calculator automatically calculates tax on the post-discount subtotal."
       },
       {
-        "question": "Does the tool show total combined dollar savings?",
-        "answer": "Yes. The summary breakdown displays exact dollar savings from the primary discount, additional coupon savings, total combined dollar discount, and net effective percentage saved."
+        "question": "Can I calculate discounts for multiple quantities of the same item?",
+        "answer": "Yes. Increase the item quantity input to calculate aggregate cart totals, cumulative dollar savings across multiple units, and total sales tax."
       },
       {
-        "question": "Are prices formatted with accurate currency rounding?",
-        "answer": "Yes. All price calculations round to standard two decimal places matching retail cash register checkout totals."
+        "question": "What is the difference between a percentage discount and a fixed currency markdown?",
+        "answer": "A percentage discount scales with price (e.g. 20% off a $50 shirt saves $10, but 20% off a $200 jacket saves $40). A fixed markdown is a flat dollar deduction (e.g. $15 off coupon) regardless of item cost."
+      },
+      {
+        "question": "Can I use this calculator for Black Friday, Cyber Monday, and clearance sales?",
+        "answer": "Yes. This tool is specifically engineered for multi-tier holiday sales events where retailers combine doorbuster markdowns (e.g. 40% off storewide) with promotional mailer coupons (e.g. extra 15% off coupon code)."
+      },
+      {
+        "question": "How do I calculate the reverse discount: finding the original price from a sale price?",
+        "answer": "To find the original price before a discount was applied, use the formula: Original Price = Sale Price ÷ (1 - Discount%/100). For example, if an item is on sale for $60 after a 25% discount, Original Price = $60 ÷ 0.75 = $80."
+      },
+      {
+        "question": "Does the calculator support international currencies like Euros, Pounds, and Rupees?",
+        "answer": "Yes. You can switch currency symbols between US Dollars ($), Euros (€), British Pounds (£), Indian Rupees (₹), Canadian Dollars (CA$), and Australian Dollars (AU$)."
+      },
+      {
+        "question": "What are common retail pricing tricks like psychological pricing ($19.99 vs $20.00)?",
+        "answer": "Retailers use charm pricing (ending prices in .99 or .95) because consumers perceive $19.99 as significantly closer to $19 than $20. Entering the exact cents into the calculator shows your true post-tax out-of-pocket expenditure."
+      },
+      {
+        "question": "How do mail-in manufacturer rebates differ from instant store discounts?",
+        "answer": "Instant discounts reduce the register price at checkout and lower the taxable amount immediately. Manufacturer mail-in rebates require paying full price at the register (including sales tax on full price), after which you mail in proof of purchase to receive a future rebate check."
+      },
+      {
+        "question": "Can I calculate a single discount without adding a secondary coupon?",
+        "answer": "Yes. Simply leave the secondary coupon percentage field set to 0% to compute standard single-tier discounts."
+      },
+      {
+        "question": "Is my price calculation or shopping cart data tracked or logged on Zubware servers?",
+        "answer": "No. The Sale Price Calculator runs 100% locally in your client web browser memory with zero server tracking or price logging."
       }
     ]
   },
@@ -9910,43 +11514,75 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "typing-speed-test": {
-    "howTo": [
-      {
-        "title": "Select Test Duration & Difficulty",
-        "desc": "Choose 1-minute, 2-minute, or 3-minute timed tests with common words, quotes, or coding syntax."
-      },
-      {
-        "title": "Type the Displayed Text",
-        "desc": "Type words as they highlight in real time, with immediate color feedback for correct (green) and incorrect (red) keystrokes."
-      },
-      {
-        "title": "Review WPM & Accuracy Metrics",
-        "desc": "Inspect your net Words Per Minute (WPM), Gross WPM, raw keystroke accuracy percentage, and error breakdown."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How is net Words Per Minute (WPM) calculated?",
-        "answer": "Standard typing speed calculates 1 word as 5 keystrokes: Net WPM = (Total Keystrokes / 5 - Uncorrected Errors) / Time in Minutes."
-      },
-      {
-        "question": "What is the difference between Gross WPM and Net WPM?",
-        "answer": "Gross WPM measures raw typing speed regardless of mistakes. Net WPM penalizes typographical errors, providing a realistic measure of productive typing throughput."
-      },
-      {
-        "question": "Can I practice typing programming code snippets?",
-        "answer": "Yes. Switch to 'Coding Mode' to practice typing JavaScript, Python, HTML, and syntax symbols like brackets, braces, and semicolons."
-      },
-      {
-        "question": "Can I view my typing history and improvement streaks?",
-        "answer": "Yes. Your recent test scores and accuracy metrics are saved in local browser storage to track your typing improvement over time."
-      },
-      {
-        "question": "Does the test require any software installation?",
-        "answer": "No. The typing engine runs in your web browser with millisecond keystroke latency tracking."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Test Duration",
+      "desc": "Choose between 15 seconds (quick sprint), 30 seconds (standard drill), or 60 seconds (formal assessment)."
+    },
+    {
+      "title": "Click the Input Area to Begin",
+      "desc": "Focus the typing input box to initiate the countdown timer automatically on your first keystroke."
+    },
+    {
+      "title": "Type the Displayed Passage Accurately",
+      "desc": "Type words matching the prompt; correct letters turn green while errors are highlighted in red."
+    },
+    {
+      "title": "Inspect Net WPM, Gross WPM & Accuracy",
+      "desc": "Review your calculated Net Words Per Minute, Gross WPM, percentage accuracy, and raw error count."
+    },
+    {
+      "title": "Retest or Change Text Passage",
+      "desc": "Click Restart to beat your previous score or cycle to a new practice paragraph."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How is Net WPM (Words Per Minute) calculated?",
+      "answer": "In standardized typing tests, one 'word' is defined as exactly 5 keystrokes (including letters, punctuation, and spaces). Net WPM = (Total Characters Typed / 5 - Uncorrected Errors) / Time in Minutes."
+    },
+    {
+      "question": "What is the difference between Gross WPM and Net WPM?",
+      "answer": "Gross WPM measures raw typing speed regardless of mistakes: (Total Characters / 5) / Minutes. Net WPM penalizes uncorrected errors, providing the true measure of usable productive typing speed."
+    },
+    {
+      "question": "How is typing Accuracy percentage calculated?",
+      "answer": "Accuracy = (Correct Characters Typed / Total Characters Typed) * 100. Professional typists target an accuracy score of 95% to 98% or higher."
+    },
+    {
+      "question": "What is considered an average and a good typing speed?",
+      "answer": "The average global typing speed is approximately 40 WPM. Speeds between 50 and 65 WPM are considered proficient, 70 to 85 WPM is considered fast, and speeds above 90 WPM place typists in the top tier."
+    },
+    {
+      "question": "Does the typing test count spaces and punctuation marks?",
+      "answer": "Yes. Spaces and punctuation marks count toward the standard 5-character word calculation and must be typed accurately to advance through the passage."
+    },
+    {
+      "question": "Can I use backspace to correct typing errors during the test?",
+      "answer": "Yes. You can use backspace to fix mistakes within the active word before moving on, helping preserve your Net WPM and accuracy."
+    },
+    {
+      "question": "Does the timer begin immediately when the page loads?",
+      "answer": "No. The timer remains paused until you press your first keystroke inside the input field, allowing you to read the passage first."
+    },
+    {
+      "question": "Are typing scores or keystrokes transmitted or stored on any server?",
+      "answer": "No. All keystroke timing, error calculations, and score summaries run 100% locally in your browser memory."
+    },
+    {
+      "question": "How can I improve my typing speed and accuracy effectively?",
+      "answer": "Practice touch typing with proper home-row finger placement (ASDF JKL;), focus on accuracy before speed, avoid looking at the keyboard, and practice daily in short 5-minute sessions."
+    },
+    {
+      "question": "Can I take the typing speed test on mobile devices or tablets?",
+      "answer": "While the test runs on mobile browsers, touchscreen virtual keyboards yield substantially lower WPM than physical tactile desktop keyboards."
+    },
+    {
+      "question": "Can I copy my typing score card to share with employers or friends?",
+      "answer": "Yes. Click the Copy Score button upon completing the test to copy a formatted summary of your WPM, accuracy, and test duration."
+    }
+  ]
+},
   "text-reverser": {
     "howTo": [
       {
@@ -10762,114 +12398,166 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "scientific-calculator": {
     "howTo": [
       {
-        "title": "Input Expressions via Keypad or Keyboard",
-        "desc": "Type numbers, mathematical operators (+, −, ×, ÷), and parentheses using on-screen buttons or your computer keyboard."
+        "title": "Enter Expressions via Keypad or Desktop Keyboard",
+        "desc": "Input numbers, operators (+, −, ×, ÷), exponents (^), and nested parentheses using the on-screen touch buttons or your physical desktop keyboard."
       },
       {
-        "title": "Apply Scientific Functions & Angle Modes",
-        "desc": "Use trigonometry (sin, cos, tan), logarithms (ln, log), powers (xʸ, x²), roots (√, ∛), and toggle between Radian (RAD) and Degree (DEG) modes."
+        "title": "Select Angle Mode (DEG / RAD) & Scientific Operations",
+        "desc": "Click the RAD/DEG badge to set your angle unit, then apply trigonometric functions (sin, cos, tan), roots (√x, ∛), logarithms (log₁₀, ln), or factorials (n!)."
       },
       {
-        "title": "Evaluate, Store in Memory & View History",
-        "desc": "Press Equals (=) or Enter to evaluate, store results in memory registers (M+, MR), and inspect past calculations in the history log."
+        "title": "Evaluate with Instant Precision Formatting",
+        "desc": "Press Equals (=) or tap Enter to evaluate your expression with accurate 10-decimal precision, and click Copy to capture the result."
+      },
+      {
+        "title": "Utilize Memory Registers & Revisit Calculation History",
+        "desc": "Store running totals with M+ or M-, recall values with MR, or tap any previous calculation in the history panel to reload its formula instantly."
       }
     ],
     "faq": [
       {
+        "question": "How is a scientific calculator different from a standard basic calculator?",
+        "answer": "A standard calculator only performs basic arithmetic (+, −, ×, ÷). In contrast, a scientific calculator evaluates complex mathematical expressions including trigonometric ratios (sine, cosine, tangent), logarithmic transformations (log₁₀, natural log ln), exponential powers (xʸ), roots, factorials, and constants (π, e), while strictly adhering to mathematical order of operations (PEMDAS/BODMAS)."
+      },
+      {
         "question": "What is the difference between Radian (RAD) and Degree (DEG) mode?",
-        "answer": "Degree mode measures angles on a 360° circle, where sin(30°) = 0.5. Radian mode measures angles based on radius arc length (2π radians in a circle), where sin(π/6) = 0.5. Click the RAD/DEG badge to toggle."
+        "answer": "Degree mode measures angles along a 360° circle (e.g., sin(30°) = 0.5, cos(0°) = 1). Radian mode measures angles based on circular arc length (where 2π radians = 360°, so sin(π/6) = 0.5). Always check the active RAD/DEG toggle before computing trigonometric functions to prevent angle unit mismatch errors."
       },
       {
-        "question": "How do the calculator memory registers (M+, M-, MR, MC) function?",
-        "answer": "M+ adds the current result to memory; M- subtracts it; MR (Memory Recall) inserts the stored memory value into your expression; and MC (Memory Clear) resets memory to 0."
+        "question": "What is the difference between log₁₀ and natural log (ln)?",
+        "answer": "The common logarithm (log₁₀) calculates the exponent required to produce a number using base 10 (e.g., log₁₀(100) = 2, because 10² = 100). The natural logarithm (ln) uses Euler's constant e ≈ 2.71828 as its base (e.g., ln(e) = 1, ln(e²) = 2). Both are commonly required in physics, chemistry, engineering, and calculus."
       },
       {
-        "question": "Does the calculator support keyboard shortcuts on desktop computers?",
-        "answer": "Yes. You can use number keys, standard operators (+, -, *, /), parentheses, Enter for equals, Backspace to delete characters, and Escape to clear the display."
+        "question": "How do I calculate exponents, powers, and roots?",
+        "answer": "To calculate a power, enter the base, press xʸ (^), and input the exponent (e.g., 2^8 evaluates to 256). For square roots, press √x (sqrt) followed by your number inside parentheses (e.g., sqrt(144) evaluates to 12)."
       },
       {
-        "question": "Are past calculations saved in history?",
-        "answer": "Yes. Evaluated expressions are automatically saved to your calculation history list in local storage, allowing you to recall past results with one click."
+        "question": "How do the memory registers (M+, M-, MR, MC) work?",
+        "answer": "M+ adds the current displayed value to the memory register; M- subtracts it; MR (Memory Recall) inserts the stored memory number into your expression; and MC (Memory Clear) resets the register to 0. A visual 'M' indicator appears on the display whenever memory contains a non-zero value."
       },
       {
-        "question": "Which scientific constants and functions are built into the tool?",
-        "answer": "The calculator includes mathematical constants Pi (π ≈ 3.14159) and Euler's number (e ≈ 2.71828), factorial (x!), inverse trigonometry (asin, acos, atan), natural log (ln), common log (log₁₀), and absolute value (abs)."
+        "question": "Does this online calculator support physical keyboard shortcuts?",
+        "answer": "Yes. Desktop users can type numbers (0–9), standard operators (+, -, *, /), parentheses (), exponents (^), percentages (%), press Enter for equals, Backspace to delete the last character, and Escape to clear the display."
+      },
+      {
+        "question": "How does the calculator handle order of operations (PEMDAS / BODMAS)?",
+        "answer": "The calculator implements a robust Shunting-Yard parser that strictly enforces mathematical operator precedence: Parentheses first, followed by Exponents & Factorials, then Multiplication & Division, and finally Addition & Subtraction. Expressions like 2 + 3 * 4 correctly evaluate to 14, not 20."
+      },
+      {
+        "question": "Are my past calculations stored privately?",
+        "answer": "Yes. Past calculations are saved locally inside your browser's private localStorage. They are never sent to external servers or logged in the cloud, and you can clear your history log with one click at any time."
+      },
+      {
+        "question": "Is this scientific calculator completely free to use without registration?",
+        "answer": "Yes. Zubware Scientific Calculator is 100% free with unlimited computations. It requires no user account, software download, or subscription, and works seamlessly across desktop, tablet, and mobile browsers."
       }
     ]
   },
   "handwriting-to-text": {
     "howTo": [
       {
-        "title": "Upload Photo or Draw Notes",
-        "desc": "Upload a picture of handwritten notes, or write directly onto the interactive digital canvas."
+        "title": "Select Input Mode (Upload Image or Draw)",
+        "desc": "Choose Upload Image to select a photo of your handwritten paper notes, or switch to Draw Canvas to write live using your finger, stylus, or mouse."
       },
       {
-        "title": "Enhance Stroke Contrast",
-        "desc": "Adjust the contrast boost slider to sharpen faint ink and pencil strokes, improving recognition accuracy."
+        "title": "Adjust Adaptive Contrast & Ink Sharpness",
+        "desc": "Fine-tune the contrast boost slider to darken faint pencil or pen strokes and brighten background paper, eliminating shadows and notebook ruled lines."
       },
       {
-        "title": "Extract Text and Copy",
-        "desc": "Click Extract Text to run client-side OCR, review the transcribed text in the editor, and copy or download as TXT."
+        "title": "Run Client-Side Neural Network OCR",
+        "desc": "Click Extract Handwritten Text to initialize the browser-based Tesseract.js neural recognition engine with real-time progress tracking."
+      },
+      {
+        "title": "Review Confidence Score & Edit Transcription",
+        "desc": "Inspect the overall confidence percentage rating and polish transcribed text inside the built-in rich editor."
+      },
+      {
+        "title": "Copy Clean Text or Download TXT File",
+        "desc": "Click Copy to Clipboard to paste into your notes app or word processor, or click Download TXT to save your digital notes file."
       }
     ],
     "faq": [
       {
-        "question": "What types of handwriting produce the most accurate OCR results?",
-        "answer": "Neat, consistent handwriting with separated printed characters or clear cursive letters on clean, unlined or lightly lined paper produces the highest accuracy."
+        "question": "What kind of handwriting achieves the highest OCR transcription accuracy?",
+        "answer": "Neatly printed handwriting or semi-cursive script with clear spacing between letters produces the highest recognition accuracy. Writing with high-contrast dark blue or black ink on unlined or light-grid paper yields substantially better results than faint pencil on heavily ruled sheets."
       },
       {
-        "question": "How does the contrast boost slider improve OCR accuracy?",
-        "answer": "Contrast enhancement darkens pencil and ink lines while brightening background paper, helping the OCR engine distinguish letter boundaries from paper texture."
+        "question": "How does the adaptive contrast boost slider improve handwriting recognition?",
+        "answer": "Handwritten notes on smartphone camera photos often have uneven shadows, yellowish room lighting, and faint pencil strokes. The contrast slider binarizes the image, darkening the ink strokes while pushing the paper background to pure white, giving the OCR engine crisp letter contours."
       },
       {
-        "question": "Can I edit the recognized text before saving?",
-        "answer": "Yes. The transcribed text appears in an editable text box so you can quickly correct any misread words before copying or saving."
+        "question": "Can I draw notes or math equations directly on screen using an iPad or stylus?",
+        "answer": "Yes. Switch to Draw Canvas mode to handwrite notes, diagrams, numbers, or letters directly on your screen using an Apple Pencil, Samsung S-Pen, touchscreen finger, or mouse."
       },
       {
-        "question": "Can I write directly on the screen using a touchscreen or stylus?",
-        "answer": "Yes. Switch to Draw mode to handwrite notes or equations directly on the canvas using your finger, stylus, or mouse."
+        "question": "Does handwriting OCR work on cursive and script handwriting?",
+        "answer": "Yes. The Tesseract.js LSTM neural network model recognizes connected cursive strokes; however, extremely stylized signatures, shorthand, or overlapping doctor scripts may require minor manual review in the built-in editor."
       },
       {
-        "question": "Is my personal handwriting or notebook photo sent to an external server?",
-        "answer": "The image is processed locally in your browser using the client-side Tesseract.js OCR engine and is not sent to a Zubware server for processing."
+        "question": "Can I edit the transcribed text before copying or downloading it?",
+        "answer": "Yes. Transcribed text appears directly in an interactive text editor with real-time word and character counts, allowing you to quickly correct any misread punctuation or characters."
+      },
+      {
+        "question": "What is the OCR confidence score and how is it calculated?",
+        "answer": "The confidence score (0%–100%) represents the statistical certainty of the neural network across all identified words in the document, giving you an immediate gauge of transcription quality."
+      },
+      {
+        "question": "Are my private notebook pages, meeting notes, or journal entries uploaded to the cloud?",
+        "answer": "No. Optical character recognition executes 100% locally inside your device browser memory via WebAssembly. Your notes, student assignments, and private thoughts are never transmitted to Zubware servers."
       }
     ]
   },
   "image-to-text": {
     "howTo": [
       {
-        "title": "Upload Document or Photo",
-        "desc": "Select an image, screenshot, document scan, or book page containing printed text."
+        "title": "Upload Document, Photo, or Screenshot",
+        "desc": "Drag and drop any picture containing printed text—including receipts, book pages, PDFs converted to images, invoices, or screenshots (JPG, PNG, WebP, BMP)."
       },
       {
-        "title": "Select Recognition Language",
-        "desc": "Choose your document language (English, Spanish, French, German, Hindi, etc.) to load the optimized language model."
+        "title": "Select Document Language Model",
+        "desc": "Choose your primary language (English, Hindi, Spanish, French, German, Italian, Portuguese, Russian, Chinese, Japanese, or Arabic) to load the specialized language dictionary."
       },
       {
-        "title": "Extract, Edit and Export Text",
-        "desc": "Click Extract Text to process with browser-side OCR, review the confidence score, and copy or download the text as a TXT file."
+        "title": "Extract Text with Client-Side Tesseract OCR",
+        "desc": "Click Extract Text to process the image locally in your browser with real-time progress bars and neural layout analysis."
+      },
+      {
+        "title": "Inspect Accuracy Confidence & Word Count",
+        "desc": "Review the transcription confidence score, verify character and word counts, and make quick edits directly in the text viewer."
+      },
+      {
+        "title": "Copy Text or Download Plain Text (.txt)",
+        "desc": "Copy the formatted text to your clipboard with one click or download the output as a clean .txt file ready for documentation or spreadsheet imports."
       }
     ],
     "faq": [
       {
-        "question": "Which languages are supported for OCR text extraction?",
-        "answer": "The OCR engine supports over 11 major languages including English, Spanish, French, German, Hindi, Portuguese, Italian, Chinese, and Arabic."
+        "question": "Which languages are supported for image text extraction?",
+        "answer": "Zubware Image to Text supports over 11 major global and regional languages including English, Hindi (हिंदी), Spanish (Español), French (Français), German (Deutsch), Italian (Italiano), Portuguese (Português), Russian (Русский), Chinese (Simplified), Japanese (日本語), and Arabic (العربية)."
       },
       {
-        "question": "What image quality is recommended for high OCR accuracy?",
-        "answer": "Crisp, high-contrast images with at least 150 to 300 DPI, even lighting, and horizontal text alignment achieve the most reliable transcription."
+        "question": "Can I extract text from low-resolution screenshots and WhatsApp photos?",
+        "answer": "Yes. The OCR engine reads UI screenshots, social media memes, WhatsApp forwards, and camera photos. For best results, ensure the text is right-side up and reasonably legible to the human eye."
       },
       {
-        "question": "Can I extract text from screenshots and scanned receipts?",
-        "answer": "Yes. The OCR engine reads receipts, book pages, business cards, signs, and software screenshots."
+        "question": "Does this tool work on scanned receipts, bills, and tax invoices?",
+        "answer": "Yes. The engine excels at tabular and columnar structures in scanned store receipts, utility bills, business cards, and purchase invoices, extracting item descriptions and numeric amounts into clean editable text."
       },
       {
-        "question": "What does the OCR confidence score indicate?",
-        "answer": "The confidence score represents the statistical probability of character recognition accuracy across all detected words in the image."
+        "question": "What is the recommended image resolution for maximum OCR accuracy?",
+        "answer": "An image resolution of 300 DPI (or at least 1200x1600 pixels) with crisp horizontal text and sharp contrast between letters and paper achieves accuracy exceeding 98%."
       },
       {
-        "question": "Are my confidential document photos uploaded to an external server?",
-        "answer": "The image is processed locally in your browser using Tesseract.js WebAssembly and is not sent to a Zubware server for processing."
+        "question": "How long does OCR text recognition take?",
+        "answer": "Most standard document images and screenshots process within 2 to 5 seconds. Processing speed depends entirely on your device CPU and available RAM since all computation runs on your machine."
+      },
+      {
+        "question": "Is there a daily limit on how many images I can convert to text?",
+        "answer": "No. Zubware is completely free with no usage caps, no subscription tiers, and no sign-up requirements. You can convert unlimited images and screenshots."
+      },
+      {
+        "question": "Are my confidential contracts, invoices, or medical records uploaded to an external server?",
+        "answer": "Never. Optical character recognition runs 100% locally in your browser memory via Tesseract.js WebAssembly. No image files or extracted texts are ever sent across the network or stored on Zubware servers."
       }
     ]
   },
@@ -11048,43 +12736,75 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "file-checksum-verifier": {
-    "howTo": [
-      {
-        "title": "Select File to Verify",
-        "desc": "Drag and drop any installer, ISO image, document, or archive into the verifier."
-      },
-      {
-        "title": "Select Hash Algorithm & Compute Checksum",
-        "desc": "Calculate cryptographic hashes using SHA-256, SHA-1, SHA-512, or MD5 via the Web Crypto API."
-      },
-      {
-        "title": "Paste Expected Hash to Compare",
-        "desc": "Input the developer's published checksum to see an instant match (green checkmark) or mismatch warning."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What is a cryptographic file checksum?",
-        "answer": "A checksum is a unique mathematical fingerprint calculated from a file's binary contents. Even a single changed bit in the file produces a completely different hash value."
-      },
-      {
-        "question": "How does this tool calculate checksums for large files without crashing?",
-        "answer": "It reads files in streaming chunks using the browser's native FileReader and Web Crypto APIs (SubtleCrypto), verifying multi-gigabyte files efficiently without uploading them."
-      },
-      {
-        "question": "Is my file uploaded to a server to calculate the hash?",
-        "answer": "No. All hash calculations execute locally in your browser using the Web Cryptography API. Files are not uploaded to Zubware servers."
-      },
-      {
-        "question": "Why is verifying checksums essential for downloaded software?",
-        "answer": "Matching the publisher's published SHA-256 hash confirms the file was downloaded completely without corruption and has not been tampered with by malicious actors."
-      },
-      {
-        "question": "Does the tool ignore uppercase and lowercase differences when comparing?",
-        "answer": "Yes. Hash comparison is case-insensitive, ensuring accurate matches regardless of whether the developer published lowercase or uppercase hex strings."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Hash Algorithm",
+      "desc": "Choose the target cryptographic algorithm: SHA-256 (standard), SHA-1, SHA-512, or MD5."
+    },
+    {
+      "title": "Upload or Drop Your File",
+      "desc": "Select or drag and drop any file from your computer to calculate its cryptographic hash in browser memory."
+    },
+    {
+      "title": "Inspect Calculated Checksum",
+      "desc": "Review the calculated hexadecimal digest generated via the browser's native Web Crypto API."
+    },
+    {
+      "title": "Paste Expected Checksum to Compare",
+      "desc": "Paste the official hash published by the software developer or download provider into the comparison box."
+    },
+    {
+      "title": "Verify File Integrity Status",
+      "desc": "Inspect the instant verification badge: green for an exact match (file intact) or red for a mismatch (file altered)."
+    }
+  ],
+  "faq": [
+    {
+      "question": "What is a file checksum and why is it used?",
+      "answer": "A checksum is a unique fixed-length cryptographic string (hash) generated by running a mathematical algorithm over a file's byte contents. If even a single bit of the file is changed or corrupted during download, the checksum changes completely (the avalanche effect)."
+    },
+    {
+      "question": "Does verifying a checksum prove that a file is free of malware?",
+      "answer": "No. A checksum verifies file integrity (that the downloaded file matches the exact bytes published by the author). If an attacker compromises the author's server and uploads a malicious file alongside its new checksum, the hashes will match. Checksums verify integrity, not inherent safety."
+    },
+    {
+      "question": "Which cryptographic hash algorithms are supported by this tool?",
+      "answer": "The tool supports SHA-256 (industry standard), SHA-512 (high security), SHA-1 (legacy), and MD5 (legacy verification)."
+    },
+    {
+      "question": "Why are MD5 and SHA-1 considered cryptographically deprecated?",
+      "answer": "Researchers have demonstrated practical collision attacks against MD5 and SHA-1 where two different files can produce identical hash values. For security-critical integrity and signatures, modern software relies on SHA-256 or SHA-512."
+    },
+    {
+      "question": "Are files uploaded to an external server during hashing?",
+      "answer": "No. The tool reads files using the browser's FileReader API and computes hashes using client-side WebAssembly and the native Web Crypto API (crypto.subtle.digest). Large ISO files, installers, and documents never leave your computer."
+    },
+    {
+      "question": "Is there a file size limit for checking checksums in the browser?",
+      "answer": "Because hashing occurs in browser memory, files up to several gigabytes can be hashed smoothly on modern computers without uploading."
+    },
+    {
+      "question": "Does the hash comparison check case-sensitivity (uppercase vs lowercase)?",
+      "answer": "The verification comparison is case-insensitive, meaning lowercase and uppercase hexadecimal characters are evaluated identically."
+    },
+    {
+      "question": "What should I do if the calculated hash does not match the expected hash?",
+      "answer": "A mismatch indicates the download is corrupted, incomplete, or was tampered with in transit. Delete the file and re-download from an authentic official mirror."
+    },
+    {
+      "question": "Can I copy the calculated hash to my clipboard?",
+      "answer": "Yes. Click the Copy button next to the calculated hash to copy the hexadecimal digest with one click."
+    },
+    {
+      "question": "Does renaming a file change its checksum?",
+      "answer": "No. Cryptographic hash algorithms evaluate only the file's raw binary data contents, not external filesystem metadata such as the filename or creation timestamp."
+    },
+    {
+      "question": "Can I use the Checksum Verifier offline?",
+      "answer": "Yes. Once the web application is loaded in your browser, the Web Crypto API operates completely offline without internet connectivity."
+    }
+  ]
+},
   "habit-tracker": {
     "howTo": [
       {
@@ -11158,81 +12878,145 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "passphrase-generator": {
-    "howTo": [
-      {
-        "title": "Set Word Count & Separator",
-        "desc": "Choose number of words (4 to 8 words) and select delimiter: Hyphen (-), Space, Period (.), or Underscore (_)."
-      },
-      {
-        "title": "Configure Capitalization & Numbers",
-        "desc": "Toggle Title Case capitalization and append random numbers or symbols for enhanced credential complexity."
-      },
-      {
-        "title": "Generate & Copy Memorable Passphrase",
-        "desc": "Inspect the calculated bit-entropy security rating and copy your secure, easy-to-remember passphrase."
-      }
-    ],
-    "faq": [
-      {
-        "question": "What is a Diceware-style passphrase and why is it superior?",
-        "answer": "Diceware passphrases combine several random dictionary words (e.g. 'correct-horse-battery-staple'). They provide high mathematical entropy against automated cracking while being easy for humans to remember and type."
-      },
-      {
-        "question": "How much entropy does a 5-word passphrase provide?",
-        "answer": "A 5-word passphrase drawn from a curated dictionary of 7,776 words provides approximately 65 bits of entropy, which would take modern supercomputers billions of years to brute-force."
-      },
-      {
-        "question": "How are the random words chosen?",
-        "answer": "Words are selected using the cryptographically secure pseudo-random number generator (crypto.getRandomValues), ensuring non-predictable outcomes."
-      },
-      {
-        "question": "Does the wordlist exclude offensive or confusing words?",
-        "answer": "Yes. The dictionary is curated to remove profanity, ambiguous spellings, and homophones for clean professional memorability."
-      },
-      {
-        "question": "Is my generated passphrase transmitted to Zubware?",
-        "answer": "No. All passphrase assembly occurs entirely in volatile client-side browser memory with zero network logging."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Word Count (Passphrase Length)",
+      "desc": "Adjust the slider from 3 to 8 words (4 to 5 words recommended for standard balance of memory and entropy)."
+    },
+    {
+      "title": "Choose Word Separator",
+      "desc": "Select your preferred delimiter: Hyphen (-), Underscore (_), Space ( ), Period (.), or None."
+    },
+    {
+      "title": "Configure Capitalization & Characters",
+      "desc": "Toggle word capitalization (TitleCase) and optionally append random numbers or special symbols."
+    },
+    {
+      "title": "Generate Diceware Passphrase",
+      "desc": "Click Generate to draw random words using cryptographically secure browser entropy."
+    },
+    {
+      "title": "Inspect Entropy & Copy Passphrase",
+      "desc": "Review the calculated entropy bits and estimated crack-time resistance, then click Copy."
+    }
+  ],
+  "faq": [
+    {
+      "question": "Why are Diceware-style passphrases more secure and memorable than random character passwords?",
+      "answer": "Random character passwords (like 'k#9X!mP$') are difficult to remember and frequently written down. Passphrases combine several random dictionary words (like 'correct-horse-battery-staple'), creating vast mathematical search spaces that are effortless for humans to type and remember."
+    },
+    {
+      "question": "What is Password Entropy and how is it calculated for passphrases?",
+      "answer": "Entropy measures unpredictable randomness in bits. For a wordlist of size N and a passphrase of W words, entropy is calculated as: Bits = W * log2(N). A 5-word passphrase from a 7,776-word Diceware list provides approximately 65 bits of pure entropy."
+    },
+    {
+      "question": "Is this passphrase generator cryptographically secure?",
+      "answer": "Yes. The generator draws random words using window.crypto.getRandomValues(), the browser's cryptographically secure pseudorandom number generator (CSPRNG), rather than insecure Math.random()."
+    },
+    {
+      "question": "How many words should a secure passphrase contain?",
+      "answer": "According to cybersecurity standards, 4 words (approx. 52 bits of entropy) are suitable for general accounts, 5 to 6 words (65-78 bits) are ideal for password managers and email accounts, and 7+ words are recommended for disk encryption."
+    },
+    {
+      "question": "Does adding a number or symbol increase passphrase security?",
+      "answer": "Yes. Adding numbers and symbols satisfies legacy website password complexity rules and adds additional entropy bits to protect against specialized dictionary attacks."
+    },
+    {
+      "question": "Are generated passphrases logged or transmitted to any server?",
+      "answer": "No. The wordlist and CSPRNG generation execute 100% locally in your web browser. No generated passphrases, keys, or metadata are ever transmitted or saved."
+    },
+    {
+      "question": "What wordlist is used to generate the passphrases?",
+      "answer": "The generator uses a curated EFF-inspired wordlist of familiar, clean English words selected for clarity, easy spelling, and phonetic distinctiveness."
+    },
+    {
+      "question": "Can brute-force GPU cracking clusters easily guess a 5-word passphrase?",
+      "answer": "A 5-word passphrase with 65+ bits of entropy represents over 36 quintillion combinations. Even a supercomputer cluster guessing 100 billion passwords per second would require centuries to exhaust the search space."
+    },
+    {
+      "question": "Can I use the Passphrase Generator on mobile devices?",
+      "answer": "Yes. The tool operates smoothly on mobile Safari and Chrome, allowing you to generate secure master passwords on smartphones and tablets."
+    },
+    {
+      "question": "Why is separator choice important in a passphrase?",
+      "answer": "Separators (like hyphens or periods) break words apart clearly for human reading and prevent dictionary parsers from interpreting adjacent words as a single compound word."
+    },
+    {
+      "question": "Can I generate multiple passphrases in a row?",
+      "answer": "Yes. Click the Generate button repeatedly to roll fresh, cryptographically independent passphrases instantly."
+    }
+  ]
+},
   "password-strength-checker": {
-    "howTo": [
-      {
-        "title": "Enter Password to Audit",
-        "desc": "Type or paste your password into the secure evaluation input box."
-      },
-      {
-        "title": "Inspect Entropy & Crack-Time Estimate",
-        "desc": "Review the calculated bits of entropy, estimated brute-force crack time, and visual strength meter."
-      },
-      {
-        "title": "Review Security Checklist & Vulnerabilities",
-        "desc": "Check for common vulnerabilities: length deficiencies, dictionary words, sequential numbers, and repeated patterns."
-      }
-    ],
-    "faq": [
-      {
-        "question": "Is it safe to test sensitive passwords on this web page?",
-        "answer": "Yes. The strength algorithm runs locally in your browser using client-side JavaScript. Your password is never sent across the internet, logged, or transmitted anywhere."
-      },
-      {
-        "question": "How is the estimated brute-force crack time calculated?",
-        "answer": "The tool estimates total search space entropy (based on character pool variety and length) and calculates time to crack assuming an offline cluster attempting 100 billion guesses per second."
-      },
-      {
-        "question": "Does the tool check against common leaked password lists?",
-        "answer": "Yes. It checks against a local dictionary of the most common breached passwords and keyboard walk patterns (e.g. 'qwerty', '123456', 'password')."
-      },
-      {
-        "question": "What makes a password rated 'Very Strong'?",
-        "answer": "A score of 'Very Strong' requires at least 80+ bits of entropy, typically achieved by 16+ characters with a mixture of uppercase, lowercase, numbers, and symbols, or a 5-word random passphrase."
-      },
-      {
-        "question": "Can I toggle password visibility while typing?",
-        "answer": "Yes. Click the eye icon to toggle between masked bullet points and visible plain text."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Enter Password in the Input Field",
+      "desc": "Type or paste the password you wish to evaluate (toggle the eye icon to view or hide characters)."
+    },
+    {
+      "title": "Review Instant Strength Score & Level",
+      "desc": "Inspect the dynamic strength meter categorized as Very Weak, Weak, Fair, Good, or Strong."
+    },
+    {
+      "title": "Examine Character Diversity Checks",
+      "desc": "Verify requirements across length (12+ characters), lowercase, uppercase, numbers, and symbols."
+    },
+    {
+      "title": "Inspect Entropy & Estimated Crack Time",
+      "desc": "Review calculated Shannon entropy bits and estimated offline GPU brute-force crack time."
+    },
+    {
+      "title": "Apply Actionable Security Recommendations",
+      "desc": "Review feedback warnings regarding common patterns, sequential numbers, or repetitive characters."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Password Strength Checker evaluate passwords?",
+      "answer": "The tool evaluates character length, character pool diversity (lowercase, uppercase, numbers, symbols), pattern repetition, sequential characters, and Shannon entropy to estimate resistance against brute-force attacks."
+    },
+    {
+      "question": "Is it safe to type my real password into this online tool?",
+      "answer": "Yes. The strength evaluation runs 100% locally in your web browser using client-side JavaScript. The password is never transmitted over the internet, logged, or saved to any server."
+    },
+    {
+      "question": "What is an estimated 'Crack Time' and how is it determined?",
+      "answer": "Crack time estimates how long a high-performance offline password-cracking rig (testing billions of hashes per second) would take to exhaust the password's search space. It provides a relative benchmark rather than a guarantee."
+    },
+    {
+      "question": "Does this tool check passwords against breached database lists?",
+      "answer": "To ensure absolute privacy and prevent sending your password across the network, this tool performs pure local heuristic analysis and does not query external breach APIs."
+    },
+    {
+      "question": "What are common password vulnerabilities flagged by the checker?",
+      "answer": "Common weaknesses include lengths under 12 characters, predictable keyboard sequences (e.g. 'qwerty', '123456'), repetitive characters (e.g. 'aaa'), and dictionary words."
+    },
+    {
+      "question": "Why is password length more important than character complexity?",
+      "answer": "Length increases entropy exponentially. A 16-character passphrase composed of simple lowercase words is mathematically far harder to crack than an 8-character complex password containing symbols."
+    },
+    {
+      "question": "What is a recommended password length for critical accounts?",
+      "answer": "Cybersecurity authorities (such as NIST) recommend using unique passwords or passphrases of at least 15 to 20 characters for primary email, financial banking, and master password manager accounts."
+    },
+    {
+      "question": "What is Shannon Entropy in password security?",
+      "answer": "Shannon entropy measures the information density and unpredictability of the character sequence in bits. Passwords with higher entropy require larger search spaces to crack."
+    },
+    {
+      "question": "Can I use the checker on mobile phones and tablets?",
+      "answer": "Yes. The interface is responsive and includes a password visibility toggle for easy mobile typing."
+    },
+    {
+      "question": "What should I do if my existing password scores as 'Weak'?",
+      "answer": "Upgrade the password immediately by increasing its length to 16+ characters, turning it into a memorable 4-to-5 word passphrase, or using our Passphrase Generator."
+    },
+    {
+      "question": "Why should I avoid reusing passwords across multiple websites?",
+      "answer": "If one website suffers a data breach, attackers use automated credential-stuffing tools to test leaked passwords across hundreds of other services (email, banking, social media)."
+    }
+  ]
+},
   "pomodoro-timer": {
     "howTo": [
       {
@@ -11340,43 +13124,75 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ]
   },
   "text-encrypt-decrypt": {
-    "howTo": [
-      {
-        "title": "Paste Text & Enter Secret Key",
-        "desc": "Input your plain message to encrypt (or cipher text to decrypt) and enter your private secret key passphrase."
-      },
-      {
-        "title": "Choose Encryption Algorithm",
-        "desc": "Select military-grade AES-256-GCM, AES-CBC, or Base64 / ROT13 encoding."
-      },
-      {
-        "title": "Execute & Copy Secure Ciphertext",
-        "desc": "Click Encrypt or Decrypt and copy the Base64-encoded encrypted ciphertext to your clipboard."
-      }
-    ],
-    "faq": [
-      {
-        "question": "How does AES-256-GCM encryption ensure confidentiality and integrity?",
-        "answer": "AES-GCM (Galois/Counter Mode) provides both authenticated encryption and data integrity verification, ensuring encrypted text cannot be read or secretly modified without the secret key."
-      },
-      {
-        "question": "Is an initialization vector (IV) generated for each encryption?",
-        "answer": "Yes. A fresh, cryptographically random 12-byte initialization vector (IV) is generated via window.crypto.getRandomValues for every encryption operation."
-      },
-      {
-        "question": "Can I decrypt text encrypted by this tool on other standard cryptographic platforms?",
-        "answer": "Yes. Because it uses standard AES-GCM and PBKDF2 key derivation, ciphertexts can be decrypted using standard OpenSSL, Python cryptography libraries, or Web Crypto."
-      },
-      {
-        "question": "Does Zubware have access to my secret key or decrypted messages?",
-        "answer": "No. The entire cryptographic lifecycle is handled strictly within your local browser's Web Crypto API subsystem."
-      },
-      {
-        "question": "What happens if someone enters the wrong secret key during decryption?",
-        "answer": "The decryption algorithm detects the authentication tag mismatch and immediately halts with a clean error, preventing corrupted data output."
-      }
-    ]
-  },
+  "howTo": [
+    {
+      "title": "Select Encrypt or Decrypt Mode",
+      "desc": "Choose Encrypt to convert plaintext into ciphertext, or Decrypt to restore ciphertext back to plaintext."
+    },
+    {
+      "title": "Input Text Content",
+      "desc": "Paste or type the text you want to secure or the Base64 ciphertext you need to decode."
+    },
+    {
+      "title": "Enter Secret Passphrase / Key",
+      "desc": "Enter a strong secret key known only to you and your authorized recipient."
+    },
+    {
+      "title": "Execute Client-Side Cryptographic Operation",
+      "desc": "Click Encrypt Text or Decrypt Text to process the payload locally in browser memory."
+    },
+    {
+      "title": "Copy Output or Clear Sensitive Data",
+      "desc": "Copy the resulting ciphertext or decrypted plaintext, and click Clear to remove sensitive inputs."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How does the Text Encrypt & Decrypt tool protect data?",
+      "answer": "The tool uses Advanced Encryption Standard (AES) symmetric key cryptography. In Encrypt mode, plaintext is encrypted with your secret key into a Base64-encoded ciphertext. In Decrypt mode, the original plaintext is recovered using the matching secret key."
+    },
+    {
+      "question": "What is AES (Advanced Encryption Standard)?",
+      "answer": "AES is the worldwide standard for symmetric-key block cipher encryption established by the US National Institute of Standards and Technology (NIST) in 2001 and adopted globally for government, banking, and military data security."
+    },
+    {
+      "question": "What happens if I lose or forget the secret key?",
+      "answer": "Because AES is mathematically secure with no administrative backdoors, lost secret keys cannot be recovered. Without the exact matching key, the encrypted ciphertext cannot be decrypted."
+    },
+    {
+      "question": "Are my secret keys, passwords, or decrypted text sent to any server?",
+      "answer": "No. All encryption and decryption operations execute strictly client-side in your web browser. Neither your plaintext, ciphertext, nor secret keys are ever logged or transmitted over the internet."
+    },
+    {
+      "question": "What happens if someone enters the wrong secret key during decryption?",
+      "answer": "If an incorrect key is provided or the ciphertext has been modified or corrupted, the decryption algorithm fails and displays an error without outputting corrupted data."
+    },
+    {
+      "question": "Can I safely share the encrypted ciphertext over email or chat?",
+      "answer": "Yes. The encrypted output is formatted as clean Base64 text that can be safely copied and sent through email, SMS, messaging apps, or stored in public documents."
+    },
+    {
+      "question": "How should I share the secret key with my intended recipient?",
+      "answer": "Always share the secret key through a separate, secure communication channel (out-of-band), such as an encrypted voice call, in-person conversation, or secure messaging app, rather than the same channel used to send the ciphertext."
+    },
+    {
+      "question": "Can this tool encrypt files or images?",
+      "answer": "This tool is optimized for confidential text, notes, passwords, recovery codes, and messages. For file hashing and integrity verification, use our File Checksum Verifier."
+    },
+    {
+      "question": "Is there a limit on the length of text I can encrypt?",
+      "answer": "Because encryption executes locally in browser memory, you can encrypt paragraphs, long letters, and sensitive code snippets spanning thousands of words without limitation."
+    },
+    {
+      "question": "Does this tool work completely offline?",
+      "answer": "Yes. Once the page is loaded, encryption and decryption functions operate fully without an active internet connection."
+    },
+    {
+      "question": "Can I use the Text Encrypt & Decrypt tool on mobile devices?",
+      "answer": "Yes. The interface is fully responsive, featuring a key visibility toggle and quick-copy buttons for easy mobile use."
+    }
+  ]
+},
   "todo-list": {
     "howTo": [
       {
@@ -11482,114 +13298,210 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "subtitle-generator": {
     "howTo": [
       {
-        "title": "Load Video File into Player",
-        "desc": "Upload your video to activate the interactive timeline player and synchronized caption editor."
+        "title": "Load Video into In-Browser Player",
+        "desc": "Drag and drop or select an MP4, WebM, or MOV video file to activate the live player preview and caption timeline."
       },
       {
-        "title": "Add & Sync Subtitle Timestamps",
-        "desc": "Type captions manually or use voice recognition speech-to-text, setting exact start and end timestamps for each dialogue cue."
+        "title": "Add Caption Cue Lines & Enter Text",
+        "desc": "Click Add Line or edit existing subtitle cards to type spoken dialogue, sound cues, or speaker identifications."
       },
       {
-        "title": "Export Standard SRT or VTT File",
-        "desc": "Click Download SRT or Download VTT to save standard timed subtitle files ready for YouTube Studio or video players."
+        "title": "Synchronize Timestamps with Playback",
+        "desc": "Play your video and click 'Set Start to Current' or 'Set End to Current' to capture the exact playback timestamp down to tenths of a second."
+      },
+      {
+        "title": "Dictate with Live Speech Recognition",
+        "desc": "Toggle the microphone button to dictate captions in real time using your browser's native Web Speech API while video audio plays."
+      },
+      {
+        "title": "Export Standard SRT or WebVTT Files",
+        "desc": "Click Download SRT for universal video player and YouTube captions, Download WebVTT for HTML5 video tags, or copy formatted timestamps to clipboard."
       }
     ],
     "faq": [
       {
-        "question": "What is the difference between SRT and WebVTT subtitle files?",
-        "answer": "SRT (.srt) is the universal subtitle format supported by YouTube, Premiere Pro, and desktop players. WebVTT (.vtt) is the modern HTML5 web standard used for responsive online video elements and browser playback."
+        "question": "What is the difference between an SRT file and a WebVTT (.vtt) file?",
+        "answer": "SubRip (.srt) is the universal industry standard supported by YouTube Studio, Facebook, Vimeo, Premiere Pro, Final Cut, and desktop players like VLC; it formats timestamps as HH:MM:SS,mmm (with a comma). WebVTT (.vtt) is the W3C standard for HTML5 web video tags (<track>); it formats timestamps as MM:SS.mmm (with a period) and begins with a 'WEBVTT' header."
       },
       {
-        "question": "How does the built-in speech-to-text captioning work?",
-        "answer": "It utilizes your browser's native Web Speech API to transcribe spoken audio during playback directly into timestamped subtitle cues without third-party API keys."
+        "question": "How do I upload the exported SRT file to YouTube Studio?",
+        "answer": "In YouTube Studio, navigate to Content, click your video, select Subtitles from the left menu, click Add Language, choose Upload File, select 'With Timing', and pick your downloaded .srt file. YouTube will automatically synchronize your captions across all playback resolutions."
       },
       {
-        "question": "How do I upload the generated SRT file to YouTube?",
-        "answer": "In YouTube Studio, open your video's Subtitles section, click Add Language, select Upload File -> With Timing, and choose your exported .srt file."
+        "question": "How does the in-browser speech recognition feature work?",
+        "answer": "The tool uses your browser's native Web Speech API (supported in Google Chrome, Microsoft Edge, and Safari). When you click the microphone button, your browser transcribes your spoken words directly into caption lines without routing audio to third-party paid AI APIs."
+      },
+      {
+        "question": "Does this subtitle generator send my video or audio files to an external server?",
+        "answer": "No. The video is rendered locally inside an HTML5 video element using browser object URLs. Your raw footage, audio streams, and subtitle text never leave your device, ensuring 100% privacy for confidential tutorials, unreleased footage, or internal business meetings."
       },
       {
         "question": "Can I edit subtitle timings down to milliseconds?",
-        "answer": "Yes. You can edit the exact start and end millisecond timestamps on each subtitle block to ensure precise synchronization with on-screen dialogue."
+        "answer": "Yes. Each subtitle cue card provides numeric timestamp controls. You can adjust the start and end values down to tenths of a second or milliseconds to eliminate timing drift and align dialogue precisely with speaker lips."
       },
       {
-        "question": "Are my subtitle scripts or video files sent to a remote database?",
-        "answer": "No. All video playback, speech recognition buffers, and subtitle cues are managed entirely within your local browser session."
+        "question": "Why are my subtitles out of sync and how do I fix timing drift?",
+        "answer": "Timing drift typically happens when speaker cadence changes or pauses are skipped. Use the 'Set Start to Current' button when the speaker begins talking and 'Set End to Current' the instant they stop to pin cue points directly to current video playback time."
+      },
+      {
+        "question": "What video formats can I open in the subtitle generator?",
+        "answer": "You can open any video container decodable by your browser, including MP4 (H.264/AAC), WebM (VP8/VP9/Opus), and compatible MOV files from smartphones and digital cameras."
+      },
+      {
+        "question": "Can I import the generated SRT file into Adobe Premiere Pro, Final Cut, or DaVinci Resolve?",
+        "answer": "Yes. The generated .srt file complies strictly with SubRip specification guidelines. You can drag and drop it directly onto the timeline caption track of Adobe Premiere Pro, Apple Final Cut Pro, DaVinci Resolve, or Sony Vegas."
+      },
+      {
+        "question": "Does the speech-to-text dictation feature support non-English languages?",
+        "answer": "The browser Web Speech API defaults to your operating system's active speech recognition language. In supported browsers, dictation recognizes speech in whatever primary language is set in your browser voice settings."
+      },
+      {
+        "question": "Is there a duration or file size limit for videos loaded into the editor?",
+        "answer": "Because video playback uses local memory without cloud uploads, you can open short 30-second clips or feature-length 60-minute tutorials depending on your device RAM. Files under 1 GB load near-instantly."
+      },
+      {
+        "question": "How do I copy all subtitle timestamps directly to my clipboard without downloading?",
+        "answer": "Click the Copy SRT button in the toolbar. The full formatted subtitle text with sequential numbering and timestamps is instantly copied to your clipboard for quick pasting into text editors or documentation."
       }
     ]
   },
   "video-aspect-ratio": {
     "howTo": [
       {
-        "title": "Upload Your Source Video",
-        "desc": "Drag and drop your video clip into the converter workspace to inspect its current aspect ratio and dimensions."
+        "title": "Upload Source Video File",
+        "desc": "Drop an MP4, WebM, or MOV video into the workspace to inspect original dimensions and aspect ratio."
       },
       {
-        "title": "Select Target Ratio & Framing Style",
-        "desc": "Choose 9:16 (Shorts/Reels/TikTok), 16:9 (YouTube), 1:1, or 4:5, and select blurred background padding, solid fill, or crop-to-fit."
+        "title": "Select Target Social Media Aspect Ratio",
+        "desc": "Choose 9:16 (TikTok, Instagram Reels, YouTube Shorts), 16:9 (YouTube widescreen), 1:1 (Square Instagram/LinkedIn), 4:5 (Instagram portrait), or 4:3 (Classic)."
       },
       {
-        "title": "Export Converted Aspect Ratio Video",
-        "desc": "Preview the re-framed playback in real-time and click Export Video to save the reframed clip directly to your machine."
+        "title": "Choose Framing Mode: Contain vs Cover",
+        "desc": "Select Contain (Fit) to display 100% of footage with padding bars, or Cover (Crop) to fill the entire frame by cropping outer edges."
+      },
+      {
+        "title": "Customize Background Blur or Solid Color",
+        "desc": "Enable real-time dynamic Gaussian blur padding to sample and blur the underlying video, or pick a custom solid hex background fill color."
+      },
+      {
+        "title": "Re-Encode and Download Reframed Video",
+        "desc": "Click Convert Video to render the new aspect ratio via hardware-accelerated canvas capture at 30 FPS with audio preserved, then download your WebM video."
       }
     ],
     "faq": [
       {
-        "question": "How does the blurred background padding mode work?",
-        "answer": "Blurred background mode duplicates your source video into a background canvas layer, scales it up, and applies an aesthetic Gaussian blur, cleanly filling the empty letterbox or pillarbox bars without harsh black borders."
+        "question": "How do I convert a 16:9 widescreen YouTube video into a 9:16 vertical TikTok or Instagram Reel?",
+        "answer": "Upload your horizontal 16:9 video and select the 9:16 preset (720×1280 px). Select Contain mode with Blurred Background enabled. Your horizontal video will sit prominently in the center while the top and bottom pillarbox areas are filled with an aesthetic blurred ambient reflection of the video."
       },
       {
-        "question": "Can I convert a 16:9 horizontal YouTube video into a 9:16 vertical Short?",
-        "answer": "Yes. Select the 9:16 preset. You can either use blurred background padding to show the entire original widescreen video in the center, or choose crop mode to zoom in and fill the full vertical frame."
+        "question": "What is the difference between Contain (Fit) and Cover (Crop) framing modes?",
+        "answer": "Contain mode fits your entire video inside the new canvas without cropping any edges, filling empty space with blurred padding or solid color. Cover mode scales the video up to fill 100% of the canvas, eliminating letterbox bars but cropping off top/bottom or left/right edges that exceed the target ratio."
       },
       {
-        "question": "What is the difference between Fit mode and Crop mode?",
-        "answer": "Fit mode keeps 100% of your source video visible by adding padded borders to match the target ratio. Crop mode enlarges the video to eliminate all borders, cutting away outer edges that fall outside the new frame."
+        "question": "How does the blurred ambient background padding work?",
+        "answer": "The canvas rendering engine draws an enlarged duplicate of the current video frame into the background layer and applies a CSS Gaussian blur filter. It updates dynamically with every frame of video playback, creating an elegant, professional aesthetic identical to major broadcast TV reframing."
       },
       {
-        "question": "What output video format is produced by the converter?",
-        "answer": "The browser exports a web-ready WebM or MP4 video container recorded directly from the canvas stream at the target dimensions."
+        "question": "Will the converted video keep the original audio track and soundtrack volume?",
+        "answer": "Yes. The MediaRecorder stream pipeline captures the active audio tracks directly from the source media element and muxes them into the exported video stream, preserving background music, dialogue, and sound effects."
       },
       {
-        "question": "Does changing video aspect ratios upload my footage to any cloud service?",
-        "answer": "No. All frame manipulation, aspect ratio calculations, and canvas recordings occur locally in your web browser with zero server data transfer."
+        "question": "What resolution does each aspect ratio preset export at?",
+        "answer": "The presets render to standard mobile and web resolutions: 9:16 exports at 720×1280 px (optimized for vertical mobile feeds); 16:9 exports at 1280×720 px (HD widescreen); 1:1 exports at 1080×1080 px; 4:5 exports at 1080×1350 px; and 4:3 exports at 1024×768 px."
+      },
+      {
+        "question": "What video output container format is generated by this converter?",
+        "answer": "The browser records the canvas stream into a modern, web-optimized WebM container (using VP9 or VP8 video codec with high bitrate). WebM files can be uploaded directly to YouTube Shorts, TikTok, and web platforms, or converted to MP4 if required by legacy tools."
+      },
+      {
+        "question": "Why does video aspect ratio conversion take time to process?",
+        "answer": "Because the tool re-renders every individual frame through an HTML5 canvas at 30 frames per second to apply background blur and coordinate transforms, processing time is proportional to your video length and device GPU/CPU speed."
+      },
+      {
+        "question": "Can I convert vertical smartphone 9:16 videos into 16:9 widescreen format?",
+        "answer": "Yes. Select the 16:9 preset and Contain mode. Your vertical phone video will be centered horizontally with aesthetic blurred side pillarbox padding, making it ideal for standard YouTube desktop watching."
+      },
+      {
+        "question": "Are my personal or confidential video files uploaded to any server?",
+        "answer": "No. All canvas transformations, frame drawing, and MediaRecorder encoding execute 100% locally on your computer or mobile device. No video bytes are ever uploaded across the internet."
+      },
+      {
+        "question": "How can I avoid blurry or pixelated video after converting aspect ratio?",
+        "answer": "Ensure your source video has good initial resolution (1080p or 720p). If using Cover (Crop) mode, zooming in heavily on a low-resolution source can reduce clarity; use Contain mode with blurred padding to preserve native 1:1 pixel sharpness."
+      },
+      {
+        "question": "Does this tool add any watermarks or require a paid subscription?",
+        "answer": "No. Zubware's Video Aspect Ratio Converter is 100% free with zero watermarks, zero subscription paywalls, and no account creation required."
       }
     ]
   },
   "video-compressor": {
     "howTo": [
       {
-        "title": "Upload Your Video File",
-        "desc": "Select or drag and drop an MP4, WebM, or MOV video file from your computer or phone into the upload area."
+        "title": "Upload Video File",
+        "desc": "Select or drag an MP4, WebM, or MOV video file from your computer or smartphone into the upload box."
       },
       {
-        "title": "Choose Quality Preset & Scale",
-        "desc": "Select a compression preset (High, Medium, Low) or downscale resolution to 75% or 50% to hit your target file size."
+        "title": "Select Quality Bitrate Preset",
+        "desc": "Choose High Quality (2.5 Mbps for crystal clarity), Medium (1.2 Mbps for balanced sharing), or Low (600 Kbps for maximum file shrink)."
       },
       {
-        "title": "Compress and Save Video",
-        "desc": "Click Start Compression to re-encode the video locally in browser memory and download the smaller video file."
+        "title": "Adjust Resolution Scaling & Frame Rate",
+        "desc": "Optionally downscale resolution to 75% or 50% scale, and set target frame rate (30 FPS) to slash video byte weight."
+      },
+      {
+        "title": "Compress in Local Browser Memory",
+        "desc": "Click Compress Video to re-encode the stream in real time via canvas MediaRecorder without uploading bytes to remote servers."
+      },
+      {
+        "title": "Compare File Sizes & Download",
+        "desc": "Review original vs compressed file sizes, verified byte reduction percentage, test playback, and save your smaller video file."
       }
     ],
     "faq": [
       {
-        "question": "How does in-browser video compression work without server uploads?",
-        "answer": "The compressor uses HTML5 video elements, HTML5 Canvas, and the native MediaRecorder API to decode and re-encode video frames locally on your device's hardware, never transmitting video frames across the network."
+        "question": "How does in-browser video compression reduce file size without uploading to a server?",
+        "answer": "The tool uses HTML5 video decoding, HTML5 Canvas frame extraction, and the browser's hardware-accelerated MediaRecorder API. By controlling the target encoding bitrate (such as 1.2 Mbps) and rendering dimensions, it recompresses video frames locally on your device GPU/CPU without network transfers."
       },
       {
-        "question": "Which video file formats are supported for compression?",
-        "answer": "The tool supports modern browser-decodable formats including MP4 (H.264/AAC), WebM (VP8/VP9/Opus), and compatible MOV files from smartphones and digital cameras."
+        "question": "Which compression settings give the best balance between small file size and clear visual quality?",
+        "answer": "The Medium Quality preset (1.2 Mbps) paired with 75% resolution scaling typically reduces file sizes by 50% to 70% while keeping speech, text on screen, and motion completely sharp and artifact-free."
       },
       {
-        "question": "Does lowering resolution reduce file size faster than lowering bitrate?",
-        "answer": "Yes. Downscaling resolution (such as from 1080p to 720p or 50% scale) reduces the total number of pixels per frame by up to 75%, resulting in substantial file size savings alongside bitrate adjustments."
+        "question": "How much file size reduction can I expect from downscaling resolution?",
+        "answer": "Downscaling resolution has an exponential impact on video size. Dropping from 1080p to 720p reduces the total pixel count by more than 50% per frame, which drastically cuts the required bitrate and slashes file payload by up to 60–80%."
       },
       {
-        "question": "Is there a recommended file size limit for browser video compression?",
-        "answer": "Because video re-encoding occurs inside your browser's allocated RAM, video clips under 500MB perform most reliably across modern desktop computers and high-end mobile devices."
+        "question": "Will the compressed video keep its original audio track and speech clarity?",
+        "answer": "Yes. The MediaRecorder stream captures the audio track from the HTML5 video element and muxes it alongside the compressed video stream, preserving vocal clarity and sound synchronization."
       },
       {
-        "question": "Are my personal or proprietary video files sent to a server?",
-        "answer": "No. All video decoding, compression, and file assembly execute strictly within your local browser session. No video data or audio tracks are uploaded to Zubware servers."
+        "question": "Which video formats are supported for compression?",
+        "answer": "The compressor accepts all standard browser-supported video formats including MP4 (H.264), WebM (VP8/VP9), and compatible MOV files from iPhones and Android devices."
+      },
+      {
+        "question": "Why is the compressed video output in WebM format instead of MP4?",
+        "answer": "Standard browser MediaRecorder implementations natively support WebM encoding (VP9 or VP8 codecs) without requiring heavy multi-megabyte external software libraries. WebM offers superior modern compression efficiency and plays natively in all web browsers, Discord, YouTube, and VLC."
+      },
+      {
+        "question": "How can I compress a video to under 25MB for Discord, Gmail, or Slack?",
+        "answer": "Select the Low Quality preset (600 Kbps) and set Resolution Scale to 50%. A 600 Kbps stream produces approximately 4.5 MB of data per minute of video, easily allowing 4–5 minute clips to fit under strict 25 MB email attachment limits."
+      },
+      {
+        "question": "What is the recommended maximum input video file size for this browser compressor?",
+        "answer": "Because video decoding and re-encoding occur inside your browser's allocated JavaScript heap and GPU memory, files up to 500 MB process smoothly on modern laptops and smartphones. For multi-gigabyte raw camera footage, desktop offline software is advised."
+      },
+      {
+        "question": "Why does video compression require high CPU or RAM on my device?",
+        "answer": "Video compression is a computationally intensive mathematical operation involving Discrete Cosine Transforms, motion estimation, and entropy encoding across 30 frames per second. The browser uses your local device processor to perform this work."
+      },
+      {
+        "question": "Is my video content secure and private during compression?",
+        "answer": "Yes. 100% of processing occurs in local client-side memory. Your video footage is never transmitted to Zubware servers, cloud buckets, or third-party analytics providers."
+      },
+      {
+        "question": "How does video bitrate affect streaming and playback buffer times?",
+        "answer": "Bitrate represents the amount of data transferred per second. High bitrates (10+ Mbps) demand high internet bandwidth and cause buffering on mobile networks. Compressing video to 1.2–2.5 Mbps ensures instant loading and stutter-free playback across 4G and public Wi-Fi."
       }
     ]
   },
@@ -11672,38 +13584,70 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "video-trimmer": {
     "howTo": [
       {
-        "title": "Load Video into Interactive Timeline",
-        "desc": "Select or drop your video file into the trimmer to display the playable scrubber timeline."
+        "title": "Upload Video into Interactive Scrubber",
+        "desc": "Drop an MP4, WebM, or MOV video into the player workspace to load duration and visual playback timeline."
       },
       {
-        "title": "Set Exact Start and End Cut Points",
-        "desc": "Drag the visual timeline handles or type exact second timestamps into the start and end input fields."
+        "title": "Set Start and End Cut Boundaries",
+        "desc": "Drag the interactive start and end timeline slider handles or type exact second timestamps with decimal precision into the time input fields."
       },
       {
-        "title": "Preview Range & Download Trimmed Clip",
-        "desc": "Play the isolated segment loop to confirm the cut, then click Trim Video to export and download your clipped video."
+        "title": "Preview Isolated Trim Loop",
+        "desc": "Press Play to preview the exact trimmed clip segment looping seamlessly between your designated start and end timestamps."
+      },
+      {
+        "title": "Render Trimmed Clip in Browser Memory",
+        "desc": "Click Trim Video to extract frames through HTML5 canvas and capture audio through native MediaRecorder with zero server uploads."
+      },
+      {
+        "title": "Download Clean Trimmed Video",
+        "desc": "Inspect the final exported video player and download your cut video file instantly with zero watermarks or subscription locks."
       }
     ],
     "faq": [
       {
         "question": "Can I specify exact second and millisecond timestamps for trimming?",
-        "answer": "Yes. In addition to dragging the interactive visual timeline scrubber handles, you can manually type precise start and end times into the timestamp input boxes for frame-level accuracy."
+        "answer": "Yes. While the visual timeline slider gives intuitive drag-and-drop boundary control, you can type exact second and decimal timestamps directly into the Start Time and End Time number boxes for frame-accurate cuts."
       },
       {
         "question": "Can I preview only the selected trimmed portion before exporting?",
-        "answer": "Yes. Clicking Play in the trimmer interface loops playback strictly between your specified start and end cut points, allowing you to verify the edit before rendering."
+        "answer": "Yes. When you press the Play button in the trimmer interface, playback automatically starts at your chosen start point and pauses/loops the instant it reaches your designated end point, letting you inspect cuts before re-encoding."
       },
       {
-        "question": "Does trimming a video re-upload it to a remote server?",
-        "answer": "No. The trimmer processes media directly in your browser using HTML5 media elements and client-side canvas capture, keeping your files completely on your device."
+        "question": "Does trimming a video reduce its visual quality or audio resolution?",
+        "answer": "No noticeable loss occurs. The trimmer renders video frames at native dimensions (videoWidth × videoHeight) and directly streams the uncompressed audio track from the media element into the recorder."
       },
       {
-        "question": "Are audio and video kept in sync in the trimmed output?",
-        "answer": "Yes. The MediaRecorder stream captures both synchronized video frames and the active audio track from the media element during the selected time range."
+        "question": "Are my video clips uploaded to any cloud server during trimming?",
+        "answer": "No. The entire trimming and slicing pipeline executes 100% locally on your computer or phone using HTML5 Canvas captureStream and MediaRecorder. Your video files never touch an external server."
       },
       {
-        "question": "What is the maximum video duration I can trim in the browser?",
-        "answer": "You can trim videos of several minutes to half an hour depending on your device's available memory. For optimal performance, trim clips from source files under 500MB."
+        "question": "Will the exported trimmed clip maintain lip-sync between audio and video?",
+        "answer": "Yes. The MediaRecorder stream captures both audio and video frames in a unified browser stream, maintaining accurate synchronization between visual actions and spoken dialogue."
+      },
+      {
+        "question": "What video formats can I trim using this browser tool?",
+        "answer": "The trimmer accepts all browser-supported video formats, including MP4 (H.264), WebM (VP8/VP9), and compatible MOV files from iPhones, iPads, and digital cameras."
+      },
+      {
+        "question": "What output format does the trimmer produce?",
+        "answer": "The browser exports a web-ready WebM video file encoded at the native resolution of your source video, ready for instant sharing on Discord, Slack, YouTube, or social media."
+      },
+      {
+        "question": "How do I trim a video on an iPhone, iPad, or Android phone?",
+        "answer": "Open Zubware Video Trimmer in Safari or Chrome on your mobile device. Tap to upload from your photo library or files, adjust the slider handles with your finger, preview the loop, and tap Trim Video to download directly to your mobile downloads."
+      },
+      {
+        "question": "Is there a duration limit for videos trimmed in this tool?",
+        "answer": "You can trim short 5-second highlights or extract 2-minute clips from longer 30-minute lectures. For smoothest browser performance without memory throttling, source video files under 500 MB are recommended."
+      },
+      {
+        "question": "Does this video cutter leave any watermark or branding on the exported clip?",
+        "answer": "No. Zubware is 100% free with zero watermarks, zero sponsor logos, and no forced user registration."
+      },
+      {
+        "question": "What should I do if my browser tab stutters during video trimming?",
+        "answer": "Ensure hardware acceleration is enabled in your browser settings (Chrome: Settings > System > Use graphics acceleration when available) and close unnecessary browser tabs to free up system RAM."
       }
     ]
   }

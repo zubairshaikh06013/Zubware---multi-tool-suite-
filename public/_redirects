@@ -15,6 +15,8 @@
 /category /categories 301
 /categories/ /categories 301
 /category/ /categories 301
+/category/all /categories 301
+/categories/all /categories 301
 
 # 4. Category Authority Hub canonicalization (redirect plural & .html to /category/:slug)
 /categories/:slug /category/:slug 301
@@ -45,6 +47,14 @@
 # 6. Tool Pages canonicalization (redirect legacy .html to clean canonical URL)
 /image-color-picker /color-picker 301
 /image-color-picker.html /color-picker 301
+/qr-code-generator /qr-generator 301
+/qr-code-generator.html /qr-generator 301
+/photo-and-signature-joiner /photo-signature-joiner 301
+/photo-and-signature-joiner.html /photo-signature-joiner 301
+/stopwatch /online-stopwatch 301
+/stopwatch.html /online-stopwatch 301
+/timezone-converter /time-zone-converter 301
+/timezone-converter.html /time-zone-converter 301
 /:slug.html /:slug 301
 /:slug/index.html /:slug 301
 

@@ -155,7 +155,7 @@ export const CollegeGpaCalculatorTool: React.FC<CollegeGpaCalculatorToolProps> =
       `Courses Breakdown:`,
       ...courses.map(c => `- ${c.name || 'Course'}: Grade ${c.grade} (${c.gradePoints} pts) × ${c.credits} cr = ${(c.gradePoints * c.credits).toFixed(2)} QP`),
       ``,
-      `Calculated on Zubware College GPA Calculator: https://www.zubware.com/college-gpa-calculator.html`
+      `Calculated on Zubware College GPA Calculator: https://www.zubware.com/college-gpa-calculator`
     ].filter(Boolean).join('\n');
 
     navigator.clipboard.writeText(lines);
@@ -603,7 +603,7 @@ export const CollegeGpaCalculatorTool: React.FC<CollegeGpaCalculatorToolProps> =
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
             <a
-              href="/cgpa-calculator.html"
+              href="/cgpa-calculator"
               className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-indigo-500 transition group block"
             >
               <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 flex items-center justify-between">
@@ -614,7 +614,7 @@ export const CollegeGpaCalculatorTool: React.FC<CollegeGpaCalculatorToolProps> =
             </a>
 
             <a
-              href="/percentage-calculator.html"
+              href="/percentage-calculator"
               className="p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 hover:border-indigo-500 transition group block"
             >
               <div className="text-xs font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 flex items-center justify-between">
@@ -660,7 +660,7 @@ export const CollegeGpaCalculatorTool: React.FC<CollegeGpaCalculatorToolProps> =
                 <span className="text-indigo-600 dark:text-indigo-400 group-open:rotate-180 transition-transform">▼</span>
               </summary>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mt-2.5 leading-relaxed">
-                The College GPA Calculator computes credit-weighted semester and cumulative GPA on a 4.0 letter grade scale (A+ to F). In contrast, the <a href="/cgpa-calculator.html" className="text-indigo-600 dark:text-indigo-400 underline">CGPA Calculator</a> is designed for 10-point university grading systems (common in India and CBSE boards) and converts a 10.0 scale number into a percentage using standard university multipliers (such as 9.5x).
+                The College GPA Calculator computes credit-weighted semester and cumulative GPA on a 4.0 letter grade scale (A+ to F). In contrast, the <a href="/cgpa-calculator" className="text-indigo-600 dark:text-indigo-400 underline">CGPA Calculator</a> is designed for 10-point university grading systems (common in India and CBSE boards) and converts a 10.0 scale number into a percentage using standard university multipliers (such as 9.5x).
               </p>
             </details>
 

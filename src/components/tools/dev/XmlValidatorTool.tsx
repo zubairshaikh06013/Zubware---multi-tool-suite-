@@ -43,11 +43,11 @@ const SAMPLE_XML_PRESETS = [
 <rss version="2.0">
   <channel>
     <title>Zubware Engineering Blog</title>
-    <link>https://zubware.com/blog</link>
+    <link>https://www.zubware.com/blog</link>
     <description>Latest high performance web development articles</description>
     <item>
       <title>Building 300+ In-Browser Tools</title>
-      <link>https://zubware.com/blog/browser-tools</link>
+      <link>https://www.zubware.com/blog/browser-tools</link>
       <guid>post_101</guid>
       <pubDate>Mon, 29 Sep 2026 09:00:00 GMT</pubDate>
     </item>

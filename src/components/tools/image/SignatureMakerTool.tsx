@@ -34,6 +34,18 @@ export const SignatureMakerTool: React.FC<{ onShowToast: (msg: string) => void }
   const { t } = useLanguage();
   const [mode, setMode] = useState<Mode>('draw');
 
+  // On-demand load script fonts for signature preview
+  useEffect(() => {
+    const fontId = 'zubware-signature-fonts';
+    if (!document.getElementById(fontId)) {
+      const link = document.createElement('link');
+      link.id = fontId;
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Homemade+Apple&family=Sacramento&display=swap';
+      document.head.appendChild(link);
+    }
+  }, []);
+
   // Draw Mode State
   const drawCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [strokes, setStrokes] = useState<Stroke[]>([]);

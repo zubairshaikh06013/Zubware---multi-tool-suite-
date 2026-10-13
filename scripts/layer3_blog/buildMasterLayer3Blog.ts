@@ -208,12 +208,12 @@ Constraints: No generic introductory fluff. Provide concrete numbers and product
   // 14
   'json-formatting-validation-debugging-guide': [
     {
-      title: '5. Worked Scenario: Resolving a 15MB Malformed Production Log Payload',
-      content: `A backend developer extracts a 15MB API response payload from an automated test that fails with \`SyntaxError: Unexpected token , at position 491823\`:\n\n- **The Challenge:** Opening a 15MB minified string in a standard text editor freezes the desktop application.\n- **The Solution:**\n  1. Paste into Zubware JSON Validator in your browser.\n  2. The local streaming parser pinpoints the exact line and character offset.\n  3. It identifies a trailing comma inside a nested array: \`"tags": ["beta", "v2", ]\`.\n  4. With one click, the tool automatically sanitizes trailing commas and formats the payload with 2-space indentation in under 400 milliseconds.`
+      title: '5. Understanding JSON Syntax Errors in Large Payloads',
+      content: `A backend developer extracts a 15MB API response payload from an automated test that fails with \`SyntaxError: Unexpected token , at position 491823\`:\n\n- **The Challenge:** Opening a 15MB minified string in a standard text editor freezes the desktop application.\n- **The Solution:**\n  1. Paste into Zubware JSON Validator in your browser.\n  2. The tool uses the browser's JSON.parse() function; error details can vary by browser.\n  3. After reviewing the syntax error, the developer identifies a trailing comma inside a nested array: \`"tags": ["beta", "v2", ]\`.\n  4. The current tool does not automatically repair malformed JSON or guarantee a fixed processing time. Correct the syntax and validate the JSON again.`
     },
     {
-      title: '6. High-Performance JSON Streaming for Massive Files',
-      content: `When working with multi-megabyte JSON arrays:\n- Standard \`JSON.parse()\` requires holding the entire unparsed text string AND the instantiated JavaScript object tree in RAM simultaneously, causing a **3x–5x memory spike**.\n- For massive datasets exceeding 50MB, convert the array into **JSON Lines (JSONL)** where each record is a self-contained single line, allowing stream-based processing with near-zero memory footprint.`
+      title: '6. Handling Large JSON Files',
+      content: `When working with multi-megabyte JSON arrays:\n- Standard \`JSON.parse()\` parses the supplied JSON text into a JavaScript value. Large inputs can require substantial memory, depending on their contents and the browser.\n- For large datasets, consider processing smaller chunks or using a streaming parser designed for the data format. JSON Lines (JSONL) can be useful when records are stored one per line, but it does not guarantee near-zero memory use.`
     }
   ],
 

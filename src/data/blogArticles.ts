@@ -842,9 +842,9 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "json-formatting-validation-debugging-guide",
-    "title": "JSON Formatting, Schema Validation & Debugging for Developers",
-    "metaTitle": "JSON Formatting, Schema Validation & Debugging Guide — Zubware",
-    "description": "Master RFC 8259 JSON syntax, Schema validation, trailing comma fixes, circular reference handling, and client-side formatting performance.",
+    "title": "JSON Formatting, Syntax Validation & Debugging for Developers",
+    "metaTitle": "JSON Formatting & Syntax Validation Guide — Zubware",
+    "description": "Learn JSON syntax validation, common formatting errors, trailing comma issues, and practical ways to inspect JSON in your browser.",
     "canonicalPath": "/blog/json-formatting-validation-debugging-guide",
     "publishedTime": "2026-09-26T00:00:00Z",
     "modifiedTime": "2026-10-09T00:00:00Z",
@@ -871,7 +871,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "takeaways": [
       "RFC 8259 enforces strict syntactic grammar: Single quotes, trailing commas, and unquoted keys are invalid JSON despite being legal in standard JavaScript.",
       "IEEE 754 floating point numbers risk silent corruption: Integers exceeding Number.MAX_SAFE_INTEGER (9,007,199,254,740,991) lose precision unless represented as strings.",
-      "JSON Schema provides automated contract testing: Validating payloads against Draft 2020-12 schemas ensures API backward compatibility and prevents runtime crashes.",
+      "JSON Schema can define rules for API payloads, but Zubware JSON Validator does not currently validate data against these schemas.",
       "Client-side formatting protects API secrets: Parsing database payloads locally in browser memory guarantees zero network leakage of customer records."
     ],
     "sections": [
@@ -892,18 +892,18 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       },
       {
         "id": "schema-validation-and-contract-testing",
-        "title": "4. Validating Payloads with JSON Schema",
-        "content": "Formatting JSON improves human readability, but JSON Schema enforces machine contracts. A schema specifies required properties, allowed data types, regex patterns, and numeric ranges:\n```json\n{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"userId\": { \"type\": \"string\", \"format\": \"uuid\" },\n    \"age\": { \"type\": \"integer\", \"minimum\": 18 },\n    \"role\": { \"type\": \"string\", \"enum\": [\"admin\", \"editor\", \"viewer\"] }\n  },\n  \"required\": [\"userId\", \"role\"]\n}\n```\nValidating production API payloads against a schema catches missing keys before frontend rendering crashes."
+        "title": "4. Understanding JSON Schema",
+        "content": "Formatting JSON improves human readability, but JSON Schema enforces machine contracts. A schema specifies required properties, allowed data types, regex patterns, and numeric ranges:\n```json\n{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"userId\": { \"type\": \"string\", \"format\": \"uuid\" },\n    \"age\": { \"type\": \"integer\", \"minimum\": 18 },\n    \"role\": { \"type\": \"string\", \"enum\": [\"admin\", \"editor\", \"viewer\"] }\n  },\n  \"required\": [\"userId\", \"role\"]\n}\n```\nThis example shows how a JSON Schema can describe required fields and data types. Zubware JSON Validator does not currently check payloads against this schema."
       },
       {
         "id": "json-formatting-validation-debugging-guide-ext-1",
-        "title": "5. Worked Scenario: Resolving a 15MB Malformed Production Log Payload",
-        "content": "A backend developer extracts a 15MB API response payload from an automated test that fails with `SyntaxError: Unexpected token , at position 491823`:\n\n- **The Challenge:** Opening a 15MB minified string in a standard text editor freezes the desktop application.\n- **The Solution:**\n  1. Paste into Zubware JSON Validator in your browser.\n  2. The local streaming parser pinpoints the exact line and character offset.\n  3. It identifies a trailing comma inside a nested array: `\"tags\": [\"beta\", \"v2\", ]`.\n  4. With one click, the tool automatically sanitizes trailing commas and formats the payload with 2-space indentation in under 400 milliseconds."
+        "title": "5. Understanding JSON Syntax Errors in Large Payloads",
+        "content": "A backend developer extracts a 15MB API response payload from an automated test that fails with `SyntaxError: Unexpected token , at position 491823`:\n\n- **The Challenge:** Opening a 15MB minified string in a standard text editor freezes the desktop application.\n- **The Solution:**\n  1. Paste into Zubware JSON Validator in your browser.\n  2. The tool uses the browser's JSON.parse() function; error details can vary by browser.\n  3. After reviewing the syntax error, the developer identifies a trailing comma inside a nested array: `\"tags\": [\"beta\", \"v2\", ]`.\n  4. The current tool does not automatically repair malformed JSON or guarantee a fixed processing time. Correct the syntax and validate the JSON again."
       },
       {
         "id": "json-formatting-validation-debugging-guide-ext-2",
-        "title": "6. High-Performance JSON Streaming for Massive Files",
-        "content": "When working with multi-megabyte JSON arrays:\n- Standard `JSON.parse()` requires holding the entire unparsed text string AND the instantiated JavaScript object tree in RAM simultaneously, causing a **3x–5x memory spike**.\n- For massive datasets exceeding 50MB, convert the array into **JSON Lines (JSONL)** where each record is a self-contained single line, allowing stream-based processing with near-zero memory footprint."
+        "title": "6. Handling Large JSON Files",
+        "content": "When working with multi-megabyte JSON arrays:\n- Standard `JSON.parse()` parses the supplied JSON text into a JavaScript value. Large inputs can require substantial memory, depending on their contents and the browser.\n- For large datasets, consider processing smaller chunks or using a streaming parser designed for the data format. JSON Lines (JSONL) can be useful when records are stored one per line, but it does not guarantee near-zero memory use."
       }
     ],
     "howTo": {
@@ -939,11 +939,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       },
       {
         "question": "Can Zubware validate JSON Schema files?",
-        "answer": "Yes. Zubware JSON Validator checks syntax and validates payloads against standard JSON Schema definitions directly in browser memory."
+        "answer": "No. Zubware JSON Validator currently checks JSON syntax and basic structure statistics; it does not validate payloads against JSON Schema definitions."
       },
       {
         "question": "Is there a file size limit for formatting JSON in the browser?",
-        "answer": "Zubware handles JSON files up to 25MB smoothly on modern desktop browsers without memory crashes or UI freezing."
+        "answer": "The amount of JSON data you can process depends on your device, browser, and available memory. Very large files may be slow or cause the browser to become unresponsive."
       },
       {
         "question": "Are my proprietary JSON payloads stored or logged anywhere?",

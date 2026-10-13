@@ -136,9 +136,9 @@ export const CLUSTER3_DEV_ARTICLES: BlogArticle[] = [
   // 14. json-formatting-validation-debugging-guide
   {
     slug: 'json-formatting-validation-debugging-guide',
-    title: 'JSON Formatting, Schema Validation & Debugging for Developers',
-    metaTitle: 'JSON Formatting, Schema Validation & Debugging Guide — Zubware',
-    description: 'Master RFC 8259 JSON syntax, Schema validation, trailing comma fixes, circular reference handling, and client-side formatting performance.',
+    title: 'JSON Formatting, Syntax Validation & Debugging for Developers',
+    metaTitle: 'JSON Formatting & Syntax Validation Guide — Zubware',
+    description: 'Learn JSON syntax validation, common formatting errors, trailing comma issues, and practical ways to inspect JSON in your browser.',
     canonicalPath: '/blog/json-formatting-validation-debugging-guide',
     publishedTime: '2026-09-26T00:00:00Z',
     modifiedTime: '2026-10-09T00:00:00Z',
@@ -165,7 +165,7 @@ export const CLUSTER3_DEV_ARTICLES: BlogArticle[] = [
     takeaways: [
       'RFC 8259 enforces strict syntactic grammar: Single quotes, trailing commas, and unquoted keys are invalid JSON despite being legal in standard JavaScript.',
       'IEEE 754 floating point numbers risk silent corruption: Integers exceeding Number.MAX_SAFE_INTEGER (9,007,199,254,740,991) lose precision unless represented as strings.',
-      'JSON Schema provides automated contract testing: Validating payloads against Draft 2020-12 schemas ensures API backward compatibility and prevents runtime crashes.',
+      'JSON Schema can define rules for API payloads, but Zubware JSON Validator does not currently validate data against these schemas.',
       'Client-side formatting protects API secrets: Parsing database payloads locally in browser memory guarantees zero network leakage of customer records.'
     ],
     sections: [
@@ -207,7 +207,7 @@ JSON.parse('{"id": 9223372036854775807}').id // Returns 9223372036854776000 (COR
       },
       {
         id: 'schema-validation-and-contract-testing',
-        title: '4. Validating Payloads with JSON Schema',
+        title: '4. Understanding JSON Schema',
         content: `Formatting JSON improves human readability, but JSON Schema enforces machine contracts. A schema specifies required properties, allowed data types, regex patterns, and numeric ranges:
 \`\`\`json
 {
@@ -221,7 +221,7 @@ JSON.parse('{"id": 9223372036854775807}').id // Returns 9223372036854776000 (COR
   "required": ["userId", "role"]
 }
 \`\`\`
-Validating production API payloads against a schema catches missing keys before frontend rendering crashes.`
+This example shows how a JSON Schema can describe required fields and data types. Zubware JSON Validator does not currently check payloads against this schema.`
       }
     ],
     howTo: {
@@ -257,11 +257,11 @@ Validating production API payloads against a schema catches missing keys before 
       },
       {
         question: 'Can Zubware validate JSON Schema files?',
-        answer: 'Yes. Zubware JSON Validator checks syntax and validates payloads against standard JSON Schema definitions directly in browser memory.'
+        answer: 'No. Zubware JSON Validator currently checks JSON syntax and basic structure statistics; it does not validate payloads against JSON Schema definitions.'
       },
       {
         question: 'Is there a file size limit for formatting JSON in the browser?',
-        answer: 'Zubware handles JSON files up to 25MB smoothly on modern desktop browsers without memory crashes or UI freezing.'
+        answer: 'The amount of JSON data you can process depends on your device, browser, and available memory. Very large files may be slow or cause the browser to become unresponsive.'
       },
       {
         question: 'Are my proprietary JSON payloads stored or logged anywhere?',

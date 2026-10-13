@@ -4765,7 +4765,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Does the validator support JSON Schema validation?",
-        "answer": "Yes. You can provide an optional JSON Schema definition to validate data types, required fields, and array constraints."
+        "answer": "No. This tool currently checks JSON syntax and displays basic structure statistics. It does not validate data against a JSON Schema."
       },
       {
         "question": "Can I inspect object depth and element counts?",

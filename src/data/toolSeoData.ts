@@ -4719,15 +4719,15 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "faq": [
       {
         "question": "How does the JSON Formatter handle syntax errors?",
-        "answer": "If the input contains invalid syntax, the parser pinpoints the exact line number, column, and character token causing the parse failure."
+        "answer": "If the input contains invalid JSON, the browser displays a syntax error message. The message format and details can vary by browser."
       },
       {
         "question": "Can I sort object keys alphabetically for consistent diff comparisons?",
-        "answer": "Yes. Toggling 'Sort Keys' recursively orders all JSON keys alphabetically, making it easy to compare API payloads."
+        "answer": "No. The current formatter does not include an option to sort object keys alphabetically."
       },
       {
         "question": "What is the maximum JSON file size supported?",
-        "answer": "The tool handles multi-megabyte JSON payloads (10MB+) smoothly using native browser JSON.parse and JSON.stringify engines."
+        "answer": "There is no fixed file-size limit specified by this tool. Processing large JSON inputs depends on your device, browser, and available memory; very large inputs may be slow or cause the browser to become unresponsive."
       },
       {
         "question": "Can I toggle between formatted tree view and raw text?",

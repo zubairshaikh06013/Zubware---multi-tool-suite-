@@ -312,10 +312,47 @@ html, body {
 }
 
 .zubware-markdown-preview table {
-  width: 100%;
+  display: table !important;
+  width: 100% !important;
+  max-width: 100%;
   margin: 1em 0;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
+  border-spacing: 0;
+  table-layout: auto;
   text-align: left;
+  font-size: inherit;
+}
+
+.zubware-markdown-preview thead {
+  display: table-header-group !important;
+}
+
+.zubware-markdown-preview tbody {
+  display: table-row-group !important;
+}
+
+.zubware-markdown-preview tr {
+  display: table-row !important;
+}
+
+.zubware-markdown-preview th,
+.zubware-markdown-preview td {
+  display: table-cell !important;
+  padding: 0.65rem 0.8rem !important;
+  border: 1px solid #cbd5e1 !important;
+  vertical-align: top;
+  text-align: left;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.zubware-markdown-preview th {
+  background: #eef2ff;
+  font-weight: 700;
+}
+
+.dark .zubware-markdown-preview th {
+  background: #1e293b;
 }
 
 .zubware-markdown-preview th,

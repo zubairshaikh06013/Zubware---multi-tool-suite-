@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import { Copy, Check, Download, Bold, Italic, Heading, List, Table, Code, Link, Image, Eye, FileCode, Upload, Trash2 } from 'lucide-react';
 
 export const MarkdownEditorTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
@@ -14,29 +16,17 @@ export const MarkdownEditorTool: React.FC<{ onShowToast: (msg: string) => void }
     setMarkdown((prev) => `${prev}\n${prefix}sample text${suffix}`);
   };
 
-  // Convert markdown to HTML string for preview & HTML export
+  // Render Markdown and sanitize generated HTML before display/export.
   const renderMarkdownToHtml = (md: string): string => {
-    let html = md
-      .replace(/^### (.*$)/gim, '<h3 class="text-base font-extrabold text-slate-900 dark:text-white mt-4 mb-2">$1</h3>')
-      .replace(/^## (.*$)/gim, '<h2 class="text-lg font-black text-slate-900 dark:text-white mt-5 mb-2">$1</h2>')
-      .replace(/^# (.*$)/gim, '<h1 class="text-2xl font-black text-slate-900 dark:text-white mt-6 mb-3">$1</h1>')
-      .replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-slate-900 dark:text-white">$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
-      .replace(/`{3}([\s\S]*?)`{3}/g, '<pre class="bg-slate-950 text-indigo-300 p-3 rounded-xl font-mono text-xs my-3 overflow-x-auto"><code>$1</code></pre>')
-      .replace(/`([^`]+)`/g, '<code class="bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 px-1.5 py-0.5 rounded font-mono text-xs">$1</code>')
-      .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="rounded-xl max-w-full my-3 border border-slate-200 dark:border-slate-800" />')
-      .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" class="text-indigo-600 dark:text-indigo-400 underline font-semibold">$1</a>')
-      .replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-slate-700 dark:text-slate-300 mb-1">$1</li>')
-      .replace(/\n\n/g, '<br/><br/>');
+    const rawHtml = marked.parse(md, {
+      async: false,
+      gfm: true,
+      breaks: false,
+    }) as string;
 
-    // Parse simple markdown table rows
-    html = html.replace(/\|(.+)\|/g, (match) => {
-      const cells = match.split('|').filter(c => c.trim().length > 0);
-      if (cells[0].includes('---')) return '';
-      return `<tr className="border-b border-slate-200/60 dark:border-slate-800">${cells.map(c => `<td className="p-2 border border-slate-200/60 dark:border-slate-800">${c.trim()}</td>`).join('')}</tr>`;
+    return DOMPurify.sanitize(rawHtml, {
+      USE_PROFILES: { html: true },
     });
-
-    return html;
   };
 
   const handleFileUpload = (file: File) => {
@@ -223,7 +213,7 @@ export const MarkdownEditorTool: React.FC<{ onShowToast: (msg: string) => void }
           <div className={`space-y-2 ${activeTab === 'preview' ? 'lg:col-span-2' : ''}`}>
             <label className="text-xs font-bold text-indigo-600 dark:text-indigo-400">Live HTML Rendered Preview</label>
             <div
-              className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 min-h-[350px] overflow-y-auto text-xs font-sans text-slate-800 dark:text-slate-200 leading-relaxed shadow-xs"
+              className="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 min-h-[350px] overflow-y-auto text-xs font-sans text-slate-800 dark:text-slate-200 leading-relaxed shadow-xs prose prose-sm dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-p:my-3 prose-ul:my-3 prose-ol:my-3 prose-li:my-1 prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-pre:bg-slate-950 prose-pre:text-indigo-200 prose-table:w-full prose-th:border prose-th:border-slate-300 prose-th:p-2 prose-td:border prose-td:border-slate-300 prose-td:p-2 zubware-markdown-preview"
               dangerouslySetInnerHTML={{ __html: renderMarkdownToHtml(markdown) }}
             />
           </div>

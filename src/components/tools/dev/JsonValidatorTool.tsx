@@ -80,21 +80,146 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
   };
 
   const autoRepairJson = () => {
-    let repaired = jsonInput;
-    // 1. Replace single quotes around keys/values with double quotes
-    repaired = repaired.replace(/'([^'\\]*(?:\\.[^'\\]*)*)'/g, '"$1"');
-    // 2. Remove trailing commas in objects: e.g. { "a": 1, } -> { "a": 1 }
-    repaired = repaired.replace(/,(\s*[}\]])/g, '$1');
-    // 3. Quote unquoted keys: e.g. { name: "val" } -> { "name": "val" }
-    repaired = repaired.replace(/([{,]\s*)([a-zA-Z0-9_]+)\s*:/g, '$1"$2":');
+    const input = jsonInput;
+
+    if (!input.trim()) {
+      onShowToast('Please enter JSON before using Auto-Repair.');
+      return;
+    }
+
+    // Never modify already-valid JSON.
+    try {
+      JSON.parse(input);
+      onShowToast('JSON is already valid. No repair needed.');
+      return;
+    } catch {
+      // Continue with conservative repair.
+    }
+
+    // Token-aware scanner: only transform characters outside strings.
+    const transformOutsideStrings = (
+      text: string,
+      transform: (outside: string) => string
+    ): string => {
+      let result = '';
+      let outside = '';
+      let inString = false;
+      let escaped = false;
+
+      const flush = () => {
+        result += transform(outside);
+        outside = '';
+      };
+
+      for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+
+        if (inString) {
+          result += ch;
+
+          if (escaped) {
+            escaped = false;
+          } else if (ch === '\\') {
+            escaped = true;
+          } else if (ch === '"') {
+            inString = false;
+          }
+          continue;
+        }
+
+        if (ch === '"') {
+          flush();
+          result += ch;
+          inString = true;
+        } else {
+          outside += ch;
+        }
+      }
+
+      flush();
+      return result;
+    };
+
+    let repaired = input;
+
+    // Convert single-quoted strings without touching double-quoted strings.
+    // A small scanner handles escapes and preserves the content.
+    {
+      let output = '';
+      let inDouble = false;
+      let inSingle = false;
+      let escaped = false;
+
+      for (let i = 0; i < repaired.length; i++) {
+        const ch = repaired[i];
+
+        if (inDouble) {
+          output += ch;
+          if (escaped) escaped = false;
+          else if (ch === '\\') escaped = true;
+          else if (ch === '"') inDouble = false;
+          continue;
+        }
+
+        if (inSingle) {
+          if (escaped) {
+            if (ch === "'") output += "'";
+            else if (ch === '\\') output += '\\';
+            else output += '\\' + ch;
+            escaped = false;
+          } else if (ch === '\\') {
+            escaped = true;
+          } else if (ch === "'") {
+            output += '"';
+            inSingle = false;
+          } else if (ch === '"') {
+            output += '\\"';
+          } else {
+            output += ch;
+          }
+          continue;
+        }
+
+        if (ch === '"') {
+          inDouble = true;
+          output += ch;
+        } else if (ch === "'") {
+          inSingle = true;
+          output += '"';
+        } else {
+          output += ch;
+        }
+      }
+
+      if (inSingle) {
+        onShowToast('Could not safely repair an unterminated quoted string.');
+        return;
+      }
+
+      repaired = output;
+    }
+
+    // Remove trailing commas only outside JSON strings.
+    repaired = transformOutsideStrings(
+      repaired,
+      outside => outside.replace(/,(\s*[}\]])/g, '$1')
+    );
+
+    // Quote simple unquoted object keys only outside strings.
+    repaired = transformOutsideStrings(
+      repaired,
+      outside => outside.replace(
+        /([{,]\s*)([A-Za-z_$][A-Za-z0-9_$]*)\s*:/g,
+        '$1"$2":'
+      )
+    );
 
     try {
-      const testParse = JSON.parse(repaired);
-      setJsonInput(JSON.stringify(testParse, null, indentSpaces));
-      onShowToast('Successfully auto-repaired common JSON syntax errors!');
-    } catch (e: any) {
-      setJsonInput(repaired);
-      onShowToast('Partial repair applied; check remaining syntax errors.');
+      const parsed = JSON.parse(repaired);
+      setJsonInput(JSON.stringify(parsed, null, indentSpaces));
+      onShowToast('JSON repaired successfully.');
+    } catch {
+      onShowToast('Some errors remain. Review the JSON; input was not overwritten.');
     }
   };
 

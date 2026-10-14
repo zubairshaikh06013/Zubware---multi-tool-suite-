@@ -212,6 +212,17 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article: propArticle
               <span className="flex items-center gap-1">
                 <Calendar className="w-3.5 h-3.5 text-indigo-500" /> Published: {formattedDate}
               </span>
+              {article.modifiedTime && article.modifiedTime !== article.publishedTime && (
+                <span className="flex items-center gap-1">
+                  <Calendar className="w-3.5 h-3.5 text-emerald-500" />
+                  Updated: {new Date(article.modifiedTime).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                    timeZone: 'UTC'
+                  })}
+                </span>
+              )}
               <span className="text-slate-300 dark:text-slate-700">•</span>
               <span className="text-slate-500">
                 Privacy-Focused Tools & Guides

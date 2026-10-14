@@ -1625,7 +1625,7 @@ function renderBlogArticleContent(article: BlogArticle): string {
         <div style="font-size: 0.8rem; color: #64748b; display: flex; gap: 1rem; flex-wrap: wrap;">
           <span><strong>Author:</strong> ${escapeHtml(article.author.name)}</span>
           <span>•</span>
-          <span><strong>Updated:</strong> Sept 24, 2026</span>
+          <span><strong>Updated:</strong> ${escapeHtml(new Date(article.modifiedTime || article.publishedTime).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'UTC' }))}</span>
           <span>•</span>
           <span><strong>Platform:</strong> Zubware Browser Suite</span>
         </div>

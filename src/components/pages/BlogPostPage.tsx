@@ -214,7 +214,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article: propArticle
               </span>
               <span className="text-slate-300 dark:text-slate-700">•</span>
               <span className="text-slate-500">
-                Browser Processing Verified
+                Privacy-Focused Tools & Guides
               </span>
             </div>
           </div>
@@ -502,12 +502,12 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article: propArticle
                 Published by {article.publisher.name}
               </h4>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Researched and documented by the {article.author.name} ({article.author.role || 'Technical Documentation Team'}).
+                Author information: {article.author.name} ({article.author.role || 'Technical Documentation Team'}).
               </p>
             </div>
           </div>
           <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed border-t border-slate-100 dark:border-slate-800/80 pt-4">
-            Zubware is dedicated to privacy-first, client-side web tools. All calculations and file transformations in our suite are verified for zero server telemetry and standards compliance.
+            Zubware provides browser-based tools and practical guides. Processing behavior may vary by tool; review each tool’s description to understand how it handles your data.
           </p>
         </footer>
       </article>

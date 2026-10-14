@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { marked } from 'marked';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { TOOLS_DATA as BASE_TOOLS_DATA, HOMEPAGE_FAQS } from '../src/data/toolsData';
@@ -304,6 +305,38 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     : 'All processing takes place client-side in browser memory with zero server uploads.';
 
   return `${tool.title} provides dedicated online capabilities for ${cleanCat.toLowerCase()} workflows. ${tool.description} ${privacyNote}`;
+}
+
+
+function renderStaticBlogMarkdown(content: string): string {
+  const renderer = new marked.Renderer();
+
+  renderer.html = ({ text }) => escapeHtml(text);
+
+  renderer.link = ({ href, title, tokens }) => {
+    const url = String(href || '').trim();
+    const safe = /^(https?:|mailto:|\/|#)/i.test(url);
+
+    const label = tokens.map(token => {
+      if ('text' in token) return escapeHtml(token.text);
+      return '';
+    }).join('');
+
+    if (!safe) return label;
+
+    const safeUrl = escapeHtml(url);
+    const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
+    return `<a href="${safeUrl}"${titleAttr} rel="nofollow noopener noreferrer">${label}</a>`;
+  };
+
+  const html = marked.parse(content || '', {
+    renderer,
+    async: false,
+    gfm: true,
+    breaks: false,
+  }) as string;
+
+  return html;
 }
 
 function escapeHtml(str: string): string {
@@ -1614,7 +1647,7 @@ function renderBlogArticleContent(article: BlogArticle): string {
           ${escapeHtml(sec.title)}
         </h2>
         <div style="font-size: 0.95rem; color: #334155; line-height: 1.6; white-space: pre-line;">
-          ${escapeHtml(sec.content)}
+          ${renderStaticBlogMarkdown(sec.content)}
         </div>
       </section>`).join('\n')}
 

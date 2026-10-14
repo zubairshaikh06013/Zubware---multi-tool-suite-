@@ -1,4 +1,6 @@
 import React, { useState, useMemo } from 'react';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
 import {
   Clock,
   Calendar,
@@ -37,6 +39,30 @@ function getCategoryHubForBlog(categoryStr: string): { name: string; path: strin
   if (c.includes('prompt') || c.includes('ai')) return { name: 'AI Prompt Builder Tools', path: '/category/prompt-tools' };
   if (c.includes('health') || c.includes('fitness') || c.includes('bmi')) return { name: 'Health & Fitness', path: '/category/health-fitness' };
   return { name: 'Generators & Productivity', path: '/category/generators' };
+}
+
+// Safely render Markdown in blog article sections.
+function renderBlogMarkdown(content: string): string {
+  const renderer = new marked.Renderer();
+
+  renderer.html = ({ text }) =>
+    text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+  const html = marked.parse(content || '', {
+    renderer,
+    async: false,
+    gfm: true,
+    breaks: false,
+  }) as string;
+
+  return DOMPurify.sanitize(html, {
+    USE_PROFILES: { html: true },
+  });
 }
 
 interface BlogPostPageProps {
@@ -250,9 +276,12 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article: propArticle
               <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">
                 {section.title}
               </h2>
-              <div className="space-y-3 whitespace-pre-line text-slate-700 dark:text-slate-300 leading-relaxed text-xs sm:text-sm">
-                {section.content}
-              </div>
+              <div
+                className="blog-markdown-content space-y-3 text-slate-700 dark:text-slate-300 leading-relaxed text-xs sm:text-sm"
+                dangerouslySetInnerHTML={{
+                  __html: renderBlogMarkdown(section.content),
+                }}
+              />
             </section>
           ))}
 

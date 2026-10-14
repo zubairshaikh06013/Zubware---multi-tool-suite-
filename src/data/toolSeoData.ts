@@ -4769,7 +4769,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Can I inspect object depth and element counts?",
-        "answer": "Yes. The statistics panel displays total keys, array lengths, object nesting depth, and character metrics."
+        "answer": "The tool displays total key count and character metrics for valid JSON. It does not currently provide dedicated array-length or object-nesting-depth statistics."
       },
       {
         "question": "Is sensitive configuration data kept secure?",

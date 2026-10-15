@@ -282,6 +282,46 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
       repaired = output;
     }
 
+    // Replace genuinely missing values with null, outside strings only.
+    {
+      let output = '';
+      let inString = false;
+      let escaped = false;
+
+      for (let i = 0; i < repaired.length; i++) {
+        const ch = repaired[i];
+
+        if (inString) {
+          output += ch;
+          if (escaped) escaped = false;
+          else if (ch === '\\') escaped = true;
+          else if (ch === '"') inString = false;
+          continue;
+        }
+
+        if (ch === '"') {
+          inString = true;
+          output += ch;
+          continue;
+        }
+
+        output += ch;
+
+        if (ch === ':') {
+          let next = i + 1;
+          while (next < repaired.length && /\s/.test(repaired[next])) next++;
+
+          if (next === repaired.length || repaired[next] === ',' ||
+              repaired[next] === '}' || repaired[next] === ']') {
+            output += repaired.slice(i + 1, next) + 'null';
+            i = next - 1;
+          }
+        }
+      }
+
+      repaired = output;
+    }
+
     // Remove trailing commas only outside JSON strings.
     repaired = transformOutsideStrings(
       repaired,

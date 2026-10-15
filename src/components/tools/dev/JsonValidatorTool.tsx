@@ -26,6 +26,7 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
   let parsedObj: any = null;
   let errorMessage = '';
   let errorLine: number | null = null;
+  let errorColumn: number | null = null;
 
   if (jsonInput.trim()) {
     try {
@@ -33,17 +34,27 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
       isValid = true;
     } catch (err: any) {
       isValid = false;
-      errorMessage = err.message || 'Invalid JSON syntax';
+      errorMessage = err instanceof Error ? err.message : 'Invalid JSON syntax';
 
-      // Line number estimation
-      const posMatch = errorMessage.match(/position (\d+)/i);
-      if (posMatch) {
-        const pos = parseInt(posMatch[1], 10);
-        const upToPos = jsonInput.substring(0, pos);
-        errorLine = upToPos.split('\n').length;
-      } else {
-        const lineMatch = errorMessage.match(/line (\d+)/i);
-        if (lineMatch) errorLine = parseInt(lineMatch[1], 10);
+      // Extract location only when the browser provides a recognizable format.
+      const positionMatch = errorMessage.match(/position\s+(\d+)/i);
+      const lineColumnMatch = errorMessage.match(/line\s+(\d+)(?:\s+column\s+(\d+))?/i);
+
+      let position: number | null = null;
+
+      if (positionMatch) {
+        position = Math.min(Number(positionMatch[1]), jsonInput.length);
+      } else if (lineColumnMatch) {
+        errorLine = Number(lineColumnMatch[1]);
+        if (lineColumnMatch[2]) {
+          errorColumn = Number(lineColumnMatch[2]);
+        }
+      }
+
+      if (position !== null) {
+        const beforeError = jsonInput.slice(0, position);
+        errorLine = beforeError.split('\n').length;
+        errorColumn = position - beforeError.lastIndexOf('\n');
       }
     }
   }
@@ -279,7 +290,7 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
         {isValid === false && (
           <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 text-rose-600 dark:text-rose-400 border border-rose-500/20 text-xs font-bold shrink-0">
             <AlertTriangle className="w-4 h-4" />
-            <span>Invalid JSON {errorLine ? `(Line ${errorLine})` : ''}</span>
+            <span>Invalid JSON {errorLine ? `(Line ${errorLine}${errorColumn ? `, Column ${errorColumn}` : ''})` : ''}</span>
           </div>
         )}
       </div>
@@ -340,7 +351,7 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
           <AlertTriangle className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
           <div className="space-y-1">
             <span className="font-extrabold text-rose-700 dark:text-rose-300 block">
-              JSON Syntax Error {errorLine ? `at Line ${errorLine}` : ''}:
+              JSON Syntax Error {errorLine ? `at Line ${errorLine}${errorColumn ? `, Column ${errorColumn}` : ''}` : ''}:
             </span>
             <p className="font-mono text-rose-600 dark:text-rose-400">
               {errorMessage}

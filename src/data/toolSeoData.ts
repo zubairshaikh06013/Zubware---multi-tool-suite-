@@ -4743,15 +4743,15 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {
         "title": "Paste JSON to Validate",
-        "desc": "Input JSON configuration, API responses, or schema definitions into the validation pane."
+        "desc": "Paste JSON text such as an API response, configuration object, or JSON array into the editor. The tool checks JSON syntax; it does not validate payloads against a JSON Schema."
       },
       {
-        "title": "Run Instant Syntax & Type Check",
-        "desc": "The parser verifies RFC 8259 syntax on every keystroke, checking quotes, braces, trailing commas, and escaped characters."
+        "title": "Check JSON Syntax",
+        "desc": "The tool parses the input as JSON and reports syntax errors when parsing fails. Error details depend on the browser; JSON Schema rules are not checked."
       },
       {
         "title": "Locate & Fix Highlighted Errors",
-        "desc": "Inspect precise error banners highlighting line and column coordinates, or click 'Auto-Fix' to repair common syntax mistakes."
+        "desc": "Review the reported JSON syntax error, then use the Auto-Repair button to attempt fixes for supported issues such as single-quoted strings, trailing commas, and simple unquoted object keys."
       }
     ],
     "faq": [

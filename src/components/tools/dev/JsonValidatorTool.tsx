@@ -36,6 +36,36 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
       isValid = false;
       errorMessage = err instanceof Error ? err.message : 'Invalid JSON syntax';
 
+      // Give a clearer message when an object property has no value.
+      {
+        let inString = false;
+        let escaped = false;
+
+        for (let i = 0; i < jsonInput.length; i++) {
+          const ch = jsonInput[i];
+
+          if (inString) {
+            if (escaped) escaped = false;
+            else if (ch === '\\') escaped = true;
+            else if (ch === '"') inString = false;
+            continue;
+          }
+
+          if (ch === '"') {
+            inString = true;
+            continue;
+          }
+
+          if (ch === ':' && /^\s*(?:,|}|\]|$)/.test(jsonInput.slice(i + 1))) {
+            const keyMatch = jsonInput.slice(0, i).match(/"((?:\\\\.|[^"\\\\])*)"\\s*$/);
+            errorMessage = keyMatch
+              ? `Missing value for "${keyMatch[1]}"`
+              : 'Missing JSON value';
+            break;
+          }
+        }
+      }
+
       // Prefer the parser's exact position when the browser exposes it.
       const positionMatch = errorMessage.match(/position\s+(\d+)/i);
       const lineColumnMatch = errorMessage.match(/line\s+(\d+)(?:\s+column\s+(\d+))?/i);

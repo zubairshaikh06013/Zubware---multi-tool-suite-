@@ -27,11 +27,20 @@ const getTodayString = () => {
 };
 
 const parseLocalDate = (dateStr: string) => {
-  if (!dateStr) return null;
-  const parts = dateStr.split('-').map(Number);
-  if (parts.length !== 3 || parts.some(isNaN)) return null;
-  const [y, m, d] = parts;
-  return new Date(y, m - 1, d);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return null;
+
+  const [y, m, d] = dateStr.split('-').map(Number);
+  const date = new Date(y, m - 1, d);
+
+  if (
+    date.getFullYear() !== y ||
+    date.getMonth() !== m - 1 ||
+    date.getDate() !== d
+  ) {
+    return null;
+  }
+
+  return date;
 };
 
 export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToast }) => {
@@ -62,8 +71,11 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       months += 12;
     }
 
-    const diffMs = target.getTime() - birth.getTime();
-    const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const toUtcDay = (date: Date) =>
+      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) /
+      (24 * 60 * 60 * 1000);
+
+    const totalDays = toUtcDay(target) - toUtcDay(birth);
     const totalWeeks = Math.floor(totalDays / 7);
     const totalMonths = years * 12 + months;
     const totalHours = totalDays * 24;
@@ -78,7 +90,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
     if (nextBday < target) {
       nextBday.setFullYear(target.getFullYear() + 1);
     }
-    const daysToNextBday = Math.ceil((nextBday.getTime() - target.getTime()) / (1000 * 60 * 60 * 24));
+    const daysToNextBday = toUtcDay(nextBday) - toUtcDay(target);
     const nextBdayDayOfWeek = nextBday.toLocaleDateString('en-US', { weekday: 'long' });
 
     // Western Zodiac

@@ -36,7 +36,7 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
       isValid = false;
       errorMessage = err instanceof Error ? err.message : 'Invalid JSON syntax';
 
-      // Extract location only when the browser provides a recognizable format.
+      // Prefer the parser's exact position when the browser exposes it.
       const positionMatch = errorMessage.match(/position\s+(\d+)/i);
       const lineColumnMatch = errorMessage.match(/line\s+(\d+)(?:\s+column\s+(\d+))?/i);
 
@@ -46,15 +46,51 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
         position = Math.min(Number(positionMatch[1]), jsonInput.length);
       } else if (lineColumnMatch) {
         errorLine = Number(lineColumnMatch[1]);
-        if (lineColumnMatch[2]) {
-          errorColumn = Number(lineColumnMatch[2]);
+        if (lineColumnMatch[2]) errorColumn = Number(lineColumnMatch[2]);
+      }
+
+      // Fallback for common errors such as {"age": } when no position is exposed.
+      if (position === null && errorLine === null) {
+        const lines = jsonInput.split('\n');
+        let found = false;
+
+        for (let lineIndex = 0; lineIndex < lines.length && !found; lineIndex++) {
+          const line = lines[lineIndex];
+          const missingValue = line.match(/:\\s*(?=,|}|$)/);
+
+          if (missingValue) {
+            errorLine = lineIndex + 1;
+            errorColumn = missingValue.index! + missingValue[0].length + 1;
+            found = true;
+          }
+        }
+
+        if (!found) {
+          const trailingComma = /,\\s*[}\\]]/.exec(jsonInput);
+          if (trailingComma) {
+            const beforeError = jsonInput.slice(0, trailingComma.index + 1);
+            errorLine = beforeError.split('\n').length;
+            errorColumn = trailingComma.index + 2 -
+              beforeError.lastIndexOf('\\n');
+            found = true;
+          }
+        }
+
+        if (!found) {
+          const beforeClose = /,\\s*}/.exec(jsonInput);
+          if (beforeClose) {
+            const beforeError = jsonInput.slice(0, beforeClose.index);
+            errorLine = beforeError.split('\n').length;
+            errorColumn = beforeClose.index + 1 -
+              beforeError.lastIndexOf('\\n');
+          }
         }
       }
 
       if (position !== null) {
         const beforeError = jsonInput.slice(0, position);
         errorLine = beforeError.split('\n').length;
-        errorColumn = position - beforeError.lastIndexOf('\n');
+        errorColumn = position - beforeError.lastIndexOf('\\n');
       }
     }
   }

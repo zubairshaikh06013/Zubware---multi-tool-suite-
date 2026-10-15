@@ -7195,7 +7195,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "age-calculator",
     "title": "Age Calculator — Calculate Your Exact Age Online",
     "navTitle": "Age Calculator",
-    "description": "Calculate your exact age in years, months, and days from your date of birth. Free online age calculator with next birthday countdown, total days, and hours.",
+    "description": "Calculate your exact age from your date of birth (DOB) in years, months, and days. Find your age on any date, total days lived, and your next birthday countdown with Zubware's free online age calculator.",
     "icon": "🎂",
     "path": "/age-calculator",
     "filename": "age-calculator.html",

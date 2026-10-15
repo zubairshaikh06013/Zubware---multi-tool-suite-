@@ -49,40 +49,46 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
         if (lineColumnMatch[2]) errorColumn = Number(lineColumnMatch[2]);
       }
 
-      // Fallback for common errors such as {"age": } when no position is exposed.
+      // Fallback for common errors when the parser gives no location.
       if (position === null && errorLine === null) {
-        const lines = jsonInput.split('\n');
+        let inString = false;
+        let escaped = false;
+        let line = 1;
+        let column = 1;
         let found = false;
 
-        for (let lineIndex = 0; lineIndex < lines.length && !found; lineIndex++) {
-          const line = lines[lineIndex];
-          const missingValue = line.match(/:\\s*(?=,|}|$)/);
+        for (let i = 0; i < jsonInput.length; i++) {
+          const ch = jsonInput[i];
 
-          if (missingValue) {
-            errorLine = lineIndex + 1;
-            errorColumn = missingValue.index! + missingValue[0].length + 1;
-            found = true;
+          if (inString) {
+            if (escaped) escaped = false;
+            else if (ch === '\\') escaped = true;
+            else if (ch === '"') inString = false;
+          } else {
+            if (ch === '"') {
+              inString = true;
+            } else if (ch === ':' && /^\s*(?:,|}|]|$)/.test(jsonInput.slice(i + 1))) {
+              errorLine = line;
+              errorColumn = column + 1;
+              found = true;
+              break;
+            } else if (ch === ',' && /^\s*[}\]]/.test(jsonInput.slice(i + 1))) {
+              const remainder = jsonInput.slice(i + 1);
+              const whitespace = remainder.match(/^\s*/)?.[0] ?? '';
+              const targetOffset = i + 1 + whitespace.length;
+              const beforeTarget = jsonInput.slice(0, targetOffset);
+              errorLine = beforeTarget.split('\n').length;
+              errorColumn = targetOffset - beforeTarget.lastIndexOf('\n');
+              found = true;
+              break;
+            }
           }
-        }
 
-        if (!found) {
-          const trailingComma = /,\\s*[}\\]]/.exec(jsonInput);
-          if (trailingComma) {
-            const beforeError = jsonInput.slice(0, trailingComma.index + 1);
-            errorLine = beforeError.split('\n').length;
-            errorColumn = trailingComma.index + 2 -
-              beforeError.lastIndexOf('\\n');
-            found = true;
-          }
-        }
-
-        if (!found) {
-          const beforeClose = /,\\s*}/.exec(jsonInput);
-          if (beforeClose) {
-            const beforeError = jsonInput.slice(0, beforeClose.index);
-            errorLine = beforeError.split('\n').length;
-            errorColumn = beforeClose.index + 1 -
-              beforeError.lastIndexOf('\\n');
+          if (ch === '\n') {
+            line++;
+            column = 1;
+          } else {
+            column++;
           }
         }
       }
@@ -90,7 +96,7 @@ export const JsonValidatorTool: React.FC<JsonValidatorToolProps> = ({ onShowToas
       if (position !== null) {
         const beforeError = jsonInput.slice(0, position);
         errorLine = beforeError.split('\n').length;
-        errorColumn = position - beforeError.lastIndexOf('\\n');
+        errorColumn = position - beforeError.lastIndexOf('\n');
       }
     }
   }

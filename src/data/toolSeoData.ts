@@ -6065,63 +6065,55 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
-      {
-        "question": "How do I calculate my age from my date of birth?",
-        "answer": "To calculate your age, enter your birth date into the Date of Birth field. The calculator automatically compares your birth date against today's date (or any custom reference date you select) and displays your exact chronological age in completed years, months, and days."
-      },
-      {
-        "question": "How does an online age calculator work?",
-        "answer": "An age calculator computes the precise calendar difference between two dates. It first calculates completed full years, then accounts for elapsed months, and finally determines remaining days using the exact day count of each intervening calendar month."
-      },
-      {
-        "question": "Can I calculate my exact age in years, months, and days?",
-        "answer": "Yes. Unlike rough approximations that simply divide elapsed days by 365, Zubware calculates calendar-accurate years, months, and days, honoring varying month lengths (28, 29, 30, and 31 days) and leap years."
-      },
-      {
-        "question": "What is an Online Age Calculator by Date of Birth?",
-        "answer": "An Online Age Calculator by Date of Birth is a browser-based utility that takes your birth date and instantly determines your chronological age, day of birth, next birthday countdown, and secondary units like total days, hours, and minutes without requiring manual calendar math."
-      },
-      {
-        "question": "Can I calculate my age on a specific future or past date?",
-        "answer": "Yes. Change the 'Age at Date (Reference Date)' field to any date. You can calculate how old you will be at retirement, how old you were when graduating, or your age on an official application cutoff date."
-      },
-      {
-        "question": "How does the calculator handle leap years and February 29 birthdays?",
-        "answer": "The calculator correctly accounts for leap years containing 366 days (with 29 days in February). For individuals born on February 29 (a leap day), age increases by one year on each subsequent February 28 / March 1 depending on common legal calendar convention."
-      },
-      {
-        "question": "What is the difference between chronological age and dividing total days by 365?",
-        "answer": "A calendar year varies between 365 days (common year) and 366 days (leap year), and months range from 28 to 31 days. Dividing total days by 365 produces a fractional decimal (e.g., 25.42 years) that does not match official calendar birthdays. Chronological age reflects real calendar milestones."
-      },
-      {
-        "question": "Can I calculate my age on a mobile phone?",
-        "answer": "Yes. Zubware Age Calculator is fully responsive and touch-optimized for iOS and Android smartphones. You can use your mobile browser's native date picker to calculate your age on the go with zero lag and no app installation."
-      },
-      {
-        "question": "Can I use this age calculator for exam forms and job applications?",
-        "answer": "Yes. Many competitive exams and job applications require applicants to state their exact age as of a specific cutoff date (such as July 1 or January 1). Enter the advertised cutoff date into 'Age at Date' to find your exact years, months, and days for the form."
-      },
-      {
-        "question": "Can an age calculator determine official exam or retirement eligibility?",
-        "answer": "No. While the calculator gives you mathematically exact chronological age, official eligibility rules, minimum/maximum age limits, and age relaxations (such as category or service quotas) depend entirely on the issuing authority's specific notification."
-      },
-      {
-        "question": "What additional time units are displayed in the age breakdown?",
-        "answer": "Beyond years, months, and days, the tool displays total completed months, total elapsed weeks, total calendar days, total hours, total minutes, and total seconds lived."
-      },
-      {
-        "question": "How is the next birthday countdown calculated?",
-        "answer": "The tool determines your upcoming birthday anniversary date in the current or following calendar year and computes the exact remaining calendar days and day of the week it will fall on."
-      },
-      {
-        "question": "What is the difference between chronological age and cultural age systems?",
-        "answer": "Chronological age starts at zero on your birth date and increases on each annual anniversary (the international standard ISO 8601). Some traditional cultural systems (such as traditional East Asian age reckoning) count an infant as one year old at birth and add a year on the New Year."
-      },
-      {
-        "question": "Is my date of birth saved, logged, or shared with external servers?",
-        "answer": "No. All date calculations and milestone breakdowns run 100% locally inside your web browser using client-side JavaScript. Your birth date is never transmitted across the network, stored in cookies, or saved to any database."
-      }
-    ]
+  {
+    "question": "How do I calculate my age from my date of birth?",
+    "answer": "Enter your date of birth and keep the reference date set to today to calculate your current age. The calculator displays your age in completed years, months, and days."
+  },
+  {
+    "question": "Can I calculate my exact age in years, months, and days?",
+    "answer": "Yes. The calculator compares your birth date with the selected reference date and displays a calendar-based breakdown in years, months, and days. This is different from estimating age by dividing total days by 365."
+  },
+  {
+    "question": "Can I calculate my age on a past or future date?",
+    "answer": "Yes. Change the reference date to a date after your birth date. You can use this to check your age at a past milestone or on a future date."
+  },
+  {
+    "question": "How do I calculate age for an exam cutoff date?",
+    "answer": "Enter your date of birth and set the reference date to the cutoff date stated in the official exam notification. Check the notification for the required age-calculation rules, eligibility limits, and relaxations."
+  },
+  {
+    "question": "How are leap years handled?",
+    "answer": "Leap years contain February 29. The calculator uses the calendar dates entered to calculate elapsed days and the displayed age. If you were born on February 29, check the relevant organisation’s rules when calculating eligibility for an official purpose."
+  },
+  {
+    "question": "Can I calculate my age in total days and weeks?",
+    "answer": "Yes. The results include total elapsed calendar days and completed weeks, along with other time-unit calculations based on the elapsed days."
+  },
+  {
+    "question": "How is the next birthday countdown calculated?",
+    "answer": "The calculator finds the next birthday date based on your birth month and day, then estimates the number of days remaining from the selected reference date. February 29 birthdays may need special consideration in non-leap years."
+  },
+  {
+    "question": "Can I use this age calculator on my phone?",
+    "answer": "Yes. You can open the browser-based calculator on a compatible mobile device and enter your dates without installing a separate application."
+  },
+  {
+    "question": "Can this calculator confirm official age eligibility?",
+    "answer": "No. It calculates age from the dates you enter, but it cannot determine official eligibility by itself. Always check the relevant exam notification, government rules, or organisation’s instructions."
+  },
+  {
+    "question": "Does the calculator estimate heartbeats, breaths, and sleep?",
+    "answer": "Yes. It displays estimates based on assumed daily averages. These are illustrative calculations, not measurements of your actual heartbeats, breathing, or sleep."
+  },
+  {
+    "question": "What is the difference between chronological age and cultural age systems?",
+    "answer": "Chronological age is calculated from the elapsed calendar time since birth. Some cultural traditions have used different age-counting conventions. Use the method required for your particular purpose."
+  },
+  {
+    "question": "Is my date of birth sent to a server?",
+    "answer": "The age calculation shown in this tool is performed in your browser. Avoid entering personal information into any website unless you are comfortable with how that website handles data."
+  }
+]
   },
   "emi-calculator": {
   "howTo": [

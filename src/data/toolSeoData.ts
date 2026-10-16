@@ -5388,34 +5388,34 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "qr-code-decoder": {
     "howTo": [
       {
-        "title": "Upload QR Code Image or Paste from Clipboard",
-        "desc": "Select a photo, screenshot, or graphic containing a QR code, or paste directly with Ctrl+V / Cmd+V."
+        "title": "Upload a QR Code Image",
+        "desc": "Choose a saved photo, screenshot, or graphic containing a QR code using the file picker."
       },
       {
-        "title": "Inspect Decoded Data & Payload Type",
-        "desc": "The decoder identifies the QR matrix and reveals the embedded text, URL, vCard, or WiFi network credentials."
+        "title": "Inspect the Decoded Text",
+        "desc": "The decoder displays the raw text stored in the QR code, which may contain a URL, contact data, or WiFi configuration."
       },
       {
         "title": "Copy Extracted Data or Open Link",
-        "desc": "Click Copy to grab the raw decoded text or click the open button to visit the link safely."
+        "desc": "Copy the decoded text, or inspect the destination before using Open Link. Decoding a QR code does not verify that its link is safe."
       }
     ],
     "faq": [
       {
         "question": "Can this tool decode QR codes from screenshots and saved images?",
-        "answer": "Yes. You can upload any image file (PNG, JPG, WebP, GIF) or paste a screenshot from your clipboard to extract the embedded data."
+        "answer": "Yes. Choose a saved PNG, JPG, WebP, or GIF image containing a QR code. Clipboard image paste is not currently supported."
       },
       {
         "question": "Can it decode blurry, angled, or low-contrast QR codes?",
-        "answer": "The image pre-processor applies automatic binarization, adaptive contrast thresholding, and perspective correction to read challenging scans."
+        "answer": "Some scans may be readable, but blurry, damaged, or low-contrast codes can fail. Try a sharper image with the complete QR code visible."
       },
       {
         "question": "Does the decoder format vCard contact cards and WiFi credentials?",
-        "answer": "Yes. It parses structured payloads and organizes vCard contacts and WiFi passwords into readable fields."
+        "answer": "The tool shows the raw decoded text. It does not currently organize vCard or WiFi data into separate fields."
       },
       {
         "question": "Can I scan using my device camera?",
-        "answer": "Yes. Toggle 'Live Camera' to decode QR codes in real time through your laptop webcam or smartphone browser."
+        "answer": "This decoder accepts saved image files only. Live camera scanning is not available in this tool."
       },
       {
         "question": "Is the uploaded image sent to an external server?",

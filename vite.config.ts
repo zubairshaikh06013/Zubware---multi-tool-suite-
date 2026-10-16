@@ -13,6 +13,7 @@ function generateToolPagesAndSitemapPlugin(): Plugin {
         generateSeoHtmlAndSitemap();
       } catch (err) {
         console.error('[Zubware SEO] Failed to generate tool HTML pages & sitemap:', err);
+        throw err; // Stop deployment when crawlable pages or the sitemap cannot be generated.
       }
     }
   };

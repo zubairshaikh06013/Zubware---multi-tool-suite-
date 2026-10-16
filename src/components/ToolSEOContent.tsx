@@ -133,7 +133,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-emerald-500" /> Privacy & Execution Architecture
             </h3>
-            {isNetworkTool ? (
+            {tool.id === 'subtitle-generator' ? (
+              <p>Video playback, manual captions, and exports stay in your browser. Optional microphone dictation may send audio to your browser provider for speech recognition.</p>
+            ) : isNetworkTool ? (
               <>
                 <p>
                   {tool.navTitle} connects directly from your browser to the specified external endpoint.
@@ -180,7 +182,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Server Uploads</span>
             <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1 block">
-              {isNetworkTool ? 'Direct to API Host' : 'None (Browser-Side)'}
+              {tool.id === 'subtitle-generator' ? 'Optional voice service' : isNetworkTool ? 'Direct to API Host' : 'None (Browser-Side)'}
             </span>
           </div>
         </div>
@@ -236,7 +238,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 <span className="text-indigo-600">🎯</span> Compress Images for Government &amp; Exam Portals
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Most major online portals in India—including <strong>SSC (CGL, CHSL, MTS), UPSC, State PSC, IBPS Bank PO, Railway RRB, NEET, JEE, and Passport Seva</strong>—strictly mandate that candidate photographs must be between <strong>20 KB to 50 KB</strong> and scanned signatures under <strong>20 KB (or 10 KB)</strong>. Uploading files exceeding these thresholds causes immediate form rejection.
+                Photo and signature requirements vary by exam, recruitment year, and application portal. Read the current official upload instructions for the required file format, dimensions, and KB range before choosing a preset. A small file alone does not guarantee acceptance.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 With Zubware's <strong>By Target Size (KB)</strong> mode, you simply select the <strong>20 KB</strong> or <strong>50 KB</strong> preset. The engine automatically optimizes quality and resolution so your file fits precisely under the required upload ceiling.
@@ -274,10 +276,10 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                   <strong>JPG / JPEG:</strong> Uses lossy discrete cosine transform (DCT) optimization to discard imperceptible color data. Ideal for portraits, camera photos, and exam forms.
                 </li>
                 <li>
-                  <strong>PNG:</strong> Applies palette quantization and lossless DEFLATE compression to maintain crisp transparent logos and signatures without background artifacts.
+                  <strong>PNG:</strong> Preserves transparency. Reaching a small size target may require reducing pixel dimensions; verify that text and edges remain readable.
                 </li>
                 <li>
-                  <strong>WebP:</strong> Modern web standard that delivers 25%–35% smaller file sizes than comparable JPG files while retaining high visual fidelity.
+                  <strong>WebP:</strong> Supports adjustable lossy compression and transparency. File-size savings depend on the image and chosen settings.
                 </li>
               </ul>
             </div>
@@ -287,7 +289,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 <span className="text-emerald-500">🔒</span> 100% Private Browser Execution (Zero Server Upload)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Traditional online image compression websites require uploading your personal documents, ID cards, and signatures to their remote cloud servers, posing significant privacy and security hazards.
+                This tool processes the selected image in your browser. Keep a backup of the original and check readability before sharing the compressed copy.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Zubware Image Compressor operates completely inside your local browser memory using <strong>HTML5 Canvas and WebAssembly</strong>. Your files are decoded, compressed, and encoded directly on your CPU/GPU, ensuring your sensitive data never leaves your device.
@@ -1038,7 +1040,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                   Image Compressor →
                 </span>
                 <span className="text-slate-500 dark:text-slate-400 text-[11px]">
-                  Compress JPG/PNG files to exact KB targets without quality loss.
+                  Compress JPG/PNG files toward a KB target and check the resulting quality.
                 </span>
               </a>
 
@@ -1167,11 +1169,10 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 A simple division of elapsed days by 365 gives an approximate decimal age, not a calendar-based age in years, months, and days. This calculator derives the displayed age from the dates entered:
               </p>
               <ol className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-1.5 list-decimal list-inside">
-                <li>Calculate the year difference: <code>targetYear - birthYear</code>.</li>
-                <li>Calculate the month difference: <code>targetMonth - birthMonth</code>.</li>
-                <li>Calculate the day difference: <code>targetDay - birthDay</code>.</li>
-                <li>If <code>targetDay &lt; birthDay</code>, borrow the exact day count from the preceding calendar month (including 29 days in a leap year February) and decrement months by 1.</li>
-                <li>If <code>targetMonth &lt; birthMonth</code>, borrow 12 months from the year count and decrement years by 1.</li>
+                <li>Find the last completed monthly anniversary of the birth date.</li>
+                <li>If the birth day does not exist in that month, use its last valid day. For example, January 31 to February 28 counts as one month in a non-leap year.</li>
+                <li>Split completed months into years and remaining months, then count calendar days from that anniversary to the reference date.</li>
+                <li>February 29 birthdays use February 28 in non-leap years in this calculator. Follow the relevant authority's rules for official eligibility.</li>
               </ol>
             </div>
           </div>
@@ -1958,43 +1959,13 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
         </div>
       </section>
 
-      {/* 5. HIGH-INTENT SEARCH QUERIES & PRESETS (SEO, AEO & GEO DISCOVERY) */}
-      {tool.tags && tool.tags.length > 0 && (
-        <section className="glass-panel p-6 sm:p-8 rounded-3xl space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/60 pb-3">
-            <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="text-rose-500">⚡</span> Popular Search Queries & Target Use Cases
-            </h2>
-            <span className="text-[11px] font-semibold text-slate-500 dark:text-slate-400">
-              Verified Intent Keywords
-            </span>
-          </div>
-          <p className="text-xs text-slate-600 dark:text-slate-400">
-            People frequently search for and use <strong>{tool.title}</strong> for the following specific file requirements, government portal uploads, and format conversions:
-          </p>
-          <div className="flex flex-wrap gap-2 pt-1">
-            {tool.tags
-              .filter(tag => !['Free', 'Online', 'Tool', 'Image', 'PDF', 'Photo'].includes(tag))
-              .slice(0, 16)
-              .map((tag, idx) => (
-              <span
-                key={idx}
-                className="px-3 py-1.5 rounded-xl text-xs font-semibold bg-white/80 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 text-slate-700 dark:text-slate-300 shadow-2xs hover:border-indigo-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </section>
-      )}
-
       {/* 6. CRAWLABLE RELATED TOOLS INTERNAL LINKING */}
       {relatedTools.length > 0 && (
         <section className="glass-panel p-6 sm:p-10 rounded-3xl">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 pb-4 border-b border-slate-200/60 dark:border-slate-800/60">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                Internal Ecosystem Links
+                Continue your task
               </span>
               <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white mt-1">
                 Related {tool.category.replace(/^[^\w]+/, '').replace(/\s*Tools$/i, '')} Tools

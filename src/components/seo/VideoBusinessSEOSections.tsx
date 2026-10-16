@@ -89,7 +89,7 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
                 </h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Toggle the microphone icon to transcribe spoken words directly into caption cards via your browser&apos;s native Web Speech API (in Chrome, Edge, and Safari). Voice recognition transcribes speech on your local device without requiring paid third-party AI transcription tokens.
+                Toggle the microphone icon to transcribe spoken words directly into caption cards via your browser&apos;s native Web Speech API (in Chrome, Edge, and Safari). Optional dictation listens to your microphone, not the uploaded video. Your browser may send audio to its speech recognition provider. Manual captions remain available without microphone access.
               </p>
             </div>
 
@@ -144,7 +144,7 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
               Workflow Verification &amp; Privacy Architecture
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Unlike cloud SaaS transcription platforms that store confidential product videos and customer interviews on third-party servers, Zubware creates in-browser blob URLs. Video playback runs inside an HTML5 video element on your graphics card. No video byte, microphone dictation buffer, or caption line is ever transferred to remote servers.
+              Unlike cloud SaaS transcription platforms that store confidential product videos and customer interviews on third-party servers, Zubware creates in-browser blob URLs. Video playback runs inside an HTML5 video element on your graphics card. Uploaded video playback and manual caption editing stay local. Optional microphone dictation may send audio to the browser provider for speech recognition.
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
               <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Complementary Video Workflows:</span>
@@ -935,10 +935,10 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
               United States Federal &amp; State Taxation Modeling
             </span>
             <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              US Income Tax Calculator: 2025–2026 Federal &amp; State Tax Brackets &amp; FICA
+              US Income Tax Calculator: 2025–2026 Federal Brackets &amp; Employee FICA
             </h2>
             <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-4xl leading-relaxed">
-              Understanding paycheck withholding requires modeling progressive federal tax brackets, standard deductions, FICA payroll taxes, and state income tax rules across all 50 states. Zubware’s US Income Tax Calculator implements official IRS Tax Year 2025 brackets (IRS Revenue Procedure 2024-40) and projected 2026 adjustments. Compute taxable income across Single, Married Filing Jointly, Married Separate, and Head of Household statuses, evaluate effective versus marginal rates, and calculate take-home pay per paycheck.
+              Understanding paycheck withholding requires modeling progressive federal tax brackets, standard deductions, FICA payroll taxes, and an optional effective state tax rate. Zubware’s US Income Tax Calculator implements official IRS Tax Year 2025 brackets (IRS Revenue Procedure 2024-40) and official 2026 brackets (IRS Revenue Procedure 2025-32). Compute taxable income across Single, Married Filing Jointly, Married Separate, and Head of Household statuses, evaluate effective versus marginal rates, and calculate take-home pay per paycheck.
             </p>
           </div>
 
@@ -953,7 +953,7 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
                 </h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Implements official IRS inflation-adjusted progressive brackets (10%, 12%, 22%, 24%, 32%, 35%, 37%) and standard deductions: Single ($15,000 for 2025 / $15,400 for 2026) and Married Filing Jointly ($30,000 for 2025 / $30,800 for 2026).
+                Implements official IRS inflation-adjusted progressive brackets (10%, 12%, 22%, 24%, 32%, 35%, 37%) and standard deductions: Single ($15,750 for 2025 / $16,100 for 2026) and Married Filing Jointly ($31,500 for 2025 / $32,200 for 2026).
               </p>
             </div>
 
@@ -967,7 +967,7 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
                 </h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Calculates mandatory federal payroll deductions: 6.2% Social Security up to the IRS wage cap ($176,100 for 2025), 1.45% Medicare on all earned income, and the 0.9% Additional Medicare surtax on income over $200,000 ($250,000 MFJ).
+                Calculates mandatory federal payroll deductions: 6.2% Social Security up to the SSA wage base ($176,100 for 2025; $184,500 for 2026), 1.45% Medicare on all earned income, and the 0.9% Additional Medicare surtax on income over $200,000 ($250,000 MFJ).
               </p>
             </div>
 
@@ -977,11 +977,11 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
                   <Building2 className="w-5 h-5" />
                 </span>
                 <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  50-State Income Tax Rules
+                  Optional Effective State Rate
                 </h3>
               </div>
               <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Models 0% state income tax states (Texas, Florida, Washington, Nevada, Tennessee, Alaska, South Dakota, Wyoming), flat income tax states (Pennsylvania 3.07%, North Carolina, Illinois), and progressive tax systems (California up to 13.3%, New York).
+                Enter your own effective state rate for a rough estimate applied to federal taxable income. State-specific brackets, deductions and local taxes are not modeled. Leaving this at zero excludes state tax from the estimate.
               </p>
             </div>
           </div>
@@ -1048,7 +1048,7 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
               Key Clarification: Marginal vs. Effective Tax Rates
             </h3>
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              If a single taxpayer earns $80,000, their marginal tax rate is 22%. However, after taking the $15,000 standard deduction, their taxable income is $65,000. Their first $11,925 is taxed at only 10%, the next $36,550 at 12%, and only the remaining $16,525 at 22%. Their total federal tax is approximately $9,214, representing an <strong>effective federal tax rate of just ~11.5%</strong>. Never assume your entire salary is taxed at your top bracket rate.
+              If a single taxpayer earns $80,000, their marginal tax rate is 22%. However, after taking the $15,750 standard deduction, their taxable income is $64,250. Their first $11,925 is taxed at only 10%, the next $36,550 at 12%, and only the remaining $15,775 at 22%. Their total federal tax is approximately $9,049, representing an <strong>effective federal tax rate of just ~11.3%</strong>. Never assume your entire salary is taxed at your top bracket rate.
             </p>
           </div>
         </section>

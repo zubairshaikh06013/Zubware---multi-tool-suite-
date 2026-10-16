@@ -95,9 +95,8 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
 
     // Meta directives
     setMeta('name', 'description', description);
-    if (toolMeta?.tags && toolMeta.tags.length > 0) {
-      setMeta('name', 'keywords', toolMeta.tags.join(', '));
-    }
+    // Search tags support the site's own search; Google does not use meta keywords.
+    document.querySelectorAll('meta[name="keywords"]').forEach(el => el.remove());
     setMeta('name', 'robots', robots);
     setMeta('name', 'googlebot', robots);
     // Google Search Console verification token for Zubware

@@ -4,6 +4,15 @@ import { ToolMeta, BlogArticle } from '../types';
  * Curated workflow clusters mapping specific tools to next-step or companion utilities.
  */
 export const WORKFLOW_MAP: Record<string, string[]> = {
+  // Date calculations belong with dates, not CSS tools in the broad Design category.
+  'age-calculator': ['working-days-calculator', 'countdown-calculator', 'time-zone-converter', 'cat-age-calculator'],
+  'college-gpa-calculator': ['cgpa-calculator', 'exam-score-calculator', 'percentage-calculator'],
+  'signature-maker': ['signature-resizer', 'pdf-signature', 'photo-signature-joiner'],
+  'photo-name-date-joiner': ['photo-signature-joiner', 'signature-resizer', 'passport-photo-maker'],
+  'subtitle-generator': ['video-trimmer', 'video-compressor', 'video-aspect-ratio', 'video-to-audio'],
+  'video-compressor': ['video-trimmer', 'video-aspect-ratio', 'video-to-audio', 'video-to-gif'],
+  'json-validator': ['json-formatter', 'json-viewer', 'json-minifier', 'json-to-csv'],
+  'pdf-to-excel': ['pdf-to-text', 'pdf-to-word', 'csv-viewer', 'csv-to-json'],
   // PDF Workflow Clusters
   'pdf-compressor': ['decrease-pdf-size', 'pdf-size-adjuster', 'pdf-merge', 'pdf-split', 'edit-pdf', 'protect-pdf'],
   'decrease-pdf-size': ['pdf-compressor', 'pdf-size-adjuster', 'pdf-merge', 'pdf-split', 'protect-pdf'],
@@ -114,6 +123,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
  * Returns 4 to 6 genuinely related, non-duplicate, non-orphaned tools for any tool in the suite.
  */
 export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: number = 6): ToolMeta[] {
+  if (maxCount <= 0) return [];
   const result: ToolMeta[] = [];
   const seenIds = new Set<string>([tool.id]);
 
@@ -129,19 +139,23 @@ export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: 
     }
   }
 
-  // 2. High tag overlap within same or related category
-  const toolTags = new Set(tool.tags || []);
+  // Generated tags contain broad terms such as "Free", "Generator" and "Design".
+  // Those made an age calculator recommend CSS tools. Match specific concepts instead.
+  const genericWords = new Set(['free', 'online', 'tool', 'tools', 'generator', 'calculator', 'converter', 'builder', 'maker', 'to', 'and', 'the', 'for', 'with', 'without', 'browser', 'client', 'side', 'best']);
+  const concepts = (t: ToolMeta) => new Set(
+    `${t.id} ${t.navTitle || ''}`.toLowerCase().split(/[^a-z0-9]+/)
+      .filter(word => word.length > 1 && !genericWords.has(word))
+  );
+  const toolTags = concepts(tool);
   if (toolTags.size > 0) {
     const scoredTools = allTools
       .filter((t) => !seenIds.has(t.id))
       .map((t) => {
         let score = 0;
-        if (t.category === tool.category) score += 2;
-        if (t.tags) {
-          for (const tag of t.tags) {
-            if (toolTags.has(tag)) score += 3;
-          }
+        for (const tag of concepts(t)) {
+          if (toolTags.has(tag)) score += 3;
         }
+        if (score > 0 && t.category === tool.category) score += 1;
         return { tool: t, score };
       })
       .filter((item) => item.score > 0)
@@ -154,7 +168,10 @@ export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: 
     }
   }
 
-  // 3. Category fill to guarantee minimum link density
+  // A curated workflow is more useful than padding it with unrelated links.
+  if (workflowIds.length > 0) return result.slice(0, maxCount);
+
+  // 3. Category fallback for tools without a curated workflow.
   const cleanCat = tool.category.replace(/^[^\w]+/, '').trim().toLowerCase();
   for (const t of allTools) {
     if (seenIds.has(t.id)) continue;
@@ -163,17 +180,6 @@ export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: 
       result.push(t);
       seenIds.add(t.id);
       if (result.length >= maxCount) return result;
-    }
-  }
-
-  // 4. Fallback from general popular tools if category is very small
-  if (result.length < 3) {
-    for (const t of allTools) {
-      if (!seenIds.has(t.id)) {
-        result.push(t);
-        seenIds.add(t.id);
-        if (result.length >= maxCount) break;
-      }
     }
   }
 
@@ -208,7 +214,9 @@ export function getMatchingGuidesForTool(tool: ToolMeta, articles: BlogArticle[]
   const seenSlugs = new Set(explicit.map((a) => a.slug));
 
   // 2. Articles matching category keyword
-  const toolCatWords = tool.category.toLowerCase().replace(/^[^\w]+/, '').trim().split(/\s+/);
+  const genericCategories = new Set(['tools', 'tool', 'utility', 'utilities', 'design', 'calculators', 'calculator']);
+  const toolCatWords = tool.category.toLowerCase().replace(/^[^\w]+/, '').trim().split(/\s+/)
+    .filter(word => !genericCategories.has(word));
   for (const a of articles) {
     if (seenSlugs.has(a.slug)) continue;
     const artCat = a.category.toLowerCase();

@@ -34,3 +34,8 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Check TypeScript and regressions
+        run: |
+          npm run lint
+          node --import tsx scripts/testSeoRegressions.ts
+

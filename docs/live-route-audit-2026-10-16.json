@@ -1,0 +1,3746 @@
+{
+  "checkedAt": "2026-10-16",
+  "scope": "HTTP fetches, not interactive functional tests or Googlebot verification",
+  "pages": [
+    {
+      "url": "https://www.zubware.com/",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/",
+      "canonical": [
+        "https://www.zubware.com/"
+      ],
+      "h1Count": 1,
+      "seconds": 6.2
+    },
+    {
+      "url": "https://www.zubware.com/categories",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/categories",
+      "canonical": [
+        "https://www.zubware.com/categories"
+      ],
+      "h1Count": 1,
+      "seconds": 6.12
+    },
+    {
+      "url": "https://www.zubware.com/category/pdf-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/pdf-tools",
+      "canonical": [
+        "https://www.zubware.com/category/pdf-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 6.09
+    },
+    {
+      "url": "https://www.zubware.com/category/image-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/image-tools",
+      "canonical": [
+        "https://www.zubware.com/category/image-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 6.1
+    },
+    {
+      "url": "https://www.zubware.com/category/creator-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/creator-tools",
+      "canonical": [
+        "https://www.zubware.com/category/creator-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 6.19
+    },
+    {
+      "url": "https://www.zubware.com/category/video-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/video-tools",
+      "canonical": [
+        "https://www.zubware.com/category/video-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 6.16
+    },
+    {
+      "url": "https://www.zubware.com/category/audio-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/audio-tools",
+      "canonical": [
+        "https://www.zubware.com/category/audio-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/category/business-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/business-tools",
+      "canonical": [
+        "https://www.zubware.com/category/business-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/category/text-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/text-tools",
+      "canonical": [
+        "https://www.zubware.com/category/text-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/category/career-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/career-tools",
+      "canonical": [
+        "https://www.zubware.com/category/career-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/category/developer-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/developer-tools",
+      "canonical": [
+        "https://www.zubware.com/category/developer-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.34
+    },
+    {
+      "url": "https://www.zubware.com/category/design-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/design-tools",
+      "canonical": [
+        "https://www.zubware.com/category/design-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/category/prompt-tools",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/prompt-tools",
+      "canonical": [
+        "https://www.zubware.com/category/prompt-tools"
+      ],
+      "h1Count": 1,
+      "seconds": 7.85
+    },
+    {
+      "url": "https://www.zubware.com/category/health-fitness",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/health-fitness",
+      "canonical": [
+        "https://www.zubware.com/category/health-fitness"
+      ],
+      "h1Count": 1,
+      "seconds": 7.87
+    },
+    {
+      "url": "https://www.zubware.com/category/generators",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/category/generators",
+      "canonical": [
+        "https://www.zubware.com/category/generators"
+      ],
+      "h1Count": 1,
+      "seconds": 7.83
+    },
+    {
+      "url": "https://www.zubware.com/about",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/about",
+      "canonical": [
+        "https://www.zubware.com/about"
+      ],
+      "h1Count": 1,
+      "seconds": 7.72
+    },
+    {
+      "url": "https://www.zubware.com/privacy",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/privacy",
+      "canonical": [
+        "https://www.zubware.com/privacy"
+      ],
+      "h1Count": 1,
+      "seconds": 7.79
+    },
+    {
+      "url": "https://www.zubware.com/terms",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/terms",
+      "canonical": [
+        "https://www.zubware.com/terms"
+      ],
+      "h1Count": 1,
+      "seconds": 7.6
+    },
+    {
+      "url": "https://www.zubware.com/disclaimer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/disclaimer",
+      "canonical": [
+        "https://www.zubware.com/disclaimer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/contact",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/contact",
+      "canonical": [
+        "https://www.zubware.com/contact"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/help",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/help",
+      "canonical": [
+        "https://www.zubware.com/help"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/changelog",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/changelog",
+      "canonical": [
+        "https://www.zubware.com/changelog"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/feedback",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/feedback",
+      "canonical": [
+        "https://www.zubware.com/feedback"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/image-splitter-merger",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-splitter-merger",
+      "canonical": [
+        "https://www.zubware.com/image-splitter-merger"
+      ],
+      "h1Count": 1,
+      "seconds": 7.28
+    },
+    {
+      "url": "https://www.zubware.com/learning-licence-mock-test",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/learning-licence-mock-test",
+      "canonical": [
+        "https://www.zubware.com/learning-licence-mock-test"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/background-remover",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/background-remover",
+      "canonical": [
+        "https://www.zubware.com/background-remover"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/image-compressor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-compressor",
+      "canonical": [
+        "https://www.zubware.com/image-compressor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/image-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-converter",
+      "canonical": [
+        "https://www.zubware.com/image-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/image-resizer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-resizer",
+      "canonical": [
+        "https://www.zubware.com/image-resizer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/crop-image",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/crop-image",
+      "canonical": [
+        "https://www.zubware.com/crop-image"
+      ],
+      "h1Count": 1,
+      "seconds": 7.11
+    },
+    {
+      "url": "https://www.zubware.com/rotate-image",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/rotate-image",
+      "canonical": [
+        "https://www.zubware.com/rotate-image"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/flip-image",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/flip-image",
+      "canonical": [
+        "https://www.zubware.com/flip-image"
+      ],
+      "h1Count": 1,
+      "seconds": 7.52
+    },
+    {
+      "url": "https://www.zubware.com/image-watermark",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-watermark",
+      "canonical": [
+        "https://www.zubware.com/image-watermark"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/blur-image",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blur-image",
+      "canonical": [
+        "https://www.zubware.com/blur-image"
+      ],
+      "h1Count": 1,
+      "seconds": 7.38
+    },
+    {
+      "url": "https://www.zubware.com/pixelate-image",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pixelate-image",
+      "canonical": [
+        "https://www.zubware.com/pixelate-image"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/exif-remover",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/exif-remover",
+      "canonical": [
+        "https://www.zubware.com/exif-remover"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/color-picker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/color-picker",
+      "canonical": [
+        "https://www.zubware.com/color-picker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.64
+    },
+    {
+      "url": "https://www.zubware.com/image-info-viewer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-info-viewer",
+      "canonical": [
+        "https://www.zubware.com/image-info-viewer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/background-color-changer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/background-color-changer",
+      "canonical": [
+        "https://www.zubware.com/background-color-changer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/rounded-corners",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/rounded-corners",
+      "canonical": [
+        "https://www.zubware.com/rounded-corners"
+      ],
+      "h1Count": 1,
+      "seconds": 7.52
+    },
+    {
+      "url": "https://www.zubware.com/image-border",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-border",
+      "canonical": [
+        "https://www.zubware.com/image-border"
+      ],
+      "h1Count": 1,
+      "seconds": 7.34
+    },
+    {
+      "url": "https://www.zubware.com/image-frame",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-frame",
+      "canonical": [
+        "https://www.zubware.com/image-frame"
+      ],
+      "h1Count": 1,
+      "seconds": 7.38
+    },
+    {
+      "url": "https://www.zubware.com/image-collage",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-collage",
+      "canonical": [
+        "https://www.zubware.com/image-collage"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/favicon-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/favicon-generator",
+      "canonical": [
+        "https://www.zubware.com/favicon-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.44
+    },
+    {
+      "url": "https://www.zubware.com/svg-optimizer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/svg-optimizer",
+      "canonical": [
+        "https://www.zubware.com/svg-optimizer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/gif-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/gif-maker",
+      "canonical": [
+        "https://www.zubware.com/gif-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/batch-image-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/batch-image-converter",
+      "canonical": [
+        "https://www.zubware.com/batch-image-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/compression-comparison",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/compression-comparison",
+      "canonical": [
+        "https://www.zubware.com/compression-comparison"
+      ],
+      "h1Count": 1,
+      "seconds": 7.22
+    },
+    {
+      "url": "https://www.zubware.com/heic-to-jpg",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/heic-to-jpg",
+      "canonical": [
+        "https://www.zubware.com/heic-to-jpg"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/bulk-image-renamer-resizer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/bulk-image-renamer-resizer",
+      "canonical": [
+        "https://www.zubware.com/bulk-image-renamer-resizer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/passport-photo-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/passport-photo-maker",
+      "canonical": [
+        "https://www.zubware.com/passport-photo-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/matching-parts-video-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/matching-parts-video-maker",
+      "canonical": [
+        "https://www.zubware.com/matching-parts-video-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/lofi-song-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/lofi-song-maker",
+      "canonical": [
+        "https://www.zubware.com/lofi-song-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/lofi-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/lofi-maker",
+      "canonical": [
+        "https://www.zubware.com/lofi-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/slowed-and-reverb",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/slowed-and-reverb",
+      "canonical": [
+        "https://www.zubware.com/slowed-and-reverb"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/gst-invoice-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/gst-invoice-generator",
+      "canonical": [
+        "https://www.zubware.com/gst-invoice-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/pdf-merge",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-merge",
+      "canonical": [
+        "https://www.zubware.com/pdf-merge"
+      ],
+      "h1Count": 1,
+      "seconds": 7.21
+    },
+    {
+      "url": "https://www.zubware.com/pdf-split",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-split",
+      "canonical": [
+        "https://www.zubware.com/pdf-split"
+      ],
+      "h1Count": 1,
+      "seconds": 7.22
+    },
+    {
+      "url": "https://www.zubware.com/image-to-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-to-pdf",
+      "canonical": [
+        "https://www.zubware.com/image-to-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/pdf-to-images",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-to-images",
+      "canonical": [
+        "https://www.zubware.com/pdf-to-images"
+      ],
+      "h1Count": 1,
+      "seconds": 7.13
+    },
+    {
+      "url": "https://www.zubware.com/rotate-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/rotate-pdf",
+      "canonical": [
+        "https://www.zubware.com/rotate-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.52
+    },
+    {
+      "url": "https://www.zubware.com/delete-pdf-pages",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/delete-pdf-pages",
+      "canonical": [
+        "https://www.zubware.com/delete-pdf-pages"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/extract-pdf-pages",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/extract-pdf-pages",
+      "canonical": [
+        "https://www.zubware.com/extract-pdf-pages"
+      ],
+      "h1Count": 1,
+      "seconds": 7.65
+    },
+    {
+      "url": "https://www.zubware.com/reorder-pdf-pages",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/reorder-pdf-pages",
+      "canonical": [
+        "https://www.zubware.com/reorder-pdf-pages"
+      ],
+      "h1Count": 1,
+      "seconds": 7.57
+    },
+    {
+      "url": "https://www.zubware.com/pdf-watermark",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-watermark",
+      "canonical": [
+        "https://www.zubware.com/pdf-watermark"
+      ],
+      "h1Count": 1,
+      "seconds": 7.55
+    },
+    {
+      "url": "https://www.zubware.com/protect-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/protect-pdf",
+      "canonical": [
+        "https://www.zubware.com/protect-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.44
+    },
+    {
+      "url": "https://www.zubware.com/unlock-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/unlock-pdf",
+      "canonical": [
+        "https://www.zubware.com/unlock-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.5
+    },
+    {
+      "url": "https://www.zubware.com/pdf-metadata",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-metadata",
+      "canonical": [
+        "https://www.zubware.com/pdf-metadata"
+      ],
+      "h1Count": 1,
+      "seconds": 7.62
+    },
+    {
+      "url": "https://www.zubware.com/qr-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/qr-generator",
+      "canonical": [
+        "https://www.zubware.com/qr-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/resume-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-builder",
+      "canonical": [
+        "https://www.zubware.com/resume-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/ats-resume-checker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/ats-resume-checker",
+      "canonical": [
+        "https://www.zubware.com/ats-resume-checker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/resume-score-analyzer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-score-analyzer",
+      "canonical": [
+        "https://www.zubware.com/resume-score-analyzer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/cover-letter-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cover-letter-builder",
+      "canonical": [
+        "https://www.zubware.com/cover-letter-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.7
+    },
+    {
+      "url": "https://www.zubware.com/cover-letter-templates",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cover-letter-templates",
+      "canonical": [
+        "https://www.zubware.com/cover-letter-templates"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/cv-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cv-builder",
+      "canonical": [
+        "https://www.zubware.com/cv-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.85
+    },
+    {
+      "url": "https://www.zubware.com/resume-keyword-optimizer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-keyword-optimizer",
+      "canonical": [
+        "https://www.zubware.com/resume-keyword-optimizer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/resume-template-gallery",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-template-gallery",
+      "canonical": [
+        "https://www.zubware.com/resume-template-gallery"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/resume-version-manager",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-version-manager",
+      "canonical": [
+        "https://www.zubware.com/resume-version-manager"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/resume-import",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-import",
+      "canonical": [
+        "https://www.zubware.com/resume-import"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/resume-export",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-export",
+      "canonical": [
+        "https://www.zubware.com/resume-export"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/resume-completeness",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-completeness",
+      "canonical": [
+        "https://www.zubware.com/resume-completeness"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/resume-section-manager",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-section-manager",
+      "canonical": [
+        "https://www.zubware.com/resume-section-manager"
+      ],
+      "h1Count": 1,
+      "seconds": 7.21
+    },
+    {
+      "url": "https://www.zubware.com/professional-skill-library",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/professional-skill-library",
+      "canonical": [
+        "https://www.zubware.com/professional-skill-library"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/summary-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/summary-generator",
+      "canonical": [
+        "https://www.zubware.com/summary-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.14
+    },
+    {
+      "url": "https://www.zubware.com/resume-color-themes",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-color-themes",
+      "canonical": [
+        "https://www.zubware.com/resume-color-themes"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/experience-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/experience-calculator",
+      "canonical": [
+        "https://www.zubware.com/experience-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/notice-period-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/notice-period-calculator",
+      "canonical": [
+        "https://www.zubware.com/notice-period-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/salary-hike-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/salary-hike-calculator",
+      "canonical": [
+        "https://www.zubware.com/salary-hike-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.26
+    },
+    {
+      "url": "https://www.zubware.com/ctc-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/ctc-calculator",
+      "canonical": [
+        "https://www.zubware.com/ctc-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.23
+    },
+    {
+      "url": "https://www.zubware.com/working-days-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/working-days-calculator",
+      "canonical": [
+        "https://www.zubware.com/working-days-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/youtube-title-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-title-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-title-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/youtube-description-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-description-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-description-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/youtube-tags-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-tags-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-tags-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.56
+    },
+    {
+      "url": "https://www.zubware.com/youtube-hashtag-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-hashtag-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-hashtag-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/youtube-thumbnail-simulator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-thumbnail-simulator",
+      "canonical": [
+        "https://www.zubware.com/youtube-thumbnail-simulator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.34
+    },
+    {
+      "url": "https://www.zubware.com/youtube-banner-safe-area",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-banner-safe-area",
+      "canonical": [
+        "https://www.zubware.com/youtube-banner-safe-area"
+      ],
+      "h1Count": 1,
+      "seconds": 7.28
+    },
+    {
+      "url": "https://www.zubware.com/youtube-thumbnail-preview",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-thumbnail-preview",
+      "canonical": [
+        "https://www.zubware.com/youtube-thumbnail-preview"
+      ],
+      "h1Count": 1,
+      "seconds": 6.04
+    },
+    {
+      "url": "https://www.zubware.com/youtube-channel-name-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-channel-name-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-channel-name-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 5.89
+    },
+    {
+      "url": "https://www.zubware.com/youtube-video-idea-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-video-idea-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-video-idea-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 6.19
+    },
+    {
+      "url": "https://www.zubware.com/youtube-playlist-name-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-playlist-name-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-playlist-name-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 5.84
+    },
+    {
+      "url": "https://www.zubware.com/youtube-timestamp-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-timestamp-generator",
+      "canonical": [
+        "https://www.zubware.com/youtube-timestamp-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 5.75
+    },
+    {
+      "url": "https://www.zubware.com/youtube-description-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-description-formatter",
+      "canonical": [
+        "https://www.zubware.com/youtube-description-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 5.87
+    },
+    {
+      "url": "https://www.zubware.com/thumbnail-text-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/thumbnail-text-generator",
+      "canonical": [
+        "https://www.zubware.com/thumbnail-text-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.55
+    },
+    {
+      "url": "https://www.zubware.com/viral-hook-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/viral-hook-generator",
+      "canonical": [
+        "https://www.zubware.com/viral-hook-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/cta-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cta-generator",
+      "canonical": [
+        "https://www.zubware.com/cta-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.52
+    },
+    {
+      "url": "https://www.zubware.com/social-character-counter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/social-character-counter",
+      "canonical": [
+        "https://www.zubware.com/social-character-counter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/emoji-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/emoji-generator",
+      "canonical": [
+        "https://www.zubware.com/emoji-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/instagram-caption-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/instagram-caption-generator",
+      "canonical": [
+        "https://www.zubware.com/instagram-caption-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.2
+    },
+    {
+      "url": "https://www.zubware.com/instagram-hashtag-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/instagram-hashtag-generator",
+      "canonical": [
+        "https://www.zubware.com/instagram-hashtag-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.82
+    },
+    {
+      "url": "https://www.zubware.com/instagram-bio-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/instagram-bio-generator",
+      "canonical": [
+        "https://www.zubware.com/instagram-bio-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.87
+    },
+    {
+      "url": "https://www.zubware.com/instagram-username-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/instagram-username-generator",
+      "canonical": [
+        "https://www.zubware.com/instagram-username-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.73
+    },
+    {
+      "url": "https://www.zubware.com/tiktok-caption-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/tiktok-caption-generator",
+      "canonical": [
+        "https://www.zubware.com/tiktok-caption-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.64
+    },
+    {
+      "url": "https://www.zubware.com/tiktok-hashtag-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/tiktok-hashtag-generator",
+      "canonical": [
+        "https://www.zubware.com/tiktok-hashtag-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.71
+    },
+    {
+      "url": "https://www.zubware.com/facebook-caption-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/facebook-caption-generator",
+      "canonical": [
+        "https://www.zubware.com/facebook-caption-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.8
+    },
+    {
+      "url": "https://www.zubware.com/facebook-hashtag-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/facebook-hashtag-generator",
+      "canonical": [
+        "https://www.zubware.com/facebook-hashtag-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/linkedin-headline-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/linkedin-headline-generator",
+      "canonical": [
+        "https://www.zubware.com/linkedin-headline-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.54
+    },
+    {
+      "url": "https://www.zubware.com/linkedin-summary-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/linkedin-summary-generator",
+      "canonical": [
+        "https://www.zubware.com/linkedin-summary-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/twitter-bio-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/twitter-bio-generator",
+      "canonical": [
+        "https://www.zubware.com/twitter-bio-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.58
+    },
+    {
+      "url": "https://www.zubware.com/universal-hashtag-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/universal-hashtag-generator",
+      "canonical": [
+        "https://www.zubware.com/universal-hashtag-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/fancy-text-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/fancy-text-generator",
+      "canonical": [
+        "https://www.zubware.com/fancy-text-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/unicode-font-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/unicode-font-generator",
+      "canonical": [
+        "https://www.zubware.com/unicode-font-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/text-decorator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-decorator",
+      "canonical": [
+        "https://www.zubware.com/text-decorator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/emoji-combiner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/emoji-combiner",
+      "canonical": [
+        "https://www.zubware.com/emoji-combiner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/social-media-post-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/social-media-post-formatter",
+      "canonical": [
+        "https://www.zubware.com/social-media-post-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/social-bio-link-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/social-bio-link-builder",
+      "canonical": [
+        "https://www.zubware.com/social-bio-link-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/islamic-shorts-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/islamic-shorts-maker",
+      "canonical": [
+        "https://www.zubware.com/islamic-shorts-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/script-to-video-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/script-to-video-maker",
+      "canonical": [
+        "https://www.zubware.com/script-to-video-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/uuid-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/uuid-generator",
+      "canonical": [
+        "https://www.zubware.com/uuid-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/hash-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/hash-generator",
+      "canonical": [
+        "https://www.zubware.com/hash-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/jwt-decoder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/jwt-decoder",
+      "canonical": [
+        "https://www.zubware.com/jwt-decoder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/unix-timestamp-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/unix-timestamp-converter",
+      "canonical": [
+        "https://www.zubware.com/unix-timestamp-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/regex-tester",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/regex-tester",
+      "canonical": [
+        "https://www.zubware.com/regex-tester"
+      ],
+      "h1Count": 1,
+      "seconds": 7.3
+    },
+    {
+      "url": "https://www.zubware.com/json-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-formatter",
+      "canonical": [
+        "https://www.zubware.com/json-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/json-validator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-validator",
+      "canonical": [
+        "https://www.zubware.com/json-validator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/json-to-csv",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-to-csv",
+      "canonical": [
+        "https://www.zubware.com/json-to-csv"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/csv-to-json",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/csv-to-json",
+      "canonical": [
+        "https://www.zubware.com/csv-to-json"
+      ],
+      "h1Count": 1,
+      "seconds": 7.55
+    },
+    {
+      "url": "https://www.zubware.com/csv-viewer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/csv-viewer",
+      "canonical": [
+        "https://www.zubware.com/csv-viewer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.28
+    },
+    {
+      "url": "https://www.zubware.com/website-downloader",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/website-downloader",
+      "canonical": [
+        "https://www.zubware.com/website-downloader"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/html-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/html-formatter",
+      "canonical": [
+        "https://www.zubware.com/html-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/css-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/css-formatter",
+      "canonical": [
+        "https://www.zubware.com/css-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.58
+    },
+    {
+      "url": "https://www.zubware.com/javascript-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/javascript-formatter",
+      "canonical": [
+        "https://www.zubware.com/javascript-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/xml-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/xml-formatter",
+      "canonical": [
+        "https://www.zubware.com/xml-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.44
+    },
+    {
+      "url": "https://www.zubware.com/xml-validator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/xml-validator",
+      "canonical": [
+        "https://www.zubware.com/xml-validator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/url-parser",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/url-parser",
+      "canonical": [
+        "https://www.zubware.com/url-parser"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/url-encoder-decoder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/url-encoder-decoder",
+      "canonical": [
+        "https://www.zubware.com/url-encoder-decoder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/base64-encoder-decoder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/base64-encoder-decoder",
+      "canonical": [
+        "https://www.zubware.com/base64-encoder-decoder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/html-escape-unescape",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/html-escape-unescape",
+      "canonical": [
+        "https://www.zubware.com/html-escape-unescape"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/http-header-viewer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/http-header-viewer",
+      "canonical": [
+        "https://www.zubware.com/http-header-viewer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.5
+    },
+    {
+      "url": "https://www.zubware.com/api-request-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/api-request-builder",
+      "canonical": [
+        "https://www.zubware.com/api-request-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/color-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/color-converter",
+      "canonical": [
+        "https://www.zubware.com/color-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/qr-code-decoder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/qr-code-decoder",
+      "canonical": [
+        "https://www.zubware.com/qr-code-decoder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/css-gradient-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/css-gradient-generator",
+      "canonical": [
+        "https://www.zubware.com/css-gradient-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/box-shadow-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/box-shadow-generator",
+      "canonical": [
+        "https://www.zubware.com/box-shadow-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/border-radius-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/border-radius-generator",
+      "canonical": [
+        "https://www.zubware.com/border-radius-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/glassmorphism-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/glassmorphism-generator",
+      "canonical": [
+        "https://www.zubware.com/glassmorphism-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/neumorphism-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/neumorphism-generator",
+      "canonical": [
+        "https://www.zubware.com/neumorphism-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.28
+    },
+    {
+      "url": "https://www.zubware.com/css-clip-path-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/css-clip-path-generator",
+      "canonical": [
+        "https://www.zubware.com/css-clip-path-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/svg-shape-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/svg-shape-generator",
+      "canonical": [
+        "https://www.zubware.com/svg-shape-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.54
+    },
+    {
+      "url": "https://www.zubware.com/color-palette-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/color-palette-generator",
+      "canonical": [
+        "https://www.zubware.com/color-palette-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/contrast-checker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/contrast-checker",
+      "canonical": [
+        "https://www.zubware.com/contrast-checker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/random-color-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/random-color-generator",
+      "canonical": [
+        "https://www.zubware.com/random-color-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/qr-business-card-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/qr-business-card-generator",
+      "canonical": [
+        "https://www.zubware.com/qr-business-card-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/unit-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/unit-converter",
+      "canonical": [
+        "https://www.zubware.com/unit-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/percentage-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/percentage-calculator",
+      "canonical": [
+        "https://www.zubware.com/percentage-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/age-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/age-calculator",
+      "canonical": [
+        "https://www.zubware.com/age-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.24
+    },
+    {
+      "url": "https://www.zubware.com/emi-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/emi-calculator",
+      "canonical": [
+        "https://www.zubware.com/emi-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.21
+    },
+    {
+      "url": "https://www.zubware.com/discount-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/discount-calculator",
+      "canonical": [
+        "https://www.zubware.com/discount-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.38
+    },
+    {
+      "url": "https://www.zubware.com/currency-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/currency-calculator",
+      "canonical": [
+        "https://www.zubware.com/currency-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/tip-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/tip-calculator",
+      "canonical": [
+        "https://www.zubware.com/tip-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/random-number-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/random-number-generator",
+      "canonical": [
+        "https://www.zubware.com/random-number-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/random-password-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/random-password-generator",
+      "canonical": [
+        "https://www.zubware.com/random-password-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/number-to-words",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/number-to-words",
+      "canonical": [
+        "https://www.zubware.com/number-to-words"
+      ],
+      "h1Count": 1,
+      "seconds": 7.34
+    },
+    {
+      "url": "https://www.zubware.com/words-to-number",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/words-to-number",
+      "canonical": [
+        "https://www.zubware.com/words-to-number"
+      ],
+      "h1Count": 1,
+      "seconds": 7.22
+    },
+    {
+      "url": "https://www.zubware.com/roman-numeral-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/roman-numeral-converter",
+      "canonical": [
+        "https://www.zubware.com/roman-numeral-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/loan-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/loan-calculator",
+      "canonical": [
+        "https://www.zubware.com/loan-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/roi-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/roi-calculator",
+      "canonical": [
+        "https://www.zubware.com/roi-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/compound-interest-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/compound-interest-calculator",
+      "canonical": [
+        "https://www.zubware.com/compound-interest-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.5
+    },
+    {
+      "url": "https://www.zubware.com/chatgpt-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/chatgpt-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/chatgpt-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/gemini-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/gemini-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/gemini-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/claude-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/claude-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/claude-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/veo-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/veo-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/veo-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/midjourney-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/midjourney-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/midjourney-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.28
+    },
+    {
+      "url": "https://www.zubware.com/flux-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/flux-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/flux-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/stable-diffusion-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/stable-diffusion-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/stable-diffusion-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/logo-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/logo-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/logo-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/thumbnail-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/thumbnail-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/thumbnail-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.3
+    },
+    {
+      "url": "https://www.zubware.com/product-photo-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/product-photo-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/product-photo-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/interior-design-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/interior-design-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/interior-design-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.44
+    },
+    {
+      "url": "https://www.zubware.com/story-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/story-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/story-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/youtube-script-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/youtube-script-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/youtube-script-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.3
+    },
+    {
+      "url": "https://www.zubware.com/resume-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/resume-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/resume-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/cover-letter-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cover-letter-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/cover-letter-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/email-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/email-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/email-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/social-media-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/social-media-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/social-media-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.54
+    },
+    {
+      "url": "https://www.zubware.com/seo-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/seo-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/seo-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.52
+    },
+    {
+      "url": "https://www.zubware.com/coding-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/coding-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/coding-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/universal-prompt-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/universal-prompt-builder",
+      "canonical": [
+        "https://www.zubware.com/universal-prompt-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/qr-code-safety-checker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/qr-code-safety-checker",
+      "canonical": [
+        "https://www.zubware.com/qr-code-safety-checker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.38
+    },
+    {
+      "url": "https://www.zubware.com/weight-gain-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/weight-gain-calculator",
+      "canonical": [
+        "https://www.zubware.com/weight-gain-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/pdf-size-adjuster",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-size-adjuster",
+      "canonical": [
+        "https://www.zubware.com/pdf-size-adjuster"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/increase-pdf-size",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/increase-pdf-size",
+      "canonical": [
+        "https://www.zubware.com/increase-pdf-size"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/decrease-pdf-size",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/decrease-pdf-size",
+      "canonical": [
+        "https://www.zubware.com/decrease-pdf-size"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/pdf-compressor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-compressor",
+      "canonical": [
+        "https://www.zubware.com/pdf-compressor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/pdf-to-jpg",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-to-jpg",
+      "canonical": [
+        "https://www.zubware.com/pdf-to-jpg"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/edit-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/edit-pdf",
+      "canonical": [
+        "https://www.zubware.com/edit-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.61
+    },
+    {
+      "url": "https://www.zubware.com/text-to-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-to-pdf",
+      "canonical": [
+        "https://www.zubware.com/text-to-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.44
+    },
+    {
+      "url": "https://www.zubware.com/signature-maker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/signature-maker",
+      "canonical": [
+        "https://www.zubware.com/signature-maker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/signature-resizer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/signature-resizer",
+      "canonical": [
+        "https://www.zubware.com/signature-resizer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/photo-signature-joiner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/photo-signature-joiner",
+      "canonical": [
+        "https://www.zubware.com/photo-signature-joiner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.26
+    },
+    {
+      "url": "https://www.zubware.com/photo-name-date-joiner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/photo-name-date-joiner",
+      "canonical": [
+        "https://www.zubware.com/photo-name-date-joiner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.2
+    },
+    {
+      "url": "https://www.zubware.com/text-to-handwriting",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-to-handwriting",
+      "canonical": [
+        "https://www.zubware.com/text-to-handwriting"
+      ],
+      "h1Count": 1,
+      "seconds": 7.37
+    },
+    {
+      "url": "https://www.zubware.com/omr-sheet-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/omr-sheet-generator",
+      "canonical": [
+        "https://www.zubware.com/omr-sheet-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/pdf-to-word",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-to-word",
+      "canonical": [
+        "https://www.zubware.com/pdf-to-word"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/word-to-pdf",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/word-to-pdf",
+      "canonical": [
+        "https://www.zubware.com/word-to-pdf"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/pdf-to-text",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-to-text",
+      "canonical": [
+        "https://www.zubware.com/pdf-to-text"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/pdf-to-excel",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-to-excel",
+      "canonical": [
+        "https://www.zubware.com/pdf-to-excel"
+      ],
+      "h1Count": 1,
+      "seconds": 7.08
+    },
+    {
+      "url": "https://www.zubware.com/pdf-page-number",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-page-number",
+      "canonical": [
+        "https://www.zubware.com/pdf-page-number"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/pdf-compare",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-compare",
+      "canonical": [
+        "https://www.zubware.com/pdf-compare"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/pdf-signature",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pdf-signature",
+      "canonical": [
+        "https://www.zubware.com/pdf-signature"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/barcode-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/barcode-generator",
+      "canonical": [
+        "https://www.zubware.com/barcode-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.23
+    },
+    {
+      "url": "https://www.zubware.com/case-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/case-converter",
+      "canonical": [
+        "https://www.zubware.com/case-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.2
+    },
+    {
+      "url": "https://www.zubware.com/word-counter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/word-counter",
+      "canonical": [
+        "https://www.zubware.com/word-counter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.16
+    },
+    {
+      "url": "https://www.zubware.com/character-counter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/character-counter",
+      "canonical": [
+        "https://www.zubware.com/character-counter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/reading-time-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/reading-time-calculator",
+      "canonical": [
+        "https://www.zubware.com/reading-time-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/remove-duplicate-lines",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/remove-duplicate-lines",
+      "canonical": [
+        "https://www.zubware.com/remove-duplicate-lines"
+      ],
+      "h1Count": 1,
+      "seconds": 7.38
+    },
+    {
+      "url": "https://www.zubware.com/remove-empty-lines",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/remove-empty-lines",
+      "canonical": [
+        "https://www.zubware.com/remove-empty-lines"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/find-and-replace",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/find-and-replace",
+      "canonical": [
+        "https://www.zubware.com/find-and-replace"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/text-compare",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-compare",
+      "canonical": [
+        "https://www.zubware.com/text-compare"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/text-cleaner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-cleaner",
+      "canonical": [
+        "https://www.zubware.com/text-cleaner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/sort-lines",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/sort-lines",
+      "canonical": [
+        "https://www.zubware.com/sort-lines"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/lorem-ipsum-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/lorem-ipsum-generator",
+      "canonical": [
+        "https://www.zubware.com/lorem-ipsum-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/markdown-editor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/markdown-editor",
+      "canonical": [
+        "https://www.zubware.com/markdown-editor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.28
+    },
+    {
+      "url": "https://www.zubware.com/json-minifier",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-minifier",
+      "canonical": [
+        "https://www.zubware.com/json-minifier"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/json-to-xml",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-to-xml",
+      "canonical": [
+        "https://www.zubware.com/json-to-xml"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/xml-to-json",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/xml-to-json",
+      "canonical": [
+        "https://www.zubware.com/xml-to-json"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/markdown-to-html",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/markdown-to-html",
+      "canonical": [
+        "https://www.zubware.com/markdown-to-html"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/sql-formatter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/sql-formatter",
+      "canonical": [
+        "https://www.zubware.com/sql-formatter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/jwt-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/jwt-generator",
+      "canonical": [
+        "https://www.zubware.com/jwt-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/cron-expression-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cron-expression-generator",
+      "canonical": [
+        "https://www.zubware.com/cron-expression-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/hex-color-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/hex-color-generator",
+      "canonical": [
+        "https://www.zubware.com/hex-color-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/rgb-color-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/rgb-color-generator",
+      "canonical": [
+        "https://www.zubware.com/rgb-color-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.72
+    },
+    {
+      "url": "https://www.zubware.com/random-name-picker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/random-name-picker",
+      "canonical": [
+        "https://www.zubware.com/random-name-picker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.62
+    },
+    {
+      "url": "https://www.zubware.com/calorie-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/calorie-calculator",
+      "canonical": [
+        "https://www.zubware.com/calorie-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.64
+    },
+    {
+      "url": "https://www.zubware.com/business-name-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/business-name-generator",
+      "canonical": [
+        "https://www.zubware.com/business-name-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.68
+    },
+    {
+      "url": "https://www.zubware.com/brand-name-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/brand-name-generator",
+      "canonical": [
+        "https://www.zubware.com/brand-name-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.54
+    },
+    {
+      "url": "https://www.zubware.com/coin-flip",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/coin-flip",
+      "canonical": [
+        "https://www.zubware.com/coin-flip"
+      ],
+      "h1Count": 1,
+      "seconds": 7.68
+    },
+    {
+      "url": "https://www.zubware.com/json-viewer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-viewer",
+      "canonical": [
+        "https://www.zubware.com/json-viewer"
+      ],
+      "h1Count": 1,
+      "seconds": 5.76
+    },
+    {
+      "url": "https://www.zubware.com/name-picker-wheel",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/name-picker-wheel",
+      "canonical": [
+        "https://www.zubware.com/name-picker-wheel"
+      ],
+      "h1Count": 1,
+      "seconds": 5.8
+    },
+    {
+      "url": "https://www.zubware.com/loan-eligibility-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/loan-eligibility-calculator",
+      "canonical": [
+        "https://www.zubware.com/loan-eligibility-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 5.73
+    },
+    {
+      "url": "https://www.zubware.com/countdown-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/countdown-calculator",
+      "canonical": [
+        "https://www.zubware.com/countdown-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 5.73
+    },
+    {
+      "url": "https://www.zubware.com/online-stopwatch",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/online-stopwatch",
+      "canonical": [
+        "https://www.zubware.com/online-stopwatch"
+      ],
+      "h1Count": 1,
+      "seconds": 5.65
+    },
+    {
+      "url": "https://www.zubware.com/countdown-timer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/countdown-timer",
+      "canonical": [
+        "https://www.zubware.com/countdown-timer"
+      ],
+      "h1Count": 1,
+      "seconds": 5.72
+    },
+    {
+      "url": "https://www.zubware.com/online-clock",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/online-clock",
+      "canonical": [
+        "https://www.zubware.com/online-clock"
+      ],
+      "h1Count": 1,
+      "seconds": 7.57
+    },
+    {
+      "url": "https://www.zubware.com/time-zone-converter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/time-zone-converter",
+      "canonical": [
+        "https://www.zubware.com/time-zone-converter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/dice-roller",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/dice-roller",
+      "canonical": [
+        "https://www.zubware.com/dice-roller"
+      ],
+      "h1Count": 1,
+      "seconds": 7.6
+    },
+    {
+      "url": "https://www.zubware.com/down-payment-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/down-payment-calculator",
+      "canonical": [
+        "https://www.zubware.com/down-payment-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/cement-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cement-calculator",
+      "canonical": [
+        "https://www.zubware.com/cement-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.59
+    },
+    {
+      "url": "https://www.zubware.com/wavelength-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/wavelength-calculator",
+      "canonical": [
+        "https://www.zubware.com/wavelength-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/user-agent-parser",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/user-agent-parser",
+      "canonical": [
+        "https://www.zubware.com/user-agent-parser"
+      ],
+      "h1Count": 1,
+      "seconds": 7.73
+    },
+    {
+      "url": "https://www.zubware.com/mode-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/mode-calculator",
+      "canonical": [
+        "https://www.zubware.com/mode-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.72
+    },
+    {
+      "url": "https://www.zubware.com/inductance-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/inductance-calculator",
+      "canonical": [
+        "https://www.zubware.com/inductance-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.72
+    },
+    {
+      "url": "https://www.zubware.com/random-letter-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/random-letter-generator",
+      "canonical": [
+        "https://www.zubware.com/random-letter-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.77
+    },
+    {
+      "url": "https://www.zubware.com/water-intake-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/water-intake-calculator",
+      "canonical": [
+        "https://www.zubware.com/water-intake-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.55
+    },
+    {
+      "url": "https://www.zubware.com/json-to-yaml",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/json-to-yaml",
+      "canonical": [
+        "https://www.zubware.com/json-to-yaml"
+      ],
+      "h1Count": 1,
+      "seconds": 7.67
+    },
+    {
+      "url": "https://www.zubware.com/url-extractor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/url-extractor",
+      "canonical": [
+        "https://www.zubware.com/url-extractor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/bond-yield-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/bond-yield-calculator",
+      "canonical": [
+        "https://www.zubware.com/bond-yield-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/cat-age-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cat-age-calculator",
+      "canonical": [
+        "https://www.zubware.com/cat-age-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.34
+    },
+    {
+      "url": "https://www.zubware.com/exam-score-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/exam-score-calculator",
+      "canonical": [
+        "https://www.zubware.com/exam-score-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/cgpa-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/cgpa-calculator",
+      "canonical": [
+        "https://www.zubware.com/cgpa-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/college-gpa-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/college-gpa-calculator",
+      "canonical": [
+        "https://www.zubware.com/college-gpa-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/mileage-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/mileage-calculator",
+      "canonical": [
+        "https://www.zubware.com/mileage-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/paint-cost-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/paint-cost-calculator",
+      "canonical": [
+        "https://www.zubware.com/paint-cost-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/density-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/density-calculator",
+      "canonical": [
+        "https://www.zubware.com/density-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/screen-size-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/screen-size-calculator",
+      "canonical": [
+        "https://www.zubware.com/screen-size-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.42
+    },
+    {
+      "url": "https://www.zubware.com/torque-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/torque-calculator",
+      "canonical": [
+        "https://www.zubware.com/torque-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.26
+    },
+    {
+      "url": "https://www.zubware.com/linear-regression-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/linear-regression-calculator",
+      "canonical": [
+        "https://www.zubware.com/linear-regression-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/sha256-hash-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/sha256-hash-generator",
+      "canonical": [
+        "https://www.zubware.com/sha256-hash-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/us-income-tax-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/us-income-tax-calculator",
+      "canonical": [
+        "https://www.zubware.com/us-income-tax-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/personal-loan-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/personal-loan-calculator",
+      "canonical": [
+        "https://www.zubware.com/personal-loan-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/sale-price-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/sale-price-calculator",
+      "canonical": [
+        "https://www.zubware.com/sale-price-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/md5-hash-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/md5-hash-generator",
+      "canonical": [
+        "https://www.zubware.com/md5-hash-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.34
+    },
+    {
+      "url": "https://www.zubware.com/wide-text-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/wide-text-generator",
+      "canonical": [
+        "https://www.zubware.com/wide-text-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/typing-speed-test",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/typing-speed-test",
+      "canonical": [
+        "https://www.zubware.com/typing-speed-test"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/text-reverser",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-reverser",
+      "canonical": [
+        "https://www.zubware.com/text-reverser"
+      ],
+      "h1Count": 1,
+      "seconds": 7.57
+    },
+    {
+      "url": "https://www.zubware.com/remove-line-breaks",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/remove-line-breaks",
+      "canonical": [
+        "https://www.zubware.com/remove-line-breaks"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/remove-extra-spaces",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/remove-extra-spaces",
+      "canonical": [
+        "https://www.zubware.com/remove-extra-spaces"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/text-repeater",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-repeater",
+      "canonical": [
+        "https://www.zubware.com/text-repeater"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/text-splitter",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-splitter",
+      "canonical": [
+        "https://www.zubware.com/text-splitter"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/text-joiner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-joiner",
+      "canonical": [
+        "https://www.zubware.com/text-joiner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/email-extractor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/email-extractor",
+      "canonical": [
+        "https://www.zubware.com/email-extractor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.26
+    },
+    {
+      "url": "https://www.zubware.com/keyword-extractor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/keyword-extractor",
+      "canonical": [
+        "https://www.zubware.com/keyword-extractor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.25
+    },
+    {
+      "url": "https://www.zubware.com/html-entity-encoder-decoder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/html-entity-encoder-decoder",
+      "canonical": [
+        "https://www.zubware.com/html-entity-encoder-decoder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.23
+    },
+    {
+      "url": "https://www.zubware.com/text-to-binary",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-to-binary",
+      "canonical": [
+        "https://www.zubware.com/text-to-binary"
+      ],
+      "h1Count": 1,
+      "seconds": 7.14
+    },
+    {
+      "url": "https://www.zubware.com/binary-to-text",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/binary-to-text",
+      "canonical": [
+        "https://www.zubware.com/binary-to-text"
+      ],
+      "h1Count": 1,
+      "seconds": 7.04
+    },
+    {
+      "url": "https://www.zubware.com/text-to-hex",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-to-hex",
+      "canonical": [
+        "https://www.zubware.com/text-to-hex"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/hex-to-text",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/hex-to-text",
+      "canonical": [
+        "https://www.zubware.com/hex-to-text"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/css-minifier",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/css-minifier",
+      "canonical": [
+        "https://www.zubware.com/css-minifier"
+      ],
+      "h1Count": 1,
+      "seconds": 7.55
+    },
+    {
+      "url": "https://www.zubware.com/javascript-minifier",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/javascript-minifier",
+      "canonical": [
+        "https://www.zubware.com/javascript-minifier"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/html-minifier",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/html-minifier",
+      "canonical": [
+        "https://www.zubware.com/html-minifier"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/sql-minifier",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/sql-minifier",
+      "canonical": [
+        "https://www.zubware.com/sql-minifier"
+      ],
+      "h1Count": 1,
+      "seconds": 7.71
+    },
+    {
+      "url": "https://www.zubware.com/meta-tag-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/meta-tag-generator",
+      "canonical": [
+        "https://www.zubware.com/meta-tag-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/robots-txt-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/robots-txt-generator",
+      "canonical": [
+        "https://www.zubware.com/robots-txt-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/xml-sitemap-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/xml-sitemap-generator",
+      "canonical": [
+        "https://www.zubware.com/xml-sitemap-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.27
+    },
+    {
+      "url": "https://www.zubware.com/schema-markup-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/schema-markup-generator",
+      "canonical": [
+        "https://www.zubware.com/schema-markup-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.2
+    },
+    {
+      "url": "https://www.zubware.com/utm-builder",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/utm-builder",
+      "canonical": [
+        "https://www.zubware.com/utm-builder"
+      ],
+      "h1Count": 1,
+      "seconds": 7.26
+    },
+    {
+      "url": "https://www.zubware.com/scientific-calculator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/scientific-calculator",
+      "canonical": [
+        "https://www.zubware.com/scientific-calculator"
+      ],
+      "h1Count": 1,
+      "seconds": 6.95
+    },
+    {
+      "url": "https://www.zubware.com/handwriting-to-text",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/handwriting-to-text",
+      "canonical": [
+        "https://www.zubware.com/handwriting-to-text"
+      ],
+      "h1Count": 1,
+      "seconds": 7.89
+    },
+    {
+      "url": "https://www.zubware.com/image-to-text",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/image-to-text",
+      "canonical": [
+        "https://www.zubware.com/image-to-text"
+      ],
+      "h1Count": 1,
+      "seconds": 7.8
+    },
+    {
+      "url": "https://www.zubware.com/barcode-scanner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/barcode-scanner",
+      "canonical": [
+        "https://www.zubware.com/barcode-scanner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.91
+    },
+    {
+      "url": "https://www.zubware.com/calendar-notes",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/calendar-notes",
+      "canonical": [
+        "https://www.zubware.com/calendar-notes"
+      ],
+      "h1Count": 1,
+      "seconds": 7.88
+    },
+    {
+      "url": "https://www.zubware.com/clipboard-history",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/clipboard-history",
+      "canonical": [
+        "https://www.zubware.com/clipboard-history"
+      ],
+      "h1Count": 1,
+      "seconds": 7.92
+    },
+    {
+      "url": "https://www.zubware.com/daily-planner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/daily-planner",
+      "canonical": [
+        "https://www.zubware.com/daily-planner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.77
+    },
+    {
+      "url": "https://www.zubware.com/expense-tracker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/expense-tracker",
+      "canonical": [
+        "https://www.zubware.com/expense-tracker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/file-checksum-verifier",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/file-checksum-verifier",
+      "canonical": [
+        "https://www.zubware.com/file-checksum-verifier"
+      ],
+      "h1Count": 1,
+      "seconds": 7.45
+    },
+    {
+      "url": "https://www.zubware.com/habit-tracker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/habit-tracker",
+      "canonical": [
+        "https://www.zubware.com/habit-tracker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.36
+    },
+    {
+      "url": "https://www.zubware.com/monthly-budget-planner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/monthly-budget-planner",
+      "canonical": [
+        "https://www.zubware.com/monthly-budget-planner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.3
+    },
+    {
+      "url": "https://www.zubware.com/passphrase-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/passphrase-generator",
+      "canonical": [
+        "https://www.zubware.com/passphrase-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.22
+    },
+    {
+      "url": "https://www.zubware.com/password-strength-checker",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/password-strength-checker",
+      "canonical": [
+        "https://www.zubware.com/password-strength-checker"
+      ],
+      "h1Count": 1,
+      "seconds": 7.15
+    },
+    {
+      "url": "https://www.zubware.com/pomodoro-timer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/pomodoro-timer",
+      "canonical": [
+        "https://www.zubware.com/pomodoro-timer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.52
+    },
+    {
+      "url": "https://www.zubware.com/secure-notes",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/secure-notes",
+      "canonical": [
+        "https://www.zubware.com/secure-notes"
+      ],
+      "h1Count": 1,
+      "seconds": 7.43
+    },
+    {
+      "url": "https://www.zubware.com/sha-checksum-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/sha-checksum-generator",
+      "canonical": [
+        "https://www.zubware.com/sha-checksum-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/text-encrypt-decrypt",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/text-encrypt-decrypt",
+      "canonical": [
+        "https://www.zubware.com/text-encrypt-decrypt"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/todo-list",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/todo-list",
+      "canonical": [
+        "https://www.zubware.com/todo-list"
+      ],
+      "h1Count": 1,
+      "seconds": 7.35
+    },
+    {
+      "url": "https://www.zubware.com/weekly-planner",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/weekly-planner",
+      "canonical": [
+        "https://www.zubware.com/weekly-planner"
+      ],
+      "h1Count": 1,
+      "seconds": 7.16
+    },
+    {
+      "url": "https://www.zubware.com/random-text-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/random-text-generator",
+      "canonical": [
+        "https://www.zubware.com/random-text-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/subtitle-generator",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/subtitle-generator",
+      "canonical": [
+        "https://www.zubware.com/subtitle-generator"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/video-aspect-ratio",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/video-aspect-ratio",
+      "canonical": [
+        "https://www.zubware.com/video-aspect-ratio"
+      ],
+      "h1Count": 1,
+      "seconds": 7.54
+    },
+    {
+      "url": "https://www.zubware.com/video-compressor",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/video-compressor",
+      "canonical": [
+        "https://www.zubware.com/video-compressor"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/video-to-audio",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/video-to-audio",
+      "canonical": [
+        "https://www.zubware.com/video-to-audio"
+      ],
+      "h1Count": 1,
+      "seconds": 7.56
+    },
+    {
+      "url": "https://www.zubware.com/video-to-gif",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/video-to-gif",
+      "canonical": [
+        "https://www.zubware.com/video-to-gif"
+      ],
+      "h1Count": 1,
+      "seconds": 7.59
+    },
+    {
+      "url": "https://www.zubware.com/video-trimmer",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/video-trimmer",
+      "canonical": [
+        "https://www.zubware.com/video-trimmer"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/blog",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog",
+      "canonical": [
+        "https://www.zubware.com/blog"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/blog/how-to-compress-pdf-without-losing-readability",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/how-to-compress-pdf-without-losing-readability",
+      "canonical": [
+        "https://www.zubware.com/blog/how-to-compress-pdf-without-losing-readability"
+      ],
+      "h1Count": 1,
+      "seconds": 7.31
+    },
+    {
+      "url": "https://www.zubware.com/blog/merge-split-pdf-browser-workflow-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/merge-split-pdf-browser-workflow-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/merge-split-pdf-browser-workflow-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.29
+    },
+    {
+      "url": "https://www.zubware.com/blog/pdf-to-word-excel-conversion-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/pdf-to-word-excel-conversion-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/pdf-to-word-excel-conversion-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.3
+    },
+    {
+      "url": "https://www.zubware.com/blog/client-side-image-optimization-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/client-side-image-optimization-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/client-side-image-optimization-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.16
+    },
+    {
+      "url": "https://www.zubware.com/blog/passport-size-photo-maker-guidelines",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/passport-size-photo-maker-guidelines",
+      "canonical": [
+        "https://www.zubware.com/blog/passport-size-photo-maker-guidelines"
+      ],
+      "h1Count": 1,
+      "seconds": 7.74
+    },
+    {
+      "url": "https://www.zubware.com/blog/background-removal-ai-browser-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/background-removal-ai-browser-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/background-removal-ai-browser-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.79
+    },
+    {
+      "url": "https://www.zubware.com/blog/offline-developer-tools-privacy-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/offline-developer-tools-privacy-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/offline-developer-tools-privacy-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.7
+    },
+    {
+      "url": "https://www.zubware.com/blog/json-formatting-validation-debugging-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/json-formatting-validation-debugging-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/json-formatting-validation-debugging-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.73
+    },
+    {
+      "url": "https://www.zubware.com/blog/jwt-security-decoding-claims-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/jwt-security-decoding-claims-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/jwt-security-decoding-claims-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.75
+    },
+    {
+      "url": "https://www.zubware.com/blog/financial-calculators-sip-emi-gst-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/financial-calculators-sip-emi-gst-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/financial-calculators-sip-emi-gst-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.63
+    },
+    {
+      "url": "https://www.zubware.com/blog/compound-interest-wealth-accumulation-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/compound-interest-wealth-accumulation-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/compound-interest-wealth-accumulation-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.69
+    },
+    {
+      "url": "https://www.zubware.com/blog/emi-loan-amortization-strategies",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/emi-loan-amortization-strategies",
+      "canonical": [
+        "https://www.zubware.com/blog/emi-loan-amortization-strategies"
+      ],
+      "h1Count": 1,
+      "seconds": 7.51
+    },
+    {
+      "url": "https://www.zubware.com/blog/freelancer-gst-invoicing-tax-compliance",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/freelancer-gst-invoicing-tax-compliance",
+      "canonical": [
+        "https://www.zubware.com/blog/freelancer-gst-invoicing-tax-compliance"
+      ],
+      "h1Count": 1,
+      "seconds": 7.49
+    },
+    {
+      "url": "https://www.zubware.com/blog/clean-text-processing-formatting-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/clean-text-processing-formatting-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/clean-text-processing-formatting-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.48
+    },
+    {
+      "url": "https://www.zubware.com/blog/habit-tracking-science-daily-routines",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/habit-tracking-science-daily-routines",
+      "canonical": [
+        "https://www.zubware.com/blog/habit-tracking-science-daily-routines"
+      ],
+      "h1Count": 1,
+      "seconds": 7.84
+    },
+    {
+      "url": "https://www.zubware.com/blog/password-security-entropy-brute-force-math",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/password-security-entropy-brute-force-math",
+      "canonical": [
+        "https://www.zubware.com/blog/password-security-entropy-brute-force-math"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/blog/qr-code-security-phishing-prevention",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/qr-code-security-phishing-prevention",
+      "canonical": [
+        "https://www.zubware.com/blog/qr-code-security-phishing-prevention"
+      ],
+      "h1Count": 1,
+      "seconds": 7.69
+    },
+    {
+      "url": "https://www.zubware.com/blog/youtube-growth-metadata-thumbnails-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/youtube-growth-metadata-thumbnails-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/youtube-growth-metadata-thumbnails-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.68
+    },
+    {
+      "url": "https://www.zubware.com/blog/browser-video-audio-creation-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/browser-video-audio-creation-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/browser-video-audio-creation-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.75
+    },
+    {
+      "url": "https://www.zubware.com/blog/lofi-music-production-ambient-sound-design",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/lofi-music-production-ambient-sound-design",
+      "canonical": [
+        "https://www.zubware.com/blog/lofi-music-production-ambient-sound-design"
+      ],
+      "h1Count": 1,
+      "seconds": 7.66
+    },
+    {
+      "url": "https://www.zubware.com/blog/slowed-reverb-audio-trend-explained",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/slowed-reverb-audio-trend-explained",
+      "canonical": [
+        "https://www.zubware.com/blog/slowed-reverb-audio-trend-explained"
+      ],
+      "h1Count": 1,
+      "seconds": 7.7
+    },
+    {
+      "url": "https://www.zubware.com/blog/video-aspect-ratio-guide-reels-shorts-tiktok",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/video-aspect-ratio-guide-reels-shorts-tiktok",
+      "canonical": [
+        "https://www.zubware.com/blog/video-aspect-ratio-guide-reels-shorts-tiktok"
+      ],
+      "h1Count": 1,
+      "seconds": 7.41
+    },
+    {
+      "url": "https://www.zubware.com/blog/youtube-banner-safe-area-responsive-design",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/youtube-banner-safe-area-responsive-design",
+      "canonical": [
+        "https://www.zubware.com/blog/youtube-banner-safe-area-responsive-design"
+      ],
+      "h1Count": 1,
+      "seconds": 7.4
+    },
+    {
+      "url": "https://www.zubware.com/blog/viral-youtube-hooks-titles-psychology",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/viral-youtube-hooks-titles-psychology",
+      "canonical": [
+        "https://www.zubware.com/blog/viral-youtube-hooks-titles-psychology"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/blog/instagram-growth-hashtags-captions-strategy",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/instagram-growth-hashtags-captions-strategy",
+      "canonical": [
+        "https://www.zubware.com/blog/instagram-growth-hashtags-captions-strategy"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/blog/css-modern-styling-glassmorphism-gradients",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/css-modern-styling-glassmorphism-gradients",
+      "canonical": [
+        "https://www.zubware.com/blog/css-modern-styling-glassmorphism-gradients"
+      ],
+      "h1Count": 1,
+      "seconds": 7.3
+    },
+    {
+      "url": "https://www.zubware.com/blog/color-theory-accessible-contrast-palette-design",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/color-theory-accessible-contrast-palette-design",
+      "canonical": [
+        "https://www.zubware.com/blog/color-theory-accessible-contrast-palette-design"
+      ],
+      "h1Count": 1,
+      "seconds": 7.32
+    },
+    {
+      "url": "https://www.zubware.com/blog/ai-prompt-engineering-mastery-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/ai-prompt-engineering-mastery-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/ai-prompt-engineering-mastery-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.2
+    },
+    {
+      "url": "https://www.zubware.com/blog/ats-resume-optimization-career-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/ats-resume-optimization-career-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/ats-resume-optimization-career-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.68
+    },
+    {
+      "url": "https://www.zubware.com/blog/bmi-body-composition-tdee-health-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/bmi-body-composition-tdee-health-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/bmi-body-composition-tdee-health-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.71
+    },
+    {
+      "url": "https://www.zubware.com/blog/pdf-security-encryption-watermarking-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/pdf-security-encryption-watermarking-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/pdf-security-encryption-watermarking-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.67
+    },
+    {
+      "url": "https://www.zubware.com/blog/how-to-electronically-sign-pdf-contracts",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/how-to-electronically-sign-pdf-contracts",
+      "canonical": [
+        "https://www.zubware.com/blog/how-to-electronically-sign-pdf-contracts"
+      ],
+      "h1Count": 1,
+      "seconds": 7.98
+    },
+    {
+      "url": "https://www.zubware.com/blog/complete-image-formats-conversion-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/complete-image-formats-conversion-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/complete-image-formats-conversion-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.57
+    },
+    {
+      "url": "https://www.zubware.com/blog/remove-exif-metadata-photo-privacy-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/remove-exif-metadata-photo-privacy-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/remove-exif-metadata-photo-privacy-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.56
+    },
+    {
+      "url": "https://www.zubware.com/blog/json-xml-csv-yaml-data-transformation-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/json-xml-csv-yaml-data-transformation-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/json-xml-csv-yaml-data-transformation-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.53
+    },
+    {
+      "url": "https://www.zubware.com/blog/regex-tester-pattern-debugging-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/regex-tester-pattern-debugging-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/regex-tester-pattern-debugging-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.47
+    },
+    {
+      "url": "https://www.zubware.com/blog/cron-expression-generator-scheduling-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/cron-expression-generator-scheduling-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/cron-expression-generator-scheduling-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/blog/compress-convert-video-browser-ffmpeg-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/compress-convert-video-browser-ffmpeg-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/compress-convert-video-browser-ffmpeg-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.46
+    },
+    {
+      "url": "https://www.zubware.com/blog/salary-negotiation-ctc-hike-calculator-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/salary-negotiation-ctc-hike-calculator-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/salary-negotiation-ctc-hike-calculator-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.33
+    },
+    {
+      "url": "https://www.zubware.com/blog/linkedin-profile-headline-summary-optimization-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/linkedin-profile-headline-summary-optimization-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/linkedin-profile-headline-summary-optimization-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 6.97
+    },
+    {
+      "url": "https://www.zubware.com/blog/markdown-syntax-technical-writing-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/markdown-syntax-technical-writing-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/markdown-syntax-technical-writing-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.39
+    },
+    {
+      "url": "https://www.zubware.com/blog/diffusion-model-prompting-lighting-camera-guide",
+      "status": 200,
+      "finalUrl": "https://www.zubware.com/blog/diffusion-model-prompting-lighting-camera-guide",
+      "canonical": [
+        "https://www.zubware.com/blog/diffusion-model-prompting-lighting-camera-guide"
+      ],
+      "h1Count": 1,
+      "seconds": 7.23
+    }
+  ]
+}

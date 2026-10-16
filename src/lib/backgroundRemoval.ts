@@ -1,8 +1,6 @@
-import * as imglyModule from '@imgly/background-removal';
+import { removeBackground } from '@imgly/background-removal';
 import type { Config } from '@imgly/background-removal';
 
-const removeBackground: (image: any, config?: Config) => Promise<Blob> =
-  (imglyModule as any).removeBackground || (imglyModule as any).default || imglyModule;
 
 export interface BackgroundRemovalProgress {
   stage: 'Preparing AI...' | 'Removing Background...' | 'Finalizing...';

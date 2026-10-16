@@ -48,6 +48,9 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
           <p>
             For specialized network-dependent developer utilities (such as the API Request Builder, Website Downloader, and HTTP Header Viewer), requests connect directly from your browser to the external endpoints or URLs you specify. Zubware does not store your request payloads, responses, or headers on its servers.
           </p>
+          <p>
+            The Subtitle Generator offers optional microphone dictation. Depending on your browser, microphone audio may be sent to the browser provider's speech recognition service. This feature starts only when you select Voice Dictate and grant microphone permission. You can edit captions manually without using dictation; uploaded video playback and subtitle exports stay local.
+          </p>
         </section>
 
         <section className="space-y-3">

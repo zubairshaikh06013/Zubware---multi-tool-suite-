@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import { formatSubtitleTimestamp } from '../../../lib/subtitleTiming';
 import { Subtitles, Video, Upload, Download, Copy, Check, Plus, Trash2, Play, Pause, RefreshCw, Mic, Sparkles } from 'lucide-react';
 
 interface SubtitleLine {
@@ -24,6 +25,19 @@ export function SubtitleGeneratorTool({ onShowToast }: { onShowToast: (msg: stri
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const recognitionRef = useRef<any>(null);
 
+  useEffect(() => () => {
+    if (videoUrl) URL.revokeObjectURL(videoUrl);
+  }, [videoUrl]);
+
+  useEffect(() => () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.onend = null;
+      recognitionRef.current.onresult = null;
+      recognitionRef.current.onerror = null;
+      recognitionRef.current.abort();
+    }
+  }, []);
+
   const handleFile = (file: File) => {
     if (!file.type.startsWith('video/')) {
       onShowToast('Please upload a video file');
@@ -36,18 +50,11 @@ export function SubtitleGeneratorTool({ onShowToast }: { onShowToast: (msg: stri
   };
 
   const formatTimestampSrt = (secs: number): string => {
-    const h = Math.floor(secs / 3600);
-    const m = Math.floor((secs % 3600) / 60);
-    const s = Math.floor(secs % 60);
-    const ms = Math.floor((secs % 1) * 1000);
-    return `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')},${String(ms).padStart(3, '0')}`;
+    return formatSubtitleTimestamp(secs, ',');
   };
 
   const formatTimestampVtt = (secs: number): string => {
-    const m = Math.floor(secs / 60);
-    const s = Math.floor(secs % 60);
-    const ms = Math.floor((secs % 1) * 1000);
-    return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}.${String(ms).padStart(3, '0')}`;
+    return formatSubtitleTimestamp(secs, '.');
   };
 
   const addLine = () => {
@@ -88,7 +95,7 @@ export function SubtitleGeneratorTool({ onShowToast }: { onShowToast: (msg: stri
 
   // Generate SRT format
   const generateSrt = (): string => {
-    return subtitles
+    return [...subtitles]
       .sort((a, b) => a.start - b.start)
       .map((line, idx) => {
         return `${idx + 1}\n${formatTimestampSrt(line.start)} --> ${formatTimestampSrt(line.end)}\n${line.text}\n`;
@@ -98,7 +105,7 @@ export function SubtitleGeneratorTool({ onShowToast }: { onShowToast: (msg: stri
 
   // Generate WebVTT format
   const generateVtt = (): string => {
-    const body = subtitles
+    const body = [...subtitles]
       .sort((a, b) => a.start - b.start)
       .map((line) => {
         return `${formatTimestampVtt(line.start)} --> ${formatTimestampVtt(line.end)}\n${line.text}\n`;
@@ -168,10 +175,19 @@ export function SubtitleGeneratorTool({ onShowToast }: { onShowToast: (msg: stri
     };
 
     rec.onend = () => setIsRecording(false);
-    rec.start();
     recognitionRef.current = rec;
-    setIsRecording(true);
-    onShowToast('Listening for speech cues...');
+    rec.onerror = () => {
+      setIsRecording(false);
+      onShowToast('Dictation could not start or was interrupted. Check microphone permission and browser support, or type captions manually.');
+    };
+    try {
+      rec.start();
+      setIsRecording(true);
+      onShowToast('Listening to your microphone in English...');
+    } catch {
+      setIsRecording(false);
+      onShowToast('Dictation is unavailable. You can still type and export captions.');
+    }
   };
 
   const activeSubtitle = subtitles.find(
@@ -242,6 +258,10 @@ export function SubtitleGeneratorTool({ onShowToast }: { onShowToast: (msg: stri
             )}
           </div>
 
+          <p className="text-xs text-slate-600 dark:text-slate-400">
+            Voice Dictate listens to your microphone in English; it does not automatically transcribe the video.
+            Your browser may send microphone audio to its speech recognition provider. Use manual captions for confidential audio.
+          </p>
           {/* Quick Actions */}
           <div className="flex flex-wrap gap-2">
             <button

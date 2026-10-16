@@ -15345,7 +15345,7 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
   },
   {
     question: "How does the latest Income Tax Calculator calculate taxes for 2025 and 2026?",
-    answer: "The Income Tax Calculator includes the latest IRS federal brackets (Rev. Proc. 2024-40) and projected 2026 brackets with FICA withholdings for the US, as well as the newly revised Union Budget 2025-2026 New Tax Regime for India featuring the ₹75,000 standard deduction, revised slabs, and full Section 87A rebate (zero tax up to ₹12 Lakhs income)."
+    answer: "The Income Tax Calculator includes the 2025 IRS federal brackets (Rev. Proc. 2024-40) and official 2026 brackets (Rev. Proc. 2025-32) with FICA withholdings for the US, as well as the newly revised Union Budget 2025-2026 New Tax Regime for India featuring the ₹75,000 standard deduction, revised slabs, and full Section 87A rebate (zero tax up to ₹12 Lakhs income)."
   },
   {
     question: "What features are included in the upgraded PDF suite?",

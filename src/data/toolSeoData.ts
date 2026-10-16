@@ -183,7 +183,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "faq": [
       {
         "question": "How to compress image to 20KB, 50KB, or 100KB online?",
-        "answer": "Upload your JPG, PNG, or WebP photo into Zubware Image Compressor, select 'By Target Size (KB)' mode, and choose a preset button (20KB, 50KB, 100KB, or 200KB) or enter your exact required KB value. The tool automatically computes the optimal quality and dimensions to keep your photo under the selected limit without visible distortion."
+        "answer": "Upload your JPG, PNG, or WebP photo into Zubware Image Compressor, select 'By Target Size (KB)' mode, and choose a preset button (20KB, 50KB, 100KB, or 200KB) or enter your exact required KB value. The tool automatically computes the optimal quality and dimensions to keep your photo under the selected limit while balancing size and readability. Very small targets may require lower resolution or visible quality loss."
       },
       {
         "question": "Photo ka size kaise kam kare (How to reduce photo size)?",
@@ -8093,7 +8093,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Is my handwritten legal signature uploaded or stored on any server?",
-        "answer": "No. All canvas rendering, edge trimming, resizing, and JPEG compression take place 100% locally inside your web browser memory. Your personal handwritten signature is never transmitted across the internet or stored on Zubware servers, eliminating any risk of identity theft or forgery."
+        "answer": "No. All canvas rendering, edge trimming, resizing, and JPEG compression take place 100% locally inside your web browser memory. Your personal handwritten signature is never transmitted across the internet or stored on Zubware servers. Local processing reduces exposure from uploads, but does not prevent misuse of a signature you share or protect a compromised device."
       }
     ]
   },
@@ -11211,7 +11211,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {
         "title": "Enter Gross Annual Income",
-        "desc": "Input your total yearly earnings from W-2 salaries, 1099 contractor income, business profits, or tips before taxes."
+        "desc": "Enter annual W-2 wage income before taxes. Self-employment and investment tax calculations are not supported."
       },
       {
         "title": "Select Filing Status & Tax Year",
@@ -11219,11 +11219,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Apply Deductions & Retirement Contributions",
-        "desc": "Select the standard deduction or input custom pre-tax deductions including traditional 401(k), 403(b), Traditional IRA, HSA, and health insurance premiums."
+        "desc": "The selected filing status applies its standard deduction. Enter eligible 401(k), HSA and pre-tax health insurance contributions; contribution limits and eligibility are not checked."
       },
       {
-        "title": "Select State for State Income Tax",
-        "desc": "Choose any of the 50 US states (including 0% tax states like Texas, Florida, Nevada, Washington) or input a custom local income tax rate."
+        "title": "Set Optional Effective State Rate",
+        "desc": "Leave state tax at zero or enter a custom effective rate for a simplified estimate. State-specific brackets and local taxes are not modeled."
       },
       {
         "title": "Review Federal, FICA & Net Paycheck Breakdown",
@@ -11233,15 +11233,15 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "faq": [
       {
         "question": "Which tax year and brackets are implemented in this calculator?",
-        "answer": "This calculator models official IRS federal income tax brackets for Tax Year 2025 (IRS Revenue Procedure 2024-40) and projected Tax Year 2026 inflation adjustments (10%, 12%, 22%, 24%, 32%, 35%, and 37%), as well as historical 2024 reference rates."
+        "answer": "This calculator models official IRS federal income tax brackets for Tax Year 2025 (IRS Revenue Procedure 2024-40) and official Tax Year 2026 brackets (IRS Revenue Procedure 2025-32) (10%, 12%, 22%, 24%, 32%, 35%, and 37%), as well as historical 2024 reference rates."
       },
       {
         "question": "What are the official IRS standard deduction amounts for 2025 and 2026?",
-        "answer": "For 2025: Single ($15,000), Married Filing Jointly ($30,000), Married Filing Separately ($15,000), and Head of Household ($22,500). For 2026 projected: Single ($15,400), Married Filing Jointly ($30,800), Married Filing Separately ($15,400), and Head of Household ($23,100)."
+        "answer": "For 2025: Single ($15,750), Married Filing Jointly ($31,500), Married Filing Separately ($15,750), and Head of Household ($23,625). For 2026: Single ($16,100), Married Filing Jointly ($32,200), Married Filing Separately ($16,100), and Head of Household ($24,150)."
       },
       {
         "question": "What is the difference between Marginal Tax Rate and Effective Tax Rate?",
-        "answer": "Your Marginal Tax Rate is the highest federal bracket applied strictly to your last dollar of taxable income. Your Effective Tax Rate is the actual weighted average percentage of total income paid in tax (Total Tax Paid ÷ Gross Income × 100). Because lower brackets tax your first dollars at 10% and 12%, your effective tax rate is always substantially lower than your marginal tax rate."
+        "answer": "Your Marginal Tax Rate is the highest federal bracket applied strictly to your last dollar of taxable income. Your Effective Tax Rate is the actual weighted average percentage of total income paid in tax (Total Tax Paid ÷ Gross Income × 100). Because lower brackets tax your first dollars at 10% and 12%, your federal effective rate is usually lower than your federal marginal rate; a combined rate including state tax and FICA is a different measure."
       },
       {
         "question": "How do progressive federal tax brackets work?",
@@ -11257,7 +11257,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Which US states have 0% state income tax on earned wages?",
-        "answer": "Nine states do not levy a state income tax on individual earned wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. Selecting any of these states in the tool applies a 0% state tax rate."
+        "answer": "Nine states do not levy a state income tax on individual earned wages: Alaska, Florida, Nevada, New Hampshire, South Dakota, Tennessee, Texas, Washington, and Wyoming. Use the zero-rate option to exclude state tax; check your state rules separately."
       },
       {
         "question": "How do pre-tax contributions to a 401(k), HSA, or Traditional IRA reduce taxes?",
@@ -11277,7 +11277,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Does this calculator account for capital gains taxes or investment income?",
-        "answer": "This calculator focuses on ordinary earned income from wages, salaries, and operating business profits. Long-term capital gains and qualified dividends are taxed at preferential separate rates (0%, 15%, or 20%) under separate IRS rules."
+        "answer": "This calculator focuses on ordinary employee wage income; it does not model self-employment or investment tax. Long-term capital gains and qualified dividends are taxed at preferential separate rates (0%, 15%, or 20%) under separate IRS rules."
       },
       {
         "question": "Is my salary, deduction, or tax return data stored or shared with the IRS or third parties?",
@@ -13303,7 +13303,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Dictate with Live Speech Recognition",
-        "desc": "Toggle the microphone button to dictate captions in real time using your browser's native Web Speech API while video audio plays."
+        "desc": "Optionally select Voice Dictate to speak English captions into your microphone. This does not automatically transcribe the video and may use your browser provider's remote speech service."
       },
       {
         "title": "Export Standard SRT or WebVTT Files",
@@ -13321,11 +13321,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "How does the in-browser speech recognition feature work?",
-        "answer": "The tool uses your browser's native Web Speech API (supported in Google Chrome, Microsoft Edge, and Safari). When you click the microphone button, your browser transcribes your spoken words directly into caption lines without routing audio to third-party paid AI APIs."
+        "answer": "Optional dictation uses the microphone and the Web Speech API where supported. It does not automatically transcribe the uploaded video. Your browser may send microphone audio to its speech recognition service; use manual captions for confidential material."
       },
       {
         "question": "Does this subtitle generator send my video or audio files to an external server?",
-        "answer": "No. The video is rendered locally inside an HTML5 video element using browser object URLs. Your raw footage, audio streams, and subtitle text never leave your device, ensuring 100% privacy for confidential tutorials, unreleased footage, or internal business meetings."
+        "answer": "Uploaded video playback, manual caption editing, and SRT/VTT export take place locally. Optional Voice Dictate may send microphone audio to the browser provider for recognition. Keep dictation off when working with confidential audio."
       },
       {
         "question": "Can I edit subtitle timings down to milliseconds?",
@@ -13345,11 +13345,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Does the speech-to-text dictation feature support non-English languages?",
-        "answer": "The browser Web Speech API defaults to your operating system's active speech recognition language. In supported browsers, dictation recognizes speech in whatever primary language is set in your browser voice settings."
+        "answer": "Voice dictation is currently configured for English (en-US). You can type captions in other languages manually. Speech recognition availability varies by browser."
       },
       {
         "question": "Is there a duration or file size limit for videos loaded into the editor?",
-        "answer": "Because video playback uses local memory without cloud uploads, you can open short 30-second clips or feature-length 60-minute tutorials depending on your device RAM. Files under 1 GB load near-instantly."
+        "answer": "Because video playback uses local memory without cloud uploads, you can open short 30-second clips or feature-length 60-minute tutorials depending on your device RAM. Playback and loading depend on file encoding, browser support, and device resources."
       },
       {
         "question": "How do I copy all subtitle timestamps directly to my clipboard without downloading?",

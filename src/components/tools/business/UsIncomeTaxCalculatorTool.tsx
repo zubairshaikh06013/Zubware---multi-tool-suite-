@@ -1,3 +1,4 @@
+import { BRACKETS_2024, BRACKETS_2025, BRACKETS_2026, STANDARD_DEDUCTION_2024, STANDARD_DEDUCTION_2025, STANDARD_DEDUCTION_2026, SS_WAGE_CAPS, calculateFederalTax, type FilingStatus, type UsTaxYear } from '../../../lib/usTaxData';
 import React, { useState, useMemo } from 'react';
 import { 
   DollarSign, 
@@ -24,162 +25,6 @@ interface UsIncomeTaxCalculatorToolProps {
 }
 
 type CountryMode = 'us' | 'in';
-type FilingStatus = 'single' | 'married_joint' | 'married_separate' | 'head_of_household';
-type UsTaxYear = '2026' | '2025' | '2024';
-
-interface TaxBracket {
-  rate: number;
-  upTo: number;
-}
-
-// 2026 Projected Tax Brackets (IRS Inflation Adjusted)
-const BRACKETS_2026: Record<FilingStatus, TaxBracket[]> = {
-  single: [
-    { rate: 0.1, upTo: 12250 },
-    { rate: 0.12, upTo: 49800 },
-    { rate: 0.22, upTo: 106200 },
-    { rate: 0.24, upTo: 202800 },
-    { rate: 0.32, upTo: 257500 },
-    { rate: 0.35, upTo: 643500 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  married_joint: [
-    { rate: 0.1, upTo: 24500 },
-    { rate: 0.12, upTo: 99600 },
-    { rate: 0.22, upTo: 212400 },
-    { rate: 0.24, upTo: 405600 },
-    { rate: 0.32, upTo: 515000 },
-    { rate: 0.35, upTo: 772200 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  married_separate: [
-    { rate: 0.1, upTo: 12250 },
-    { rate: 0.12, upTo: 49800 },
-    { rate: 0.22, upTo: 106200 },
-    { rate: 0.24, upTo: 202800 },
-    { rate: 0.32, upTo: 257500 },
-    { rate: 0.35, upTo: 386100 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  head_of_household: [
-    { rate: 0.1, upTo: 17500 },
-    { rate: 0.12, upTo: 66650 },
-    { rate: 0.22, upTo: 106200 },
-    { rate: 0.24, upTo: 202800 },
-    { rate: 0.32, upTo: 257400 },
-    { rate: 0.35, upTo: 643500 },
-    { rate: 0.37, upTo: Infinity }
-  ]
-};
-
-const STANDARD_DEDUCTION_2026: Record<FilingStatus, number> = {
-  single: 15400,
-  married_joint: 30800,
-  married_separate: 15400,
-  head_of_household: 23100
-};
-
-// 2025 Official IRS Federal Tax Brackets (Rev. Proc. 2024-40)
-const BRACKETS_2025: Record<FilingStatus, TaxBracket[]> = {
-  single: [
-    { rate: 0.1, upTo: 11925 },
-    { rate: 0.12, upTo: 48475 },
-    { rate: 0.22, upTo: 103350 },
-    { rate: 0.24, upTo: 197300 },
-    { rate: 0.32, upTo: 250525 },
-    { rate: 0.35, upTo: 626350 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  married_joint: [
-    { rate: 0.1, upTo: 23850 },
-    { rate: 0.12, upTo: 96950 },
-    { rate: 0.22, upTo: 206700 },
-    { rate: 0.24, upTo: 394600 },
-    { rate: 0.32, upTo: 501050 },
-    { rate: 0.35, upTo: 751600 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  married_separate: [
-    { rate: 0.1, upTo: 11925 },
-    { rate: 0.12, upTo: 48475 },
-    { rate: 0.22, upTo: 103350 },
-    { rate: 0.24, upTo: 197300 },
-    { rate: 0.32, upTo: 250525 },
-    { rate: 0.35, upTo: 375800 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  head_of_household: [
-    { rate: 0.1, upTo: 17000 },
-    { rate: 0.12, upTo: 64850 },
-    { rate: 0.22, upTo: 103350 },
-    { rate: 0.24, upTo: 197300 },
-    { rate: 0.32, upTo: 250500 },
-    { rate: 0.35, upTo: 626350 },
-    { rate: 0.37, upTo: Infinity }
-  ]
-};
-
-const STANDARD_DEDUCTION_2025: Record<FilingStatus, number> = {
-  single: 15000,
-  married_joint: 30000,
-  married_separate: 15000,
-  head_of_household: 22500
-};
-
-// 2024 Reference Tax Brackets
-const BRACKETS_2024: Record<FilingStatus, TaxBracket[]> = {
-  single: [
-    { rate: 0.1, upTo: 11600 },
-    { rate: 0.12, upTo: 47150 },
-    { rate: 0.22, upTo: 100525 },
-    { rate: 0.24, upTo: 191950 },
-    { rate: 0.32, upTo: 243725 },
-    { rate: 0.35, upTo: 609350 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  married_joint: [
-    { rate: 0.1, upTo: 23200 },
-    { rate: 0.12, upTo: 94300 },
-    { rate: 0.22, upTo: 201050 },
-    { rate: 0.24, upTo: 383900 },
-    { rate: 0.32, upTo: 487450 },
-    { rate: 0.35, upTo: 731200 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  married_separate: [
-    { rate: 0.1, upTo: 11600 },
-    { rate: 0.12, upTo: 47150 },
-    { rate: 0.22, upTo: 100525 },
-    { rate: 0.24, upTo: 191950 },
-    { rate: 0.32, upTo: 243725 },
-    { rate: 0.35, upTo: 365600 },
-    { rate: 0.37, upTo: Infinity }
-  ],
-  head_of_household: [
-    { rate: 0.1, upTo: 16550 },
-    { rate: 0.12, upTo: 63100 },
-    { rate: 0.22, upTo: 100500 },
-    { rate: 0.24, upTo: 191950 },
-    { rate: 0.32, upTo: 243700 },
-    { rate: 0.35, upTo: 609350 },
-    { rate: 0.37, upTo: Infinity }
-  ]
-};
-
-const STANDARD_DEDUCTION_2024: Record<FilingStatus, number> = {
-  single: 14600,
-  married_joint: 29200,
-  married_separate: 14600,
-  head_of_household: 21900
-};
-
-// Social Security Wage Base caps
-const SS_WAGE_CAPS: Record<UsTaxYear, number> = {
-  '2026': 181800,
-  '2025': 176100,
-  '2024': 168600
-};
-
 interface StateTaxOption {
   code: string;
   name: string;
@@ -187,14 +32,8 @@ interface StateTaxOption {
 }
 
 const STATE_TAX_PRESETS: StateTaxOption[] = [
-  { code: 'none', name: 'No State Tax (TX, FL, WA, NV, TN, WY, SD, AK, NH)', rate: 0 },
-  { code: 'CA', name: 'California (~8.0% progressive avg)', rate: 8.0 },
-  { code: 'NY', name: 'New York (~6.2% progressive avg)', rate: 6.2 },
-  { code: 'IL', name: 'Illinois (4.95% flat rate)', rate: 4.95 },
-  { code: 'PA', name: 'Pennsylvania (3.07% flat rate)', rate: 3.07 },
-  { code: 'NC', name: 'North Carolina (4.50% flat rate)', rate: 4.50 },
-  { code: 'MA', name: 'Massachusetts (5.00% flat rate)', rate: 5.00 },
-  { code: 'custom', name: 'Custom State Rate (%)', rate: 5.0 }
+  { code: 'none', name: 'No state tax estimate (0%)', rate: 0 },
+  { code: 'custom', name: 'Custom effective state rate (%)', rate: 5.0 }
 ];
 
 export const UsIncomeTaxCalculatorTool: React.FC<UsIncomeTaxCalculatorToolProps> = ({ onShowToast }) => {
@@ -230,34 +69,9 @@ export const UsIncomeTaxCalculatorTool: React.FC<UsIncomeTaxCalculatorToolProps>
   const totalPreTaxDeductions = k401Contribution + hsaContribution + healthInsurancePreTax;
   const taxableIncome = Math.max(0, grossIncome - totalPreTaxDeductions - standardDeduction);
 
-  const { federalTax, bracketTiers, marginalRate } = useMemo(() => {
-    let tax = 0;
-    let prev = 0;
-    let mRate = 0.1;
-    const tiers: { rate: number; min: number; max: number; taxableInTier: number; taxForTier: number }[] = [];
-
-    for (const b of brackets) {
-      if (taxableIncome > prev) {
-        const taxableInTier = Math.min(taxableIncome - prev, b.upTo - prev);
-        const taxForTier = taxableInTier * b.rate;
-        tax += taxForTier;
-        mRate = b.rate;
-
-        tiers.push({
-          rate: b.rate,
-          min: prev,
-          max: b.upTo,
-          taxableInTier,
-          taxForTier
-        });
-        prev = b.upTo;
-      } else {
-        break;
-      }
-    }
-
-    return { federalTax: tax, bracketTiers: tiers, marginalRate: mRate };
-  }, [taxableIncome, brackets]);
+  const { federalTax, bracketTiers, marginalRate } = useMemo(
+    () => calculateFederalTax(taxableIncome, brackets), [taxableIncome, brackets]
+  );
 
   // FICA Taxes
   const socialSecurityTax = Math.min(grossIncome, ssWageCap) * 0.062;
@@ -457,7 +271,7 @@ RECOMMENDATION: ${betterRegime === 'new' ? `New Tax Regime saves you ₹${taxSav
     let text = '';
     if (countryMode === 'us') {
       text = `=== Zubware US Income Tax & Paycheck Report ===
-Tax Year: ${taxYear} (Latest IRS Schedules)
+Tax Year: ${taxYear} (Ordinary-income estimate)
 Generated: ${new Date().toLocaleDateString()}
 Gross Income: $${grossIncome.toLocaleString()}
 Filing Status: ${filingStatus}
@@ -500,15 +314,19 @@ Best Regime: ${indiaTaxResults.betterRegime.toUpperCase()} REGIME (Saves ₹${in
               {countryMode === 'us' ? `US Income Tax Calculator (${taxYear})` : 'Income Tax Calculator (FY 2025-26 / AY 2026)'}
             </h2>
             <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-              Latest Budget & IRS Brackets
+              Selected-year estimate
             </span>
           </div>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             {countryMode === 'us' 
-              ? 'Calculate progressive IRS federal tax brackets, FICA withholdings, state tax, and net paycheck pay.'
+              ? 'Estimate ordinary wage income tax, employee FICA and net pay. Optional state tax uses your effective rate, not state tax brackets.'
               : 'Calculate Union Budget 2025-2026 revised slabs, ₹75,000 standard deduction, Section 87A rebate (zero tax up to ₹12L), and Old vs New regime.'}
           </p>
         </div>
+
+        {countryMode === 'us' && <p className="text-xs text-slate-600 dark:text-slate-400 max-w-2xl">
+          Simplified wage estimate: excludes credits, itemized and age-based deductions, capital gains, self-employment tax and local rules. FICA uses gross wages; benefit-specific payroll treatment is not modeled. This is not a tax return or W-4 withholding calculation. Sources: <a className="underline" href="https://www.irs.gov/irb/2025-45_IRB" target="_blank" rel="noopener noreferrer">IRS 2026 schedules and updated 2025 deductions</a> and <a className="underline" href="https://www.ssa.gov/news/en/cola/factsheets/2026.html" target="_blank" rel="noopener noreferrer">SSA wage base</a>.
+        </p>}
 
         {/* Global Controls */}
         <div className="flex flex-wrap items-center gap-2">
@@ -542,7 +360,7 @@ Best Regime: ${indiaTaxResults.betterRegime.toUpperCase()} REGIME (Saves ₹${in
                     taxYear === yr ? 'bg-white dark:bg-slate-900 text-indigo-600 shadow-sm' : 'text-slate-500'
                   }`}
                 >
-                  {yr} {yr === '2026' ? '(Latest)' : ''}
+                  {yr}
                 </button>
               ))}
             </div>
@@ -657,7 +475,7 @@ Best Regime: ${indiaTaxResults.betterRegime.toUpperCase()} REGIME (Saves ₹${in
               {/* State Tax Selector */}
               <div className="sm:col-span-2 space-y-1.5 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <label className="text-xs font-bold text-slate-700 dark:text-slate-300 block">
-                  State Income Tax Selection
+                  Optional State Tax Estimate
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                   <select
@@ -680,7 +498,7 @@ Best Regime: ${indiaTaxResults.betterRegime.toUpperCase()} REGIME (Saves ₹${in
                         max="20"
                         step="0.1"
                         value={customStateRate}
-                        onChange={e => setCustomStateRate(Number(e.target.value))}
+                        onChange={e => setCustomStateRate(Math.min(20, Math.max(0, Number(e.target.value))))}
                         className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border font-bold text-xs text-center"
                       />
                       <span className="text-xs font-bold">%</span>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { calendarAge, calendarAnniversary } from '../../../lib/calendarAge';
 import { 
   Calendar, 
   Clock, 
@@ -56,26 +57,14 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       return null;
     }
 
-    let years = target.getFullYear() - birth.getFullYear();
-    let months = target.getMonth() - birth.getMonth();
-    let days = target.getDate() - birth.getDate();
-
-    if (days < 0) {
-      months--;
-      const prevMonthLastDay = new Date(target.getFullYear(), target.getMonth(), 0).getDate();
-      days += prevMonthLastDay;
-    }
-
-    if (months < 0) {
-      years--;
-      months += 12;
-    }
+    const age = calendarAge(birth, target);
+    if (!age) return null;
+    const { years, months, days, totalDays } = age;
 
     const toUtcDay = (date: Date) =>
       Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) /
       (24 * 60 * 60 * 1000);
 
-    const totalDays = toUtcDay(target) - toUtcDay(birth);
     const totalWeeks = Math.floor(totalDays / 7);
     const totalMonths = years * 12 + months;
     const totalHours = totalDays * 24;
@@ -86,9 +75,9 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
     const birthDayOfWeek = birth.toLocaleDateString('en-US', { weekday: 'long' });
 
     // Next Birthday
-    const nextBday = new Date(target.getFullYear(), birth.getMonth(), birth.getDate());
+    let nextBday = calendarAnniversary(birth, target.getFullYear());
     if (nextBday < target) {
-      nextBday.setFullYear(target.getFullYear() + 1);
+      nextBday = calendarAnniversary(birth, target.getFullYear() + 1);
     }
     const daysToNextBday = toUtcDay(nextBday) - toUtcDay(target);
     const nextBdayDayOfWeek = nextBday.toLocaleDateString('en-US', { weekday: 'long' });
@@ -196,11 +185,12 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       {/* Date Pickers */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="glass-card p-5 rounded-3xl space-y-2">
-          <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+          <label htmlFor="age-birth-date" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
             <Calendar className="w-4 h-4 text-indigo-500" />
             <span>Date of Birth</span>
           </label>
           <input
+            id="age-birth-date"
             type="date"
             value={dob}
             onChange={e => setDob(e.target.value)}
@@ -210,7 +200,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
 
         <div className="glass-card p-5 rounded-3xl space-y-2">
           <div className="flex items-center justify-between">
-            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+            <label htmlFor="age-reference-date" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-indigo-500" />
               <span>Age at Date (Reference Date)</span>
             </label>
@@ -223,6 +213,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             </button>
           </div>
           <input
+            id="age-reference-date"
             type="date"
             value={targetDate}
             onChange={e => setTargetDate(e.target.value)}
@@ -231,6 +222,9 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
         </div>
       </div>
 
+      <p className="text-xs text-slate-600 dark:text-slate-400">
+        Month-end dates use the last valid day of the destination month. A February 29 birthday uses February 28 in non-leap years here. Official eligibility rules may differ.
+      </p>
       {result ? (
         <div className="space-y-6">
           {/* Main Hero Age Display */}

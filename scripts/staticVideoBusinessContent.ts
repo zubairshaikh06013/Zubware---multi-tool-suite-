@@ -25,7 +25,7 @@ export function getStaticVideoBusinessSectionHtml(toolId: string, DOMAIN: string
               Browser Web Speech Dictation
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Toggle the microphone icon to transcribe spoken words directly into caption cards via your browser's native Web Speech API (in Chrome, Edge, and Safari). Voice recognition transcribes speech on your local device without requiring paid third-party AI transcription tokens.
+              Toggle the microphone icon to transcribe spoken words directly into caption cards via your browser's native Web Speech API (in Chrome, Edge, and Safari). Optional dictation listens to your microphone, not the uploaded video. Your browser may send audio to its speech recognition provider. Manual captions remain available without microphone access.
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -38,10 +38,10 @@ export function getStaticVideoBusinessSectionHtml(toolId: string, DOMAIN: string
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
             <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              100% Client-Side Video Privacy
+              Local Video Editing & Optional Dictation
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Video decoding and subtitle cue synchronization execute entirely inside your local browser session. Your video footage, microphone audio buffers, and caption text are never sent to remote cloud servers.
+              Video decoding and subtitle cue synchronization execute entirely inside your local browser session. Uploaded video playback and manual captions stay local. Optional microphone dictation may use an external speech recognition service.
             </p>
           </div>
         </div>
@@ -441,7 +441,7 @@ export function getStaticVideoBusinessSectionHtml(toolId: string, DOMAIN: string
       return `
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
         <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
-          US Income Tax Calculator: 2025–2026 Federal &amp; State Tax Brackets &amp; FICA
+          US Income Tax Calculator: 2025–2026 Federal Brackets &amp; Employee FICA
         </h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -449,7 +449,7 @@ export function getStaticVideoBusinessSectionHtml(toolId: string, DOMAIN: string
               Official 2025 &amp; 2026 IRS Brackets
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Implements official IRS inflation-adjusted progressive brackets (10%, 12%, 22%, 24%, 32%, 35%, 37%) and standard deductions: Single ($15,000 for 2025 / $15,400 for 2026) and Married Filing Jointly ($30,000 for 2025 / $30,800 for 2026).
+              Implements official IRS inflation-adjusted progressive brackets (10%, 12%, 22%, 24%, 32%, 35%, 37%) and standard deductions: Single ($15,750 for 2025 / $16,100 for 2026) and Married Filing Jointly ($31,500 for 2025 / $32,200 for 2026).
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -457,15 +457,15 @@ export function getStaticVideoBusinessSectionHtml(toolId: string, DOMAIN: string
               FICA Social Security &amp; Medicare
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Calculates mandatory federal payroll deductions: 6.2% Social Security up to the IRS wage cap ($176,100 for 2025), 1.45% Medicare on all earned income, and the 0.9% Additional Medicare surtax on income over $200,000 ($250,000 MFJ).
+              Calculates mandatory federal payroll deductions: 6.2% Social Security up to the SSA wage base ($176,100 for 2025; $184,500 for 2026), 1.45% Medicare on all earned income, and the 0.9% Additional Medicare surtax on income over $200,000 ($250,000 MFJ).
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
             <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              50-State Income Tax Rules
+              Optional Effective State Rate
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Models 0% state income tax states (Texas, Florida, Washington, Nevada, Tennessee, Alaska, South Dakota, Wyoming), flat income tax states (Pennsylvania 3.07%, North Carolina, Illinois), and progressive tax systems (California up to 13.3%, New York).
+              Enter your own effective state rate for a rough estimate applied to federal taxable income. State-specific brackets, deductions and local taxes are not modeled. Leaving this at zero excludes state tax from the estimate.
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">

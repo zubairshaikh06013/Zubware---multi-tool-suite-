@@ -4,6 +4,7 @@ import path from 'path';
 import fs from 'fs';
 import {defineConfig, Plugin} from 'vite';
 import { generateSeoHtmlAndSitemap } from './scripts/generateSeoAndSitemap';
+import { validateSeoBuild } from './scripts/validateSeoBuild';
 
 function generateToolPagesAndSitemapPlugin(): Plugin {
   return {
@@ -11,6 +12,7 @@ function generateToolPagesAndSitemapPlugin(): Plugin {
     closeBundle() {
       try {
         generateSeoHtmlAndSitemap();
+        validateSeoBuild(path.resolve(__dirname, 'dist'));
       } catch (err) {
         console.error('[Zubware SEO] Failed to generate tool HTML pages & sitemap:', err);
         throw err; // Stop deployment when crawlable pages or the sitemap cannot be generated.

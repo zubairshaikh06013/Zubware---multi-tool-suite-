@@ -182,7 +182,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'pdf-compressor':
       'Zubware PDF Compressor reduces the file size of PDF documents directly in your browser without compromising readable text or vector layouts. Select from Extreme, Recommended, or High Quality compression presets to optimize scanned forms, multi-page reports, and contracts for email attachments and portal upload limits. All compression algorithms run 100% locally in your device memory with zero server uploads.',
     'image-compressor':
-      'Zubware Image Compressor reduces the byte size of JPG, PNG, and WebP photos to exact limits like 20KB, 50KB, 100KB, or 200KB without visible quality loss. Designed for government exam application forms (SSC, UPSC, State PSC), job portals, and web optimization, all compression algorithms run 100% locally in your browser memory with zero server uploads.',
+      'Zubware Image Compressor reduces the byte size of JPG, PNG, and WebP photos to exact limits like 20KB, 50KB, 100KB, or 200KB with adjustable quality and resolution. Small size targets can reduce detail; inspect the downloaded image before submitting it. Designed for government exam application forms (SSC, UPSC, State PSC), job portals, and web optimization, all compression algorithms run 100% locally in your browser memory with zero server uploads.',
     'image-resizer':
       'Zubware Image Resizer modifies image dimensions by exact pixels, percentage, or predefined social media and document presets while preserving original aspect ratios. Designed for photo portals, profile pictures, and banners, resizing happens instantly on your device via HTML5 canvas with zero server uploads.',
     'ats-resume-checker':
@@ -200,7 +200,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'gst-invoice-generator':
       'Zubware GST Invoice Generator creates legally structured Indian tax invoices with automatic CGST, SGST, and IGST tax bifurcation, HSN/SAC code classification, dynamic UPI payment QR codes, and instant vector PDF downloads. Purpose-built for Indian small business owners, freelancers, GST-registered traders, and consultancies, financial calculations and high-resolution PDF rendering execute 100% locally in your web browser memory with complete data privacy.',
     'subtitle-generator':
-      'Zubware Video Subtitle & SRT Generator creates, synchronizes, and exports timed caption tracks for your videos directly in your browser. Load MP4, WebM, or MOV files into the synchronized player, dictate dialogue in real time using the browser Web Speech API, fine-tune timestamps down to tenths of a second, and download standardized SubRip (.srt) or WebVTT (.vtt) files for YouTube Studio and video editors with zero cloud uploads.',
+      'Zubware Video Subtitle & SRT Generator creates, synchronizes, and exports timed caption tracks for your videos directly in your browser. Load MP4, WebM, or MOV files into the synchronized player, dictate dialogue in real time using the browser Web Speech API, fine-tune timestamps down to tenths of a second, and download standardized SubRip (.srt) or WebVTT (.vtt) files for YouTube Studio and video editors. Video files stay local; optional microphone dictation may send audio to your browser provider for speech recognition.',
     'video-aspect-ratio':
       'Zubware Video Aspect Ratio Converter reframes video footage for modern social media platforms including 9:16 vertical (TikTok, Instagram Reels, YouTube Shorts), 16:9 widescreen, 1:1 square, and 4:5 portrait posts. Choose between Contain mode with real-time blurred ambient padding or Cover mode for center cropping, and re-encode high-bitrate WebM video with synchronized audio directly in your browser.',
     'video-compressor':
@@ -216,7 +216,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'down-payment-calculator':
       'Zubware Down Payment Calculator determines required upfront cash for purchasing real estate, evaluating loan presets (Conventional 20% no-PMI, 3% minimum, FHA 3.5%, VA 0%), estimated closing costs (2%–5%), and compound savings growth in a High-Yield Savings Account (HYSA). Calculate exact monthly savings targets to reach your homebuying goal on time.',
     'us-income-tax-calculator':
-      'Zubware US Income Tax Calculator models official IRS federal tax brackets for 2025 and 2026, standard deductions across all four filing statuses (Single, Married Joint, Married Separate, Head of Household), FICA Social Security and Medicare payroll taxes, and state income taxes across all 50 US states to calculate true take-home pay per paycheck.',
+      'Zubware US Income Tax Calculator models official IRS federal tax brackets for 2025 and 2026, standard deductions across all four filing statuses (Single, Married Joint, Married Separate, Head of Household), FICA Social Security and Medicare payroll taxes, and an optional custom effective state tax rate to estimate wage take-home pay. Credits, self-employment tax and state-specific tax brackets are not modeled.',
     'personal-loan-calculator':
       'Zubware Personal Loan Calculator computes fixed monthly payments (EMI), total interest costs, true APR incorporating upfront lender origination fees, and net disbursed funds. Model early loan payoff with extra monthly principal contributions and inspect a complete month-by-month amortization schedule with CSV spreadsheet export.',
     'sale-price-calculator':
@@ -224,7 +224,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'learning-licence-mock-test':
       'Zubware Learning Licence Mock Test simulates the official RTO computer exam with questions covering mandatory traffic signs, road regulations, and driving rules. Available in bilingual English and Hindi with an optional 15-minute timer and instant score review.',
     'signature-resizer':
-      'Zubware Signature Resizer is a free online tool designed to crop, resize, and compress scanned signatures for government, exam, and job recruitment portals (including SSC, UPSC, IBPS, NEET, and State PSCs). Adjust dimensions in pixels (px), centimeters (cm), millimeters (mm), or inches, trim empty paper borders automatically, set strict maximum file size caps (such as < 20KB or < 50KB), and export in form-compliant JPG or transparent PNG format. All processing runs 100% locally in your browser with zero server uploads for total identity protection.',
+      'Zubware Signature Resizer is a free online tool designed to crop, resize, and compress scanned signatures for government, exam, and job recruitment portals (including SSC, UPSC, IBPS, NEET, and State PSCs). Adjust dimensions in pixels (px), centimeters (cm), millimeters (mm), or inches, trim empty paper borders automatically, set strict maximum file size caps (such as < 20KB or < 50KB), and export in form-compliant JPG or transparent PNG format. All processing runs 100% locally in your browser with zero server uploads without uploading your signature to Zubware. Keep the downloaded file private.',
     'photo-signature-joiner':
       'Zubware Photo and Signature Joiner is a free browser-based tool that stitches candidate passport photos and scanned signatures into a single unified image for competitive examinations, admit cards, and job applications. Choose between vertical stacked or horizontal side-by-side layouts, apply standard recruitment presets (such as 300×460 px), customize individual dimensions, gaps, and outer borders, and download compliant JPG or PNG files. All image composition executes client-side with zero server uploads.',
     'age-calculator':
@@ -232,7 +232,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'college-gpa-calculator':
       'Zubware College GPA Calculator computes your semester grade point average (GPA) and cumulative college GPA on a standard 4.0 weighted scale. Add credit hours and letter grades (A+ to F) for each course to calculate quality points, assess graduation academic honors (Cum Laude, Magna Cum Laude, Summa Cum Laude), and plan upcoming semester target grades. All calculations execute instantly and privately in your browser memory with zero server tracking.',
     'heic-to-jpg':
-      'Zubware HEIC to JPG Converter transforms Apple iPhone HEIC and HEIF photos into universal high-resolution JPG images directly in your browser. Batch convert multiple live photos or camera roll exports simultaneously without quality loss, account logins, or file size paywalls. All conversion algorithms execute 100% locally on your device with zero server uploads.',
+      'Zubware HEIC to JPG Converter transforms Apple iPhone HEIC and HEIF photos into universal high-resolution JPG images directly in your browser. Batch convert multiple live photos or camera roll exports with adjustable JPEG quality and no account login. JPEG is a lossy format; compare the result with your original. All conversion algorithms execute 100% locally on your device with zero server uploads.',
     'background-remover':
       'Zubware Background Remover isolates subjects and removes image backgrounds automatically using client-side machine learning. Whether preparing product listings for e-commerce, creating passport photos, or designing social media graphics, you can download transparent PNGs instantly with zero watermarks. All neural network processing executes privately on your device via WebAssembly.',
     'crop-image':
@@ -739,7 +739,9 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           Execution &amp; Privacy
         </h3>
         <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin: 0;">
-          ${isNetwork
+          ${tool.id === 'subtitle-generator'
+            ? `Video playback, manual captions, and exports stay local. Optional microphone dictation may send audio to your browser provider for speech recognition.`
+            : isNetwork
             ? `This tool connects directly from your browser to the designated external endpoint. Zubware does not store your payload or request data on our servers.`
             : `Processing happens locally in your browser for this tool; files and inputs are not uploaded to Zubware servers.`}
         </p>
@@ -778,7 +780,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
               Compress Images for Government &amp; Exam Portals
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Most Indian recruitment and academic portals (including SSC, UPSC, State PSC, IBPS, Railway, NEET, JEE, and Passport Seva) strictly mandate that candidate photos be between 20 KB to 50 KB and signatures under 20 KB. Zubware's Target Size mode allows you to pick 20KB or 50KB presets to guarantee your files comply with strict online form requirements.
+              Upload requirements vary by portal and recruitment year. Read the current official instructions for file format, dimensions, and size range. Choose the matching target, then check readability and the downloaded file size; a preset does not guarantee acceptance.
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -1225,7 +1227,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
           </p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">2. Network-Dependent Utilities</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            For specialized tools that test remote web services (such as the API Request Builder, Website Downloader, and HTTP Header Viewer), requests connect directly from your browser to the external endpoints or URLs you specify. Zubware does not store your request payloads, responses, or headers on its servers.
+            For specialized tools that test remote web services (such as the API Request Builder, Website Downloader, and HTTP Header Viewer), requests connect directly from your browser to the external endpoints or URLs you specify. Zubware does not store your request payloads, responses, or headers on its servers. Optional microphone dictation in the Subtitle Generator may send audio to your browser provider for speech recognition, after you select Voice Dictate and grant microphone permission. Manual captions and uploaded video playback remain local.
           </p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">3. Browser Storage &amp; User State</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
@@ -2249,7 +2251,8 @@ function injectMetadataIntoHtml(
   html = html.replace(/<meta\s+name="robots"\s+content="[\s\S]*?"\s*\/?>\n?/gi, '');
   html = html.replace(/<script\s+id="json-ld-schema"[\s\S]*?<\/script>\n?/gi, '');
 
-  const keywordsTag = keywords ? `\n    <meta name="keywords" content="${escapeHtml(keywords)}" />` : '';
+  // Keep search aliases internal; do not publish repetitive meta keywords.
+  const keywordsTag = '';
   const robotsDirective = robots || 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
   const robotsTag = `\n    <meta name="robots" content="${escapeHtml(robotsDirective)}" />`;
   const schemaTag = `\n    <script id="json-ld-schema" type="application/ld+json">${JSON.stringify(jsonLdSchema)}</script>`;
@@ -2319,22 +2322,6 @@ export function generateLlmsTxt(tools: ToolMeta[]): string {
   return output;
 }
 
-function getToolLastmod(tool: ToolMeta): string {
-  const cat = tool.category || '';
-  if (cat.includes('Developer')) return '2026-09-25';
-  if (cat.includes('Image') || cat.includes('Video') || cat.includes('Audio')) return '2026-09-24';
-  if (cat.includes('PDF')) return '2026-09-23';
-  if (cat.includes('Calculator') || cat.includes('Business')) return '2026-09-20';
-  if (cat.includes('Career') || cat.includes('Prompt')) return '2026-09-22';
-  return '2026-09-21';
-}
-
-function getStaticPageLastmod(filename: string): string {
-  if (filename === 'privacy.html' || filename === 'terms.html') return '2026-09-26';
-  if (filename === 'about.html') return '2026-09-25';
-  return '2026-09-20';
-}
-
 export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsCount?: number; articlesCount?: number; sitemapUrlsCount: number } {
   console.log('[Zubware SEO] Starting static HTML SEO injection, llms.txt generation, and dynamic sitemap generation...');
 
@@ -2358,7 +2345,7 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   pristineBaseHtml = pristineBaseHtml.replace(/\s*<meta name="robots" content="[^"]*"\s*\/?>/g, '');
 
   // Track all unique URLs for sitemap with meaningful lastmod dates
-  const sitemapUrls: Array<{ loc: string; priority: string; changefreq: string; lastmod: string }> = [];
+  const sitemapUrls: Array<{ loc: string; priority: string; changefreq: string; lastmod?: string }> = [];
 
   // Add homepage (pre-rendered rich semantic HTML)
   const homeJsonLd = {
@@ -2410,7 +2397,6 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     loc: `${DOMAIN}/`,
     priority: '1.0',
     changefreq: 'daily',
-    lastmod: '2026-09-26'
   });
 
   // 1. Generate Categories Directory Page (/categories)
@@ -2469,7 +2455,6 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     loc: categoriesCanonical,
     priority: '0.9',
     changefreq: 'weekly',
-    lastmod: '2026-09-24'
   });
 
   // 1b. Generate 13 Dedicated Category Authority Hub Pages (/category/[slug].html and /category/[slug]/index.html)
@@ -2511,7 +2496,6 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       loc: catCanonical,
       priority: '0.9',
       changefreq: 'weekly',
-      lastmod: '2026-09-24'
     });
   }
 
@@ -2544,7 +2528,6 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
         loc: canonicalUrl,
         priority: '0.5',
         changefreq: 'monthly',
-        lastmod: getStaticPageLastmod(page.filename)
       });
     }
   }
@@ -2587,7 +2570,6 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       loc: canonicalUrl,
       priority: '0.8',
       changefreq: 'weekly',
-      lastmod: getToolLastmod(tool)
     });
   }
 
@@ -2620,7 +2602,6 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     loc: blogIndexCanonical,
     priority: '0.8',
     changefreq: 'weekly',
-    lastmod: '2026-09-25'
   });
 
   // 4b. Blog Articles (/blog/[slug])
@@ -2662,7 +2643,7 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     .map(
       (u) => `  <url>
     <loc>${u.loc}</loc>
-    <lastmod>${u.lastmod}</lastmod>
+    ${u.lastmod ? `<lastmod>${u.lastmod}</lastmod>` : ''}
     <changefreq>${u.changefreq}</changefreq>
     <priority>${u.priority}</priority>
   </url>`
@@ -2677,16 +2658,12 @@ ${sitemapEntries}
 
   // Write sitemap.xml to dist/ and public/
   fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml, 'utf-8');
-  if (fs.existsSync(publicDir)) {
-    fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapXml, 'utf-8');
-  }
+
 
   // 6. Generate comprehensive llms.txt for machine readability
   const llmsTxtContent = generateLlmsTxt(TOOLS_DATA);
   fs.writeFileSync(path.join(distDir, 'llms.txt'), llmsTxtContent, 'utf-8');
-  if (fs.existsSync(publicDir)) {
-    fs.writeFileSync(path.join(publicDir, 'llms.txt'), llmsTxtContent, 'utf-8');
-  }
+
 
   // 7. Sync _redirects and _headers to dist/
   if (fs.existsSync(path.join(publicDir, '_redirects'))) {

@@ -1905,7 +1905,7 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
               Memorable Passphrase Generator: High-Entropy Diceware Passwords
             </h2>
             <p className="mt-3 text-base text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
-              Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 8 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.
+              Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 10 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.
             </p>
           </div>
 
@@ -1923,17 +1923,17 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
               <h3 className="text-lg font-bold text-slate-900 dark:text-white">Customizable Structure & Separators</h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Fine-tune passphrase formatting to balance human typing ease against legacy website complexity requirements.</p>
               <ul className="text-xs space-y-1.5 text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> 3 to 8 word slider (4–5 recommended)</li>
+                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> 3 to 10 words; six-word default</li>
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Hyphen, underscore, space, or period separators</li>
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Capitalization, random number & symbol toggles</li>
               </ul>
             </div>
             <div className="glass-card p-6 rounded-2xl space-y-3 border border-slate-200/60 dark:border-slate-800/60">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white">Shannon Entropy & Crack-Time Resistance</h3>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">Real-time mathematical entropy readout (in bits) calculating the theoretical search space against high-speed GPU cracking rigs.</p>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">The entropy readout uses the actual wordlist size and independent random choices. It does not predict the speed of a real attack.</p>
               <ul className="text-xs space-y-1.5 text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Exact entropy bits (E = W * log2(N))</li>
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> GPU cluster brute-force resistance estimate</li>
+                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Theoretical search-space estimate, not a cracking-time prediction</li>
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> 100% private in-browser generation</li>
               </ul>
             </div>
@@ -1941,12 +1941,12 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
 
           <div className="space-y-6 pt-2">
             <div className="space-y-3">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Why Diceware Passphrases Beat Complex Random Passwords</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Choosing Random Words for a Passphrase</h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">For decades, computer users were instructed to create passwords like "J#8x!mP$9". These short, complex strings are almost impossible for humans to remember, leading to dangerous habits like writing passwords on sticky notes or reusing them across accounts. Furthermore, at only 8 characters, their total search space is vulnerable to modern GPU brute-force attacks.</p>
-              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">The Diceware concept, popularized by Arnold Reinhold and highlighted by the famous XKCD "Correct Horse Battery Staple" comic, strings together several random dictionary words. A 5-word passphrase like "correct-horse-battery-staple-orange" is effortless for humans to visualize and type, yet contains over 65 bits of pure cryptographic entropy—vastly harder to crack than a short complex string.</p>
+              <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">Each word must be selected independently at random. A familiar quotation or published example is predictable, regardless of its length. Use a freshly generated phrase, keep it private, and never reuse a phrase across accounts.</p>
               <div className="p-4 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/40 text-amber-900 dark:text-amber-200 text-sm">
                 <strong className="block font-semibold mb-1">Calculating Passphrase Entropy Bits</strong>
-                Entropy in bits measures unpredictable randomness. For a wordlist of size N and a passphrase of W words, Entropy = W × log2(N). Using our curated 4,000+ word dictionary, each word contributes roughly 12 bits of entropy. A 5-word passphrase yields ~60+ bits (over 1 quintillion combinations).
+                Entropy in bits measures unpredictable randomness. For a wordlist of size N and a passphrase of W words, Entropy = W × log2(N). This tool uses the 7,776-word EFF Long Wordlist. Six independent word choices provide about 77.5 bits before optional random digits or symbols. Fixed capitalization and separators add no entropy.
               </div>
             </div>
             <div className="space-y-3">

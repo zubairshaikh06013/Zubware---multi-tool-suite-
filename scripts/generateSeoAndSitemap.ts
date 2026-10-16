@@ -1,3 +1,4 @@
+import { ABOUT_QUALITY, REPORT_A_PROBLEM, PRIVACY_NOTES, SITE_REVIEW_DATE } from '../src/data/siteTrustContent';
 import fs from 'fs';
 import { marked } from 'marked';
 import path from 'path';
@@ -288,7 +289,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'file-checksum-verifier':
       'Zubware File Checksum Verifier validates file integrity and verifies software downloads against published hashes using the browser\'s native Web Crypto API. Calculate SHA-256, SHA-512, SHA-1, and MD5 digests for large installers and disk images directly in browser RAM without uploading a single byte to external servers.',
     'passphrase-generator':
-      'Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 8 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.',
+      'Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 10 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.',
     'password-strength-checker':
       'Zubware Password Strength Checker evaluates credential security in real-time through client-side heuristic inspection and Shannon entropy analysis. Detect common keyboard sequences, dictionary words, and character pool vulnerabilities, and review estimated brute-force resistance against offline GPU cracking clusters with zero network transmission.',
     'text-encrypt-decrypt':
@@ -1207,6 +1208,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
             Unlike legacy online converters that transmit your private files, PDFs, and media assets to distant cloud servers, Zubware executes local operations inside your web browser. Utilizing high-performance WebAssembly (WASM), HTML5 Canvas, and native Web Cryptography APIs, files and inputs processed by local tools are not uploaded to Zubware servers.
           </p>
+          <h2>Maintainer and Corrections</h2><p>${escapeHtml(ABOUT_QUALITY)}</p><p>${escapeHtml(REPORT_A_PROBLEM)}</p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Comprehensive Multi-Tool Ecosystem</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
             Our tool suite spans 13 specialized domains, including PDF manipulation, media encoding, developer decoding, career resume formatting, and financial calculators.
@@ -1220,25 +1222,11 @@ function renderStaticPageContent(page: StaticPageMeta): string {
 
     case 'privacy.html':
       specificBody = `
-        <section style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">1. Local Browser-Based Processing</h2>
-          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            At Zubware, your privacy is protected by mathematics and local browser architecture. For local processing utilities (such as image compression, PDF merging, text formatting, and calculation tools), processing happens locally in your browser. Files and inputs are not uploaded to or stored on Zubware servers.
-          </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">2. Network-Dependent Utilities</h2>
-          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            For specialized tools that test remote web services (such as the API Request Builder, Website Downloader, and HTTP Header Viewer), requests connect directly from your browser to the external endpoints or URLs you specify. Zubware does not store your request payloads, responses, or headers on its servers. Optional microphone dictation in the Subtitle Generator may send audio to your browser provider for speech recognition, after you select Voice Dictate and grant microphone permission. Manual captions and uploaded video playback remain local.
-          </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">3. Browser Storage &amp; User State</h2>
-          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            Zubware uses browser localStorage and IndexedDB on your device to remember user preferences (such as Dark Mode and bookmarked favorite tools) and to keep user-created drafts (such as resume versions, encrypted notes, and calculation history) saved locally for your convenience. Zubware servers never receive or sync your locally saved drafts.
-          </p>
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">4. Analytics &amp; Zero Advertisements Policy</h2>
-          <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1.5rem;">
-            We integrate Google Tag Manager to measure aggregate website performance and resolve application errors. Zubware is currently 100% ad-free and does not host or display any commercial advertisements, banner ads, or sponsored ad networks. No advertising tracking cookies or commercial ad scripts are used.
-          </p>
-          <p><a href="${DOMAIN}/terms" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Review Terms of Service &rarr;</a></p>
-        </section>`;
+        <p>Last reviewed: ${SITE_REVIEW_DATE}</p>
+        <section><h2>Local Tool Processing</h2><p>Local utilities process files in your browser without uploading them to Zubware servers. Network tools connect to the endpoints you specify. Optional Subtitle Generator dictation may send microphone audio to your browser’s speech service after you choose that feature and grant permission.</p></section>
+        <section><h2>Browser Storage</h2><p>Preferences and some drafts or histories are saved in localStorage or IndexedDB on your device. Clearing site data may remove them. Local drafts are not synchronized to a Zubware account.</p></section>
+        <section><h2>Website Requests, Measurement and Advertising</h2><p>${escapeHtml(PRIVACY_NOTES.analytics)}</p><p>${escapeHtml(PRIVACY_NOTES.hosting)}</p><p>${escapeHtml(PRIVACY_NOTES.advertising)}</p><p><a href="https://policies.google.com/privacy">Google privacy information</a> · <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy information</a></p></section>
+        <section><h2>Contact Messages and Privacy Controls</h2><p>${escapeHtml(PRIVACY_NOTES.contact)}</p><p>${escapeHtml(PRIVACY_NOTES.controls)}</p><p>Contact Zubair Shaikh: <a href="mailto:zubairshaikh06013@gmail.com">zubairshaikh06013@gmail.com</a></p></section>`;
       break;
 
     case 'terms.html':
@@ -1288,11 +1276,11 @@ function renderStaticPageContent(page: StaticPageMeta): string {
         <section style="margin-bottom: 2rem;">
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Get in Touch with Zubware</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            Have questions, feedback, partnership proposals, or requests for new utilities? The Zubware team welcomes your input and responds promptly.
+            Have questions, feedback, partnership proposals, or requests for new utilities? Contact the site maintainer, Zubair Shaikh.
           </p>
           <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-            <p style="font-size: 0.95rem; color: #1e293b; margin: 0 0 0.5rem 0;"><strong>Direct Inquiries:</strong> <a href="mailto:work95812@gmail.com" style="color: #4f46e5; text-decoration: underline;">work95812@gmail.com</a></p>
-            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Typical turnaround time: 24 to 48 business hours.</p>
+            <p style="font-size: 0.95rem; color: #1e293b; margin: 0 0 0.5rem 0;"><strong>Direct Inquiries:</strong> <a href="mailto:zubairshaikh06013@gmail.com" style="color: #4f46e5; text-decoration: underline;">zubairshaikh06013@gmail.com</a></p>
+            <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Opening an email or WhatsApp draft does not send it automatically. Review your message and press Send in that service.</p>
           </div>
           <p><a href="${DOMAIN}/feedback" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Submit Feature Request &rarr;</a></p>
         </section>`;
@@ -1354,7 +1342,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
               <li>Specify expected input formats (e.g. PDF, CSV, PNG, WebP) and desired outputs.</li>
               <li>Confirm whether the utility requires browser-side offline computation or API access.</li>
             </ul>
-            <p style="font-size: 0.9rem; color: #0f172a; margin: 0;">Email your suggestions to: <a href="mailto:work95812@gmail.com" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">work95812@gmail.com</a></p>
+            <p style="font-size: 0.9rem; color: #0f172a; margin: 0;">Email your suggestions to: <a href="mailto:zubairshaikh06013@gmail.com" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">zubairshaikh06013@gmail.com</a></p>
           </div>
         </section>`;
       break;

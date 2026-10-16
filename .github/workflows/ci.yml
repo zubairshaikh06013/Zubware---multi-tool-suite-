@@ -38,4 +38,5 @@ jobs:
         run: |
           npm run lint
           node --import tsx scripts/testSeoRegressions.ts
+          node --import tsx scripts/testToolReliability.ts
 

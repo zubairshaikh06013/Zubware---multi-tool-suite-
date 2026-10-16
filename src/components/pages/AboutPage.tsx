@@ -1,3 +1,4 @@
+import { ABOUT_QUALITY, REPORT_A_PROBLEM } from '../../data/siteTrustContent';
 import React from 'react';
 import { Sparkles, ShieldCheck, Zap, Heart, Globe, FileText, Calculator, Home, Briefcase, Image as ImageIcon, QrCode } from 'lucide-react';
 
@@ -71,6 +72,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate: _onNavigate })
           </div>
         </div>
 
+        <section className="space-y-3">
+          <h2 className="text-lg font-black text-slate-900 dark:text-white">Who maintains Zubware & how to report corrections</h2>
+          <p>{ABOUT_QUALITY}</p>
+          <p>{REPORT_A_PROBLEM}</p>
+          <a href="/contact" className="text-indigo-600 dark:text-indigo-400 underline">Contact Zubair about a tool or correction</a>
+        </section>
+
         {/* Tools Included */}
         <div className="space-y-3 pt-3 border-t border-slate-200/80 dark:border-slate-800">
           <h2 className="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -79,11 +87,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate: _onNavigate })
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
             <li className="glass-card p-3.5 rounded-xl font-medium flex items-start gap-2.5">
               <FileText className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0 mt-0.5" />
-              <span><strong>Advanced PDF Suite</strong>: Drag-and-drop page reordering, per-page 90° rotation, thumbnail inspector, split, merge, and lossless compression.</span>
+              <span><strong>Advanced PDF Suite</strong>: Drag-and-drop page reordering, per-page 90° rotation, thumbnail inspector, split, merge, and compression options.</span>
             </li>
             <li className="glass-card p-3.5 rounded-xl font-medium flex items-start gap-2.5">
               <Calculator className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0 mt-0.5" />
-              <span><strong>Income Tax & Financial Suite</strong>: Latest IRS brackets & India Budget New Tax Regime with standard deductions and Section 87A rebate models.</span>
+              <span><strong>Income Tax & Financial Suite</strong>: Selected-year IRS and India tax estimates with standard deductions and Section 87A rebate models.</span>
             </li>
             <li className="glass-card p-3.5 rounded-xl font-medium flex items-start gap-2.5">
               <Home className="w-4 h-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
@@ -95,7 +103,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate: _onNavigate })
             </li>
             <li className="glass-card p-3.5 rounded-xl font-medium flex items-start gap-2.5">
               <ImageIcon className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0 mt-0.5" />
-              <span><strong>Batch Image Studio</strong>: High-speed local compression, format conversion (PNG, JPG, WebP, AVIF), cropping, and photo merging.</span>
+              <span><strong>Batch Image Studio</strong>: High-speed local compression, format conversion (PNG, JPG, WebP and browser-dependent AVIF), cropping, and photo merging.</span>
             </li>
             <li className="glass-card p-3.5 rounded-xl font-medium flex items-start gap-2.5">
               <QrCode className="w-4 h-4 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5" />

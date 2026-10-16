@@ -9,18 +9,18 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how to reduce PDF file size while preserving clear, readable text. Understand lossy vs. lossless compression, target file sizes, and client-side optimization.",
     "canonicalPath": "/blog/how-to-compress-pdf-without-losing-readability",
     "publishedTime": "2026-09-23T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Document Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Document Compression & Standards Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
       "url": "https://www.zubware.com"
     },
     "category": "PDF Guides",
-    "readingTime": "7 min read",
+    "readingTime": "4 min read",
     "tags": [
       "PDF Compression",
       "Reduce PDF Size",
@@ -29,48 +29,43 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "Document Readability",
       "Free PDF Tools"
     ],
-    "excerpt": "Shrinking a PDF file for email attachments, government exam portals, or enterprise document archives shouldn't turn sharp typography into a pixelated blur. Here is the technical breakdown of what PDF compression does, how downsampling algorithms operate, and how to safely reduce file weights in your browser.",
+    "excerpt": "Choose a PDF compression setting, understand when pages may become images, and check the downloaded result before uploading it elsewhere. Results depend on your document; there is no guaranteed reduction percentage.",
     "takeaways": [
-      "Native vector text never loses resolution during standard compression: Digital font outlines scale infinitely unless rasterized into flat bitmap images.",
-      "Embedded images generate 80% to 95% of document bloat: High-resolution print scans (300 to 600 DPI) can be safely resampled to 150 DPI for screen reading without visible clarity loss.",
-      "Avoid downsampling below 100 DPI: Compressing beyond sensible limits introduces blocky DCT artifacts that obscure 8pt to 10pt footnotes and legal terms.",
-      "In-browser compression guarantees privacy: Client-side WebAssembly execution processes tax returns and bank statements directly in browser memory without third-party server uploads."
+      "Keep the original PDF and inspect the downloaded result, especially small text, page count, searchable text and links.",
+      "Zubware first tries PDF object-stream optimization. If more reduction is needed, it may render pages as images and rebuild the PDF.",
+      "Rasterized output can lose selectable text, interactive forms and vector detail. A smaller file is not automatically an equivalent document.",
+      "Compression runs in the browser. Local processing reduces file-upload exposure but is not a certification of regulatory compliance."
     ],
     "sections": [
       {
         "id": "why-pdfs-become-large",
-        "title": "1. Why PDF Documents Accumulate Massive File Weights",
-        "content": "When a five-page PDF weighs 45 megabytes, users often wonder how so few pages can consume so much storage. Under the ISO 32000-1 specification, a Portable Document Format file is essentially a container bundling vector geometry, font glyph tables, metadata dictionaries, color spaces, and embedded raster bitmaps.\n\nPDF files inflate dramatically due to four primary factors:\n- **Uncompressed Camera Scans:** Smartphone scanner applications frequently embed uncompressed 12-megapixel camera captures directly onto each page, adding 4MB to 8MB per sheet instead of document-optimized streams.\n- **Excessive Scanning Resolutions:** Digitizing paper records at 600 DPI (dots per inch) is standard for fine-art offset reproduction, but produces millions of redundant pixels for 72–150 DPI desktop and mobile screens.\n- **Full Font Family Embedding:** When a document embeds an entire multi-megabyte OpenType Unicode font file containing 20,000 glyphs for just thirty characters on a title page, file weight balloons needlessly.\n- **Accumulated Revision Streams:** Repeated edits in legacy desktop editors append incremental change dictionaries and dead object streams rather than garbage-collecting orphaned pointers."
+        "title": "1. Identify what needs to become smaller",
+        "content": "Image-heavy scans often have more scope for reduction than already-optimized text documents. File size alone does not identify what can be removed safely. Start by keeping the original and checking the destination’s actual maximum size and accepted format. A portal may also require readable stamps, signatures or searchable text.\n\nIf the PDF is digitally signed, preserve the signed original. Rewriting a signed PDF can invalidate its signature; do not remove a signature merely to make an upload fit."
       },
       {
         "id": "compression-mechanisms",
-        "title": "2. What PDF Compression Algorithms Actually Do Under the Hood",
-        "content": "True PDF compression does not strip away readable information; it eliminates structural redundancy and re-encodes binary byte streams using standard mathematical transforms:\n\n1. **Flate / Deflate Encoding (RFC 1951):** Vector layouts, content dictionaries, and text commands are compressed losslessly using combined LZ77 substitution and Huffman entropy coding.\n2. **Font Subsetting:** The optimization engine inspects every string in the document, constructs a miniature custom font dictionary containing only the exact glyphs actually used, and discards unreferenced characters.\n3. **Object Stream Consolidation:** Standalone indirect PDF objects are merged into contiguous cross-reference streams (/ObjStm), eliminating object header overhead.\n4. **Bicubic Downsampling & DCT Re-encoding:** Embedded raster graphics are downscaled to match standard target screen resolutions, converting raw uncompressed bitmaps into optimized JPEG (DCTDecode) or JBIG2 streams."
+        "title": "2. How this compressor works",
+        "content": "The current implementation first loads the PDF with pdf-lib and saves it using object streams. If this produces a smaller file, it keeps that candidate.\n\nIf the target still is not met, or stronger compression is selected, the tool can render pages to canvas, encode them as JPEG images and construct a new PDF. It keeps a raster candidate only when it is smaller than the current candidate.\n\nThis is not the same as selectively optimizing every original image while retaining all text and form objects. The tool does not implement the font-subsetting or JBIG2 pipeline that earlier versions of this guide described. The result may remain above the requested size."
       },
       {
         "id": "dpi-resolution-formula",
-        "title": "3. Calculating Exact Downsampling Ratios and Byte Savings",
-        "content": "The mathematical relationship between physical scan size, target DPI, and raw image byte size is governed by the following formula:\n\n```\nRaw Pixels = (Width in Inches × DPI) × (Height in Inches × DPI)\nUncompressed RGB Byte Size = Raw Pixels × 3 bytes per pixel\n```\n\nConsider a standard Letter page (8.5 × 11.0 inches):\n- At **300 DPI**: `2,550 × 3,300 = 8,415,000 pixels` → ~25.2 MB raw uncompressed bitmap.\n- At **150 DPI**: `1,275 × 1,650 = 2,103,750 pixels` → ~6.3 MB raw uncompressed bitmap (a **75% reduction** in raw pixel count).\n- When re-encoded with 80% JPEG quality, the 150 DPI image consumes just 180 KB to 320 KB with zero visible text blurring on high-DPI retina screens."
+        "title": "3. Why image dimensions affect readability",
+        "content": "For a raster image, halving both width and height reduces the pixel count to one quarter. For example, 2,550 × 3,300 pixels is 8,415,000 pixels, while 1,275 × 1,650 is 2,103,750.\n\nThat is a 75% reduction in pixel count, not a guaranteed 75% reduction in PDF bytes. JPEG quality, page content and PDF overhead all affect file size. Small text can become harder to read as resolution or quality decreases."
       },
       {
         "id": "compression-preset-comparison",
-        "title": "4. Decision Matrix: Choosing the Right Compression Level",
-        "content": "Choosing the optimal compression profile depends strictly on your destination channel:\n\n| Compression Tier | Target DPI | JPEG Quality | Typical Reduction | Best Use Case |\n|---|---|---|---|---|\n| **Low / High-Fidelity** | 220 DPI | 90% | 30% – 50% | Portfolios, fine typography, legal exhibits |\n| **Recommended / Balanced** | 150 DPI | 78% – 82% | 60% – 80% | Email attachments, business invoices, reports |\n| **Extreme / High-Ratio** | 100 DPI | 60% – 65% | 80% – 92% | Government portal limits (e.g., <200 KB, <500 KB) |\n\n> **Pro Tip:** Never apply Extreme compression to documents containing small 6pt footnotes or scanned signatures before verifying that legibility remains intact."
+        "title": "4. Choose settings and check the tradeoff",
+        "content": "Start with Light when text clarity matters, then try Recommended or a custom target if the output is still too large. Extreme is more aggressive and deserves closer inspection. These are attempts to reduce the file, not promises of a fixed percentage.\n\n| Check | Why it matters |\n|---|---|\n| Page count and orientation | Make sure pages were retained and remain upright |\n| Small text and numbers | Compression artifacts can make similar characters hard to distinguish |\n| Selectable text | Rasterized pages may no longer support search or copying |\n| Forms, links and bookmarks | A rebuilt image PDF can lose interactive structure |\n| Target size | Check the downloaded file’s bytes against the destination’s rules |"
       },
       {
-        "id": "edge-cases-and-troubleshooting",
-        "title": "5. Common Compression Failures and Troubleshooting",
-        "content": "Understanding edge cases prevents unexpected corruption:\n- **Rasterized Text Trap:** If a PDF was created by \"printing to image\", text exists only as pixels. Downsampling will blur the letters. To verify, try highlighting words with your cursor. If you can select text, it is vector and will remain razor-sharp.\n- **Signed / Encrypted PDFs:** Password-protected or cryptographically signed PDFs will fail compression or invalidate digital signature hashes. Unlock the PDF or remove signatures prior to optimization.\n- **Pre-Compressed JPEGs:** If a PDF already contains aggressively compressed JPEGs, re-compressing it yields negligible savings and introduces visible double-compression macroblocking artifacts."
+        "id": "check-your-output",
+        "title": "5. A reproducible check instead of an invented benchmark",
+        "content": "Record the original byte size, chosen setting and downloaded byte size for your own non-sensitive test PDF. Calculate reduction as `(original bytes − output bytes) ÷ original bytes × 100`. Open both files side by side and inspect the same small-text area at the same zoom.\n\nFor an arithmetic example only, a file changing from 1,000,000 to 700,000 bytes is 30% smaller. This is not a measured Zubware benchmark. The earlier 64.8 MB to 4.2 MB case study was not backed by a published test fixture and has been removed."
       },
       {
-        "id": "how-to-compress-pdf-without-losing-readability-ext-1",
-        "title": "6. Real-World Case Study: Compressing a 65MB Annual Report",
-        "content": "To illustrate the mathematical efficiency of client-side PDF downsampling, consider a real-world enterprise scenario:\n\nA 12-page corporate financial report generated from Adobe InDesign weighs **64.8 Megabytes**.\n- **The Problem:** The company's investor relations portal caps uploads at 10MB, and email servers bounce attachments exceeding 20MB.\n- **The Audit:** Inspecting the PDF objects reveals that the document contains 8 full-bleed 300 DPI photography scans totaling 61.2MB of raw JPEG streams, alongside 2.4MB of unsubsetted font data.\n- **The Solution:** Applying Zubware PDF Compressor with the **Balanced (150 DPI / 80% Quality)** profile:\n  1. Resamples raster images from 300 DPI to 150 DPI, dropping raw pixel count by **75%**.\n  2. Applies font subsetting, discarding 18,500 unused glyphs from the corporate typography dictionary.\n  3. Re-encodes Flate vector streams with maximum LZ77 dictionary depth.\n- **The Result:** The final document size drops from **64.8 MB to 4.2 MB (a 93.5% reduction)**. When rendered at 200% zoom on a 4K display, all charts, financial balance sheet numbers, and paragraph fonts remain 100% vector-crisp."
-      },
-      {
-        "id": "how-to-compress-pdf-without-losing-readability-ext-2",
-        "title": "7. Pre-Compression Diagnostic Checklist",
-        "content": "Before applying compression to legal, financial, or academic documents, verify these three prerequisites:\n1. **Highlightability Check:** Attempt to click and drag across several lines of text in your browser viewer. If text highlights smoothly, the document contains true vector fonts. If your cursor drags a blue box over the entire page, the text is a flat bitmap photo and aggressive downsampling will blur the letters.\n2. **Signature Preservation:** If the document contains cryptographic digital signatures (PKI certificates), optimization will alter the binary hash and invalidate the signature. Flatten or remove signatures prior to compression.\n3. **Color Space Verification:** CMYK color profiles designed for offset printing consume 33% more memory than standard sRGB. Converting CMYK image streams to sRGB during client compression slashes bytes with zero perceptual change on digital screens."
+        "id": "when-compression-is-not-enough",
+        "title": "6. If the result still exceeds the limit",
+        "content": "Try a less complex source export, remove unnecessary pages using the split/extract tools, or split the document when the destination permits multiple files. Do not keep lowering quality after essential content becomes unreadable. Some already-compressed PDFs cannot be made meaningfully smaller with this workflow. For a conversion failure, report the browser, tool URL and steps using a non-sensitive sample."
       }
     ],
     "howTo": {
@@ -78,43 +73,39 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "description": "Step-by-step instructions to optimize PDF documents using Zubware client-side tools.",
       "steps": [
         {
-          "name": "Upload Document",
-          "text": "Open Zubware PDF Compressor and select or drag-and-drop your target PDF file."
+          "name": "Keep the original",
+          "text": "Save a backup and check the destination’s size and format requirements."
         },
         {
-          "name": "Choose Compression Profile",
-          "text": "Select Recommended (150 DPI / 80% quality) for general sharing or Extreme for strict portal upload caps."
+          "name": "Choose a starting setting",
+          "text": "Open the PDF compressor and begin with Light or Recommended."
         },
         {
-          "name": "Verify Page Thumbnails",
-          "text": "Inspect the live preview thumbnails to confirm text readability and clear contrast."
+          "name": "Inspect the downloaded result",
+          "text": "Check page count, small text, search/copy behavior, forms and links against the original."
         },
         {
-          "name": "Download Optimized File",
-          "text": "Save the optimized PDF directly to your device with instant processing and zero cloud uploads."
+          "name": "Confirm the actual file size",
+          "text": "Check the downloaded file size before uploading it to another service."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Does PDF compression alter digital text or font vectors?",
-        "answer": "No. Standard PDF optimization compresses raster images and Flate text streams. Vector fonts, outlines, and digital text retain infinite scalability at any zoom level."
+        "question": "Will my PDF keep searchable text?",
+        "answer": "Object-stream optimization can retain native text, but the image-based fallback may turn pages into raster images. Check the downloaded file rather than assuming search and copy will remain available."
       },
       {
-        "question": "Why did my PDF only shrink by 5% after compression?",
-        "answer": "If your PDF is primarily comprised of native vector text, SVG graphics, or already heavily compressed JPEGs, there are few redundant image pixels to discard."
+        "question": "Is a particular reduction guaranteed?",
+        "answer": "No. Results depend on the input document and settings. Some optimized PDFs cannot be reduced much, and an attempted target may not be reached."
       },
       {
-        "question": "What is the maximum file size supported by in-browser compression?",
-        "answer": "Because processing executes in local browser memory via WebAssembly, documents up to 200MB can be compressed reliably on modern desktop devices."
+        "question": "Does this tool subset fonts?",
+        "answer": "The current implementation saves object streams and can rebuild rasterized pages; it does not implement a separate font-subsetting pipeline."
       },
       {
-        "question": "Can I compress a password-protected PDF?",
-        "answer": "Encrypted PDFs must be unlocked with their password first. Use Zubware Unlock PDF to remove encryption before compressing the file."
-      },
-      {
-        "question": "Are my private documents sent to external cloud servers?",
-        "answer": "No. Zubware PDF Compressor runs 100% client-side in your browser. Your files, financial records, and medical forms never leave your local device."
+        "question": "Is the source PDF uploaded for compression?",
+        "answer": "The compression workflow processes the selected PDF in your browser. Website hosting and other network requests are described separately in the privacy policy."
       }
     ],
     "relatedToolIds": [
@@ -133,11 +124,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master browser-based PDF page manipulation. Learn how to combine multiple files, extract custom page ranges, rotate orientations, and protect document privacy.",
     "canonicalPath": "/blog/merge-split-pdf-browser-workflow-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Document Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Document Compression & Standards Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -158,7 +149,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "PDF page trees can be manipulated without rasterization: Extracting or merging pages copies binary content streams directly without losing font sharpness.",
       "Browser memory management is critical for multi-file merges: Batch processing up to 30 files executes smoothly when using streaming ArrayBuffers in WebAssembly.",
       "Interactive reordering prevents sequence errors: Visual thumbnail reordering eliminates guesswork when compiling multi-part bids and loan applications.",
-      "Zero server round-trips ensure strict compliance: HIPAA, GDPR, and enterprise NDA workflows demand client-side processing where documents never touch remote storage."
+      "Local processing avoids uploading these files for the operation. It does not by itself establish HIPAA, GDPR or contractual compliance; follow the policies that apply to your organization."
     ],
     "sections": [
       {
@@ -252,11 +243,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how to accurately convert PDF documents into editable Word (.docx) and Excel (.xlsx) files. Master table detection, OCR, font mapping, and layout preservation.",
     "canonicalPath": "/blog/pdf-to-word-excel-conversion-guide",
     "publishedTime": "2026-09-25T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Document Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Document Compression & Standards Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -371,11 +362,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master in-browser image optimization. Compare WebP, AVIF, JPG, and PNG compression algorithms, canvas downsampling math, and client-side privacy benefits.",
     "canonicalPath": "/blog/client-side-image-optimization-guide",
     "publishedTime": "2026-09-23T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Media Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Computer Vision & Browser Media Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -396,7 +387,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "WebP yields 25% to 35% smaller files than equivalent JPEGs: Modern predictive block coding preserves high-frequency textures with fewer compression artifacts.",
       "Canvas bilinear and bicubic downsampling slash raw pixels: Scaling a 4000x3000 camera photo down to 1920x1440 eliminates 77% of raw pixels prior to compression.",
       "Alpha transparency requires smart formatting: PNG-24 handles subtle drop shadows losslessly, while WebP Lossy provides transparent backgrounds at a fraction of the weight.",
-      "Zero-upload processing protects personal photos: Processing sensitive family portraits and identity cards locally in browser memory guarantees absolute digital privacy."
+      "Local image processing avoids uploading the selected image for conversion. Device security, website requests and optional third-party services remain separate privacy considerations."
     ],
     "sections": [
       {
@@ -490,11 +481,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Complete global passport photo guidelines. Official dimensions for US (2x2 in), India (3.5x4.5 cm), UK & Schengen (35x45 mm), head height ratios, and plain background rules.",
     "canonicalPath": "/blog/passport-size-photo-maker-guidelines",
     "publishedTime": "2026-09-25T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Media Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Computer Vision & Browser Media Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -609,11 +600,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how client-side AI background removal works using WebAssembly and ONNX neural models. Achieve clean 32-bit PNG cutouts with zero server uploads.",
     "canonicalPath": "/blog/background-removal-ai-browser-guide",
     "publishedTime": "2026-09-26T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Media Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Computer Vision & Browser Media Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -728,11 +719,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn why pasting production JSON, JWTs, and database dumps into cloud formatters leaks credentials. Discover client-side sandboxed developer tooling.",
     "canonicalPath": "/blog/offline-developer-tools-privacy-guide",
     "publishedTime": "2026-09-23T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Developer Tooling Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -750,7 +741,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     ],
     "excerpt": "Pasting production API responses, OAuth bearer tokens, SQL queries, or private configuration blocks into random third-party web utilities is one of the most common vectors for corporate credential leaks. Here is the architectural case for zero-upload, client-side developer tooling.",
     "takeaways": [
-      "Cloud utility sites store incoming payloads in server logs and analytics: Web server access logs, reverse proxies, and third-party scripts frequently capture pasted text.",
+      "Remote tools may transmit inputs to their operators or service providers. Data handling varies; inspect a service’s documented behavior before submitting sensitive content.",
       "Secrets in transit violate SOC2, HIPAA, and GDPR compliance: Transmitting unencrypted production customer records or API keys outside authorized cloud boundaries breaks governance standards.",
       "Modern browsers possess native cryptographic and parsing primitives: Web Cryptography API, JSON.parse, and TextEncoder execute complex operations locally without network roundtrips.",
       "Offline-capable tooling eliminates latency: Zero network serialization means instantaneous formatting and parsing, even on massive multi-megabyte payloads."
@@ -847,11 +838,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn JSON syntax validation, common formatting errors, trailing comma issues, and practical ways to inspect JSON in your browser.",
     "canonicalPath": "/blog/json-formatting-validation-debugging-guide",
     "publishedTime": "2026-09-26T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Developer Tooling Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -872,7 +863,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "RFC 8259 enforces strict syntactic grammar: Single quotes, trailing commas, and unquoted keys are invalid JSON despite being legal in standard JavaScript.",
       "IEEE 754 floating point numbers risk silent corruption: Integers exceeding Number.MAX_SAFE_INTEGER (9,007,199,254,740,991) lose precision unless represented as strings.",
       "JSON Schema can define rules for API payloads, but Zubware JSON Validator does not currently validate data against these schemas.",
-      "Client-side formatting protects API secrets: Parsing database payloads locally in browser memory guarantees zero network leakage of customer records."
+      "Local formatting avoids sending the payload to a formatting server. Use non-sensitive examples when possible and follow your organization’s handling rules."
     ],
     "sections": [
       {
@@ -966,11 +957,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how JSON Web Tokens work under RFC 7519. Decode Headers, Payloads, and Signatures, prevent the alg:none exploit, and inspect claims locally in your browser.",
     "canonicalPath": "/blog/jwt-security-decoding-claims-guide",
     "publishedTime": "2026-09-27T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Developer Tooling Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1085,11 +1076,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn the exact mathematical formulas behind Systematic Investment Plans (SIP), reducing-balance loan EMI amortization, and forward/reverse GST calculations.",
     "canonicalPath": "/blog/financial-calculators-sip-emi-gst-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Financial Planning Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Quantitative Finance & Tax Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1204,11 +1195,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Understand the exponential math of compound interest. Explore compounding frequencies, the Rule of 72, inflation adjustments, and CAGR formulas.",
     "canonicalPath": "/blog/compound-interest-wealth-accumulation-guide",
     "publishedTime": "2026-09-28T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Financial Planning Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Quantitative Finance & Tax Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1323,11 +1314,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how loan amortization schedules work. Master extra monthly prepayments, tenure reduction vs EMI reduction, and slash mortgage interest costs.",
     "canonicalPath": "/blog/emi-loan-amortization-strategies",
     "publishedTime": "2026-09-28T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Financial Planning Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Quantitative Finance & Tax Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1442,11 +1433,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how to create compliant GST invoices for freelance clients. Master CGST, SGST, IGST rules, SAC codes for software/design, and export LUT filings.",
     "canonicalPath": "/blog/freelancer-gst-invoicing-tax-compliance",
     "publishedTime": "2026-09-29T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Financial Planning Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Quantitative Finance & Tax Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1561,11 +1552,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how to sanitize text for code and resumes. Remove invisible Unicode characters, calculate Levenshtein diffs, and master case conversions.",
     "canonicalPath": "/blog/clean-text-processing-formatting-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Text Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "NLP & Unicode Text Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1680,11 +1671,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Explore the behavioral psychology of habit loops, implementation intentions, the Seinfeld streak effect, and how friction reduction builds lasting daily routines.",
     "canonicalPath": "/blog/habit-tracking-science-daily-routines",
     "publishedTime": "2026-09-29T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Productivity Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Behavioral Psychology & Productivity Systems"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1705,7 +1696,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "The Habit Loop consists of Cue, Craving, Response, and Reward: Modifying existing cues is significantly more effective than relying on raw willpower.",
       "Visual streaks leverage loss aversion: Maintaining an unbroken streak on a calendar creates psychological resistance against skipping a day.",
       "Habit Stacking anchors new routines to established behaviors: Pairing a new target action immediately after an automatic current habit accelerates adoption.",
-      "Local habit tracking protects personal self-improvement data: Storing daily health, meditation, and reading streaks in local browser storage guarantees privacy."
+      "Habit entries are stored locally. Anyone with access to that browser profile may be able to view them; clearing site data can remove them."
     ],
     "sections": [
       {
@@ -1799,18 +1790,18 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn the mathematical formula for Shannon password entropy. Compare short complex passwords vs long Diceware passphrases and analyze GPU brute-force crack times.",
     "canonicalPath": "/blog/password-security-entropy-brute-force-math",
     "publishedTime": "2026-09-30T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Cryptography"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
       "url": "https://www.zubware.com"
     },
     "category": "Security Guides",
-    "readingTime": "7 min read",
+    "readingTime": "4 min read",
     "tags": [
       "Password Strength",
       "Password Entropy",
@@ -1819,87 +1810,79 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "NIST SP 800-63B",
       "Cybersecurity"
     ],
-    "excerpt": "Mandating that users include exclamation marks and numbers in short 8-character passwords creates frustrating, predictable combinations that modern GPU cracking clusters crack in seconds. Here is the mathematical proof of Shannon entropy and why 5-word Diceware passphrases are unbreakable.",
+    "excerpt": "Understand what random-password entropy measures, why wordlist size matters, and why a published example or a cracking-time promise should not be treated as a secure password.",
     "takeaways": [
-      "Password entropy is governed by the formula H = L × log2(R): Increasing password length (L) increases security exponentially, while character pool size (R) increases it logarithmically.",
-      "Modern GPU clusters compute billions of NTLM/MD5 hashes per second: An 8-character complex password can be brute-forced in under 15 minutes on an 8x RTX 4090 rig.",
-      "NIST SP 800-63B guidelines recommend long passphrases: Modern enterprise standards deprecate arbitrary character complexity in favor of length and breach-list screening.",
-      "In-browser generation guarantees zero credential leakage: Generating passwords locally using window.crypto.getRandomValues ensures keys are never transmitted over the internet."
+      "Entropy calculations assume independent, uniformly random choices from a known pool. Human-chosen examples do not inherit those figures.",
+      "Zubware’s passphrase generator now uses the 7,776-word EFF Long Wordlist and defaults to six random words.",
+      "Fixed capitalization and separators improve formatting but add no random entropy.",
+      "Use a unique credential for each account and do not reuse any example published in this guide."
     ],
     "sections": [
       {
-        "id": "the-mathematical-entropy-formula",
-        "title": "1. The Mathematical Foundation: Shannon Password Entropy",
-        "content": "Password strength is not a subjective opinion; it is measured in bits of mathematical entropy using Claude Shannon's information theory formula:\n```\nH = L × log2(R)\n```\nWhere:\n- **H** = Total entropy in bits.\n- **L** = Password length (total number of characters or words).\n- **R** = Size of the character pool (pool of possible symbols per position).\n\n**Character Pool Sizes (`R`):**\n- Digits only (`0-9`): `R = 10` (`log2(10) ≈ 3.32` bits/char)\n- Lowercase letters (`a-z`): `R = 26` (`log2(26) ≈ 4.70` bits/char)\n- Alphanumeric mixed case: `R = 62` (`log2(62) ≈ 5.95` bits/char)\n- Full ASCII printable set (including symbols): `R = 94` (`log2(94) ≈ 6.55` bits/char)\n- Standard Diceware Word Dictionary: `R = 7,776` words (`log2(7776) ≈ 12.92` bits/word)"
+        "id": "entropy-formula",
+        "title": "1. Count random choices, not visual complexity",
+        "content": "For independent uniform choices from a pool of size R, a generated string with L choices has theoretical entropy `L × log2(R)`. A pool of one allowed character has zero entropy, even if the output is long. Excluding characters reduces the pool and must be reflected in the calculation.\n\nThis formula does not tell you how unpredictable a human-created sentence is. A common word with a number and symbol can be very guessable despite looking complex."
       },
       {
-        "id": "the-8-char-complex-vs-diceware-comparison",
-        "title": "2. The Great Comparison: 8-Character Complex vs. 5-Word Diceware",
-        "content": "Consider the massive mathematical disparity between traditional complex passwords and memorable multi-word passphrases:\n\n| Password Type | Example | Total Possible Combinations | Entropy Bits | Offline Crack Time (at 100 Billion H/sec) |\n|---|---|---|---|---|\n| **8-Char Complex** | `P@ssw0rd!` | `94^8 ≈ 6.09 × 10^15` | ~52.4 bits | **~17 Hours** |\n| **10-Char Complex** | `K9#m$L2!qZ` | `94^10 ≈ 5.38 × 10^19` | ~65.5 bits | **~17 Years** |\n| **4-Word Passphrase** | `correct-horse-battery-staple` | `7776^4 ≈ 3.65 × 10^15` | ~51.7 bits | ~10 Hours |\n| **5-Word Passphrase** | `glacier-falcon-velvet-timber-puzzle` | `7776^5 ≈ 2.84 × 10^19` | ~64.6 bits | **~90 Years** |\n| **6-Word Passphrase** | `beacon-shadow-orbital-copper-summit-echo` | `7776^6 ≈ 2.21 × 10^23` | ~77.5 bits | **~70,000 Centuries** |\n\n> **Takeaway:** A 6-word memorable passphrase is easy to remember, effortless to type on mobile keyboards, and completely immune to brute-force cracking."
+        "id": "wordlist-size",
+        "title": "2. Why the real wordlist size matters",
+        "content": "Four random words from a 48-word list provide about 22.3 bits before extras. Six random words from a 7,776-word list provide about 77.5 bits. These are very different search spaces.\n\nThe current Zubware passphrase generator bundles the EFF Long Wordlist, with source and license attribution displayed in the tool. It defaults to six words and offers a live entropy readout from the selected options. [EFF explains its wordlist and six-word guidance here](https://www.eff.org/dice)."
       },
       {
-        "id": "modern-gpu-hash-cracking-speeds",
-        "title": "3. Modern Hashcat GPU Cracking Benchmarks in 2026",
-        "content": "When databases leak password hashes (MD5, SHA-1, or unsalted NTLM), attackers feed hashes into specialized offline GPU rigs:\n- A cluster with **8x NVIDIA RTX 4090 GPUs** executes over **800 billion NTLM hashes per second** or 40 billion SHA-256 hashes per second.\n- Any password with less than **60 bits of entropy** can be brute-forced within days.\n- **Key Derivation Functions (KDFs):** To protect passwords, modern systems use computationally intensive algorithms like **Argon2id**, **bcrypt**, and **PBKDF2**, which intentionally require high memory and CPU cycles to render GPU attacks impractical."
+        "id": "comparison",
+        "title": "3. A theoretical comparison with clear assumptions",
+        "content": "The following numbers describe uniformly generated choices, not the strength of a particular published password.\n\n| Independent choices | Pool | Theoretical bits |\n|---|---|---|\n| 8 characters | 94 characters | 52.4 |\n| 10 characters | 94 characters | 65.5 |\n| 5 words | 7,776 words | 64.6 |\n| 6 words | 7,776 words | 77.5 |\n\nThe character pool offered by a particular tool may be smaller than 94 after exclusions. Use its actual pool rather than substituting this example."
       },
       {
-        "id": "nist-sp-800-63b-standards",
-        "title": "4. Modern Authentication Standards (NIST SP 800-63B)",
-        "content": "The National Institute of Standards and Technology (NIST) overhauled enterprise password guidelines in SP 800-63B:\n- **Deprecated:** Mandatory periodic password expiration (which encourages predictable patterns like `Spring2026!`).\n- **Deprecated:** Arbitrary composition rules requiring mixed symbols and numbers.\n- **Recommended:** Minimum length of 12 to 16 characters; support for passphrases up to 64 characters; screening against leaked breach databases (HaveIBeenPwned)."
+        "id": "random-generation",
+        "title": "4. How browser generation selects a result",
+        "content": "These generators use the browser’s `crypto.getRandomValues()` random source. Rejection sampling discards the incomplete final bucket before mapping a 32-bit random draw to a character or word index; this avoids modulo bias.\n\nA fixed separator or deterministic capitalization does not add randomness. The optional two-digit number and symbol add separate random choices. The displayed entropy remains a model of the generation process, not a certification of account security. [Read the browser API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues)."
       },
       {
-        "id": "password-security-entropy-brute-force-math-ext-1",
-        "title": "5. Worked Mathematical Calculation: Shannon Entropy Comparison",
-        "content": "Let us calculate the exact mathematical entropy of two competing password strategies:\n\n- **Password A:** `T9#k$2!z` (8 characters chosen from full 94-character ASCII set)\n  - Character Pool `R = 94`, Length `L = 8`\n  - `H = 8 × log2(94) = 8 × 6.5546 = 52.44 bits`\n  - Total combinations: `2^52.44 ≈ 6.09 × 10^15`\n  - At 100 billion guesses/sec, this is cracked in **~17 hours**.\n\n- **Password B:** `timber-galaxy-velvet-falcon-summit` (5 words from standard 7,776-word Diceware list)\n  - Word Pool `R = 7776`, Length `L = 5`\n  - `H = 5 × log2(7776) = 5 × 12.9248 = 64.62 bits`\n  - Total combinations: `2^64.62 ≈ 2.84 × 10^19` (over **4,600 times more resistant** than Password A!).\n  - At 100 billion guesses/sec, this requires **over 90 years** of continuous brute-force computing."
+        "id": "cracking-time",
+        "title": "5. Why no universal cracking time is shown",
+        "content": "Attack speeds vary with password hashing, hardware, rate limits and the type of attack. A stolen hash and a rate-limited login form are different situations. A theoretical search space is not a promise that a password cannot be cracked.\n\nEarlier versions of this guide presented unsupported hardware benchmarks and incorrect time estimates. Those estimates have been removed. Published passwords and familiar quotations are already known examples, so never adopt them as your own credentials."
       },
       {
-        "id": "password-security-entropy-brute-force-math-ext-2",
-        "title": "6. Salting and Adaptive Hashing: Argon2 vs. Legacy MD5",
-        "content": "Why modern systems pair high-entropy passphrases with adaptive key derivation:\n- **Unsalted Hashes (Fatal):** If an attacker steals a database of unsalted MD5 hashes, pre-computed lookup tables (Rainbow Tables) reveal millions of plaintext passwords instantly.\n- **Cryptographic Salt:** A unique random string (e.g., 16 bytes) appended to each password before hashing, ensuring two identical passwords produce completely different hash strings.\n- **Argon2id (Winner of Password Hashing Competition):** Configured to require 64MB of RAM per hash verification, rendering parallelized GPU cracking rigs ineffective."
+        "id": "practical-workflow",
+        "title": "6. Use the result carefully",
+        "content": "Generate a fresh result, use it for one account only, and save it securely before relying on it. Confirm that the destination accepts its length and characters. A password manager can help maintain different credentials for different accounts.\n\nOn a shared device, remember that copying a password places it on that device’s clipboard. Local generation avoids submitting it to a password-generation server; it does not protect against a compromised browser, device or clipboard. For account-specific protection, follow that service’s guidance and available authentication options."
       }
     ],
     "howTo": {
-      "name": "How to Test Password Strength and Generate Passphrases",
-      "description": "Step-by-step security workflow using Zubware tools.",
+      "name": "Generate a fresh random passphrase",
+      "description": "Choose a word count and inspect the generation assumptions.",
       "steps": [
         {
-          "name": "Open Password Strength Checker",
-          "text": "Navigate to Zubware Password Strength Checker or Memorable Passphrase Generator."
+          "name": "Open the passphrase tool",
+          "text": "Start with the six-word default and choose the formatting accepted by the destination."
         },
         {
-          "name": "Inspect Entropy Score",
-          "text": "Type a candidate password to inspect real-time Shannon entropy bits and crack-time estimates."
+          "name": "Review the entropy readout",
+          "text": "The estimate uses the actual wordlist size and optional random choices."
         },
         {
-          "name": "Generate Secure Diceware Passphrase",
-          "text": "Select 5 or 6 words with custom separators (hyphen or space) for uncrackable credentials."
-        },
-        {
-          "name": "Store in Password Manager",
-          "text": "Copy the generated passphrase to your encrypted password manager with zero server leakage."
+          "name": "Save a unique result",
+          "text": "Use a new result for one account only; never reuse a published example."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Why is a 5-word passphrase stronger than an 8-character password with symbols?",
-        "answer": "Length provides exponential expansion. 5 random dictionary words create over 28 quintillion combinations (~65 bits of entropy), far outpacing the 6 quadrillion combinations of an 8-character string."
+        "question": "Do uppercase letters automatically make a passphrase stronger?",
+        "answer": "Capitalizing every word in a fixed way does not add random choices. It changes formatting, not the word-selection entropy."
       },
       {
-        "question": "Does Zubware send my entered passwords over the internet to check them?",
-        "answer": "Never. Zubware Password Strength Checker runs 100% locally in your browser memory. Your keystrokes are never logged, tracked, or transmitted."
+        "question": "Does the entropy readout predict cracking time?",
+        "answer": "No. It describes a theoretical random search space. Real attack conditions and the destination’s security controls differ."
       },
       {
-        "question": "What is a Diceware passphrase?",
-        "answer": "Diceware is a cryptographic method created by Arnold Reinhold where dice rolls select words from a 7,776-word dictionary, guaranteeing true mathematical randomness."
+        "question": "Which wordlist does the current tool use?",
+        "answer": "The current tool uses the 7,776-word EFF Long Wordlist, attributed to Joseph Bonneau / Electronic Frontier Foundation under CC BY 4.0."
       },
       {
-        "question": "How many entropy bits are considered secure in 2026?",
-        "answer": "Cryptographers recommend at least 64 bits of entropy for everyday web accounts and 80+ bits for master passwords securing password managers or root SSH keys."
-      },
-      {
-        "question": "Should I change my passwords every 90 days?",
-        "answer": "No. NIST guidelines discourage mandatory password expiration because users typically make predictable small alterations (changing \"Summer1!\" to \"Summer2!\"). Focus on long, unique passphrases."
+        "question": "Can I use a phrase printed in a guide?",
+        "answer": "No. A published example is already known. Generate a fresh, private result."
       }
     ],
     "relatedToolIds": [
@@ -1918,11 +1901,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how QR code phishing (Quishing) works. Inspect encoded URL payloads in an isolated browser sandbox, spot malicious redirects, and stay safe.",
     "canonicalPath": "/blog/qr-code-security-phishing-prevention",
     "publishedTime": "2026-09-30T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Cryptography"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2037,11 +2020,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master YouTube SEO and Click-Through Rate (CTR). Optimize video titles, keyword descriptions, tag taxonomy, and thumbnail design avoiding timestamp badges.",
     "canonicalPath": "/blog/youtube-growth-metadata-thumbnails-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Creator Studio Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Creator Economy & Video SEO Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2156,11 +2139,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how modern browsers render video and audio using Web Audio API and HTML5 Canvas. Create viral puzzle shorts and video clips without desktop software.",
     "canonicalPath": "/blog/browser-video-audio-creation-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Creator Studio Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Creator Economy & Video SEO Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2275,11 +2258,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn the music theory and production secrets of lofi hip-hop. Master jazz 7th chords, the 70-85 BPM sweet spot, vinyl texture synthesis, and frequency filtering.",
     "canonicalPath": "/blog/lofi-music-production-ambient-sound-design",
     "publishedTime": "2026-09-27T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Audio Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Audio Processing & Web Audio Synthesis"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2394,11 +2377,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Explore the audio engineering behind the slowed and reverb phenomenon. Master pitch shifting, convolution reverb impulses, and spatial audio psychoacoustics.",
     "canonicalPath": "/blog/slowed-reverb-audio-trend-explained",
     "publishedTime": "2026-09-27T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Audio Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Audio Processing & Web Audio Synthesis"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2513,11 +2496,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Complete guide to video aspect ratios. Master vertical 9:16 (Shorts, Reels, TikTok), 16:9 landscape, and 1:1 square formats. Avoid UI overlay clipping.",
     "canonicalPath": "/blog/video-aspect-ratio-guide-reels-shorts-tiktok",
     "publishedTime": "2026-09-28T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Creator Studio Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Creator Economy & Video SEO Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2632,11 +2615,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Complete YouTube banner dimensions guide. Master the 2560x1440 canvas, 1546x423 mobile safe zone, desktop cutoffs, and responsive branding layout.",
     "canonicalPath": "/blog/youtube-banner-safe-area-responsive-design",
     "publishedTime": "2026-09-28T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Creator Studio Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Creator Economy & Video SEO Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2751,11 +2734,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn the cognitive psychology of viral YouTube hooks. Master the Curiosity Gap, the 3-second rule, pattern interrupts, and 50-character title optimization.",
     "canonicalPath": "/blog/viral-youtube-hooks-titles-psychology",
     "publishedTime": "2026-09-29T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Creator Studio Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Creator Economy & Video SEO Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2870,11 +2853,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master Instagram search optimization in 2026. Explore semantic keyword indexing, targeted hashtag grouping, high-retention carousel copy, and bio architecture.",
     "canonicalPath": "/blog/instagram-growth-hashtags-captions-strategy",
     "publishedTime": "2026-09-29T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Creator Studio Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Creator Economy & Video SEO Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -2989,11 +2972,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master modern CSS styling. Create performant glassmorphism with backdrop-filter, layer multi-stop gradients, and build realistic multi-layered box shadows.",
     "canonicalPath": "/blog/css-modern-styling-glassmorphism-gradients",
     "publishedTime": "2026-09-30T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Design Systems Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "UI/UX & Frontend Design Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -3108,11 +3091,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master WCAG 2.1 color accessibility. Understand relative luminance mathematics, 4.5:1 Level AA and 7:1 Level AAA contrast ratios, and color blindness palettes.",
     "canonicalPath": "/blog/color-theory-accessible-contrast-palette-design",
     "publishedTime": "2026-09-30T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Design Systems Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "UI/UX & Frontend Design Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -3133,7 +3116,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "WCAG 2.1 Level AA mandates 4.5:1 contrast for normal text: Large text (18pt+ or 14pt bold) requires a minimum 3:1 contrast ratio against its background.",
       "Relative luminance is weighted for human retinal biology: The W3C formula assigns 71.5% weight to green wavelengths, 21.3% to red, and only 7.2% to blue.",
       "Color blindness affects 1 in 12 men (8%): Never rely solely on color (such as red vs green borders) to indicate form errors or system states.",
-      "In-browser contrast evaluation guarantees design system compliance: Testing hex pairs locally with Zubware Contrast Checker ensures accessible digital products."
+      "Contrast checking evaluates the selected color pair. Full accessibility also depends on keyboard access, labels, structure and other design choices."
     ],
     "sections": [
       {
@@ -3227,11 +3210,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master prompt engineering for LLMs. Learn the RCIO framework, Few-Shot prompting, Chain-of-Thought (CoT) reasoning, and output constraints to eliminate hallucinations.",
     "canonicalPath": "/blog/ai-prompt-engineering-mastery-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware AI Research Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Prompt Architecture & LLM Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -3346,11 +3329,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how Applicant Tracking Systems (ATS) parse resumes. Avoid layout traps, optimize keyword density, and format clean PDFs that pass recruiter screens.",
     "canonicalPath": "/blog/ats-resume-optimization-career-guide",
     "publishedTime": "2026-09-25T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Career Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Career Strategy & HR Tech Architecture"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -3465,11 +3448,11 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Explore the science of health metrics. Master the Quetelet BMI formula, Mifflin-St Jeor BMR equation, TDEE activity multipliers, and body fat percentages.",
     "canonicalPath": "/blog/bmi-body-composition-tdee-health-guide",
     "publishedTime": "2026-09-30T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Health & Wellness Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Biometrics & Metabolic Science Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",

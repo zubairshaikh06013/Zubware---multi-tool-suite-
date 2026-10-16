@@ -1,3 +1,5 @@
+import { PASSPHRASE_WORDS as WORD_LIST } from '../../../data/passphraseWords';
+import { secureRandomIndex } from '../../../lib/secureRandom';
 import React, { useState, useEffect } from 'react';
 import { Copy, RefreshCw, KeyRound, Check } from 'lucide-react';
 
@@ -5,17 +7,10 @@ interface PassphraseGeneratorToolProps {
   onShowToast: (message: string) => void;
 }
 
-const WORD_LIST = [
-  'correct', 'horse', 'battery', 'staple', 'rocket', 'galaxy', 'quantum', 'shield',
-  'shadow', 'phoenix', 'dragon', 'falcon', 'thunder', 'crystal', 'anchor', 'bridge',
-  'castle', 'desert', 'forest', 'island', 'jungle', 'kingdom', 'lantern', 'mountain',
-  'ocean', 'planet', 'river', 'silver', 'sunset', 'timber', 'valley', 'volcano',
-  'whisper', 'winter', 'beacon', 'breeze', 'canyon', 'harbor', 'summit', 'meadow',
-  'orbit', 'cosmic', 'symphony', 'harmony', 'zenith', 'vortex', 'compass', 'frontier'
-];
+
 
 export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = ({ onShowToast }) => {
-  const [wordCount, setWordCount] = useState<number>(4);
+  const [wordCount, setWordCount] = useState<number>(6);
   const [separator, setSeparator] = useState<string>('-');
   const [capitalize, setCapitalize] = useState<boolean>(true);
   const [includeNumber, setIncludeNumber] = useState<boolean>(true);
@@ -25,11 +20,10 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
 
   const generatePassphrase = () => {
     const selectedWords: string[] = [];
-    const array = new Uint32Array(wordCount + 2);
-    window.crypto.getRandomValues(array);
+
 
     for (let i = 0; i < wordCount; i++) {
-      let word = WORD_LIST[array[i] % WORD_LIST.length];
+      let word = WORD_LIST[secureRandomIndex(WORD_LIST.length)];
       if (capitalize) {
         word = word.charAt(0).toUpperCase() + word.slice(1);
       }
@@ -37,13 +31,13 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
     }
 
     if (includeNumber) {
-      const randomNum = (array[wordCount] % 90) + 10;
+      const randomNum = secureRandomIndex(90) + 10;
       selectedWords.push(randomNum.toString());
     }
 
     if (includeSymbol) {
       const symbols = ['!', '@', '#', '$', '%', '&', '*'];
-      const symbol = symbols[array[wordCount + 1] % symbols.length];
+      const symbol = symbols[secureRandomIndex(symbols.length)];
       selectedWords.push(symbol);
     }
 
@@ -54,6 +48,8 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
   useEffect(() => {
     generatePassphrase();
   }, [wordCount, separator, capitalize, includeNumber, includeSymbol]);
+
+  const entropy = wordCount * Math.log2(WORD_LIST.length) + (includeNumber ? Math.log2(90) : 0) + (includeSymbol ? Math.log2(7) : 0);
 
   const handleCopy = () => {
     if (!passphrase) return;
@@ -101,6 +97,7 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
           <input
             type="text"
             readOnly
+            aria-label="Generated Passphrase"
             value={passphrase}
             className="w-full py-4 px-5 pr-14 rounded-2xl bg-slate-100/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 font-mono text-base sm:text-lg font-bold text-indigo-600 dark:text-indigo-400 select-all focus:outline-none tracking-wider"
           />
@@ -113,6 +110,11 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
         </div>
       </div>
 
+      <p className="text-xs text-slate-600 dark:text-slate-400">
+        {WORD_LIST.length.toLocaleString('en-US')} words · {entropy.toFixed(1)} bits of theoretical entropy. Capitalization and a fixed separator add no randomness. This is not a predicted cracking time.
+        {' '}<a className="underline" href="https://www.eff.org/dice" target="_blank" rel="noopener noreferrer">EFF Long Wordlist</a> by Joseph Bonneau / Electronic Frontier Foundation, adapted under <a className="underline" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>. Dice numbers removed; words unchanged. No endorsement implied.
+      </p>
+      {wordCount < 6 && <p role="alert" className="text-sm text-amber-700 dark:text-amber-300">Fewer words reduce the search space. The default uses six independently random words. Never reuse a published example as a password.</p>}
       {/* Options */}
       <div className="glass-card p-6 rounded-3xl space-y-6">
         <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Passphrase Settings</h3>
@@ -126,6 +128,7 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
           </div>
           <input
             type="range"
+            aria-label="Word Count"
             min="3"
             max="10"
             value={wordCount}

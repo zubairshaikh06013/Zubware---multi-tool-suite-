@@ -1,3 +1,4 @@
+import { SITE_REVIEW_DATE, PRIVACY_NOTES } from '../../data/siteTrustContent';
 import React from 'react';
 import { ShieldCheck, Lock, HardDrive, Cookie, EyeOff, CheckCircle } from 'lucide-react';
 
@@ -18,7 +19,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
           Privacy Policy
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2">
-          Effective Date: September 2026 • Zubware Client-Side Security & Privacy Policy
+          Last reviewed: {SITE_REVIEW_DATE} • Zubware Privacy Policy
         </p>
       </div>
 
@@ -71,23 +72,20 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
         <section className="space-y-3">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
-            <EyeOff className="w-4 h-4 text-indigo-600" /> 3. Analytics & Zero Advertisements Policy
+            <EyeOff className="w-4 h-4 text-indigo-600" /> 3. Website Requests, Measurement & Advertising
           </h2>
-          <p>
-            <strong>Analytics:</strong> Zubware integrates Google Tag Manager (GTM-MRXVGW45) to measure aggregate website traffic, page views, and user navigation patterns. Analytics services use standard anonymous telemetry solely to evaluate platform performance, resolve errors, and guide user experience improvements. No advertising profiles or behavioral ad trackers are utilized.
-          </p>
-          <p>
-            <strong>Ad-Free Platform:</strong> Zubware does not display or host any third-party commercial advertisements, banner ads, popups, or sponsored tracking networks. The platform is completely free to use without ad monetization scripts or third-party advertising cookies.
-          </p>
+          <p>{PRIVACY_NOTES.analytics}</p>
+          <p>{PRIVACY_NOTES.hosting}</p>
+          <p>{PRIVACY_NOTES.advertising}</p>
+          <p><a className="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google privacy information</a> · <a className="underline" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare privacy information</a></p>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">
-            4. CCPA & GDPR Privacy Rights
+            4. Contact Messages & Privacy Controls
           </h2>
-          <p>
-            Under GDPR and CCPA regulations, users have fundamental privacy rights regarding access and control over their personal data. Because Zubware processes files and inputs client-side in the browser and does not maintain user accounts or store personal files on our servers, no personal documents or processed assets are retained on Zubware infrastructure.
-          </p>
+          <p>{PRIVACY_NOTES.contact}</p>
+          <p>{PRIVACY_NOTES.controls}</p>
         </section>
 
         <section className="space-y-3">

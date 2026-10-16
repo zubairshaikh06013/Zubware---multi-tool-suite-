@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { encodeCanvasBlob } from '../../lib/canvasEncoding';
+import React, { useState, useEffect, useRef } from 'react';
 import JSZip from 'jszip';
 import {
   Download,
@@ -59,6 +60,11 @@ interface ImageConverterToolProps {
 export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowToast }) => {
   const { t } = useLanguage();
   const [items, setItems] = useState<ConvertItem[]>([]);
+  const previewUrls = useRef(new Set<string>());
+  useEffect(() => () => {
+    previewUrls.current.forEach(url => URL.revokeObjectURL(url));
+    previewUrls.current.clear();
+  }, []);
   const [globalTarget, setGlobalTarget] = useState<OutputImageFormat>('image/webp');
   const [quality, setQuality] = useState<number>(88);
   const [bgColor, setBgColor] = useState<string>('#FFFFFF');
@@ -109,9 +115,10 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
 
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
-  }, [globalTarget]);
+  }, [globalTarget, isProcessing]);
 
   const handleFilesAdded = async (files: File[]) => {
+    if (isProcessing) { onShowToast('Wait for the current conversion to finish.'); return; }
     const validFiles = Array.from(files).filter(
       (f) =>
         f.type.startsWith('image/') ||
@@ -127,6 +134,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
       const isSvg = file.type === 'image/svg+xml' || file.name.toLowerCase().endsWith('.svg');
       const isGif = file.type === 'image/gif' || file.name.toLowerCase().endsWith('.gif');
       const previewUrl = URL.createObjectURL(file);
+      previewUrls.current.add(previewUrl);
 
       // Extract image dimensions
       const dims = await new Promise<{ w: number; h: number }>((resolve) => {
@@ -136,7 +144,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
             w: img.naturalWidth || img.width || 800,
             h: img.naturalHeight || img.height || 600
           });
-        img.onerror = () => resolve({ w: 800, h: 600 });
+        img.onerror = () => resolve({ w: 0, h: 0 });
         img.src = previewUrl;
       });
 
@@ -150,7 +158,8 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
         originalHeight: dims.h,
         targetFormat: globalTarget,
         convertedBlob: null,
-        status: 'idle'
+        status: dims.w && dims.h ? 'idle' : 'error',
+        errorMsg: dims.w && dims.h ? undefined : 'This browser could not decode this image. Try PNG, JPEG or WebP.'
       });
     }
 
@@ -158,139 +167,57 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
     onShowToast(`Added ${loaded.length} image(s) to conversion queue.`);
   };
 
-  const convertSingle = async (
-    item: ConvertItem,
-    targetFmt: OutputImageFormat
-  ): Promise<ConvertItem> => {
-    return new Promise((resolve) => {
-      const img = new Image();
-      img.onload = async () => {
-        let drawW = img.naturalWidth || img.width || 800;
-        let drawH = img.naturalHeight || img.height || 600;
-
-        // ICO specific dimension sizing
-        if (targetFmt === 'image/x-icon') {
-          drawW = icoSize;
-          drawH = icoSize;
-        } else if (enableResize && (maxWidth > 0 || maxHeight > 0)) {
-          if (lockAspect) {
-            const scaleW = maxWidth > 0 ? maxWidth / drawW : 1;
-            const scaleH = maxHeight > 0 ? maxHeight / drawH : 1;
-            const scale = Math.min(scaleW, scaleH, 1);
-            drawW = Math.round(drawW * scale);
-            drawH = Math.round(drawH * scale);
-          } else {
-            if (maxWidth > 0) drawW = maxWidth;
-            if (maxHeight > 0) drawH = maxHeight;
-          }
+  const convertSingle = async (item: ConvertItem, targetFmt: OutputImageFormat): Promise<ConvertItem> => {
+    // Clear old output so a failed retry cannot offer a stale download.
+    const clean = { ...item, targetFormat: targetFmt, convertedBlob: null, convertedSize: undefined, errorMsg: undefined };
+    try {
+      const img = await new Promise<HTMLImageElement>((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = () => reject(new Error('This browser cannot decode the source image. Try PNG, JPEG or WebP.'));
+        image.src = item.previewUrl;
+      });
+      let drawW = img.naturalWidth, drawH = img.naturalHeight;
+      if (targetFmt === 'image/x-icon') {
+        drawW = drawH = icoSize;
+      } else if (enableResize) {
+        if (lockAspect) {
+          const scale = Math.min(maxWidth > 0 ? maxWidth / drawW : 1, maxHeight > 0 ? maxHeight / drawH : 1, 1);
+          drawW = Math.max(1, Math.round(drawW * scale));
+          drawH = Math.max(1, Math.round(drawH * scale));
+        } else {
+          drawW = maxWidth > 0 ? Math.round(maxWidth) : drawW;
+          drawH = maxHeight > 0 ? Math.round(maxHeight) : drawH;
         }
-
-        const canvas = document.createElement('canvas');
-        canvas.width = Math.max(1, drawW);
-        canvas.height = Math.max(1, drawH);
-        const ctx = canvas.getContext('2d');
-        if (!ctx) {
-          resolve({ ...item, status: 'error', errorMsg: 'Canvas context unavailable' });
-          return;
-        }
-
-        // Fill background color for formats that do not support transparency
-        const needsFlatten = targetFmt === 'image/jpeg' || targetFmt === 'image/bmp';
-        if (needsFlatten) {
-          ctx.fillStyle = bgColor || '#FFFFFF';
-          ctx.fillRect(0, 0, drawW, drawH);
-        } else if (bgColor && bgColor !== '#FFFFFF' && bgColor !== 'transparent') {
-          ctx.fillStyle = bgColor;
-          ctx.fillRect(0, 0, drawW, drawH);
-        }
-
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-        ctx.drawImage(img, 0, 0, drawW, drawH);
-
-        // 1. BMP Custom Pure Client-Side Encoder (guarantees valid BMP file)
-        if (targetFmt === 'image/bmp') {
-          try {
-            const imgData = ctx.getImageData(0, 0, drawW, drawH);
-            const bmpBytes = encodeBmpFromImageData(imgData);
-            const bmpBlob = new Blob([bmpBytes], { type: 'image/bmp' });
-            resolve({
-              ...item,
-              targetFormat: targetFmt,
-              convertedBlob: bmpBlob,
-              convertedWidth: drawW,
-              convertedHeight: drawH,
-              convertedSize: bmpBlob.size,
-              status: 'done'
-            });
-            return;
-          } catch (e: any) {
-            resolve({ ...item, status: 'error', errorMsg: e.message || 'BMP encoding failed' });
-            return;
-          }
-        }
-
-        // 2. ICO Custom Pure Client-Side Encoder (guarantees valid standard Windows ICO)
-        if (targetFmt === 'image/x-icon') {
-          canvas.toBlob(
-            async (pngBlob) => {
-              if (!pngBlob) {
-                resolve({ ...item, status: 'error', errorMsg: 'ICO rasterization failed' });
-                return;
-              }
-              const pngBytes = new Uint8Array(await pngBlob.arrayBuffer());
-              const icoBytes = encodeIcoFromPngBytes(pngBytes, drawW, drawH);
-              const icoBlob = new Blob([icoBytes], { type: 'image/x-icon' });
-              resolve({
-                ...item,
-                targetFormat: targetFmt,
-                convertedBlob: icoBlob,
-                convertedWidth: drawW,
-                convertedHeight: drawH,
-                convertedSize: icoBlob.size,
-                status: 'done'
-              });
-            },
-            'image/png'
-          );
-          return;
-        }
-
-        // 3. Standard Browser Codecs (PNG, JPEG, WebP, AVIF)
-        const exportQuality =
-          targetFmt === 'image/jpeg' || targetFmt === 'image/webp' ? quality / 100 : undefined;
-
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
-              resolve({
-                ...item,
-                targetFormat: targetFmt,
-                convertedBlob: blob,
-                convertedWidth: drawW,
-                convertedHeight: drawH,
-                convertedSize: blob.size,
-                status: 'done'
-              });
-            } else {
-              resolve({
-                ...item,
-                status: 'error',
-                errorMsg: 'Conversion encoding failed'
-              });
-            }
-          },
-          targetFmt,
-          exportQuality
-        );
-      };
-
-      img.onerror = () => {
-        resolve({ ...item, status: 'error', errorMsg: 'Failed to load source image' });
-      };
-
-      img.src = item.previewUrl;
-    });
+      }
+      if (!Number.isFinite(drawW) || !Number.isFinite(drawH) || drawW < 1 || drawH < 1 || drawW > 16384 || drawH > 16384 || drawW * drawH > 32000000) {
+        throw new Error('Output is too large for this converter. Enable resizing and choose smaller dimensions (up to 32 megapixels).');
+      }
+      const canvas = document.createElement('canvas');
+      canvas.width = drawW; canvas.height = drawH;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) throw new Error('Canvas context unavailable. Try a smaller image.');
+      const needsFlatten = targetFmt === 'image/jpeg' || targetFmt === 'image/bmp';
+      if (needsFlatten || (bgColor && bgColor !== '#FFFFFF' && bgColor !== 'transparent')) {
+        ctx.fillStyle = bgColor === 'transparent' ? '#FFFFFF' : bgColor || '#FFFFFF';
+        ctx.fillRect(0, 0, drawW, drawH);
+      }
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.drawImage(img, 0, 0, drawW, drawH);
+      let blob: Blob;
+      if (targetFmt === 'image/bmp') {
+        blob = new Blob([encodeBmpFromImageData(ctx.getImageData(0, 0, drawW, drawH))], { type: targetFmt });
+      } else if (targetFmt === 'image/x-icon') {
+        const png = await encodeCanvasBlob(canvas, 'image/png');
+        blob = new Blob([encodeIcoFromPngBytes(new Uint8Array(await png.arrayBuffer()), drawW, drawH)], { type: targetFmt });
+      } else {
+        blob = await encodeCanvasBlob(canvas, targetFmt, targetFmt === 'image/png' ? undefined : quality / 100);
+      }
+      return { ...clean, convertedBlob: blob, convertedWidth: drawW, convertedHeight: drawH, convertedSize: blob.size, status: 'done' };
+    } catch (error) {
+      return { ...clean, status: 'error', errorMsg: error instanceof Error ? error.message : 'Image conversion failed. Try a smaller image.' };
+    }
   };
 
   const convertAll = async () => {
@@ -307,9 +234,10 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
       setProgressPercent(Math.round(((i + 1) / items.length) * 100));
     }
 
-    setItems(results);
+    setItems(previous => previous.map(item => results.find(result => result.id === item.id) || item));
     setIsProcessing(false);
-    onShowToast('All images converted successfully!');
+    const failed = results.filter(item => item.status === 'error').length;
+    onShowToast(failed ? `${results.length - failed} converted; ${failed} failed. Review the errors in the queue.` : `${results.length} images converted successfully.`);
   };
 
   const downloadSingle = (item: ConvertItem) => {
@@ -373,11 +301,16 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
   };
 
   const removeItem = (id: string) => {
+    if (isProcessing) return;
+    const item = items.find(item => item.id === id);
+    if (item) { URL.revokeObjectURL(item.previewUrl); previewUrls.current.delete(item.previewUrl); }
     setItems((prev) => prev.filter((i) => i.id !== id));
   };
 
   const clearAll = () => {
+    if (isProcessing) return;
     items.forEach((i) => URL.revokeObjectURL(i.previewUrl));
+    previewUrls.current.clear();
     setItems([]);
     onShowToast('Queue cleared.');
   };
@@ -399,6 +332,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
               <span>{isProcessing ? `Converting (${progressPercent}%)` : 'Convert All Images'}</span>
             </button>
             <button
+              disabled={isProcessing}
               onClick={clearAll}
               className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-xl transition-all cursor-pointer"
               title="Clear All"
@@ -429,11 +363,13 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
               Target Format
             </label>
             <select
+              aria-label="Target Format"
+              disabled={isProcessing}
               value={globalTarget}
               onChange={(e) => {
                 const val = e.target.value as OutputImageFormat;
                 setGlobalTarget(val);
-                setItems(items.map((i) => ({ ...i, targetFormat: val })));
+                setItems(items.map((i) => ({ ...i, targetFormat: val, convertedBlob: null, convertedSize: undefined, status: i.originalWidth && i.originalHeight ? 'idle' : 'error', errorMsg: i.originalWidth && i.originalHeight ? undefined : 'This browser could not decode this image. Try PNG, JPEG or WebP.' })));
               }}
               className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-xs font-bold focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer"
             >
@@ -660,6 +596,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
                         </>
                       )}
                     </div>
+                    {item.errorMsg && <p role="alert" className="text-xs text-rose-600 dark:text-rose-400">{item.errorMsg}</p>}
                     {item.isGif && (
                       <p className="text-[10px] text-amber-600 dark:text-amber-400 font-medium">
                         Animated GIF: converted using first frame
@@ -684,7 +621,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
                           ? `Ready (.${getExtensionForMime(item.targetFormat)})`
                           : item.status === 'converting'
                           ? 'Converting...'
-                          : 'Pending'}
+                          : item.status === 'error' ? 'Failed' : 'Pending'}
                       </span>
                     </div>
                   </div>
@@ -702,16 +639,22 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
                   ) : (
                     <button
                       onClick={async () => {
+                        if (isProcessing) return;
+                        setIsProcessing(true);
                         const updated = await convertSingle(item, item.targetFormat);
-                        setItems(items.map((i) => (i.id === item.id ? updated : i)));
+                        setItems(previous => previous.map(i => i.id === item.id ? updated : i));
+                        setIsProcessing(false);
+                        if (updated.errorMsg) onShowToast(updated.errorMsg);
                       }}
                       className="p-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 transition-all cursor-pointer"
+                      disabled={isProcessing}
                       title="Convert Image"
                     >
                       <RefreshCw className="w-4 h-4" />
                     </button>
                   )}
                   <button
+                    disabled={isProcessing}
                     onClick={() => removeItem(item.id)}
                     className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-all cursor-pointer"
                     title="Remove from queue"

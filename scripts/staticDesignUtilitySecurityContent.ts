@@ -1271,7 +1271,7 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem;">
         <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #4f46e5;">Diceware CSPRNG Cryptography</span>
         <h2 style="font-size: 1.75rem; font-weight: 800; color: #0f172a; margin-top: 0.25rem; margin-bottom: 0.5rem;">Memorable Passphrase Generator: High-Entropy Diceware Passwords</h2>
-        <p style="font-size: 0.95rem; color: #475569; line-height: 1.6;">Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 8 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.</p>
+        <p style="font-size: 0.95rem; color: #475569; line-height: 1.6;">Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 10 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.</p>
       </div>
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
@@ -1287,25 +1287,25 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
         <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Customizable Structure & Separators</h4>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Fine-tune passphrase formatting to balance human typing ease against legacy website complexity requirements.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
-          <li>3 to 8 word slider (4–5 recommended)</li><li>Hyphen, underscore, space, or period separators</li><li>Capitalization, random number & symbol toggles</li>
+          <li>3 to 10 words; six-word default</li><li>Hyphen, underscore, space, or period separators</li><li>Capitalization, random number & symbol toggles</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
         <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Shannon Entropy & Crack-Time Resistance</h4>
-        <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Real-time mathematical entropy readout (in bits) calculating the theoretical search space against high-speed GPU cracking rigs.</p>
+        <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">The entropy readout uses the actual wordlist size and independent random choices. It does not predict the speed of a real attack.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
-          <li>Exact entropy bits (E = W * log2(N))</li><li>GPU cluster brute-force resistance estimate</li><li>100% private in-browser generation</li>
+          <li>Exact entropy bits (E = W * log2(N))</li><li>Theoretical search-space estimate, not a cracking-time prediction</li><li>100% private in-browser generation</li>
         </ul>
       </div>
       </div>
 
       
       <div style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Why Diceware Passphrases Beat Complex Random Passwords</h3>
-        <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">For decades, computer users were instructed to create passwords like "J#8x!mP$9". These short, complex strings are almost impossible for humans to remember, leading to dangerous habits like writing passwords on sticky notes or reusing them across accounts. Furthermore, at only 8 characters, their total search space is vulnerable to modern GPU brute-force attacks.</p><p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">The Diceware concept, popularized by Arnold Reinhold and highlighted by the famous XKCD "Correct Horse Battery Staple" comic, strings together several random dictionary words. A 5-word passphrase like "correct-horse-battery-staple-orange" is effortless for humans to visualize and type, yet contains over 65 bits of pure cryptographic entropy—vastly harder to crack than a short complex string.</p>
+        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Choosing Random Words for a Passphrase</h3>
+        <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">For decades, computer users were instructed to create passwords like "J#8x!mP$9". These short, complex strings are almost impossible for humans to remember, leading to dangerous habits like writing passwords on sticky notes or reusing them across accounts. Furthermore, at only 8 characters, their total search space is vulnerable to modern GPU brute-force attacks.</p><p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">Each word must be selected independently at random. A familiar quotation or published example is predictable, regardless of its length. Use a freshly generated phrase, keep it private, and never reuse a phrase across accounts.</p>
         <div style="padding: 1rem; background-color: #fef3c7; border: 1px solid #fde68a; border-radius: 0.5rem; color: #92400e; font-size: 0.875rem; margin-top: 0.75rem;">
           <strong style="display: block; margin-bottom: 0.25rem;">Calculating Passphrase Entropy Bits</strong>
-          Entropy in bits measures unpredictable randomness. For a wordlist of size N and a passphrase of W words, Entropy = W × log2(N). Using our curated 4,000+ word dictionary, each word contributes roughly 12 bits of entropy. A 5-word passphrase yields ~60+ bits (over 1 quintillion combinations).
+          Entropy in bits measures unpredictable randomness. For a wordlist of size N and a passphrase of W words, Entropy = W × log2(N). This tool uses the 7,776-word EFF Long Wordlist. Six independent word choices provide about 77.5 bits before optional random digits or symbols. Fixed capitalization and separators add no entropy.
         </div>
       </div>
       <div style="margin-bottom: 1.5rem;">

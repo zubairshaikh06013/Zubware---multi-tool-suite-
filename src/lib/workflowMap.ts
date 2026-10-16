@@ -4,6 +4,9 @@ import { ToolMeta, BlogArticle } from '../types';
  * Curated workflow clusters mapping specific tools to next-step or companion utilities.
  */
 export const WORKFLOW_MAP: Record<string, string[]> = {
+  'us-income-tax-calculator': ['salary-hike-calculator', 'ctc-calculator', 'percentage-calculator', 'currency-calculator'],
+  'currency-calculator': ['percentage-calculator', 'profit-margin-calculator', 'us-income-tax-calculator'],
+  'password-generator': ['passphrase-generator', 'password-strength-checker', 'random-password-generator'],
   // Date calculations belong with dates, not CSS tools in the broad Design category.
   'age-calculator': ['working-days-calculator', 'countdown-calculator', 'time-zone-converter', 'cat-age-calculator'],
   'college-gpa-calculator': ['cgpa-calculator', 'exam-score-calculator', 'percentage-calculator'],

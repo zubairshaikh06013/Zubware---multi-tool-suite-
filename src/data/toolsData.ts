@@ -218,10 +218,10 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "category": "🖼️ Image Tools",
     "badge": "Free",
     "features": [
-      "Universal Format Conversion (JPG, PNG, WebP, BMP, ICO, AVIF, SVG)",
-      "Custom Compression Quality Slider (1% to 100%)",
+      "JPG, PNG, WebP, BMP and ICO Output; SVG Input; AVIF Where Supported",
+      "JPEG/WebP Quality Slider (10% to 100%)",
       "Automatic Background Color Fill for Transparent Alpha Layers",
-      "Multi-Resolution Windows Favicon ICO Generator (16px to 256px)",
+      "Single-Size ICO Export (Choose 16px to 256px)",
       "Optional Custom Dimension Scaling with Aspect Ratio Lock",
       "Bulk Image Queue Processing with One-Click ZIP Download"
     ],

@@ -58,7 +58,15 @@ export const CurrencyCalculatorTool: React.FC<CurrencyCalculatorToolProps> = ({ 
   const [rates, setRates] = useState<Record<string, number>>(() => {
     try {
       const saved = localStorage.getItem('zubware_custom_rates');
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
+          return Object.fromEntries(BENCHMARK_CURRENCIES.map(currency => {
+            const value = parsed[currency.code];
+            return [currency.code, typeof value === 'number' && Number.isFinite(value) && value > 0 ? value : currency.ratePerUSD];
+          }));
+        }
+      }
     } catch {}
     return DEFAULT_RATES;
   });
@@ -79,6 +87,7 @@ export const CurrencyCalculatorTool: React.FC<CurrencyCalculatorToolProps> = ({ 
   const unitToFrom = (1 / toRate) * fromRate;
 
   const updateRate = (curr: string, val: number) => {
+    if (!Number.isFinite(val) || val <= 0) { onShowToast('Enter a positive exchange rate.'); return; }
     const updated = { ...rates, [curr]: val };
     setRates(updated);
     try {
@@ -102,7 +111,7 @@ export const CurrencyCalculatorTool: React.FC<CurrencyCalculatorToolProps> = ({ 
   };
 
   const copyResult = () => {
-    const text = `${amount.toLocaleString()} ${fromCurr} = ${convertedResult.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${toCurr}`;
+    const text = `Manual-rate estimate (not a live quote): ${amount.toLocaleString()} ${fromCurr} = ${convertedResult.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${toCurr}`;
     navigator.clipboard.writeText(text);
     setCopied(true);
     onShowToast('Copied conversion result!');
@@ -121,7 +130,7 @@ export const CurrencyCalculatorTool: React.FC<CurrencyCalculatorToolProps> = ({ 
             Multi-Currency Converter & Exchange Matrix
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Convert amounts across 25+ global currencies with custom rate editing and multi-currency comparison matrix.
+            Convert amounts across 24 global currencies with custom rate editing and multi-currency comparison matrix.
           </p>
         </div>
 
@@ -136,6 +145,9 @@ export const CurrencyCalculatorTool: React.FC<CurrencyCalculatorToolProps> = ({ 
         </div>
       </div>
 
+      <p className="text-sm text-amber-800 dark:text-amber-200 bg-amber-50 dark:bg-amber-950/30 rounded-xl p-4">
+        Manual-rate calculator: the starting rates are illustrative examples, not current market quotes. Set your own provider’s rates before using a result. Rates do not refresh automatically; fees and spreads are not included.
+      </p>
       {/* Main Conversion Dashboard */}
       <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-indigo-500/20 bg-gradient-to-br from-indigo-50/20 to-purple-50/10 dark:from-slate-900/60 dark:to-indigo-950/20">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
@@ -302,6 +314,8 @@ export const CurrencyCalculatorTool: React.FC<CurrencyCalculatorToolProps> = ({ 
                 </div>
                 <input
                   type="number"
+                  aria-label={`${curr.code} units per USD`}
+                  min="0.0001"
                   step="0.0001"
                   value={rates[curr.code] || curr.ratePerUSD}
                   onChange={e => updateRate(curr.code, Number(e.target.value))}

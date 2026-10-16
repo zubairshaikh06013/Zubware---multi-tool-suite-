@@ -202,7 +202,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
                 </div>
                 <div>
                   <p className="text-sm font-bold text-slate-800 dark:text-slate-200">Upload Video File</p>
-                  <p className="text-xs text-slate-400 mt-1">Supports MP4, WebM, MOV, AVI</p>
+                  <p className="text-xs text-slate-400 mt-1">Choose a video your browser can play. Input codec support varies by browser.</p>
                 </div>
               </label>
             )}

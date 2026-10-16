@@ -13,6 +13,7 @@ export interface ImageMetadata {
 }
 
 import { formatDecimalBytes } from './fileSizeStandard';
+import { encodeCanvasBlob } from './canvasEncoding';
 
 export function formatBytes(bytes: number, decimals = 2): string {
   return formatDecimalBytes(bytes, decimals);
@@ -112,36 +113,26 @@ async function parseExifTags(file: File): Promise<Record<string, string>> {
 }
 
 export async function stripExifFromImage(file: File): Promise<{ cleanedBlob: Blob; originalSize: number; newSize: number }> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      const canvas = document.createElement('canvas');
-      canvas.width = img.width;
-      canvas.height = img.height;
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return reject('Failed to create canvas context');
-      
-      // Draw image onto clean canvas which strips EXIF metadata blocks
-      ctx.drawImage(img, 0, 0);
-
-      const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-      canvas.toBlob((blob) => {
-        if (!blob) return reject('Failed to convert canvas to blob');
-        resolve({
-          cleanedBlob: blob,
-          originalSize: file.size,
-          newSize: blob.size
-        });
-      }, mimeType, 0.95);
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject('Failed to load image for EXIF stripping');
-    };
-    img.src = url;
-  });
+  const img = new Image();
+  const url = URL.createObjectURL(file);
+  try {
+    await new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error('Failed to decode image.'));
+      img.src = url;
+    });
+    const w = img.naturalWidth, h = img.naturalHeight;
+    if (!w || !h || w > 16384 || h > 16384 || w * h > 32000000) throw new Error('Resize this image to at most 32 megapixels before processing.');
+    const canvas = document.createElement('canvas');
+    canvas.width = w; canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) throw new Error('Failed to create canvas context.');
+    const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
+    if (mimeType === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h); }
+    ctx.drawImage(img, 0, 0);
+    const cleanedBlob = await encodeCanvasBlob(canvas, mimeType, 0.95);
+    return {cleanedBlob, originalSize: file.size, newSize: cleanedBlob.size};
+  } finally { URL.revokeObjectURL(url); }
 }
 
 export function rgbToHex(r: number, g: number, b: number): string {

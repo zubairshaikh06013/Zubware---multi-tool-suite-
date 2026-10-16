@@ -1,3 +1,4 @@
+import { escapeMarkup } from '../../../lib/escapeMarkup';
 import React, { useState } from 'react';
 import { Upload, FileCode, Download, RefreshCw, FileText, Check, AlertCircle, Sparkles } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
@@ -56,7 +57,7 @@ export function PdfToWordTool({ onShowToast }: { onShowToast: (msg: string) => v
             if (currentParagraph.trim()) {
               const trimmed = currentParagraph.trim();
               pageParas.push(trimmed);
-              htmlContent += `<p style="margin-bottom: 12px; line-height: 1.6; font-size: 13pt; font-family: Calibri, sans-serif;">${trimmed}</p>`;
+              htmlContent += `<p style="margin-bottom: 12px; line-height: 1.6; font-size: 13pt; font-family: Calibri, sans-serif;">${escapeMarkup(trimmed)}</p>`;
             }
             currentParagraph = '';
           } else {
@@ -67,7 +68,7 @@ export function PdfToWordTool({ onShowToast }: { onShowToast: (msg: string) => v
         if (currentParagraph.trim()) {
           const trimmed = currentParagraph.trim();
           pageParas.push(trimmed);
-          htmlContent += `<p style="margin-bottom: 12px; line-height: 1.6; font-size: 13pt; font-family: Calibri, sans-serif;">${trimmed}</p>`;
+          htmlContent += `<p style="margin-bottom: 12px; line-height: 1.6; font-size: 13pt; font-family: Calibri, sans-serif;">${escapeMarkup(trimmed)}</p>`;
         }
 
         htmlContent += `</div>`;

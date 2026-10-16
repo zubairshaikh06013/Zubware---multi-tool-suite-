@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from 'react';
+import { parseCsv, serializeCsv } from '../../../lib/csv';
 import { Table, Search, Download, Upload, Trash2, ArrowUpDown, ChevronLeft, ChevronRight } from 'lucide-react';
 
 export const CsvViewerTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
@@ -12,42 +13,14 @@ export const CsvViewerTool: React.FC<{ onShowToast: (msg: string) => void }> = (
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [pageSize, setPageSize] = useState<number>(5);
 
-  // Parse CSV helper
   const parsedData = useMemo(() => {
-    if (!csvRaw.trim()) return { headers: [], rows: [] };
-
-    const lines = csvRaw.split(/\r?\n/).filter((l) => l.trim().length > 0);
-    if (lines.length === 0) return { headers: [], rows: [] };
-
-    const parseLine = (line: string) => {
-      const result: string[] = [];
-      let cur = '';
-      let inQuotes = false;
-
-      for (let i = 0; i < line.length; i++) {
-        const char = line[i];
-        if (char === '"') {
-          if (inQuotes && line[i + 1] === '"') {
-            cur += '"';
-            i++;
-          } else {
-            inQuotes = !inQuotes;
-          }
-        } else if (char === ',' && !inQuotes) {
-          result.push(cur.trim());
-          cur = '';
-        } else {
-          cur += char;
-        }
-      }
-      result.push(cur.trim());
-      return result;
-    };
-
-    const headers = parseLine(lines[0]);
-    const rows = lines.slice(1).map(parseLine);
-
-    return { headers, rows };
+    try {
+      const [headers = [], ...rows] = parseCsv(csvRaw);
+      if (rows.some(row => row.length !== headers.length)) throw new Error('Every record must have the same number of fields as the header.');
+      return { headers, rows, error: '' };
+    } catch (error) {
+      return { headers: [], rows: [], error: error instanceof Error ? error.message : 'Invalid CSV.' };
+    }
   }, [csvRaw]);
 
   // Filter & Search
@@ -107,11 +80,7 @@ export const CsvViewerTool: React.FC<{ onShowToast: (msg: string) => void }> = (
 
   const handleExportFiltered = () => {
     if (parsedData.headers.length === 0) return;
-    const lines = [
-      parsedData.headers.join(','),
-      ...sortedRows.map((r) => r.join(','))
-    ];
-    const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8' });
+    const blob = new Blob([serializeCsv([parsedData.headers, ...sortedRows])], { type: 'text/csv;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -154,6 +123,7 @@ export const CsvViewerTool: React.FC<{ onShowToast: (msg: string) => void }> = (
         </div>
       </div>
 
+      {parsedData.error && <p role="alert" className="text-red-600">{parsedData.error}</p>}
       {/* Control Toolbar */}
       <div className="glass-card p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex flex-wrap items-center justify-between gap-4">
         {/* Search */}

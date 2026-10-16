@@ -3,12 +3,12 @@ import { BlogArticle } from '../types';
 export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "pdf-security-encryption-watermarking-guide",
-    "title": "PDF Security Architecture: Password Encryption, Permissions & Watermarking",
-    "metaTitle": "PDF Security Architecture: Encryption & Watermarking — Zubware",
-    "description": "Learn how PDF password protection, AES-256 encryption, access permissions, and forensic watermarking work. Secure confidential records locally in your browser.",
+    "title": "PDF Passwords and Watermarks: What They Protect",
+    "metaTitle": "PDF Passwords and Watermarks: What They Protect — Zubware",
+    "description": "Understand opening passwords, permission flags and visible watermarks before choosing a PDF protection workflow.",
     "canonicalPath": "/blog/pdf-security-encryption-watermarking-guide",
     "publishedTime": "2026-10-01T00:00:00Z",
-    "modifiedTime": "2026-10-16T21:57:43Z",
+    "modifiedTime": "2026-10-16T22:20:59Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -19,7 +19,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "PDF Guides",
-    "readingTime": "7 min read",
+    "readingTime": "2 min read",
     "tags": [
       "PDF Security",
       "Password Protect PDF",
@@ -28,77 +28,60 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "PDF Permissions",
       "Client-Side Cryptography"
     ],
-    "excerpt": "Sharing unencrypted sensitive PDF contracts, financial statements, or medical summaries invites severe regulatory compliance exposure. Discover the mathematical difference between User and Owner passwords, how AES-256 binary encryption prevents unauthorized viewing, and how diagonal watermarks deter leaks without external cloud uploads.",
+    "excerpt": "Understand opening passwords, permission flags and visible watermarks before choosing a PDF protection workflow.",
     "takeaways": [
-      "User Passwords enforce binary read encryption: The underlying PDF byte stream is encrypted with AES-256; without the decryption key, the file cannot be rendered by any reader.",
-      "Owner Passwords restrict operational permissions: Restricts printing, text copying, form filling, and page extraction while leaving read access open.",
-      "Watermarks provide forensic deterrence: Adding diagonal semi-transparent text with dates, timestamps, or recipient names deters screenshots and unauthorized physical distribution.",
-      "Browser-based encryption preserves confidentiality: By performing encryption locally in client memory with WebAssembly, sensitive documents never touch third-party servers."
+      "Opening passwords and permission flags are different.",
+      "Watermarks do not encrypt content.",
+      "Test the downloaded file in the recipient’s reader."
     ],
     "sections": [
       {
-        "id": "user-vs-owner-passwords",
-        "title": "1. User Passwords vs. Owner Passwords: Understanding Access Controls",
-        "content": "Under the ISO 32000 specification, PDF documents support two distinct password types with fundamentally different security roles:\n\n- **User Password (Document Open Password):** Enforces symmetric binary encryption on the entire internal object stream. If set, no PDF reader can decrypt or render the document without entering this key.\n- **Owner Password (Permissions Password):** Protects the document's security permissions dictionary (/P flags). It allows authorized users to read the document freely, but attempts to restrict operational actions:\n  - Disabling physical printing.\n  - Blocking clipboard text and graphic copying.\n  - Restricting document annotations and form filling.\n  - Preventing page extraction and document assembly.\n\n> **Crucial Security Reality:** Owner password restrictions rely on reader software honor systems. While compliant readers (Adobe Acrobat) enforce these flags, open-source parsers can bypass permissions easily. Only **User Passwords** guarantee true mathematical data confidentiality."
+        "id": "guide-section-1",
+        "title": "1. Opening passwords and permissions differ",
+        "content": "An opening password restricts access to encrypted content. Permission settings describe actions such as copying or printing, but enforcement depends on the reader. A permission flag alone should not be treated as protection against someone who already has access to the document."
       },
       {
-        "id": "cryptographic-underpinnings-aes256-vs-rc4",
-        "title": "2. Cryptographic Underpinnings: AES-256 vs. Legacy 40/128-Bit RC4",
-        "content": "The history of PDF cryptography has evolved across four primary revisions (PDF 1.1 through PDF 2.0):\n\n| Encryption Standard | Algorithm | Key Length | Security Rating | Cracking Vulnerability |\n|---|---|---|---|---|\n| **PDF 1.1 – 1.3** | RC4 (ARC4) | 40-bit | Obsolete | Broken in seconds on any smartphone |\n| **PDF 1.4 – 1.5** | RC4 | 128-bit | Deprecated | Vulnerable to stream cipher key collisions |\n| **PDF 1.6 (Acrobat 7)**| AES-CBC | 128-bit | Moderate | Resistant to casual attacks |\n| **PDF 1.7 / 2.0 (Modern)**| **AES-CBC (ISO 32000-2)**| **256-bit** | **Military-Grade** | **Immune to brute-force cracking** |\n\nModern PDF 2.0 standards utilize **AES-256 with SASLprep password normalization and SHA-384 / SHA-512 key derivation**, making brute-force decryption mathematically impossible without knowing the passphrase."
+        "id": "guide-section-2",
+        "title": "2. What Protect PDF offers",
+        "content": "The current Protect PDF tool calls the bundled PDF encryption library and offers AES-256 or legacy RC4 encryption. AES-256 is the default. It does not compile a native C++ encryption engine into WebAssembly. Strong encryption still depends on a hard-to-guess password, handling of the unlocked original and the security of the device. There is no promise of immunity to cracking."
       },
       {
-        "id": "watermarking-and-forensic-deterrence",
-        "title": "3. Watermarking: Forensic Deterrence and Traceability",
-        "content": "While encryption prevents unauthorized digital access, once an authorized recipient decrypts a file on screen, they can still take screenshots or photograph the monitor with a smartphone.\n- **Forensic Watermarking:** Stamping a diagonal semi-transparent watermark across all pages (e.g., *\"CONFIDENTIAL — DISCLOSED TO J. DOE (09/24/2026)\"*) introduces strong psychological and legal deterrence.\n- **Alpha Transparency & Positioning:** Effective watermarks use a **45-degree angle**, **15% to 25% opacity**, and are injected into the document's background XObject layer to avoid obscuring underlying contract legibility."
+        "id": "guide-section-3",
+        "title": "3. Watermarks have a different purpose",
+        "content": "A visible watermark can label a draft, indicate ownership or discourage casual reuse. It does not encrypt the page or guarantee that copying, cropping or editing is impossible. Keep critical text readable. Do not use watermarking as a replacement for access controls when confidentiality is required."
       },
       {
-        "id": "in-browser-pdf-crypto-architecture",
-        "title": "4. Client-Side PDF Cryptography Architecture",
-        "content": "Uploading sensitive financial balance sheets or NDAs to unknown cloud conversion portals poses immense data privacy liabilities.\n- **The Zubware Solution:** Zubware Protect PDF and Unlock PDF compile native C++ cryptographic routines into WebAssembly. All encryption and key derivations occur strictly inside your local browser tab RAM. No unencrypted bytes ever leave your device."
+        "id": "guide-section-4",
+        "title": "4. Verify before distributing",
+        "content": "Keep an unmodified source in a secure location. Open the protected output in the intended PDF reader and confirm that it requests the password; check the pages after unlocking. Test any permission behavior in that reader. Use the unlock workflow only for documents you are authorized to access. Protection processing does not certify a document for any regulatory or contractual standard."
       }
     ],
     "howTo": {
-      "name": "How to Encrypt and Protect a PDF File Online",
-      "description": "Step-by-step instructions to encrypt documents with Zubware.",
+      "name": "PDF Passwords and Watermarks: What They Protect",
+      "description": "Understand opening passwords, permission flags and visible watermarks before choosing a PDF protection workflow.",
       "steps": [
         {
-          "name": "Upload PDF Document",
-          "text": "Open Zubware Protect PDF and upload your confidential document."
+          "name": "Choose the purpose",
+          "text": "Decide whether you need restricted opening, permission preferences or a visual label."
         },
         {
-          "name": "Set Strong User Password",
-          "text": "Enter a strong passphrase (minimum 12 characters or 4 Diceware words)."
+          "name": "Process a copy",
+          "text": "Keep the original and choose an appropriate password if encrypting."
         },
         {
-          "name": "Configure Optional Watermark",
-          "text": "Add custom recipient name, date stamp, and 45-degree rotation for forensic traceability."
-        },
-        {
-          "name": "Download Encrypted File",
-          "text": "Save your AES-256 encrypted PDF directly in browser memory with zero cloud uploads."
+          "name": "Verify the output",
+          "text": "Open the result in the intended reader and inspect it before distribution."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Can someone remove an AES-256 password from a PDF without the key?",
-        "answer": "No. AES-256 encryption is mathematically unbreakable using current computational technology. Without the correct password or decryption key, recovery is impossible."
+        "question": "Can a watermark prevent all copying?",
+        "answer": "No. It is visible content, not an encryption boundary."
       },
       {
-        "question": "Are my confidential documents uploaded to Zubware servers during encryption?",
-        "answer": "Never. Zubware Protect PDF runs 100% locally on your machine via WebAssembly and client-side JavaScript. Your files are never uploaded."
-      },
-      {
-        "question": "What happens if I forget the User Password for an encrypted PDF?",
-        "answer": "Because zero-knowledge encryption stores no backdoors, if you lose the password, the document contents cannot be recovered by anyone."
-      },
-      {
-        "question": "Can I restrict someone from printing a PDF?",
-        "answer": "Yes, setting an Owner Password can disable print permissions in standard PDF viewers like Adobe Acrobat."
-      },
-      {
-        "question": "How do I permanently remove password protection from an authorized PDF?",
-        "answer": "Use Zubware Unlock PDF, enter your known password once to decrypt the byte stream in browser memory, and download the unencrypted copy."
+        "question": "Is any password impossible to crack?",
+        "answer": "No. Weak passwords and compromised devices remain risks regardless of the algorithm label."
       }
     ],
     "relatedToolIds": [
@@ -112,12 +95,12 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "how-to-electronically-sign-pdf-contracts",
-    "title": "Adding Electronic Signatures to PDF Contracts: Legality, Formats & Workflow",
-    "metaTitle": "Electronic Signatures for PDF Contracts: Legality & Formats — Zubware",
-    "description": "Learn the legal validity of electronic signatures under ESIGN, UETA, and eIDAS. Master drawing, typing, and image upload capture workflows in your browser.",
+    "title": "Add a Visible Signature to a PDF: Workflow and Limits",
+    "metaTitle": "Add a Visible Signature to a PDF: Workflow and Limits — Zubware",
+    "description": "Place a signature mark in a PDF and inspect the output. A visible signature image is different from a certificate-backed digital signature.",
     "canonicalPath": "/blog/how-to-electronically-sign-pdf-contracts",
     "publishedTime": "2026-10-01T00:00:00Z",
-    "modifiedTime": "2026-10-16T21:57:43Z",
+    "modifiedTime": "2026-10-16T22:20:59Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -128,7 +111,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "PDF Guides",
-    "readingTime": "7 min read",
+    "readingTime": "2 min read",
     "tags": [
       "Sign PDF",
       "Electronic Signature",
@@ -137,77 +120,60 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "Contract Signing",
       "PDF Tools"
     ],
-    "excerpt": "Printing out contracts, signing with a ballpoint pen, scanning them back in, and shredding paper is an obsolete, time-wasting ritual. Understand the international legal frameworks governing electronic signatures (ESIGN, UETA, eIDAS), the difference between electronic and cryptographic signatures, and how to sign documents securely in your browser.",
+    "excerpt": "Place a signature mark in a PDF and inspect the output. A visible signature image is different from a certificate-backed digital signature.",
     "takeaways": [
-      "Electronic signatures carry binding legal weight under ESIGN and eIDAS: In the US and EU, standard electronic signatures are legally valid for commercial agreements and NDAs.",
-      "Electronic signatures differ from PKI digital signatures: Simple e-signatures provide an intent-to-sign visual stamp; digital signatures embed cryptographic PKI certificates.",
-      "Three capture modalities provide flexibility: Drawing with a stylus/mouse, typing cursive typography, or uploading a high-resolution transparent PNG signature.",
-      "Client-side signing keeps confidential contracts off cloud databases: Stamping signatures directly into the PDF content stream in browser memory ensures zero leaks."
+      "Confirm the recipient’s signing requirements.",
+      "A visible mark does not create a certificate-backed digital signature.",
+      "Inspect the exported PDF and preserve the original."
     ],
     "sections": [
       {
-        "id": "legal-frameworks-esign-ueta-eidas",
-        "title": "1. Legal Validity of Electronic Signatures (ESIGN, UETA & eIDAS)",
-        "content": "International business law has recognized the legal equivalence of electronic signatures for decades:\n\n- **United States (ESIGN Act of 2000 & UETA):** The federal Electronic Signatures in Global and National Commerce Act dictates that a contract or signature *\"may not be denied legal effect, validity, or enforceability solely because it is in electronic form.\"*\n- **European Union (eIDAS Regulation No 910/2014):** Defines three tiers:\n  1. **Simple Electronic Signature (SES):** Visual signature stamp or email acceptance (sufficient for everyday B2B contracts, NDAs, and freelancer invoices).\n  2. **Advanced Electronic Signature (AES):** Uniquely linked to the signatory with tamper-evident hashing.\n  3. **Qualified Electronic Signature (QES):** Backed by a qualified digital certificate and secure signature creation device (required for government notarizations and real estate transfers in some EU nations)."
+        "id": "guide-section-1",
+        "title": "1. Confirm what the recipient accepts",
+        "content": "Ask the recipient which signing method and file format they require before editing a document. Requirements depend on the document, recipient and jurisdiction. This guide does not claim that a pasted signature image is sufficient for every contract, government form or regulated transaction."
       },
       {
-        "id": "capture-methods-draw-type-upload",
-        "title": "2. Signature Capture Modalities Compared",
-        "content": "Capturing an authentic signature online utilizes three primary techniques:\n\n| Capture Method | How It Works | Best Use Case | Quality Factor |\n|---|---|---|---|\n| **Drawing (Canvas)** | Freehand vector or raster stroke using mouse, trackpad, or smartphone touchscreen | Personal contracts, casual agreements | High authenticity; variable penmanship |\n| **Typing (Cursive)** | Types full legal name rendered in elegant calligraphic script fonts | Standard business acknowledgments | Clean, uniform, and legible |\n| **Image Upload** | Uploads a scanned ink signature with transparent PNG background | Formal corporate documentation | Exact replica of physical signature |"
+        "id": "guide-section-2",
+        "title": "2. A graphic is not a cryptographic signature",
+        "content": "The Sign PDF workflow places a visible signature mark on a PDF page. It does not issue a signing certificate, verify the signer’s identity, obtain consent from another person or create a qualified electronic signature. A recipient can see the mark, but that alone does not prove who placed it or that the file has never changed."
       },
       {
-        "id": "pdf-content-stream-injection",
-        "title": "3. How In-Browser Signature Injection Operates",
-        "content": "When you stamp a signature onto a PDF with Zubware Sign PDF:\n1. The signature graphic is converted into a compressed PNG byte stream in browser memory.\n2. The client-side parser identifies the target page dictionary and coordinates (`X, Y, Width, Height`).\n3. An `/XObject` image dictionary is injected into the page's `/Resources` table.\n4. An operator sequence (`q 100 0 0 50 X Y cm /SigImage Do Q`) is appended to the page's `/Contents` stream, permanently flattening the signature into the vector document."
+        "id": "guide-section-3",
+        "title": "3. Check placement and the exported file",
+        "content": "Work on a copy. Choose the intended page, place the signature without covering nearby text, and export the result. Open the downloaded PDF in a separate viewer and inspect page count, orientation and placement. Existing certificate-based signatures can be invalidated by later edits. Keep the original and any required signing records."
       },
       {
-        "id": "client-side-privacy-advantages",
-        "title": "4. Why Client-Side Signing Beats Cloud SaaS Providers",
-        "content": "Commercial electronic signing services (like DocuSign or Adobe Sign) require uploading unencrypted, highly confidential contracts to their cloud servers, where documents remain accessible to corporate admins and potential data breaches.\n- **The Zubware Zero-Upload Guarantee:** Zubware Sign PDF runs 100% locally in your browser memory. Your contracts, NDAs, and signature marks never leave your personal computer or mobile phone."
+        "id": "guide-section-4",
+        "title": "4. Protect the signature image",
+        "content": "A stored signature image can be copied. Avoid leaving it in a shared device’s downloads or clipboard, and do not send it to an unintended recipient. The tool’s local editing workflow reduces document uploads to a conversion server, but does not provide an identity-verification service or an audit trail comparable to a dedicated signing platform."
       }
     ],
     "howTo": {
-      "name": "How to Electronically Sign a PDF Contract Online",
-      "description": "Step-by-step workflow to sign documents with Zubware.",
+      "name": "Add a Visible Signature to a PDF: Workflow and Limits",
+      "description": "Place a signature mark in a PDF and inspect the output. A visible signature image is different from a certificate-backed digital signature.",
       "steps": [
         {
-          "name": "Upload Document",
-          "text": "Open Zubware Sign PDF Online and select your PDF contract."
+          "name": "Check requirements",
+          "text": "Confirm that the recipient accepts this method."
         },
         {
-          "name": "Create Signature",
-          "text": "Draw your signature freehand, type cursive script, or upload a transparent PNG signature."
+          "name": "Place the mark",
+          "text": "Use a copy and select the correct page and position."
         },
         {
-          "name": "Position on Target Page",
-          "text": "Drag and resize the signature onto the signature block of your document."
-        },
-        {
-          "name": "Download Signed PDF",
-          "text": "Export the flattened, signed contract directly in local browser memory with zero cloud storage."
+          "name": "Inspect the PDF",
+          "text": "Open the downloaded file and review the result before sharing."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Is an electronic signature valid for freelance agreements and NDAs?",
-        "answer": "Yes. In the United States, European Union, UK, and India, standard electronic signatures are legally binding for freelance contracts, NDAs, and business agreements."
+        "question": "Does this create a digital certificate?",
+        "answer": "No. It places a visible mark; it does not issue or verify signing certificates."
       },
       {
-        "question": "Does Zubware keep a copy of my signed contract?",
-        "answer": "Never. Zubware processes documents 100% locally in your browser memory. Your contracts, identity details, and signatures are never sent to any server."
-      },
-      {
-        "question": "Can I add a date stamp alongside my signature?",
-        "answer": "Yes. Use the text overlay feature in Zubware Online PDF Editor or Sign PDF to add dates and printed names adjacent to your signature."
-      },
-      {
-        "question": "How do I create a transparent PNG of my physical signature?",
-        "answer": "Sign a white sheet of paper in dark ink, photograph it with your phone, and use Zubware Background Remover to strip the paper background into a clean transparent PNG."
-      },
-      {
-        "question": "Can someone alter a document after it has been signed?",
-        "answer": "Flattening the signature into the PDF content stream makes casual editing difficult. For sensitive agreements, apply a User Password using Zubware Protect PDF to lock the document."
+        "question": "Is every document legally valid after stamping it?",
+        "answer": "No universal claim can be made. Check the document’s requirements with the recipient."
       }
     ],
     "relatedToolIds": [
@@ -330,12 +296,12 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "remove-exif-metadata-photo-privacy-guide",
-    "title": "EXIF Metadata & Digital Photo Privacy: How to Strip Geolocation Before Sharing",
-    "metaTitle": "EXIF Metadata & Photo Privacy: How to Strip Geolocation — Zubware",
-    "description": "Learn what hidden EXIF metadata lurks inside smartphone photos. Discover GPS geolocation risks, camera serial tracking, and how to scrub metadata locally.",
+    "title": "Remove EXIF Metadata: Re-encoding and Photo Privacy",
+    "metaTitle": "Remove EXIF Metadata: Re-encoding and Photo Privacy — Zubware",
+    "description": "Understand how Zubware creates a fresh image, why JPEG quality can change, and what to check before sharing a photo.",
     "canonicalPath": "/blog/remove-exif-metadata-photo-privacy-guide",
     "publishedTime": "2026-10-02T00:00:00Z",
-    "modifiedTime": "2026-10-16T21:57:43Z",
+    "modifiedTime": "2026-10-16T22:20:59Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -346,7 +312,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "Image Guides",
-    "readingTime": "7 min read",
+    "readingTime": "2 min read",
     "tags": [
       "EXIF Remover",
       "Photo Privacy",
@@ -355,77 +321,64 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "Digital Forensics",
       "Cybersecurity"
     ],
-    "excerpt": "Every photograph captured on your smartphone or digital camera silently embeds dozens of hidden metadata tags: exact GPS latitude and longitude coordinates, camera serial numbers, and timestamp down to the second. Here is the forensic reality of EXIF data and how to scrub it clean before posting online.",
+    "excerpt": "Understand how Zubware creates a fresh image, why JPEG quality can change, and what to check before sharing a photo.",
     "takeaways": [
-      "EXIF headers embed exact geographic GPS coordinates: A casual photo of a pet taken at home reveals your home street address to anyone with access to the raw file.",
-      "Camera and device serial numbers facilitate tracking: Law enforcement and cyber stalkers correlate anonymous online posts using unique hardware serial markers.",
-      "Messaging apps strip metadata, but email and direct links do not: While Instagram and Twitter scrub EXIF upon upload, sharing via email, AirDrop, or cloud drive preserves raw metadata.",
-      "In-browser metadata scrubbing protects privacy: Sanitizing photos locally prevents leaking private locations to cloud conversion sites."
+      "The current implementation re-encodes pixels; it is not lossless header stripping.",
+      "JPEG output may change detail and file size.",
+      "Inspect both visible content and output metadata."
     ],
     "sections": [
       {
-        "id": "what-hidden-data-lurks-inside-photos",
-        "title": "1. What Hidden Data Lurks Inside Your Digital Photographs?",
-        "content": "Exchangeable Image File Format (EXIF) is an international standard (JEITA CP-3451) embedding camera settings directly into JPEG, TIFF, and HEIC file headers:\n\n- **GPS Geolocation Coordinates:** Exact latitude, longitude, altitude, and compass bearing recorded by your smartphone's GNSS receiver.\n- **Temporal Timestamps:** Date, hour, minute, and second of photo capture, alongside local timezone offsets.\n- **Hardware Identifiers:** Phone model (e.g., `iPhone 15 Pro`), lens focal length, aperture, shutter speed, and unique camera sensor serial numbers.\n- **Facial Recognition & Thumbnail Caches:** Embedded small 160×120px thumbnail previews that can reveal cropped-out content from earlier edits."
+        "id": "guide-section-1",
+        "title": "1. Metadata varies between files",
+        "content": "A photo may contain a date, device model or location, depending on its source and camera settings. Not every photograph contains GPS or a serial number. A missing field in a simple viewer does not prove that all identifying information is absent. Visible street signs, faces and reflections can identify a location even after metadata is removed."
       },
       {
-        "id": "the-real-world-privacy-threat",
-        "title": "2. The Real-World Privacy Threat: Doxxing & Physical Tracking",
-        "content": "Posting raw photographs on forums, Craigslist, classified ad sites, or personal blogs creates severe physical security vulnerabilities:\n- **Doxxing Home Addresses:** Posting a photo of a purchased item on a classifieds site can reveal your home living room coordinates to prospective buyers.\n- **Routine Pattern Analysis:** A sequence of vacation photos reveals when your home is vacant and where your children attend school.\n- **Bypassing Anonymity:** Whistleblowers and anonymous journalists have been identified by intelligence agencies through camera sensor noise and serial numbers embedded in uploaded image headers."
+        "id": "guide-section-2",
+        "title": "2. How this tool processes an image",
+        "content": "Zubware decodes the source, draws it onto a browser canvas and exports a fresh image. PNG input is exported as PNG; other supported inputs are exported as JPEG at 95% quality. The JPEG background is white where the source was transparent. This is re-encoding, not lossless removal of selected binary headers. JPEG pixels, color rendering and file size may change."
       },
       {
-        "id": "how-in-browser-exif-sanitization-works",
-        "title": "3. How In-Browser Metadata Sanitization Operates",
-        "content": "Sanitizing image metadata can be accomplished through two distinct engineering methods:\n1. **Header Stripping (Lossless):** Parses the JPEG marker segments, locates the `APP1` (EXIF) and `APP2` (ICC profile) marker tags (`0xFFE1`), and rewrites the byte stream completely omitting metadata blocks. Visual image pixels are untouched.\n2. **Canvas Re-Encoding:** Decodes the image onto an HTML5 canvas and re-exports it to a fresh image blob. All metadata is discarded, though re-encoding applies a subtle compression pass.\n\nZubware EXIF Remover uses lossless byte-level header stripping, guaranteeing 100% original image quality while removing all private tracking markers."
+        "id": "guide-section-3",
+        "title": "3. Verify the output, not only the success message",
+        "content": "Keep the original. Download the processed image, open it in an image viewer and compare its orientation, detail and dimensions. Use an independent metadata inspector if removal of a particular field matters. The output extension matches its PNG or JPEG encoding; a WebP input is not downloaded under a misleading WebP extension."
       },
       {
-        "id": "social-media-vs-direct-sharing-reality",
-        "title": "4. Social Media vs. Direct File Sharing: Where Are You Exposed?",
-        "content": "Understanding where metadata survives:\n\n| Sharing Channel | EXIF Preserved? | Risk Level |\n|---|---|---|\n| **Email Attachments (Original File)** | **YES (100% Preserved)** | **CRITICAL: Full GPS & Serial Exposed** |\n| **AirDrop / USB / Cloud Drive** | **YES (100% Preserved)** | **CRITICAL: Full GPS & Serial Exposed** |\n| **Discord / Slack (as file)** | **YES** | High |\n| **Classified Sites (Craigslist, eBay)**| Frequently Yes | High |\n| **Instagram / Twitter / Facebook** | No (Auto-stripped upon upload) | Low (Stripped by platform) |"
+        "id": "guide-section-4",
+        "title": "4. Understand the limits",
+        "content": "Unsupported or corrupt images show a failure rather than waiting indefinitely. Browser decoding support and available memory determine which inputs can be processed. Platform re-encoding and metadata handling vary, so do not assume every messaging or social platform removes metadata. Local image processing does not protect a file already shared elsewhere."
       }
     ],
     "howTo": {
-      "name": "How to Strip GPS Metadata from Photos in Your Browser",
-      "description": "Quick steps to sanitize digital images with Zubware.",
+      "name": "Remove EXIF Metadata: Re-encoding and Photo Privacy",
+      "description": "Understand how Zubware creates a fresh image, why JPEG quality can change, and what to check before sharing a photo.",
       "steps": [
         {
-          "name": "Upload Photo File",
-          "text": "Open Zubware EXIF Remover and select your JPG, PNG, or HEIC photo."
+          "name": "Keep the original",
+          "text": "Use a copy of a photo supported by your browser."
         },
         {
-          "name": "Inspect Embedded Metadata",
-          "text": "Review identified GPS coordinates, camera model, date timestamps, and lens information."
+          "name": "Process the copy",
+          "text": "Select the image and read any file-specific errors."
         },
         {
-          "name": "Strip Metadata with One Click",
-          "text": "Click Remove EXIF Data to scrub all tracking headers from the binary byte stream."
-        },
-        {
-          "name": "Download Sanitized Image",
-          "text": "Save your clean photo with zero GPS coordinates and 100% preserved visual quality."
+          "name": "Inspect the download",
+          "text": "Check appearance and metadata before sharing the new PNG or JPEG."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Does stripping EXIF metadata reduce photo visual quality?",
-        "answer": "No. Lossless EXIF removal strips only the header information blocks without re-compressing or touching the actual image pixel data."
+        "question": "Is JPEG quality unchanged?",
+        "answer": "No. The tool exports a newly encoded JPEG at 95% quality."
       },
       {
-        "question": "Do social media platforms automatically remove EXIF data?",
-        "answer": "Major platforms like Instagram and Twitter strip metadata upon upload, but sharing photos via email, messaging attachments, or cloud drives leaves full GPS coordinates exposed."
+        "question": "Can metadata removal make a photo anonymous?",
+        "answer": "No. Visible content and other information can still identify people or places."
       },
       {
-        "question": "How accurate is the GPS location stored in smartphone photos?",
-        "answer": "Modern smartphone GPS chips record coordinates accurate to within 3 to 5 meters (10 to 16 feet) under open skies."
-      },
-      {
-        "question": "Can I view the location on a map before deleting it?",
-        "answer": "Yes. Zubware EXIF Remover displays the exact geographic coordinates and camera settings before scrubbing them."
-      },
-      {
-        "question": "Are my private photos uploaded to Zubware servers?",
-        "answer": "Never. All metadata inspection and removal run 100% locally in your browser memory with zero server uploads."
+        "question": "What happens to an invalid image?",
+        "answer": "The tool reports the failed file and keeps successful outputs available."
       }
     ],
     "relatedToolIds": [
@@ -439,12 +392,12 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "json-xml-csv-yaml-data-transformation-guide",
-    "title": "Data Format Interoperability: Converting JSON, CSV, XML & YAML Pipelines",
-    "metaTitle": "Data Format Interoperability: JSON, CSV, XML & YAML Guide — Zubware",
-    "description": "Master data format transformations. Learn how to convert hierarchical JSON and XML trees into tabular CSV rows, handle YAML syntax, and manage complex schemas.",
+    "title": "JSON, CSV and XML Conversion Without Silent Data Loss",
+    "metaTitle": "JSON, CSV and XML Conversion Without Silent Data Loss — Zubware",
+    "description": "Preserve identifiers, quoted multiline fields and nested values when moving between common data formats.",
     "canonicalPath": "/blog/json-xml-csv-yaml-data-transformation-guide",
     "publishedTime": "2026-10-03T00:00:00Z",
-    "modifiedTime": "2026-10-16T21:57:43Z",
+    "modifiedTime": "2026-10-16T22:20:59Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -455,7 +408,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "Developer Guides",
-    "readingTime": "7 min read",
+    "readingTime": "2 min read",
     "tags": [
       "JSON to CSV",
       "CSV to JSON",
@@ -464,77 +417,64 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "YAML Converter",
       "Data Engineering"
     ],
-    "excerpt": "Modern software engineering is an exercise in data transformation: converting REST JSON responses into SQL CSV imports, transforming Kubernetes YAML into JSON payloads, and parsing legacy enterprise XML schemas. Understand the structural paradigms and flattening algorithms that keep data pipelines uncorrupted.",
+    "excerpt": "Preserve identifiers, quoted multiline fields and nested values when moving between common data formats.",
     "takeaways": [
-      "Hierarchical trees vs flat tables define the transformation challenge: JSON and XML support infinite recursive nesting, while CSV is strictly a 2D flat matrix.",
-      "Dot-notation flattening bridges the JSON-to-CSV gap: Nested object properties (user.address.city) can be safely flattened into dedicated CSV columns.",
-      "Array handling requires deliberate strategy: Serializing child arrays into CSV requires either row duplication (denormalization) or delimited string joining.",
-      "Client-side transformation preserves corporate confidentiality: Converting proprietary database dumps locally in browser memory prevents cloud leaks."
+      "Text is the default CSV-to-JSON representation.",
+      "Quoted multiline cells need a record-aware parser.",
+      "Nested JSON is serialized into cells, not automatically flattened."
     ],
     "sections": [
       {
-        "id": "serialization-paradigms-compared",
-        "title": "1. Serialization Paradigms: JSON, CSV, XML, and YAML Compared",
-        "content": "Every data format solves distinct engineering trade-offs:\n\n| Format | Data Model | Schema Support | Verbosity | Primary Ecosystem |\n|---|---|---|---|---|\n| **JSON** | Hierarchical Key-Value Trees | JSON Schema | Moderate | REST APIs, Web Applications, NoSQL DBs |\n| **CSV** | Two-Dimensional Flat Tables | None (Implicit headers) | Extremely Low | Excel, SQL Databases, Data Science (Pandas) |\n| **XML** | Hierarchical Tagged Node Trees | XSD / DTD / Namespaces | High | Enterprise SOAP, Banking (ISO 20022), RSS |\n| **YAML** | Human-Readable Indented Trees| None / Strict indentation| Low | DevOps, Docker Compose, Kubernetes, CI/CD |"
+        "id": "guide-section-1",
+        "title": "1. CSV fields are not always one line",
+        "content": "A quoted CSV field can contain commas, newlines and doubled quote characters. Splitting text at every newline corrupts those records. Zubware’s CSV to JSON and CSV Viewer now parse quoted records together. CSV Viewer also escapes delimiters, line breaks and quotes when exporting filtered rows."
       },
       {
-        "id": "flattening-hierarchical-trees-to-csv",
-        "title": "2. The Engineering Challenge: Flattening Hierarchical Trees to Tables",
-        "content": "Converting JSON to CSV is simple when dealing with flat records (`[{\"id\": 1, \"name\": \"Alice\"}]`). However, real-world data contains nested sub-objects and arrays:\n\n```json\n{\n  \"orderId\": 9042,\n  \"customer\": { \"name\": \"Acme Corp\", \"tier\": \"Enterprise\" },\n  \"items\": [\"Server A\", \"Router B\"]\n}\n```\n\n**The Flattening Solutions:**\n1. **Dot-Notation Field Compaction:** Child objects flatten into composite column headers:\n   - `orderId` -> `9042`\n   - `customer.name` -> `Acme Corp`\n   - `customer.tier` -> `Enterprise`\n2. **Array Joining:** Small string arrays join via semicolon delimiters (`items` -> `Server A; Router B`).\n3. **Relational Denormalization:** For multi-item invoices, duplicate parent order columns across multiple rows—one for each line item."
+        "id": "guide-section-2",
+        "title": "2. Preserve identifiers before inferring types",
+        "content": "CSV has no intrinsic numeric type. A value such as 00123 may be a postal code, not the number 123. CSV to JSON preserves text by default. Optional simple inference converts canonical numbers and booleans while retaining leading zeros, large integers and values that would not round-trip exactly. Duplicate headers and mismatched record widths produce errors instead of overwriting or dropping fields."
       },
       {
-        "id": "xml-attributes-vs-elements-in-json",
-        "title": "3. The XML-to-JSON Impedance Mismatch: Attributes vs. Elements",
-        "content": "XML supports both nested child elements and tag attributes:\n```xml\n<user id=\"101\" active=\"true\">\n  <name>John Doe</name>\n</user>\n```\nConverting this to JSON requires choosing an attribute convention:\n- **Prefix Notation (`@attribute`):**\n```json\n{\n  \"user\": {\n    \"@id\": \"101\",\n    \"@active\": \"true\",\n    \"name\": \"John Doe\"\n  }\n}\n```\nEnsuring consistent array parsing when an XML list contains only one item is critical to prevent JavaScript runtime `TypeError` exceptions."
+        "id": "guide-section-3",
+        "title": "3. Review XML attributes and repeated elements",
+        "content": "The XML converter can include attributes with @ prefixes and mixed text under #text. Check whether a repeated element becomes an array and whether the consumer expects that representation. Converting formats does not validate the data against an XSD or JSON Schema. Use a small example with attributes, repeated children and text before converting a large file."
       },
       {
-        "id": "client-side-etl-security",
-        "title": "4. Why Local In-Browser ETL Processing Matters",
-        "content": "Data engineers frequently paste customer export databases or financial transaction logs into public online formatters.\n- **The Risk:** Cloud converter servers capture those CSV or JSON dumps into unencrypted temporary disk storage or logs.\n- **The Zubware Fix:** Zubware JSON to CSV, CSV to JSON, and XML to JSON converters run 100% locally in your browser memory. Parse 50,000-row datasets in seconds with zero data transmission."
+        "id": "guide-section-4",
+        "title": "4. Review XML conventions and spreadsheet imports",
+        "content": "XML-to-JSON can use @attribute keys and #text for text content. Inspect repeated elements and mixed text before using the result in an API. A data conversion is not schema validation. When opening untrusted CSV in a spreadsheet, import cells as text where appropriate: cells beginning with formula characters can be evaluated by the spreadsheet. Compare record counts and representative cells before replacing the source data."
       }
     ],
     "howTo": {
-      "name": "How to Convert JSON, CSV, and XML Formats Online",
-      "description": "Step-by-step data transformation workflow with Zubware.",
+      "name": "JSON, CSV and XML Conversion Without Silent Data Loss",
+      "description": "Preserve identifiers, quoted multiline fields and nested values when moving between common data formats.",
       "steps": [
         {
-          "name": "Select Target Converter",
-          "text": "Choose Zubware JSON to CSV, CSV to JSON, or JSON to XML based on your destination pipeline."
+          "name": "Choose the delimiter",
+          "text": "Use the delimiter actually present in the source."
         },
         {
-          "name": "Paste Input Data or Upload File",
-          "text": "Paste raw data or drag-and-drop your .json, .csv, or .xml source file."
+          "name": "Review the preview",
+          "text": "Check row count, quoted fields, identifiers and nesting."
         },
         {
-          "name": "Configure Flattening Options",
-          "text": "Select comma vs semicolon delimiters and enable nested object flattening."
-        },
-        {
-          "name": "Download Transformed Output",
-          "text": "Copy the result to your clipboard or download the converted file with complete privacy."
+          "name": "Export and compare",
+          "text": "Open the output using appropriate text-column settings and compare sample values."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Can Zubware handle large JSON arrays with thousands of records?",
-        "answer": "Yes. Modern browser JavaScript engines parse and transform JSON files containing 50,000+ records in seconds without memory errors."
+        "question": "Why does 00123 stay text?",
+        "answer": "Its leading zeros may be meaningful. Automatic conversion would remove them."
       },
       {
-        "question": "Are my database dumps and customer lists safe during conversion?",
-        "answer": "Yes. All data transformation algorithms run strictly in your local browser sandbox. No records are ever transmitted over the internet."
+        "question": "Are duplicate CSV headers allowed?",
+        "answer": "CSV to JSON rejects duplicate headers because object keys would overwrite earlier data."
       },
       {
-        "question": "How does Zubware handle commas inside CSV field values?",
-        "answer": "Compliant with RFC 4180, fields containing commas, double quotes, or newlines are automatically wrapped in double quotes to prevent column corruption."
-      },
-      {
-        "question": "Can I convert YAML directly into JSON?",
-        "answer": "Yes. Zubware tools can parse YAML indentation syntax into standard RFC 8259 JSON objects."
-      },
-      {
-        "question": "What is the standard delimiter for CSV files in Europe?",
-        "answer": "In Europe, where commas denote decimal separators in currency, semicolons (;) are standard for CSV column delimiters."
+        "question": "Does JSON to CSV flatten nested objects?",
+        "answer": "No. Nested values become JSON text inside a quoted CSV field."
       }
     ],
     "relatedToolIds": [
@@ -553,7 +493,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master regular expressions. Learn lookaheads, lookbehinds, non-capturing groups, and how to avoid catastrophic backtracking (ReDoS) vulnerability.",
     "canonicalPath": "/blog/regex-tester-pattern-debugging-guide",
     "publishedTime": "2026-10-03T00:00:00Z",
-    "modifiedTime": "2026-10-16T21:57:43Z",
+    "modifiedTime": "2026-10-16T22:20:59Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -564,7 +504,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "Developer Guides",
-    "readingTime": "7 min read",
+    "readingTime": "2 min read",
     "tags": [
       "Regex Tester",
       "Regular Expressions",
@@ -598,8 +538,8 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       },
       {
         "id": "in-browser-regex-debugging",
-        "title": "4. Safe In-Browser Regex Testing",
-        "content": "Testing regular expressions against sensitive customer logs or production data should never happen on cloud-hosted sites where input strings are stored remotely.\n- **The Zubware Solution:** Zubware Regex Tester runs 100% locally in your browser memory. Inspect capture groups, replace patterns, and debug syntax with zero server transmission."
+        "title": "4. Bounded browser evaluation",
+        "content": "Zubware evaluates patterns in a separate Web Worker. It stops the worker after two seconds, bounds input length and reports when only the first 1,000 matches are shown. This reduces the chance of a backtracking pattern freezing the page; it does not certify a pattern as safe for a server. Prefer synthetic samples rather than production secrets."
       }
     ],
     "howTo": {
@@ -766,12 +706,12 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "compress-convert-video-browser-ffmpeg-guide",
-    "title": "In-Browser Video Compression & Transcoding: Bitrates, CRF & WebAssembly",
-    "metaTitle": "In-Browser Video Compression & Transcoding Guide — Zubware",
-    "description": "Learn how WebAssembly compiles FFmpeg into web browsers. Master video bitrates, Constant Rate Factor (CRF 18-28), H.264 vs VP9, and zero-upload video compression.",
+    "title": "Browser Video Compression: Formats, Quality and Limits",
+    "metaTitle": "Browser Video Compression: Formats, Quality and Limits — Zubware",
+    "description": "Zubware records resized video frames with browser MediaRecorder APIs. Understand the output format and test playback before sharing.",
     "canonicalPath": "/blog/compress-convert-video-browser-ffmpeg-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
-    "modifiedTime": "2026-10-16T21:57:43Z",
+    "modifiedTime": "2026-10-16T22:20:59Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -782,7 +722,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "Video Guides",
-    "readingTime": "7 min read",
+    "readingTime": "2 min read",
     "tags": [
       "Video Compressor",
       "WebAssembly FFmpeg",
@@ -791,77 +731,64 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
       "Browser Video Tools",
       "Client-Side Video"
     ],
-    "excerpt": "Reducing video file sizes for Discord, email attachments, and web uploads used to require uploading multi-gigabyte video files to cloud conversion servers. Discover how compiled WebAssembly ports of FFmpeg bring desktop-grade video transcoding directly inside your web browser with 100% data privacy.",
+    "excerpt": "Zubware records resized video frames with browser MediaRecorder APIs. Understand the output format and test playback before sharing.",
     "takeaways": [
-      "WebAssembly compiles C video encoders to browser bytecode: FFmpeg compiled via Emscripten runs directly in browser worker threads using local CPU and memory.",
-      "Constant Rate Factor (CRF) balances quality and file weight: A CRF value of 23 is default, while 26–28 provides aggressive compression with minimal visual degradation.",
-      "Two-pass encoding vs CRF: CRF dynamically allocates bitrates to complex scenes while saving bits during stationary frames, outperforming fixed bitrates.",
-      "Zero server uploads eliminate cloud privacy risks: Compressing confidential corporate town halls or personal family clips locally guarantees no cloud exposure."
+      "The tool uses MediaRecorder, not FFmpeg or CRF.",
+      "Check the real output format, size and audio.",
+      "A smaller file is not guaranteed for every source."
     ],
     "sections": [
       {
-        "id": "the-video-compression-triad",
-        "title": "1. Mastering Video Compression: Resolution, Bitrate, and CRF",
-        "content": "Digital video file size is determined by a strict mathematical equation:\n```\nFile Size = Total Duration in Seconds × (Video Bitrate + Audio Bitrate) / 8\n```\nTo reduce file size, compression algorithms adjust three primary parameters:\n1. **Resolution:** Scaling from 4K (3840×2160) to 1080p (1920×1080) discards **75% of raw pixels** per frame.\n2. **Frame Rate:** Dropping from 60 FPS to 30 FPS eliminates half of all temporal frames.\n3. **Constant Rate Factor (CRF):** The H.264/H.265 rate control mode that maintains perceptual visual quality rather than enforcing a rigid bitrate."
+        "id": "guide-section-1",
+        "title": "1. How this implementation works",
+        "content": "The current Video Compressor draws decoded frames onto a canvas and records its captured stream with MediaRecorder. It does not bundle FFmpeg, offer H.264 CRF settings, or use an FFmpeg WebAssembly worker. Output uses a supported WebM recording MIME type. The existing URL is retained so bookmarks continue to work."
       },
       {
-        "id": "crf-scale-reference-guide",
-        "title": "2. The H.264 CRF Scale Reference Guide",
-        "content": "The CRF scale for H.264 ranges from 0 (lossless) to 51 (worst quality):\n\n| CRF Value | Visual Quality | Typical File Size Reduction | Best Suited For |\n|---|---|---|---|\n| **CRF 18** | Visually Lossless | -20% to -35% | High-end production archives, master clips |\n| **CRF 23** | Default Standard | -50% to -65% | General web video, YouTube uploads |\n| **CRF 26** | Balanced Compression | -70% to -80% | Social media sharing, Discord, email |\n| **CRF 28–30**| Aggressive Reduction | -80% to -90% | Strict portal upload limits (<25MB) |\n\n> **The 6-Unit Rule:** In H.264 encoding, increasing CRF by **6 units** roughly **cuts the video file size in half**."
+        "id": "guide-section-2",
+        "title": "2. What affects output size",
+        "content": "The quality presets request video bitrates of 2.5 Mbps, 1.2 Mbps or 0.6 Mbps. Resolution scaling and frame rate also affect the result. These are encoder requests, not exact byte-size promises. A short, already compressed input can produce a larger output. Compare actual downloaded bytes and visible detail instead of relying on a guaranteed percentage reduction."
       },
       {
-        "id": "the-webassembly-ffmpeg-architecture",
-        "title": "3. The WebAssembly Pipeline: How In-Browser FFmpeg Works",
-        "content": "Traditional web video tools upload your MP4 to a remote cloud worker queue. Zubware Video Compressor uses a **Client-Side WebAssembly Architecture**:\n- **Emscripten Compilation:** FFmpeg's C codebase is compiled to a high-speed `.wasm` binary module.\n- **Web Workers:** Transcoding runs in a dedicated background worker thread, keeping the main browser UI silky smooth and responsive.\n- **SharedArrayBuffer & SIMD:** Utilizes multi-core CPU SIMD hardware instructions to achieve near-native encoding speeds."
+        "id": "guide-section-3",
+        "title": "3. Test audio and compatibility",
+        "content": "Browser support for video decoding, canvas recording and audio-track capture varies. Test a short clip with clearly audible speech first. Play the export in the destination application and confirm the beginning, end, aspect ratio, duration and audio. Do not rename WebM to MP4; renaming does not transcode the file. [MDN explains MediaRecorder MIME support](https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/isTypeSupported_static)."
       },
       {
-        "id": "troubleshooting-browser-transcoding-limits",
-        "title": "4. Memory Limits and Troubleshooting in Browser Video",
-        "content": "Understanding browser constraints:\n- **Memory Ceiling:** Browser tabs are typically limited to 2GB to 4GB of RAM. Compressing 4K raw video files larger than 1.5GB may trigger browser memory limits.\n- **Audio Codec Pairing:** Pairing H.264 video with AAC audio at 128 kbps provides optimal compression while preserving clean speech clarity."
+        "id": "guide-section-4",
+        "title": "4. Plan for processing limits",
+        "content": "This workflow records playback and can take approximately the clip’s duration or longer. Keep the tab active and use a short sample on mobile before a large file. There is no universal 2–4 GB memory allowance across browsers. Preserve your source video; if recording fails or audio is missing, use an editor that explicitly supports the source and required output codecs."
       }
     ],
     "howTo": {
-      "name": "How to Compress Video Files in Your Browser",
-      "description": "Quick steps to reduce video file sizes with Zubware.",
+      "name": "Browser Video Compression: Formats, Quality and Limits",
+      "description": "Zubware records resized video frames with browser MediaRecorder APIs. Understand the output format and test playback before sharing.",
       "steps": [
         {
-          "name": "Select Video File",
-          "text": "Open Zubware Video Compressor and select your MP4, WebM, or MOV file."
+          "name": "Choose a sample",
+          "text": "Start with a short non-sensitive clip."
         },
         {
-          "name": "Choose Compression Preset",
-          "text": "Select Recommended (CRF 24) or Aggressive (CRF 28) depending on your target file size."
+          "name": "Choose settings",
+          "text": "Select quality, resolution and frame rate."
         },
         {
-          "name": "Optional Resolution Downscaling",
-          "text": "Optionally scale 4K down to 1080p or 720p to achieve maximum byte savings."
-        },
-        {
-          "name": "Export Compressed MP4",
-          "text": "Download your optimized video directly from browser memory with zero cloud uploads."
+          "name": "Verify output",
+          "text": "Download and check playback, sound, size and destination compatibility."
         }
       ]
     },
     "faqs": [
       {
-        "question": "Does Zubware add a watermark to my compressed video?",
-        "answer": "No. Zubware Video Compressor is 100% free with zero watermarks, zero subscriptions, and no trial limits."
+        "question": "Can I set CRF 23?",
+        "answer": "No. The current tool offers recording quality presets, resolution and frame-rate settings."
       },
       {
-        "question": "What is the maximum video file size I can compress in the browser?",
-        "answer": "On modern desktop computers with at least 8GB RAM, you can compress video files up to 1GB to 1.5GB directly in your browser tab."
+        "question": "Is MP4 output guaranteed?",
+        "answer": "No. The current compressor records WebM. Verify that your destination accepts it."
       },
       {
-        "question": "How does CRF compare to two-pass bitrate encoding?",
-        "answer": "CRF achieves identical perceptual quality in a single encoding pass, saving 50% encoding time compared to two-pass methods."
-      },
-      {
-        "question": "Why does in-browser video compression take time?",
-        "answer": "Video compression requires calculating millions of motion vectors. While WebAssembly runs at near-native speed, encoding speed depends on your local device CPU."
-      },
-      {
-        "question": "Are my private video recordings uploaded to your servers?",
-        "answer": "Never. All video transcoding executes 100% locally on your machine for complete personal privacy."
+        "question": "Does every browser preserve audio?",
+        "answer": "No. Capture support differs; test the exported audio before using the result."
       }
     ],
     "relatedToolIds": [

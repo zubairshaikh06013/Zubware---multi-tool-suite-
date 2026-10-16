@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { formatNumberWords, parseWordsToNumber } from '../../../lib/numberWords';
 import { Copy, Check, Sparkles, RefreshCw, ArrowLeftRight, Hash } from 'lucide-react';
 
 export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
@@ -6,137 +7,6 @@ export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) 
   const [inputText, setInputText] = useState<string>('Two Million Five Hundred Thirty Four Thousand Seven Hundred Eighty Nine');
   const [numInput, setNumInput] = useState<string>('2534789');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-
-  // Advanced Words to Number parser
-  const parseWordsToNumber = (text: string): { value: number; error: string | null } => {
-    if (!text || !text.trim()) return { value: 0, error: null };
-
-    let clean = text.toLowerCase()
-      .replace(/,/g, ' ')
-      .replace(/\band\b/g, ' ')
-      .replace(/-/g, ' ')
-      .trim();
-
-    const isNegative = clean.startsWith('minus') || clean.startsWith('negative');
-    if (isNegative) {
-      clean = clean.replace(/^(minus|negative)\s+/, '');
-    }
-
-    const smallUnits: Record<string, number> = {
-      zero: 0, one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7, eight: 8, nine: 9,
-      ten: 10, eleven: 11, twelve: 12, thirteen: 13, fourteen: 14, fifteen: 15, sixteen: 16,
-      seventeen: 17, eighteen: 18, nineteen: 19, twenty: 20, thirty: 30, forty: 40, fifty: 50,
-      sixty: 60, seventy: 70, eighty: 80, ninety: 90,
-      first: 1, second: 2, third: 3, fourth: 4, fifth: 5, sixth: 6, seventh: 7, eighth: 8, ninth: 9,
-      tenth: 10, twentieth: 20, thirtieth: 30, fortieth: 40, fiftieth: 50, sixtieth: 60,
-      seventieth: 70, eightieth: 80, ninetieth: 90, hundredth: 100, thousandth: 1000, millionth: 1000000
-    };
-
-    const scales: Record<string, number> = {
-      hundred: 100,
-      thousand: 1000,
-      lakh: 100000,
-      lakhs: 100000,
-      million: 1000000,
-      millions: 1000000,
-      crore: 10000000,
-      crores: 10000000,
-      billion: 1000000000,
-      billions: 1000000000,
-      trillion: 1000000000000,
-      trillions: 1000000000000
-    };
-
-    // Check for decimal split
-    const parts = clean.split(/\s+point\s+|\s+decimal\s+/);
-    const intWords = parts[0].trim().split(/\s+/).filter(Boolean);
-
-    let total = 0;
-    let current = 0;
-
-    for (const word of intWords) {
-      if (smallUnits[word] !== undefined) {
-        current += smallUnits[word];
-      } else if (word === 'hundred') {
-        current = current === 0 ? 100 : current * 100;
-      } else if (scales[word] !== undefined) {
-        const mult = scales[word];
-        current = current === 0 ? 1 : current;
-        total += current * mult;
-        current = 0;
-      }
-    }
-
-    let result = total + current;
-
-    // Handle decimal digits if present
-    if (parts.length > 1) {
-      const decWords = parts[1].trim().split(/\s+/).filter(Boolean);
-      let decStr = '';
-      for (const dw of decWords) {
-        if (smallUnits[dw] !== undefined && smallUnits[dw] < 10) {
-          decStr += smallUnits[dw].toString();
-        }
-      }
-      if (decStr) {
-        result = parseFloat(`${result}.${decStr}`);
-      }
-    }
-
-    return { value: isNegative ? -result : result, error: null };
-  };
-
-  // Convert number to words
-  const convertNumberToWords = (n: number): string => {
-    if (n === 0) return 'zero';
-    if (isNaN(n)) return 'invalid number';
-
-    const a = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
-    const b = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
-
-    const numToWordsChunk = (num: number): string => {
-      let str = '';
-      if (num >= 100) {
-        str += a[Math.floor(num / 100)] + ' hundred ';
-        num %= 100;
-      }
-      if (num >= 20) {
-        str += b[Math.floor(num / 10)] + ' ';
-        num %= 10;
-      }
-      if (num > 0) {
-        str += a[num] + ' ';
-      }
-      return str.trim();
-    };
-
-    let absVal = Math.abs(n);
-    const isNeg = n < 0;
-    const intPart = Math.floor(absVal);
-    const fracPart = absVal - intPart;
-
-    let res = '';
-    const trillions = Math.floor(intPart / 1000000000000);
-    const billions = Math.floor((intPart % 1000000000000) / 1000000000);
-    const millions = Math.floor((intPart % 1000000000) / 1000000);
-    const thousands = Math.floor((intPart % 1000000) / 1000);
-    const remainder = intPart % 1000;
-
-    if (trillions) res += numToWordsChunk(trillions) + ' trillion ';
-    if (billions) res += numToWordsChunk(billions) + ' billion ';
-    if (millions) res += numToWordsChunk(millions) + ' million ';
-    if (thousands) res += numToWordsChunk(thousands) + ' thousand ';
-    if (remainder) res += numToWordsChunk(remainder) + ' ';
-
-    res = res.trim();
-    if (fracPart > 0) {
-      const decStr = fracPart.toFixed(4).substring(2).replace(/0+$/, '');
-      const digits = decStr.split('').map(d => a[parseInt(d, 10)]).join(' ');
-      res += ` point ${digits}`;
-    }
-
-    return (isNeg ? 'negative ' : '') + res;
-  };
 
   const parsed = parseWordsToNumber(inputText);
   const numValue = parsed.value;
@@ -194,7 +64,7 @@ export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) 
             <label className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 block">
               Enter Words, Quantities, or Spelled-Out Phrases
             </label>
-            <textarea
+            <textarea aria-label="Number phrase"
               rows={3}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
@@ -223,8 +93,9 @@ export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) 
             </div>
           </div>
 
+          {parsed.error && <p role="alert" className="text-red-600">{parsed.error}</p>}
           {/* Formatted Number Results Matrix */}
-          <div className="glass-card p-6 rounded-3xl space-y-4 border border-indigo-500/20 bg-gradient-to-br from-indigo-50/20 to-purple-50/10 dark:from-slate-900/60 dark:to-indigo-950/20">
+          <div hidden={!!parsed.error} className="glass-card p-6 rounded-3xl space-y-4 border border-indigo-500/20 bg-gradient-to-br from-indigo-50/20 to-purple-50/10 dark:from-slate-900/60 dark:to-indigo-950/20">
             <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center justify-between">
               <span>Parsed Numeric Representations</span>
               <span className="text-indigo-600 font-mono text-xs font-bold">Base 10 Decimal</span>
@@ -235,12 +106,12 @@ export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) 
               <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1 flex flex-col justify-between">
                 <div className="flex items-center justify-between text-xs text-slate-400 font-bold">
                   <span>Standard Format</span>
-                  <button onClick={() => copyToClipboard(numValue.toLocaleString(), 'std', 'Standard Number')} className="hover:text-indigo-600">
+                  <button onClick={() => copyToClipboard(numValue.toLocaleString("en-US", { maximumFractionDigits: 15 }), 'std', 'Standard Number')} className="hover:text-indigo-600">
                     {copiedKey === 'std' ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
                   </button>
                 </div>
                 <div className="text-xl font-black text-indigo-600 dark:text-indigo-400 font-mono truncate select-all">
-                  {numValue.toLocaleString()}
+                  {numValue.toLocaleString("en-US", { maximumFractionDigits: 15 })}
                 </div>
                 <span className="text-[10px] text-slate-400">Thousands comma grouping</span>
               </div>
@@ -337,7 +208,7 @@ export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) 
                 Spelled-Out English Words
               </span>
               <button
-                onClick={() => copyToClipboard(convertNumberToWords(parseFloat(numInput) || 0), 'words', 'Words')}
+                onClick={() => copyToClipboard(formatNumberWords(numInput), 'words', 'Words')}
                 className="px-3.5 py-1.5 rounded-xl bg-indigo-600 text-white font-bold text-xs flex items-center gap-1.5 shadow-sm"
               >
                 {copiedKey === 'words' ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
@@ -346,7 +217,7 @@ export function WordsToNumberTool({ onShowToast }: { onShowToast: (msg: string) 
             </div>
 
             <div className="p-5 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-lg font-bold text-indigo-600 dark:text-indigo-400 capitalize leading-relaxed select-all">
-              {convertNumberToWords(parseFloat(numInput) || 0)}
+              {formatNumberWords(numInput)}
             </div>
           </div>
         </div>

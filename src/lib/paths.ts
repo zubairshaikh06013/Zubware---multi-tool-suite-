@@ -270,7 +270,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'image-watermark':
       'Zubware Watermark Image protects your photography, digital artwork, and confidential documents by stamping custom text autographs or transparent PNG logos directly onto your images. Customize rotation angles, opacity levels, font styles, drop shadows, and full-image diagonal tiled repeat patterns. All rendering executes locally on an HTML5 canvas with zero remote tracking.',
     'exif-remover':
-      'Zubware EXIF Remover strips sensitive metadata from your photos before you share them online. It eliminates embedded GPS coordinates, altitude data, camera make and lens specifications, device serial numbers, exact timestamps, and editing history while preserving full visual image fidelity. All metadata purging executes 100% locally inside your device browser.',
+      'Zubware EXIF Remover strips sensitive metadata from your photos before you share them online. It eliminates embedded GPS coordinates, altitude data, camera make and lens specifications, device serial numbers, exact timestamps, and editing history by re-encoding pixels; JPEG quality and file size can change. All metadata purging executes 100% locally inside your device browser.',
     'favicon-generator':
       'Zubware Favicon Generator creates a complete, production-ready website favicon suite from any uploaded image. It renders 9 standardized PNG resolutions (16x16 to 512x512 px), Apple Touch Icons for iOS Safari, Android Chrome PWA icons, a classic Windows favicon.ico binary, and a pre-formatted site.webmanifest. Download everything in a single ZIP package with copyable HTML head code.',
     'gif-maker':

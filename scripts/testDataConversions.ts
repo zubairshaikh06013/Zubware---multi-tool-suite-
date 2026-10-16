@@ -1,0 +1,43 @@
+import { escapeMarkup } from '../src/lib/escapeMarkup';
+import assert from 'node:assert/strict';
+import { parseCsv, serializeCsv, csvObjects } from '../src/lib/csv';
+import { formatNumberWords, parseWordsToNumber } from '../src/lib/numberWords';
+import { numberToRoman, romanToNumber } from '../src/lib/romanNumerals';
+import { evaluateRegex } from '../src/lib/regexEvaluation';
+
+assert.deepEqual(parseCsv('\uFEFFname,note\r\n"A, B","first\nsecond ""quoted"""\r\n'), [['name','note'],['A, B','first\nsecond "quoted"']]);
+assert.deepEqual(parseCsv('a;b\n1;2',';'), [['a','b'],['1','2']]);
+assert.deepEqual(parseCsv('a,b\n"",\n'), [['a','b'],['','']]);
+const cells=[[' a ','b\rc','quote"','line\nline'],['x,y','','00012','9223372036854775807']];
+assert.deepEqual(parseCsv(serializeCsv(cells)),cells);
+for(const invalid of ['a,b\n"unfinished','a,b\n"closed"junk,2','a,b\none"two,3']) assert.throws(()=>parseCsv(invalid));
+assert.deepEqual(csvObjects('id,note\n00123,true'),[{id:'00123',note:'true'}]);
+assert.deepEqual(csvObjects('id,n,flag\n9223372036854775807,2,true',',',true),[{id:'9223372036854775807',n:2,flag:true}]);
+assert.deepEqual(csvObjects('a,b\n0.1234567890123456789,0007',',',true),[{a:'0.1234567890123456789',b:'0007'}]);
+assert.throws(()=>csvObjects('id,id\n1,2'),/Duplicate/);
+assert.throws(()=>csvObjects('a,b\n1,2,3'),/fields/);
+assert.throws(()=>csvObjects(',b\n1,2'),/header/);
+const prototype=csvObjects('__proto__,constructor\nsafe,value')[0];
+assert.equal(Object.hasOwn(prototype,'__proto__'),true);assert.equal(prototype.__proto__,'safe');
+
+const cases: [string,string][]=[['0','zero'],['-0.05','minus zero point zero five'],['1.05','one point zero five'],['1.200','one point two zero zero'],['1000000000000000000','one quintillion'],['9007199254740993','nine quadrillion seven trillion one hundred ninety-nine billion two hundred fifty-four million seven hundred forty thousand nine hundred ninety-three']];
+for(const [input,expected] of cases) assert.equal(formatNumberWords(input),expected);
+assert.equal(formatNumberWords('1234567.89','indian'),'twelve lakh thirty-four thousand five hundred sixty-seven point eight nine');
+assert.equal(formatNumberWords('-0.05','indian','inr'),'minus zero rupees and five paise');
+assert.equal(formatNumberWords('1.005','international','usd'),'one dollar and one cent');
+assert.equal(formatNumberWords('1.999','international','usd'),'two dollars only');
+assert.equal(formatNumberWords('-1','international','usd'),'minus one dollar only');
+for(const input of ['1e3','Infinity','0xFF','1,2','--5','1000000000000000000000'])assert.match(formatNumberWords(input),/Please/);
+for(const [input,value] of [['two million five hundred thirty four thousand seven hundred eighty nine',2534789],['five crore sixty lakhs',56000000],['forty five lakhs twenty thousand',4520000],['negative zero point zero five',-0.05],['one hundred and five',105]] as const)assert.deepEqual(parseWordsToNumber(input),{value,error:null});
+for(const input of ['one banana','hello','one point twenty','one point','one million million','one two','hundred hundred','and','', 'nine hundred trillion nine hundred trillion'])assert.ok(parseWordsToNumber(input).error,input);
+assert.equal(numberToRoman(2026).roman,'MMXXVI');assert.equal(romanToNumber('MCMXCIX').num,1999);
+for(const input of ['IIII','IIV','VX','IC','MCMC','', 'ABC'])assert.equal(romanToNumber(input).valid,false,input);
+assert.match(numberToRoman(3.5).roman,/Invalid/);
+for(let n=1;n<=3999;n++)assert.deepEqual(romanToNumber(numberToRoman(n).roman),{num:n,valid:true});
+assert.deepEqual(evaluateRegex('(a)(b)','g','ab ab').matches.map(x=>x.index),[0,3]);
+assert.deepEqual(evaluateRegex('(?:)','gu','😀').matches.map(x=>x.index),[0,2]);
+assert.ok(evaluateRegex('[','g','test').error);
+assert.equal(evaluateRegex('a','g','a'.repeat(1002)).truncated,true);
+console.log('CSV fidelity/invalid input, number precision/rounding, Roman 1–3999 and regex boundaries passed.');
+
+assert.equal(escapeMarkup('<img src=x onerror="alert(1)"> & text'), '&lt;img src=x onerror=&quot;alert(1)&quot;&gt; &amp; text');

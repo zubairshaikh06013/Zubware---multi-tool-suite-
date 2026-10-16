@@ -12873,11 +12873,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "howTo": [
     {
       "title": "Select Word Count (Passphrase Length)",
-      "desc": "Adjust the slider from 3 to 8 words (4 to 5 words recommended for standard balance of memory and entropy)."
+      "desc": "Choose 3 to 10 words. The default is six independently random words from the 7,776-word EFF Long Wordlist."
     },
     {
       "title": "Choose Word Separator",
-      "desc": "Select your preferred delimiter: Hyphen (-), Underscore (_), Space ( ), Period (.), or None."
+      "desc": "Choose a hyphen, underscore, space, or period separator."
     },
     {
       "title": "Configure Capitalization & Characters",
@@ -12889,7 +12889,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "title": "Inspect Entropy & Copy Passphrase",
-      "desc": "Review the calculated entropy bits and estimated crack-time resistance, then click Copy."
+      "desc": "Review the theoretical entropy based on the actual wordlist and random options, then copy your result. No cracking time is predicted."
     }
   ],
   "faq": [
@@ -12907,7 +12907,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "How many words should a secure passphrase contain?",
-      "answer": "According to cybersecurity standards, 4 words (approx. 52 bits of entropy) are suitable for general accounts, 5 to 6 words (65-78 bits) are ideal for password managers and email accounts, and 7+ words are recommended for disk encryption."
+      "answer": "The default is six words, following the EFF guidance for its long wordlist. Six independently random words from 7,776 options provide about 77.5 bits before optional digits and symbols. Requirements depend on the account and threat model."
     },
     {
       "question": "Does adding a number or symbol increase passphrase security?",
@@ -12919,11 +12919,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "What wordlist is used to generate the passphrases?",
-      "answer": "The generator uses a curated EFF-inspired wordlist of familiar, clean English words selected for clarity, easy spelling, and phonetic distinctiveness."
+      "answer": "It uses the 7,776-word EFF Long Wordlist by Joseph Bonneau / Electronic Frontier Foundation, with attribution and a CC BY 4.0 license link. The list is bundled locally with the tool."
     },
     {
       "question": "Can brute-force GPU cracking clusters easily guess a 5-word passphrase?",
-      "answer": "A 5-word passphrase with 65+ bits of entropy represents over 36 quintillion combinations. Even a supercomputer cluster guessing 100 billion passwords per second would require centuries to exhaust the search space."
+      "answer": "A theoretical search space is not a guaranteed cracking time. Attack speed depends on the password hashing method, hardware, rate limits and whether the phrase was selected randomly. This tool reports entropy without predicting attack duration."
     },
     {
       "question": "Can I use the Passphrase Generator on mobile devices?",
@@ -12931,7 +12931,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "Why is separator choice important in a passphrase?",
-      "answer": "Separators (like hyphens or periods) break words apart clearly for human reading and prevent dictionary parsers from interpreting adjacent words as a single compound word."
+      "answer": "Separators improve readability. A fixed separator does not add random entropy or prevent an attacker from guessing word combinations."
     },
     {
       "question": "Can I generate multiple passphrases in a row?",

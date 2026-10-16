@@ -116,10 +116,10 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onShowToast }) => {
               <CheckCircle2 className="w-8 h-8" />
             </div>
             <h2 className="text-xl font-bold text-slate-900 dark:text-white">
-              Thank You for Your Feedback!
+              Your Message Is Ready
             </h2>
             <p className="text-xs text-slate-500 dark:text-slate-400 max-w-md mx-auto">
-              Your feedback has been prepared and sent directly to Zubair Shaikh. A copy has also been saved to your local history below.
+              Your message has been prepared in your email app or WhatsApp. Review it and press Send there to deliver it. Opening the app does not confirm delivery. A copy is saved only in this browser’s local history.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
               <button

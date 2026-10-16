@@ -54,7 +54,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
           </div>
           <div className="overflow-hidden">
             <span className="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">
-              Instant Chat
+              Open Chat
             </span>
             <h4 className="text-sm font-bold text-slate-900 dark:text-white">
               WhatsApp Support
@@ -95,21 +95,21 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
               Send a Message
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Fill out the form to send your message directly via WhatsApp or Email.
+              This form opens a draft in your email app or WhatsApp. Review it and press Send there; this website does not send messages automatically.
             </p>
           </div>
           <span className="text-xs px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 font-bold">
-            Fast Response
+            Direct Contact
           </span>
         </div>
 
         <form onSubmit={sendViaEmail} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label htmlFor="contact-name" className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                 Your Name
               </label>
-              <input
+              <input id="contact-name"
                 type="text"
                 required
                 value={name}
@@ -119,10 +119,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
               />
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+              <label htmlFor="contact-email" className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
                 Your Email Address
               </label>
-              <input
+              <input id="contact-email"
                 type="email"
                 required
                 value={email}
@@ -134,10 +134,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label htmlFor="contact-subject" className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
               Subject / Topic
             </label>
-            <input
+            <input id="contact-subject"
               type="text"
               required
               value={subject}
@@ -148,10 +148,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
           </div>
 
           <div>
-            <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
+            <label htmlFor="contact-message" className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">
               Message Details
             </label>
-            <textarea
+            <textarea id="contact-message"
               rows={5}
               required
               value={message}

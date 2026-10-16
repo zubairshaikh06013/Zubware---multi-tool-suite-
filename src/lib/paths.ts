@@ -386,7 +386,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'file-checksum-verifier':
       'Zubware File Checksum Verifier validates file integrity and verifies software downloads against published hashes using the browser\'s native Web Crypto API. Calculate SHA-256, SHA-512, SHA-1, and MD5 digests for large installers and disk images directly in browser RAM without uploading a single byte to external servers.',
     'passphrase-generator':
-      'Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 8 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.',
+      'Zubware Memorable Passphrase Generator creates strong, memorable multi-word passphrases using window.crypto.getRandomValues() CSPRNG entropy and a curated dictionary of clean English words. Customize word counts (3 to 10 words), separators, capitalization, numbers, and symbols while inspecting exact mathematical entropy bits with complete local privacy.',
     'password-strength-checker':
       'Zubware Password Strength Checker evaluates credential security in real-time through client-side heuristic inspection and Shannon entropy analysis. Detect common keyboard sequences, dictionary words, and character pool vulnerabilities, and review estimated brute-force resistance against offline GPU cracking clusters with zero network transmission.',
     'text-encrypt-decrypt':

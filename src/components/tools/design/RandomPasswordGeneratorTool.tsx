@@ -1,3 +1,4 @@
+import { passwordPool, generateRandomPassword, randomPasswordEntropy } from '../../../lib/secureRandom';
 import React, { useState, useEffect } from 'react';
 import { Copy, RefreshCw, Key, ShieldCheck } from 'lucide-react';
 
@@ -14,37 +15,20 @@ export const RandomPasswordGeneratorTool: React.FC<RandomPasswordGeneratorToolPr
   const [excludeSimilar, setExcludeSimilar] = useState<boolean>(false);
   const [password, setPassword] = useState<string>('');
 
+  const pool = passwordPool({ upper: useUppercase, lower: useLowercase, numbers: useNumbers, symbols: useSymbols, avoidSimilar: excludeSimilar, exclude: '' });
   const generatePassword = () => {
-    let uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    let lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
-    let numberChars = '0123456789';
-    let symbolChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    if (!pool) {
+      setPassword('');
 
-    if (excludeSimilar) {
-      uppercaseChars = uppercaseChars.replace(/[IO]/g, '');
-      lowercaseChars = lowercaseChars.replace(/[l]/g, '');
-      numberChars = numberChars.replace(/[01]/g, '');
-    }
-
-    let allowedChars = '';
-    if (useUppercase) allowedChars += uppercaseChars;
-    if (useLowercase) allowedChars += lowercaseChars;
-    if (useNumbers) allowedChars += numberChars;
-    if (useSymbols) allowedChars += symbolChars;
-
-    if (!allowedChars) {
-      onShowToast('Select at least one character set!');
       return;
     }
+    try {
+      setPassword(generateRandomPassword(length, pool));
 
-    let pass = '';
-    const array = new Uint32Array(length);
-    crypto.getRandomValues(array);
-    for (let i = 0; i < length; i++) {
-      pass += allowedChars[array[i] % allowedChars.length];
+    } catch {
+      setPassword('');
+      onShowToast('Secure random generation is unavailable in this browser.');
     }
-
-    setPassword(pass);
   };
 
   useEffect(() => {
@@ -52,23 +36,17 @@ export const RandomPasswordGeneratorTool: React.FC<RandomPasswordGeneratorToolPr
   }, [length, useUppercase, useLowercase, useNumbers, useSymbols, excludeSimilar]);
 
   const getStrength = () => {
-    let score = 0;
-    if (length >= 12) score += 2;
-    else if (length >= 8) score += 1;
-    if (useUppercase) score++;
-    if (useLowercase) score++;
-    if (useNumbers) score++;
-    if (useSymbols) score++;
-
-    if (score <= 2) return { label: 'Weak', color: 'bg-rose-500', pct: '25%' };
-    if (score <= 4) return { label: 'Medium', color: 'bg-amber-500', pct: '50%' };
-    if (score <= 5) return { label: 'Strong', color: 'bg-emerald-500', pct: '75%' };
+    const entropy = password ? randomPasswordEntropy(password.length, pool.length) : 0;
+    if (entropy < 40) return { label: 'Weak', color: 'bg-rose-500', pct: '25%' };
+    if (entropy < 65) return { label: 'Medium', color: 'bg-amber-500', pct: '50%' };
+    if (entropy < 90) return { label: 'Strong', color: 'bg-emerald-500', pct: '75%' };
     return { label: 'Very Strong', color: 'bg-indigo-500', pct: '100%' };
   };
 
   const strength = getStrength();
 
   const copyPassword = () => {
+    if (!password) return;
     navigator.clipboard.writeText(password);
     onShowToast('Password copied to clipboard!');
   };
@@ -93,6 +71,8 @@ export const RandomPasswordGeneratorTool: React.FC<RandomPasswordGeneratorToolPr
         </button>
       </div>
 
+      {!pool && <p role="alert" className="text-sm text-rose-600">Select at least one character set and leave at least one character available.</p>}
+      <p className="text-xs text-slate-500">Selected sets form the random character pool; every set is not guaranteed to appear. Strength is a theoretical estimate based on the available characters and length.</p>
       {/* Main Password Banner */}
       <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
         <div className="flex items-center justify-between">

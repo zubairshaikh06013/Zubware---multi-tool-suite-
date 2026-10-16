@@ -65,7 +65,7 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
               Universal Graphic &amp; Web Format Support
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Transform photos and graphics across JPG, PNG, WebP, BMP, ICO, and SVG formats directly in your browser. Batch convert multiple files, adjust quality compression ratios, and download instantly without artificial upload limits.
+              Export JPG, PNG, WebP, BMP and single-size ICO files in your browser. SVG is supported as an input for rasterization, not as vector output. AVIF export appears only where the browser supports encoding. Batch conversion is limited by available device memory.
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -81,7 +81,7 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
               Windows Favicon (.ico) Packaging
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Package multi-resolution binary ICO containers (16x16, 32x32, 48x48) for website root domains and Windows desktop shortcuts with standard header tags.
+              Choose one output size, from 16 to 256 pixels, for a single-size ICO file containing a PNG image. Use the dedicated Favicon Generator for a package of different icon files.
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">

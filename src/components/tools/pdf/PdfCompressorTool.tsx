@@ -106,10 +106,10 @@ export const PdfCompressorTool: React.FC<PdfCompressorToolProps> = ({ onShowToas
         targetBytes = Math.round(file.size * 0.5); // target 50% reduction
       }
 
-      setCompressProgress({ stage: 'Compressing embedded images & streams...', percent: 45 });
+      setCompressProgress({ stage: 'Preparing compression settings...', percent: 45 });
       await new Promise(r => setTimeout(r, 250));
 
-      setCompressProgress({ stage: 'Optimizing font subsets & metadata tables...', percent: 75 });
+      setCompressProgress({ stage: 'Preparing PDF size reduction...', percent: 75 });
 
       // Run optimized size reduction
       const result = await reducePdfSize(pdfBuffer, targetBytes, qualityLevel, (stageName, pct) => {

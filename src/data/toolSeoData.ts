@@ -223,7 +223,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Choose Target Format & Compression Quality",
-        "desc": "Select your desired global target format (WebP, JPG, PNG, BMP, ICO, AVIF) and adjust the compression quality slider from 1% to 100%."
+        "desc": "Select WebP, JPG, PNG, BMP or ICO. AVIF appears only where browser encoding is supported. JPEG/WebP quality ranges from 10% to 100%; SVG can be read as input but is not an output format."
       },
       {
         "title": "Configure Background Color & Dimension Constraints",

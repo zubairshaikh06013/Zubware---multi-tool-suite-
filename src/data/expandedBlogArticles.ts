@@ -8,11 +8,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how PDF password protection, AES-256 encryption, access permissions, and forensic watermarking work. Secure confidential records locally in your browser.",
     "canonicalPath": "/blog/pdf-security-encryption-watermarking-guide",
     "publishedTime": "2026-10-01T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security Research Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Cryptography"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -117,11 +117,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn the legal validity of electronic signatures under ESIGN, UETA, and eIDAS. Master drawing, typing, and image upload capture workflows in your browser.",
     "canonicalPath": "/blog/how-to-electronically-sign-pdf-contracts",
     "publishedTime": "2026-10-01T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Document Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Document Security & Digital Signatures"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -226,11 +226,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master image formats across the web. Compare WebP, AVIF, PNG, JPEG, and iPhone HEIC compression, browser compatibility, and conversion workflows.",
     "canonicalPath": "/blog/complete-image-formats-conversion-guide",
     "publishedTime": "2026-10-02T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Media Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Computer Vision & Browser Media Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -335,11 +335,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn what hidden EXIF metadata lurks inside smartphone photos. Discover GPS geolocation risks, camera serial tracking, and how to scrub metadata locally.",
     "canonicalPath": "/blog/remove-exif-metadata-photo-privacy-guide",
     "publishedTime": "2026-10-02T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security Research Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Privacy Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -444,11 +444,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master data format transformations. Learn how to convert hierarchical JSON and XML trees into tabular CSV rows, handle YAML syntax, and manage complex schemas.",
     "canonicalPath": "/blog/json-xml-csv-yaml-data-transformation-guide",
     "publishedTime": "2026-10-03T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Developer Tooling Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -553,11 +553,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master regular expressions. Learn lookaheads, lookbehinds, non-capturing groups, and how to avoid catastrophic backtracking (ReDoS) vulnerability.",
     "canonicalPath": "/blog/regex-tester-pattern-debugging-guide",
     "publishedTime": "2026-10-03T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Developer Tooling Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -662,11 +662,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn Unix crontab syntax. Master the 5-field schedule format, special operators (*, /, -, ,), timezone drift, and automated crontab generation.",
     "canonicalPath": "/blog/cron-expression-generator-scheduling-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Security & DevTools Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Information Security & Developer Tooling Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -771,11 +771,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how WebAssembly compiles FFmpeg into web browsers. Master video bitrates, Constant Rate Factor (CRF 18-28), H.264 vs VP9, and zero-upload video compression.",
     "canonicalPath": "/blog/compress-convert-video-browser-ffmpeg-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Media Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Computer Vision & Browser Media Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -880,11 +880,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn compensation architecture. Master the mathematical salary hike formula, CTC to in-hand deductions, provident fund math, and counter-offer negotiation.",
     "canonicalPath": "/blog/salary-negotiation-ctc-hike-calculator-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Career Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Career Strategy & Compensation Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -989,11 +989,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Learn how LinkedIn Recruiter search algorithms rank profiles. Optimize your 220-character headline, keyword-rich summary, and search visibility.",
     "canonicalPath": "/blog/linkedin-profile-headline-summary-optimization-guide",
     "publishedTime": "2026-10-05T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Career Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Career Strategy & HR Tech Architecture"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1098,11 +1098,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master Markdown and GitHub Flavored Markdown (GFM). Build clean tables, task lists, fenced code blocks with syntax highlighting, and export to HTML.",
     "canonicalPath": "/blog/markdown-syntax-technical-writing-guide",
     "publishedTime": "2026-10-05T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware Text Engineering Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "NLP & Technical Documentation Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",
@@ -1207,11 +1207,11 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
     "description": "Master image generation prompting for Midjourney, Flux, and SDXL. Learn focal length optics, lighting styles, color grading, and aspect ratio syntax.",
     "canonicalPath": "/blog/diffusion-model-prompting-lighting-camera-guide",
     "publishedTime": "2026-10-05T00:00:00Z",
-    "modifiedTime": "2026-10-09T00:00:00Z",
+    "modifiedTime": "2026-10-16T21:57:43Z",
     "author": {
-      "name": "Zubware AI Research Team",
+      "name": "Zubware",
       "url": "https://www.zubware.com/about",
-      "role": "Prompt Architecture & LLM Engineering"
+      "role": "Tool guides and documentation"
     },
     "publisher": {
       "name": "Zubware",

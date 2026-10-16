@@ -369,7 +369,7 @@ export const ImageConverterTool: React.FC<ImageConverterToolProps> = ({ onShowTo
               onChange={(e) => {
                 const val = e.target.value as OutputImageFormat;
                 setGlobalTarget(val);
-                setItems(items.map((i) => ({ ...i, targetFormat: val, convertedBlob: null, convertedSize: undefined, status: 'idle', errorMsg: undefined })));
+                setItems(items.map((i) => ({ ...i, targetFormat: val, convertedBlob: null, convertedSize: undefined, status: i.originalWidth && i.originalHeight ? 'idle' : 'error', errorMsg: i.originalWidth && i.originalHeight ? undefined : 'This browser could not decode this image. Try PNG, JPEG or WebP.' })));
               }}
               className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-800 dark:text-slate-200 text-xs font-bold focus:ring-2 focus:ring-indigo-500 outline-none cursor-pointer"
             >

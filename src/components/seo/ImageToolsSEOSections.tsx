@@ -206,10 +206,10 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 Comprehensive Web Format Support
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware Image Converter transforms image files across all popular web and graphic standards: <strong>JPG, PNG, WebP, BMP, ICO, and SVG</strong>. Whether you need to convert heavy PNG logos into lightweight WebP graphics for web optimization or export multi-resolution Windows favicon (.ico) files, all transformations execute seamlessly in browser memory.
+                Zubware Image Converter exports <strong>JPG, PNG, WebP, BMP and single-size ICO files</strong>. It can read SVG inputs and rasterize them; it does not trace photos into SVG vectors. AVIF output appears only in browsers with a supported encoder. Conversion runs in browser memory; available memory and browser support limit file size and format availability.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                No daily conversion caps, watermarks, or file size paywalls. Upload single pictures or convert multiple files simultaneously with individual quality controls.
+                No daily conversion caps, watermarks, or file size paywalls. Upload single pictures or convert multiple files simultaneously with shared quality controls.
               </p>
             </div>
 

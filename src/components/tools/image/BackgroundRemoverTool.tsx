@@ -15,7 +15,7 @@ import {
   ShieldCheck,
   Zap
 } from 'lucide-react';
-import { processBackgroundRemoval, BackgroundRemovalResult, BackgroundRemovalMode } from '../../../lib/backgroundRemoval';
+import { processBackgroundRemoval, BackgroundRemovalResult, BackgroundRemovalMode, BackgroundRemovalProgress } from '../../../lib/backgroundRemoval';
 import { processCloudflareBackgroundRemoval } from '../../../lib/cloudflareBackgroundRemoval';
 import { formatBytes } from '../../../lib/imageUtils';
 import { getLinkUrl } from '../../../lib/paths';
@@ -110,7 +110,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
       if (processingMode === 'cloudflare' && !cloudflareConsent) {
         throw new Error('Please agree to upload this photo to Cloudflare before starting.');
       }
-      const onProgress = (prog: { stage: string; percent: number }) => {
+      const onProgress = (prog: BackgroundRemovalProgress) => {
         if (requestId !== requestIdRef.current) return;
         setProcessingStage(prog.stage);
         setProgressPercent(prog.percent);

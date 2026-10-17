@@ -36,24 +36,31 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
   const searchInputRef = useRef<HTMLInputElement>(null);
   const resultsContainerRef = useRef<HTMLDivElement>(null);
 
-  // Filter tools based on live query
-  const searchResults = useMemo(() => {
+  // Rank exact tool-name matches ahead of broad tags and category matches.
+  // A large shared keyword list should not bury the tool the visitor searched for.
+  const searchMatches = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
     if (!q) return [];
 
-    return tools
-      .filter((tool) => {
-        const titleMatch = tool.title.toLowerCase().includes(q);
-        const navMatch = tool.navTitle?.toLowerCase().includes(q);
-        const descMatch = tool.description.toLowerCase().includes(q);
-        const catMatch = tool.category.toLowerCase().includes(q);
-        const idMatch = tool.id.toLowerCase().includes(q);
-        const tagMatch = tool.tags?.some((t) => t.toLowerCase().includes(q));
-        const featureMatch = tool.features?.some((f) => f.toLowerCase().includes(q));
-        return titleMatch || navMatch || descMatch || catMatch || idMatch || tagMatch || featureMatch;
-      })
-      .slice(0, 25);
+    const ranked = tools.map((tool, index) => {
+      const title = tool.title.toLowerCase();
+      const nav = (tool.navTitle || '').toLowerCase();
+      const id = tool.id.toLowerCase();
+      const score = title === q || nav === q || id === q ? 100
+        : title.startsWith(q) || nav.startsWith(q) || id.startsWith(q) ? 80
+        : title.includes(q) || nav.includes(q) || id.includes(q) ? 60
+        : tool.description.toLowerCase().includes(q) ? 30
+        : tool.features?.some(f => f.toLowerCase().includes(q)) ? 20
+        : tool.category.toLowerCase().includes(q) ? 10
+        : tool.tags?.some(t => t.toLowerCase().includes(q)) ? 5 : 0;
+      return { tool, score, index };
+    }).filter(match => match.score > 0);
+
+    ranked.sort((a, b) => b.score - a.score || a.index - b.index);
+    return ranked.map(match => match.tool);
   }, [searchQuery, tools]);
+
+  const searchResults = useMemo(() => searchMatches.slice(0, 25), [searchMatches]);
 
   // Handle keyboard navigation in search results
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -234,7 +241,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
               {/* Header with match count */}
               <div className="px-4 sm:px-6 py-3 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs font-semibold text-slate-500 dark:text-slate-400 bg-slate-50/50 dark:bg-slate-900/50">
                 <span>
-                  Found <strong className="text-indigo-600 dark:text-indigo-400">{searchResults.length}</strong> matching tools
+                  Found <strong className="text-indigo-600 dark:text-indigo-400">{searchMatches.length}</strong> matching tools
                 </span>
                 <span className="hidden sm:inline-flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400">
                   <span>Use ↑↓ to navigate,</span>

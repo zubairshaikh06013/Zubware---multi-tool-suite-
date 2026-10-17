@@ -36,7 +36,7 @@ export async function processCloudflareBackgroundRemoval(
   // Start image metadata decoding concurrently with the network request.
   // Previously this blocked the upload on slower Android devices.
   const originalPromise = dimensions(file).catch(() => ({ width: 0, height: 0 }));
-  onProgress?.({ stage: 'Uploading & removing background...', percent: 30 });
+  onProgress?.({ stage: 'Removing Background...', percent: 30 });
 
   let response: Response;
   try {

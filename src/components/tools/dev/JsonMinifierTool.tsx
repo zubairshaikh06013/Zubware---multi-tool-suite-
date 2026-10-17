@@ -89,8 +89,11 @@ export function JsonMinifierTool({ onShowToast }: { onShowToast: (msg: string) =
     const a = document.createElement('a');
     a.href = url;
     a.download = 'minified.json';
-    a.click;
-    URL.revokeObjectURL(url);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    // Allow the browser to begin the download before releasing the blob URL.
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     onShowToast('Downloaded minified.json!');
   };
 

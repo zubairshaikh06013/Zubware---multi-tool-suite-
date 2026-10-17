@@ -27,6 +27,12 @@ for (let i = 0; i < 30; i++) {
 }
 assert.equal(passwordPool({ ...options, upper: false, lower: false, numbers: false, symbols: false }), '');
 assert.throws(() => generateRandomPassword(12, ''));
+assert.equal(generateRandomPassword(16, 'aaaa'), 'a'.repeat(16));
+const unicodePassword = generateRandomPassword(16, '🔒');
+assert.equal(unicodePassword, '🔒'.repeat(16));
+assert.equal(Array.from(unicodePassword).length, 16);
+assert.throws(() => generateRandomPassword(0, 'abc'));
+assert.throws(() => generateRandomPassword(257, 'abc'));
 assert.equal(randomPasswordEntropy(20, 1), 0);
 assert.equal(randomPasswordEntropy(20, 2), 20);
 assert.equal(PASSPHRASE_WORDS.length, 7776);

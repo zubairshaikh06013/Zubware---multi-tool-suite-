@@ -250,40 +250,50 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
         }
       `}</style>
 
-      {/* Privacy Notice Banner */}
-      <div className="flex items-center justify-between gap-3 p-3.5 sm:p-4 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 border border-indigo-200/80 dark:border-indigo-800/60 text-xs sm:text-sm text-indigo-900 dark:text-indigo-200">
-        <div className="flex items-center gap-2.5">
-          <Lock className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
-          <p className="font-medium">
-            <strong className="font-bold">{processingMode === 'cloudflare' ? '☁️ Cloudflare AI:' : '🔒 Private & Local:'}</strong> {processingMode === 'cloudflare' ? 'Only when you press Remove Background, your selected image is uploaded to Cloudflare for AI processing. Do not use private photos.' : 'Browser Fast and Quality modes process locally. Your files are not uploaded to Zubware servers.'}
-          </p>
+      {/* Mode selection: consistent, accessible cards on mobile and desktop. */}
+      <section aria-labelledby="bg-mode-heading" className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm">
+        <div className="mb-4">
+          <h2 id="bg-mode-heading" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Choose how to remove the background</h2>
+          <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">All modes export a transparent PNG. Choose based on privacy, device performance and image size.</p>
         </div>
-      </div>
-
-      <fieldset disabled={isProcessing} className="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-900">
-        <legend className="px-2 text-sm font-bold text-slate-800 dark:text-slate-100">Processing mode</legend>
-        <div className="flex flex-wrap gap-3">
-          <label className="flex items-center gap-2 text-sm cursor-pointer">
-            <input type="radio" name="bg-removal-mode" checked={processingMode === 'fast'} onChange={() => setProcessingMode('fast')} />
-            ⚡ Fast — smaller input for large photos
-          </label>
-          <label className="flex items-center gap-2 text-sm cursor-pointer">
-            <input type="radio" name="bg-removal-mode" checked={processingMode === 'quality'} onChange={() => setProcessingMode('quality')} />
-            ✨ Browser Quality — local processing
-          </label>
-          <label className="flex items-center gap-2 text-sm cursor-pointer">
-            <input type="radio" name="bg-removal-mode" checked={processingMode === 'cloudflare'} onChange={() => setProcessingMode('cloudflare')} />
-            ☁️ Cloudflare AI — online processing (10 MB max)
-          </label>
-        </div>
-        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Browser modes run locally; Fast may reduce detail. Cloudflare AI uploads your photo only after you explicitly consent and start processing. Results and processing time vary.</p>
-        {processingMode === 'cloudflare' && (
-          <label className="mt-3 flex items-start gap-2 text-sm text-slate-700 dark:text-slate-200">
-            <input type="checkbox" checked={cloudflareConsent} onChange={e => setCloudflareConsent(e.target.checked)} className="mt-1" />
-            <span>I agree to upload my selected photo to Cloudflare for background removal. I will not upload sensitive images.</span>
-          </label>
-        )}
-      </fieldset>
+        <fieldset disabled={isProcessing}>
+          <legend className="sr-only">Background removal processing mode</legend>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {([
+              { id: 'cloudflare', icon: '☁️', title: 'Cloudflare AI', subtitle: 'Online processing', detail: 'Up to 10 MB · Upload with consent', badge: 'ONLINE AI' },
+              { id: 'fast', icon: '⚡', title: 'Browser Fast', subtitle: 'Runs on your device', detail: 'Faster on large photos · May reduce detail', badge: 'PRIVATE' },
+              { id: 'quality', icon: '✨', title: 'Browser Quality', subtitle: 'Runs on your device', detail: 'Original input · More device resources', badge: 'PRIVATE' }
+            ] as const).map(mode => (
+              <label key={mode.id} className={`relative flex items-start gap-3 rounded-xl border-2 p-3.5 sm:p-4 cursor-pointer transition-colors ${processingMode === mode.id ? 'border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/30' : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700'} ${isProcessing ? 'opacity-60 cursor-not-allowed' : ''}`}>
+                <input type="radio" name="bg-removal-mode" value={mode.id} checked={processingMode === mode.id} onChange={() => setProcessingMode(mode.id)} className="mt-1 accent-indigo-600 shrink-0" />
+                <span className="min-w-0 flex-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span aria-hidden="true">{mode.icon}</span>
+                    <span className="font-bold text-sm text-slate-900 dark:text-white">{mode.title}</span>
+                  </span>
+                  <span className="block mt-1 text-xs font-medium text-slate-600 dark:text-slate-300">{mode.subtitle}</span>
+                  <span className="block mt-1 text-xs leading-relaxed text-slate-500 dark:text-slate-400">{mode.detail}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+          <div className="mt-4 rounded-xl border border-indigo-100 dark:border-indigo-900 bg-indigo-50/60 dark:bg-indigo-950/30 p-3 sm:p-4">
+            <div className="flex items-start gap-2.5">
+              <Lock className="w-4 h-4 mt-0.5 shrink-0 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
+              <div className="min-w-0">
+                <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100">{processingMode === 'cloudflare' ? 'Cloudflare AI · Photo upload required' : 'Private processing · No photo upload'}</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{processingMode === 'cloudflare' ? 'Your photo is sent to Cloudflare only when you start background removal. Avoid sensitive or private photos. Processing time and output quality vary.' : 'Browser Fast and Browser Quality process photos on your device without uploading them to Zubware servers.'}</p>
+              </div>
+            </div>
+            {processingMode === 'cloudflare' && (
+              <label className="mt-3 flex items-start gap-2.5 border-t border-indigo-200/70 dark:border-indigo-800 pt-3 text-xs sm:text-sm font-medium text-slate-700 dark:text-slate-200 cursor-pointer">
+                <input type="checkbox" checked={cloudflareConsent} onChange={e => setCloudflareConsent(e.target.checked)} className="mt-0.5 accent-indigo-600 shrink-0" />
+                <span>I agree to upload my selected image to Cloudflare for AI background removal.</span>
+              </label>
+            )}
+          </div>
+        </fieldset>
+      </section>
 
       {/* ========================================================
           UPLOAD AREA (When no image is selected yet)

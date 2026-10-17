@@ -19,7 +19,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate: _onNavigate })
           About Zubware
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-3 leading-relaxed">
-          Reimagining online tools with browser-based processing, zero server upload requirements for local tools, and fast execution.
+          Practical online tools with clear privacy choices: local processing where available and transparent disclosure when a tool uses an online service.
         </p>
       </div>
 
@@ -35,7 +35,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate: _onNavigate })
             Zubware was created by <strong>Zubair Shaikh</strong> to solve a pervasive problem on the modern web: traditional file tools force users to upload their confidential documents, private photos, and personal information to unknown third-party cloud servers.
           </p>
           <p className="text-slate-600 dark:text-slate-300">
-            We engineered Zubware so that local utilities process data directly inside your browser using HTML5 Canvas, WebAssembly, and modern Web APIs. For local tools, your files and inputs are never uploaded to Zubware servers.
+            Many Zubware utilities process data directly inside your browser using HTML5 Canvas, WebAssembly, and modern Web APIs. Some features use online services: for example, Background Remover's Smart AI Removal sends a selected photo to Cloudflare only after you consent and start. Its Quick and Private modes process the photo on your device.
           </p>
         </div>
 

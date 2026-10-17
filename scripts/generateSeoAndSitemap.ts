@@ -235,7 +235,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'heic-to-jpg':
       'Zubware HEIC to JPG Converter transforms Apple iPhone HEIC and HEIF photos into universal high-resolution JPG images directly in your browser. Batch convert multiple live photos or camera roll exports with adjustable JPEG quality and no account login. JPEG is a lossy format; compare the result with your original. All conversion algorithms execute 100% locally on your device with zero server uploads.',
     'background-remover':
-      'Zubware Background Remover creates transparent PNG cutouts from portraits, product photos and other images. Choose Fast or Browser Quality for local processing on your device, or opt into Cloudflare AI for online processing. Cloudflare mode uploads the selected photo only after you consent and start removal; do not upload sensitive images. Compare original and output dimensions and file sizes, inspect edges with the preview controls, and download the PNG without a watermark. Processing time and output detail depend on the mode, image and device.',
+      'Zubware Background Remover creates transparent PNG cutouts from portraits, product photos and other images. Choose Quick Removal or Private Removal for local processing on your device, or opt into Smart AI Removal (Cloudflare processing) for online processing. Smart AI Removal uploads the selected photo to Cloudflare only after you consent and start removal; do not upload sensitive images. Compare original and output dimensions and file sizes, inspect edges with the preview controls, and download the PNG without a watermark. Processing time and output detail depend on the mode, image and device.',
     'crop-image':
       'Zubware Crop Image trims photos to custom pixel dimensions or preset social media aspect ratios (1:1 square, 4:5 vertical, 16:9 widescreen) directly in your browser. Preview your composition in real time and download high-resolution crops in JPG, PNG, or WebP format with zero server uploads.',
     'signature-maker':
@@ -364,7 +364,7 @@ const STATIC_PAGES: StaticPageMeta[] = [
   {
     filename: 'privacy.html',
     title: 'Privacy Policy — Zubware',
-    description: 'Read the Zubware Privacy Policy. Processing happens locally in your browser for offline tools; files are not uploaded to Zubware servers.'
+    description: 'Read the Zubware Privacy Policy. Local tools process files on-device; optional Smart AI background removal uploads photos to Cloudflare only after consent.'
   },
   {
     filename: 'terms.html',

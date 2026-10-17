@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { hasNoindexRobotsMeta } from './validateSeoBuild';
+import { hasNoindexRobotsMeta, extractCanonicalHrefs } from './validateSeoBuild';
 import { calendarAge, calendarAnniversary } from '../src/lib/calendarAge';
 import { formatSubtitleTimestamp } from '../src/lib/subtitleTiming';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
@@ -14,6 +14,11 @@ for (const [html, expected] of [
   ['<meta name="description" content="noindex">', false],
   ['<p>noindex</p>', false],
 ] as const) assert.equal(hasNoindexRobotsMeta(html), expected, html);
+
+assert.deepEqual(extractCanonicalHrefs('<link rel="canonical" href="https://www.zubware.com/age-calculator">'), ['https://www.zubware.com/age-calculator']);
+assert.deepEqual(extractCanonicalHrefs("<link href='https://www.zubware.com/age-calculator' rel='CANONICAL'>"), ['https://www.zubware.com/age-calculator']);
+assert.deepEqual(extractCanonicalHrefs('<link rel="alternate" href="/wrong"><link rel="canonical" href="/correct">'), ['/correct']);
+assert.deepEqual(extractCanonicalHrefs('<link rel="canonical" href="/one"><link href="/two" rel="canonical">'), ['/one', '/two']);
 
 const date = (value: string) => new Date(`${value}T00:00:00`);
 for (const [birth, target, expected] of [

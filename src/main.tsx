@@ -4,15 +4,14 @@ import App from './App.tsx';
 import { ErrorBoundary } from './components/ErrorBoundary.tsx';
 import './index.css';
 
-// Prevent uncaught iframe script errors from breaking the app or throwing unhandled exceptions
-window.onerror = function (message, source, lineno, colno, error) {
-  console.warn('Suppressed script error:', message, source);
-  return true; // Prevents the error from propagating to browser error reporting
-};
+// Keep browser error reporting intact. Suppressing every uncaught error hides
+// broken tool scripts and prevents monitoring from detecting real failures.
+window.addEventListener('error', (event) => {
+  console.error('Uncaught application error:', event.message, event.error);
+});
 
 window.addEventListener('unhandledrejection', (event) => {
-  console.warn('Caught unhandled rejection:', event.reason);
-  event.preventDefault?.();
+  console.error('Unhandled application promise rejection:', event.reason);
 });
 
 createRoot(document.getElementById('root')!).render(

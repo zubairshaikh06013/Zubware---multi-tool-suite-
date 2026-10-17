@@ -75,6 +75,11 @@ assert.ok(ageTool.tags.some(tag => /dob calculation/i.test(tag)), 'Age calculato
 assert.ok(ageTool.tags.some(tag => /age calculator by date of birth/i.test(tag)), 'Age calculator should retain a specific date-of-birth search phrase');
 
 assert.ok(getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id === 'working-days-calculator'));
+for (const sourceId of ['countdown-calculator', 'cat-age-calculator', 'working-days-calculator']) {
+  const source = TOOLS_DATA.find(t => t.id === sourceId);
+  assert.ok(source, `Missing contextual source tool: ${sourceId}`);
+  assert.ok(getRelatedTools(source, TOOLS_DATA).some(t => t.id === 'age-calculator'), `${sourceId} must link to age calculator`);
+}
 assert.ok(!getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id.includes('css') || t.id.includes('shadow')));
 assert.ok(!getMatchingGuidesForTool(ageTool, BLOG_ARTICLES).some(a => a.slug.includes('pdf')));
 for (const tool of TOOLS_DATA) {

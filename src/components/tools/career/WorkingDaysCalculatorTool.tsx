@@ -101,7 +101,7 @@ export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps>
     day: 'numeric'
   });
 
-  const handleCopySummary = () => {
+  const handleCopySummary = async () => {
     let text = '';
     if (calcMode === 'between') {
       text = `📅 Zubware Business Working Days Report
@@ -128,10 +128,15 @@ Total Calendar Days Elapsed: ${calendarDaysAdded} days
 Calculated on Zubware`;
     }
 
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    onShowToast('Schedule report copied to clipboard!');
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      onShowToast('Schedule report copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+      onShowToast('Could not copy report. Please check clipboard permissions.');
+    }
   };
 
   return (

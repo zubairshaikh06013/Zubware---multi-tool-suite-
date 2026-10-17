@@ -60,7 +60,7 @@ export const SalaryHikeCalculatorTool: React.FC<SalaryHikeCalculatorToolProps> =
 
   const verdict = getVerdict(effectivePct);
 
-  const handleCopyReport = () => {
+  const handleCopyReport = async () => {
     const report = `Zubware Salary Hike Appraisal Report
 ----------------------------------------
 Currency: ${currency.code} (${currency.symbol})
@@ -81,10 +81,15 @@ Cashflow Bump Breakdown:
 
 Generated with Zubware Salary Hike Calculator`;
 
-    navigator.clipboard.writeText(report);
-    setCopied(true);
-    onShowToast('Salary hike report copied to clipboard!');
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(report);
+      setCopied(true);
+      onShowToast('Salary hike report copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+      onShowToast('Could not copy report. Please check clipboard permissions.');
+    }
   };
 
   return (

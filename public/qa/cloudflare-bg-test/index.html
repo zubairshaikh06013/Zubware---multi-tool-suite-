@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Cloudflare Background Removal — Private Test | Zubware</title>
+<style>body{font-family:system-ui,sans-serif;max-width:650px;margin:35px auto;padding:0 18px;background:#f8fafc;color:#0f172a}main{background:white;padding:24px;border-radius:18px;box-shadow:0 4px 22px #0001}h1{font-size:1.4rem}label{display:block;margin:20px 0}button,.download{display:inline-block;padding:12px 18px;background:#4338ca;color:white;border:0;border-radius:10px;font-weight:600;cursor:pointer}.download{margin-top:12px}button:disabled{opacity:.5;cursor:wait}img{max-width:100%;max-height:440px;object-fit:contain}.checker{background-color:white;background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;padding:8px;border-radius:8px}#status{white-space:pre-wrap}small{color:#475569}</style></head>
+<body><main><h1>Cloudflare Background Removal — Test Only</h1>
+<p>This page tests Zubware's Cloudflare API. It does not replace the existing local background remover.</p>
+<p><strong>Privacy:</strong> Clicking the test button uploads your chosen image to Cloudflare for processing. Do not use sensitive/private photos. Processing may count against the Cloudflare free quota.</p>
+<label>Choose JPG, PNG or WebP (max 10 MB)<br><input id="file" type="file" accept="image/jpeg,image/png,image/webp"></label>
+<button id="run" type="button">Upload to Cloudflare &amp; Test</button>
+<p id="status" role="status" aria-live="polite"></p>
+<section id="output" hidden><h2>Output PNG</h2><div class="checker"><img id="result" alt="Background removal result"></div><a id="download" class="download" download="zubware-cloudflare-test.png">Download PNG</a></section>
+<p><small>Expected success: a subject with transparent background. Errors (403/429/502) are displayed for diagnosis. Rate limit: approximately 5 requests per IP per minute. The result is not guaranteed until tested.</small></p>
+</main>
+<script>
+const file=document.getElementById('file'),run=document.getElementById('run'),status=document.getElementById('status'),output=document.getElementById('output'),result=document.getElementById('result'),download=document.getElementById('download');
+let oldUrl;
+run.addEventListener('click',async()=>{
+  const selected=file.files?.[0];
+  if(!selected){status.textContent='Please select an image.';return}
+  if(!['image/jpeg','image/png','image/webp'].includes(selected.type)){status.textContent='Only JPG, PNG or WebP supported.';return}
+  if(!selected.size||selected.size>10*1024*1024){status.textContent='Image must be between 1 byte and 10 MB.';return}
+  run.disabled=true;output.hidden=true;status.textContent='Uploading image to Cloudflare...';
+  try{
+    const response=await fetch('https://api.zubware.com/remove-background',{method:'POST',headers:{'Content-Type':selected.type},body:selected,cache:'no-store'});
+    if(!response.ok){const message=await response.text();throw new Error('HTTP '+response.status+': '+message.slice(0,300))}
+    const blob=await response.blob();
+    if(!blob.type.includes('png')||!blob.size)throw new Error('API did not return a PNG.');
+    if(oldUrl)URL.revokeObjectURL(oldUrl);
+    oldUrl=URL.createObjectURL(blob);result.src=oldUrl;download.href=oldUrl;output.hidden=false;
+    status.textContent='PNG returned ('+Math.round(blob.size/1024)+' KB). Visually check that the background is transparent.';
+  }catch(error){status.textContent='Test failed: '+(error?.message||String(error))+'\nIf browser says Failed to fetch, inspect Worker logs/CORS.'}
+  finally{run.disabled=false}
+});
+window.addEventListener('pagehide',()=>{if(oldUrl)URL.revokeObjectURL(oldUrl)});
+</script></body></html>

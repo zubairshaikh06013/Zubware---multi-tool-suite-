@@ -14,7 +14,7 @@ export function evaluateRegex(pattern: string, flags: string, text: string): Reg
       if (match[0].length === 0) {
         const index = regex.lastIndex;
         // Advance by a whole code point with Unicode mode; otherwise a surrogate can loop forever.
-        regex.lastIndex += regex.unicode && (text.codePointAt(index) ?? 0) > 0xffff ? 2 : 1;
+        regex.lastIndex += (regex.unicode || regex.flags.includes('v')) && (text.codePointAt(index) ?? 0) > 0xffff ? 2 : 1;
       }
     }
     return {matches, error: null, truncated: false};

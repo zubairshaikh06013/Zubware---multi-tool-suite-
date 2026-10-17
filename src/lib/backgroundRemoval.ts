@@ -57,7 +57,14 @@ export async function processBackgroundRemoval(
   // Initial stage notification
   onProgress?.({ stage: 'Preparing AI...', percent: 5 });
 
+  // The default FP16 model is considerably larger to download on first use.
+  // Prefer the smaller quantized model for quicker initial loading and lower
+  // memory pressure; segmentation edge quality can vary by photograph.
+  // WebGPU is optional: only request it when the browser advertises support.
+  const supportsWebGpu = typeof navigator !== 'undefined' && 'gpu' in navigator;
   const config: Config = {
+    model: 'isnet_quint8',
+    device: supportsWebGpu ? 'gpu' : 'cpu',
     progress: (key: string, current: number, total: number) => {
       let stage: 'Preparing AI...' | 'Removing Background...' | 'Finalizing...' = 'Preparing AI...';
       let p = 0;

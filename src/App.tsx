@@ -1419,19 +1419,19 @@ export default function App() {
 
         {/* Search Modal */}
         <Suspense fallback={null}>
-          <SearchModal
+          {searchOpen && <SearchModal
             isOpen={searchOpen}
             onClose={() => setSearchOpen(false)}
             onSelectTool={navigateTo}
-          />
+          />}
         </Suspense>
 
         {/* Keyboard Shortcuts Help Modal */}
         <Suspense fallback={null}>
-          <KeyboardShortcutsModal
+          {shortcutsOpen && <KeyboardShortcutsModal
             isOpen={shortcutsOpen}
             onClose={() => setShortcutsOpen(false)}
-          />
+          />}
         </Suspense>
 
         {/* Offline & PWA Install Banner */}

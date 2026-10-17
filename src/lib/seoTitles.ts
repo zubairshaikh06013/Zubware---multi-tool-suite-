@@ -13,7 +13,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
   // --- Core & Image Tools ---
   'image-splitter-merger': 'Image Splitter & Combiner — Split & Merge Photos | Zubware',
   'learning-licence-mock-test': 'Learning Licence Mock Test — RTO Exam Practice | Zubware',
-  'background-remover': 'Background Remover — Free AI Image BG Remover to PNG | Zubware',
+  'background-remover': 'Free AI Background Remover Online — Transparent PNG | Zubware',
   'image-compressor': 'Image Compressor — Reduce Image Size to 20KB, 50KB | Zubware',
   'image-converter': 'Image Converter — Convert JPG, PNG, WebP, SVG & ICO | Zubware',
   'image-resizer': 'Image Resizer — Resize Photos by Pixels, % or Presets | Zubware',

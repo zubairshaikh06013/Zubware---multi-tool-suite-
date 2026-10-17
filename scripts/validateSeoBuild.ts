@@ -4,6 +4,16 @@ import { TOOLS_DATA } from '../src/data/toolsData';
 import { SITE_ORIGIN } from '../src/lib/siteConfig';
 import { getToolCanonicalPath } from '../src/lib/paths';
 
+export function hasNoindexRobotsMeta(html: string): boolean {
+// Attribute order is not significant in HTML: detect both name-before-content and content-before-name.
+const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
+return metaTags.some(tag => {
+  const name = tag.match(/\bname\s*=\s*["'](robots|googlebot)["']/i)?.[1];
+  const content = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1];
+  return name && content && /(?:^|[,\s])noindex(?:$|[,\s])/i.test(content);
+});
+}
+
 /** Validate the actual deploy artifact, rather than stale copies in public/. */
 export function validateSeoBuild(distDir: string): void {
   const errors: string[] = [];
@@ -26,13 +36,7 @@ export function validateSeoBuild(distDir: string): void {
     const canonical = capture(html, /<link\s+rel="canonical"\s+href="([^"]+)"/g);
     if (canonical.length !== 1 || canonical[0] !== url) errors.push(`Canonical mismatch: ${url}`);
     if ((html.match(/<h1\b/gi) || []).length !== 1) errors.push(`Expected one H1: ${url}`);
-    // Attribute order is not significant in HTML: detect both name-before-content and content-before-name.
-    const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
-    if (metaTags.some(tag => {
-      const name = tag.match(/\bname\s*=\s*["'](robots|googlebot)["']/i)?.[1];
-      const content = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1];
-      return name && content && /(?:^|[,\s])noindex(?:$|[,\s])/i.test(content);
-    })) errors.push(`Indexable sitemap page has noindex: ${url}`);
+    if (hasNoindexRobotsMeta(html)) errors.push(`Indexable sitemap page has noindex: ${url}`);
     for (const [name, values, seen] of [
       ['title', capture(html, /<title>([\s\S]*?)<\/title>/g), titles],
       ['description', capture(html, /<meta\s+name="description"\s+content="([^"]*)"/g), descriptions],

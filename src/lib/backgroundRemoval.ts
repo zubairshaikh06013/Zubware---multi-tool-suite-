@@ -57,14 +57,9 @@ export async function processBackgroundRemoval(
   // Initial stage notification
   onProgress?.({ stage: 'Preparing AI...', percent: 5 });
 
-  // The default FP16 model is considerably larger to download on first use.
-  // Prefer the smaller quantized model for quicker initial loading and lower
-  // memory pressure; segmentation edge quality can vary by photograph.
-  // WebGPU is optional: only request it when the browser advertises support.
-  const supportsWebGpu = typeof navigator !== 'undefined' && 'gpu' in navigator;
+  // Revert the unverified quantized-model/WebGPU override: it caused
+  // regressions on some mobile browsers. Use the library's tested defaults.
   const config: Config = {
-    model: 'isnet_quint8',
-    device: supportsWebGpu ? 'gpu' : 'cpu',
     progress: (key: string, current: number, total: number) => {
       let stage: 'Preparing AI...' | 'Removing Background...' | 'Finalizing...' = 'Preparing AI...';
       let p = 0;
@@ -97,42 +92,43 @@ export async function processBackgroundRemoval(
 
   onProgress?.({ stage: 'Finalizing...', percent: 90 });
 
-  // 3. Verify output dimensions & ensure original resolution preservation
+  // Trust the segmentation library's PNG directly. The previous
+  // destination-in recompositing step could create an entirely transparent
+  // image and allocated another full-resolution canvas on mobile.
   const resultImg = await loadImage(bgRemovedBlob);
-  // Always retain the original RGB pixels, even if the model emits a 720p image.
-  // Canvas compositing uses the model output ONLY as an alpha mask and avoids
-  // two full-resolution getImageData() allocations and a JS per-pixel loop.
-  // This improves memory use and finalization time on mobile devices.
-  const canvas = document.createElement('canvas');
-  canvas.width = origWidth;
-  canvas.height = origHeight;
-  const ctx = canvas.getContext('2d');
-  if (!ctx || !origWidth || !origHeight) {
-    throw new Error('Unable to create a full-resolution image canvas on this device.');
+  const resultWidth = resultImg.naturalWidth || resultImg.width;
+  const resultHeight = resultImg.naturalHeight || resultImg.height;
+  if (!resultWidth || !resultHeight) {
+    throw new Error('Background remover returned an invalid image. Please try again.');
   }
 
-  ctx.drawImage(origImg, 0, 0, origWidth, origHeight);
-  ctx.globalCompositeOperation = 'destination-in';
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = 'high';
-  ctx.drawImage(resultImg, 0, 0, origWidth, origHeight);
-  ctx.globalCompositeOperation = 'source-over';
+  // Reject fully transparent output instead of claiming a successful removal.
+  // A small canvas is enough to detect the regression without a large buffer.
+  const checkCanvas = document.createElement('canvas');
+  checkCanvas.width = Math.min(resultWidth, 64);
+  checkCanvas.height = Math.min(resultHeight, 64);
+  const checkCtx = checkCanvas.getContext('2d', { willReadFrequently: true });
+  if (checkCtx) {
+    checkCtx.drawImage(resultImg, 0, 0, checkCanvas.width, checkCanvas.height);
+    const pixels = checkCtx.getImageData(0, 0, checkCanvas.width, checkCanvas.height).data;
+    let visible = false;
+    for (let i = 3; i < pixels.length; i += 4) {
+      if (pixels[i] > 0) { visible = true; break; }
+    }
+    if (!visible) {
+      throw new Error('AI returned a blank transparent image. Please try another photo or browser.');
+    }
+  }
 
-  const finalBlob = await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob((blob) => {
-      if (blob) resolve(blob);
-      else reject(new Error('Could not export full-resolution PNG. Try a smaller image.'));
-    }, 'image/png');
-  });
-
+  const finalBlob = bgRemovedBlob;
   const finalUrl = URL.createObjectURL(finalBlob);
   onProgress?.({ stage: 'Finalizing...', percent: 100 });
 
   return {
     blob: finalBlob,
     url: finalUrl,
-    width: origWidth,
-    height: origHeight,
+    width: resultWidth,
+    height: resultHeight,
     originalWidth: origWidth,
     originalHeight: origHeight
   };

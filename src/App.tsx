@@ -446,7 +446,12 @@ export default function App() {
   const [homeCategoryFilter, setHomeCategoryFilter] = useState<string>('All');
 
   const translatedTools = useMemo(() => getTranslatedTools(currentLang), [currentLang]);
-  const translatedFaqs = useMemo(() => getTranslatedFaqs(currentLang), [currentLang]);
+  // FAQ translation is only used on the homepage; skip it on all tool and guide routes.
+  const isHomepageRoute = currentPath === '/' || currentPath === '/index.html' || currentPath === '';
+  const translatedFaqs = useMemo(
+    () => isHomepageRoute ? getTranslatedFaqs(currentLang) : [],
+    [currentLang, isHomepageRoute]
+  );
 
   // Find tool metadata for current page
   const cleanCurrentPath = currentPath.replace(/\/$/, '');

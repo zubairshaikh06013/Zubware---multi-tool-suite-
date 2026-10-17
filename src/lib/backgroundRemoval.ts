@@ -2,6 +2,8 @@ import { removeBackground } from '@imgly/background-removal';
 import type { Config } from '@imgly/background-removal';
 
 
+export type BackgroundRemovalMode = 'fast' | 'quality';
+
 export interface BackgroundRemovalProgress {
   stage: 'Preparing AI...' | 'Removing Background...' | 'Finalizing...';
   percent: number;
@@ -47,7 +49,8 @@ function loadImage(src: string | Blob | File): Promise<HTMLImageElement> {
  */
 export async function processBackgroundRemoval(
   fileOrBlob: File | Blob,
-  onProgress?: (progress: BackgroundRemovalProgress) => void
+  onProgress?: (progress: BackgroundRemovalProgress) => void,
+  mode: BackgroundRemovalMode = 'quality'
 ): Promise<BackgroundRemovalResult> {
   // 1. Get original dimensions
   const origImg = await loadImage(fileOrBlob);
@@ -86,9 +89,26 @@ export async function processBackgroundRemoval(
     }
   };
 
+  // Reduce oversized input only in Fast mode; Quality uses the stable original path.
+  let modelInput: File | Blob = fileOrBlob;
+  if (mode === 'fast' && Math.max(origWidth, origHeight) > 1280) {
+    const scale = 1280 / Math.max(origWidth, origHeight);
+    const reduced = document.createElement('canvas');
+    reduced.width = Math.max(1, Math.round(origWidth * scale));
+    reduced.height = Math.max(1, Math.round(origHeight * scale));
+    const reducedCtx = reduced.getContext('2d');
+    if (!reducedCtx) throw new Error('Cannot prepare image on this device.');
+    reducedCtx.drawImage(origImg, 0, 0, reduced.width, reduced.height);
+    modelInput = await new Promise<Blob>((resolve, reject) => {
+      reduced.toBlob(blob => blob ? resolve(blob) : reject(new Error('Cannot prepare image.')), 'image/jpeg', 0.9);
+    });
+    reduced.width = 0;
+    reduced.height = 0;
+  }
+
   // 2. Call AI background removal
   onProgress?.({ stage: 'Removing Background...', percent: 20 });
-  const bgRemovedBlob = await removeBackground(fileOrBlob, config);
+  const bgRemovedBlob = await removeBackground(modelInput, config);
 
   onProgress?.({ stage: 'Finalizing...', percent: 90 });
 

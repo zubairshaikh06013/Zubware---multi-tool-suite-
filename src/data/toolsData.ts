@@ -15339,28 +15339,10 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
   }
 ];
 
-export function getTranslatedFaqs(lang: LanguageCode): FAQItem[] {
-  return [
-    {
-      question: getTranslation(lang, 'faqsTitle', HOMEPAGE_FAQS[0].question),
-      answer: getTranslation(lang, 'heroSubtitle', HOMEPAGE_FAQS[0].answer)
-    },
-    {
-      question: getTranslation(lang, 'zeroServerUploads', HOMEPAGE_FAQS[1].question),
-      answer: getTranslation(lang, 'zeroServerUploadsDesc', HOMEPAGE_FAQS[1].answer)
-    },
-    {
-      question: getTranslation(lang, 'freeForever', HOMEPAGE_FAQS[2].question),
-      answer: getTranslation(lang, 'freeForeverDesc', HOMEPAGE_FAQS[2].answer)
-    },
-    {
-      question: getTranslation(lang, 'fastBrowserBased', HOMEPAGE_FAQS[3].question),
-      answer: getTranslation(lang, 'instantSpeedDesc', HOMEPAGE_FAQS[3].answer)
-    },
-    {
-      question: getTranslation(lang, 'supportsFormats', HOMEPAGE_FAQS[4].question),
-      answer: getTranslation(lang, 'supportsFormats', HOMEPAGE_FAQS[4].answer)
-    }
-  ];
+// FAQ translations must preserve the meaning of each question and answer.
+// Generic UI translation keys (heroSubtitle, freeForever, etc.) do not match
+// these FAQs and previously produced misleading, mismatched FAQ content.
+// Until dedicated FAQ translations exist, display the verified English copy.
+export function getTranslatedFaqs(_lang: LanguageCode): FAQItem[] {
+  return HOMEPAGE_FAQS;
 }
-

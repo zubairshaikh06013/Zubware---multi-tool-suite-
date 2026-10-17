@@ -2255,7 +2255,7 @@ function injectMetadataIntoHtml(
   if (bodyContent) {
     html = html.replace(
       /<div id="root">[\s\S]*?(?=\s*<script\b|\s*<noscript\b|\s*<\/body>)/i,
-      () => `<div id="root">\n${bodyContent}\n    </div>\n    `
+      () => `<div id="root">\n<div id="seo-prerender">\n${bodyContent}\n</div>\n    </div>\n    `
     );
   }
 

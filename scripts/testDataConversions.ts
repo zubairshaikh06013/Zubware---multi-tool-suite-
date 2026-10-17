@@ -8,6 +8,12 @@ import { evaluateRegex } from '../src/lib/regexEvaluation';
 assert.deepEqual(parseCsv('\uFEFFname,note\r\n"A, B","first\nsecond ""quoted"""\r\n'), [['name','note'],['A, B','first\nsecond "quoted"']]);
 assert.deepEqual(parseCsv('a;b\n1;2',';'), [['a','b'],['1','2']]);
 assert.deepEqual(parseCsv('a,b\n"",\n'), [['a','b'],['','']]);
+// CSV values containing only whitespace must not disappear as an empty document.
+assert.deepEqual(parseCsv('   '), [['   ']]);
+assert.deepEqual(parseCsv(serializeCsv([['']])), [['']]);
+assert.deepEqual(parseCsv(serializeCsv([['   ']])), [['   ']]);
+assert.deepEqual(parseCsv(serializeCsv([['', ' ', '\t']])), [['', ' ', '\t']]);
+assert.deepEqual(parseCsv('\uFEFF'), []);
 const cells=[[' a ','b\rc','quote"','line\nline'],['x,y','','00012','9223372036854775807']];
 assert.deepEqual(parseCsv(serializeCsv(cells)),cells);
 for(const invalid of ['a,b\n"unfinished','a,b\n"closed"junk,2','a,b\none"two,3']) assert.throws(()=>parseCsv(invalid));

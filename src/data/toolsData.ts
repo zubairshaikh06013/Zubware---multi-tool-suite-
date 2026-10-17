@@ -98,19 +98,20 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "background-remover",
     "title": "Free AI Background Remover Online — Make Background Transparent",
     "navTitle": "Background Remover",
-    "description": "Remove image backgrounds instantly in your browser with AI. Export high-resolution transparent PNG cutouts for e-commerce, IDs & profiles with zero server uploads.",
+    "description": "Remove photo backgrounds online for free with AI. Choose private browser processing or consent-based Cloudflare AI, preview your cutout and download a transparent PNG.",
     "icon": "✂️",
     "path": "/background-remover",
     "filename": "background-remover.html",
     "category": "🖼️ Image Tools",
     "badge": "New",
     "features": [
-      "In-Browser WebAssembly Neural Network Segmentation",
-      "Export High-Resolution Transparent 32-bit PNG",
+      "Choose Local Fast, Browser Quality or Cloudflare AI Processing",
+      "Cloudflare Upload Only With Explicit Consent (10MB Max)",
+      "Download Transparent PNG with Original and Output Dimensions",
       "Interactive Before & After Split Slider Preview",
       "Custom Preview Backdrops (Checkerboard, White, Black, Grey)",
       "Supports JPG, PNG & WebP Photos up to 20MB",
-      "100% Private Client-Side Processing Without Cloud Uploads"
+      "Private On-Device Processing Available in Browser Modes"
     ],
     "tags": [
       "background remover",

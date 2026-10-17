@@ -31,27 +31,44 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
     setChapters(chapters.map(c => c.id === id ? { ...c, [field]: val } : c));
   };
 
-  // Convert mm:ss or hh:mm:ss to total seconds for sorting
-  const timeToSeconds = (timeStr: string) => {
-    const parts = timeStr.trim().split(':').map(Number);
-    if (parts.length === 2) return parts[0] * 60 + parts[1];
-    if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-    return 0;
+  // Reject malformed timestamps rather than silently sorting them as 00:00.
+  const timeToSeconds = (timeStr: string): number | null => {
+    const value = timeStr.trim();
+    if (!/^(?:\d+:)?\d{1,2}:\d{2}$/.test(value)) return null;
+    const parts = value.split(':').map(Number);
+    if (parts.some(part => !Number.isSafeInteger(part)) || parts.slice(1).some(part => part >= 60)) return null;
+    if (parts.length === 2 && parts[0] >= 60) return null;
+    return parts.reduce((seconds, part) => seconds * 60 + part, 0);
   };
+
+  const chapterSeconds = chapters.map(chapter => timeToSeconds(chapter.time));
+  const chapterError = chapterSeconds.some(seconds => seconds === null)
+    ? 'Enter valid timestamps (MM:SS or HH:MM:SS, with seconds below 60).'
+    : chapterSeconds[0] !== 0
+    ? 'The first chapter must start at 00:00.'
+    : chapters.length < 3
+    ? 'YouTube requires at least three chapters.'
+    : chapterSeconds.some((seconds, index) => index > 0 && seconds! - chapterSeconds[index - 1]! < 10)
+    ? 'Chapters must be chronological and at least 10 seconds apart.'
+    : chapters.some(chapter => !chapter.title.trim())
+    ? 'Give every chapter a title.'
+    : null;
 
   const autoSortChronological = () => {
-    const sorted = [...chapters].sort((a, b) => timeToSeconds(a.time) - timeToSeconds(b.time));
-    setChapters(sorted);
+    if (chapterSeconds.some(seconds => seconds === null)) {
+      onShowToast('Fix invalid timestamps before sorting.');
+      return;
+    }
+    setChapters([...chapters].sort((a, b) => timeToSeconds(a.time)! - timeToSeconds(b.time)!));
     onShowToast('Timestamps sorted chronologically!');
   };
-
-  const hasIntro = chapters.some(c => c.time.trim() === '00:00' || c.time.trim() === '0:00');
 
   const formattedOutput = chapters
     .map(c => `${c.time.trim()} ${c.title.trim()}`)
     .join('\n');
 
   const handleCopy = () => {
+    if (chapterError) { onShowToast(chapterError); return; }
     navigator.clipboard.writeText(formattedOutput);
     setCopied(true);
     onShowToast('Timestamps copied to clipboard!');
@@ -74,20 +91,20 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
 
       {/* Validation Banner */}
       <div className={`p-3.5 rounded-2xl border text-xs font-bold flex items-center justify-between gap-3 ${
-        hasIntro 
+        !chapterError 
           ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400' 
           : 'bg-amber-500/10 border-amber-500/30 text-amber-600 dark:text-amber-400'
       }`}>
         <div className="flex items-center gap-2">
-          {hasIntro ? (
+          {!chapterError ? (
             <>
               <ShieldCheck className="w-4 h-4 shrink-0" />
-              <span>Valid YouTube Chapters! Starts with 00:00 Intro requirement.</span>
+              <span>Chapter timestamps meet YouTube's basic formatting requirements.</span>
             </>
           ) : (
             <>
               <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>YouTube requires the first timestamp to start at 00:00 for video chapters to work!</span>
+              <span>{chapterError}</span>
             </>
           )}
         </div>
@@ -160,6 +177,7 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
 
           <button
             onClick={handleCopy}
+            disabled={!!chapterError}
             className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold shadow-md transition-all cursor-pointer"
           >
             {copied ? (

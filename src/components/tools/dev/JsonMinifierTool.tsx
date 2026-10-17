@@ -74,12 +74,16 @@ export function JsonMinifierTool({ onShowToast }: { onShowToast: (msg: string) =
     reader.readAsText(file);
   };
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     if (!outputJson) return;
-    navigator.clipboard.writeText(outputJson);
-    setCopied(true);
-    onShowToast('Minified JSON copied to clipboard!');
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(outputJson);
+      setCopied(true);
+      onShowToast('Minified JSON copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      onShowToast('Clipboard access failed. Please copy the JSON manually.');
+    }
   };
 
   const handleDownload = () => {

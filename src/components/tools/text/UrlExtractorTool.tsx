@@ -55,19 +55,27 @@ export const UrlExtractorTool: React.FC<UrlExtractorToolProps> = ({ onShowToast 
     return urls;
   }, [rawText, deduplicate, filterDomain]);
 
-  const copyAll = () => {
+  const copyAll = async () => {
     if (extractedUrls.length === 0) return;
-    navigator.clipboard.writeText(extractedUrls.join('\n'));
-    setCopied(true);
-    onShowToast(`Copied ${extractedUrls.length} URLs!`);
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(extractedUrls.join('\n'));
+      setCopied(true);
+      onShowToast(`Copied ${extractedUrls.length} URLs!`);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      onShowToast('Clipboard access failed. Please copy the URLs manually.');
+    }
   };
 
-  const copySingle = (url: string, index: number) => {
-    navigator.clipboard.writeText(url);
-    setCopiedIndex(index);
-    onShowToast('Copied URL!');
-    setTimeout(() => setCopiedIndex(null), 1500);
+  const copySingle = async (url: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedIndex(index);
+      onShowToast('Copied URL!');
+      setTimeout(() => setCopiedIndex(null), 1500);
+    } catch {
+      onShowToast('Clipboard access failed. Please copy the URL manually.');
+    }
   };
 
   const downloadList = () => {

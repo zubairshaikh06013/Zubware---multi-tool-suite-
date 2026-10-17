@@ -72,12 +72,16 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
     .map(c => `${c.time.trim()} ${c.title.trim()}`)
     .join('\n');
 
-  const handleCopy = () => {
+  const handleCopy = async () => {
     if (chapterError) { onShowToast(chapterError); return; }
-    navigator.clipboard.writeText(formattedOutput);
-    setCopied(true);
-    onShowToast('Timestamps copied to clipboard!');
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(formattedOutput);
+      setCopied(true);
+      onShowToast('Timestamps copied to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      onShowToast('Clipboard access failed. Please copy the timestamps manually.');
+    }
   };
 
   return (

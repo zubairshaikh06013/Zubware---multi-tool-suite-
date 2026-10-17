@@ -14,6 +14,15 @@ return metaTags.some(tag => {
 });
 }
 
+/** Extract canonical links independent of HTML attribute order. */
+export function extractCanonicalHrefs(html: string): string[] {
+  return (html.match(/<link\b[^>]*>/gi) || []).flatMap(tag => {
+    const rel = tag.match(/\brel\s*=\s*["']([^"']*)["']/i)?.[1];
+    const href = tag.match(/\bhref\s*=\s*["']([^"']*)["']/i)?.[1];
+    return rel?.split(/\s+/).some(value => value.toLowerCase() === 'canonical') && href ? [href] : [];
+  });
+}
+
 /** Validate the actual deploy artifact, rather than stale copies in public/. */
 export function validateSeoBuild(distDir: string): void {
   const errors: string[] = [];
@@ -33,7 +42,7 @@ export function validateSeoBuild(distDir: string): void {
     const filename = path.join(distDir, slug, 'index.html');
     if (!fs.existsSync(filename)) { errors.push(`Missing page: ${url}`); continue; }
     const html = fs.readFileSync(filename, 'utf8');
-    const canonical = capture(html, /<link\s+rel="canonical"\s+href="([^"]+)"/g);
+    const canonical = extractCanonicalHrefs(html);
     if (canonical.length !== 1 || canonical[0] !== url) errors.push(`Canonical mismatch: ${url}`);
     if ((html.match(/<h1\b/gi) || []).length !== 1) errors.push(`Expected one H1: ${url}`);
     if (hasNoindexRobotsMeta(html)) errors.push(`Indexable sitemap page has noindex: ${url}`);

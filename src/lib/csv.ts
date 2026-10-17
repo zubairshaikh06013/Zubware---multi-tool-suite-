@@ -29,6 +29,7 @@ export function parseCsv(text: string, delimiter = ','): string[][] {
   return rows;
 }
 export function serializeCsv(rows: string[][], delimiter = ','): string {
+  if (delimiter.length !== 1 || /["\r\n]/.test(delimiter)) throw new Error('Choose a single valid delimiter.');
   return rows.map(row => row.map(cell => /["\r\n]/.test(cell) || cell.includes(delimiter) || cell.trim() === ''
     ? `"${cell.replace(/"/g, '""')}"` : cell).join(delimiter)).join('\r\n');
 }

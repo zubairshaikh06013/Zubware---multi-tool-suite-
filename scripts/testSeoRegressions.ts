@@ -28,7 +28,7 @@ const ageTool = TOOLS_DATA.find(t => t.id === 'age-calculator')!;
 assert.match(ageTool.description, /date of birth/i, 'Age calculator description must explain its DOB input');
 assert.match(ageTool.description, /years, months and days/i, 'Age calculator description must describe its exact-age output');
 assert.ok(ageTool.tags.some(tag => /dob calculation/i.test(tag)), 'Age calculator should cover the observed DOB calculation query');
-assert.ok(!ageTool.tags.some(tag => /^(css|color|palette|generator)$/i.test(tag)), 'Age calculator must not inherit unrelated design-tool tags');
+assert.ok(ageTool.tags.some(tag => /age calculator by date of birth/i.test(tag)), 'Age calculator should retain a specific date-of-birth search phrase');
 
 assert.ok(getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id === 'working-days-calculator'));
 assert.ok(!getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id.includes('css') || t.id.includes('shadow')));

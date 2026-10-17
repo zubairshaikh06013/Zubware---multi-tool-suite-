@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { serializeCsv } from '../../../lib/csv';
 import { FileJson, FileSpreadsheet, Copy, Check, Download, Upload, Trash2, AlertCircle } from 'lucide-react';
 
 export const JsonToCsvTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
@@ -26,6 +27,8 @@ export const JsonToCsvTool: React.FC<{ onShowToast: (msg: string) => void }> = (
         return { csv: '', headers: [], rows: [], error: 'JSON array is empty.' };
       }
 
+      if (parsed.some((item: unknown) => item === null || typeof item !== 'object' || Array.isArray(item))) throw new Error('Every array entry must be an object.');
+
       // Extract all unique headers across objects
       const headersSet = new Set<string>();
       parsed.forEach((item) => {
@@ -51,21 +54,8 @@ export const JsonToCsvTool: React.FC<{ onShowToast: (msg: string) => void }> = (
         rows.push(row);
       });
 
-      // Escape CSV values
-      const escapeCsvCell = (cell: string) => {
-        if (cell.includes(',') || cell.includes('"') || cell.includes('\n')) {
-          return `"${cell.replace(/"/g, '""')}"`;
-        }
-        return cell;
-      };
-
-      const csvLines = [
-        headers.map(escapeCsvCell).join(','),
-        ...rows.map((r) => r.map(escapeCsvCell).join(','))
-      ];
-
       return {
-        csv: csvLines.join('\n'),
+        csv: serializeCsv([headers, ...rows]),
         headers,
         rows,
         error: null
@@ -149,7 +139,7 @@ export const JsonToCsvTool: React.FC<{ onShowToast: (msg: string) => void }> = (
             </div>
           </div>
 
-          <textarea
+          <textarea aria-label="JSON input"
             rows={14}
             value={jsonInput}
             onChange={(e) => setJsonInput(e.target.value)}

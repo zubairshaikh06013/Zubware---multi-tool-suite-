@@ -22,6 +22,7 @@ interface ExifCleanedResult {
 }
 
 export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, onNavigate }) => {
+  const [errors, setErrors] = useState<string[]>([]);
   const [files, setFiles] = useState<File[]>([]);
   const [results, setResults] = useState<ExifCleanedResult[]>([]);
 
@@ -30,44 +31,51 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
   const [progress, setProgress] = useState<number>(0);
 
   const handleImageSelected = async (selectedFiles: File[]) => {
-    if (!selectedFiles.length) return;
+    if (!selectedFiles.length || isProcessing) return;
     setFiles(selectedFiles);
     setIsProcessing(true);
+    setErrors([]);
     setStage('Reading Image');
     setProgress(20);
 
+    setResults([]);
     const list: ExifCleanedResult[] = [];
-    for (let i = 0; i < selectedFiles.length; i++) {
-      const file = selectedFiles[i];
-      setStage('Analyzing');
-      setProgress(Math.round(((i + 1) / selectedFiles.length) * 50));
-
-      const img = new Image();
-      const url = URL.createObjectURL(file);
-      await new Promise<void>((resolve) => {
-        img.onload = () => resolve();
-        img.src = url;
-      });
-
-      const meta = await getImageMetadata(file, img);
-      setStage('Processing');
-      setProgress(Math.round(((i + 1) / selectedFiles.length) * 80));
-
-      const { cleanedBlob, originalSize, newSize } = await stripExifFromImage(file);
-      list.push({ file, cleanedBlob, originalSize, newSize, metadata: meta });
-    }
-
-    setResults(list);
-    setStage('Completed');
-    setProgress(100);
-    setTimeout(() => setIsProcessing(false), 300);
+    const failures: string[] = [];
+    try {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file = selectedFiles[i];
+        const url = URL.createObjectURL(file);
+        try {
+          setStage('Analyzing');
+          const img = new Image();
+          await new Promise<void>((resolve, reject) => {
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error('Image could not be decoded.'));
+            img.src = url;
+          });
+          const metadata = await getImageMetadata(file, img);
+          setStage('Processing');
+          const cleaned = await stripExifFromImage(file);
+          list.push({file, ...cleaned, metadata});
+        } catch (error) {
+          failures.push(`${file.name}: ${error instanceof Error ? error.message : String(error)}`);
+        } finally {
+          URL.revokeObjectURL(url);
+          setProgress(Math.round(((i + 1) / selectedFiles.length) * 100));
+        }
+      }
+      setResults(list);
+      setErrors(failures);
+      setStage('Completed');
+      onShowToast(`${list.length} image(s) processed; ${failures.length} failed.`);
+    } finally { setIsProcessing(false); }
   };
 
   const handleDownloadItem = (res: ExifCleanedResult) => {
     const url = URL.createObjectURL(res.cleanedBlob);
     const link = document.createElement('a');
     const baseName = res.file.name.substring(0, res.file.name.lastIndexOf('.')) || 'cleaned';
-    const ext = res.file.name.split('.').pop() || 'jpg';
+    const ext = res.cleanedBlob.type === 'image/png' ? 'png' : 'jpg';
     link.download = `${baseName}_no_exif.${ext}`;
     link.href = url;
     link.click();
@@ -83,6 +91,8 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
 
   return (
     <div className="space-y-6">
+      <p className="text-xs text-slate-500">This tool redraws the image and exports a fresh PNG or JPEG. JPEG is re-encoded at 95% quality; this is not lossless header stripping. Check the downloaded image and its metadata before sharing.</p>
+      {errors.map((error, i) => <p key={i} role="alert" className="text-red-600">{error}</p>)}
       
 
       {files.length === 0 ? (
@@ -137,7 +147,9 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
           <div className="flex items-center justify-between gap-4 p-6 rounded-3xl glass-panel">
             <button
               type="button"
+              disabled={isProcessing}
               onClick={() => {
+                setErrors([]);
                 setFiles([]);
                 setResults([]);
               }}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Video, Download, Sliders, RefreshCw, Check, Sparkles, AlertCircle, Play, Pause, Film } from 'lucide-react';
 
 export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
@@ -9,6 +9,13 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  const [processingError, setProcessingError] = useState('');
+  const [audioNotice, setAudioNotice] = useState('');
+  const stopActive = useRef<(() => void) | null>(null);
+  useEffect(() => () => stopActive.current?.(), []);
+  useEffect(() => () => { if (videoUrl) URL.revokeObjectURL(videoUrl); }, [videoUrl]);
+  useEffect(() => () => { if (compressedUrl) URL.revokeObjectURL(compressedUrl); }, [compressedUrl]);
+
   // Settings
   const [resolutionScale, setResolutionScale] = useState<number>(0.75);
   const [qualityPreset, setQualityPreset] = useState<'high' | 'medium' | 'low'>('medium');
@@ -18,6 +25,8 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const handleFile = (file: File) => {
+    if (isProcessing) return;
+    setProcessingError(''); setAudioNotice('');
     if (!file.type.startsWith('video/')) {
       onShowToast('Please upload a video file (MP4, WebM, MOV)');
       return;
@@ -38,85 +47,88 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   };
 
   const processCompression = async () => {
-    if (!videoUrl || !videoRef.current) return;
-    setIsProcessing(true);
-    setProgress(0);
-
     const video = videoRef.current;
-    video.currentTime = 0;
-    video.muted = true;
-
-    await new Promise((resolve) => {
-      video.onseeked = resolve;
-      video.currentTime = 0;
-    });
-
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      setIsProcessing(false);
-      onShowToast('Canvas context not available');
-      return;
-    }
-
-    const targetWidth = Math.round((video.videoWidth * resolutionScale) / 2) * 2;
-    const targetHeight = Math.round((video.videoHeight * resolutionScale) / 2) * 2;
-    canvas.width = targetWidth;
-    canvas.height = targetHeight;
-
-    const stream = canvas.captureStream(fps);
-
-    // Also attach audio track if present
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const audioStream = (video as any).captureStream ? (video as any).captureStream() : null;
-    if (audioStream && audioStream.getAudioTracks().length > 0) {
-      audioStream.getAudioTracks().forEach((track: MediaStreamTrack) => stream.addTrack(track));
-    }
-
-    const mimeType = MediaRecorder.isTypeSupported('video/webm;codecs=vp9')
-      ? 'video/webm;codecs=vp9'
-      : MediaRecorder.isTypeSupported('video/webm;codecs=vp8')
-      ? 'video/webm;codecs=vp8'
-      : 'video/webm';
-
-    const recorder = new MediaRecorder(stream, {
-      mimeType,
-      videoBitsPerSecond: getBitrate(),
-    });
-
-    const chunks: Blob[] = [];
-    recorder.ondataavailable = (e) => {
-      if (e.data.size > 0) chunks.push(e.data);
+    if (!videoUrl || !video || isProcessing) return;
+    setIsProcessing(true); setProgress(0); setProcessingError(''); setAudioNotice('');
+    setCompressedBlob(null); setCompressedUrl(null);
+    let stream: MediaStream | undefined, audioStream: MediaStream | undefined;
+    let recorder: MediaRecorder | undefined, frame = 0, cancelled = false;
+    const cleanup = () => {
+      cancelled = true; cancelAnimationFrame(frame); video.pause();
+      if (recorder && recorder.state !== 'inactive') recorder.stop();
+      stream?.getTracks().forEach(track => track.stop());
+      audioStream?.getTracks().forEach(track => track.stop());
     };
-
-    recorder.onstop = () => {
-      const blob = new Blob(chunks, { type: mimeType });
-      const url = URL.createObjectURL(blob);
-      setCompressedBlob(blob);
-      setCompressedUrl(url);
-      setIsProcessing(false);
-      setProgress(100);
-      onShowToast('Video compression completed!');
-    };
-
-    recorder.start(100);
-    await video.play();
-
-    const duration = video.duration || 1;
-
-    const renderLoop = () => {
-      if (video.paused || video.ended) {
-        recorder.stop();
-        return;
+    stopActive.current = cleanup;
+    try {
+      if (typeof MediaRecorder === 'undefined') throw new Error('Video recording is not available in this browser.');
+      if (!video.videoWidth || !video.videoHeight || !Number.isFinite(video.duration) || video.duration <= 0) throw new Error('Wait for the video to load, or try a supported video file.');
+      video.pause(); video.muted = true;
+      // Seeking to an already-current time does not reliably dispatch seeked.
+      if (video.currentTime > 0) {
+        await new Promise<void>((resolve, reject) => {
+          const finish = () => { clearTimeout(timeout); video.removeEventListener('seeked', done); };
+          const done = () => { finish(); resolve(); };
+          const timeout = setTimeout(() => { finish(); reject(new Error('Could not seek to the beginning of the video.')); }, 5000);
+          video.addEventListener('seeked', done, {once:true});
+          video.currentTime = 0;
+        });
       }
-
-      ctx.drawImage(video, 0, 0, targetWidth, targetHeight);
-      const currentProgress = Math.min(99, Math.round((video.currentTime / duration) * 100));
-      setProgress(currentProgress);
-      requestAnimationFrame(renderLoop);
-    };
-
-    renderLoop();
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      if (!ctx || !canvas.captureStream) throw new Error('Canvas video recording is not supported in this browser.');
+      const width = Math.max(2, Math.round(video.videoWidth * resolutionScale / 2) * 2);
+      const height = Math.max(2, Math.round(video.videoHeight * resolutionScale / 2) * 2);
+      if (width * height > 32000000) throw new Error('Choose a smaller output resolution.');
+      canvas.width = width; canvas.height = height;
+      stream = canvas.captureStream(fps);
+      const capture = (video as HTMLVideoElement & {captureStream?: () => MediaStream}).captureStream;
+      if (capture) {
+        audioStream = capture.call(video);
+        const audioTracks = audioStream.getAudioTracks();
+        audioTracks.forEach(track => stream!.addTrack(track));
+        if (!audioTracks.length) setAudioNotice('No audio track was captured. Verify sound in the output.');
+      } else setAudioNotice('This browser cannot capture the source audio here. Output will be silent.');
+      const mimeType = ['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(type => MediaRecorder.isTypeSupported(type));
+      if (!mimeType) throw new Error('This browser cannot record the required WebM format.');
+      recorder = new MediaRecorder(stream, {mimeType, videoBitsPerSecond: getBitrate()});
+      const chunks: Blob[] = [];
+      const completed = new Promise<Blob>((resolve, reject) => {
+        recorder!.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
+        recorder!.onerror = () => reject(new Error('Video recording failed. Try a shorter clip or lower resolution.'));
+        recorder!.onstop = () => {
+          const blob = new Blob(chunks, {type: recorder!.mimeType || mimeType});
+          if (!blob.size) reject(new Error('The recorder produced an empty file.'));
+          else resolve(blob);
+        };
+      });
+      // Attach rejection handling immediately, including failures before playback starts.
+      void completed.catch(() => {});
+      recorder.start(100);
+      await video.play();
+      const render = () => {
+        if (cancelled) return;
+        ctx.drawImage(video, 0, 0, width, height);
+        setProgress(Math.min(99, Math.round(video.currentTime / video.duration * 100)));
+        if (video.ended || video.paused) { if (recorder!.state !== 'inactive') recorder!.stop(); return; }
+        frame = requestAnimationFrame(render);
+      };
+      render();
+      const blob = await completed;
+      if (!cancelled) {
+        setCompressedBlob(blob); setCompressedUrl(URL.createObjectURL(blob)); setProgress(100);
+        onShowToast('WebM recording finished. Check size, playback and audio before sharing.');
+      }
+    } catch (error) {
+      if (!cancelled) {
+        const message = error instanceof Error ? error.message : 'Video processing failed.';
+        setProcessingError(message); onShowToast(message);
+      }
+    } finally {
+      const wasCancelled = cancelled;
+      cleanup(); stopActive.current = null;
+      if (!wasCancelled) setIsProcessing(false);
+    }
   };
 
   const formatFileSize = (bytes: number): string => {
@@ -132,6 +144,9 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
 
   return (
     <div className="p-6 sm:p-8 space-y-6">
+      <p className="text-xs text-slate-500">Records WebM using browser playback. Encoding can take the clip’s duration or longer; output is not guaranteed smaller. Keep this tab active and check the exported audio.</p>
+      {processingError && <p role="alert" className="text-red-600">{processingError}</p>}
+      {audioNotice && <p role="status" className="text-amber-600">{audioNotice}</p>}
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
@@ -187,7 +202,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
                 </div>
                 <div>
                   <p className="text-sm font-bold text-slate-800 dark:text-slate-200">Upload Video File</p>
-                  <p className="text-xs text-slate-400 mt-1">Supports MP4, WebM, MOV, AVI</p>
+                  <p className="text-xs text-slate-400 mt-1">Choose a video your browser can play. Input codec support varies by browser.</p>
                 </div>
               </label>
             )}
@@ -304,7 +319,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
               <div className="space-y-4 w-full text-center">
                 <video
                   src={compressedUrl}
-                  controls
+                  controls={!isProcessing}
                   className="max-h-64 mx-auto rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 w-full"
                 />
 

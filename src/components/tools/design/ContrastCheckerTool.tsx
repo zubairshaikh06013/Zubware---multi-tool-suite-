@@ -16,7 +16,7 @@ export const ContrastCheckerTool: React.FC<ContrastCheckerToolProps> = ({ onShow
     const num = parseInt(c, 16);
     const rgb = [(num >> 16) & 255, (num >> 8) & 255, num & 255].map(val => {
       val /= 255;
-      return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+      return val <= 0.04045 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
     });
     return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
   };

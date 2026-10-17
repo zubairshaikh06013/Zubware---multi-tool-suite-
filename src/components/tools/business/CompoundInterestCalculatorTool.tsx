@@ -47,6 +47,7 @@ export function CompoundInterestCalculatorTool({ onShowToast }: { onShowToast: (
 
   return (
     <div className="p-6 sm:p-8 space-y-6">
+      <p className="text-xs text-slate-500">Model assumptions: contributions are grouped and added at the beginning of each selected compounding period. Whole-year horizons only; fees and taxes are excluded. CAGR uses start/end values and does not account for interim cash flows.</p>
       {/* Tab Switcher */}
       <div className="flex rounded-2xl bg-slate-100 dark:bg-slate-900 p-1.5 border border-slate-200 dark:border-slate-800 max-w-md mx-auto">
         <button
@@ -115,7 +116,7 @@ export function CompoundInterestCalculatorTool({ onShowToast }: { onShowToast: (
               <input
                 type="number"
                 value={years}
-                onChange={(e) => setYears(Math.max(1, Math.min(50, Number(e.target.value))))}
+                onChange={(e) => setYears(Math.max(1, Math.min(50, Math.round(Number(e.target.value)))))}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold text-base outline-none focus:ring-2 focus:ring-indigo-500"
               />
             </div>

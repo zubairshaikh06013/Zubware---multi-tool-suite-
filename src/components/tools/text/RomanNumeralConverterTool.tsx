@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { numberToRoman, romanToNumber } from '../../../lib/romanNumerals';
 import { Copy, Check, Sparkles, RefreshCw, BookOpen } from 'lucide-react';
 
 export function RomanNumeralConverterTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
@@ -6,64 +7,12 @@ export function RomanNumeralConverterTool({ onShowToast }: { onShowToast: (msg: 
   const [inputVal, setInputVal] = useState<string>('2026');
   const [copied, setCopied] = useState(false);
 
-  const romanMap: [number, string][] = [
-    [1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'],
-    [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'],
-    [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']
-  ];
-
-  const numberToRoman = (num: number): { roman: string; breakdown: string[] } => {
-    if (isNaN(num) || num < 1 || num > 3999999) {
-      return { roman: 'Invalid (Enter 1 to 3,999,999)', breakdown: [] };
-    }
-
-    let n = num;
-    let result = '';
-    let breakdown: string[] = [];
-
-    for (let [val, symbol] of romanMap) {
-      while (n >= val) {
-        result += symbol;
-        breakdown.push(`${symbol} = ${val}`);
-        n -= val;
-      }
-    }
-
-    return { roman: result, breakdown };
-  };
-
-  const romanToNumber = (romanStr: string): { num: number; valid: boolean } => {
-    const str = romanStr.toUpperCase().trim();
-    if (!str) return { num: 0, valid: false };
-
-    const romanValues: { [key: string]: number } = {
-      I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000
-    };
-
-    let total = 0;
-    let prev = 0;
-
-    for (let i = str.length - 1; i >= 0; i--) {
-      const char = str[i];
-      const val = romanValues[char];
-      if (!val) return { num: 0, valid: false };
-
-      if (val < prev) {
-        total -= val;
-      } else {
-        total += val;
-      }
-      prev = val;
-    }
-
-    return { num: total, valid: total > 0 };
-  };
-
   let outputResult = '';
   let breakdownList: string[] = [];
 
   if (mode === 'numberToRoman') {
-    const parsed = parseInt(inputVal.replace(/,/g, ''), 10);
+    const raw = inputVal.trim();
+    const parsed = /^(?:\d+|\d{1,3}(?:,\d{3})+)$/.test(raw) ? Number(raw.replace(/,/g, '')) : NaN;
     const { roman, breakdown } = numberToRoman(parsed);
     outputResult = roman;
     breakdownList = breakdown;
@@ -81,6 +30,7 @@ export function RomanNumeralConverterTool({ onShowToast }: { onShowToast: (msg: 
 
   return (
     <div className="p-6 sm:p-8 space-y-6">
+      <p className="text-xs text-slate-500">Whole numbers only. Standard subtractive spelling is required (IV, IX, XL, XC, CD, CM). Above 3,999 this tool repeats M; it does not use overbar notation.</p>
       {/* Mode Switcher */}
       <div className="flex rounded-2xl bg-slate-100 dark:bg-slate-900 p-1.5 border border-slate-200 dark:border-slate-800 max-w-md mx-auto">
         <button
@@ -112,6 +62,7 @@ export function RomanNumeralConverterTool({ onShowToast }: { onShowToast: (msg: 
         </label>
         <input
           type="text"
+          aria-label="Number or Roman numeral"
           value={inputVal}
           onChange={(e) => setInputVal(e.target.value)}
           placeholder={mode === 'numberToRoman' ? '2026' : 'MMXXVI'}

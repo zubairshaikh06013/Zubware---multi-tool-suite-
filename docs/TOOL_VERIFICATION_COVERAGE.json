@@ -1,0 +1,2803 @@
+{
+  "scope": "Evidence inventory, not a claim of full functional verification",
+  "tools": [
+    {
+      "id": "image-splitter-merger",
+      "path": "/image-splitter-merger",
+      "name": "Image Split & Combine",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "learning-licence-mock-test",
+      "path": "/learning-licence-mock-test",
+      "name": "LL Mock Test",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "background-remover",
+      "path": "/background-remover",
+      "name": "Background Remover",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-compressor",
+      "path": "/image-compressor",
+      "name": "Image Compressor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-converter",
+      "path": "/image-converter",
+      "name": "Image Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testToolReliability: canvas MIME/failure handling; prior JPEG/PNG/corrupt-file browser fixtures"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-resizer",
+      "path": "/image-resizer",
+      "name": "Image Resizer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "crop-image",
+      "path": "/crop-image",
+      "name": "Crop Image",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "rotate-image",
+      "path": "/rotate-image",
+      "name": "Rotate Image",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "flip-image",
+      "path": "/flip-image",
+      "name": "Flip Image",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-watermark",
+      "path": "/image-watermark",
+      "name": "Watermark Image",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "blur-image",
+      "path": "/blur-image",
+      "name": "Blur Image",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pixelate-image",
+      "path": "/pixelate-image",
+      "name": "Pixelate Image",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "exif-remover",
+      "path": "/exif-remover",
+      "name": "EXIF Remover",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-color-picker",
+      "path": "/color-picker",
+      "name": "Color Picker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-info-viewer",
+      "path": "/image-info-viewer",
+      "name": "Image Info Viewer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "background-color-changer",
+      "path": "/background-color-changer",
+      "name": "Change BG Color",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "rounded-corners",
+      "path": "/rounded-corners",
+      "name": "Rounded Corners",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-border",
+      "path": "/image-border",
+      "name": "Image Border",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-frame",
+      "path": "/image-frame",
+      "name": "Image Frame",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-collage",
+      "path": "/image-collage",
+      "name": "Image Collage",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "favicon-generator",
+      "path": "/favicon-generator",
+      "name": "Favicon Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "svg-optimizer",
+      "path": "/svg-optimizer",
+      "name": "SVG Optimizer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "gif-maker",
+      "path": "/gif-maker",
+      "name": "GIF Maker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "batch-image-converter",
+      "path": "/batch-image-converter",
+      "name": "Batch Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "compression-comparison",
+      "path": "/compression-comparison",
+      "name": "Compression Comparison",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "heic-to-jpg",
+      "path": "/heic-to-jpg",
+      "name": "HEIC to JPG",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "bulk-image-renamer-resizer",
+      "path": "/bulk-image-renamer-resizer",
+      "name": "Bulk Renamer & Resizer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "passport-photo-maker",
+      "path": "/passport-photo-maker",
+      "name": "Passport Photo Maker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "matching-parts-video-maker",
+      "path": "/matching-parts-video-maker",
+      "name": "Matching Parts Video",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "lofi-song-maker",
+      "path": "/lofi-song-maker",
+      "name": "Lofi Studio",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "lofi-maker",
+      "path": "/lofi-maker",
+      "name": "Lofi Maker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "slowed-and-reverb",
+      "path": "/slowed-and-reverb",
+      "name": "Slowed & Reverb",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "gst-invoice-generator",
+      "path": "/gst-invoice-generator",
+      "name": "GST Invoice",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-merge",
+      "path": "/pdf-merge",
+      "name": "PDF Merge",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-split",
+      "path": "/pdf-split",
+      "name": "PDF Split",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-to-pdf",
+      "path": "/image-to-pdf",
+      "name": "Image to PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-to-images",
+      "path": "/pdf-to-images",
+      "name": "PDF to Images",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "rotate-pdf",
+      "path": "/rotate-pdf",
+      "name": "Rotate PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "delete-pdf-pages",
+      "path": "/delete-pdf-pages",
+      "name": "Delete Pages",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "extract-pdf-pages",
+      "path": "/extract-pdf-pages",
+      "name": "Extract Pages",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "reorder-pdf-pages",
+      "path": "/reorder-pdf-pages",
+      "name": "Reorder Pages",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-watermark",
+      "path": "/pdf-watermark",
+      "name": "Add Watermark",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "protect-pdf",
+      "path": "/protect-pdf",
+      "name": "Protect PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "unlock-pdf",
+      "path": "/unlock-pdf",
+      "name": "Unlock PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-metadata",
+      "path": "/pdf-metadata",
+      "name": "PDF Metadata",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "qr-generator",
+      "path": "/qr-generator",
+      "name": "QR Code Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-builder",
+      "path": "/resume-builder",
+      "name": "Resume Builder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "ats-resume-checker",
+      "path": "/ats-resume-checker",
+      "name": "ATS Checker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-score-analyzer",
+      "path": "/resume-score-analyzer",
+      "name": "Score Analyzer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cover-letter-builder",
+      "path": "/cover-letter-builder",
+      "name": "Cover Letter Builder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cover-letter-templates",
+      "path": "/cover-letter-templates",
+      "name": "Cover Letter Templates",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cv-builder",
+      "path": "/cv-builder",
+      "name": "CV Builder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-keyword-optimizer",
+      "path": "/resume-keyword-optimizer",
+      "name": "Keyword Optimizer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-template-gallery",
+      "path": "/resume-template-gallery",
+      "name": "Template Gallery",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-version-manager",
+      "path": "/resume-version-manager",
+      "name": "Version Manager",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-import",
+      "path": "/resume-import",
+      "name": "Resume Import",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-export",
+      "path": "/resume-export",
+      "name": "Resume Export",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-completeness",
+      "path": "/resume-completeness",
+      "name": "Completeness",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-section-manager",
+      "path": "/resume-section-manager",
+      "name": "Section Manager",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "professional-skill-library",
+      "path": "/professional-skill-library",
+      "name": "Skill Library",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "summary-generator",
+      "path": "/summary-generator",
+      "name": "Summary Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-color-themes",
+      "path": "/resume-color-themes",
+      "name": "Color Themes",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "experience-calculator",
+      "path": "/experience-calculator",
+      "name": "Experience Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "notice-period-calculator",
+      "path": "/notice-period-calculator",
+      "name": "Notice Period Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "salary-hike-calculator",
+      "path": "/salary-hike-calculator",
+      "name": "Salary Hike Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "ctc-calculator",
+      "path": "/ctc-calculator",
+      "name": "CTC Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "working-days-calculator",
+      "path": "/working-days-calculator",
+      "name": "Working Days Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-title-generator",
+      "path": "/youtube-title-generator",
+      "name": "Title Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-description-generator",
+      "path": "/youtube-description-generator",
+      "name": "Description Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-tags-generator",
+      "path": "/youtube-tags-generator",
+      "name": "Tags Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-hashtag-generator",
+      "path": "/youtube-hashtag-generator",
+      "name": "Hashtag Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-thumbnail-simulator",
+      "path": "/youtube-thumbnail-simulator",
+      "name": "Thumbnail Simulator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-banner-safe-area",
+      "path": "/youtube-banner-safe-area",
+      "name": "Banner Safe Area",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-thumbnail-preview",
+      "path": "/youtube-thumbnail-preview",
+      "name": "Thumbnail Preview",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-channel-name-generator",
+      "path": "/youtube-channel-name-generator",
+      "name": "Channel Name Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-video-idea-generator",
+      "path": "/youtube-video-idea-generator",
+      "name": "Video Idea Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-playlist-name-generator",
+      "path": "/youtube-playlist-name-generator",
+      "name": "Playlist Name Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-timestamp-generator",
+      "path": "/youtube-timestamp-generator",
+      "name": "Timestamp Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-description-formatter",
+      "path": "/youtube-description-formatter",
+      "name": "Description Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "thumbnail-text-generator",
+      "path": "/thumbnail-text-generator",
+      "name": "Thumbnail Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "viral-hook-generator",
+      "path": "/viral-hook-generator",
+      "name": "Viral Hook Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cta-generator",
+      "path": "/cta-generator",
+      "name": "CTA Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "social-character-counter",
+      "path": "/social-character-counter",
+      "name": "Social Character Counter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "emoji-generator",
+      "path": "/emoji-generator",
+      "name": "Emoji Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "instagram-caption-generator",
+      "path": "/instagram-caption-generator",
+      "name": "IG Caption Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "instagram-hashtag-generator",
+      "path": "/instagram-hashtag-generator",
+      "name": "IG Hashtag Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "instagram-bio-generator",
+      "path": "/instagram-bio-generator",
+      "name": "IG Bio Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "instagram-username-generator",
+      "path": "/instagram-username-generator",
+      "name": "IG Username Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "tiktok-caption-generator",
+      "path": "/tiktok-caption-generator",
+      "name": "TikTok Caption Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "tiktok-hashtag-generator",
+      "path": "/tiktok-hashtag-generator",
+      "name": "TikTok Hashtag Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "facebook-caption-generator",
+      "path": "/facebook-caption-generator",
+      "name": "FB Caption Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "facebook-hashtag-generator",
+      "path": "/facebook-hashtag-generator",
+      "name": "FB Hashtag Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "linkedin-headline-generator",
+      "path": "/linkedin-headline-generator",
+      "name": "LinkedIn Headline Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "linkedin-summary-generator",
+      "path": "/linkedin-summary-generator",
+      "name": "LinkedIn Summary Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "twitter-bio-generator",
+      "path": "/twitter-bio-generator",
+      "name": "Twitter / X Bio Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "universal-hashtag-generator",
+      "path": "/universal-hashtag-generator",
+      "name": "Universal Hashtag Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "fancy-text-generator",
+      "path": "/fancy-text-generator",
+      "name": "Fancy Text Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "unicode-font-generator",
+      "path": "/unicode-font-generator",
+      "name": "Unicode Font Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-decorator",
+      "path": "/text-decorator",
+      "name": "Text Decorator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "emoji-combiner",
+      "path": "/emoji-combiner",
+      "name": "Emoji Combiner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "social-media-post-formatter",
+      "path": "/social-media-post-formatter",
+      "name": "Post Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "social-bio-link-builder",
+      "path": "/social-bio-link-builder",
+      "name": "Bio Link Builder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "islamic-shorts-maker",
+      "path": "/islamic-shorts-maker",
+      "name": "Islamic Shorts Maker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "script-to-video-maker",
+      "path": "/script-to-video-maker",
+      "name": "Script to Video",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "uuid-generator",
+      "path": "/uuid-generator",
+      "name": "UUID Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "hash-generator",
+      "path": "/hash-generator",
+      "name": "Hash Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "jwt-decoder",
+      "path": "/jwt-decoder",
+      "name": "JWT Decoder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "unix-timestamp-converter",
+      "path": "/unix-timestamp-converter",
+      "name": "Timestamp Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "regex-tester",
+      "path": "/regex-tester",
+      "name": "Regex Tester",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: capture groups, Unicode zero-width advancement, invalid syntax, match cap; worker deadline requires browser test"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-formatter",
+      "path": "/json-formatter",
+      "name": "JSON Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-validator",
+      "path": "/json-validator",
+      "name": "JSON Validator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-to-csv",
+      "path": "/json-to-csv",
+      "name": "JSON to CSV",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: shared CSV serializer round-trip including CR/LF/quotes"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "csv-to-json",
+      "path": "/csv-to-json",
+      "name": "CSV to JSON",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: multiline/quotes, identifiers, type inference, duplicate headers, record width, special property names"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "csv-viewer",
+      "path": "/csv-viewer",
+      "name": "CSV Viewer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: shared parser/serializer fidelity; not every sort/filter interaction"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "website-downloader",
+      "path": "/website-downloader",
+      "name": "Website Downloader",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "html-formatter",
+      "path": "/html-formatter",
+      "name": "HTML Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "css-formatter",
+      "path": "/css-formatter",
+      "name": "CSS Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "javascript-formatter",
+      "path": "/javascript-formatter",
+      "name": "JS Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "xml-formatter",
+      "path": "/xml-formatter",
+      "name": "XML Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "xml-validator",
+      "path": "/xml-validator",
+      "name": "XML Validator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "url-parser",
+      "path": "/url-parser",
+      "name": "URL Parser",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "url-encoder-decoder",
+      "path": "/url-encoder-decoder",
+      "name": "URL Encoder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "base64-encoder-decoder",
+      "path": "/base64-encoder-decoder",
+      "name": "Base64 Tool",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "html-escape-unescape",
+      "path": "/html-escape-unescape",
+      "name": "HTML Escape",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "http-header-viewer",
+      "path": "/http-header-viewer",
+      "name": "Header Viewer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "api-request-builder",
+      "path": "/api-request-builder",
+      "name": "API Request Builder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "color-converter",
+      "path": "/color-converter",
+      "name": "Color Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "qr-code-decoder",
+      "path": "/qr-code-decoder",
+      "name": "QR Decoder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "css-gradient-generator",
+      "path": "/css-gradient-generator",
+      "name": "Gradient Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "box-shadow-generator",
+      "path": "/box-shadow-generator",
+      "name": "Box Shadow Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "border-radius-generator",
+      "path": "/border-radius-generator",
+      "name": "Border Radius",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "glassmorphism-generator",
+      "path": "/glassmorphism-generator",
+      "name": "Glassmorphism",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "neumorphism-generator",
+      "path": "/neumorphism-generator",
+      "name": "Neumorphism",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "css-clip-path-generator",
+      "path": "/css-clip-path-generator",
+      "name": "Clip Path Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "svg-shape-generator",
+      "path": "/svg-shape-generator",
+      "name": "SVG Shape Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "color-palette-generator",
+      "path": "/color-palette-generator",
+      "name": "Color Palette",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "contrast-checker",
+      "path": "/contrast-checker",
+      "name": "Contrast Checker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "random-color-generator",
+      "path": "/random-color-generator",
+      "name": "Random Color",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "qr-business-card-generator",
+      "path": "/qr-business-card-generator",
+      "name": "QR Business Card",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "unit-converter",
+      "path": "/unit-converter",
+      "name": "Unit Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "percentage-calculator",
+      "path": "/percentage-calculator",
+      "name": "Percentage Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "age-calculator",
+      "path": "/age-calculator",
+      "name": "Age Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testSeoRegressions: calendar month-end/leap cases"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "emi-calculator",
+      "path": "/emi-calculator",
+      "name": "EMI Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "discount-calculator",
+      "path": "/discount-calculator",
+      "name": "Discount Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "currency-calculator",
+      "path": "/currency-calculator",
+      "name": "Currency Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "tip-calculator",
+      "path": "/tip-calculator",
+      "name": "Tip Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "random-number-generator",
+      "path": "/random-number-generator",
+      "name": "Random Number",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "random-password-generator",
+      "path": "/random-password-generator",
+      "name": "Password Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testToolReliability: empty/excluded pools and entropy"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "number-to-words",
+      "path": "/number-to-words",
+      "name": "Number to Words",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: BigInt, invalid syntax, Indian grouping, decimal zeros, currency rounding"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "words-to-number",
+      "path": "/words-to-number",
+      "name": "Words to Number",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: valid cardinal phrases, negative decimals, invalid/unknown words and scale order"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "roman-numeral-converter",
+      "path": "/roman-numeral-converter",
+      "name": "Roman Numerals",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: canonical examples, invalid forms and exhaustive 1–3999 round-trip"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "loan-calculator",
+      "path": "/loan-calculator",
+      "name": "Loan Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "roi-calculator",
+      "path": "/roi-calculator",
+      "name": "ROI Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "compound-interest-calculator",
+      "path": "/compound-interest-calculator",
+      "name": "Compound Interest",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "chatgpt-prompt-builder",
+      "path": "/chatgpt-prompt-builder",
+      "name": "ChatGPT Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "gemini-prompt-builder",
+      "path": "/gemini-prompt-builder",
+      "name": "Gemini Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "claude-prompt-builder",
+      "path": "/claude-prompt-builder",
+      "name": "Claude Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "veo-prompt-builder",
+      "path": "/veo-prompt-builder",
+      "name": "Veo Video Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "midjourney-prompt-builder",
+      "path": "/midjourney-prompt-builder",
+      "name": "Midjourney Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "flux-prompt-builder",
+      "path": "/flux-prompt-builder",
+      "name": "Flux Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "stable-diffusion-prompt-builder",
+      "path": "/stable-diffusion-prompt-builder",
+      "name": "SDXL Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "logo-prompt-builder",
+      "path": "/logo-prompt-builder",
+      "name": "Logo Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "thumbnail-prompt-builder",
+      "path": "/thumbnail-prompt-builder",
+      "name": "Thumbnail Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "product-photo-prompt-builder",
+      "path": "/product-photo-prompt-builder",
+      "name": "Product Photo Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "interior-design-prompt-builder",
+      "path": "/interior-design-prompt-builder",
+      "name": "Interior Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "story-prompt-builder",
+      "path": "/story-prompt-builder",
+      "name": "Story Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "youtube-script-prompt-builder",
+      "path": "/youtube-script-prompt-builder",
+      "name": "Script Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "resume-prompt-builder",
+      "path": "/resume-prompt-builder",
+      "name": "Resume Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cover-letter-prompt-builder",
+      "path": "/cover-letter-prompt-builder",
+      "name": "Cover Letter Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "email-prompt-builder",
+      "path": "/email-prompt-builder",
+      "name": "Email Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "social-media-prompt-builder",
+      "path": "/social-media-prompt-builder",
+      "name": "Social Media Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "seo-prompt-builder",
+      "path": "/seo-prompt-builder",
+      "name": "SEO Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "coding-prompt-builder",
+      "path": "/coding-prompt-builder",
+      "name": "Coding Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "universal-prompt-builder",
+      "path": "/universal-prompt-builder",
+      "name": "Universal Prompts",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "qr-code-safety-checker",
+      "path": "/qr-code-safety-checker",
+      "name": "QR Safety Checker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "weight-gain-calculator",
+      "path": "/weight-gain-calculator",
+      "name": "Weight Gain Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-size-adjuster",
+      "path": "/pdf-size-adjuster",
+      "name": "PDF Size Adjuster",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "increase-pdf-size",
+      "path": "/increase-pdf-size",
+      "name": "Increase PDF Size",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "decrease-pdf-size",
+      "path": "/decrease-pdf-size",
+      "name": "Decrease PDF Size",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-compressor",
+      "path": "/pdf-compressor",
+      "name": "PDF Compressor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-to-jpg",
+      "path": "/pdf-to-jpg",
+      "name": "PDF to JPG",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "edit-pdf",
+      "path": "/edit-pdf",
+      "name": "Edit PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-to-pdf",
+      "path": "/text-to-pdf",
+      "name": "Text to PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "signature-maker",
+      "path": "/signature-maker",
+      "name": "Signature Maker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "signature-resizer",
+      "path": "/signature-resizer",
+      "name": "Signature Resizer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "photo-signature-joiner",
+      "path": "/photo-signature-joiner",
+      "name": "Photo & Signature Joiner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "photo-name-date-joiner",
+      "path": "/photo-name-date-joiner",
+      "name": "Name & Date on Photo",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-to-handwriting",
+      "path": "/text-to-handwriting",
+      "name": "Text to Handwriting",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "omr-sheet-generator",
+      "path": "/omr-sheet-generator",
+      "name": "OMR Sheet Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-to-word",
+      "path": "/pdf-to-word",
+      "name": "PDF to Word",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testDataConversions: escaping literal markup in extracted text; full layout fidelity not certified"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "word-to-pdf",
+      "path": "/word-to-pdf",
+      "name": "Word to PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-to-text",
+      "path": "/pdf-to-text",
+      "name": "PDF to Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-to-excel",
+      "path": "/pdf-to-excel",
+      "name": "PDF to Excel",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-page-number",
+      "path": "/pdf-page-number",
+      "name": "Add Page Numbers",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-compare",
+      "path": "/pdf-compare",
+      "name": "Compare PDFs",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pdf-signature",
+      "path": "/pdf-signature",
+      "name": "Sign PDF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "barcode-generator",
+      "path": "/barcode-generator",
+      "name": "Barcode Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "case-converter",
+      "path": "/case-converter",
+      "name": "Case Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "word-counter",
+      "path": "/word-counter",
+      "name": "Word Counter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "character-counter",
+      "path": "/character-counter",
+      "name": "Character Counter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "reading-time-calculator",
+      "path": "/reading-time-calculator",
+      "name": "Reading Time",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "remove-duplicate-lines",
+      "path": "/remove-duplicate-lines",
+      "name": "Remove Duplicates",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "remove-empty-lines",
+      "path": "/remove-empty-lines",
+      "name": "Remove Empty Lines",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "find-and-replace",
+      "path": "/find-and-replace",
+      "name": "Find and Replace",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-compare",
+      "path": "/text-compare",
+      "name": "Text Compare",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-cleaner",
+      "path": "/text-cleaner",
+      "name": "Text Cleaner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "sort-lines",
+      "path": "/sort-lines",
+      "name": "Sort Lines",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "lorem-ipsum-generator",
+      "path": "/lorem-ipsum-generator",
+      "name": "Lorem Ipsum",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "markdown-editor",
+      "path": "/markdown-editor",
+      "name": "Markdown Editor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-minifier",
+      "path": "/json-minifier",
+      "name": "JSON Minifier",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-to-xml",
+      "path": "/json-to-xml",
+      "name": "JSON to XML",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "xml-to-json",
+      "path": "/xml-to-json",
+      "name": "XML to JSON",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "markdown-to-html",
+      "path": "/markdown-to-html",
+      "name": "Markdown to HTML",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "sql-formatter",
+      "path": "/sql-formatter",
+      "name": "SQL Formatter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "jwt-generator",
+      "path": "/jwt-generator",
+      "name": "JWT Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cron-expression-generator",
+      "path": "/cron-expression-generator",
+      "name": "Cron Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "hex-color-generator",
+      "path": "/hex-color-generator",
+      "name": "Hex Color Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "rgb-color-generator",
+      "path": "/rgb-color-generator",
+      "name": "RGB Color Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "random-name-picker",
+      "path": "/random-name-picker",
+      "name": "Random Name Picker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "calorie-calculator",
+      "path": "/calorie-calculator",
+      "name": "Calorie Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "business-name-generator",
+      "path": "/business-name-generator",
+      "name": "Business Names",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "brand-name-generator",
+      "path": "/brand-name-generator",
+      "name": "Brand Name Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "coin-flip",
+      "path": "/coin-flip",
+      "name": "Coin Flip",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-viewer",
+      "path": "/json-viewer",
+      "name": "JSON Viewer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "name-picker-wheel",
+      "path": "/name-picker-wheel",
+      "name": "Picker Wheel",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "loan-eligibility-calculator",
+      "path": "/loan-eligibility-calculator",
+      "name": "Loan Eligibility",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "countdown-calculator",
+      "path": "/countdown-calculator",
+      "name": "Countdown Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "online-stopwatch",
+      "path": "/online-stopwatch",
+      "name": "Online Stopwatch",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "countdown-timer",
+      "path": "/countdown-timer",
+      "name": "Countdown Timer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "online-clock",
+      "path": "/online-clock",
+      "name": "Online Clock",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "time-zone-converter",
+      "path": "/time-zone-converter",
+      "name": "Time Zone Converter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "dice-roller",
+      "path": "/dice-roller",
+      "name": "Dice Roller",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "down-payment-calculator",
+      "path": "/down-payment-calculator",
+      "name": "Down Payment Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cement-calculator",
+      "path": "/cement-calculator",
+      "name": "Cement Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "wavelength-calculator",
+      "path": "/wavelength-calculator",
+      "name": "Wavelength Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "user-agent-parser",
+      "path": "/user-agent-parser",
+      "name": "UA Parser",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "mode-calculator",
+      "path": "/mode-calculator",
+      "name": "Mode Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "inductance-calculator",
+      "path": "/inductance-calculator",
+      "name": "Inductance Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "random-letter-generator",
+      "path": "/random-letter-generator",
+      "name": "Random Letter Gen",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "water-intake-calculator",
+      "path": "/water-intake-calculator",
+      "name": "Water Intake Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "json-to-yaml",
+      "path": "/json-to-yaml",
+      "name": "JSON to YAML",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "url-extractor",
+      "path": "/url-extractor",
+      "name": "URL Extractor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "bond-yield-calculator",
+      "path": "/bond-yield-calculator",
+      "name": "Bond Yield",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cat-age-calculator",
+      "path": "/cat-age-calculator",
+      "name": "Cat Age Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "exam-score-calculator",
+      "path": "/exam-score-calculator",
+      "name": "Exam Score Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "cgpa-calculator",
+      "path": "/cgpa-calculator",
+      "name": "CGPA Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "college-gpa-calculator",
+      "path": "/college-gpa-calculator",
+      "name": "College GPA Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "mileage-calculator",
+      "path": "/mileage-calculator",
+      "name": "Mileage Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "paint-cost-calculator",
+      "path": "/paint-cost-calculator",
+      "name": "Paint Cost Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "density-calculator",
+      "path": "/density-calculator",
+      "name": "Density Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "screen-size-calculator",
+      "path": "/screen-size-calculator",
+      "name": "Screen Size Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "torque-calculator",
+      "path": "/torque-calculator",
+      "name": "Torque Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "linear-regression-calculator",
+      "path": "/linear-regression-calculator",
+      "name": "Linear Regression",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "sha256-hash-generator",
+      "path": "/sha256-hash-generator",
+      "name": "SHA-256 Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "us-income-tax-calculator",
+      "path": "/us-income-tax-calculator",
+      "name": "US Tax Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testSeoRegressions: selected official federal table examples; not all tax circumstances"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "personal-loan-calculator",
+      "path": "/personal-loan-calculator",
+      "name": "Personal Loan Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "sale-price-calculator",
+      "path": "/sale-price-calculator",
+      "name": "Sale Price Calc",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "md5-hash-generator",
+      "path": "/md5-hash-generator",
+      "name": "MD5 Hash Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "wide-text-generator",
+      "path": "/wide-text-generator",
+      "name": "Wide Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "typing-speed-test",
+      "path": "/typing-speed-test",
+      "name": "Typing Speed Test",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-reverser",
+      "path": "/text-reverser",
+      "name": "Text Reverser",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "remove-line-breaks",
+      "path": "/remove-line-breaks",
+      "name": "Remove Line Breaks",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "remove-extra-spaces",
+      "path": "/remove-extra-spaces",
+      "name": "Remove Extra Spaces",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-repeater",
+      "path": "/text-repeater",
+      "name": "Text Repeater",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-splitter",
+      "path": "/text-splitter",
+      "name": "Text Splitter",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-joiner",
+      "path": "/text-joiner",
+      "name": "Text Joiner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "email-extractor",
+      "path": "/email-extractor",
+      "name": "Email Extractor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "keyword-extractor",
+      "path": "/keyword-extractor",
+      "name": "Keyword Extractor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "html-entity-encoder-decoder",
+      "path": "/html-entity-encoder-decoder",
+      "name": "HTML Entity Tool",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-to-binary",
+      "path": "/text-to-binary",
+      "name": "Text to Binary",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "binary-to-text",
+      "path": "/binary-to-text",
+      "name": "Binary to Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-to-hex",
+      "path": "/text-to-hex",
+      "name": "Text to Hex",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "hex-to-text",
+      "path": "/hex-to-text",
+      "name": "Hex to Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "css-minifier",
+      "path": "/css-minifier",
+      "name": "CSS Minifier",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "javascript-minifier",
+      "path": "/javascript-minifier",
+      "name": "JavaScript Minifier",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "html-minifier",
+      "path": "/html-minifier",
+      "name": "HTML Minifier",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "sql-minifier",
+      "path": "/sql-minifier",
+      "name": "SQL Minifier",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "meta-tag-generator",
+      "path": "/meta-tag-generator",
+      "name": "Meta Tag Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "robots-txt-generator",
+      "path": "/robots-txt-generator",
+      "name": "Robots.txt Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "xml-sitemap-generator",
+      "path": "/xml-sitemap-generator",
+      "name": "XML Sitemap Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "schema-markup-generator",
+      "path": "/schema-markup-generator",
+      "name": "Schema Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "utm-builder",
+      "path": "/utm-builder",
+      "name": "UTM Link Builder",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "scientific-calculator",
+      "path": "/scientific-calculator",
+      "name": "Scientific Calculator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "handwriting-to-text",
+      "path": "/handwriting-to-text",
+      "name": "Handwriting to Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "image-to-text",
+      "path": "/image-to-text",
+      "name": "Image to Text (OCR)",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "barcode-scanner",
+      "path": "/barcode-scanner",
+      "name": "Barcode Scanner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "calendar-notes",
+      "path": "/calendar-notes",
+      "name": "Calendar Notes",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "clipboard-history",
+      "path": "/clipboard-history",
+      "name": "Clipboard History",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "daily-planner",
+      "path": "/daily-planner",
+      "name": "Daily Planner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "expense-tracker",
+      "path": "/expense-tracker",
+      "name": "Expense Tracker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "file-checksum-verifier",
+      "path": "/file-checksum-verifier",
+      "name": "File Checksum",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "habit-tracker",
+      "path": "/habit-tracker",
+      "name": "Habit Tracker",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "monthly-budget-planner",
+      "path": "/monthly-budget-planner",
+      "name": "Budget Planner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "passphrase-generator",
+      "path": "/passphrase-generator",
+      "name": "Passphrase Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [
+        "testToolReliability: unbiased sampling, actual wordlist integrity and entropy"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "password-strength-checker",
+      "path": "/password-strength-checker",
+      "name": "Password Strength",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "pomodoro-timer",
+      "path": "/pomodoro-timer",
+      "name": "Pomodoro Timer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "secure-notes",
+      "path": "/secure-notes",
+      "name": "Secure Notes",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "sha-checksum-generator",
+      "path": "/sha-checksum-generator",
+      "name": "SHA Checksum Suite",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "text-encrypt-decrypt",
+      "path": "/text-encrypt-decrypt",
+      "name": "Text Encrypt & Decrypt",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "todo-list",
+      "path": "/todo-list",
+      "name": "Todo List",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "weekly-planner",
+      "path": "/weekly-planner",
+      "name": "Weekly Planner",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "random-text-generator",
+      "path": "/random-text-generator",
+      "name": "Random Text",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "subtitle-generator",
+      "path": "/subtitle-generator",
+      "name": "Subtitle Generator",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "video-aspect-ratio",
+      "path": "/video-aspect-ratio",
+      "name": "Video Aspect Ratio",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "video-compressor",
+      "path": "/video-compressor",
+      "name": "Video Compressor",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "video-to-audio",
+      "path": "/video-to-audio",
+      "name": "Video to Audio",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "video-to-gif",
+      "path": "/video-to-gif",
+      "name": "Video to GIF",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
+      "id": "video-trimmer",
+      "path": "/video-trimmer",
+      "name": "Video Trimmer",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    }
+  ]
+}

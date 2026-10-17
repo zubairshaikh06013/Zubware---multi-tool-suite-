@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { csvObjects } from '../../../lib/csv';
 import { FileSpreadsheet, FileJson, Copy, Check, Download, Upload, Trash2, AlertCircle } from 'lucide-react';
 
 export const CsvToJsonTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
@@ -9,61 +10,14 @@ export const CsvToJsonTool: React.FC<{ onShowToast: (msg: string) => void }> = (
   const [delimiter, setDelimiter] = useState<string>(',');
   const [copied, setCopied] = useState(false);
 
-  // Simple robust CSV parser
+  const [inferTypes, setInferTypes] = useState(false);
   const parseCsvToJson = (text: string) => {
     if (!text.trim()) return { jsonStr: '', parsedObj: null, error: null };
-
     try {
-      const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
-      if (lines.length === 0) return { jsonStr: '', parsedObj: null, error: 'CSV is empty.' };
-
-      // Helper to parse line with quotes support
-      const parseLine = (line: string) => {
-        const result: string[] = [];
-        let cur = '';
-        let inQuotes = false;
-
-        for (let i = 0; i < line.length; i++) {
-          const char = line[i];
-          if (char === '"') {
-            if (inQuotes && line[i + 1] === '"') {
-              cur += '"';
-              i++;
-            } else {
-              inQuotes = !inQuotes;
-            }
-          } else if (char === delimiter && !inQuotes) {
-            result.push(cur.trim());
-            cur = '';
-          } else {
-            cur += char;
-          }
-        }
-        result.push(cur.trim());
-        return result;
-      };
-
-      const headers = parseLine(lines[0]);
-      const dataRows = lines.slice(1);
-
-      const jsonArray = dataRows.map((line) => {
-        const values = parseLine(line);
-        const obj: { [key: string]: any } = {};
-        headers.forEach((header, idx) => {
-          let val: any = values[idx] !== undefined ? values[idx] : '';
-          // Auto cast numbers or booleans
-          if (val === 'true') val = true;
-          else if (val === 'false') val = false;
-          else if (!isNaN(Number(val)) && val !== '') val = Number(val);
-          obj[header] = val;
-        });
-        return obj;
-      });
-
-      const jsonStr = JSON.stringify(jsonArray, null, 2);
-      return { jsonStr, parsedObj: jsonArray, error: null };
-    } catch (err: any) {
-      return { jsonStr: '', parsedObj: null, error: err?.message || 'Failed to parse CSV' };
+      const jsonArray = csvObjects(text, delimiter, inferTypes);
+      return { jsonStr: JSON.stringify(jsonArray, null, 2), parsedObj: jsonArray, error: null };
+    } catch (error) {
+      return { jsonStr: '', parsedObj: null, error: error instanceof Error ? error.message : 'Invalid CSV.' };
     }
   };
 
@@ -115,6 +69,11 @@ export const CsvToJsonTool: React.FC<{ onShowToast: (msg: string) => void }> = (
         </div>
       </div>
 
+      <label className="flex items-center gap-2 text-sm">
+        <input type="checkbox" checked={inferTypes} onChange={e => setInferTypes(e.target.checked)} />
+        Infer simple numbers and booleans (off preserves text and identifiers)
+      </label>
+      <p className="text-xs text-slate-500">Quoted multiline cells are supported. Leading zeros and large integer IDs stay as text. Duplicate headers and mismatched record widths are reported instead of discarding data.</p>
       {/* Delimiter Selection */}
       <div className="glass-card p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800 flex items-center gap-3">
         <span className="text-xs font-bold text-slate-700 dark:text-slate-300">CSV Delimiter:</span>
@@ -164,7 +123,7 @@ export const CsvToJsonTool: React.FC<{ onShowToast: (msg: string) => void }> = (
             </div>
           </div>
 
-          <textarea
+          <textarea aria-label="CSV input"
             rows={14}
             value={csvInput}
             onChange={(e) => setCsvInput(e.target.value)}

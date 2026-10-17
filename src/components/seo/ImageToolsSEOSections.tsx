@@ -705,7 +705,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 Sharing raw camera photos on forums, social media, Craigslist, classifieds, or messaging apps can inadvertently reveal your home address, child's school, daily commute routes, or workplace to strangers.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware EXIF Remover reads raw pixel buffers and re-encodes pure visual data, permanently purging all embedded EXIF, IPTC, and XMP metadata chunks while retaining 100% of the original visual quality.
+                Zubware EXIF Remover reads raw pixel buffers and re-encodes pure visual data, permanently purging all embedded EXIF, IPTC, and XMP metadata chunks by exporting a fresh PNG or JPEG. JPEG is re-encoded at 95% quality, so pixels and file size can change. Inspect the output metadata before sharing.
               </p>
             </div>
           </div>

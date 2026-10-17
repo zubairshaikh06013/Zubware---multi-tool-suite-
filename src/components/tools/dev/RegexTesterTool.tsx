@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import type { RegexResult } from '../../../lib/regexEvaluation';
 import { Code2, Sparkles, CheckCircle2, AlertOctagon, HelpCircle } from 'lucide-react';
 
 export const RegexTesterTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
@@ -30,47 +31,37 @@ export const RegexTesterTool: React.FC<{ onShowToast: (msg: string) => void }> =
     { label: 'Phone Number', regex: '\\+?[1-9]\\d{1,14}' }
   ];
 
-  // Regex evaluation
-  const evaluateRegex = () => {
-    if (!pattern) return { matches: [], error: null, highlighted: testText };
-
-    try {
-      const regex = new RegExp(pattern, flagStr);
-      const matches: { match: string; index: number; groups: string[] }[] = [];
-
-      if (flags.g) {
-        let match;
-        let guard = 0;
-        while ((match = regex.exec(testText)) !== null) {
-          matches.push({
-            match: match[0],
-            index: match.index,
-            groups: match.slice(1)
-          });
-          if (match.index === regex.lastIndex) {
-            regex.lastIndex++;
-          }
-          guard++;
-          if (guard > 1000) break; // infinite loop guard
-        }
-      } else {
-        const match = regex.exec(testText);
-        if (match) {
-          matches.push({
-            match: match[0],
-            index: match.index,
-            groups: match.slice(1)
-          });
-        }
-      }
-
-      return { matches, error: null };
-    } catch (err: any) {
-      return { matches: [], error: err?.message || 'Invalid regular expression' };
+  const [result, setResult] = useState<RegexResult>({matches: [], error: null, truncated: false});
+  const [evaluating, setEvaluating] = useState(false);
+  useEffect(() => {
+    setResult({matches: [], error: null, truncated: false});
+    if (!pattern) { setEvaluating(false); return; }
+    if (testText.length > 200000 || pattern.length > 10000) {
+      setEvaluating(false);
+      setResult({matches: [], error: 'Use at most 200,000 text characters and 10,000 pattern characters.', truncated: false});
+      return;
     }
-  };
-
-  const { matches, error } = evaluateRegex();
+    setEvaluating(true);
+    let worker: Worker | undefined;
+    let deadline: ReturnType<typeof setTimeout> | undefined;
+    const timer = setTimeout(() => {
+      const fail = (message: string) => {
+        worker?.terminate(); clearTimeout(deadline); setEvaluating(false);
+        setResult({matches: [], error: message, truncated: false});
+      };
+      try {
+        worker = new Worker(new URL('../../../workers/regex.worker.ts', import.meta.url), {type: 'module'});
+        deadline = setTimeout(() => fail('Evaluation stopped after 2 seconds. Simplify the pattern or shorten the text.'), 2000);
+        worker.onmessage = (event: MessageEvent<RegexResult>) => {
+          clearTimeout(deadline); worker?.terminate(); setResult(event.data); setEvaluating(false);
+        };
+        worker.onerror = () => fail('Regex worker could not run in this browser.');
+        worker.postMessage({pattern, flags: flagStr, text: testText});
+      } catch { fail('Regex worker could not start in this browser.'); }
+    }, 150);
+    return () => { clearTimeout(timer); clearTimeout(deadline); worker?.terminate(); };
+  }, [pattern, flagStr, testText]);
+  const {matches, error, truncated} = result;
 
   // Explain Regex tokens in simple terms
   const explainRegex = (regexPattern: string) => {
@@ -161,6 +152,7 @@ export const RegexTesterTool: React.FC<{ onShowToast: (msg: string) => void }> =
             <span className="text-slate-400 font-bold mr-1">/</span>
             <input
               type="text"
+              aria-label="Regular expression"
               value={pattern}
               onChange={(e) => setPattern(e.target.value)}
               placeholder="Enter regex pattern..."
@@ -198,6 +190,7 @@ export const RegexTesterTool: React.FC<{ onShowToast: (msg: string) => void }> =
       </div>
 
       {/* Error state */}
+      <p role="status" className="text-xs text-slate-500">{evaluating ? "Evaluating pattern…" : truncated ? "Showing the first 1,000 matches. Narrow the pattern to see fewer results." : "Evaluation runs in a separate worker with a 2-second limit."}</p>
       {error && (
         <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2">
           <AlertOctagon className="w-5 h-5 shrink-0" />
@@ -209,7 +202,7 @@ export const RegexTesterTool: React.FC<{ onShowToast: (msg: string) => void }> =
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="space-y-2">
           <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Test String</label>
-          <textarea
+          <textarea aria-label="Test text"
             rows={8}
             value={testText}
             onChange={(e) => setTestText(e.target.value)}

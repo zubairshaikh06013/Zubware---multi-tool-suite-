@@ -583,7 +583,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Automatic In-Browser Metadata Stripping",
-        "desc": "Zubware re-encodes the image data onto a clean canvas buffer, purging all binary EXIF, IPTC, and XMP metadata chunks while retaining 100% visual pixel quality."
+        "desc": "Zubware re-encodes the image data onto a clean canvas buffer, purging all binary EXIF, IPTC, and XMP metadata chunks by exporting a fresh PNG or JPEG. JPEG output is re-encoded at 95% quality; compare detail and inspect the downloaded metadata."
       },
       {
         "title": "Download Cleaned Images Individually or Batch",

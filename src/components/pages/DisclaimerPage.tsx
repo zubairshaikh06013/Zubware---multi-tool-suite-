@@ -39,6 +39,16 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ onNavigate }) =>
         </section>
 
         <section className="space-y-2">
+          <h2 className="text-base font-extrabold text-slate-900 dark:text-white">AI Background Removal: Output and Privacy Limitations</h2>
+          <p>
+            AI background removal is automated and may misidentify subjects, remove hair or transparent objects, leave halos, or alter output dimensions. No particular speed, edge quality, resolution, or suitability for passport, ID, marketplace or official submissions is guaranteed. Keep your original and inspect the result before using it.
+          </p>
+          <p>
+            Quick and Private Removal process images on your device. Smart AI Removal sends the selected image to Cloudflare for processing only after you provide consent and start; avoid sensitive images and review our Privacy Policy before using online processing. A transparent preview is not the same as a verified white-background image required by some services.
+          </p>
+        </section>
+
+        <section className="space-y-2">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">External Links & Third-Party Resources</h2>
           <p>
             Zubware may contain links leading to external websites, documentation, or third-party resources for user convenience. Zubware does not control, operate, or endorse third-party content and assumes no responsibility for their policies, availability, or accuracy.

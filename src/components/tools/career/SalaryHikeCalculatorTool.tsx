@@ -75,9 +75,9 @@ Hike Metrics:
 
 Cashflow Bump Breakdown:
 - Monthly Change: ${monthlyDiff < 0 ? '-' : '+'}${currency.symbol}${Math.abs(monthlyDiff).toLocaleString()} / month
-- Bi-weekly Increase: +${currency.symbol}${biweeklyDiff.toLocaleString()} / 2 weeks
-- Weekly Increase: +${currency.symbol}${weeklyDiff.toLocaleString()} / week
-- Hourly Rate Bump: +${currency.symbol}${hourlyDiff} / hour
+- Bi-weekly Change: ${biweeklyDiff < 0 ? '-' : '+'}${currency.symbol}${Math.abs(biweeklyDiff).toLocaleString()} / 2 weeks
+- Weekly Change: ${weeklyDiff < 0 ? '-' : '+'}${currency.symbol}${Math.abs(weeklyDiff).toLocaleString()} / week
+- Hourly Rate Change: ${effectiveIncrease < 0 ? '-' : '+'}${currency.symbol}${Math.abs(Number(hourlyDiff)).toFixed(2)} / hour
 
 Generated with Zubware Salary Hike Calculator`;
 
@@ -153,7 +153,7 @@ Generated with Zubware Salary Hike Calculator`;
               <span className="text-lg font-bold text-emerald-300">Change</span>
             </div>
             <p className="text-xs sm:text-sm text-slate-300">
-              +{currency.symbol}{effectiveIncrease.toLocaleString()} Annual Increase ({currency.symbol}{monthlyDiff.toLocaleString()}/mo)
+              {effectiveIncrease < 0 ? '-' : '+'}{currency.symbol}{Math.abs(effectiveIncrease).toLocaleString()} Annual Change ({currency.symbol}{monthlyDiff.toLocaleString()}/mo)
             </p>
           </div>
 
@@ -309,31 +309,31 @@ Generated with Zubware Salary Hike Calculator`;
                     <td className="py-3 font-bold text-slate-900 dark:text-white">Annual CTC</td>
                     <td className="py-3 text-slate-500">{currency.symbol}{currentCtc.toLocaleString()}</td>
                     <td className="py-3 text-slate-900 dark:text-white font-bold">{currency.symbol}{effectiveOffered.toLocaleString()}</td>
-                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">+{currency.symbol}{effectiveIncrease.toLocaleString()}</td>
+                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">{effectiveIncrease < 0 ? '-' : '+'}{currency.symbol}{Math.abs(effectiveIncrease).toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td className="py-3 font-bold text-slate-900 dark:text-white">Monthly</td>
                     <td className="py-3 text-slate-500">{currency.symbol}{monthlyCurrent.toLocaleString()}</td>
                     <td className="py-3 text-slate-900 dark:text-white font-bold">{currency.symbol}{monthlyOffered.toLocaleString()}</td>
-                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">+{currency.symbol}{monthlyDiff.toLocaleString()}</td>
+                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">{monthlyDiff < 0 ? '-' : '+'}{currency.symbol}{Math.abs(monthlyDiff).toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td className="py-3 font-bold text-slate-900 dark:text-white">Bi-Weekly</td>
                     <td className="py-3 text-slate-500">{currency.symbol}{Math.round(currentCtc / 26).toLocaleString()}</td>
                     <td className="py-3 text-slate-900 dark:text-white font-bold">{currency.symbol}{Math.round(effectiveOffered / 26).toLocaleString()}</td>
-                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">+{currency.symbol}{biweeklyDiff.toLocaleString()}</td>
+                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">{biweeklyDiff < 0 ? '-' : '+'}{currency.symbol}{Math.abs(biweeklyDiff).toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td className="py-3 font-bold text-slate-900 dark:text-white">Weekly</td>
                     <td className="py-3 text-slate-500">{currency.symbol}{Math.round(currentCtc / 52).toLocaleString()}</td>
                     <td className="py-3 text-slate-900 dark:text-white font-bold">{currency.symbol}{Math.round(effectiveOffered / 52).toLocaleString()}</td>
-                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">+{currency.symbol}{weeklyDiff.toLocaleString()}</td>
+                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">{weeklyDiff < 0 ? '-' : '+'}{currency.symbol}{Math.abs(weeklyDiff).toLocaleString()}</td>
                   </tr>
                   <tr>
                     <td className="py-3 font-bold text-slate-900 dark:text-white">Hourly Equivalent</td>
                     <td className="py-3 text-slate-500">{currency.symbol}{(currentCtc / 2080).toFixed(2)}/hr</td>
                     <td className="py-3 text-slate-900 dark:text-white font-bold">{currency.symbol}{(effectiveOffered / 2080).toFixed(2)}/hr</td>
-                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">+{currency.symbol}{hourlyDiff}/hr</td>
+                    <td className="py-3 text-right font-extrabold text-emerald-600 dark:text-emerald-400">{effectiveIncrease < 0 ? '-' : '+'}{currency.symbol}{Math.abs(Number(hourlyDiff)).toFixed(2)}/hr</td>
                   </tr>
                 </tbody>
               </table>
@@ -345,7 +345,7 @@ Generated with Zubware Salary Hike Calculator`;
                 <span className="text-[10px] text-slate-500">Target offer satisfies inflation buffer + merit progression</span>
               </div>
               <span className="font-extrabold text-emerald-600 dark:text-emerald-400 text-sm">
-                +{currency.symbol}{effectiveIncrease.toLocaleString()}/yr
+                {effectiveIncrease < 0 ? '-' : '+'}{currency.symbol}{Math.abs(effectiveIncrease).toLocaleString()}/yr
               </span>
             </div>
           </div>

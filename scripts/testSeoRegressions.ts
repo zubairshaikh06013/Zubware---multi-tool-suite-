@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { hasNoindexRobotsMeta, extractCanonicalHrefs } from './validateSeoBuild';
+import { hasNoindexRobotsMeta, extractCanonicalHrefs, extractNamedMetaContent } from './validateSeoBuild';
 import { calendarAge, calendarAnniversary } from '../src/lib/calendarAge';
 import { formatSubtitleTimestamp } from '../src/lib/subtitleTiming';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
@@ -19,6 +19,12 @@ assert.deepEqual(extractCanonicalHrefs('<link rel="canonical" href="https://www.
 assert.deepEqual(extractCanonicalHrefs("<link href='https://www.zubware.com/age-calculator' rel='CANONICAL'>"), ['https://www.zubware.com/age-calculator']);
 assert.deepEqual(extractCanonicalHrefs('<link rel="alternate" href="/wrong"><link rel="canonical" href="/correct">'), ['/correct']);
 assert.deepEqual(extractCanonicalHrefs('<link rel="canonical" href="/one"><link href="/two" rel="canonical">'), ['/one', '/two']);
+
+assert.deepEqual(extractNamedMetaContent('<meta name="description" content="First description">', 'description'), ['First description']);
+assert.deepEqual(extractNamedMetaContent("<meta content='Second description' name='DESCRIPTION'>", 'description'), ['Second description']);
+assert.deepEqual(extractNamedMetaContent('<meta name="description" content="One"><meta content="Two" name="description">', 'description'), ['One', 'Two']);
+assert.deepEqual(extractNamedMetaContent('<meta name="keywords" content="no description">', 'description'), []);
+assert.equal(hasNoindexRobotsMeta('<meta content="index, follow" name="robots">'), false);
 
 const date = (value: string) => new Date(`${value}T00:00:00`);
 for (const [birth, target, expected] of [

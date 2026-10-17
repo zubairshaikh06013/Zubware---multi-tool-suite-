@@ -3,7 +3,12 @@ export function secureRandomIndex(size: number, draw = () => crypto.getRandomVal
   if (!Number.isSafeInteger(size) || size < 1 || size > 0x100000000) throw new Error('Invalid random pool size');
   const limit = Math.floor(0x100000000 / size) * size;
   let value: number;
-  do { value = draw(); } while (value >= limit);
+  do {
+    value = draw();
+    if (!Number.isInteger(value) || value < 0 || value > 0xffffffff) {
+      throw new Error('Random draw must be an unsigned 32-bit integer');
+    }
+  } while (value >= limit);
   return value % size;
 }
 

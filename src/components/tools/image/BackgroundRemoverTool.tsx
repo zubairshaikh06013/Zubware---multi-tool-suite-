@@ -31,6 +31,7 @@ type ViewMode = 'result' | 'original' | 'slider';
 export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ onShowToast, onNavigate }) => {
   // File state
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [originalDimensions, setOriginalDimensions] = useState<{ width: number; height: number } | null>(null);
   const [originalPreviewUrl, setOriginalPreviewUrl] = useState<string | null>(null);
   const [dragActive, setDragActive] = useState<boolean>(false);
 
@@ -87,12 +88,20 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
     resultUrlRef.current = null;
     setLargeFileWarning(file.size > 15 * 1024 * 1024);
     setSelectedFile(file);
+    setOriginalDimensions(null);
     setErrorMessage(null);
     setResult(null);
 
     const origUrl = URL.createObjectURL(file);
     previewUrlRef.current = origUrl;
     setOriginalPreviewUrl(origUrl);
+    const metadataImage = new Image();
+    metadataImage.onload = () => {
+      if (previewUrlRef.current === origUrl) {
+        setOriginalDimensions({ width: metadataImage.naturalWidth, height: metadataImage.naturalHeight });
+      }
+    };
+    metadataImage.src = origUrl;
 
     // Browser mode remains automatic. Cloudflare uploads require a separate explicit click.
     if (processingMode !== 'cloudflare') runRemoval(file);
@@ -178,6 +187,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
     setProgressPercent(0);
     setViewMode('result');
     setCloudflareConsent(false);
+    setOriginalDimensions(null);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -339,7 +349,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
 
       {selectedFile && processingMode === 'cloudflare' && !isProcessing && !result && (
         <div className="rounded-2xl border border-indigo-200 dark:border-indigo-800 p-4 space-y-3">
-          <p className="text-sm text-slate-700 dark:text-slate-200">Selected: {selectedFile.name} ({formatBytes(selectedFile.size)}). Your photo stays on this device until you start.</p>
+          <p className="text-sm text-slate-700 dark:text-slate-200">Original: {selectedFile.name} • {originalDimensions ? `${originalDimensions.width} × ${originalDimensions.height} px` : "Reading dimensions…"} • {formatBytes(selectedFile.size)} ({(selectedFile.size / 1024).toFixed(1)} KB). Your photo stays on this device until you start.</p>
           <button type="button" disabled={!cloudflareConsent || selectedFile.size > 10 * 1024 * 1024} onClick={() => runRemoval(selectedFile)} className="rounded-xl bg-indigo-600 px-5 py-3 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed">Remove Background with Cloudflare AI</button>
           {selectedFile.size > 10 * 1024 * 1024 && <p className="text-xs text-red-600">Cloudflare AI supports files up to 10 MB. Choose a smaller photo or switch to Browser mode.</p>}
           <button type="button" onClick={handleReset} className="ml-3 text-sm underline text-slate-600 dark:text-slate-300">Choose another photo</button>
@@ -443,7 +453,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
                   </span>
                 </h3>
                 <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  {selectedFile?.name} ({formatBytes(selectedFile?.size || 0)}) • {result.width} × {result.height} px
+                  {selectedFile?.name}<br />Original: {originalDimensions ? `${originalDimensions.width} × ${originalDimensions.height} px` : `${result.originalWidth} × ${result.originalHeight} px`} • {((selectedFile?.size || 0) / 1024).toFixed(1)} KB ({formatBytes(selectedFile?.size || 0)})<br />Output: {result.width} × {result.height} px • {(result.blob.size / 1024).toFixed(1)} KB ({formatBytes(result.blob.size)})
                 </p>
               </div>
             </div>

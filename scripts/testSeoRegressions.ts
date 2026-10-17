@@ -25,6 +25,11 @@ assert.equal(formatSubtitleTimestamp(3600.125, '.'), '01:00:00.125');
 assert.equal(formatSubtitleTimestamp(1.001, ','), '00:00:01,001');
 assert.equal(formatSubtitleTimestamp(-1, '.'), '00:00:00.000');
 const ageTool = TOOLS_DATA.find(t => t.id === 'age-calculator')!;
+assert.match(ageTool.description, /date of birth/i, 'Age calculator description must explain its DOB input');
+assert.match(ageTool.description, /years, months and days/i, 'Age calculator description must describe its exact-age output');
+assert.ok(ageTool.tags.some(tag => /dob calculation/i.test(tag)), 'Age calculator should cover the observed DOB calculation query');
+assert.ok(!ageTool.tags.some(tag => /^(css|color|palette|generator)$/i.test(tag)), 'Age calculator must not inherit unrelated design-tool tags');
+
 assert.ok(getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id === 'working-days-calculator'));
 assert.ok(!getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id.includes('css') || t.id.includes('shadow')));
 assert.ok(!getMatchingGuidesForTool(ageTool, BLOG_ARTICLES).some(a => a.slug.includes('pdf')));

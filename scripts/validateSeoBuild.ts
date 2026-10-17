@@ -4,14 +4,19 @@ import { TOOLS_DATA } from '../src/data/toolsData';
 import { SITE_ORIGIN } from '../src/lib/siteConfig';
 import { getToolCanonicalPath } from '../src/lib/paths';
 
+/** Find named meta content regardless of quote style, case or attribute ordering. */
+export function extractNamedMetaContent(html: string, metaName: string): string[] {
+  return (html.match(/<meta\b[^>]*>/gi) || []).flatMap(tag => {
+    const name = tag.match(/\bname\s*=\s*["']([^"']*)["']/i)?.[1];
+    const content = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1];
+    return name?.toLowerCase() === metaName.toLowerCase() && content !== undefined ? [content] : [];
+  });
+}
+
 export function hasNoindexRobotsMeta(html: string): boolean {
-// Attribute order is not significant in HTML: detect both name-before-content and content-before-name.
-const metaTags = html.match(/<meta\b[^>]*>/gi) || [];
-return metaTags.some(tag => {
-  const name = tag.match(/\bname\s*=\s*["'](robots|googlebot)["']/i)?.[1];
-  const content = tag.match(/\bcontent\s*=\s*["']([^"']*)["']/i)?.[1];
-  return name && content && /(?:^|[,\s])noindex(?:$|[,\s])/i.test(content);
-});
+  return ['robots', 'googlebot'].some(name =>
+    extractNamedMetaContent(html, name).some(content => /(?:^|[,\s])noindex(?:$|[,\s])/i.test(content))
+  );
 }
 
 /** Extract canonical links independent of HTML attribute order. */
@@ -48,7 +53,7 @@ export function validateSeoBuild(distDir: string): void {
     if (hasNoindexRobotsMeta(html)) errors.push(`Indexable sitemap page has noindex: ${url}`);
     for (const [name, values, seen] of [
       ['title', capture(html, /<title>([\s\S]*?)<\/title>/g), titles],
-      ['description', capture(html, /<meta\s+name="description"\s+content="([^"]*)"/g), descriptions],
+      ['description', extractNamedMetaContent(html, 'description'), descriptions],
     ] as const) {
       if (values.length !== 1 || !values[0]?.trim()) errors.push(`Missing/duplicate ${name}: ${url}`);
       else if (seen.has(values[0])) errors.push(`Repeated ${name}: ${url} and ${seen.get(values[0])}`);

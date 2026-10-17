@@ -19,6 +19,17 @@
       })();
     </script>
     <!-- End Google Tag Manager -->
+    <!-- SEO fallback stays readable without JavaScript; hide it before first paint
+         when the interactive app can boot, avoiding a different homepage flash. -->
+    <script>
+      document.documentElement.classList.add('zubware-js');
+      window.setTimeout(function () {
+        if (document.getElementById('seo-prerender')) {
+          document.documentElement.classList.remove('zubware-js');
+        }
+      }, 12000);
+    </script>
+    <style>html.zubware-js #seo-prerender { display: none !important; }</style>
     <meta name="theme-color" content="#4f46e5" />
     <title>Zubware — Free Online Multi-Tool Suite</title>
     <meta name="description" content="Zubware is a modern multi-tool suite offering 300+ free online tools for PDF, image processing, developers, video, calculators, and productivity. Fast, private browser processing with local processing for local tools." />

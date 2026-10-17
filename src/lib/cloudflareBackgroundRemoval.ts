@@ -33,8 +33,10 @@ export async function processCloudflareBackgroundRemoval(
   }
 
   onProgress?.({ stage: 'Preparing AI...', percent: 10 });
-  const original = await dimensions(file);
-  onProgress?.({ stage: 'Removing Background...', percent: 30 });
+  // Start image metadata decoding concurrently with the network request.
+  // Previously this blocked the upload on slower Android devices.
+  const originalPromise = dimensions(file).catch(() => ({ width: 0, height: 0 }));
+  onProgress?.({ stage: 'Uploading & removing background...', percent: 30 });
 
   let response: Response;
   try {
@@ -55,7 +57,7 @@ export async function processCloudflareBackgroundRemoval(
   const blob = await response.blob();
   if (blob.type !== 'image/png' || !blob.size) throw new Error('Cloudflare returned an invalid PNG.');
   onProgress?.({ stage: 'Finalizing...', percent: 90 });
-  const output = await dimensions(blob);
+  const [output, original] = await Promise.all([dimensions(blob), originalPromise]);
   const url = URL.createObjectURL(blob);
   onProgress?.({ stage: 'Finalizing...', percent: 100 });
   return {

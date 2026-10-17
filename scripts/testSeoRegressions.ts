@@ -82,6 +82,18 @@ for (const sourceId of ['countdown-calculator', 'cat-age-calculator', 'working-d
 }
 assert.ok(!getRelatedTools(ageTool, TOOLS_DATA).some(t => t.id.includes('css') || t.id.includes('shadow')));
 assert.ok(!getMatchingGuidesForTool(ageTool, BLOG_ARTICLES).some(a => a.slug.includes('pdf')));
+for (const [sourceId, destinationId] of [
+  ['json-to-csv', 'csv-to-json'],
+  ['csv-to-json', 'json-to-csv'],
+  ['csv-viewer', 'csv-to-json'],
+  ['json-formatter', 'json-validator'],
+  ['json-validator', 'json-to-csv'],
+] as const) {
+  const source = TOOLS_DATA.find(t => t.id === sourceId);
+  assert.ok(source, `Missing source tool: ${sourceId}`);
+  assert.ok(TOOLS_DATA.some(t => t.id === destinationId), `Missing destination tool: ${destinationId}`);
+  assert.ok(getRelatedTools(source, TOOLS_DATA).some(t => t.id === destinationId), `${sourceId} must link to ${destinationId}`);
+}
 for (const tool of TOOLS_DATA) {
   const related = getRelatedTools(tool, TOOLS_DATA);
   assert.ok(related.length <= 6 && !related.some(t => t.id === tool.id));

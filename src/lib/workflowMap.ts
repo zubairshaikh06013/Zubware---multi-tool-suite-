@@ -17,6 +17,12 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'subtitle-generator': ['video-trimmer', 'video-compressor', 'video-aspect-ratio', 'video-to-audio'],
   'video-compressor': ['video-trimmer', 'video-aspect-ratio', 'video-to-audio', 'video-to-gif'],
   'json-validator': ['json-formatter', 'json-viewer', 'json-minifier', 'json-to-csv'],
+  // Data-conversion tasks form a natural, bidirectional workflow.
+  'json-to-csv': ['csv-to-json', 'csv-viewer', 'json-validator', 'json-formatter'],
+  'csv-to-json': ['json-to-csv', 'csv-viewer', 'json-validator', 'json-formatter'],
+  'csv-viewer': ['csv-to-json', 'json-to-csv', 'json-formatter'],
+  'json-viewer': ['json-formatter', 'json-validator', 'json-to-csv', 'csv-to-json'],
+  'json-minifier': ['json-formatter', 'json-validator', 'json-viewer'],
   'pdf-to-excel': ['pdf-to-text', 'pdf-to-word', 'csv-viewer', 'csv-to-json'],
   // PDF Workflow Clusters
   'pdf-compressor': ['decrease-pdf-size', 'pdf-size-adjuster', 'pdf-merge', 'pdf-split', 'edit-pdf', 'protect-pdf'],
@@ -67,7 +73,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'matching-parts-video-maker': ['social-character-counter', 'youtube-title-generator'],
 
   // Developer Utilities Clusters
-  'json-formatter': ['jwt-decoder', 'base64-encoder-decoder', 'hash-generator', 'regex-tester', 'sql-formatter'],
+  'json-formatter': ['json-validator', 'json-minifier', 'json-to-csv', 'csv-to-json', 'json-viewer', 'regex-tester'],
   'jwt-decoder': ['json-formatter', 'base64-encoder-decoder', 'hash-generator', 'url-encoder-decoder'],
   'base64-encoder-decoder': ['jwt-decoder', 'url-encoder-decoder', 'hash-generator', 'json-formatter'],
   'url-encoder-decoder': ['base64-encoder-decoder', 'html-escape-unescape', 'text-cleaner'],

@@ -5,15 +5,33 @@ interface WorkingDaysCalculatorToolProps {
   onShowToast: (msg: string) => void;
 }
 
+const toLocalInputDate = (date: Date): string => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+const parseLocalInputDate = (value: string): Date => {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(value);
+  if (!match) return new Date(NaN);
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  const date = new Date(year, month - 1, day, 12);
+  if (date.getFullYear() !== year || date.getMonth() !== month - 1 || date.getDate() !== day) return new Date(NaN);
+  return date;
+};
+
 export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps> = ({ onShowToast }) => {
   const [calcMode, setCalcMode] = useState<'between' | 'add'>('between');
 
   // Mode 1: Between Dates
-  const [startDate, setStartDate] = useState<string>(new Date().toISOString().split('T')[0]);
+  const [startDate, setStartDate] = useState<string>(toLocalInputDate(new Date()));
   const [endDate, setEndDate] = useState<string>(() => {
     const d = new Date();
     d.setMonth(d.getMonth() + 3);
-    return d.toISOString().split('T')[0];
+    return toLocalInputDate(d);
   });
 
   // Mode 2: Add Days
@@ -37,8 +55,8 @@ export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps>
   };
 
   // Calculations for Mode 1: Between Dates
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = parseLocalInputDate(startDate);
+  const end = parseLocalInputDate(endDate);
 
   let workingDaysBetween = 0;
   let totalCalendarDaysBetween = 0;

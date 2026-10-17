@@ -9,6 +9,8 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'password-generator': ['passphrase-generator', 'password-strength-checker', 'random-password-generator'],
   // Date calculations belong with dates, not CSS tools in the broad Design category.
   'age-calculator': ['working-days-calculator', 'countdown-calculator', 'time-zone-converter', 'cat-age-calculator'],
+  'countdown-calculator': ['age-calculator', 'working-days-calculator', 'time-zone-converter'],
+  'cat-age-calculator': ['age-calculator', 'countdown-calculator'],
   'college-gpa-calculator': ['cgpa-calculator', 'exam-score-calculator', 'percentage-calculator'],
   'signature-maker': ['signature-resizer', 'pdf-signature', 'photo-signature-joiner'],
   'photo-name-date-joiner': ['photo-signature-joiner', 'signature-resizer', 'passport-photo-maker'],
@@ -100,7 +102,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'resume-score-analyzer': ['ats-resume-checker', 'resume-keyword-optimizer', 'resume-builder'],
   'experience-calculator': ['salary-hike-calculator', 'working-days-calculator'],
   'notice-period-calculator': ['working-days-calculator', 'experience-calculator'],
-  'working-days-calculator': ['notice-period-calculator', 'experience-calculator', 'unix-timestamp-converter'],
+  'working-days-calculator': ['notice-period-calculator', 'experience-calculator', 'age-calculator', 'unix-timestamp-converter'],
 
   // Text & Writing Clusters
   'word-counter': ['social-character-counter', 'case-converter', 'text-cleaner', 'text-compare'],

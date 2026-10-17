@@ -37,13 +37,14 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
   // Reject malformed timestamps rather than silently sorting them as 00:00.
   const timeToSeconds = (timeStr: string): number | null => {
     const value = timeStr.trim();
-    if (!/^(?:\d+:)?\d{1,2}:\d{2}$/.test(value)) return null;
+    if (!/^(?:\d+:\d{2}:\d{2}|\d+:\d{2})$/.test(value)) return null;
     const parts = value.split(':').map(Number);
     if (parts.some(part => !Number.isSafeInteger(part))) return null;
     // MM:SS permits minutes above 59 (e.g. 75:30); HH:MM:SS does not.
     if (parts.length === 2 && parts[1] >= 60) return null;
     if (parts.length === 3 && (parts[1] >= 60 || parts[2] >= 60)) return null;
-    return parts.reduce((seconds, part) => seconds * 60 + part, 0);
+    const seconds = parts.reduce((total, part) => total * 60 + part, 0);
+    return Number.isSafeInteger(seconds) ? seconds : null;
   };
 
   const chapterSeconds = chapters.map(chapter => timeToSeconds(chapter.time));

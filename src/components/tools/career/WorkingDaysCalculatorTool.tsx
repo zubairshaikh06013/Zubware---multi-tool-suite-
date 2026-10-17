@@ -84,7 +84,7 @@ export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps>
   let added = 0;
   let calendarDaysAdded = 0;
 
-  if (!isNaN(start.getTime()) && daysToAdd > 0) {
+  if (!isNaN(start.getTime()) && Number.isInteger(daysToAdd) && daysToAdd > 0 && daysToAdd <= 1000) {
     while (added < daysToAdd) {
       calendarDaysAdded++;
       targetDateResult.setDate(targetDateResult.getDate() + 1);
@@ -243,7 +243,10 @@ Calculated on Zubware`;
                   min="1"
                   max="1000"
                   value={daysToAdd}
-                  onChange={e => setDaysToAdd(Math.max(1, Number(e.target.value)))}
+                  onChange={e => {
+                    const value = Number(e.target.value);
+                    setDaysToAdd(Number.isFinite(value) ? Math.min(1000, Math.max(1, Math.trunc(value))) : 1);
+                  }}
                   className="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 font-bold text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
                 />
               </div>
@@ -265,8 +268,8 @@ Calculated on Zubware`;
             </select>
           </div>
 
-          {/* Public Holidays */}
-          <div className="space-y-1.5">
+          {/* Holiday counts can be subtracted from a fixed range, but cannot identify which future dates to skip. */}
+          {calcMode === 'between' && <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
               <span>Public Holidays in Period</span>
               <span className="text-indigo-600 font-extrabold">{holidaysCount} Days</span>
@@ -292,7 +295,7 @@ Calculated on Zubware`;
                 </button>
               ))}
             </div>
-          </div>
+          </div>}
         </div>
 
         {/* Right Billable Hours & Revenue Estimator (5 cols) */}

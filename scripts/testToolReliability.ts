@@ -9,6 +9,14 @@ assert.equal(secureRandomIndex(10, () => draws.shift()!), 3);
 assert.equal(draws.length, 0);
 assert.equal(secureRandomIndex(1, () => 0xffffffff), 0);
 assert.throws(() => secureRandomIndex(0));
+for (const invalid of [-1, 0x100000000, NaN, Infinity, 1.5]) {
+  assert.throws(() => secureRandomIndex(10, () => invalid), /unsigned 32-bit integer/);
+}
+for (const invalidSize of [-1, 1.5, NaN, Infinity, 0x100000001]) {
+  assert.throws(() => secureRandomIndex(invalidSize));
+}
+assert.equal(secureRandomIndex(0x100000000, () => 0xffffffff), 0xffffffff);
+assert.equal(secureRandomIndex(10, () => 0), 0);
 const options = { upper: true, lower: true, numbers: true, symbols: true, avoidSimilar: true, exclude: 'Ab2!' };
 const pool = passwordPool(options);
 for (const excluded of 'IOil01Ab2!') assert.ok(!pool.includes(excluded));

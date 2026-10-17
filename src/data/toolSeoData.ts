@@ -113,56 +113,20 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "background-remover": {
     "howTo": [
-      {
-        "title": "Upload or Drag Your Image",
-        "desc": "Select or drag-and-drop a JPG, PNG, or WebP photo up to 20MB. Clear portraits, product photos, and distinct subjects yield the sharpest cutouts."
-      },
-      {
-        "title": "Automatic In-Browser AI Segmentation",
-        "desc": "The client-side machine learning neural network segments foreground people, products, clothing, or objects from the background in seconds."
-      },
-      {
-        "title": "Inspect with Comparison Slider & Backdrops",
-        "desc": "Evaluate edge smoothness by switching between checkerboard, white, black, and grey preview backdrops, or drag the interactive before/after split slider."
-      },
-      {
-        "title": "Download Transparent PNG",
-        "desc": "Click 'Download' to save your high-resolution 32-bit transparent PNG cutout with alpha channel, ready for e-commerce, logos, or passport photos."
-      }
+      { "title": "Choose a Processing Mode", "desc": "Pick Fast for smaller on-device input, Browser Quality for local processing, or Cloudflare AI for cloud-based foreground removal. Cloudflare requires explicit consent before upload." },
+      { "title": "Select a JPG, PNG or WebP Photo", "desc": "Choose your image. Cloudflare AI accepts images up to 10MB; browser modes have different device-dependent performance and limits." },
+      { "title": "Remove and Preview the Background", "desc": "Start Cloudflare processing after consenting, or use a browser mode. Check transparent edges with the before-and-after slider and alternate preview backgrounds." },
+      { "title": "Download the Transparent PNG", "desc": "Save your result as a transparent PNG and check the displayed original and output pixel dimensions and file sizes." }
     ],
     "faq": [
-      {
-        "question": "How do I remove the background from an image for free?",
-        "answer": "Upload your photo into Zubware Background Remover. The browser-based AI model detects the foreground subject automatically and erases the background without requiring account sign-up, subscriptions, or watermarks. Once processing finishes, click 'Download' to get your transparent PNG."
-      },
-      {
-        "question": "Is my photo uploaded to an external server or cloud service?",
-        "answer": "No. Zubware's background removal engine runs 100% locally in your browser memory via WebAssembly and client-side machine learning. Your confidential photos, portraits, and product mockups never leave your device."
-      },
-      {
-        "question": "Does the downloaded image have a real transparent background?",
-        "answer": "Yes. The exported file is a true 32-bit PNG image with an alpha transparency channel (RGBA). You can place the cutout over website headers, marketing flyers, colored backdrops, or e-commerce white backgrounds without edge halos."
-      },
-      {
-        "question": "What types of photos yield the cleanest AI cutouts?",
-        "answer": "Photos with good contrast between the foreground subject and background, balanced lighting, and clear subject boundaries produce the cleanest results. Product photos, studio portraits, headshots, and animal photos work exceptionally well."
-      },
-      {
-        "question": "Can I use this tool to make white background passport photos?",
-        "answer": "Yes. Once the background is removed, you can switch the preview to white or take the transparent PNG into Zubware Passport & Visa Photo Maker to place it onto an official white or light grey passport backdrop."
-      },
-      {
-        "question": "What image formats and file size limits are supported?",
-        "answer": "Zubware supports JPG, JPEG, PNG, and WebP files up to 20MB. For maximum speed on mobile devices, photos between 1MB and 5MB process in under 3 to 5 seconds."
-      },
-      {
-        "question": "Why do fine hair strands or sheer fabrics sometimes show slight artifacts?",
-        "answer": "Semi-transparent fabrics and flyaway hair blend foreground and background pixels at high optical frequencies. If slight fringing occurs, previewing against a matching solid backdrop or increasing source image resolution helps minimize edge artifacts."
-      },
-      {
-        "question": "Can I remove backgrounds on mobile phones without installing an app?",
-        "answer": "Yes. Zubware is fully mobile-responsive and works directly inside Chrome, Safari, and Firefox on iPhone, iPad, and Android without downloading any app or software."
-      }
+      { "question": "How can I remove a photo background online for free?", "answer": "Open Zubware Background Remover, select a browser or Cloudflare AI processing mode, choose a JPG, PNG or WebP photo, then download the transparent PNG result. No account is required." },
+      { "question": "Does Zubware upload my photo to the cloud?", "answer": "It depends on your mode. Fast and Browser Quality process photos locally in your browser. Cloudflare AI uploads the selected photo to Cloudflare only after you give consent and start processing. Avoid uploading sensitive photos." },
+      { "question": "What is the difference between Fast, Browser Quality and Cloudflare AI?", "answer": "Fast reduces input size for potentially quicker local processing, which may reduce fine detail. Browser Quality runs locally with a larger input and depends on device performance. Cloudflare AI processes the photo online and requires an upload; processing speed and edge quality vary by image." },
+      { "question": "What files can I use with Cloudflare AI background removal?", "answer": "Cloudflare AI mode supports JPG, PNG and WebP images up to 10MB. Browser modes may handle larger photos, but performance depends on available memory and device capabilities." },
+      { "question": "Will the downloaded background be transparent?", "answer": "The result is exported as a PNG with transparency. Use the checkerboard preview or switch to a solid preview color to inspect edges before downloading." },
+      { "question": "Will my output image keep the original resolution?", "answer": "Not always. Output dimensions depend on the selected processing mode and service. Zubware displays both original and output pixel dimensions and file sizes so you can compare them." },
+      { "question": "Is Cloudflare AI faster or better than browser processing?", "answer": "Not necessarily. Cloudflare AI avoids running the local segmentation model on your phone, but upload time, network speed, server processing and image complexity can affect the result. Compare modes for your photo." },
+      { "question": "Can I use Zubware Background Remover on Android or iPhone?", "answer": "Yes. The tool works in modern mobile browsers without requiring a separate app. For local processing, device memory and browser capabilities can affect speed." }
     ]
   },
   "image-compressor": {

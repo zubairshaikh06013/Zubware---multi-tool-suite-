@@ -1,9 +1,19 @@
 import assert from 'node:assert/strict';
+import { hasNoindexRobotsMeta } from './validateSeoBuild';
 import { calendarAge, calendarAnniversary } from '../src/lib/calendarAge';
 import { formatSubtitleTimestamp } from '../src/lib/subtitleTiming';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
 import { TOOLS_DATA } from '../src/data/toolsData';
 import { BLOG_ARTICLES } from '../src/data/blogArticles';
+
+for (const [html, expected] of [
+  ['<meta name="robots" content="noindex,follow">', true],
+  ['<meta content="noindex" name="robots">', true],
+  ['<meta name="googlebot" content="NOINDEX, NOFOLLOW">', true],
+  ['<meta name="robots" content="index,follow">', false],
+  ['<meta name="description" content="noindex">', false],
+  ['<p>noindex</p>', false],
+] as const) assert.equal(hasNoindexRobotsMeta(html), expected, html);
 
 const date = (value: string) => new Date(`${value}T00:00:00`);
 for (const [birth, target, expected] of [

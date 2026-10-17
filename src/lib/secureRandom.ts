@@ -20,7 +20,10 @@ export function passwordPool(options: { upper: boolean; lower: boolean; numbers:
 
 export function generateRandomPassword(length: number, pool: string): string {
   if (!pool || !Number.isSafeInteger(length) || length < 1 || length > 256) throw new Error('Choose a valid length and at least one available character');
-  return Array.from({ length }, () => pool[secureRandomIndex(pool.length)]).join('');
+  // Deduplicate caller-provided characters so repeated entries cannot bias output.
+  // Array.from also preserves full Unicode code points rather than splitting surrogate pairs.
+  const characters = [...new Set(Array.from(pool))];
+  return Array.from({ length }, () => characters[secureRandomIndex(characters.length)]).join('');
 }
 
 export function randomPasswordEntropy(length: number, poolSize: number): number {

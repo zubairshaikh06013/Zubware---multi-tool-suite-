@@ -16,6 +16,7 @@ import {
   Zap
 } from 'lucide-react';
 import { processBackgroundRemoval, BackgroundRemovalResult, BackgroundRemovalMode } from '../../../lib/backgroundRemoval';
+import { processCloudflareBackgroundRemoval } from '../../../lib/cloudflareBackgroundRemoval';
 import { formatBytes } from '../../../lib/imageUtils';
 import { getLinkUrl } from '../../../lib/paths';
 
@@ -40,7 +41,8 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [largeFileWarning, setLargeFileWarning] = useState<boolean>(false);
 
-  const [processingMode, setProcessingMode] = useState<BackgroundRemovalMode>('quality');
+  const [processingMode, setProcessingMode] = useState<BackgroundRemovalMode | 'cloudflare'>('quality');
+  const [cloudflareConsent, setCloudflareConsent] = useState(false);
 
   // Result state
   const [result, setResult] = useState<BackgroundRemovalResult | null>(null);
@@ -92,8 +94,8 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
     previewUrlRef.current = origUrl;
     setOriginalPreviewUrl(origUrl);
 
-    // Trigger AI background removal
-    runRemoval(file);
+    // Browser mode remains automatic. Cloudflare uploads require a separate explicit click.
+    if (processingMode !== 'cloudflare') runRemoval(file);
   }, [onShowToast]);
 
   // Execute AI Background Removal
@@ -105,11 +107,17 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
     setErrorMessage(null);
 
     try {
-      const res = await processBackgroundRemoval(fileToProcess, (prog) => {
+      if (processingMode === 'cloudflare' && !cloudflareConsent) {
+        throw new Error('Please agree to upload this photo to Cloudflare before starting.');
+      }
+      const onProgress = (prog: { stage: string; percent: number }) => {
         if (requestId !== requestIdRef.current) return;
         setProcessingStage(prog.stage);
         setProgressPercent(prog.percent);
-      }, processingMode);
+      };
+      const res = processingMode === 'cloudflare'
+        ? await processCloudflareBackgroundRemoval(fileToProcess, onProgress)
+        : await processBackgroundRemoval(fileToProcess, onProgress, processingMode);
 
       if (requestId !== requestIdRef.current) {
         URL.revokeObjectURL(res.url);
@@ -169,6 +177,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
     setLargeFileWarning(false);
     setProgressPercent(0);
     setViewMode('result');
+    setCloudflareConsent(false);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -236,7 +245,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
         <div className="flex items-center gap-2.5">
           <Lock className="w-4 h-4 text-indigo-600 dark:text-indigo-400 shrink-0" />
           <p className="font-medium">
-            <strong className="font-bold">🔒 Private & Local:</strong> Processed locally in your browser. Files are not uploaded to Zubware servers.
+            <strong className="font-bold">{processingMode === 'cloudflare' ? '☁️ Cloudflare AI:' : '🔒 Private & Local:'}</strong> {processingMode === 'cloudflare' ? 'Only when you press Remove Background, your selected image is uploaded to Cloudflare for AI processing. Do not use private photos.' : 'Browser Fast and Quality modes process locally. Your files are not uploaded to Zubware servers.'}
           </p>
         </div>
       </div>
@@ -250,10 +259,20 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
           </label>
           <label className="flex items-center gap-2 text-sm cursor-pointer">
             <input type="radio" name="bg-removal-mode" checked={processingMode === 'quality'} onChange={() => setProcessingMode('quality')} />
-            ✨ Quality — original input (recommended)
+            ✨ Browser Quality — local processing
+          </label>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input type="radio" name="bg-removal-mode" checked={processingMode === 'cloudflare'} onChange={() => setProcessingMode('cloudflare')} />
+            ☁️ Cloudflare AI — online processing (10 MB max)
           </label>
         </div>
-        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Both modes use the stable AI model. Fast mode can reduce detail on large images; processing time depends on your phone. Output resolution may differ from the original.</p>
+        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Browser modes run locally; Fast may reduce detail. Cloudflare AI uploads your photo only after you explicitly consent and start processing. Results and processing time vary.</p>
+        {processingMode === 'cloudflare' && (
+          <label className="mt-3 flex items-start gap-2 text-sm text-slate-700 dark:text-slate-200">
+            <input type="checkbox" checked={cloudflareConsent} onChange={e => setCloudflareConsent(e.target.checked)} className="mt-1" />
+            <span>I agree to upload my selected photo to Cloudflare for background removal. I will not upload sensitive images.</span>
+          </label>
+        )}
       </fieldset>
 
       {/* ========================================================
@@ -291,7 +310,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
             Remove Image Background
           </h2>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 max-w-md leading-relaxed">
-            Upload an image and automatically remove its background with browser AI. Download transparent PNGs instantly.
+            {processingMode === 'cloudflare' ? 'Choose a photo, then confirm upload to Cloudflare AI. Download a transparent PNG.' : 'Upload an image and automatically remove its background with browser AI. Download transparent PNGs.'}
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
@@ -310,12 +329,21 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
               <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Supported: JPG, PNG, WEBP
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Max size: 20 MB
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Max size: {processingMode === 'cloudflare' ? '10 MB' : '20 MB'}
             </span>
             <span className="flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> Automatic In-Browser AI
+              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" /> {processingMode === 'cloudflare' ? 'Cloudflare AI after consent' : 'Automatic In-Browser AI'}
             </span>
           </div>
+        </div>
+      )}
+
+      {selectedFile && processingMode === 'cloudflare' && !isProcessing && !result && (
+        <div className="rounded-2xl border border-indigo-200 dark:border-indigo-800 p-4 space-y-3">
+          <p className="text-sm text-slate-700 dark:text-slate-200">Selected: {selectedFile.name} ({formatBytes(selectedFile.size)}). Your photo stays on this device until you start.</p>
+          <button type="button" disabled={!cloudflareConsent || selectedFile.size > 10 * 1024 * 1024} onClick={() => runRemoval(selectedFile)} className="rounded-xl bg-indigo-600 px-5 py-3 text-white font-bold disabled:opacity-50 disabled:cursor-not-allowed">Remove Background with Cloudflare AI</button>
+          {selectedFile.size > 10 * 1024 * 1024 && <p className="text-xs text-red-600">Cloudflare AI supports files up to 10 MB. Choose a smaller photo or switch to Browser mode.</p>}
+          <button type="button" onClick={handleReset} className="ml-3 text-sm underline text-slate-600 dark:text-slate-300">Choose another photo</button>
         </div>
       )}
 
@@ -336,7 +364,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
               {processingStage}
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
-              Running browser AI segmentation model. This might take a few seconds...
+              {processingMode === 'cloudflare' ? 'Uploading and processing with Cloudflare AI...' : 'Running browser AI segmentation model. This might take a few seconds...'}
             </p>
           </div>
 
@@ -349,7 +377,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
               ></div>
             </div>
             <div className="flex justify-between text-[11px] text-slate-400 font-medium">
-              <span>Client-side AI</span>
+              <span>{processingMode === 'cloudflare' ? 'Cloudflare AI' : 'Client-side AI'}</span>
               <span>{progressPercent}%</span>
             </div>
           </div>

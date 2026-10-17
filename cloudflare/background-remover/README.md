@@ -1,0 +1,7 @@
+# Optional Cloudflare background-removal Worker (not live)
+
+Cloudflare Images supports `segment: 'foreground'` using BiRefNet. It is billed under Images **transformations**, not Workers AI neurons. The Images Free plan includes **5,000 unique transformations/month** as of October 2026; limits and availability may change. Cloudflare documentation: https://developers.cloudflare.com/images/optimization/features/ and https://developers.cloudflare.com/images/pricing/.
+
+This is a standalone **proof-of-integration**, deliberately not connected to the existing browser Background Remover. It requires Cloudflare account access and an Images binding. Before deploying, configure a proper per-client rate limit, bot protection, and a conservative quota. CORS Origin checks do **not** prevent non-browser requests or abuse. Images are sent to Cloudflare for processing; update the tool privacy notice and consent UX before enabling it.
+
+From this folder, with Wrangler installed and authenticated, run `npx wrangler deploy`. Do **not** deploy publicly without abuse protection and user privacy disclosure. Test with `curl -X POST -H 'Content-Type: image/jpeg' --data-binary @photo.jpg https://YOUR-WORKER/remove-background --output result.png`. Confirm Cloudflare Images billing and PNG alpha, mobile quality, latency, and monthly usage before integrating with the Zubware UI. Do not put account tokens in GitHub.

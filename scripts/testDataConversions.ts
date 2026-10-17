@@ -19,6 +19,10 @@ for (const invalidDelimiter of ['', '||', '"', '\n', '\r']) {
   assert.throws(() => serializeCsv([['a', 'b']], invalidDelimiter), /delimiter/);
 }
 assert.deepEqual(parseCsv(serializeCsv([['a|b', 'c']], '|'), '|'), [['a|b', 'c']]);
+assert.throws(() => serializeCsv([[]]), /at least one field/);
+assert.throws(() => serializeCsv([['valid'], []]), /at least one field/);
+assert.equal(serializeCsv([]), '');
+assert.deepEqual(parseCsv(serializeCsv([['']])), [['']]);
 const cells=[[' a ','b\rc','quote"','line\nline'],['x,y','','00012','9223372036854775807']];
 assert.deepEqual(parseCsv(serializeCsv(cells)),cells);
 for(const invalid of ['a,b\n"unfinished','a,b\n"closed"junk,2','a,b\none"two,3']) assert.throws(()=>parseCsv(invalid));

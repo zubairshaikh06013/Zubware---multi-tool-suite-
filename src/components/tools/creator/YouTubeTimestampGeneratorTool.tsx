@@ -34,7 +34,7 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
   // Reject malformed timestamps rather than silently sorting them as 00:00.
   const timeToSeconds = (timeStr: string): number | null => {
     const value = timeStr.trim();
-    if (!/^(?:\\d+:)?\\d{1,2}:\\d{2}$/.test(value)) return null;
+    if (!/^(?:\d+:)?\d{1,2}:\d{2}$/.test(value)) return null;
     const parts = value.split(':').map(Number);
     if (parts.some(part => !Number.isSafeInteger(part)) || parts.slice(1).some(part => part >= 60)) return null;
     if (parts.length === 2 && parts[0] >= 60) return null;

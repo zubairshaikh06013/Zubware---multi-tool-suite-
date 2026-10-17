@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import {
   Scissors,
   Download,
@@ -49,6 +49,16 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
   const [sliderPosition, setSliderPosition] = useState<number>(50);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const requestIdRef = useRef(0);
+  const previewUrlRef = useRef<string | null>(null);
+  const resultUrlRef = useRef<string | null>(null);
+
+  // Revoke generated URLs on replacement and unmount to avoid retaining image blobs.
+  useEffect(() => () => {
+    requestIdRef.current += 1;
+    if (previewUrlRef.current) URL.revokeObjectURL(previewUrlRef.current);
+    if (resultUrlRef.current) URL.revokeObjectURL(resultUrlRef.current);
+  }, []);
 
   // Handle file selection
   const handleFileSelect = useCallback((file: File) => {
@@ -67,12 +77,17 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
       onShowToast('File size exceeds recommended 20 MB limit. Processing may be slow or fail on mobile.');
     }
 
+    requestIdRef.current += 1;
+    if (previewUrlRef.current) URL.revokeObjectURL(previewUrlRef.current);
+    if (resultUrlRef.current) URL.revokeObjectURL(resultUrlRef.current);
+    resultUrlRef.current = null;
     setLargeFileWarning(file.size > 15 * 1024 * 1024);
     setSelectedFile(file);
     setErrorMessage(null);
     setResult(null);
 
     const origUrl = URL.createObjectURL(file);
+    previewUrlRef.current = origUrl;
     setOriginalPreviewUrl(origUrl);
 
     // Trigger AI background removal
@@ -81,6 +96,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
 
   // Execute AI Background Removal
   const runRemoval = async (fileToProcess: File) => {
+    const requestId = requestIdRef.current;
     setIsProcessing(true);
     setProgressPercent(5);
     setProcessingStage('Preparing AI background remover...');
@@ -88,14 +104,21 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
 
     try {
       const res = await processBackgroundRemoval(fileToProcess, (prog) => {
+        if (requestId !== requestIdRef.current) return;
         setProcessingStage(prog.stage);
         setProgressPercent(prog.percent);
       });
 
+      if (requestId !== requestIdRef.current) {
+        URL.revokeObjectURL(res.url);
+        return;
+      }
+      resultUrlRef.current = res.url;
       setResult(res);
       setIsProcessing(false);
       onShowToast('✓ Background removed successfully!');
     } catch (err: any) {
+      if (requestId !== requestIdRef.current) return;
       console.error('Background removal error:', err);
       setIsProcessing(false);
       setErrorMessage(
@@ -130,8 +153,11 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
 
   // Reset tool
   const handleReset = () => {
-    if (originalPreviewUrl) URL.revokeObjectURL(originalPreviewUrl);
-    if (result?.url) URL.revokeObjectURL(result.url);
+    requestIdRef.current += 1;
+    if (previewUrlRef.current) URL.revokeObjectURL(previewUrlRef.current);
+    if (resultUrlRef.current) URL.revokeObjectURL(resultUrlRef.current);
+    previewUrlRef.current = null;
+    resultUrlRef.current = null;
 
     setSelectedFile(null);
     setOriginalPreviewUrl(null);

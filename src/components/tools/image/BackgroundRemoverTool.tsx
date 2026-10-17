@@ -283,7 +283,6 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
           onDragOver={handleDragOver}
           onDragLeave={handleDragLeave}
           onDrop={handleDrop}
-          onClick={() => fileInputRef.current?.click()}
           className={`relative group border-2 border-dashed rounded-3xl p-8 sm:p-14 text-center cursor-pointer transition-all duration-300 flex flex-col items-center justify-center min-h-[320px] ${
             dragActive
               ? 'border-indigo-600 bg-indigo-50/80 dark:bg-indigo-950/50 scale-[1.01]'
@@ -299,7 +298,8 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
                 handleFileSelect(e.target.files[0]);
               }
             }}
-            className="hidden"
+            aria-label="Choose an image to remove its background"
+            className="absolute inset-0 z-10 h-full w-full cursor-pointer opacity-0"
           />
 
           <div className="w-16 h-16 sm:w-20 sm:h-20 mb-5 rounded-2xl bg-indigo-100 dark:bg-indigo-900/50 flex items-center justify-center text-indigo-600 dark:text-indigo-400 group-hover:scale-110 transition-transform shadow-inner">
@@ -314,13 +314,12 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
           </p>
 
           <div className="mt-6 flex flex-col sm:flex-row items-center gap-3">
-            <button
-              type="button"
+            <span
               className="py-3 px-6 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm shadow-lg shadow-indigo-600/25 transition-all flex items-center gap-2"
             >
               <FileImage className="w-4 h-4" />
               <span>Browse Image</span>
-            </button>
+            </span>
             <span className="text-xs text-slate-400 font-medium">or drag & drop here</span>
           </div>
 

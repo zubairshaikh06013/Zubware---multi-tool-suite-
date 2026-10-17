@@ -38,6 +38,8 @@ export function validateSeoBuild(distDir: string): void {
   const incoming = new Set<string>();
   const brokenInternalLinks = new Set<string>();
   const sitemapPaths = new Set(urls.map(url => new URL(url).pathname.replace(/\/$/, '') || '/'));
+  // The signed-in dashboard is an intentionally non-indexable client-side route.
+  const nonIndexableAppRoutes = new Set(['/dashboard']);
   if (!urls.length || new Set(urls).size !== urls.length) errors.push('Sitemap is empty or contains duplicate URLs');
   const capture = (html: string, pattern: RegExp) => [...html.matchAll(pattern)].map(m => m[1]);
   for (const url of urls) {
@@ -74,7 +76,7 @@ export function validateSeoBuild(distDir: string): void {
         if (link.origin === SITE_ORIGIN && link.pathname !== parsed.pathname) {
           const normalizedPath = link.pathname.replace(/\/$/, '') || '/';
           if (sitemapPaths.has(normalizedPath)) incoming.add(normalizedPath);
-          else if (!/\.[a-z0-9]+$/i.test(normalizedPath)) brokenInternalLinks.add(`${url} -> ${link.pathname}`);
+          else if (!nonIndexableAppRoutes.has(normalizedPath) && !/\.[a-z0-9]+$/i.test(normalizedPath)) brokenInternalLinks.add(`${url} -> ${link.pathname}`);
         }
       } catch { errors.push(`Invalid link on ${url}: ${href}`); }
     }

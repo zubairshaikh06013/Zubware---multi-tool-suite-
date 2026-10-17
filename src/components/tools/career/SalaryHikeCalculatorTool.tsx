@@ -24,12 +24,12 @@ export const SalaryHikeCalculatorTool: React.FC<SalaryHikeCalculatorToolProps> =
   const [copied, setCopied] = useState<boolean>(false);
 
   // Forward calculations (Current + Offered -> Hike %)
-  const absoluteIncreaseForward = Math.max(0, offeredCtc - currentCtc);
+  const absoluteIncreaseForward = offeredCtc - currentCtc;
   const percentageHikeForward = currentCtc > 0 ? (absoluteIncreaseForward / currentCtc) * 100 : 0;
   
   // Reverse calculations (Current + Target % -> Target Offered CTC)
   const targetOfferedCtc = Math.round(currentCtc * (1 + desiredHikePct / 100));
-  const absoluteIncreaseReverse = Math.max(0, targetOfferedCtc - currentCtc);
+  const absoluteIncreaseReverse = targetOfferedCtc - currentCtc;
 
   // Active metrics based on active mode
   const effectiveOffered = calcMode === 'forward' ? offeredCtc : targetOfferedCtc;
@@ -37,7 +37,7 @@ export const SalaryHikeCalculatorTool: React.FC<SalaryHikeCalculatorToolProps> =
   const effectivePct = calcMode === 'forward' ? percentageHikeForward : desiredHikePct;
 
   // Real purchasing power hike after inflation
-  const realHikePct = Math.max(-100, effectivePct - inflationRate);
+  const realHikePct = ((1 + effectivePct / 100) / (1 + inflationRate / 100) - 1) * 100;
 
   // Granular increments
   const monthlyCurrent = Math.round(currentCtc / 12);
@@ -68,13 +68,13 @@ Current Annual Compensation: ${currency.symbol}${currentCtc.toLocaleString()}
 New Offered Compensation: ${currency.symbol}${effectiveOffered.toLocaleString()}
 
 Hike Metrics:
-- Absolute Annual Increment: +${currency.symbol}${effectiveIncrease.toLocaleString()}
-- Percentage Hike: +${effectivePct.toFixed(1)}%
-- Inflation Adjusted (Real) Hike: +${realHikePct.toFixed(1)}% (at ${inflationRate}% inflation)
+- Absolute Annual Change: ${effectiveIncrease < 0 ? '-' : '+'}${currency.symbol}${Math.abs(effectiveIncrease).toLocaleString()}
+- Percentage Change: ${effectivePct.toFixed(1)}%
+- Inflation Adjusted (Real) Change: ${realHikePct.toFixed(1)}% (at ${inflationRate}% inflation)
 - Appraisal Verdict: ${verdict.label}
 
 Cashflow Bump Breakdown:
-- Monthly Increase: +${currency.symbol}${monthlyDiff.toLocaleString()} / month
+- Monthly Change: ${monthlyDiff < 0 ? '-' : '+'}${currency.symbol}${Math.abs(monthlyDiff).toLocaleString()} / month
 - Bi-weekly Increase: +${currency.symbol}${biweeklyDiff.toLocaleString()} / 2 weeks
 - Weekly Increase: +${currency.symbol}${weeklyDiff.toLocaleString()} / week
 - Hourly Rate Bump: +${currency.symbol}${hourlyDiff} / hour
@@ -149,8 +149,8 @@ Generated with Zubware Salary Hike Calculator`;
               {calcMode === 'forward' ? 'Calculated Raise Percentage' : 'Target Counter-Offer Package'}
             </span>
             <div className="text-4xl sm:text-5xl font-black tracking-tight text-white flex items-baseline gap-2">
-              <span>+{effectivePct.toFixed(1)}%</span>
-              <span className="text-lg font-bold text-emerald-300">Raise</span>
+              <span>{effectivePct > 0 ? '+' : ''}{effectivePct.toFixed(1)}%</span>
+              <span className="text-lg font-bold text-emerald-300">Change</span>
             </div>
             <p className="text-xs sm:text-sm text-slate-300">
               +{currency.symbol}{effectiveIncrease.toLocaleString()} Annual Increase ({currency.symbol}{monthlyDiff.toLocaleString()}/mo)
@@ -187,7 +187,7 @@ Generated with Zubware Salary Hike Calculator`;
           </div>
 
           <div className="font-extrabold text-emerald-300">
-            Real Purchasing Power Hike: +{realHikePct.toFixed(1)}%
+            Real Purchasing Power Change: {realHikePct.toFixed(1)}%
           </div>
         </div>
       </div>

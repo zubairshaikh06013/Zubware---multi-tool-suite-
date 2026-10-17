@@ -39,7 +39,7 @@ export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps>
 
   // Settings
   const [weekendScheme, setWeekendScheme] = useState<'standard' | 'sunday_only' | 'mideast' | 'four_day'>('standard');
-  const [holidaysCount, setHolidaysCount] = useState<number>(5);
+  const [holidaysCount, setHolidaysCount] = useState<number>(0);
   const [hoursPerDay, setHoursPerDay] = useState<number>(8);
   const [hourlyRate, setHourlyRate] = useState<number>(65);
   const [copied, setCopied] = useState<boolean>(false);
@@ -75,7 +75,9 @@ export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps>
     }
   }
 
-  const netWorkingDaysBetween = Math.max(0, workingDaysBetween - holidaysCount);
+  // Only count holidays that would otherwise be working days. Never subtract more than exist.
+  const appliedHolidays = Math.min(workingDaysBetween, holidaysCount);
+  const netWorkingDaysBetween = workingDaysBetween - appliedHolidays;
   const totalHoursBetween = netWorkingDaysBetween * hoursPerDay;
   const projectedRevenueBetween = totalHoursBetween * hourlyRate;
 
@@ -109,7 +111,7 @@ export const WorkingDaysCalculatorTool: React.FC<WorkingDaysCalculatorToolProps>
 Date Range: ${startDate} to ${endDate}
 Total Calendar Days: ${totalCalendarDaysBetween} days
 Weekend Days: ${weekendDaysBetween} days
-Public Holidays: ${holidaysCount} days
+Additional Non-Weekend Holidays Excluded: ${appliedHolidays} days
 --------------------------------------
 👉 Net Working Business Days: ${netWorkingDaysBetween} days
 Total Billable Hours: ${totalHoursBetween.toLocaleString()} hours (@ ${hoursPerDay} hrs/day)
@@ -195,7 +197,7 @@ Calculated on Zubware`;
             </div>
             <p className="text-xs sm:text-sm text-indigo-200/80">
               {calcMode === 'between'
-                ? `Out of ${totalCalendarDaysBetween} total calendar days (${weekendDaysBetween} weekend days, ${holidaysCount} holidays excluded)`
+                ? `Out of ${totalCalendarDaysBetween} total calendar days (${weekendDaysBetween} weekend days, ${appliedHolidays} additional non-weekend holidays excluded)`
                 : `Takes ${calendarDaysAdded} calendar days to complete ${daysToAdd} working days`}
             </p>
           </div>
@@ -276,7 +278,7 @@ Calculated on Zubware`;
           {/* Holiday counts can be subtracted from a fixed range, but cannot identify which future dates to skip. */}
           {calcMode === 'between' && <div className="space-y-1.5">
             <div className="flex justify-between text-xs font-bold text-slate-700 dark:text-slate-300">
-              <span>Public Holidays in Period</span>
+              <span>Holidays on Working Days</span>
               <span className="text-indigo-600 font-extrabold">{holidaysCount} Days</span>
             </div>
             <input
@@ -300,6 +302,7 @@ Calculated on Zubware`;
                 </button>
               ))}
             </div>
+            <p className="text-[11px] text-slate-500 dark:text-slate-400 leading-relaxed">Enter only holidays that fall on scheduled working days within this range. Weekend holidays are already excluded. No holidays are assumed by default; the calculator does not look up a country’s holiday calendar.</p>
           </div>}
         </div>
 

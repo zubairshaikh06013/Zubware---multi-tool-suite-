@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Search, Moon, Sun, ChevronDown, Wrench, Globe, Menu, X, Home, LayoutDashboard, Grid, BookOpen } from 'lucide-react';
 import { getTranslatedTools } from '../data/toolsData';
 import { SUPPORTED_LANGUAGES, LanguageCode } from '../lib/i18n';
@@ -32,7 +32,12 @@ export const Header: React.FC<HeaderProps> = ({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
 
-  const translatedTools = getTranslatedTools(currentLang);
+  // Avoid translating the entire 300+ tool directory on every header render.
+  // The desktop menu is hidden by default, so defer the work until it opens.
+  const translatedTools = useMemo(
+    () => toolsDropdownOpen ? getTranslatedTools(currentLang) : [],
+    [currentLang, toolsDropdownOpen]
+  );
   const activeLangObj = SUPPORTED_LANGUAGES.find(l => l.code === currentLang) || SUPPORTED_LANGUAGES[0];
   const isHomepage = currentPath === '/' || currentPath === '/index.html' || currentPath === '';
 

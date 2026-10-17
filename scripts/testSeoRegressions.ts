@@ -39,6 +39,29 @@ for (const [birth, target, expected] of [
   assert.ok(age);
   assert.deepEqual([age.years, age.months, age.days], expected, `${birth} to ${target}`);
 }
+// Calendar arithmetic must remain correct across every month end, leap year and year boundary.
+for (const year of [1900, 2000, 2024, 2025, 2026, 2100]) {
+  for (let month = 0; month < 12; month++) {
+    const monthEnd = new Date(year, month + 1, 0).getDate();
+    for (const day of [1, 15, monthEnd]) {
+      const birth = new Date(year, month, day);
+      const sameDay = calendarAge(birth, birth);
+      assert.deepEqual(sameDay && [sameDay.years, sameDay.months, sameDay.days, sameDay.totalDays], [0, 0, 0, 0]);
+      const nextDay = new Date(year, month, day + 1);
+      const ageNext = calendarAge(birth, nextDay);
+      assert.ok(ageNext && ageNext.totalDays === 1 && ageNext.days === 1);
+      const nextMonth = calendarAnniversary(birth, year, month + 1);
+      const oneMonth = calendarAge(birth, nextMonth);
+      assert.deepEqual(oneMonth && [oneMonth.years, oneMonth.months, oneMonth.days], [0, 1, 0]);
+      const nextYear = calendarAnniversary(birth, year + 1);
+      const oneYear = calendarAge(birth, nextYear);
+      assert.deepEqual(oneYear && [oneYear.years, oneYear.months, oneYear.days], [1, 0, 0]);
+    }
+  }
+}
+assert.equal(calendarAge(new Date('invalid'), date('2026-01-01')), null);
+assert.equal(calendarAge(date('2026-01-01'), new Date('invalid')), null);
+
 assert.equal(calendarAge(date('2025-01-01'), date('2024-01-01')), null);
 assert.equal(calendarAnniversary(date('2004-02-29'), 2025).getDate(), 28);
 assert.equal(formatSubtitleTimestamp(59.9999, ','), '00:01:00,000');

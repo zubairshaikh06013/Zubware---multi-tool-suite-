@@ -1,8 +1,8 @@
 /** Parse delimited text without splitting quoted multiline fields or coercing identifiers. */
 export function parseCsv(text: string, delimiter = ','): string[][] {
   if (delimiter.length !== 1 || /["\r\n]/.test(delimiter)) throw new Error('Choose a single valid delimiter.');
-  if (!text.trim()) return [];
   text = text.replace(/^\uFEFF/, '');
+  if (!text.length) return [];
   const rows: string[][] = [];
   let row: string[] = [], field = '', quoted = false, closed = false, touched = false;
   const cell = () => { row.push(field); field = ''; closed = false; };
@@ -29,7 +29,7 @@ export function parseCsv(text: string, delimiter = ','): string[][] {
   return rows;
 }
 export function serializeCsv(rows: string[][], delimiter = ','): string {
-  return rows.map(row => row.map(cell => /["\r\n]/.test(cell) || cell.includes(delimiter)
+  return rows.map(row => row.map(cell => /["\r\n]/.test(cell) || cell.includes(delimiter) || cell.trim() === ''
     ? `"${cell.replace(/"/g, '""')}"` : cell).join(delimiter)).join('\r\n');
 }
 export function csvObjects(text: string, delimiter = ',', inferTypes = false) {

@@ -18,8 +18,11 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
   const [copied, setCopied] = useState(false);
 
   const addChapter = () => {
-    const newId = String(Date.now());
-    setChapters([...chapters, { id: newId, time: '00:00', title: 'New Chapter' }]);
+    setChapters(previous => [...previous, {
+      id: crypto.randomUUID(),
+      time: '00:00',
+      title: 'New Chapter'
+    }]);
   };
 
   const removeChapter = (id: string) => {
@@ -36,8 +39,10 @@ export const YouTubeTimestampGeneratorTool: React.FC<{ onShowToast: (msg: string
     const value = timeStr.trim();
     if (!/^(?:\d+:)?\d{1,2}:\d{2}$/.test(value)) return null;
     const parts = value.split(':').map(Number);
-    if (parts.some(part => !Number.isSafeInteger(part)) || parts.slice(1).some(part => part >= 60)) return null;
-    if (parts.length === 2 && parts[0] >= 60) return null;
+    if (parts.some(part => !Number.isSafeInteger(part))) return null;
+    // MM:SS permits minutes above 59 (e.g. 75:30); HH:MM:SS does not.
+    if (parts.length === 2 && parts[1] >= 60) return null;
+    if (parts.length === 3 && (parts[1] >= 60 || parts[2] >= 60)) return null;
     return parts.reduce((seconds, part) => seconds * 60 + part, 0);
   };
 

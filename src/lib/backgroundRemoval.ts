@@ -92,53 +92,31 @@ export async function processBackgroundRemoval(
 
   // 3. Verify output dimensions & ensure original resolution preservation
   const resultImg = await loadImage(bgRemovedBlob);
-  const resWidth = resultImg.naturalWidth || resultImg.width;
-  const resHeight = resultImg.naturalHeight || resultImg.height;
-
-  let finalBlob: Blob = bgRemovedBlob;
-
-  // If the model resized the output (e.g. to inference tensor dimensions),
-  // transfer the alpha matte back onto the original high-resolution image.
-  if (resWidth > 0 && resHeight > 0 && (resWidth !== origWidth || resHeight !== origHeight)) {
-    const canvas = document.createElement('canvas');
-    canvas.width = origWidth;
-    canvas.height = origHeight;
-    const ctx = canvas.getContext('2d', { willReadFrequently: true });
-
-    const maskCanvas = document.createElement('canvas');
-    maskCanvas.width = origWidth;
-    maskCanvas.height = origHeight;
-    const maskCtx = maskCanvas.getContext('2d', { willReadFrequently: true });
-
-    if (ctx && maskCtx) {
-      // Draw original full-res image
-      ctx.drawImage(origImg, 0, 0, origWidth, origHeight);
-      const origData = ctx.getImageData(0, 0, origWidth, origHeight);
-
-      // Draw model output scaled to full resolution with smooth interpolation
-      maskCtx.imageSmoothingEnabled = true;
-      maskCtx.imageSmoothingQuality = 'high';
-      maskCtx.drawImage(resultImg, 0, 0, origWidth, origHeight);
-      const maskData = maskCtx.getImageData(0, 0, origWidth, origHeight);
-
-      // Apply alpha channel from mask to original full-res pixels
-      const len = origData.data.length;
-      for (let i = 0; i < len; i += 4) {
-        // Transfer alpha channel from mask
-        origData.data[i + 3] = maskData.data[i + 3];
-      }
-
-      ctx.putImageData(origData, 0, 0);
-
-      const highResBlob = await new Promise<Blob | null>((resolve) => {
-        canvas.toBlob((b) => resolve(b), 'image/png', 1.0);
-      });
-
-      if (highResBlob) {
-        finalBlob = highResBlob;
-      }
-    }
+  // Always retain the original RGB pixels, even if the model emits a 720p image.
+  // Canvas compositing uses the model output ONLY as an alpha mask and avoids
+  // two full-resolution getImageData() allocations and a JS per-pixel loop.
+  // This improves memory use and finalization time on mobile devices.
+  const canvas = document.createElement('canvas');
+  canvas.width = origWidth;
+  canvas.height = origHeight;
+  const ctx = canvas.getContext('2d');
+  if (!ctx || !origWidth || !origHeight) {
+    throw new Error('Unable to create a full-resolution image canvas on this device.');
   }
+
+  ctx.drawImage(origImg, 0, 0, origWidth, origHeight);
+  ctx.globalCompositeOperation = 'destination-in';
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
+  ctx.drawImage(resultImg, 0, 0, origWidth, origHeight);
+  ctx.globalCompositeOperation = 'source-over';
+
+  const finalBlob = await new Promise<Blob>((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error('Could not export full-resolution PNG. Try a smaller image.'));
+    }, 'image/png');
+  });
 
   const finalUrl = URL.createObjectURL(finalBlob);
   onProgress?.({ stage: 'Finalizing...', percent: 100 });

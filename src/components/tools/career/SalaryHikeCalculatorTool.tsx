@@ -49,16 +49,16 @@ export const SalaryHikeCalculatorTool: React.FC<SalaryHikeCalculatorToolProps> =
   const dailyDiff = Math.round(effectiveIncrease / 260); // 260 work days
   const hourlyDiff = (effectiveIncrease / 2080).toFixed(2); // 2,080 annual work hours
 
-  // Market Appraisal Verdict
-  const getVerdict = (pct: number) => {
-    if (pct >= 50) return { label: 'Exceptional Mega Hike', color: 'text-purple-500 bg-purple-500/10 border-purple-500/20', note: 'Top-tier career progression, typically seen in specialized tech or leadership pivots.' };
-    if (pct >= 30) return { label: 'Strong Career Jump', color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20', note: 'Significantly above standard inflation and well above annual retention benchmarks.' };
-    if (pct >= 15) return { label: 'Healthy Standard Increment', color: 'text-indigo-500 bg-indigo-500/10 border-indigo-500/20', note: 'Solid market-standard raise covering cost of living and merit performance.' };
-    if (pct >= 5) return { label: 'Modest / Cost of Living Raise', color: 'text-amber-500 bg-amber-500/10 border-amber-500/20', note: 'Covers average inflation; consider negotiating higher if taking on increased scope.' };
-    return { label: 'Below Market Benchmark', color: 'text-rose-500 bg-rose-500/10 border-rose-500/20', note: 'Below inflation rate; net real purchasing power may decline.' };
+  // Describe the calculated change without claiming unsupported market benchmarks.
+  const getVerdict = (pct: number, realPct: number) => {
+    if (pct < 0) return { label: 'Salary Decrease', color: 'text-rose-500 bg-rose-500/10 border-rose-500/20', note: 'The offered salary is lower than the current salary. Compare total compensation and benefits before deciding.' };
+    if (pct === 0) return { label: 'No Nominal Change', color: 'text-amber-500 bg-amber-500/10 border-amber-500/20', note: 'The nominal salary is unchanged. Inflation may still affect purchasing power.' };
+    if (realPct < 0) return { label: 'Raise Below Inflation', color: 'text-amber-500 bg-amber-500/10 border-amber-500/20', note: 'Your nominal pay increases, but purchasing power declines at the inflation rate entered above.' };
+    if (realPct === 0) return { label: 'Matches Inflation', color: 'text-indigo-500 bg-indigo-500/10 border-indigo-500/20', note: 'The raise approximately maintains purchasing power at the inflation rate entered above.' };
+    return { label: 'Raise Above Inflation', color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20', note: 'Your raise increases purchasing power at the inflation rate entered above. This is not a market salary benchmark.' };
   };
 
-  const verdict = getVerdict(effectivePct);
+  const verdict = getVerdict(effectivePct, realHikePct);
 
   const handleCopyReport = async () => {
     const report = `Zubware Salary Hike Appraisal Report
@@ -71,7 +71,7 @@ Hike Metrics:
 - Absolute Annual Change: ${effectiveIncrease < 0 ? '-' : '+'}${currency.symbol}${Math.abs(effectiveIncrease).toLocaleString()}
 - Percentage Change: ${effectivePct.toFixed(1)}%
 - Inflation Adjusted (Real) Change: ${realHikePct.toFixed(1)}% (at ${inflationRate}% inflation)
-- Appraisal Verdict: ${verdict.label}
+- Inflation Comparison: ${verdict.label}
 
 Cashflow Bump Breakdown:
 - Monthly Change: ${monthlyDiff < 0 ? '-' : '+'}${currency.symbol}${Math.abs(monthlyDiff).toLocaleString()} / month

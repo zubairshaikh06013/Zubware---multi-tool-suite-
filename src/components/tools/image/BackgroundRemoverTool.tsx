@@ -15,7 +15,7 @@ import {
   ShieldCheck,
   Zap
 } from 'lucide-react';
-import { processBackgroundRemoval, BackgroundRemovalResult } from '../../../lib/backgroundRemoval';
+import { processBackgroundRemoval, BackgroundRemovalResult, BackgroundRemovalMode } from '../../../lib/backgroundRemoval';
 import { formatBytes } from '../../../lib/imageUtils';
 import { getLinkUrl } from '../../../lib/paths';
 
@@ -39,6 +39,8 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
   const [progressPercent, setProgressPercent] = useState<number>(0);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [largeFileWarning, setLargeFileWarning] = useState<boolean>(false);
+
+  const [processingMode, setProcessingMode] = useState<BackgroundRemovalMode>('quality');
 
   // Result state
   const [result, setResult] = useState<BackgroundRemovalResult | null>(null);
@@ -107,7 +109,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
         if (requestId !== requestIdRef.current) return;
         setProcessingStage(prog.stage);
         setProgressPercent(prog.percent);
-      });
+      }, processingMode);
 
       if (requestId !== requestIdRef.current) {
         URL.revokeObjectURL(res.url);
@@ -238,6 +240,21 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
           </p>
         </div>
       </div>
+
+      <fieldset disabled={isProcessing} className="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 bg-white dark:bg-slate-900">
+        <legend className="px-2 text-sm font-bold text-slate-800 dark:text-slate-100">Processing mode</legend>
+        <div className="flex flex-wrap gap-3">
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input type="radio" name="bg-removal-mode" checked={processingMode === 'fast'} onChange={() => setProcessingMode('fast')} />
+            ⚡ Fast — smaller input for large photos
+          </label>
+          <label className="flex items-center gap-2 text-sm cursor-pointer">
+            <input type="radio" name="bg-removal-mode" checked={processingMode === 'quality'} onChange={() => setProcessingMode('quality')} />
+            ✨ Quality — original input (recommended)
+          </label>
+        </div>
+        <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Both modes use the stable AI model. Fast mode can reduce detail on large images; processing time depends on your phone. Output resolution may differ from the original.</p>
+      </fieldset>
 
       {/* ========================================================
           UPLOAD AREA (When no image is selected yet)

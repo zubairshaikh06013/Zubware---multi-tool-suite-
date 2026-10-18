@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import { ShieldAlert, ShieldCheck, Download, RefreshCw, Trash2, CheckCircle2 } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ShieldCheck, Download, RefreshCw, CheckCircle2 } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
-import { ImageFileInfoPanel } from './ImageFileInfoPanel';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
-import { getImageMetadata, stripExifFromImage, ImageMetadata, formatBytes } from '../../../lib/imageUtils';
-import { SEOHead } from '../../SEOHead';
-import { Breadcrumb } from '../../Breadcrumb';
-import { getLinkUrl } from '../../../lib/paths';
+import { stripExifFromImage, formatBytes } from '../../../lib/imageUtils';
+import { decodeBrowserImage } from '../../../lib/browserImageDecode';
+import { cleanedImageName, cleanedImagesZip } from '../../../lib/cleanImageExport';
 
 interface ExifRemoverToolProps {
   onShowToast: (msg: string) => void;
@@ -18,7 +16,6 @@ interface ExifCleanedResult {
   cleanedBlob: Blob;
   originalSize: number;
   newSize: number;
-  metadata: ImageMetadata;
 }
 
 export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, onNavigate }) => {
@@ -30,68 +27,69 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
   const [stage, setStage] = useState<ProcessingStage>('Reading Image');
   const [progress, setProgress] = useState<number>(0);
 
+  const generation = useRef(0), busy = useRef(false), zipping = useRef(false);
+  const [isZipping, setIsZipping] = useState(false);
+  useEffect(() => () => { generation.current++; }, []);
+  const reset = () => {
+    generation.current++; busy.current=false;zipping.current=false;
+    setErrors([]);setFiles([]);setResults([]);setIsProcessing(false);setIsZipping(false);setProgress(0);
+  };
   const handleImageSelected = async (selectedFiles: File[]) => {
-    if (!selectedFiles.length || isProcessing) return;
-    setFiles(selectedFiles);
-    setIsProcessing(true);
-    setErrors([]);
-    setStage('Reading Image');
-    setProgress(20);
-
-    setResults([]);
-    const list: ExifCleanedResult[] = [];
-    const failures: string[] = [];
+    if (!selectedFiles.length || busy.current) return;
+    reset();
+    const run=generation.current;
+    busy.current=true;setFiles(selectedFiles);setIsProcessing(true);setStage('Reading Image');
+    const list: ExifCleanedResult[] = [], failures: string[] = [];
     try {
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const file = selectedFiles[i];
-        const url = URL.createObjectURL(file);
+      for (let i=0;i<selectedFiles.length;i++) {
+        if(run!==generation.current) return;
+        const file=selectedFiles[i];let url='';
         try {
-          setStage('Analyzing');
-          const img = new Image();
-          await new Promise<void>((resolve, reject) => {
-            img.onload = () => resolve();
-            img.onerror = () => reject(new Error('Image could not be decoded.'));
-            img.src = url;
-          });
-          const metadata = await getImageMetadata(file, img);
+          setStage('Reading Image');
+          const decoded=await decodeBrowserImage(file);url=decoded.url;
+          if(run!==generation.current) return;
           setStage('Processing');
-          const cleaned = await stripExifFromImage(file);
-          list.push({file, ...cleaned, metadata});
-        } catch (error) {
-          failures.push(`${file.name}: ${error instanceof Error ? error.message : String(error)}`);
+          const cleaned=await stripExifFromImage(file,decoded.image);
+          if(run!==generation.current) return;
+          list.push({file,...cleaned});
+        } catch(cause) {
+          if(run!==generation.current) return;
+          failures.push(`${file.name}: ${cause instanceof Error?cause.message:'Unable to process image.'}`);
         } finally {
-          URL.revokeObjectURL(url);
-          setProgress(Math.round(((i + 1) / selectedFiles.length) * 100));
+          if(url) URL.revokeObjectURL(url);
+          if(run===generation.current) setProgress(Math.round((i+1)/selectedFiles.length*100));
         }
       }
-      setResults(list);
-      setErrors(failures);
-      setStage('Completed');
+      if(run!==generation.current) return;
+      setResults(list);setErrors(failures);setStage('Completed');
       onShowToast(`${list.length} image(s) processed; ${failures.length} failed.`);
-    } finally { setIsProcessing(false); }
+    } finally {if(run===generation.current){busy.current=false;setIsProcessing(false);}}
   };
 
+  const downloadBlob = (blob: Blob, name: string) => {
+    const url=URL.createObjectURL(blob),link=document.createElement('a');
+    link.download=name;link.href=url;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  };
   const handleDownloadItem = (res: ExifCleanedResult) => {
-    const url = URL.createObjectURL(res.cleanedBlob);
-    const link = document.createElement('a');
-    const baseName = res.file.name.substring(0, res.file.name.lastIndexOf('.')) || 'cleaned';
-    const ext = res.cleanedBlob.type === 'image/png' ? 'png' : 'jpg';
-    link.download = `${baseName}_no_exif.${ext}`;
-    link.href = url;
-    link.click();
-    URL.revokeObjectURL(url);
+    downloadBlob(res.cleanedBlob,cleanedImageName(res.file.name,res.cleanedBlob.type));
     onShowToast('Cleaned image downloaded!');
   };
-
-  const handleDownloadAll = () => {
-    results.forEach((res, idx) => {
-      setTimeout(() => handleDownloadItem(res), idx * 200);
-    });
+  const handleDownloadAll = async () => {
+    if(!results.length || zipping.current) return;
+    const run=generation.current;
+    zipping.current=true;setIsZipping(true);setErrors([]);
+    try {
+      const blob=await cleanedImagesZip(results.map(res=>({name:res.file.name,blob:res.cleanedBlob})));
+      if(run!==generation.current) return;
+      downloadBlob(blob,'cleaned_images.zip');onShowToast('Cleaned images ZIP downloaded!');
+    } catch(cause) {
+      if(run===generation.current) setErrors([cause instanceof Error?cause.message:'Unable to create ZIP.']);
+    } finally {if(run===generation.current){zipping.current=false;setIsZipping(false);}}
   };
 
   return (
     <div className="space-y-6">
-      <p className="text-xs text-slate-500">This tool redraws the image and exports a fresh PNG or JPEG. JPEG is re-encoded at 95% quality; this is not lossless header stripping. Check the downloaded image and its metadata before sharing.</p>
+      <p className="text-xs text-slate-500">This tool redraws decoded pixels without copying source metadata. JPEG inputs are re-encoded at 95% quality; other formats become PNG to preserve transparency. Animated inputs export a single still frame. This is not lossless header stripping. Check the exported metadata before sharing.</p>
       {errors.map((error, i) => <p key={i} role="alert" className="text-red-600">{error}</p>)}
       
 
@@ -148,12 +146,7 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
           <div className="flex items-center justify-between gap-4 p-6 rounded-3xl glass-panel">
             <button
               type="button"
-              disabled={isProcessing}
-              onClick={() => {
-                setErrors([]);
-                setFiles([]);
-                setResults([]);
-              }}
+              onClick={reset}
               className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
             >
               <RefreshCw className="w-3.5 h-3.5" /> Clean Another Image
@@ -163,9 +156,10 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
               <button
                 type="button"
                 onClick={handleDownloadAll}
+                disabled={isZipping}
                 className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer"
               >
-                <Download className="w-4 h-4" /> Download All Cleaned ({results.length})
+                <Download className="w-4 h-4" /> {isZipping ? 'Preparing ZIP…' : `Download All as ZIP (${results.length})`}
               </button>
             )}
           </div>

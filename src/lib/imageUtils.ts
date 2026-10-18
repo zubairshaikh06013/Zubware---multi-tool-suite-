@@ -14,6 +14,7 @@ export interface ImageMetadata {
 
 import { formatDecimalBytes } from './fileSizeStandard';
 import { encodeCanvasBlob } from './canvasEncoding';
+import { cleanedImageMime } from './cleanImageExport';
 
 export function formatBytes(bytes: number, decimals = 2): string {
   return formatDecimalBytes(bytes, decimals);
@@ -112,27 +113,19 @@ async function parseExifTags(file: File): Promise<Record<string, string>> {
   return tags;
 }
 
-export async function stripExifFromImage(file: File): Promise<{ cleanedBlob: Blob; originalSize: number; newSize: number }> {
-  const img = new Image();
-  const url = URL.createObjectURL(file);
-  try {
-    await new Promise<void>((resolve, reject) => {
-      img.onload = () => resolve();
-      img.onerror = () => reject(new Error('Failed to decode image.'));
-      img.src = url;
-    });
-    const w = img.naturalWidth, h = img.naturalHeight;
-    if (!w || !h || w > 16384 || h > 16384 || w * h > 32000000) throw new Error('Resize this image to at most 32 megapixels before processing.');
-    const canvas = document.createElement('canvas');
-    canvas.width = w; canvas.height = h;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) throw new Error('Failed to create canvas context.');
-    const mimeType = file.type === 'image/png' ? 'image/png' : 'image/jpeg';
-    if (mimeType === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h); }
-    ctx.drawImage(img, 0, 0);
-    const cleanedBlob = await encodeCanvasBlob(canvas, mimeType, 0.95);
-    return {cleanedBlob, originalSize: file.size, newSize: cleanedBlob.size};
-  } finally { URL.revokeObjectURL(url); }
+/** Redraw only the decoded pixels; source metadata is never copied into the new encoder. */
+export async function stripExifFromImage(file: File, img: HTMLImageElement): Promise<{ cleanedBlob: Blob; originalSize: number; newSize: number }> {
+  const w = img.naturalWidth, h = img.naturalHeight;
+  if (!w || !h || w > 16384 || h > 16384 || w * h > 32000000) throw new Error('Resize this image to at most 16,384 px per side and 32 megapixels before processing.');
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Failed to create canvas context.');
+  const mimeType = cleanedImageMime(file.type);
+  if (mimeType === 'image/jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, w, h); }
+  ctx.drawImage(img, 0, 0);
+  const cleanedBlob = await encodeCanvasBlob(canvas, mimeType, 0.95);
+  return {cleanedBlob, originalSize: file.size, newSize: cleanedBlob.size};
 }
 
 export function rgbToHex(r: number, g: number, b: number): string {

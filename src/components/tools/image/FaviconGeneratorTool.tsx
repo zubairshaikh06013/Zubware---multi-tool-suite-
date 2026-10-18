@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Copy, Check, Code, RefreshCw, FileArchive } from 'lucide-react';
-import JSZip from 'jszip';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageFileInfoPanel } from './ImageFileInfoPanel';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
@@ -8,7 +7,7 @@ import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
 import { decodeBrowserImage } from '../../../lib/browserImageDecode';
 import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
 import { imageResizeDimensions } from '../../../lib/imageResize';
-import { faviconImageRect, packPngIco, FAVICON_HEAD_HTML, FAVICON_MANIFEST } from '../../../lib/faviconPackage';
+import { faviconImageRect, createFaviconBundle, FAVICON_SIZES, FAVICON_HEAD_HTML } from '../../../lib/faviconPackage';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
 import { getLinkUrl } from '../../../lib/paths';
@@ -17,25 +16,6 @@ interface FaviconGeneratorToolProps {
   onShowToast: (msg: string) => void;
   onNavigate?: (path: string) => void;
 }
-
-interface FaviconSizeSpec {
-  size: number;
-  filename: string;
-  label: string;
-}
-
-const FAVICON_SIZES: FaviconSizeSpec[] = [
-  { size: 16, filename: 'favicon-16x16.png', label: '16x16 (Browser Tab)' },
-  { size: 32, filename: 'favicon-32x32.png', label: '32x32 (Desktop Shortcut)' },
-  { size: 48, filename: 'favicon-48x48.png', label: '48x48 (Windows Site Tile)' },
-  { size: 64, filename: 'favicon-64x64.png', label: '64x64 (High-DPI Tab)' },
-  { size: 96, filename: 'favicon-96x96.png', label: '96x96 (Google TV / App)' },
-  { size: 128, filename: 'favicon-128x128.png', label: '128x128 (Chrome Web Store)' },
-  { size: 180, filename: 'apple-touch-icon.png', label: '180x180 (Apple Touch Icon)' },
-  { size: 192, filename: 'android-chrome-192x192.png', label: '192x192 (PWA Android Icon)' },
-  { size: 256, filename: 'icon-256x256.png', label: '256x256 (PWA Android Icon)' },
-  { size: 512, filename: 'android-chrome-512x512.png', label: '512x512 (Splash Screen)' }
-];
 
 export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onShowToast, onNavigate }) => {
   const [file, setFile] = useState<File | null>(null);
@@ -118,15 +98,8 @@ export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onSh
     const run=generation.current, icons=blobs.current;
     busy.current=true;setIsProcessing(true);setError('');setStage('Preparing Download');setProgress(50);
     try {
-      const zip=new JSZip();
-      for(const spec of FAVICON_SIZES) zip.file(spec.filename,await icons[spec.filename].arrayBuffer());
-      const icoImages=await Promise.all([16,32,48].map(async size=>({size,png:new Uint8Array(await icons[`favicon-${size}x${size}.png`].arrayBuffer())})));
-      zip.file('favicon.ico',packPngIco(icoImages));
-      zip.file('site.webmanifest',JSON.stringify(FAVICON_MANIFEST,null,2));
-      zip.file('favicon-head.html',htmlHeadSnippet);
-      if(run!==generation.current) return;
       setStage('Compressing ZIP');setProgress(85);
-      const blob=await zip.generateAsync({type:'blob'});
+      const blob=await createFaviconBundle(icons);
       if(run!==generation.current) return;
       const url=URL.createObjectURL(blob),link=document.createElement('a');
       link.href=url;link.download='favicons_bundle.zip';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);

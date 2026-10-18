@@ -1,3 +1,24 @@
+import JSZip from 'jszip';
+
+interface FaviconSizeSpec {
+  size: number;
+  filename: string;
+  label: string;
+}
+
+export const FAVICON_SIZES: FaviconSizeSpec[] = [
+  { size: 16, filename: 'favicon-16x16.png', label: '16x16 (Browser Tab)' },
+  { size: 32, filename: 'favicon-32x32.png', label: '32x32 (Desktop Shortcut)' },
+  { size: 48, filename: 'favicon-48x48.png', label: '48x48 (Windows Site Tile)' },
+  { size: 64, filename: 'favicon-64x64.png', label: '64x64 (High-DPI Tab)' },
+  { size: 96, filename: 'favicon-96x96.png', label: '96x96 (Google TV / App)' },
+  { size: 128, filename: 'favicon-128x128.png', label: '128x128 (Chrome Web Store)' },
+  { size: 180, filename: 'apple-touch-icon.png', label: '180x180 (Apple Touch Icon)' },
+  { size: 192, filename: 'android-chrome-192x192.png', label: '192x192 (PWA Android Icon)' },
+  { size: 256, filename: 'icon-256x256.png', label: '256x256 (PWA Android Icon)' },
+  { size: 512, filename: 'android-chrome-512x512.png', label: '512x512 (Splash Screen)' }
+];
+
 /** Center the complete source inside a square icon without stretching it. */
 export function faviconImageRect(width: number, height: number, size: number) {
   if (![width,height,size].every(value=>Number.isFinite(value) && value>0)) throw new Error('Invalid icon dimensions.');
@@ -44,3 +65,18 @@ export const FAVICON_MANIFEST = {
   ],
   theme_color:'#ffffff',background_color:'#ffffff',display:'standalone'
 };
+
+/** Used directly by the download action, so format checks exercise the shipped archive. */
+export async function createFaviconBundle(icons: Record<string, Blob>): Promise<Blob> {
+  const zip = new JSZip();
+  for (const spec of FAVICON_SIZES) {
+    const icon=icons[spec.filename];
+    if (!icon || icon.type!=='image/png') throw new Error(`Missing PNG icon: ${spec.filename}`);
+    zip.file(spec.filename, await icon.arrayBuffer());
+  }
+  const images=await Promise.all([16,32,48].map(async size=>({size,png:new Uint8Array(await icons[`favicon-${size}x${size}.png`].arrayBuffer())})));
+  zip.file('favicon.ico',packPngIco(images));
+  zip.file('site.webmanifest',JSON.stringify(FAVICON_MANIFEST,null,2));
+  zip.file('favicon-head.html',FAVICON_HEAD_HTML);
+  return zip.generateAsync({type:'blob'});
+}

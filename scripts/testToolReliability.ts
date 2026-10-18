@@ -153,3 +153,15 @@ for (const invalid of [NaN,Infinity,0,-1]) assert.throws(() => imageResizeDimens
 assert.throws(() => imageResizeDimensions(640,480,{...dimensionOptions,width:20000}));
 assert.throws(() => imageResizeDimensions(640,480,{...dimensionOptions,width:10000,height:10000}));
 console.log('Resize dimensions, batch aspect ratios, rounding and memory bounds passed.');
+
+const { rotatedImageBounds, rotationExportMime } = await import('../src/lib/imageRotation');
+for (const angle of [90,270,-90,450]) assert.deepEqual(rotatedImageBounds(640,480,angle), {width:480,height:640,angle:((angle%360)+360)%360});
+assert.deepEqual(rotatedImageBounds(640,480,180), {width:640,height:480,angle:180});
+assert.deepEqual(rotatedImageBounds(640,480,360), {width:640,height:480,angle:0});
+assert.deepEqual(rotatedImageBounds(80,40,45), {width:85,height:85,angle:45});
+assert.throws(() => rotatedImageBounds(0,40,90));
+assert.throws(() => rotatedImageBounds(80,40,NaN));
+assert.equal(rotationExportMime('image/gif'), 'image/png');
+assert.equal(rotationExportMime('image/svg+xml'), 'image/png');
+assert.equal(rotationExportMime('image/jpeg'), 'image/jpeg');
+console.log('Rotation bounds, quarter turns and truthful export MIME checks passed.');

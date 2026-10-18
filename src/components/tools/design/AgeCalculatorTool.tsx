@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { calendarAge, calendarAnniversary } from '../../../lib/calendarAge';
+import { calendarAge, calendarAnniversary, calendarDay, parseCalendarDate } from '../../../lib/calendarAge';
 import { 
   Calendar, 
   Clock, 
@@ -27,31 +27,14 @@ const getTodayString = () => {
   return `${year}-${month}-${day}`;
 };
 
-const parseLocalDate = (dateStr: string) => {
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return null;
-
-  const [y, m, d] = dateStr.split('-').map(Number);
-  const date = new Date(y, m - 1, d);
-
-  if (
-    date.getFullYear() !== y ||
-    date.getMonth() !== m - 1 ||
-    date.getDate() !== d
-  ) {
-    return null;
-  }
-
-  return date;
-};
-
 export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToast }) => {
   const [dob, setDob] = useState<string>('1998-05-15');
   const [targetDate, setTargetDate] = useState<string>(getTodayString());
   const [copied, setCopied] = useState<boolean>(false);
 
   const calculateAge = () => {
-    const birth = parseLocalDate(dob);
-    const target = parseLocalDate(targetDate);
+    const birth = parseCalendarDate(dob);
+    const target = parseCalendarDate(targetDate);
 
     if (!birth || !target || isNaN(birth.getTime()) || isNaN(target.getTime()) || birth > target) {
       return null;
@@ -60,10 +43,6 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
     const age = calendarAge(birth, target);
     if (!age) return null;
     const { years, months, days, totalDays } = age;
-
-    const toUtcDay = (date: Date) =>
-      Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()) /
-      (24 * 60 * 60 * 1000);
 
     const totalWeeks = Math.floor(totalDays / 7);
     const totalMonths = years * 12 + months;
@@ -79,7 +58,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
     if (nextBday < target) {
       nextBday = calendarAnniversary(birth, target.getFullYear() + 1);
     }
-    const daysToNextBday = toUtcDay(nextBday) - toUtcDay(target);
+    const daysToNextBday = calendarDay(nextBday) - calendarDay(target);
     const nextBdayDayOfWeek = nextBday.toLocaleDateString('en-US', { weekday: 'long' });
 
     // Western Zodiac
@@ -103,7 +82,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
     // Chinese Zodiac
     const chineseZodiacAnimals = ['Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake', 'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig'];
     const birthYear = birth.getFullYear();
-    const chineseAnimal = chineseZodiacAnimals[(birthYear - 4) % 12];
+    const chineseAnimal = chineseZodiacAnimals[((birthYear - 4) % 12 + 12) % 12];
 
     // Estimated life stats
     const estimatedHeartbeats = Math.floor(totalDays * 24 * 60 * 80); // 80 bpm
@@ -133,13 +112,18 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
 
   const result = calculateAge();
 
-  const copyAgeSummary = () => {
+  const copyAgeSummary = async () => {
     if (!result) return;
-    const text = `Exact Age: ${result.years} years, ${result.months} months, ${result.days} days | Born on a ${result.birthDayOfWeek} | Zodiac: ${result.zodiacInfo.sign} (${result.zodiacInfo.element}) | Next Birthday in: ${result.daysToNextBday} days`;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    onShowToast('Copied age summary to clipboard!');
-    setTimeout(() => setCopied(false), 2000);
+    const text = `Date of birth: ${dob} | Age at date: ${targetDate} | Calendar age: ${result.years} years, ${result.months} months, ${result.days} days | Born on a ${result.birthDayOfWeek} | Zodiac: ${result.zodiacInfo.sign} (${result.zodiacInfo.element}) | Next Birthday in: ${result.daysToNextBday} days`;
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      onShowToast('Copied age summary to clipboard!');
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      setCopied(false);
+      onShowToast('Could not copy. Please select and copy the displayed age.');
+    }
   };
 
   return (
@@ -161,6 +145,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             onClick={() => {
               setDob('1998-05-15');
               setTargetDate(getTodayString());
+              setCopied(false);
               onShowToast('Reset to default dates');
             }}
             className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
@@ -193,7 +178,9 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             id="age-birth-date"
             type="date"
             value={dob}
-            onChange={e => setDob(e.target.value)}
+            onChange={e => { setDob(e.target.value); setCopied(false); }}
+            min="0001-01-01"
+            max="9999-12-31"
             className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white"
           />
         </div>
@@ -206,7 +193,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             </label>
             <button
               type="button"
-              onClick={() => setTargetDate(getTodayString())}
+              onClick={() => { setTargetDate(getTodayString()); setCopied(false); }}
               className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer"
             >
               Set to Today
@@ -216,7 +203,9 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             id="age-reference-date"
             type="date"
             value={targetDate}
-            onChange={e => setTargetDate(e.target.value)}
+            onChange={e => { setTargetDate(e.target.value); setCopied(false); }}
+            min="0001-01-01"
+            max="9999-12-31"
             className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white"
           />
         </div>
@@ -324,7 +313,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
                   Zodiac & Birthstone
                 </span>
               </div>
-              <div className="flex items-center justify-between pt-1 text-xs">
+              <div className="flex flex-wrap gap-4 items-center justify-between pt-1 text-xs">
                 <div>
                   <span className="text-slate-400 block text-[10px] uppercase font-bold">Sun Sign</span>
                   <span className="font-black text-base text-slate-900 dark:text-white">
@@ -392,7 +381,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
         </div>
       ) : (
         <div className="p-8 text-center text-xs text-rose-500 bg-rose-50/50 dark:bg-rose-950/20 rounded-3xl border border-rose-200 dark:border-rose-900">
-          Target date must be later than or equal to the date of birth.
+          Enter both valid dates. The reference date must be on or after the date of birth.
         </div>
       )}
     </div>

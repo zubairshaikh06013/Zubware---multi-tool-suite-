@@ -30,6 +30,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
+    setSelectedTag('All');
+    setOpenFaq(0);
     if (categorySlug) {
       setActiveCategory(categorySlug);
     } else {

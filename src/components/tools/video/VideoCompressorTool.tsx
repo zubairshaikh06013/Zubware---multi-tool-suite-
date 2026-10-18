@@ -139,7 +139,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   const getSavingsPercent = () => {
     if (!videoFile || !compressedBlob) return 0;
     const diff = videoFile.size - compressedBlob.size;
-    return Math.max(0, Math.round((diff / videoFile.size) * 100));
+    return Math.round((diff / videoFile.size) * 100);
   };
 
   return (
@@ -331,9 +331,9 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
                     </span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 uppercase font-bold block">Space Saved</span>
+                    <span className="text-[10px] text-slate-400 uppercase font-bold block">Size Change (Rounded)</span>
                     <span className="text-base font-black text-indigo-600 dark:text-indigo-400">
-                      {getSavingsPercent()}% Reduction
+                      {Math.abs(getSavingsPercent())}% {getSavingsPercent() < 0 ? 'Larger' : getSavingsPercent() > 0 ? 'Smaller' : 'Change'}
                     </span>
                   </div>
                 </div>

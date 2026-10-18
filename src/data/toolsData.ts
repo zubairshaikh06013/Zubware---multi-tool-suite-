@@ -5783,7 +5783,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "csv-to-json",
     "title": "CSV to JSON Converter — Convert CSV Data to JSON Online",
     "navTitle": "CSV to JSON",
-    "description": "Convert CSV spreadsheets and TSV files into formatted JSON objects or arrays. Auto-detects delimiters, infers data types, and exports clean JSON in browser.",
+    "description": "Convert CSV or TSV into a JSON array of objects. Choose a delimiter, preserve identifiers as text or enable optional type inference, and download JSON locally.",
     "icon": "🔄",
     "path": "/csv-to-json",
     "filename": "csv-to-json.html",
@@ -5791,7 +5791,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "badge": "New",
     "features": [
       "Custom Delimiters (, ; \\t |)",
-      "Auto Data Type Casting",
+      "Optional Number & Boolean Inference",
       "Formatted JSON Output",
       "Copy & Download JSON",
       "Client-Side Processing"

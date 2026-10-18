@@ -286,108 +286,28 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
        ========================================================================= */
     case 'video-compressor':
       return (
-        <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 border border-indigo-200/50 dark:border-indigo-900/40">
-          <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-              Video Compression &amp; Bandwidth Optimization
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              Video Compressor Online: Shrink MP4 &amp; WebM Files in Your Browser Free
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-4xl leading-relaxed">
-              High-definition smartphone footage (4K and 1080p60) routinely produces file sizes of several hundred megabytes per minute, triggering strict upload rejections on Discord (25 MB cap), Gmail (25 MB attachment ceiling), WhatsApp, and company portals. Zubware’s Video Compressor re-encodes MP4, WebM, and MOV video clips locally using native MediaRecorder and canvas stream downscaling. Fine-tune bitrate presets and resolution scaling to reduce file size by 50% to 80% without cloud uploads.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-                  <Sliders className="w-5 h-5" />
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  Three Curated Bitrate Presets
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Choose High Quality (2.5 Mbps) for client presentations and high-motion sports; Medium Quality (1.2 Mbps) for balanced 50–70% compression savings on social posts; or Low Quality (600 Kbps) for compact ~4.5 MB/minute files suitable for email and Discord.
-              </p>
+        <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-6 border border-indigo-200/50 dark:border-indigo-900/40">
+          <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">Browser Video Compression: Choose Settings and Check the Result</h2>
+          <p className="text-sm text-slate-600 dark:text-slate-400">This tool plays a source video and records a resized WebM locally. It can help prepare a smaller sharing copy, but an already compressed source may produce a larger output. Keep the original until you have compared file size, image quality and audio.</p>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="glass-card p-5 rounded-2xl space-y-2">
+              <h3 className="font-bold">Choose a video bitrate</h3>
+              <p className="text-sm">High Quality requests 2.5 Mbps, Balanced requests 1.2 Mbps and Smallest Size requests 600 Kbps. These are encoder targets, not promises of a particular size or quality. Detailed motion and small text may need a higher bitrate.</p>
             </div>
-
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400">
-                  <Laptop className="w-5 h-5" />
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  Resolution Downscaling
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Downscale resolution to 75% or 50% scale. Downscaling a 1080p frame to 720p reduces the total number of pixels by over 55%, yielding massive byte savings without noticeable blur on mobile phone screens.
-              </p>
+            <div className="glass-card p-5 rounded-2xl space-y-2">
+              <h3 className="font-bold">Scale dimensions deliberately</h3>
+              <p className="text-sm">The scale applies to both width and height, rounded to even pixel dimensions. At 50% scale a 1920 × 1080 source becomes 960 × 540. This reduces pixel count to one-quarter, but does not guarantee a 75% reduction in file size.</p>
             </div>
-
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
-                  <ShieldCheck className="w-5 h-5" />
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  100% Client-Side Privacy
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Traditional video compressors upload your private footage to external servers, creating privacy risks and download delays. Zubware executes all discrete cosine transforms and container muxing inside your device RAM with zero network latency.
-              </p>
+            <div className="glass-card p-5 rounded-2xl space-y-2">
+              <h3 className="font-bold">Check compatibility and sound</h3>
+              <p className="text-sm">The browser must decode the input and support WebM recording. Audio capture also varies by browser. Play the downloaded file in its destination application and confirm that speech, synchronization and picture quality meet your needs.</p>
             </div>
           </div>
-
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
-            <table className="w-full text-left text-xs text-slate-600 dark:text-slate-400">
-              <thead className="bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-slate-200 uppercase font-semibold">
-                <tr>
-                  <th className="p-3.5">Quality Preset</th>
-                  <th className="p-3.5">Target Bitrate</th>
-                  <th className="p-3.5">Estimated File Size per Min</th>
-                  <th className="p-3.5">Recommended Resolution Scale</th>
-                  <th className="p-3.5">Target Use Case</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">High Quality</td>
-                  <td className="p-3.5 font-mono">2.5 Mbps</td>
-                  <td className="p-3.5">~18.5 MB / minute</td>
-                  <td className="p-3.5">100% (Native Dimensions)</td>
-                  <td className="p-3.5">Portfolio clips, software demos, YouTube uploads</td>
-                </tr>
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">Medium Quality</td>
-                  <td className="p-3.5 font-mono">1.2 Mbps</td>
-                  <td className="p-3.5">~9.0 MB / minute</td>
-                  <td className="p-3.5">75% Scale</td>
-                  <td className="p-3.5">Slack channels, website background video, mobile sharing</td>
-                </tr>
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">Low Quality</td>
-                  <td className="p-3.5 font-mono">600 Kbps</td>
-                  <td className="p-3.5">~4.5 MB / minute</td>
-                  <td className="p-3.5">50% Scale</td>
-                  <td className="p-3.5">Discord free tier (25MB), Gmail attachments, WhatsApp</td>
-                </tr>
-              </tbody>
-            </table>
+          <div className="glass-card p-5 rounded-2xl space-y-2">
+            <h3 className="font-bold">Estimate size without treating it as a guarantee</h3>
+            <p className="text-sm">A constant 1.2 Mbps video stream for 60 seconds represents about 9 decimal MB of video data (1.2 × 60 ÷ 8). Audio and container overhead add bytes, and the actual encoder bitrate may vary. Always compare the downloaded size against the destination’s current upload limit.</p>
           </div>
-
-          <div className="glass-card p-6 rounded-2xl space-y-3">
-            <h3 className="font-bold text-slate-900 dark:text-white text-base">
-              Performance Recommendation: In-Browser Video Re-Encoding Limits
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Because video encoding is handled by your browser&apos;s allocated memory sandbox, input video files under 500 MB perform best. When compressing longer lectures or high-bitrate phone recordings, keep the browser tab active in the foreground to prevent OS background memory throttling.
-            </p>
-          </div>
+          <p className="text-sm text-slate-600 dark:text-slate-400">Processing uses local browser playback and can take the clip duration or longer. Keep the tab active. There is no universally tested maximum file size: available memory, duration, dimensions, codecs and device load all affect whether a recording finishes successfully.</p>
         </section>
       );
 

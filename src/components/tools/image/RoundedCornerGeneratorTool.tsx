@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Circle, Square, Lock, Unlock, Download, RefreshCw } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageFileInfoPanel } from './ImageFileInfoPanel';
-import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
-import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
+import { ImageProcessingProgress } from './ImageProcessingProgress';
+import { useImageDecoration } from '../../../hooks/useImageDecoration';
+import { prepareDecorationCanvas } from '../../../lib/imageDecoration';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
 import { getLinkUrl } from '../../../lib/paths';
@@ -14,9 +15,7 @@ interface RoundedCornerGeneratorToolProps {
 }
 
 export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProps> = ({ onShowToast, onNavigate }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [metadata, setMetadata] = useState<ImageMetadata | null>(null);
-  const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null);
+
 
   const [isCircle, setIsCircle] = useState<boolean>(false);
   const [isLocked, setIsLocked] = useState<boolean>(true);
@@ -30,37 +29,6 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
   const [transparentBg, setTransparentBg] = useState<boolean>(true);
   const [outputFormat, setOutputFormat] = useState<string>('png');
 
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [stage, setStage] = useState<ProcessingStage>('Reading Image');
-  const [progress, setProgress] = useState<number>(0);
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const handleImageSelected = async (files: File[]) => {
-    if (!files.length) return;
-    const selectedFile = files[0];
-    setFile(selectedFile);
-    setIsProcessing(true);
-    setStage('Reading Image');
-    setProgress(30);
-
-    const img = new Image();
-    const url = URL.createObjectURL(selectedFile);
-    img.onload = async () => {
-      setImageObj(img);
-      setStage('Analyzing');
-      setProgress(70);
-
-      const meta = await getImageMetadata(selectedFile, img);
-      setMetadata(meta);
-
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-    };
-    img.src = url;
-  };
-
   const updateGlobalRadius = (val: number) => {
     setRadiusTL(val);
     setRadiusTR(val);
@@ -68,17 +36,10 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
     setRadiusBL(val);
   };
 
-  useEffect(() => {
-    if (!imageObj || !canvasRef.current) return;
-
-    const canvas = canvasRef.current;
+  const render = useCallback((canvas: HTMLCanvasElement, imageObj: HTMLImageElement) => {
     const w = imageObj.naturalWidth || imageObj.width;
     const h = imageObj.naturalHeight || imageObj.height;
-    canvas.width = w;
-    canvas.height = h;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    const ctx = prepareDecorationCanvas(canvas, w, h);
 
     ctx.clearRect(0, 0, w, h);
 
@@ -116,35 +77,13 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
     ctx.clip();
     ctx.drawImage(imageObj, 0, 0, w, h);
     ctx.restore();
-  }, [imageObj, isCircle, radiusTL, radiusTR, radiusBR, radiusBL, bgColor, transparentBg]);
+  }, [isCircle, radiusTL, radiusTR, radiusBR, radiusBL, bgColor, transparentBg]);
 
-  const handleDownload = () => {
-    if (!canvasRef.current || !file) return;
-    setIsProcessing(true);
-    setStage('Preparing Download');
-    setProgress(85);
-
-    setTimeout(() => {
-      const mime = outputFormat === 'jpg' ? 'image/jpeg' : outputFormat === 'webp' ? 'image/webp' : 'image/png';
-      const dataUrl = canvasRef.current?.toDataURL(mime, 0.95);
-      if (dataUrl) {
-        const link = document.createElement('a');
-        const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
-        link.download = `${baseName}_rounded.${outputFormat}`;
-        link.href = dataUrl;
-        link.click();
-      }
-
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-      onShowToast(`Rounded image downloaded in ${outputFormat.toUpperCase()}!`);
-    }, 200);
-  };
+  const {file, metadata, isProcessing, ready, error, canvasRef, handleImageSelected, handleDownload, reset} = useImageDecoration(render, outputFormat, 'rounded', onShowToast);
 
   return (
     <div className="space-y-6">
-      
+      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />
@@ -161,7 +100,7 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
             />
           )}
 
-          {isProcessing && <ImageProcessingProgress stage={stage} progress={progress} />}
+          {isProcessing && <ImageProcessingProgress stage={ready ? "Preparing Download" : "Reading Image"} progress={50} />}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Controls */}
@@ -265,10 +204,10 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
                   <span>Transparent Background</span>
                   <input
                     type="checkbox"
+                    aria-label="Transparent Background"
                     checked={transparentBg}
                     onChange={(e) => {
                       setTransparentBg(e.target.checked);
-                      if (!e.target.checked && outputFormat === 'png') setOutputFormat('jpg');
                     }}
                     className="w-4 h-4 accent-indigo-600 cursor-pointer"
                   />
@@ -287,6 +226,7 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
                 )}
               </div>
 
+              {outputFormat === 'jpg' && <p className="text-xs text-slate-500">JPEG fills transparent areas with white. Choose PNG or WebP to keep transparency.</p>}
               {/* Output Format */}
               <div className="space-y-2 pt-2 border-t border-slate-200/50 dark:border-slate-800/50">
                 <label className="text-xs font-bold uppercase tracking-wider text-slate-500">Output Format</label>
@@ -295,6 +235,7 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
                     <button
                       key={fmt}
                       type="button"
+                      aria-pressed={outputFormat === fmt}
                       onClick={() => setOutputFormat(fmt)}
                       className={`py-2 rounded-xl text-xs font-bold uppercase cursor-pointer ${
                         outputFormat === fmt ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
@@ -312,17 +253,14 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
               <div>
                 <span className="text-xs font-bold text-slate-500 mb-2 block">Interactive Preview</span>
                 <div className="max-h-96 overflow-auto rounded-2xl bg-slate-950 p-2 flex items-center justify-center border border-slate-800">
-                  <canvas ref={canvasRef} className="max-h-80 object-contain rounded-xl" />
+                  <canvas aria-label="Image preview" ref={canvasRef} className="max-h-80 max-w-full object-contain" />
                 </div>
               </div>
 
               <div className="flex items-center justify-between gap-3 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
                 <button
                   type="button"
-                  onClick={() => {
-                    setFile(null);
-                    setImageObj(null);
-                  }}
+                  onClick={reset}
                   className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" /> Select Different Image
@@ -331,6 +269,7 @@ export const RoundedCornerGeneratorTool: React.FC<RoundedCornerGeneratorToolProp
                 <button
                   type="button"
                   onClick={handleDownload}
+                  disabled={!ready || isProcessing}
                   className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer"
                 >
                   <Download className="w-4 h-4" /> Download Rounded Image

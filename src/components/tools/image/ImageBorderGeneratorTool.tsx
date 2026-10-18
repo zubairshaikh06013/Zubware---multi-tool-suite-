@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Square, Download, RefreshCw, Sliders } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageFileInfoPanel } from './ImageFileInfoPanel';
-import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
-import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
+import { ImageProcessingProgress } from './ImageProcessingProgress';
+import { useImageDecoration } from '../../../hooks/useImageDecoration';
+import { prepareDecorationCanvas, borderGeometry, doubleBorderRects } from '../../../lib/imageDecoration';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
 import { getLinkUrl } from '../../../lib/paths';
@@ -16,9 +17,7 @@ interface ImageBorderGeneratorToolProps {
 type BorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'rounded';
 
 export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> = ({ onShowToast, onNavigate }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [metadata, setMetadata] = useState<ImageMetadata | null>(null);
-  const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null);
+
 
   const [borderWidth, setBorderWidth] = useState<number>(20);
   const [borderColor, setBorderColor] = useState<string>('#4F46E5');
@@ -28,67 +27,27 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
 
   const [outputFormat, setOutputFormat] = useState<string>('png');
 
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [stage, setStage] = useState<ProcessingStage>('Reading Image');
-  const [progress, setProgress] = useState<number>(0);
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const handleImageSelected = async (files: File[]) => {
-    if (!files.length) return;
-    const selectedFile = files[0];
-    setFile(selectedFile);
-    setIsProcessing(true);
-    setStage('Reading Image');
-    setProgress(30);
-
-    const img = new Image();
-    const url = URL.createObjectURL(selectedFile);
-    img.onload = async () => {
-      setImageObj(img);
-      setStage('Analyzing');
-      setProgress(70);
-
-      const meta = await getImageMetadata(selectedFile, img);
-      setMetadata(meta);
-
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-    };
-    img.src = url;
-  };
-
-  useEffect(() => {
-    if (!imageObj || !canvasRef.current) return;
-
-    const canvas = canvasRef.current;
+  const render = useCallback((canvas: HTMLCanvasElement, imageObj: HTMLImageElement) => {
     const imgW = imageObj.naturalWidth || imageObj.width;
     const imgH = imageObj.naturalHeight || imageObj.height;
 
-    const bw = Math.max(0, borderWidth);
-
-    let canvasW = imgW;
-    let canvasH = imgH;
-
-    if (isOuter) {
-      canvasW += bw * 2;
-      canvasH += bw * 2;
-    }
-
-    canvas.width = canvasW;
-    canvas.height = canvasH;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
+    const geometry = borderGeometry(imgW, imgH, borderWidth, isOuter);
+    const bw = geometry.border, canvasW = geometry.width, canvasH = geometry.height;
+    const ctx = prepareDecorationCanvas(canvas, canvasW, canvasH);
     ctx.clearRect(0, 0, canvasW, canvasH);
 
     const imgX = isOuter ? bw : 0;
     const imgY = isOuter ? bw : 0;
 
+    if (borderStyle === 'rounded' && bw > 0) {
+      ctx.beginPath();
+      ctx.roundRect(0, 0, canvasW, canvasH, Math.min(borderRadius + bw / 2, canvasW / 2, canvasH / 2));
+      ctx.clip();
+    }
     // Draw base image
     ctx.drawImage(imageObj, imgX, imgY, imgW, imgH);
+
+    if (bw === 0) return;
 
     // Draw border
     ctx.save();
@@ -105,7 +64,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
     }
 
     if (borderStyle === 'rounded') {
-      const rad = borderRadius;
+      const rad = Math.max(0, Math.min(borderRadius, (canvasW - bw) / 2, (canvasH - bw) / 2));
       const bx = isOuter ? bw / 2 : bw / 2;
       const by = isOuter ? bw / 2 : bw / 2;
       const bwW = isOuter ? canvasW - bw : imgW - bw;
@@ -115,22 +74,10 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
       ctx.roundRect(bx, by, bwW, bwH, rad);
       ctx.stroke();
     } else if (borderStyle === 'double') {
-      const halfBw = bw / 3;
-      ctx.lineWidth = halfBw;
-
-      // Outer line
-      const b1X = isOuter ? halfBw / 2 : halfBw / 2;
-      const b1Y = isOuter ? halfBw / 2 : halfBw / 2;
-      const b1W = isOuter ? canvasW - halfBw : imgW - halfBw;
-      const b1H = isOuter ? canvasH - halfBw : imgH - halfBw;
-      ctx.strokeRect(b1X, b1Y, b1W, b1H);
-
-      // Inner line
-      const b2X = isOuter ? bw - halfBw / 2 : bw - halfBw / 2;
-      const b2Y = isOuter ? bw - halfBw / 2 : bw - halfBw / 2;
-      const b2W = isOuter ? canvasW - (bw - halfBw) * 2 : imgW - (bw - halfBw) * 2;
-      const b2H = isOuter ? canvasH - (bw - halfBw) * 2 : imgH - (bw - halfBw) * 2;
-      ctx.strokeRect(b2X, b2Y, b2W, b2H);
+      for (const rect of doubleBorderRects(canvasW, canvasH, bw)) {
+        ctx.lineWidth = rect.lineWidth;
+        ctx.strokeRect(rect.x, rect.y, rect.width, rect.height);
+      }
     } else {
       // Solid / Dashed / Dotted
       const bx = isOuter ? bw / 2 : bw / 2;
@@ -141,35 +88,13 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
     }
 
     ctx.restore();
-  }, [imageObj, borderWidth, borderColor, borderStyle, borderRadius, isOuter]);
+  }, [borderWidth, borderColor, borderStyle, borderRadius, isOuter]);
 
-  const handleDownload = () => {
-    if (!canvasRef.current || !file) return;
-    setIsProcessing(true);
-    setStage('Preparing Download');
-    setProgress(85);
-
-    setTimeout(() => {
-      const mime = outputFormat === 'jpg' ? 'image/jpeg' : outputFormat === 'webp' ? 'image/webp' : 'image/png';
-      const dataUrl = canvasRef.current?.toDataURL(mime, 0.95);
-      if (dataUrl) {
-        const link = document.createElement('a');
-        const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || 'image';
-        link.download = `${baseName}_bordered.${outputFormat}`;
-        link.href = dataUrl;
-        link.click();
-      }
-
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-      onShowToast(`Bordered image downloaded in ${outputFormat.toUpperCase()}!`);
-    }, 200);
-  };
+  const {file, metadata, isProcessing, ready, error, canvasRef, handleImageSelected, handleDownload, reset} = useImageDecoration(render, outputFormat, 'bordered', onShowToast);
 
   return (
     <div className="space-y-6">
-      
+      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />
@@ -186,7 +111,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
             />
           )}
 
-          {isProcessing && <ImageProcessingProgress stage={stage} progress={progress} />}
+          {isProcessing && <ImageProcessingProgress stage={ready ? "Preparing Download" : "Reading Image"} progress={50} />}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Controls */}
@@ -198,6 +123,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
                     <button
                       key={st}
                       type="button"
+                      aria-pressed={borderStyle === st}
                       onClick={() => setBorderStyle(st)}
                       className={`py-2 px-3 rounded-xl text-xs font-bold capitalize cursor-pointer ${
                         borderStyle === st
@@ -216,6 +142,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
                 <span>Expand Canvas (Outer Border)</span>
                 <input
                   type="checkbox"
+                  aria-label="Expand Canvas (Outer Border)"
                   checked={isOuter}
                   onChange={(e) => setIsOuter(e.target.checked)}
                   className="w-4 h-4 accent-indigo-600 cursor-pointer"
@@ -282,6 +209,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
                     <button
                       key={fmt}
                       type="button"
+                      aria-pressed={outputFormat === fmt}
                       onClick={() => setOutputFormat(fmt)}
                       className={`py-2 rounded-xl text-xs font-bold uppercase cursor-pointer ${
                         outputFormat === fmt ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
@@ -299,17 +227,14 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
               <div>
                 <span className="text-xs font-bold text-slate-500 mb-2 block">Border Preview</span>
                 <div className="max-h-96 overflow-auto rounded-2xl bg-slate-950 p-2 flex items-center justify-center border border-slate-800">
-                  <canvas ref={canvasRef} className="max-h-80 object-contain rounded-xl" />
+                  <canvas aria-label="Image preview" ref={canvasRef} className="max-h-80 max-w-full object-contain" />
                 </div>
               </div>
 
               <div className="flex items-center justify-between gap-3 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
                 <button
                   type="button"
-                  onClick={() => {
-                    setFile(null);
-                    setImageObj(null);
-                  }}
+                  onClick={reset}
                   className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" /> Select Different Image
@@ -318,6 +243,7 @@ export const ImageBorderGeneratorTool: React.FC<ImageBorderGeneratorToolProps> =
                 <button
                   type="button"
                   onClick={handleDownload}
+                  disabled={!ready || isProcessing}
                   className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer"
                 >
                   <Download className="w-4 h-4" /> Download Bordered Image

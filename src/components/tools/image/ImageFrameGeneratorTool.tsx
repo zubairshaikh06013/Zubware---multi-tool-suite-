@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useCallback } from 'react';
 import { Layout, Download, RefreshCw, Type, Sparkles } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageFileInfoPanel } from './ImageFileInfoPanel';
-import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
-import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
+import { ImageProcessingProgress } from './ImageProcessingProgress';
+import { useImageDecoration } from '../../../hooks/useImageDecoration';
+import { prepareDecorationCanvas } from '../../../lib/imageDecoration';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
 import { getLinkUrl } from '../../../lib/paths';
@@ -16,62 +17,24 @@ interface ImageFrameGeneratorToolProps {
 type FrameStyle = 'polaroid' | 'shadow' | 'minimal' | 'rounded' | 'glass' | 'instagram' | 'white' | 'black';
 
 export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = ({ onShowToast, onNavigate }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [metadata, setMetadata] = useState<ImageMetadata | null>(null);
-  const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null);
+
 
   const [frameStyle, setFrameStyle] = useState<FrameStyle>('polaroid');
   const [caption, setCaption] = useState<string>('Memories ✨');
   const [outputFormat, setOutputFormat] = useState<string>('png');
 
-  const [isProcessing, setIsProcessing] = useState<boolean>(false);
-  const [stage, setStage] = useState<ProcessingStage>('Reading Image');
-  const [progress, setProgress] = useState<number>(0);
-
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  const handleImageSelected = async (files: File[]) => {
-    if (!files.length) return;
-    const selectedFile = files[0];
-    setFile(selectedFile);
-    setIsProcessing(true);
-    setStage('Reading Image');
-    setProgress(30);
-
-    const img = new Image();
-    const url = URL.createObjectURL(selectedFile);
-    img.onload = async () => {
-      setImageObj(img);
-      setStage('Analyzing');
-      setProgress(70);
-
-      const meta = await getImageMetadata(selectedFile, img);
-      setMetadata(meta);
-
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-    };
-    img.src = url;
-  };
-
-  useEffect(() => {
-    if (!imageObj || !canvasRef.current) return;
-
-    const canvas = canvasRef.current;
+  const render = useCallback((canvas: HTMLCanvasElement, imageObj: HTMLImageElement) => {
     const imgW = imageObj.naturalWidth || imageObj.width;
     const imgH = imageObj.naturalHeight || imageObj.height;
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+    let ctx: CanvasRenderingContext2D;
 
     if (frameStyle === 'polaroid') {
       const paddingSide = Math.round(imgW * 0.08);
       const paddingTop = Math.round(imgH * 0.08);
       const paddingBottom = Math.round(imgH * 0.28);
 
-      canvas.width = imgW + paddingSide * 2;
-      canvas.height = imgH + paddingTop + paddingBottom;
+      ctx = prepareDecorationCanvas(canvas, imgW + paddingSide * 2, imgH + paddingTop + paddingBottom);
 
       ctx.fillStyle = '#FAFAFA';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -85,12 +48,11 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
         ctx.fillStyle = '#1E293B';
         ctx.font = `bold ${Math.max(16, Math.round(paddingBottom * 0.3))}px sans-serif`;
         ctx.textAlign = 'center';
-        ctx.fillText(caption, canvas.width / 2, canvas.height - paddingBottom * 0.35);
+        ctx.fillText(caption, canvas.width / 2, canvas.height - paddingBottom * 0.35, imgW);
       }
     } else if (frameStyle === 'shadow') {
       const pad = Math.round(Math.min(imgW, imgH) * 0.12);
-      canvas.width = imgW + pad * 2;
-      canvas.height = imgH + pad * 2;
+      ctx = prepareDecorationCanvas(canvas, imgW + pad * 2, imgH + pad * 2);
 
       ctx.fillStyle = '#F1F5F9';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -101,8 +63,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
       ctx.drawImage(imageObj, pad, pad, imgW, imgH);
     } else if (frameStyle === 'minimal') {
       const border = Math.round(Math.min(imgW, imgH) * 0.04);
-      canvas.width = imgW + border * 2;
-      canvas.height = imgH + border * 2;
+      ctx = prepareDecorationCanvas(canvas, imgW + border * 2, imgH + border * 2);
 
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -115,8 +76,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
     } else if (frameStyle === 'rounded') {
       const pad = Math.round(Math.min(imgW, imgH) * 0.08);
       const rad = Math.round(pad * 1.2);
-      canvas.width = imgW + pad * 2;
-      canvas.height = imgH + pad * 2;
+      ctx = prepareDecorationCanvas(canvas, imgW + pad * 2, imgH + pad * 2);
 
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -129,9 +89,10 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
       ctx.restore();
     } else if (frameStyle === 'glass') {
       const pad = Math.round(Math.min(imgW, imgH) * 0.15);
-      canvas.width = imgW + pad * 2;
-      canvas.height = imgH + pad * 2;
+      ctx = prepareDecorationCanvas(canvas, imgW + pad * 2, imgH + pad * 2);
 
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
       // Draw blurred image as background
       ctx.save();
       ctx.filter = 'blur(30px) brightness(0.9)';
@@ -146,9 +107,8 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
       ctx.shadowBlur = 24;
       ctx.drawImage(imageObj, pad, pad, imgW, imgH);
     } else if (frameStyle === 'instagram') {
-      const side = Math.max(imgW, imgH) + Math.round(Math.max(imgW, imgH) * 0.3);
-      canvas.width = side;
-      canvas.height = side;
+      const side = Math.ceil(Math.max(imgW / 0.9, imgH / 0.7));
+      ctx = prepareDecorationCanvas(canvas, side, side);
 
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, side, side);
@@ -168,11 +128,10 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
       ctx.font = `${Math.round(side * 0.028)}px sans-serif`;
       ctx.fillText('❤️ 1,284 likes', Math.round(side * 0.05), imgY + imgH + Math.round(side * 0.05));
       ctx.fillStyle = '#0F172A';
-      ctx.fillText(caption || 'Shared via Zubware Tool Suite', Math.round(side * 0.05), imgY + imgH + Math.round(side * 0.09));
+      ctx.fillText(caption || 'Shared via Zubware Tool Suite', Math.round(side * 0.05), imgY + imgH + Math.round(side * 0.09), side * 0.9);
     } else if (frameStyle === 'white') {
       const pad = Math.round(Math.min(imgW, imgH) * 0.15);
-      canvas.width = imgW + pad * 2;
-      canvas.height = imgH + pad * 2;
+      ctx = prepareDecorationCanvas(canvas, imgW + pad * 2, imgH + pad * 2);
 
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -183,8 +142,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
       ctx.drawImage(imageObj, pad, pad, imgW, imgH);
     } else if (frameStyle === 'black') {
       const pad = Math.round(Math.min(imgW, imgH) * 0.15);
-      canvas.width = imgW + pad * 2;
-      canvas.height = imgH + pad * 2;
+      ctx = prepareDecorationCanvas(canvas, imgW + pad * 2, imgH + pad * 2);
 
       ctx.fillStyle = '#09090B';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -194,35 +152,13 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
       ctx.strokeRect(pad - 1, pad - 1, imgW + 2, imgH + 2);
       ctx.drawImage(imageObj, pad, pad, imgW, imgH);
     }
-  }, [imageObj, frameStyle, caption]);
+  }, [frameStyle, caption]);
 
-  const handleDownload = () => {
-    if (!canvasRef.current || !file) return;
-    setIsProcessing(true);
-    setStage('Preparing Download');
-    setProgress(85);
-
-    setTimeout(() => {
-      const mime = outputFormat === 'jpg' ? 'image/jpeg' : outputFormat === 'webp' ? 'image/webp' : 'image/png';
-      const dataUrl = canvasRef.current?.toDataURL(mime, 0.95);
-      if (dataUrl) {
-        const link = document.createElement('a');
-        const baseName = file.name.substring(0, file.name.lastIndexOf('.')) || 'framed';
-        link.download = `${baseName}_framed.${outputFormat}`;
-        link.href = dataUrl;
-        link.click();
-      }
-
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-      onShowToast(`Framed image downloaded in ${outputFormat.toUpperCase()}!`);
-    }, 200);
-  };
+  const {file, metadata, isProcessing, ready, error, canvasRef, handleImageSelected, handleDownload, reset} = useImageDecoration(render, outputFormat, 'framed', onShowToast);
 
   return (
     <div className="space-y-6">
-      
+      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />
@@ -239,7 +175,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
             />
           )}
 
-          {isProcessing && <ImageProcessingProgress stage={stage} progress={progress} />}
+          {isProcessing && <ImageProcessingProgress stage={ready ? "Preparing Download" : "Reading Image"} progress={50} />}
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Options */}
@@ -260,6 +196,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
                     <button
                       key={item.id}
                       type="button"
+                      aria-pressed={frameStyle === item.id}
                       onClick={() => setFrameStyle(item.id as FrameStyle)}
                       className={`py-2 px-2 rounded-xl text-xs font-bold text-left transition-all cursor-pointer ${
                         frameStyle === item.id
@@ -296,6 +233,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
                     <button
                       key={fmt}
                       type="button"
+                      aria-pressed={outputFormat === fmt}
                       onClick={() => setOutputFormat(fmt)}
                       className={`py-2 rounded-xl text-xs font-bold uppercase cursor-pointer ${
                         outputFormat === fmt ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400'
@@ -313,17 +251,14 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
               <div>
                 <span className="text-xs font-bold text-slate-500 mb-2 block">Framed Preview</span>
                 <div className="max-h-96 overflow-auto rounded-2xl bg-slate-950 p-2 flex items-center justify-center border border-slate-800">
-                  <canvas ref={canvasRef} className="max-h-80 object-contain rounded-xl" />
+                  <canvas aria-label="Image preview" ref={canvasRef} className="max-h-80 max-w-full object-contain" />
                 </div>
               </div>
 
               <div className="flex items-center justify-between gap-3 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
                 <button
                   type="button"
-                  onClick={() => {
-                    setFile(null);
-                    setImageObj(null);
-                  }}
+                  onClick={reset}
                   className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" /> Select Different Image
@@ -332,6 +267,7 @@ export const ImageFrameGeneratorTool: React.FC<ImageFrameGeneratorToolProps> = (
                 <button
                   type="button"
                   onClick={handleDownload}
+                  disabled={!ready || isProcessing}
                   className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer"
                 >
                   <Download className="w-4 h-4" /> Download Framed Photo

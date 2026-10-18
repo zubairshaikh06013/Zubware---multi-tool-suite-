@@ -38,6 +38,7 @@ export function validateSeoBuild(distDir: string): void {
   const incoming = new Set<string>();
   const crawlGraph = new Map<string, Set<string>>();
   const brokenInternalLinks = new Set<string>();
+  const legacyHtmlInternalLinks = new Set<string>();
   const sitemapPaths = new Set(urls.map(url => new URL(url).pathname.replace(/\/$/, '') || '/'));
   // The signed-in dashboard is an intentionally non-indexable client-side route.
   const nonIndexableAppRoutes = new Set(['/dashboard']);
@@ -76,6 +77,9 @@ export function validateSeoBuild(distDir: string): void {
     for (const href of capture(html, /<a\b[^>]*href="([^"]+)"/g)) {
       try {
         const link = new URL(href, url);
+        if (link.origin === SITE_ORIGIN && /\\.html$/i.test(link.pathname) && !link.pathname.startsWith('/assets/')) {
+          legacyHtmlInternalLinks.add(`${url} -> ${link.pathname}`);
+        }
         if (link.origin === SITE_ORIGIN && link.pathname !== parsed.pathname) {
           const normalizedPath = link.pathname.replace(/\/$/, '') || '/';
           if (sitemapPaths.has(normalizedPath)) {
@@ -88,6 +92,7 @@ export function validateSeoBuild(distDir: string): void {
     }
   }
   for (const broken of brokenInternalLinks) errors.push(`Broken internal page link: ${broken}`);
+  for (const legacy of legacyHtmlInternalLinks) errors.push(`Internal link uses legacy .html URL instead of clean canonical route: ${legacy}`);
   for (const tool of TOOLS_DATA) {
     const route = getToolCanonicalPath(tool);
     if (!urls.includes(`${SITE_ORIGIN}${route}`)) errors.push(`Tool missing from sitemap: ${tool.id}`);
@@ -147,6 +152,7 @@ export function validateSeoBuild(distDir: string): void {
     deeperThanThreeClicks: deep.map(([route, clicks]) => ({ route, clicks }))
       .sort((a, b) => b.clicks - a.clicks || a.route.localeCompare(b.route)),
     brokenInternalLinks: [...brokenInternalLinks].sort(),
+    legacyHtmlInternalLinks: [...legacyHtmlInternalLinks].sort(),
     routes: [...sitemapPaths].sort().map(route => ({
       route,
       homepageClicks: depth.get(route) ?? null,

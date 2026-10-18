@@ -5,6 +5,11 @@ import {
   Sparkles, Grid, Tag, SlidersHorizontal, FileText, RotateCcw, X
 } from 'lucide-react';
 import JSZip from 'jszip';
+import {bulkImageGeometry} from '../../../lib/bulkImageGeometry';
+import {decodeBrowserImage} from '../../../lib/browserImageDecode';
+import {encodeCanvasBlob} from '../../../lib/canvasEncoding';
+import {IMAGE_EXPORT_MIME, imageExportExtension, uniqueImageExportName} from '../../../lib/imageExport';
+import {rotationExportMime} from '../../../lib/imageRotation';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
 import { SEOHead } from '../../SEOHead';
@@ -37,6 +42,7 @@ export interface BulkImageItem {
   processedBlob?: Blob;
   processedUrl?: string;
   processedSize?: number;
+  resultKey?: string;
 }
 
 type NamingPreset = 'product' | 'image' | 'photo' | 'property' | 'listing' | 'item' | 'name-number' | 'custom';
@@ -99,27 +105,32 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
   // --- PREVIEW MODAL STATE ---
   const [previewItem, setPreviewItem] = useState<BulkImageItem | null>(null);
 
-  // Load image dimensions helper
-  const loadImageInfo = (file: File): Promise<{ width: number; height: number; previewUrl: string }> => {
-    return new Promise((resolve) => {
-      const previewUrl = URL.createObjectURL(file);
-      const img = new Image();
-      img.onload = () => {
-        resolve({
-          width: img.naturalWidth || img.width,
-          height: img.naturalHeight || img.height,
-          previewUrl
-        });
-      };
-      img.onerror = () => {
-        resolve({
-          width: 0,
-          height: 0,
-          previewUrl
-        });
-      };
-      img.src = previewUrl;
-    });
+  const itemsRef = useRef<BulkImageItem[]>([]);
+  const runRef = useRef(0);
+  const uploadRun = useRef(0);
+  const [isZipping,setIsZipping] = useState(false);
+  const settingsKey = JSON.stringify([namingPreset,baseName,prefix,suffix,startingNumber,zeroPadding,separator,customPattern,findText,replaceText,spaceHandling,casingTransform,removeSpecialChars,dimPreset,targetWidth,targetHeight,maintainAspect,allowUpscaling,fitMode,cropPos,outputFormat,jpgQuality,webpQuality,bgColor,items.map(item=>item.id)]);
+  const settingsRef = useRef(settingsKey);
+  settingsRef.current = settingsKey;
+  const previousKey = useRef(settingsKey);
+  const replaceItems = (next:BulkImageItem[]) => {itemsRef.current=next;setItems(next);};
+  const clearOutput = (item:BulkImageItem):BulkImageItem => {
+    if (item.processedUrl) URL.revokeObjectURL(item.processedUrl);
+    return {...item,status:item.origWidth>0?'pending':'error',processedBlob:undefined,processedUrl:undefined,processedSize:undefined,resultKey:undefined,errorMessage:item.origWidth>0?undefined:item.errorMessage};
+  };
+  useEffect(() => {
+    if (previousKey.current===settingsKey) return;
+    previousKey.current=settingsKey;runRef.current++;
+    setIsProcessing(false);setPreviewItem(null);
+    replaceItems(itemsRef.current.map(clearOutput));
+  },[settingsKey]);
+  useEffect(() => () => {
+    runRef.current++;uploadRun.current++;
+    itemsRef.current.forEach(item=>{if(item.previewUrl) URL.revokeObjectURL(item.previewUrl);if(item.processedUrl) URL.revokeObjectURL(item.processedUrl);});
+  },[]);
+  const loadImageInfo = async (file:File) => {
+    const {image,url}=await decodeBrowserImage(file);
+    return {width:image.naturalWidth,height:image.naturalHeight,previewUrl:url};
   };
 
   const handleFilesSelected = async (files: File[]) => {
@@ -136,6 +147,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
   };
 
   const addFilesToBatch = async (files: File[]) => {
+    const generation=uploadRun.current;
     const newItems: BulkImageItem[] = [];
 
     for (const file of files) {
@@ -143,19 +155,19 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
       const isHeic = file.name.toLowerCase().endsWith('.heic') || file.name.toLowerCase().endsWith('.heif');
       let info = { width: 0, height: 0, previewUrl: '' };
 
+      let failureMessage='';
+      try {
       if (isHeic) {
-        try {
           const heic2anyModule = await import('heic2any');
           const heic2anyFn: any = heic2anyModule.default || heic2anyModule;
           const res = await heic2anyFn({ blob: file, toType: 'image/jpeg', quality: 0.8 });
           const decodedBlob = Array.isArray(res) ? res[0] : res;
           info = await loadImageInfo(new File([decodedBlob], file.name.replace(/\.(heic|heif)$/i, '.jpg'), { type: 'image/jpeg' }));
-        } catch {
-          info = { width: 0, height: 0, previewUrl: '' };
-        }
       } else {
         info = await loadImageInfo(file);
       }
+      } catch (failure) {failureMessage=failure instanceof Error?failure.message:'Could not open this image.';}
+      if (generation!==uploadRun.current) {if(info.previewUrl) URL.revokeObjectURL(info.previewUrl);newItems.forEach(item=>{if(item.previewUrl) URL.revokeObjectURL(item.previewUrl);});return;}
 
       newItems.push({
         id: Math.random().toString(36).substring(2, 9),
@@ -168,11 +180,12 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
         outWidth: info.width,
         outHeight: info.height,
         outFormat: 'jpg',
-        status: 'pending'
+        status: failureMessage?'error':'pending',
+        errorMessage:failureMessage || undefined
       });
     }
 
-    setItems((prev) => [...prev, ...newItems]);
+    replaceItems([...itemsRef.current,...newItems]);
     onShowToast(`Added ${files.length} images to batch list.`);
   };
 
@@ -262,12 +275,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
 
   // Compute live output filename for item at index
   const computeFilename = (item: BulkImageItem, index: number): string => {
-    const rawExt = item.file.name.split('.').pop() || 'jpg';
-    let targetExt = rawExt.toLowerCase();
-
-    if (outputFormat === 'jpg') targetExt = 'jpg';
-    else if (outputFormat === 'png') targetExt = 'png';
-    else if (outputFormat === 'webp') targetExt = 'webp';
+    const targetExt = imageExportExtension(outputFormat==='original' ? rotationExportMime(item.file.type) : IMAGE_EXPORT_MIME[outputFormat]);
 
     const origBaseName = item.file.name.replace(/\.[^/.]+$/, '');
     const numVal = startingNumber + index;
@@ -335,267 +343,92 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
     const temp = updated[index];
     updated[index] = updated[targetIndex];
     updated[targetIndex] = temp;
-    setItems(updated);
+    replaceItems(updated);
   };
 
-  const handleRemoveItem = (id: string) => {
-    setItems((prev) => {
-      const item = prev.find((it) => it.id === id);
-      if (item) {
-        if (item.previewUrl) URL.revokeObjectURL(item.previewUrl);
-        if (item.processedUrl) URL.revokeObjectURL(item.processedUrl);
-      }
-      return prev.filter((it) => it.id !== id);
-    });
+  const handleRemoveItem = (id:string) => {
+    runRef.current++;setIsProcessing(false);
+    const item=itemsRef.current.find(item=>item.id===id);
+    if(item?.previewUrl) URL.revokeObjectURL(item.previewUrl);
+    if(item?.processedUrl) URL.revokeObjectURL(item.processedUrl);
+    replaceItems(itemsRef.current.filter(item=>item.id!==id));
   };
-
   const handleClearAll = () => {
-    items.forEach((item) => {
-      if (item.previewUrl) URL.revokeObjectURL(item.previewUrl);
-      if (item.processedUrl) URL.revokeObjectURL(item.processedUrl);
-    });
-    setItems([]);
+    runRef.current++;uploadRun.current++;setIsProcessing(false);setPreviewItem(null);setLargeBatchWarning(null);
+    itemsRef.current.forEach(item=>{if(item.previewUrl) URL.revokeObjectURL(item.previewUrl);if(item.processedUrl) URL.revokeObjectURL(item.processedUrl);});
+    replaceItems([]);
   };
 
-  // Core processing for an individual item
-  const processSingleItem = async (
-    item: BulkImageItem,
-    outFilename: string
-  ): Promise<BulkImageItem> => {
+  const processSingleItem = async (item:BulkImageItem,outFilename:string,key:string):Promise<BulkImageItem> => {
+    let sourceUrl:string|undefined;
     try {
-      // Step 1: Load image into HTML Image
-      let imgSource = item.file;
-      const isHeic = item.file.name.toLowerCase().endsWith('.heic') || item.file.name.toLowerCase().endsWith('.heif');
-
-      if (isHeic) {
-        const heic2anyModule = await import('heic2any');
-        const heic2anyFn: any = heic2anyModule.default || heic2anyModule;
-        const res = await heic2anyFn({ blob: item.file, toType: 'image/jpeg', quality: 0.9 });
-        imgSource = Array.isArray(res) ? res[0] : res;
+      let source:File=item.file;
+      if (/\.(heic|heif)$/i.test(item.file.name)) {
+        const module=await import('heic2any');
+        const convert:any=module.default || module;
+        const converted=await convert({blob:item.file,toType:'image/jpeg',quality:0.9});
+        source=new File([Array.isArray(converted)?converted[0]:converted],item.file.name,{type:'image/jpeg'});
       }
-
-      const imgUrl = URL.createObjectURL(imgSource);
-      const img = new Image();
-
-      await new Promise<void>((resolve, reject) => {
-        img.onload = () => resolve();
-        img.onerror = () => reject(new Error('Failed to load image for processing.'));
-        img.src = imgUrl;
+      const decoded=await decodeBrowserImage(source);sourceUrl=decoded.url;
+      const geometry=bulkImageGeometry(decoded.image.naturalWidth,decoded.image.naturalHeight,{
+        original:dimPreset==='original',width:Number(targetWidth),height:Number(targetHeight),maintainAspect,allowUpscaling,fit:fitMode,alignment:cropPos,
       });
-
-      const origW = img.naturalWidth || img.width;
-      const origH = img.naturalHeight || img.height;
-
-      // Step 2: Compute target dimensions
-      let reqW = parseInt(targetWidth, 10) || origW;
-      let reqH = parseInt(targetHeight, 10) || origH;
-
-      if (dimPreset === 'original') {
-        reqW = origW;
-        reqH = origH;
-      }
-
-      let finalW = origW;
-      let finalH = origH;
-
-      if (dimPreset !== 'original') {
-        if (maintainAspect) {
-          if (origW >= origH) {
-            finalW = reqW;
-            finalH = Math.round((origH / origW) * reqW);
-          } else {
-            finalH = reqH;
-            finalW = Math.round((origW / origH) * reqH);
-          }
-        } else {
-          finalW = reqW;
-          finalH = reqH;
-        }
-
-        // Prevent upscaling unless allowed
-        if (!allowUpscaling) {
-          if (finalW > origW || finalH > origH) {
-            finalW = Math.min(finalW, origW);
-            finalH = Math.min(finalH, origH);
-          }
-        }
-      }
-
-      // Step 3: Draw on canvas
-      const canvas = document.createElement('canvas');
-      canvas.width = finalW;
-      canvas.height = finalH;
-
-      const ctx = canvas.getContext('2d');
-      if (!ctx) throw new Error('Failed to initialize canvas 2D context.');
-
-      // Determine output format & quality
-      let exportMime = 'image/jpeg';
-      let exportQuality = jpgQuality / 100;
-
-      const ext = outFilename.split('.').pop()?.toLowerCase();
-      if (ext === 'png') {
-        exportMime = 'image/png';
-        exportQuality = 1.0;
-      } else if (ext === 'webp') {
-        exportMime = 'image/webp';
-        exportQuality = webpQuality / 100;
-      } else {
-        exportMime = 'image/jpeg';
-        exportQuality = jpgQuality / 100;
-      }
-
-      // Fill background if JPG or background specified
-      if (exportMime === 'image/jpeg' || bgColor) {
-        ctx.fillStyle = bgColor || '#FFFFFF';
-        ctx.fillRect(0, 0, finalW, finalH);
-      }
-
-      // Draw according to fit mode
-      if (fitMode === 'crop' && (finalW !== origW || finalH !== origH)) {
-        // Center crop math
-        const scale = Math.max(finalW / origW, finalH / origH);
-        const nw = origW * scale;
-        const nh = origH * scale;
-        let nx = (finalW - nw) / 2;
-        let ny = (finalH - nh) / 2;
-
-        if (cropPos === 'top') ny = 0;
-        else if (cropPos === 'bottom') ny = finalH - nh;
-        else if (cropPos === 'left') nx = 0;
-        else if (cropPos === 'right') nx = finalW - nw;
-
-        ctx.drawImage(img, nx, ny, nw, nh);
-      } else {
-        ctx.drawImage(img, 0, 0, finalW, finalH);
-      }
-
-      URL.revokeObjectURL(imgUrl);
-
-      // Export Blob
-      const processedBlob = await new Promise<Blob>((resolve, reject) => {
-        canvas.toBlob(
-          (b) => {
-            if (b) resolve(b);
-            else reject(new Error('Failed to export canvas blob.'));
-          },
-          exportMime,
-          exportQuality
-        );
-      });
-
-      const processedUrl = URL.createObjectURL(processedBlob);
-
-      return {
-        ...item,
-        status: 'done',
-        calculatedName: outFilename,
-        outWidth: finalW,
-        outHeight: finalH,
-        processedBlob,
-        processedUrl,
-        processedSize: processedBlob.size
-      };
-
-    } catch (err: any) {
-      console.error(`Error processing ${item.file.name}:`, err);
-      return {
-        ...item,
-        status: 'error',
-        errorMessage: err?.message || 'Failed to process image.'
-      };
-    }
+      const canvas=document.createElement('canvas');canvas.width=geometry.width;canvas.height=geometry.height;
+      const ctx=canvas.getContext('2d');if(!ctx) throw new Error('Could not create the image canvas.');
+      const mime=outputFormat==='original'?rotationExportMime(item.file.type):IMAGE_EXPORT_MIME[outputFormat];
+      ctx.fillStyle=bgColor || '#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(decoded.image,geometry.x,geometry.y,geometry.drawWidth,geometry.drawHeight);
+      const blob=await encodeCanvasBlob(canvas,mime,(mime==='image/webp'?webpQuality:jpgQuality)/100);
+      return {...item,status:'done',errorMessage:undefined,calculatedName:outFilename,outWidth:geometry.width,outHeight:geometry.height,outFormat:imageExportExtension(blob.type) as BulkImageItem['outFormat'],processedBlob:blob,processedUrl:URL.createObjectURL(blob),processedSize:blob.size,resultKey:key};
+    } catch(failure) {
+      return {...item,status:'error',errorMessage:failure instanceof Error?failure.message:'Failed to process image.',resultKey:key};
+    } finally {if(sourceUrl) URL.revokeObjectURL(sourceUrl);}
   };
-
-  // Process all files batch
   const processBatch = async () => {
     if (!items.length || isProcessing) return;
-
-    setIsProcessing(true);
-    setCurrentStage('Reading Files');
-    setProgressPercent(5);
-    setProcessedCount(0);
-
-    const working = [...items];
-
-    // Detect duplicate names and resolve
-    const nameCountMap: Record<string, number> = {};
-
-    for (let i = 0; i < working.length; i++) {
-      const item = working[i];
-      let name = computeFilename(item, i);
-
-      if (nameCountMap[name]) {
-        const ext = name.split('.').pop();
-        const base = name.replace(/\.[^/.]+$/, '');
-        const count = nameCountMap[name]++;
-        name = `${base}-${count}.${ext}`;
-      } else {
-        nameCountMap[name] = 1;
+    const run=++runRef.current,key=settingsKey;
+    const current=()=>run===runRef.current && key===settingsRef.current;
+    setIsProcessing(true);setPreviewItem(null);setCurrentStage('Processing');setProgressPercent(0);setProcessedCount(0);
+    const working=items.map(clearOutput);
+    replaceItems(working);
+    const names=new Set<string>();
+    try {
+      for(let i=0;i<working.length;i++) {
+        if(!current()) return;
+        const name=uniqueImageExportName(computeFilename(working[i],i),names);
+        working[i]={...working[i],status:'processing',calculatedName:name};replaceItems([...working]);
+        const next=await processSingleItem(working[i],name,key);
+        if(!current()) {if(next.processedUrl) URL.revokeObjectURL(next.processedUrl);return;}
+        working[i]=next;replaceItems([...working]);setProcessedCount(i+1);setProgressPercent(Math.round((i+1)/working.length*100));
       }
-
-      working[i].status = 'processing';
-      working[i].calculatedName = name;
-      setCurrentStage('Processing');
-      setItems([...working]);
-
-      const updated = await processSingleItem(working[i], name);
-      working[i] = updated;
-
-      setProcessedCount(i + 1);
-      setProgressPercent(Math.round(((i + 1) / working.length) * 95));
-      setItems([...working]);
-    }
-
-    setCurrentStage('Completed');
-    setProgressPercent(100);
-
-    setTimeout(() => {
-      setIsProcessing(false);
-    }, 400);
-
-    const successCount = working.filter((it) => it.status === 'done').length;
-    onShowToast(`Processed ${successCount} of ${working.length} images successfully!`);
+      setCurrentStage('Completed');
+      const successes=working.filter(item=>item.status==='done').length;
+      onShowToast(`Processed ${successes} of ${working.length} images successfully!`);
+    } finally {if(current()) setIsProcessing(false);}
   };
-
-  // Download individual file
-  const handleDownloadSingle = (item: BulkImageItem) => {
-    if (!item.processedBlob || !item.processedUrl) return;
-    const a = document.createElement('a');
-    a.href = item.processedUrl;
-    a.download = item.calculatedName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+  const handleDownloadSingle = (item:BulkImageItem) => {
+    if(isProcessing || item.resultKey!==settingsKey || !item.processedBlob || !item.processedUrl) return;
+    const link=document.createElement('a');link.href=item.processedUrl;link.download=item.calculatedName;link.click();
   };
-
-  // Download all as ZIP
   const handleDownloadZip = async () => {
-    const doneItems = items.filter((it) => it.status === 'done' && it.processedBlob);
-    if (!doneItems.length) return;
-
-    const zip = new JSZip();
-    doneItems.forEach((item) => {
-      if (item.processedBlob) {
-        zip.file(item.calculatedName, item.processedBlob);
-      }
-    });
-
-    const content = await zip.generateAsync({ type: 'blob' });
-    const zipUrl = URL.createObjectURL(content);
-    const a = document.createElement('a');
-    a.href = zipUrl;
-    a.download = zipName.endsWith('.zip') ? zipName : `${zipName}.zip`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(zipUrl);
-
-    onShowToast('Downloaded all processed images in ZIP archive!');
+    if(isProcessing || isZipping) return;
+    const done=items.filter(item=>item.status==='done' && item.resultKey===settingsKey && item.processedBlob);
+    if(!done.length) return;
+    const run=runRef.current,key=settingsKey;
+    setIsZipping(true);
+    try {
+      const zip=new JSZip(),names=new Set<string>();
+      done.forEach(item=>zip.file(uniqueImageExportName(item.calculatedName,names),item.processedBlob!));
+      const blob=await zip.generateAsync({type:'blob'});
+      if(run!==runRef.current || key!==settingsRef.current) return;
+      const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=zipName.toLowerCase().endsWith('.zip')?zipName:`${zipName || 'processed-images'}.zip`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      onShowToast('Downloaded all processed images in ZIP archive!');
+    } catch {onShowToast('Could not create the ZIP. Try individual downloads.');}
+    finally {setIsZipping(false);}
   };
 
   // Stats calculation
-  const completedItems = items.filter((it) => it.status === 'done');
+  const completedItems = items.filter((it) => it.status === 'done' && it.resultKey===settingsKey);
   const totalOrigSize = completedItems.reduce((acc, it) => acc + it.origSize, 0);
   const totalOutSize = completedItems.reduce((acc, it) => acc + (it.processedSize || 0), 0);
   const totalSavingsBytes = Math.max(0, totalOrigSize - totalOutSize);
@@ -680,6 +513,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
             </div>
           </div>
 
+          <p className="text-xs text-slate-500">Changing settings clears previous results. Process the batch again to apply your changes. Original keeps JPG, PNG and WebP; other inputs export as PNG. Animated images become a still frame.</p>
           {/* Settings Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* PANEL 1: BULK RENAMING */}
@@ -692,8 +526,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
               {/* Naming Presets */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Preset Pattern</label>
-                <select
-                  value={namingPreset}
+                <select aria-label="Preset Pattern"
+                                      value={namingPreset}
                   onChange={(e) => handleNamingPresetChange(e.target.value as NamingPreset)}
                   className="w-full px-3 py-2 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                 >
@@ -712,8 +546,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
               {namingPreset === 'custom' ? (
                 <div className="space-y-1.5">
                   <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Custom Pattern</label>
-                  <input
-                    type="text"
+                  <input aria-label="Custom Pattern"
+                                        type="text"
                     value={customPattern}
                     onChange={(e) => setCustomPattern(e.target.value)}
                     placeholder="e.g. {base}-{number}"
@@ -726,8 +560,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="text-[11px] text-slate-500">Base Name</label>
-                      <input
-                        type="text"
+                      <input aria-label="Base Name"
+                                            type="text"
                         value={baseName}
                         onChange={(e) => setBaseName(e.target.value)}
                         className="w-full px-2.5 py-1.5 text-xs rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
@@ -735,8 +569,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                     </div>
                     <div>
                       <label className="text-[11px] text-slate-500">Separator</label>
-                      <select
-                        value={separator}
+                      <select aria-label="Separator"
+                                            value={separator}
                         onChange={(e) => setSeparator(e.target.value)}
                         className="w-full px-2.5 py-1.5 text-xs rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                       >
@@ -751,8 +585,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                   <div className="grid grid-cols-2 gap-2">
                     <div>
                       <label className="text-[11px] text-slate-500">Prefix (Optional)</label>
-                      <input
-                        type="text"
+                      <input aria-label="Prefix (Optional)"
+                                            type="text"
                         value={prefix}
                         placeholder="e.g. shop"
                         onChange={(e) => setPrefix(e.target.value)}
@@ -761,8 +595,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                     </div>
                     <div>
                       <label className="text-[11px] text-slate-500">Suffix (Optional)</label>
-                      <input
-                        type="text"
+                      <input aria-label="Suffix (Optional)"
+                                            type="text"
                         value={suffix}
                         placeholder="e.g. v1"
                         onChange={(e) => setSuffix(e.target.value)}
@@ -777,8 +611,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div>
                   <label className="text-[11px] text-slate-500">Start Number</label>
-                  <input
-                    type="number"
+                  <input aria-label="Start Number"
+                                        type="number"
                     value={startingNumber}
                     onChange={(e) => setStartingNumber(Number(e.target.value))}
                     className="w-full px-2.5 py-1.5 text-xs rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
@@ -786,8 +620,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                 </div>
                 <div>
                   <label className="text-[11px] text-slate-500">Zero Padding</label>
-                  <select
-                    value={zeroPadding}
+                  <select aria-label="Zero Padding"
+                                        value={zeroPadding}
                     onChange={(e) => setZeroPadding(Number(e.target.value))}
                     className="w-full px-2.5 py-1.5 text-xs rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                   >
@@ -855,13 +689,14 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
               {/* Dimension Presets */}
               <div className="space-y-1.5">
                 <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">Dimension Preset</label>
-                <select
-                  value={dimPreset}
+                <select aria-label="Dimension Preset"
+                                      value={dimPreset}
                   onChange={(e) => handleDimensionPresetChange(e.target.value as DimensionPreset)}
                   className="w-full px-3 py-2 rounded-lg text-xs bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                 >
                   <optgroup label="Standard Sizes">
                     <option value="original">Original Dimensions (No Resize)</option>
+                    <option value="custom">Custom Dimensions</option>
                     <option value="3840">3840 × 2160 (4K UHD)</option>
                     <option value="2560">2560 × 1440 (2K QHD)</option>
                     <option value="1920">1920 × 1080 (Full HD)</option>
@@ -900,8 +735,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
               <div className="grid grid-cols-2 gap-2">
                 <div>
                   <label className="text-[11px] text-slate-500">Max Width (px)</label>
-                  <input
-                    type="number"
+                  <input aria-label="Max Width (px)"
+                                        type="number"
                     value={targetWidth}
                     onChange={(e) => {
                       setTargetWidth(e.target.value);
@@ -912,8 +747,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                 </div>
                 <div>
                   <label className="text-[11px] text-slate-500">Max Height (px)</label>
-                  <input
-                    type="number"
+                  <input aria-label="Max Height (px)"
+                                        type="number"
                     value={targetHeight}
                     onChange={(e) => {
                       setTargetHeight(e.target.value);
@@ -924,13 +759,14 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                 </div>
               </div>
 
+              <p className="text-[11px] text-slate-500">Maintain Aspect Ratio fits within both maxima. Turn it off for a fixed-size canvas using Contain, Crop or Stretch.</p>
               {/* Fit Mode & Aspect Ratio */}
               <div className="space-y-2 pt-1">
                 <div className="grid grid-cols-2 gap-2">
                   <div>
                     <label className="text-[11px] text-slate-500">Fit Mode</label>
-                    <select
-                      value={fitMode}
+                    <select aria-label="Fit Mode"
+                                          value={fitMode}
                       onChange={(e) => setFitMode(e.target.value as FitMode)}
                       className="w-full px-2.5 py-1.5 text-xs rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                     >
@@ -943,8 +779,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                   {fitMode === 'crop' && (
                     <div>
                       <label className="text-[11px] text-slate-500">Crop Alignment</label>
-                      <select
-                        value={cropPos}
+                      <select aria-label="Crop Alignment"
+                                            value={cropPos}
                         onChange={(e) => setCropPos(e.target.value as CropPos)}
                         className="w-full px-2.5 py-1.5 text-xs rounded-md bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-900 dark:text-white"
                       >
@@ -1091,8 +927,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
               {/* ZIP Filename */}
               <div className="space-y-1.5 pt-2 border-t border-slate-200 dark:border-slate-800">
                 <label className="text-xs font-semibold text-slate-700 dark:text-slate-300">ZIP Export Filename</label>
-                <input
-                  type="text"
+                <input aria-label="ZIP Export Filename"
+                                      type="text"
                   value={zipName}
                   onChange={(e) => setZipName(e.target.value)}
                   placeholder="e.g. zubware-processed-images"
@@ -1135,10 +971,11 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                 <button
                   type="button"
                   onClick={handleDownloadZip}
+                  disabled={isZipping}
                   className="px-6 py-3 rounded-xl bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 font-bold text-sm hover:bg-slate-800 dark:hover:bg-white shadow-lg transition-all flex items-center gap-2"
                 >
                   <FileArchive className="w-5 h-5" />
-                  Download All as ZIP
+                  {isZipping?'Preparing ZIP...':'Download All as ZIP'}
                 </button>
               </div>
             </div>
@@ -1157,7 +994,8 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
             </div>
 
             <div className="space-y-2">
-              {items.map((item, index) => {
+              {items.map((rawItem, index) => {
+                const item=rawItem.resultKey && rawItem.resultKey!==settingsKey ? {...rawItem,status:'pending' as const} : rawItem;
                 const liveCalculatedName = computeFilename(item, index);
 
                 return (
@@ -1172,7 +1010,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                         <button
                           type="button"
                           onClick={() => moveItem(index, 'up')}
-                          disabled={index === 0}
+                          disabled={isProcessing || index === 0}
                           className="p-0.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded disabled:opacity-30"
                           title="Move up"
                         >
@@ -1181,7 +1019,7 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                         <button
                           type="button"
                           onClick={() => moveItem(index, 'down')}
-                          disabled={index === items.length - 1}
+                          disabled={isProcessing || index === items.length - 1}
                           className="p-0.5 hover:bg-slate-200 dark:hover:bg-slate-700 rounded disabled:opacity-30"
                           title="Move down"
                         >
@@ -1242,12 +1080,12 @@ export const BulkImageRenamerResizerTool: React.FC<BulkImageRenamerResizerToolPr
                       )}
                       {item.status === 'error' && (
                         <span className="px-2 py-0.5 rounded bg-rose-100 dark:bg-rose-950 text-rose-600 dark:text-rose-400 font-medium text-[11px]">
-                          Failed
+                          {item.errorMessage || 'Failed'}
                         </span>
                       )}
 
                       {/* Download Individual */}
-                      {item.status === 'done' && (
+                      {item.status === 'done' && !isProcessing && (
                         <button
                           type="button"
                           onClick={() => handleDownloadSingle(item)}

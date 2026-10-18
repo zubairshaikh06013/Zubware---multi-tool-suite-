@@ -112,6 +112,30 @@ export function validateSeoBuild(distDir: string): void {
   console.log(`[Zubware SEO] Homepage crawl reachability: ${depth.size}/${sitemapPaths.size} sitemap routes; ${deep.length} deeper than 3 clicks.`);
   if (unreachable.length) console.warn(`[Zubware SEO] Sitemap-only/unreachable routes (first 30): ${unreachable.slice(0, 30).join(', ')}`);
   if (deep.length) console.warn(`[Zubware SEO] Deep routes (first 30): ${deep.slice(0, 30).map(([route, hops]) => `${route} (${hops})`).join(', ')}`);
+  // Guard against regressions in the seven legacy .html URLs flagged by Search Console.
+  // These URLs should redirect in one hop to their clean, indexable canonical pages.
+  const redirectsFile = path.join(distDir, '_redirects');
+  if (!fs.existsSync(redirectsFile)) {
+    errors.push('Missing Cloudflare Pages _redirects deployment artifact');
+  } else {
+    const redirectLines = fs.readFileSync(redirectsFile, 'utf8')
+      .split(/\r?\n/)
+      .map(line => line.trim().split(/\s+/))
+      .filter(parts => parts.length === 3 && !parts[0].startsWith('#'));
+    const legacySlugs = [
+      'image-compressor', 'qr-generator', 'background-remover',
+      'signature-maker', 'signature-resizer'
+    ];
+    for (const slug of legacySlugs) {
+      const source = `/${slug}.html`;
+      const target = `/${slug}`;
+      const matching = redirectLines.filter(([from]) => from === source || from === '/:slug.html');
+      if (!matching.some(([from, to, status]) =>
+        status === '301' && (from === source ? to === target : to === '/:slug')
+      )) errors.push(`Missing permanent legacy HTML redirect: ${source} -> ${target}`);
+      if (!sitemapPaths.has(target)) errors.push(`Legacy redirect target missing from sitemap: ${target}`);
+    }
+  }
   const robots = fs.readFileSync(path.join(distDir, 'robots.txt'), 'utf8');
   if (!robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) errors.push('Robots sitemap declaration missing');
   if (errors.length) throw new Error(`SEO artifact validation failed:\n${[...new Set(errors)].join('\n')}`);

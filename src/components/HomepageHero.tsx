@@ -205,7 +205,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                 'searchPlaceholderShort',
                 'Search 300+ tools...'
               )}
-              className="w-full h-14 sm:h-16 pl-12 sm:pl-14 pr-24 sm:pr-32 text-sm sm:text-base font-medium rounded-full bg-white dark:bg-slate-900/95 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 focus:border-slate-300 dark:focus:border-slate-700 focus:outline-none focus:ring-0 outline-none transition-all placeholder:text-slate-400 dark:placeholder:text-slate-500"
+              className="w-full h-14 sm:h-16 pl-12 sm:pl-14 pr-24 sm:pr-32 text-sm sm:text-base font-medium rounded-full bg-white dark:bg-slate-900/95 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 focus:border-slate-300 dark:focus:border-slate-700 focus:outline-none focus:ring-0 outline-none transition-all placeholder:text-slate-500 dark:placeholder:text-slate-400"
             />
 
             {/* Right-side controls (Clear button & Keyboard shortcut hint) */}
@@ -224,7 +224,7 @@ export const HomepageHero: React.FC<HomepageHeroProps> = ({
                   <X className="w-4 h-4" />
                 </button>
               )}
-              <kbd className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono font-medium text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg select-none">
+              <kbd className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-mono font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg select-none">
                 <span>⌘K</span>
               </kbd>
             </div>

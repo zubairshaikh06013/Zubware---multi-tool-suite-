@@ -1,10 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Download, Copy, Check, Code, Layers, FileArchive } from 'lucide-react';
-import JSZip from 'jszip';
+import { Copy, Check, Code, RefreshCw, FileArchive } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageFileInfoPanel } from './ImageFileInfoPanel';
 import { ImageProcessingProgress, ProcessingStage } from './ImageProcessingProgress';
 import { getImageMetadata, ImageMetadata } from '../../../lib/imageUtils';
+import { decodeBrowserImage } from '../../../lib/browserImageDecode';
+import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
+import { imageResizeDimensions } from '../../../lib/imageResize';
+import { faviconImageRect, createFaviconBundle, FAVICON_SIZES, FAVICON_HEAD_HTML } from '../../../lib/faviconPackage';
 import { SEOHead } from '../../SEOHead';
 import { Breadcrumb } from '../../Breadcrumb';
 import { getLinkUrl } from '../../../lib/paths';
@@ -14,28 +17,10 @@ interface FaviconGeneratorToolProps {
   onNavigate?: (path: string) => void;
 }
 
-interface FaviconSizeSpec {
-  size: number;
-  filename: string;
-  label: string;
-}
-
-const FAVICON_SIZES: FaviconSizeSpec[] = [
-  { size: 16, filename: 'favicon-16x16.png', label: '16x16 (Browser Tab)' },
-  { size: 32, filename: 'favicon-32x32.png', label: '32x32 (Desktop Shortcut)' },
-  { size: 48, filename: 'favicon-48x48.png', label: '48x48 (Windows Site Tile)' },
-  { size: 64, filename: 'favicon-64x64.png', label: '64x64 (High-DPI Tab)' },
-  { size: 96, filename: 'favicon-96x96.png', label: '96x96 (Google TV / App)' },
-  { size: 128, filename: 'favicon-128x128.png', label: '128x128 (Chrome Web Store)' },
-  { size: 180, filename: 'apple-touch-icon.png', label: '180x180 (Apple Touch Icon)' },
-  { size: 256, filename: 'icon-256x256.png', label: '256x256 (PWA Android Icon)' },
-  { size: 512, filename: 'android-chrome-512x512.png', label: '512x512 (Splash Screen)' }
-];
-
 export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onShowToast, onNavigate }) => {
   const [file, setFile] = useState<File | null>(null);
   const [metadata, setMetadata] = useState<ImageMetadata | null>(null);
-  const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null);
+  const [error, setError] = useState('');
 
   const [previews, setPreviews] = useState<Record<string, string>>({});
   const [copiedHtml, setCopiedHtml] = useState<boolean>(false);
@@ -44,126 +29,89 @@ export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onSh
   const [stage, setStage] = useState<ProcessingStage>('Reading Image');
   const [progress, setProgress] = useState<number>(0);
 
+  const generation = useRef(0);
+  const busy = useRef(false);
+  const blobs = useRef<Record<string, Blob>>({});
+  const urls = useRef<string[]>([]);
+  const copyTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const releasePreviews = () => { urls.current.forEach(url=>URL.revokeObjectURL(url)); urls.current=[]; };
+  useEffect(()=>()=>{generation.current++;releasePreviews();clearTimeout(copyTimer.current);},[]);
+  const reset = () => {
+    generation.current++; busy.current=false; releasePreviews(); blobs.current={}; clearTimeout(copyTimer.current);
+    setFile(null);setMetadata(null);setPreviews({});setCopiedHtml(false);setError('');setIsProcessing(false);setProgress(0);
+  };
   const handleImageSelected = async (files: File[]) => {
     if (!files.length) return;
-    const selectedFile = files[0];
-    setFile(selectedFile);
-    setIsProcessing(true);
-    setStage('Reading Image');
-    setProgress(20);
-
-    const img = new Image();
-    const url = URL.createObjectURL(selectedFile);
-    img.onload = async () => {
-      setImageObj(img);
+    reset();
+    const run=generation.current;
+    setFile(files[0]);busy.current=true;setIsProcessing(true);setStage('Reading Image');setProgress(10);
+    let sourceUrl='';
+    const pendingUrls:string[]=[];
+    try {
+      const decoded=await decodeBrowserImage(files[0]);sourceUrl=decoded.url;
+      if(run!==generation.current) return;
+      const img=decoded.image;
+      imageResizeDimensions(img.naturalWidth,img.naturalHeight,{mode:'percentage',width:1,height:1,percentage:100,preserveBatchAspect:false});
       setStage('Analyzing');
-      setProgress(50);
-
-      const meta = await getImageMetadata(selectedFile, img);
-      setMetadata(meta);
-
+      const meta=await getImageMetadata(files[0],img);
+      if(run!==generation.current) return;
       setStage('Generating Previews');
-      setProgress(75);
-
-      // Render all size canvases
-      const previewsMap: Record<string, string> = {};
-      for (const spec of FAVICON_SIZES) {
-        const canvas = document.createElement('canvas');
-        canvas.width = spec.size;
-        canvas.height = spec.size;
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-          ctx.imageSmoothingEnabled = true;
-          ctx.imageSmoothingQuality = 'high';
-          ctx.drawImage(img, 0, 0, spec.size, spec.size);
-          previewsMap[spec.filename] = canvas.toDataURL('image/png');
-        }
+      const icons:Record<string,Blob>={}, previewsMap:Record<string,string>={};
+      for(const spec of FAVICON_SIZES) {
+        const canvas=document.createElement('canvas');canvas.width=spec.size;canvas.height=spec.size;
+        const ctx=canvas.getContext('2d');
+        if(!ctx) throw new Error('Unable to create icon canvas.');
+        ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
+        const rect=faviconImageRect(img.naturalWidth,img.naturalHeight,spec.size);
+        ctx.drawImage(img,rect.x,rect.y,rect.width,rect.height);
+        const blob=await encodeCanvasBlob(canvas,'image/png');
+        if(run!==generation.current) return;
+        icons[spec.filename]=blob;
+        const url=URL.createObjectURL(blob);pendingUrls.push(url);previewsMap[spec.filename]=url;
+        setProgress(Math.round(25+65*pendingUrls.length/FAVICON_SIZES.length));
       }
-
-      setPreviews(previewsMap);
-      setStage('Completed');
-      setProgress(100);
-      setTimeout(() => setIsProcessing(false), 300);
-    };
-    img.src = url;
+      blobs.current=icons;urls.current=pendingUrls.splice(0);setMetadata(meta);setPreviews(previewsMap);
+      setStage('Completed');setProgress(100);
+    } catch(cause) {
+      if(run===generation.current) {setFile(null);setError(cause instanceof Error?cause.message:'Unable to generate icons.');}
+    } finally {
+      if(sourceUrl) URL.revokeObjectURL(sourceUrl);
+      pendingUrls.forEach(url=>URL.revokeObjectURL(url));
+      if(run===generation.current) {busy.current=false;setIsProcessing(false);}
+    }
   };
 
-  const htmlHeadSnippet = `<!-- Favicon Suite Generated with Zubware -->
-<link className="icon" type="image/x-icon" href="/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />`;
-
-  const copyHtmlSnippet = () => {
-    navigator.clipboard.writeText(htmlHeadSnippet);
-    setCopiedHtml(true);
-    onShowToast('HTML <head> tags copied to clipboard!');
-    setTimeout(() => setCopiedHtml(false), 2000);
+  const htmlHeadSnippet = FAVICON_HEAD_HTML;
+  const copyHtmlSnippet = async () => {
+    const run=generation.current;
+    try {
+      await navigator.clipboard.writeText(htmlHeadSnippet);
+      if(run!==generation.current) return;
+      setCopiedHtml(true);clearTimeout(copyTimer.current);
+      onShowToast('HTML <head> tags copied to clipboard!');
+      copyTimer.current=setTimeout(()=>setCopiedHtml(false),2000);
+    } catch {if(run===generation.current) onShowToast('Clipboard unavailable. Select and copy the HTML below.');}
   };
 
   const handleDownloadZip = async () => {
-    if (!file || !imageObj) return;
-    setIsProcessing(true);
-    setStage('Preparing Download');
-    setProgress(50);
-
-    const zip = new JSZip();
-
-    // 1. Add PNG favicons
-    for (const spec of FAVICON_SIZES) {
-      const dataUrl = previews[spec.filename];
-      if (dataUrl) {
-        const base64Data = dataUrl.replace(/^data:image\/png;base64,/, '');
-        zip.file(spec.filename, base64Data, { base64: true });
-      }
-    }
-
-    // 2. Add favicon.ico (using 32x32 canvas PNG binary)
-    const icoCanvas = document.createElement('canvas');
-    icoCanvas.width = 32;
-    icoCanvas.height = 32;
-    const icoCtx = icoCanvas.getContext('2d');
-    if (icoCtx) {
-      icoCtx.drawImage(imageObj, 0, 0, 32, 32);
-      const icoDataUrl = icoCanvas.toDataURL('image/png').replace(/^data:image\/png;base64,/, '');
-      zip.file('favicon.ico', icoDataUrl, { base64: true });
-    }
-
-    // 3. Add site.webmanifest
-    const manifestContent = JSON.stringify({
-      name: "My App",
-      short_name: "App",
-      icons: [
-        { src: "/icon-256x256.png", sizes: "256x256", type: "image/png" },
-        { src: "/android-chrome-512x512.png", sizes: "512x512", type: "image/png" }
-      ],
-      theme_color: "#ffffff",
-      background_color: "#ffffff",
-      display: "standalone"
-    }, null, 2);
-
-    zip.file('site.webmanifest', manifestContent);
-
-    // Generate ZIP blob
-    setStage('Compressing ZIP');
-    setProgress(85);
-
-    const blob = await zip.generateAsync({ type: 'blob' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = 'favicons_bundle.zip';
-    link.click();
-
-    setStage('Completed');
-    setProgress(100);
-    setTimeout(() => setIsProcessing(false), 300);
-    onShowToast('Favicon ZIP package downloaded!');
+    if (busy.current || !FAVICON_SIZES.every(spec=>blobs.current[spec.filename])) return;
+    const run=generation.current, icons=blobs.current;
+    busy.current=true;setIsProcessing(true);setError('');setStage('Preparing Download');setProgress(50);
+    try {
+      setStage('Compressing ZIP');setProgress(85);
+      const blob=await createFaviconBundle(icons);
+      if(run!==generation.current) return;
+      const url=URL.createObjectURL(blob),link=document.createElement('a');
+      link.href=url;link.download='favicons_bundle.zip';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+      setStage('Completed');setProgress(100);onShowToast('Favicon ZIP package downloaded!');
+    } catch(cause) {
+      if(run===generation.current) setError(cause instanceof Error?cause.message:'Unable to create the favicon ZIP.');
+    } finally {if(run===generation.current){busy.current=false;setIsProcessing(false);}}
   };
 
   return (
     <div className="space-y-6">
-      
+      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />
@@ -181,18 +129,20 @@ export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onSh
           )}
 
           {isProcessing && <ImageProcessingProgress stage={stage} progress={progress} />}
+          <button type="button" onClick={reset} className="flex items-center gap-2 text-sm font-bold text-indigo-600"><RefreshCw className="w-4 h-4" /> Select Different Image</button>
 
           {/* Favicons Grid Preview */}
           <div className="p-6 rounded-3xl glass-panel space-y-6">
             <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/50 dark:border-slate-800/50 pb-4">
               <div>
                 <h3 className="text-base font-black text-slate-900 dark:text-white">Generated Favicon Set</h3>
-                <p className="text-xs text-slate-500">Includes 9 resolution variants + favicon.ico + web manifest</p>
+                <p className="text-xs text-slate-500">Includes 10 PNG sizes, a multi-size ICO, web manifest and HTML tags. Keeps image proportions with transparent padding.</p>
               </div>
 
               <button
                 type="button"
                 onClick={handleDownloadZip}
+                disabled={isProcessing || Object.keys(previews).length !== FAVICON_SIZES.length}
                 className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer"
               >
                 <FileArchive className="w-4 h-4" /> Download All as ZIP
@@ -215,6 +165,7 @@ export const FaviconGeneratorTool: React.FC<FaviconGeneratorToolProps> = ({ onSh
               ))}
             </div>
 
+            <p className="text-xs text-slate-500">Upload the ZIP contents to your website root, add the tags to your HTML head, and edit the app name in site.webmanifest.</p>
             {/* HTML Code Snippet Box */}
             <div className="p-5 rounded-2xl bg-slate-950 border border-slate-800 space-y-3">
               <div className="flex items-center justify-between">

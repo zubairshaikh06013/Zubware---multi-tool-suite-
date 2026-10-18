@@ -112,9 +112,8 @@ export function validateSeoBuild(distDir: string): void {
     if (!urls.includes(`${SITE_ORIGIN}${route}`)) errors.push(`Tool missing from sitemap: ${tool.id}`);
     if (!incoming.has(route)) errors.push(`Tool has no crawlable incoming link: ${tool.id}`);
   }
-  // Crawl-depth diagnostics: all sitemap URLs should be reachable through HTML links,
-  // not solely through sitemap discovery. Report deep/orphaned pages without failing
-  // an otherwise valid deployment (legacy content may require editorial review).
+  // Enforce crawlability: sitemap-only URLs are not enough for reliable discovery.
+  // Preserve diagnostics for deep pages while failing builds for orphaned routes.
   const depth = new Map<string, number>([['/', 0]]);
   const queue = ['/'];
   for (let i = 0; i < queue.length; i++) {
@@ -129,7 +128,7 @@ export function validateSeoBuild(distDir: string): void {
   const unreachable = [...sitemapPaths].filter(route => !depth.has(route));
   const deep = [...depth].filter(([, hops]) => hops > 3);
   console.log(`[Zubware SEO] Homepage crawl reachability: ${depth.size}/${sitemapPaths.size} sitemap routes; ${deep.length} deeper than 3 clicks.`);
-  if (unreachable.length) console.warn(`[Zubware SEO] Sitemap-only/unreachable routes (first 30): ${unreachable.slice(0, 30).join(', ')}`);
+  if (unreachable.length) errors.push(`Sitemap routes unreachable from homepage via HTML links: ${unreachable.join(', ')}`);
   if (deep.length) console.warn(`[Zubware SEO] Deep routes (first 30): ${deep.slice(0, 30).map(([route, hops]) => `${route} (${hops})`).join(', ')}`);
   // Guard against regressions in the seven legacy .html URLs flagged by Search Console.
   // These URLs should redirect in one hop to their clean, indexable canonical pages.

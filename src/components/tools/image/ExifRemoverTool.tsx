@@ -125,11 +125,12 @@ export const ExifRemoverTool: React.FC<ExifRemoverToolProps> = ({ onShowToast, o
                   </button>
                 </div>
 
-                {/* Detected & Stripped Items List */}
+                {/* Examples, not a per-file metadata detection report. */}
                 <div className="p-4 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/40 border border-emerald-200/60 dark:border-emerald-800/60 space-y-2 text-xs">
                   <span className="font-bold text-emerald-800 dark:text-emerald-300 flex items-center gap-1.5">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" /> Removed Metadata Tags:
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" /> Examples of source metadata not copied:
                   </span>
+                  <p>This list does not mean these tags were present in your file. Inspect the exported metadata if removal is important for your use.</p>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-[11px] text-slate-700 dark:text-slate-300">
                     <div>• GPS Location & Altitude</div>
                     <div>• Camera Model & Lens</div>

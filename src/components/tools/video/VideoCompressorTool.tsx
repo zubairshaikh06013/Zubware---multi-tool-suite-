@@ -8,6 +8,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   const [compressedBlob, setCompressedBlob] = useState<Blob | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [playbackKey, setPlaybackKey] = useState(0);
 
   const [processingError, setProcessingError] = useState('');
   const [audioNotice, setAudioNotice] = useState('');
@@ -81,6 +82,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
       const height = Math.max(2, Math.round(video.videoHeight * resolutionScale / 2) * 2);
       if (width * height > 32000000) throw new Error('Choose a smaller output resolution.');
       canvas.width = width; canvas.height = height;
+      ctx.drawImage(video, 0, 0, width, height);
       stream = canvas.captureStream(fps);
       const capture = (video as HTMLVideoElement & {captureStream?: () => MediaStream}).captureStream;
       if (capture) {
@@ -127,7 +129,12 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
     } finally {
       const wasCancelled = cancelled;
       cleanup(); stopActive.current = null;
-      if (!wasCancelled) setIsProcessing(false);
+      if (!wasCancelled) {
+        // A captured media element can retain ended tracks after cleanup.
+        // Give the next recording a fresh decoder/capture lifecycle.
+        setPlaybackKey(key => key + 1);
+        setIsProcessing(false);
+      }
     }
   };
 
@@ -139,7 +146,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   const getSavingsPercent = () => {
     if (!videoFile || !compressedBlob) return 0;
     const diff = videoFile.size - compressedBlob.size;
-    return Math.max(0, Math.round((diff / videoFile.size) * 100));
+    return Math.round((diff / videoFile.size) * 100);
   };
 
   return (
@@ -306,6 +313,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
         <div className="lg:col-span-6 space-y-4 flex flex-col">
           {videoUrl && (
             <video
+              key={playbackKey}
               ref={videoRef}
               src={videoUrl}
               className="hidden"
@@ -331,9 +339,9 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
                     </span>
                   </div>
                   <div>
-                    <span className="text-[10px] text-slate-400 uppercase font-bold block">Space Saved</span>
+                    <span className="text-[10px] text-slate-400 uppercase font-bold block">Size Change (Rounded)</span>
                     <span className="text-base font-black text-indigo-600 dark:text-indigo-400">
-                      {getSavingsPercent()}% Reduction
+                      {Math.abs(getSavingsPercent())}% {getSavingsPercent() < 0 ? 'Larger' : getSavingsPercent() > 0 ? 'Smaller' : 'Change'}
                     </span>
                   </div>
                 </div>

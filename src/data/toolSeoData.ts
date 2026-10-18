@@ -4639,29 +4639,29 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Inspect Matches & Capture Groups",
-        "desc": "Review highlighted match spans, match count, execution time, and individual captured group arrays."
+        "desc": "Review highlighted match spans, match count, capture groups and indices. Matching stops after two seconds, and results are capped at 1,000 matches."
       }
     ],
     "faq": [
       {
         "question": "Which regex dialect does this tester use?",
-        "answer": "It uses modern ECMAScript (JavaScript) RegExp specifications, including named capture groups (?<name>), lookaheads (?=), lookbehinds (?<=), and Unicode property escapes."
+        "answer": "It uses the browser’s JavaScript RegExp engine. Syntax support, including lookbehind and Unicode property escapes, depends on the browser."
       },
       {
-        "question": "Does the tester highlight multiple capture groups?",
-        "answer": "Yes. Matched text is visually highlighted with distinct color badges, and capture groups are broken down in an interactive results table."
+        "question": "Does the tester highlight capture groups?",
+        "answer": "Full matches are highlighted in the sample text. Captured groups are listed beneath each match with its index. Groups do not have separate highlight colours."
       },
       {
         "question": "Can I test regex substitution and replacement strings?",
-        "answer": "Yes. Switch to Replacement mode to test substitution syntax including $1 group variables and custom replacement logic."
+        "answer": "The current tool tests matches and capture groups. It does not include a replacement mode."
       },
       {
         "question": "Does the tester protect against catastrophic backtracking (ReDoS)?",
-        "answer": "Yes. Pattern matching runs inside a protected evaluation wrapper that aborts if an exponential backtracking freeze is detected."
+        "answer": "Matching runs in a separate worker that is terminated after two seconds. Text is limited to 200,000 characters, patterns to 10,000 characters and displayed results to 1,000 matches. This limits this test session; it does not prove the pattern is safe in another application."
       },
       {
-        "question": "Are my test data or regex patterns stored anywhere?",
-        "answer": "No. Regex compilation and text matching execute client-side in browser memory with complete confidentiality."
+        "question": "Are my test data uploaded?",
+        "answer": "Regex matching runs locally in a browser worker. This tool does not upload your pattern or test text for evaluation."
       }
     ]
   },
@@ -4744,38 +4744,42 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "json-to-csv": {
     "howTo": [
       {
-        "title": "Paste JSON Array or Object",
-        "desc": "Enter a JSON array of objects or nested JSON records into the input pane."
+        "title": "Paste an Object or Array of Objects",
+        "desc": "Enter valid JSON. Every array entry must be an object; null entries, primitive values and nested row arrays are rejected."
       },
       {
-        "title": "Configure Delimiter & Header Options",
-        "desc": "Choose Comma (,), Semicolon (;), or Tab (TSV), and toggle flattened dot-notation for nested objects."
+        "title": "Review Columns and Nested Values",
+        "desc": "Top-level keys become columns. Nested objects and arrays are serialized as JSON text inside cells; missing and null values become empty cells."
       },
       {
-        "title": "Download CSV Spreadsheet",
-        "desc": "Review the live table preview and click Download CSV to open directly in Excel or Google Sheets."
+        "title": "Download Comma-Separated CSV",
+        "desc": "Review the table and download the CSV. The current tool uses a comma delimiter. Store long identifiers as quoted JSON strings to preserve their digits."
       }
     ],
     "faq": [
       {
         "question": "How does the tool handle nested JSON objects and arrays?",
-        "answer": "Nested objects are flattened into dot-notation column headers (e.g. 'user.address.city'), and array values are serialized cleanly into quoted comma-separated strings."
+        "answer": "Nested values are serialized as JSON text within a cell. They are not flattened into dot-notation columns."
       },
       {
-        "question": "How are commas and quotes inside string fields escaped?",
-        "answer": "In compliance with RFC 4180, fields containing commas, line breaks, or quotation marks are wrapped in double quotes, with internal quotes escaped as double double-quotes (\"\")."
+        "question": "How are commas, line breaks and quotes escaped?",
+        "answer": "Cells containing commas, CR/LF line breaks or quotation marks are enclosed in double quotes. A quote inside a cell is doubled."
       },
       {
-        "question": "Can I customize the column delimiter for European Excel?",
-        "answer": "Yes. You can select semicolon (;) delimiter mode to ensure seamless spreadsheet opening in European locales."
+        "question": "Can I customize the column delimiter?",
+        "answer": "The current JSON-to-CSV tool exports comma-separated CSV. It does not include a semicolon or tab delimiter selector."
       },
       {
         "question": "Can I convert large JSON datasets?",
-        "answer": "Yes. Datasets containing thousands of rows are processed in milliseconds using streaming browser memory buffers."
+        "answer": "The entire input is parsed in browser memory. Available memory and processing time depend on the input and device; this is not a streaming converter."
+      },
+      {
+        "question": "Are large numeric identifiers preserved?",
+        "answer": "Use quoted strings for long identifiers. Unquoted JSON numbers are parsed as JavaScript numbers and can lose precision before CSV export."
       },
       {
         "question": "Are database records uploaded to Zubware servers?",
-        "answer": "No. Conversion executes client-side in your browser. Data is not uploaded to Zubware servers."
+        "answer": "Conversion runs locally in this tool. The converter does not upload the records to Zubware servers."
       }
     ]
   },
@@ -4783,75 +4787,79 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {
         "title": "Paste CSV Data or Upload File",
-        "desc": "Enter raw comma-separated text or upload a .csv / .tsv spreadsheet file."
+        "desc": "Paste delimited text or upload a CSV/text file. The first record supplies the JSON property names."
       },
       {
-        "title": "Configure Parsing & Type Inference",
-        "desc": "Select delimiter (Auto, Comma, Tab, Semicolon), specify header row, and toggle automatic number/boolean type conversion."
+        "title": "Choose Delimiter and Optional Inference",
+        "desc": "Select comma, semicolon, tab or pipe. Values stay as text by default; enable simple number and boolean inference only when wanted."
       },
       {
-        "title": "Copy or Export Formatted JSON",
-        "desc": "Review the converted JSON array of objects and click Copy or Download as a .json file."
+        "title": "Review and Export JSON",
+        "desc": "Review the array of objects, resolve any duplicate-header or record-width error, then copy or download the JSON."
       }
     ],
     "faq": [
       {
         "question": "Does the converter automatically detect numbers and booleans?",
-        "answer": "Yes. The type inference engine converts numeric strings (e.g. '123' to 123) and boolean words ('true' to true) into native JSON primitives."
+        "answer": "Values remain strings by default. The optional inference checkbox converts simple canonical numbers and true/false values. Leading-zero identifiers, large integer IDs and values that cannot be represented safely remain strings."
       },
       {
         "question": "Can I choose between an Array of Objects and an Array of Arrays?",
-        "answer": "Yes. You can output an array of keyed objects ([{id: 1, name: 'Alice'}]) or a compact 2D array of rows ([['id', 'name'], [1, 'Alice']])."
+        "answer": "The current output is an array of objects using the first record as property names. There is no array-of-arrays output mode."
       },
       {
         "question": "How does the parser handle quoted fields with line breaks?",
-        "answer": "It follows the RFC 4180 specification, correctly preserving multi-line strings enclosed inside double quotes without splitting them into new records."
+        "answer": "Quoted fields can contain line breaks, delimiters and escaped double quotes. Unclosed quotes, duplicate or blank headers and inconsistent record widths are reported as errors."
       },
       {
         "question": "Can I convert Tab-Separated Values (TSV) from Excel?",
-        "answer": "Yes. The parser auto-detects tab delimiters when copying and pasting directly from spreadsheet software."
+        "answer": "Yes. Paste the text and select the Tab delimiter. Delimiter selection is manual, not automatically detected."
       },
       {
-        "question": "Is any spreadsheet data sent over the network?",
-        "answer": "No. File parsing and JSON serialization occur completely in your web browser."
+        "question": "Are spreadsheet records uploaded for conversion?",
+        "answer": "Parsing and JSON serialization run locally in this tool. The converter does not upload the spreadsheet records to Zubware servers."
       }
     ]
   },
   "csv-viewer": {
     "howTo": [
       {
-        "title": "Open or Paste CSV File",
-        "desc": "Upload a CSV spreadsheet or paste raw tabular text directly into the viewer."
+        "title": "Open or Paste Comma-Separated CSV",
+        "desc": "Upload a CSV/text file or paste CSV into the editor. The first record becomes the table header."
       },
       {
-        "title": "Search, Sort & Paginate Table",
-        "desc": "Click column headers to sort ascending/descending, filter rows with live search, and navigate pages."
+        "title": "Search, Sort and Paginate",
+        "desc": "Use global search across cells, click a column header to sort, and choose the number of rows per page."
       },
       {
-        "title": "Export Filtered View or JSON",
-        "desc": "Download the sorted data back to a clean CSV file or export selected rows as JSON."
+        "title": "Export the Filtered Table",
+        "desc": "Download the filtered and sorted rows as CSV, including rows on other pages. JSON export is not available in this viewer."
       }
     ],
     "faq": [
       {
         "question": "Can this viewer open large CSV spreadsheets without freezing?",
-        "answer": "Yes. It uses virtualized table rendering and paginated data slicing to display files with tens of thousands of rows smoothly."
+        "answer": "The table is paginated, but parsing and sorting still process the dataset in memory. Large files can be slow or exceed browser memory; no fixed performance guarantee is provided."
       },
       {
         "question": "Can I search and filter specific columns?",
-        "answer": "Yes. The global search bar filters rows instantly across all columns, while column filters allow targeted data querying."
+        "answer": "Search currently matches text across all columns. Separate per-column filters are not available."
       },
       {
         "question": "Does the viewer auto-detect delimiters like semicolons and tabs?",
-        "answer": "Yes. An automated sniffer inspects the first several rows to detect whether comma, semicolon, tab, or pipe is the primary delimiter."
+        "answer": "This viewer currently parses comma-separated CSV. It does not automatically detect another delimiter."
       },
       {
         "question": "Can I edit cell values directly in the table?",
-        "answer": "Yes. Double-click any table cell to edit its value and export the modified spreadsheet."
+        "answer": "Table cells are read-only. You can edit the raw CSV text and review the updated table before exporting."
       },
       {
-        "question": "Are financial or customer spreadsheets secure?",
-        "answer": "Yes. File reading is performed via the browser's native FileReader API with local browser-side processing."
+        "question": "Does export include all filtered rows or only the current page?",
+        "answer": "The CSV download includes all filtered and sorted rows, not only the visible page. Quoted multiline cells and embedded quotes are escaped during export."
+      },
+      {
+        "question": "Are financial or customer spreadsheets uploaded?",
+        "answer": "This tool reads and processes the file locally. It does not upload the spreadsheet records to Zubware servers."
       }
     ]
   },
@@ -13394,70 +13402,58 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "video-compressor": {
     "howTo": [
       {
-        "title": "Upload Video File",
-        "desc": "Select or drag an MP4, WebM, or MOV video file from your computer or smartphone into the upload box."
+        "title": "Choose a Playable Video",
+        "desc": "Upload a video that your browser can decode. Container and codec support vary by browser and device."
       },
       {
-        "title": "Select Quality Bitrate Preset",
-        "desc": "Choose High Quality (2.5 Mbps for crystal clarity), Medium (1.2 Mbps for balanced sharing), or Low (600 Kbps for maximum file shrink)."
+        "title": "Select Bitrate, Scale and Frame Rate",
+        "desc": "Choose a target video bitrate of 2.5 Mbps, 1.2 Mbps or 600 Kbps, a resolution scale from 40% to 100%, and 24, 30 or 60 FPS."
       },
       {
-        "title": "Adjust Resolution Scaling & Frame Rate",
-        "desc": "Optionally downscale resolution to 75% or 50% scale, and set target frame rate (30 FPS) to slash video byte weight."
+        "title": "Record the WebM Output",
+        "desc": "Start compression and keep the tab active. Recording uses browser playback and can take the source duration or longer."
       },
       {
-        "title": "Compress in Local Browser Memory",
-        "desc": "Click Compress Video to re-encode the stream in real time via canvas MediaRecorder without uploading bytes to remote servers."
-      },
-      {
-        "title": "Compare File Sizes & Download",
-        "desc": "Review original vs compressed file sizes, verified byte reduction percentage, test playback, and save your smaller video file."
+        "title": "Check Size, Sound and Playback",
+        "desc": "Compare the output size with the original. Play the exported WebM and verify audio and image quality before sharing; the output may be larger."
       }
     ],
     "faq": [
       {
-        "question": "How does in-browser video compression reduce file size without uploading to a server?",
-        "answer": "The tool uses HTML5 video decoding, HTML5 Canvas frame extraction, and the browser's hardware-accelerated MediaRecorder API. By controlling the target encoding bitrate (such as 1.2 Mbps) and rendering dimensions, it recompresses video frames locally on your device GPU/CPU without network transfers."
+        "question": "How does this video compressor work?",
+        "answer": "The tool decodes video using the browser, draws frames onto a scaled canvas and records a WebM using MediaRecorder. The video file is processed locally."
       },
       {
-        "question": "Which compression settings give the best balance between small file size and clear visual quality?",
-        "answer": "The Medium Quality preset (1.2 Mbps) paired with 75% resolution scaling typically reduces file sizes by 50% to 70% while keeping speech, text on screen, and motion completely sharp and artifact-free."
+        "question": "Which compression settings should I choose?",
+        "answer": "Try Balanced (1.2 Mbps) and inspect the output. Lowering the bitrate or dimensions can reduce detail. Results depend on the source, encoder and device; there is no guaranteed reduction percentage."
       },
       {
-        "question": "How much file size reduction can I expect from downscaling resolution?",
-        "answer": "Downscaling resolution has an exponential impact on video size. Dropping from 1080p to 720p reduces the total pixel count by more than 50% per frame, which drastically cuts the required bitrate and slashes file payload by up to 60–80%."
+        "question": "Does a smaller resolution guarantee a smaller file?",
+        "answer": "No. For example, 50% width and 50% height produce one-quarter as many pixels per frame, but final bytes also depend on bitrate, duration, audio and encoder behaviour."
       },
       {
-        "question": "Will the compressed video keep its original audio track and speech clarity?",
-        "answer": "Yes. The MediaRecorder stream captures the audio track from the HTML5 video element and muxes it alongside the compressed video stream, preserving vocal clarity and sound synchronization."
+        "question": "Will the output keep the original audio?",
+        "answer": "Audio capture depends on browser support and the source. The tool shows a warning when capture is unavailable or no track is captured. Always listen to the exported result; original quality and synchronization are not guaranteed."
       },
       {
-        "question": "Which video formats are supported for compression?",
-        "answer": "The compressor accepts all standard browser-supported video formats including MP4 (H.264), WebM (VP8/VP9), and compatible MOV files from iPhones and Android devices."
+        "question": "Which input and output formats are supported?",
+        "answer": "Input must be playable by your browser. The tool checks whether WebM recording is supported and selects VP9, VP8 or the browser’s WebM default. It does not export MP4."
       },
       {
-        "question": "Why is the compressed video output in WebM format instead of MP4?",
-        "answer": "Standard browser MediaRecorder implementations natively support WebM encoding (VP9 or VP8 codecs) without requiring heavy multi-megabyte external software libraries. WebM offers superior modern compression efficiency and plays natively in all web browsers, Discord, YouTube, and VLC."
+        "question": "Can I guarantee a specific upload size?",
+        "answer": "No. The tool offers bitrate and resolution controls, not an exact target-size mode. Video-only estimates in decimal MB are bitrate in Mbps multiplied by seconds and divided by eight; audio and container overhead add bytes. Check the actual download and the destination’s current limit."
       },
       {
-        "question": "How can I compress a video to under 25MB for Discord, Gmail, or Slack?",
-        "answer": "Select the Low Quality preset (600 Kbps) and set Resolution Scale to 50%. A 600 Kbps stream produces approximately 4.5 MB of data per minute of video, easily allowing 4–5 minute clips to fit under strict 25 MB email attachment limits."
+        "question": "What is the maximum supported file size?",
+        "answer": "There is no universally tested maximum. Duration, dimensions, codecs and device resources all matter. Start with a short clip and keep the original if recording fails."
       },
       {
-        "question": "What is the recommended maximum input video file size for this browser compressor?",
-        "answer": "Because video decoding and re-encoding occur inside your browser's allocated JavaScript heap and GPU memory, files up to 500 MB process smoothly on modern laptops and smartphones. For multi-gigabyte raw camera footage, desktop offline software is advised."
+        "question": "Can the compressed file be larger than the original?",
+        "answer": "Yes, especially for a source that is already efficiently encoded. The size comparison reports this so you can keep the original or try different settings."
       },
       {
-        "question": "Why does video compression require high CPU or RAM on my device?",
-        "answer": "Video compression is a computationally intensive mathematical operation involving Discrete Cosine Transforms, motion estimation, and entropy encoding across 30 frames per second. The browser uses your local device processor to perform this work."
-      },
-      {
-        "question": "Is my video content secure and private during compression?",
-        "answer": "Yes. 100% of processing occurs in local client-side memory. Your video footage is never transmitted to Zubware servers, cloud buckets, or third-party analytics providers."
-      },
-      {
-        "question": "How does video bitrate affect streaming and playback buffer times?",
-        "answer": "Bitrate represents the amount of data transferred per second. High bitrates (10+ Mbps) demand high internet bandwidth and cause buffering on mobile networks. Compressing video to 1.2–2.5 Mbps ensures instant loading and stutter-free playback across 4G and public Wi-Fi."
+        "question": "Does the tool upload my footage?",
+        "answer": "The converter processes the selected file locally in the browser; it does not upload the video for encoding."
       }
     ]
   },

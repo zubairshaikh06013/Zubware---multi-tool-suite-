@@ -296,7 +296,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'video-aspect-ratio':
       'Zubware Video Aspect Ratio Converter reframes video footage for modern social media platforms including 9:16 vertical (TikTok, Instagram Reels, YouTube Shorts), 16:9 widescreen, 1:1 square, and 4:5 portrait posts. Choose between Contain mode with real-time blurred ambient padding or Cover mode for center cropping, and re-encode high-bitrate WebM video with synchronized audio directly in your browser.',
     'video-compressor':
-      'Zubware Video Compressor reduces MP4, WebM, and MOV video file sizes directly in your browser without uploading private footage to remote cloud servers. Select from High, Medium, or Low bitrate presets, scale video dimensions to 75% or 50%, and preserve clear audio tracks while shrinking byte weights to fit under strict Discord, Gmail, and messaging upload limits.',
+      'Zubware Video Compressor records a WebM from a browser-playable video using adjustable bitrate, resolution and frame rate. Processing stays local and takes approximately the clip duration or longer. Output size and audio capture depend on the source and browser; compare the download with the original and check playback before sharing.',
     'video-trimmer':
       'Zubware Video Trimmer & Cutter cuts, extracts, and slices video clips with frame-accurate precision directly in your browser. Drag interactive timeline scrubber handles, enter exact second and decimal cut points, test isolated looping previews, and export pristine trimmed WebM video clips with audio preserved and zero watermarks.',
     'omr-sheet-generator':

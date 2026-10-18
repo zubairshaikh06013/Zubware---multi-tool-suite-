@@ -48,3 +48,16 @@ await assert.rejects(encodeCanvasBlob({ toBlob: () => { throw new Error('Canvas 
 const png = new Blob(['png'], { type: 'image/png' });
 assert.equal(await encodeCanvasBlob(fakeCanvas(png), 'image/png'), png);
 console.log('Secure generation, wordlist integrity and canvas export failure regressions passed.');
+
+// Date-only calculations must not gain a century or lose a day across DST.
+const { parseCalendarDate, calendarAge, calendarDay, calendarAnniversary } = await import('../src/lib/calendarAge');
+const date = (value: string) => { const parsed = parseCalendarDate(value); assert.ok(parsed); return parsed; };
+for (const invalid of ['', '2026-02-29', '2026-04-31', '0000-01-01', '2026-13-01', '2026-1-01']) assert.equal(parseCalendarDate(invalid), null);
+assert.equal(date('0099-01-01').getFullYear(), 99);
+assert.deepEqual(calendarAge(date('2024-02-29'), date('2025-02-28')), { years: 1, months: 0, days: 0, totalDays: 365 });
+assert.deepEqual(calendarAge(date('2026-01-31'), date('2026-02-28')), { years: 0, months: 1, days: 0, totalDays: 28 });
+assert.equal(calendarAge(date('2026-10-18'), date('2026-10-17')), null);
+assert.equal(calendarAge(date('2026-10-18'), date('2026-10-18'))?.totalDays, 0);
+assert.equal(calendarAge(date('2026-03-07'), date('2026-03-09'))?.totalDays, 2);
+assert.equal(calendarDay(calendarAnniversary(date('0096-02-29'), 99)) - calendarDay(date('0099-02-27')), 1);
+console.log('Calendar age, leap-day, month-end and early-year regressions passed.');

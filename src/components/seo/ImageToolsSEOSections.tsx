@@ -724,7 +724,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                   Image Info Viewer →
                 </span>
                 <span className="text-slate-500 dark:text-slate-400 text-[11px]">
-                  Inspect embedded EXIF tags, GPS maps, and camera technical specs.
+                  Inspect decoded dimensions and selected JPEG EXIF camera/GPS fields.
                 </span>
               </a>
               <a

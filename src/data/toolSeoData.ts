@@ -631,29 +631,29 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Review Technical Specifications",
-        "desc": "Explore comprehensive data cards detailing dimensions, aspect ratio, file size, color depth, and camera settings."
+        "desc": "Review decoded dimensions, aspect ratio, file size and a transparency sample. JPEG files also show selected stored EXIF fields."
       },
       {
-        "title": "Copy Details or Print Diagnostic Summary",
-        "desc": "Copy individual metadata attributes or save the complete inspection summary for asset documentation."
+        "title": "Copy the Inspection Report",
+        "desc": "Copy the report, including decoded image properties, selected JPEG EXIF values and inspection limitations."
       }
     ],
     "faq": [
       {
         "question": "What technical image details does this tool reveal?",
-        "answer": "It displays exact width and height, aspect ratio (e.g. 16:9, 4:3), total megapixels, file size in bytes/KB/MB, MIME type, color bit depth, and alpha transparency."
+        "answer": "It displays decoded width and height, aspect ratio, file size, reported file format, estimated print size at 300 DPI and a preview transparency sample. Original source bit depth is not inspected."
       },
       {
         "question": "Can it read EXIF camera information from smartphone or DSLR photos?",
-        "answer": "Yes. If EXIF data is preserved in your JPEG file, it displays camera manufacturer, lens model, ISO speed, shutter speed, f-stop aperture, and capture timestamp."
+        "answer": "For JPEG files, it reads selected stored EXIF fields: camera make/model, lens model, artist, software, capture timestamp and valid GPS latitude/longitude. It does not inspect all tags, maker notes, XMP or IPTC."
       },
       {
         "question": "Why does my photo show no EXIF data?",
-        "answer": "Many social media platforms and messaging apps strip EXIF tags automatically upon upload to protect user privacy. Unaltered camera files retain full tags."
+        "answer": "The JPEG may lack supported EXIF fields, have damaged headers, or contain other metadata this tool does not inspect. EXIF extraction for PNG, WebP and other containers is not supported. An empty report does not prove the file has no metadata."
       },
       {
         "question": "Can I check whether a graphic has a transparent background?",
-        "answer": "Yes. The tool inspects the image buffer for alpha transparency channels and confirms whether transparent pixels are present."
+        "answer": "It checks a preview sample up to 100 by 100 pixels. Detected alpha confirms transparency, but a negative sample may miss tiny transparent regions."
       },
       {
         "question": "Is my photo or its private EXIF location sent to a server?",

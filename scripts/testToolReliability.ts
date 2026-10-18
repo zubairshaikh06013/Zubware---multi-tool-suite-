@@ -141,3 +141,15 @@ assert.equal(Object.keys(loadedZip.files).length, 2);
 assert.equal(await loadedZip.file('sample.png')!.async('string'), 'first image');
 assert.equal(await loadedZip.file('sample-2.png')!.async('string'), 'second image');
 console.log('Image output format and duplicate ZIP entry regressions passed.');
+
+const { imageResizeDimensions } = await import('../src/lib/imageResize');
+const dimensionOptions = {mode:'dimensions' as const,width:300,height:200,percentage:50,preserveBatchAspect:false};
+assert.deepEqual(imageResizeDimensions(640,480,dimensionOptions), {width:300,height:200});
+assert.deepEqual(imageResizeDimensions(640,480,{...dimensionOptions,preserveBatchAspect:true}), {width:300,height:225});
+assert.deepEqual(imageResizeDimensions(480,640,{...dimensionOptions,preserveBatchAspect:true}), {width:300,height:400});
+assert.deepEqual(imageResizeDimensions(641,481,{...dimensionOptions,mode:'percentage'}), {width:321,height:241});
+assert.deepEqual(imageResizeDimensions(640,480,{...dimensionOptions,mode:'preset',width:1080,height:1080,preserveBatchAspect:true}), {width:1080,height:1080});
+for (const invalid of [NaN,Infinity,0,-1]) assert.throws(() => imageResizeDimensions(640,480,{...dimensionOptions,width:invalid}));
+assert.throws(() => imageResizeDimensions(640,480,{...dimensionOptions,width:20000}));
+assert.throws(() => imageResizeDimensions(640,480,{...dimensionOptions,width:10000,height:10000}));
+console.log('Resize dimensions, batch aspect ratios, rounding and memory bounds passed.');

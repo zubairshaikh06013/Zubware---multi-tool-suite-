@@ -36,7 +36,7 @@ export const BatchImageConverterTool: React.FC<BatchImageConverterToolProps> = (
   }, [targetFormat, quality]);
   useEffect(() => () => {
     runRef.current++;
-    itemsRef.current.forEach(item => { if (item.resultUrl) URL.revokeObjectURL(item.resultUrl); });
+    itemsRef.current.forEach(item => { if (item.resultUrl) URL.revokeObjectURL(item.resultUrl); if (item.thumbnailUrl) URL.revokeObjectURL(item.thumbnailUrl); });
   }, []);
 
   const handleAddFiles = (files: File[]) => {
@@ -44,6 +44,7 @@ export const BatchImageConverterTool: React.FC<BatchImageConverterToolProps> = (
     const newItems: BatchQueueItem[] = files.map((f) => ({
       id: Math.random().toString(36).substring(2, 9),
       file: f,
+      thumbnailUrl: f.type.startsWith('image/') ? URL.createObjectURL(f) : undefined,
       status: 'pending' as const
     }));
     setItems((prev) => [...prev, ...newItems]);
@@ -53,12 +54,13 @@ export const BatchImageConverterTool: React.FC<BatchImageConverterToolProps> = (
     if (processingRef.current) return;
     const item = items.find(item => item.id === id);
     if (item?.resultUrl) URL.revokeObjectURL(item.resultUrl);
+    if (item?.thumbnailUrl) URL.revokeObjectURL(item.thumbnailUrl);
     setItems((prev) => prev.filter((it) => it.id !== id));
   };
 
   const handleClearQueue = () => {
     if (processingRef.current) return;
-    items.forEach(item => { if (item.resultUrl) URL.revokeObjectURL(item.resultUrl); });
+    items.forEach(item => { if (item.resultUrl) URL.revokeObjectURL(item.resultUrl); if (item.thumbnailUrl) URL.revokeObjectURL(item.thumbnailUrl); });
     setItems([]);
   };
 

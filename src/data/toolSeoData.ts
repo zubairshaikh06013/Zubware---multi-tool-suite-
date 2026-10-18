@@ -8494,12 +8494,12 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "pdf-to-excel": {
   "howTo": [
     {
-      "title": "Upload PDF Statement or Report",
-      "desc": "Drop your PDF containing tabular data, bank statements, invoices, or numerical reports into the workspace."
+      "title": "Select a PDF with Searchable Text",
+      "desc": "Choose a digital PDF with selectable text. Scans and photo-only PDFs need OCR before this table extractor can read them."
     },
     {
-      "title": "Automatic Row & Column Coordinate Detection",
-      "desc": "The engine analyzes spatial bounding boxes and text coordinate alignment to detect table structures."
+      "title": "Estimate Rows and Cells from Text Positions",
+      "desc": "The browser groups nearby text positions into rows and uses horizontal gaps for cells. Results may need manual correction."
     },
     {
       "title": "Review & Edit in Interactive Spreadsheet Grid",
@@ -8511,13 +8511,13 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "title": "Download Spreadsheet File",
-      "desc": "Save your clean spreadsheet directly to your device, ready for immediate formula calculations in Excel, Sheets, or Numbers."
+      "desc": "Save the edited text cells to your device. Original PDF formulas and visual formatting are not recovered."
     }
   ],
   "faq": [
     {
       "question": "How does the PDF to Excel converter detect table rows and columns without server software?",
-      "answer": "The client-side engine uses pdfjs-dist to extract text fragments and their precise geometric coordinates (X and Y positions). It clusters aligned horizontal positions into rows and matching vertical lines into spreadsheet columns."
+      "answer": "The browser uses PDF.js to read existing text fragments and their page positions. It groups nearby Y positions into rows and uses horizontal gaps to split cells. It does not detect table borders or guarantee matching columns."
     },
     {
       "question": "Can I edit table cells in the browser before exporting to Excel?",
@@ -8533,7 +8533,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "How does the converter handle multi-page tables and financial statements?",
-      "answer": "Use the page selector dropdown to navigate between pages. The engine analyzes and extracts tabular data for each page, allowing you to review and export tables individually."
+      "answer": "Choose Page 1 Only or All Pages to rerun extraction. The all-pages result is combined into one editable grid; delete repeated headers or unrelated rows before export."
     },
     {
       "question": "Can I add new rows or delete unnecessary header/footer rows before downloading?",
@@ -8541,19 +8541,19 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "Does this converter preserve numbers, currency symbols, and percentage values?",
-      "answer": "Yes. Numerical digits, decimal points, currency marks ($ € £ ₹), and percentages are extracted verbatim as editable data entries rather than static images."
+      "answer": "Selectable text, including visible number and currency characters, is copied into text cells when the PDF's character mapping permits it. Check values carefully; export does not recreate number formats or formulas."
     },
     {
       "question": "Does this tool work on scanned PDF documents and photo invoices?",
-      "answer": "This converter requires digital selectable text layers to identify coordinates. For scanned PDFs without text layers, run the file through Zubware PDF to Text with OCR first."
+      "answer": "No. This converter requires selectable text. Scanned or image-only PDFs need OCR first. Zubware PDF to Text offers local OCR, but its plain-text output is not automatically converted into a table; you may need to arrange cells manually."
     },
     {
       "question": "Is my confidential financial data, bank statements, or payroll information sent to any server?",
-      "answer": "No. All spatial coordinate analysis, cell mapping, and XLSX generation run strictly within your device's browser memory. Your sensitive financial data remains 100% private."
+      "answer": "The selected PDF and spreadsheet data are processed in your browser for this tool; the file is not uploaded for conversion. Review the site privacy policy for other site activity."
     },
     {
       "question": "Why do some PDF tables import with misaligned columns in generic converters?",
-      "answer": "Generic converters often rely on naive whitespace spacing, which breaks when table headers have multiline wraps. Our coordinate bounding-box grouping ensures text items sharing similar vertical columns align properly."
+      "answer": "PDFs describe visual positions rather than spreadsheet cells. This tool uses a simple horizontal-gap rule, so wrapped text, merged cells or irregular spacing can shift columns. Edit the grid before exporting."
     },
     {
       "question": "Can I convert PDF tables to Excel on a tablet or mobile device?",

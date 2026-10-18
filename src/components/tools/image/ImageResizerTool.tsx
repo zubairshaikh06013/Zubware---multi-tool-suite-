@@ -572,7 +572,11 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
             disabled={isProcessing}
             multiple
             accept="image/*"
-            onChange={(e) => e.target.files && handleFilesAdded(Array.from(e.target.files))}
+            onChange={(e) => {
+              const files = Array.from(e.target.files || []);
+              e.target.value = '';
+              if (files.length) void handleFilesAdded(files);
+            }}
             className="hidden"
           />
         </label>

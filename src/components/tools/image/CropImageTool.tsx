@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Crop, RotateCw, Download, RefreshCw} from 'lucide-react';
+import {RotateCw, Download, RefreshCw} from 'lucide-react';
 import {ImageUploadArea} from './ImageUploadArea';
 import {ImageFileInfoPanel} from './ImageFileInfoPanel';
 import {ImageProcessingProgress} from './ImageProcessingProgress';
@@ -161,7 +161,7 @@ export const CropImageTool:React.FC<CropImageToolProps> = ({onShowToast}) => {
         {image && <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
           <section className="space-y-2"><h3 className="text-sm font-bold text-slate-800 dark:text-white">Source selection</h3>
             <div className="max-h-96 overflow-auto bg-slate-950 p-4 rounded-2xl text-center">
-              <div ref={frameRef} className="relative inline-block align-middle" style={{transform:`scale(${zoom/100})`,transformOrigin:'center'}}>
+              <div ref={frameRef} className="relative inline-block align-middle" style={{zoom:zoom/100}}>
                 <img src={sourceUrl} alt="Source image for cropping" className="block max-h-80 max-w-full object-contain" draggable={false}/>
                 <div role="group" tabIndex={0} aria-label="Crop selection" aria-describedby="crop-help" onPointerDown={event=>beginDrag(event,'move')} onPointerMove={moveDrag} onPointerUp={()=>{dragRef.current=null;}} onLostPointerCapture={()=>{dragRef.current=null;}}
                   onKeyDown={event=>{const directions:Record<string,[number,number]>={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]};const direction=directions[event.key];if (!direction) return;event.preventDefault();const factor=event.shiftKey?10:1;changeBox({...box,x:Math.max(0,Math.min(100-box.width,box.x+direction[0]*factor*100/image.naturalWidth)),y:Math.max(0,Math.min(100-box.height,box.y+direction[1]*factor*100/image.naturalHeight))});}}

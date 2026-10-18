@@ -36,6 +36,7 @@ export function validateSeoBuild(distDir: string): void {
   const titles = new Map<string, string>();
   const descriptions = new Map<string, string>();
   const incoming = new Set<string>();
+  const crawlGraph = new Map<string, Set<string>>();
   const brokenInternalLinks = new Set<string>();
   const sitemapPaths = new Set(urls.map(url => new URL(url).pathname.replace(/\/$/, '') || '/'));
   // The signed-in dashboard is an intentionally non-indexable client-side route.
@@ -51,6 +52,8 @@ export function validateSeoBuild(distDir: string): void {
     const filename = path.join(distDir, slug, 'index.html');
     if (!fs.existsSync(filename)) { errors.push(`Missing page: ${url}`); continue; }
     const html = fs.readFileSync(filename, 'utf8');
+    const outgoing = new Set<string>();
+    crawlGraph.set(parsed.pathname.replace(/\/$/, '') || '/', outgoing);
     const canonical = extractCanonicalHrefs(html);
     if (canonical.length !== 1 || canonical[0] !== url) errors.push(`Canonical mismatch: ${url}`);
     if ((html.match(/<h1\b/gi) || []).length !== 1) errors.push(`Expected one H1: ${url}`);
@@ -75,7 +78,10 @@ export function validateSeoBuild(distDir: string): void {
         const link = new URL(href, url);
         if (link.origin === SITE_ORIGIN && link.pathname !== parsed.pathname) {
           const normalizedPath = link.pathname.replace(/\/$/, '') || '/';
-          if (sitemapPaths.has(normalizedPath)) incoming.add(normalizedPath);
+          if (sitemapPaths.has(normalizedPath)) {
+            incoming.add(normalizedPath);
+            outgoing.add(normalizedPath);
+          }
           else if (!nonIndexableAppRoutes.has(normalizedPath) && !/\.[a-z0-9]+$/i.test(normalizedPath)) brokenInternalLinks.add(`${url} -> ${link.pathname}`);
         }
       } catch { errors.push(`Invalid link on ${url}: ${href}`); }
@@ -87,6 +93,25 @@ export function validateSeoBuild(distDir: string): void {
     if (!urls.includes(`${SITE_ORIGIN}${route}`)) errors.push(`Tool missing from sitemap: ${tool.id}`);
     if (!incoming.has(route)) errors.push(`Tool has no crawlable incoming link: ${tool.id}`);
   }
+  // Crawl-depth diagnostics: all sitemap URLs should be reachable through HTML links,
+  // not solely through sitemap discovery. Report deep/orphaned pages without failing
+  // an otherwise valid deployment (legacy content may require editorial review).
+  const depth = new Map<string, number>([['/', 0]]);
+  const queue = ['/'];
+  for (let i = 0; i < queue.length; i++) {
+    const source = queue[i];
+    for (const target of crawlGraph.get(source) || []) {
+      if (!depth.has(target)) {
+        depth.set(target, depth.get(source)! + 1);
+        queue.push(target);
+      }
+    }
+  }
+  const unreachable = [...sitemapPaths].filter(route => !depth.has(route));
+  const deep = [...depth].filter(([, hops]) => hops > 3);
+  console.log(`[Zubware SEO] Homepage crawl reachability: ${depth.size}/${sitemapPaths.size} sitemap routes; ${deep.length} deeper than 3 clicks.`);
+  if (unreachable.length) console.warn(`[Zubware SEO] Sitemap-only/unreachable routes (first 30): ${unreachable.slice(0, 30).join(', ')}`);
+  if (deep.length) console.warn(`[Zubware SEO] Deep routes (first 30): ${deep.slice(0, 30).map(([route, hops]) => `${route} (${hops})`).join(', ')}`);
   const robots = fs.readFileSync(path.join(distDir, 'robots.txt'), 'utf8');
   if (!robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) errors.push('Robots sitemap declaration missing');
   if (errors.length) throw new Error(`SEO artifact validation failed:\n${[...new Set(errors)].join('\n')}`);

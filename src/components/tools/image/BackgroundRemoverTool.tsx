@@ -16,7 +16,7 @@ import {
   Zap
 } from 'lucide-react';
 import { processBackgroundRemoval, BackgroundRemovalResult, BackgroundRemovalMode, BackgroundRemovalProgress } from '../../../lib/backgroundRemoval';
-import { processCloudflareBackgroundRemoval } from '../../../lib/cloudflareBackgroundRemoval';
+import { processCloudflareBackgroundRemoval, REMOTE_BACKGROUND_REMOVAL_ENABLED } from '../../../lib/cloudflareBackgroundRemoval';
 import { formatBytes } from '../../../lib/imageUtils';
 import { getLinkUrl } from '../../../lib/paths';
 
@@ -254,16 +254,16 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
       <section aria-labelledby="bg-mode-heading" className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm">
         <div className="mb-4">
           <h2 id="bg-mode-heading" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Choose the best option for your photo</h2>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">Not sure which to choose? Smart AI Removal is recommended for most photos. All options create a transparent PNG.</p>
+          <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">Choose Quick Removal for smaller inputs or Private Removal for more detail. Both process on your device and create a transparent PNG.</p>
         </div>
         <fieldset disabled={isProcessing}>
           <legend className="sr-only">Background removal processing mode</legend>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {([
               { id: 'cloudflare', icon: '🚀', title: 'Smart AI Removal', subtitle: 'Recommended for most photos', detail: 'Works well on mobile · Up to 10 MB · Upload permission required', badge: 'RECOMMENDED' },
               { id: 'fast', icon: '⚡', title: 'Quick Removal', subtitle: 'Faster processing on your device', detail: 'No upload · Fine details may be reduced', badge: 'PRIVATE' },
               { id: 'quality', icon: '🔒', title: 'Private Removal', subtitle: 'Keeps your photo on your device', detail: 'No upload · May take longer on mobile', badge: 'PRIVATE' }
-            ] as const).map(mode => (
+            ] as const).filter(mode => mode.id !== 'cloudflare' || REMOTE_BACKGROUND_REMOVAL_ENABLED).map(mode => (
               <label key={mode.id} className={`relative flex items-start gap-3 rounded-xl border-2 p-3.5 sm:p-4 cursor-pointer transition-colors ${processingMode === mode.id ? 'border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/30' : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700'} ${isProcessing ? 'opacity-60 cursor-not-allowed' : ''}`}>
                 <input type="radio" name="bg-removal-mode" value={mode.id} checked={processingMode === mode.id} onChange={() => setProcessingMode(mode.id)} className="mt-1 accent-indigo-600 shrink-0" />
                 <span className="min-w-0 flex-1">

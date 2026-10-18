@@ -1,5 +1,8 @@
 import type { BackgroundRemovalProgress, BackgroundRemovalResult } from './backgroundRemoval';
 
+// Disabled until the owner explicitly approves a verified no-charge deployment.
+export const REMOTE_BACKGROUND_REMOVAL_ENABLED = false;
+
 const API = 'https://api.zubware.com/remove-background';
 const MAX_BYTES = 10 * 1024 * 1024;
 
@@ -24,6 +27,9 @@ export async function processCloudflareBackgroundRemoval(
   file: File,
   onProgress?: (progress: BackgroundRemovalProgress) => void
 ): Promise<BackgroundRemovalResult> {
+  if (!REMOTE_BACKGROUND_REMOVAL_ENABLED) {
+    throw new Error('Online removal is unavailable. Choose Quick Removal or Private Removal.');
+  }
   const mime = file.type.toLowerCase();
   if (!['image/jpeg', 'image/png', 'image/webp'].includes(mime)) {
     throw new Error('Cloudflare AI supports JPG, PNG or WebP. Please choose a supported image.');

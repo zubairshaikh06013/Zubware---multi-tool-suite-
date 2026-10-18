@@ -11,6 +11,13 @@ export default {
     if (origin && origin !== 'https://www.zubware.com' && origin !== 'https://zubware.com') {
       return new Response('Origin not allowed', { status: 403 });
     }
+    // Fail closed before reading uploads or invoking any metered service.
+    if (env.REMOTE_BACKGROUND_REMOVAL_ENABLED !== "true") {
+      return new Response("Online removal is unavailable. Use Quick Removal or Private Removal at https://www.zubware.com/background-remover", {
+        status: 503,
+        headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store", "Access-Control-Allow-Origin": origin || "https://www.zubware.com", "Vary": "Origin" }
+      });
+    }
     const type = (request.headers.get('Content-Type') || '').split(';')[0].trim();
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(type)) return new Response('Upload JPG, PNG or WebP', { status: 415 });
     const length = Number(request.headers.get('Content-Length') || 0);

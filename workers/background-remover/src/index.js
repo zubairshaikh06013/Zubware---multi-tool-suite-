@@ -46,6 +46,13 @@ export default {
     if (!allowed(origin)) return new Response("Origin not allowed", { status: 403 });
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: headers(origin) });
     if (request.method !== "POST") return error("POST required", 405, origin, { Allow: "POST, OPTIONS" });
+    // Fail closed before reading uploads or invoking any metered service.
+    if (env.REMOTE_BACKGROUND_REMOVAL_ENABLED !== "true") {
+      return new Response("Online removal is unavailable. Use Quick Removal or Private Removal at https://www.zubware.com/background-remover", {
+        status: 503,
+        headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store", "Access-Control-Allow-Origin": origin || "https://www.zubware.com", "Vary": "Origin" }
+      });
+    }
     if (!env.IMAGES || !env.RATE_LIMITER) return error("Worker bindings missing", 503, origin);
     const ip = request.headers.get("CF-Connecting-IP");
     if (!ip) return error("Unable to verify request", 403, origin);

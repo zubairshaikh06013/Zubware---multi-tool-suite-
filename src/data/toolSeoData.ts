@@ -113,20 +113,52 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "background-remover": {
     "howTo": [
-      { "title": "Choose a Processing Mode", "desc": "Pick Quick Removal for faster on-device processing, Private Removal for local processing with more detail, or Smart AI Removal for online processing. Cloudflare requires explicit consent before upload." },
-      { "title": "Select a JPG, PNG or WebP Photo", "desc": "Choose your image. Smart AI Removal accepts images up to 10MB; local modes have different device-dependent performance and limits." },
-      { "title": "Remove and Preview the Background", "desc": "Start Cloudflare processing after consenting, or use a browser mode. Check transparent edges with the before-and-after slider and alternate preview backgrounds." },
-      { "title": "Download the Transparent PNG", "desc": "Save your result as a transparent PNG and check the displayed original and output pixel dimensions and file sizes." }
+      {
+        "title": "Choose a Local Mode",
+        "desc": "Choose Quick Removal for reduced input detail or Private Removal for a larger local input. Performance depends on your device."
+      },
+      {
+        "title": "Select a JPG, PNG or WebP Photo",
+        "desc": "Choose an image up to 20 MB. A smaller photo can help on devices with limited memory."
+      },
+      {
+        "title": "Inspect the Cutout",
+        "desc": "Processing starts on your device. Compare the before-and-after slider and alternate preview backgrounds to check edges."
+      },
+      {
+        "title": "Download the Transparent PNG",
+        "desc": "Check the displayed original and output dimensions and file sizes, then save the transparent PNG."
+      }
     ],
     "faq": [
-      { "question": "How can I remove a photo background online for free?", "answer": "Open Zubware Background Remover, select a browser or Smart AI Removal processing mode, choose a JPG, PNG or WebP photo, then download the transparent PNG result. No account is required." },
-      { "question": "Does Zubware upload my photo to the cloud?", "answer": "It depends on your mode. Quick Removal and Private Removal process photos locally in your browser. Smart AI Removal uploads the selected photo to Cloudflare only after you give consent and start processing. Avoid uploading sensitive photos." },
-      { "question": "What is the difference between Quick Removal, Private Removal and Smart AI Removal?", "answer": "Quick Removal reduces input size for potentially quicker local processing, which may reduce fine detail. Private Removal runs locally with a larger input and depends on device performance. Smart AI Removal processes the photo online and requires an upload; processing speed and edge quality vary by image." },
-      { "question": "What files can I use with Smart AI Removal background removal?", "answer": "Smart AI Removal mode supports JPG, PNG and WebP images up to 10MB. Local modes may handle larger photos, but performance depends on available memory and device capabilities." },
-      { "question": "Will the downloaded background be transparent?", "answer": "The result is exported as a PNG with transparency. Use the checkerboard preview or switch to a solid preview color to inspect edges before downloading." },
-      { "question": "Will my output image keep the original resolution?", "answer": "Not always. Output dimensions depend on the selected processing mode and service. Zubware displays both original and output pixel dimensions and file sizes so you can compare them." },
-      { "question": "Is Smart AI Removal faster or better than browser processing?", "answer": "Not necessarily. Smart AI Removal avoids running the local segmentation model on your phone, but upload time, network speed, server processing and image complexity can affect the result. Compare modes for your photo." },
-      { "question": "Can I use Zubware Background Remover on Android or iPhone?", "answer": "Yes. The tool works in modern mobile browsers without requiring a separate app. For local processing, device memory and browser capabilities can affect speed." }
+      {
+        "question": "How can I remove a photo background for free?",
+        "answer": "Select Quick Removal or Private Removal, choose a JPG, PNG or WebP photo, inspect the result and download PNG. No account is required."
+      },
+      {
+        "question": "Does Zubware upload my photo for background removal?",
+        "answer": "The available Quick and Private modes process your photo on your device. The browser may download model files; the photo is not uploaded for processing. Online Smart AI Removal is currently unavailable."
+      },
+      {
+        "question": "What is the difference between Quick and Private Removal?",
+        "answer": "Quick Removal reduces input size to make local processing more manageable, which can lose fine detail. Private Removal uses a larger input and may take more time and memory."
+      },
+      {
+        "question": "Which files can I use?",
+        "answer": "Choose a JPG, PNG or WebP image up to 20 MB. Device memory, browser support and image dimensions can still limit processing."
+      },
+      {
+        "question": "Will the downloaded background be transparent?",
+        "answer": "The result is exported as PNG with transparency. Inspect hair, fur and thin objects against different preview colors before downloading."
+      },
+      {
+        "question": "Will my output keep the original resolution?",
+        "answer": "Not always. Check the original and output pixel dimensions and file sizes displayed by the tool."
+      },
+      {
+        "question": "Can I use this on a phone?",
+        "answer": "Modern mobile browsers can run the local modes, but model downloads, memory and processing speed vary. Try a smaller photo and Quick Removal if processing is slow."
+      }
     ]
   },
   "image-compressor": {

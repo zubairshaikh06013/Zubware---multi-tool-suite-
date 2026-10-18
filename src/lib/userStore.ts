@@ -32,8 +32,8 @@ export interface FeedbackRecord {
 export function getFavorites(): ToolId[] {
   try {
     const raw = localStorage.getItem(FAVORITES_KEY);
-    const list: string[] = raw ? JSON.parse(raw) : [];
-    return list as ToolId[];
+    const list: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(list) ? [...new Set(list.filter((id): id is ToolId => typeof id === 'string' && id.length > 0))] : [];
   } catch {
     return [];
   }

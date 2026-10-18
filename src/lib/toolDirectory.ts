@@ -1,14 +1,23 @@
 import type { ToolMeta } from '../types';
 
-type SearchableTool = Pick<ToolMeta, 'title' | 'navTitle' | 'description' | 'tags'>;
+type SearchableTool = Pick<ToolMeta, 'title' | 'navTitle' | 'description' | 'tags'> & Partial<Pick<ToolMeta, 'id' | 'category' | 'features'>>;
+const normalize = (value: string) => value.normalize('NFKC').toLocaleLowerCase().replace(/[-_/–—]+/g, ' ').replace(/\s+/g, ' ').trim();
 
 export function filterDirectoryTools<T extends SearchableTool>(tools: T[], query: string, tag = 'All'): T[] {
-  const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return tools.filter(tool => {
-    if (tag !== 'All' && !tool.tags?.includes(tag)) return false;
-    const text = [tool.title, tool.navTitle, tool.description, ...(tool.tags || [])].join(' ').toLocaleLowerCase();
-    return terms.every(term => text.includes(term));
+  const phrase = normalize(query);
+  const terms = phrase.split(' ').filter(Boolean);
+  const matches = tools.flatMap((tool, index) => {
+    if (tag !== 'All' && !tool.tags?.some(value => value.toLocaleLowerCase() === tag.toLocaleLowerCase())) return [];
+    const names = [tool.title, tool.navTitle || '', tool.id || ''].map(normalize);
+    const text = normalize([tool.title, tool.navTitle, tool.id, tool.category, tool.description, ...(tool.tags || []), ...(tool.features || [])].join(' '));
+    if (!terms.every(term => text.includes(term))) return [];
+    const score = !phrase ? 0 : names.some(name => name === phrase) ? 1000
+      : names.some(name => name.includes(phrase)) ? 700
+      : terms.every(term => names.some(name => name.includes(term))) ? 500
+      : tool.tags?.some(value => normalize(value) === phrase) ? 250 : 100;
+    return [{ tool, score, index }];
   });
+  return matches.sort((a, b) => b.score - a.score || a.index - b.index).map(({tool}) => tool);
 }
 
 export function directoryTags(tools: Pick<ToolMeta, 'tags'>[]) {

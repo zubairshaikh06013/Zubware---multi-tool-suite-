@@ -4,6 +4,7 @@ import { getTranslatedTools } from '../data/toolsData';
 import { useLanguage } from '../context/LanguageContext';
 import { getLinkUrl } from '../lib/paths';
 import { recordToolUsage, isFavorite } from '../lib/userStore';
+import { filterDirectoryTools } from '../lib/toolDirectory';
 import { ToolIcon } from './common/ToolIcon';
 
 interface SearchModalProps {
@@ -64,23 +65,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
 
   const popularTags = ['PDF', 'Image', 'Resume', 'YouTube', 'AI', 'Security', 'Developer', 'Design'];
 
-  const filteredTools = translatedTools.filter((tool) => {
-    const q = query.toLowerCase();
-    const matchesTagFilter = activeTag ? tool.tags?.some((t) => t.toLowerCase() === activeTag.toLowerCase()) : true;
-
-    if (!matchesTagFilter) return false;
-    if (!q) return true;
-
-    const matchesTitle = tool.title.toLowerCase().includes(q);
-    const matchesNav = tool.navTitle?.toLowerCase().includes(q);
-    const matchesId = tool.id.toLowerCase().includes(q);
-    const matchesDesc = tool.description.toLowerCase().includes(q);
-    const matchesCategory = tool.category.toLowerCase().includes(q);
-    const matchesTags = tool.tags?.some((tag) => tag.toLowerCase().includes(q));
-    const matchesFeatures = tool.features?.some((f) => f.toLowerCase().includes(q));
-
-    return matchesTitle || matchesNav || matchesId || matchesDesc || matchesCategory || matchesTags || matchesFeatures;
-  });
+  const filteredTools = filterDirectoryTools(translatedTools, query, activeTag || 'All');
 
   if (!isOpen) return null;
 

@@ -71,7 +71,7 @@ assert.ok(filterDirectoryTools(TOOLS_DATA, 'photo resize').length > 0);
 assert.equal(filterDirectoryTools(TOOLS_DATA, 'nonexistent-utility-xyz').length, 0);
 const tagged = filterDirectoryTools(TOOLS_DATA, '', 'PDF');
 assert.ok(tagged.length > 0);
-assert.ok(tagged.every(tool => tool.tags?.includes('PDF')));
+assert.ok(tagged.every(tool => tool.tags?.some(tag => tag.toLowerCase() === 'pdf')));
 assert.equal(filterDirectoryTools(TOOLS_DATA, 'nonexistent-utility-xyz', 'PDF').length, 0);
 const tagFixture = directoryTags([{tags:['PDF','PDF','Image']}, {tags:['PDF']}]);
 assert.deepEqual(tagFixture, [{tag:'PDF',count:2}, {tag:'Image',count:1}]);
@@ -92,3 +92,30 @@ assert.equal(compressionChangeLabel(100, 200), '100% larger');
 assert.equal(compressionChangeLabel(200, 100), '50% reduction');
 assert.equal(compressionChangeLabel(100, 100), 'size unchanged');
 console.log('Compressor original preservation, format integrity and size labels passed.');
+
+// Name matches must outrank incidental keyword tags, including hyphenated IDs.
+const indirect = {title:'Other Utility',navTitle:'Other',description:'PDF editing utility',tags:['pdf merge']};
+const direct = {title:'PDF Merge',navTitle:'Merge PDF',description:'Combine documents',tags:['PDF']};
+assert.equal(filterDirectoryTools([indirect, direct], 'PDF merge')[0], direct);
+assert.equal(filterDirectoryTools(TOOLS_DATA, 'pdf merge')[0]?.id, 'pdf-merge');
+assert.equal(filterDirectoryTools(TOOLS_DATA, 'pdf-to-word')[0]?.id, 'pdf-to-word');
+assert.deepEqual(filterDirectoryTools([indirect, direct], ''), [indirect, direct]);
+assert.ok(filterDirectoryTools(TOOLS_DATA, 'merge', 'pdf').some(tool => tool.id === 'pdf-merge'));
+
+// Corrupt local storage must not crash tool cards or the dashboard.
+const storageDescriptor = Object.getOwnPropertyDescriptor(globalThis, 'localStorage');
+let storedFavorites = '';
+Object.defineProperty(globalThis, 'localStorage', { configurable:true, value:{getItem:()=>storedFavorites} });
+try {
+  const { getFavorites } = await import('../src/lib/userStore');
+  for (const invalid of ['null', '{}', '42', '"pdf-merge"', '{broken']) {
+    storedFavorites = invalid;
+    assert.deepEqual(getFavorites(), []);
+  }
+  storedFavorites = JSON.stringify(['pdf-merge', 'pdf-merge', null, 4, '', 'image-compressor']);
+  assert.deepEqual(getFavorites(), ['pdf-merge', 'image-compressor']);
+} finally {
+  if (storageDescriptor) Object.defineProperty(globalThis, 'localStorage', storageDescriptor);
+  else delete (globalThis as any).localStorage;
+}
+console.log('Search relevance and corrupted-favorites regressions passed.');

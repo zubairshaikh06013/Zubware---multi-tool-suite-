@@ -77,3 +77,18 @@ const tagFixture = directoryTags([{tags:['PDF','PDF','Image']}, {tags:['PDF']}])
 assert.deepEqual(tagFixture, [{tag:'PDF',count:2}, {tag:'Image',count:1}]);
 assert.ok(directoryTags(TOOLS_DATA).every(({count}) => count <= TOOLS_DATA.length));
 console.log('Directory search, combined filters and per-tool tag counts passed.');
+
+// Keeping an original must never disguise PNG bytes as a requested JPEG export.
+const { chooseWithinTargetBlob, compressionChangeLabel } = await import('../src/lib/imageCompressionResult');
+const sourcePng = new Blob([new Uint8Array(100)], {type:'image/png'});
+const largerPng = new Blob([new Uint8Array(200)], {type:'image/png'});
+const convertedJpeg = new Blob([new Uint8Array(150)], {type:'image/jpeg'});
+assert.equal(chooseWithinTargetBlob(sourcePng, largerPng, 'image/png', 1000), sourcePng);
+assert.equal(chooseWithinTargetBlob(sourcePng, null, 'image/jpeg', 1000), null);
+assert.equal(chooseWithinTargetBlob(sourcePng, largerPng, 'image/jpeg', 1000), null);
+assert.equal(chooseWithinTargetBlob(sourcePng, convertedJpeg, 'image/jpeg', 1000), convertedJpeg);
+assert.equal(chooseWithinTargetBlob(sourcePng, convertedJpeg, 'image/jpeg', 100), null);
+assert.equal(compressionChangeLabel(100, 200), '100% larger');
+assert.equal(compressionChangeLabel(200, 100), '50% reduction');
+assert.equal(compressionChangeLabel(100, 100), 'size unchanged');
+console.log('Compressor original preservation, format integrity and size labels passed.');

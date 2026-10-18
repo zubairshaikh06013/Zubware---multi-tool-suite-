@@ -1,3 +1,4 @@
+import { chooseWithinTargetBlob, compressionChangeLabel } from '../../lib/imageCompressionResult';
 import React, { useState } from 'react';
 import JSZip from 'jszip';
 import {
@@ -295,33 +296,30 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
           cleanup();
           return { ...item, status: 'error', errorMessage: 'This browser cannot export the selected format. Choose JPG or PNG.' };
         }
-        const reductionPct = Math.round(((item.file.size - finalBlob.size) / item.file.size) * 100);
-        label = `Quality ${qValue}% • ${formatDecimalBytes(finalBlob.size)} (${reductionPct > 0 ? `${reductionPct}% reduction` : 'Optimized'})`;
+        label = `Quality ${qValue}% • ${formatDecimalBytes(finalBlob.size)} (${compressionChangeLabel(item.file.size, finalBlob.size)})`;
       } else {
         // Target Size Mode (Decimal Standard: 1 KB = 1000 B, 1 MB = 1,000,000 B)
         const targetBytes = parseTargetBytes(targetVal, unit);
 
-        // Check if original is already smaller than target
-        if (item.file.size <= targetBytes && accuracyMode === 'max') {
-          // If already smaller and user requested maximum size <= targetBytes
-          finalBlob = await renderBlob(1.0, 0.90);
-          if (!finalBlob || finalBlob.size > targetBytes) {
-            // Keep original if re-encoding increases size
-            finalBlob = item.file;
+        // Preserve a compliant original; conversions must use the requested MIME.
+        if (accuracyMode === 'max') {
+          const encoded = item.file.type === mimeType && item.file.size <= targetBytes ? null : await renderBlob(1.0, 0.90);
+          finalBlob = chooseWithinTargetBlob(item.file, encoded, mimeType, targetBytes);
+          if (finalBlob) {
+            cleanup();
+            const achievedStr = formatDecimalBytes(finalBlob.size);
+            const targetStr = formatDecimalBytes(targetBytes);
+            return {
+              ...item,
+              resultBlob: finalBlob,
+              resultSize: finalBlob.size,
+              resultUrl: URL.createObjectURL(finalBlob),
+              status: 'done',
+              exactMatch: finalBlob.size === targetBytes,
+              customLabel: `${finalBlob === item.file ? 'Original kept' : 'Converted'}: ${achievedStr} <= ${targetStr}`,
+              downloadFileName: `${item.file.name.replace(/\.[^/.]+$/, '')}-compressed.${mimeType === 'image/webp' ? 'webp' : mimeType === 'image/png' ? 'png' : 'jpg'}`
+            };
           }
-          cleanup();
-          const achievedStr = formatDecimalBytes(finalBlob.size);
-          const targetStr = formatDecimalBytes(targetBytes);
-          return {
-            ...item,
-            resultBlob: finalBlob,
-            resultSize: finalBlob.size,
-            resultUrl: URL.createObjectURL(finalBlob),
-            status: 'done',
-            exactMatch: finalBlob.size === targetBytes,
-            customLabel: `Original within target: ${achievedStr} <= ${targetStr}`,
-            downloadFileName: `${item.file.name.replace(/\.[^/.]+$/, '')}-compressed.${mimeType === 'image/webp' ? 'webp' : mimeType === 'image/png' ? 'png' : 'jpg'}`
-          };
         }
 
         // Target search: Iterative quality search and dimension scaling
@@ -413,18 +411,17 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
         const achievedBytes = finalBlob.size;
         const targetStr = formatDecimalBytes(targetBytes);
         const achievedStr = formatDecimalBytes(achievedBytes);
-        const reductionPct = Math.round(((item.file.size - achievedBytes) / item.file.size) * 100);
 
         if (accuracyMode === 'exact') {
           if (isExactMatched) {
-            label = `Target: ${targetStr} • Final: ${achievedStr} • Exact Match: YES (${reductionPct}% reduction)`;
+            label = `Target: ${targetStr} • Final: ${achievedStr} • Exact Match: YES (${compressionChangeLabel(item.file.size, finalBlob.size)})`;
           } else {
             label = `Target: ${targetStr} • Final: ${achievedStr} (Exact target not safely achievable for this format)`;
           }
         } else {
           const withinTarget = achievedBytes <= targetBytes;
           label = withinTarget
-            ? `Target: ${targetStr} • Actual: ${achievedStr} (Within target, ${reductionPct}% reduction)`
+            ? `Target: ${targetStr} • Actual: ${achievedStr} (Within target, ${compressionChangeLabel(item.file.size, finalBlob.size)})`
             : `Smallest valid output: ${achievedStr} (Target: ${targetStr})`;
         }
       }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useCallback, lazy, Suspense } from 'react';
+import React, { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { Breadcrumb } from './components/Breadcrumb';
@@ -380,7 +380,7 @@ import { TOOLS_DATA, HOMEPAGE_FAQS, getTranslatedTools, getTranslatedFaqs } from
 import { HOMEPAGE_BLOG_PREVIEWS } from './data/blogPreviews';
 import { getCategoryBySlug, getCategoryForTool } from './data/categoriesData';
 const ToolSEOHead = lazyWithRetry(() => import('./components/ToolSEOHead').then(m => ({ default: m.ToolSEOHead })));
-import { detectBrowserLanguage, LanguageCode, getTranslation } from './lib/i18n';
+import { getPreferredLanguage, loadLanguage, LanguageCode, getTranslation } from './lib/i18n';
 import { LanguageProvider } from './context/LanguageContext';
 import { normalizePath, getLinkUrl, getToolCanonicalPath } from './lib/paths';
 import { ArrowRight, ChevronDown, CheckCircle2, Shield, Zap, Sparkles, BookOpen } from 'lucide-react';
@@ -406,16 +406,9 @@ export default function App() {
     return normalizePath(window.location.pathname);
   });
 
-  // Language state
-  const [currentLang, setCurrentLang] = useState<LanguageCode>(() => {
-    try {
-      const saved = localStorage.getItem('zubware-lang');
-      if (saved) return saved as LanguageCode;
-    } catch {
-      // ignore
-    }
-    return detectBrowserLanguage();
-  });
+  // Render immediately with English; switch only after the chosen dictionary is ready.
+  const [currentLang, setCurrentLang] = useState<LanguageCode>('en');
+  const languageRequest = useRef(0);
 
   // Dark Mode state
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -438,6 +431,26 @@ export default function App() {
 
   // Toast state
   const [toastMsg, setToastMsg] = useState<string | null>(null);
+
+  const changeLanguage = useCallback(async (lang: LanguageCode) => {
+    const request = ++languageRequest.current;
+    try {
+      await loadLanguage(lang);
+      // A slower earlier selection must not overwrite the latest choice.
+      if (request !== languageRequest.current) return;
+      setCurrentLang(lang);
+      try { localStorage.setItem('zubware-lang', lang); } catch { /* Storage restricted. */ }
+    } catch {
+      if (request === languageRequest.current) {
+        setToastMsg('Could not load this language. Please try again.');
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    void changeLanguage(getPreferredLanguage());
+    return () => { languageRequest.current++; };
+  }, [changeLanguage]);
 
   // FAQ open states
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
@@ -524,20 +537,6 @@ export default function App() {
       // Storage restricted
     }
   }, [darkMode]);
-
-  // Apply RTL direction for Arabic & Urdu
-  useEffect(() => {
-    try {
-      localStorage.setItem('zubware-lang', currentLang);
-      if (currentLang === 'ar' || currentLang === 'ur') {
-        document.documentElement.dir = 'rtl';
-      } else {
-        document.documentElement.dir = 'ltr';
-      }
-    } catch {
-      // ignore
-    }
-  }, [currentLang]);
 
   // Handle popstate
   useEffect(() => {
@@ -676,7 +675,7 @@ export default function App() {
   };
 
   return (
-    <LanguageProvider currentLang={currentLang} onChangeLang={setCurrentLang}>
+    <LanguageProvider currentLang={currentLang} onChangeLang={changeLanguage}>
       <AccessibilityWrapper activeModalOpen={searchOpen || shortcutsOpen}>
         <div className="relative min-h-screen flex flex-col font-sans bg-slate-100/90 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors selection:bg-indigo-600 selection:text-white overflow-x-hidden">
         
@@ -715,7 +714,7 @@ export default function App() {
             currentPath={currentPath}
             onNavigate={navigateTo}
             currentLang={currentLang}
-            onChangeLang={setCurrentLang}
+            onChangeLang={changeLanguage}
           />
         </div>
 

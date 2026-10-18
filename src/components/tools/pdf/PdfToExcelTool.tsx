@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
-import { Upload, FileSpreadsheet, Download, RefreshCw, Sparkles, Copy, Check, Plus, Trash2, Table } from 'lucide-react';
+import React, { useRef, useState } from 'react';
+import { Upload, FileSpreadsheet, Download, Copy, Check, Plus, Trash2, Table } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import JSZip from 'jszip';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
   const [file, setFile] = useState<File | null>(null);
   const [pdfBuffer, setPdfBuffer] = useState<ArrayBuffer | null>(null);
   const [totalPages, setTotalPages] = useState<number>(0);
-  const [selectedPage, setSelectedPage] = useState<number>(1);
   const [tableData, setTableData] = useState<string[][]>([]);
+  const [extractionNotice, setExtractionNotice] = useState('');
   const [isExtracting, setIsExtracting] = useState<boolean>(false);
   const [progress, setProgress] = useState<number>(0);
   const [copied, setCopied] = useState<boolean>(false);
+  const extractionId = useRef(0);
 
   const sampleRows: string[][] = [
     ['Invoice #', 'Client Name', 'Issue Date', 'Amount (USD)', 'Status'],
@@ -29,33 +33,50 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
       return;
     }
 
+    const requestId = ++extractionId.current;
+    setIsExtracting(false);
+    setTableData([]);
+    setExtractionNotice('');
+    setPdfBuffer(null);
+    setTotalPages(0);
     setFile(uploadedFile);
     try {
       const buffer = await uploadedFile.arrayBuffer();
-      setPdfBuffer(buffer);
       const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(buffer.slice(0)) });
       const pdf = await loadingTask.promise;
+      if (requestId !== extractionId.current) return;
+      setPdfBuffer(buffer);
       setTotalPages(pdf.numPages);
-      setSelectedPage(1);
       onShowToast(`Loaded ${uploadedFile.name} (${pdf.numPages} pages)`);
-      extractTables(buffer, 1, pdf.numPages);
+      await extractTables(buffer, 1, pdf.numPages);
     } catch (err) {
+      if (requestId !== extractionId.current) return;
       console.error(err);
+      setTableData([]);
+      setPdfBuffer(null);
+      setTotalPages(0);
+      setExtractionNotice('Could not read this PDF. Check that it opens normally and try another file.');
       onShowToast('Failed to read PDF document');
     }
   };
 
   const loadSample = () => {
-    const fakeFile = new File(['sample'], 'Financial_Report.pdf', { type: 'application/pdf' });
-    setFile(fakeFile);
+    ++extractionId.current;
+    setIsExtracting(false);
+    setFile(null);
+    setPdfBuffer(null);
+    setExtractionNotice('Sample table only. Select your own PDF to extract its data.');
     setTableData(sampleRows);
-    setTotalPages(1);
+    setTotalPages(0);
     onShowToast('Loaded sample financial report table!');
   };
 
   const extractTables = async (buffer: ArrayBuffer, startP: number, endP: number) => {
+    const requestId = ++extractionId.current;
     setIsExtracting(true);
     setProgress(0);
+    setTableData([]);
+    setExtractionNotice('');
 
     try {
       const loadingTask = pdfjsLib.getDocument({ data: new Uint8Array(buffer.slice(0)) });
@@ -63,9 +84,11 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
       const allRows: string[][] = [];
 
       for (let p = startP; p <= Math.min(endP, pdf.numPages); p++) {
+        if (requestId !== extractionId.current) return;
         setProgress(Math.round(((p - startP + 1) / (endP - startP + 1)) * 100));
         const page = await pdf.getPage(p);
         const textContent = await page.getTextContent();
+        if (requestId !== extractionId.current) return;
 
         // Group text items by Y position (row)
         // Note: PDF coordinate (0,0) is bottom-left, so higher Y means higher on page
@@ -125,17 +148,23 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
         });
       }
 
+      if (requestId !== extractionId.current) return;
       if (allRows.length === 0) {
-        onShowToast('No tabular text detected in selected pages');
+        setExtractionNotice('No selectable text found in these pages. Scanned or image-only PDFs need OCR first. Try PDF to Text with OCR, then review the text before making a spreadsheet.');
+        onShowToast('No selectable text found. This tool does not OCR scans.');
       } else {
         setTableData(allRows);
+        setExtractionNotice('Rows are estimated from text positions. Review and correct columns before exporting; this tool does not recognize scanned tables or preserve spreadsheet formulas.');
         onShowToast(`Extracted ${allRows.length} rows from PDF!`);
       }
     } catch (err) {
+      if (requestId !== extractionId.current) return;
       console.error(err);
+      setTableData([]);
+      setExtractionNotice('Extraction failed. Try another PDF with selectable text.');
       onShowToast('Error extracting tables from PDF');
     } finally {
-      setIsExtracting(false);
+      if (requestId === extractionId.current) setIsExtracting(false);
     }
   };
 
@@ -319,14 +348,14 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
             PDF to Excel Converter
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Extract tables, financial sheets, and structured data from PDF documents directly into Excel (.xlsx) and CSV format.
+            Turn selectable PDF text into editable rows and export XLSX or CSV. Scanned pages need OCR first; check the detected columns before downloading.
           </p>
         </div>
         <button
           onClick={loadSample}
           className="px-3.5 py-1.5 text-xs font-bold bg-emerald-50 hover:bg-emerald-100 dark:bg-emerald-950/40 dark:hover:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-xl transition-all cursor-pointer self-start sm:self-auto"
         >
-          Try Sample PDF Table
+          Try Sample Table
         </button>
       </div>
 
@@ -339,7 +368,7 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
               {file ? file.name : 'Upload PDF Document'}
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400 max-w-sm mx-auto">
-              Extracts table data locally in your browser. No files are uploaded to any server.
+              Reads selectable PDF text locally in your browser. Scanned image-only pages are not converted here. No file upload for processing.
             </p>
             <label className="inline-block mt-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs cursor-pointer transition-colors shadow-md">
               Browse PDF
@@ -356,6 +385,12 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
               </p>
             )}
           </div>
+
+          {extractionNotice && (
+            <div role="status" className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-xs leading-relaxed text-amber-900 dark:border-amber-800 dark:bg-amber-950/30 dark:text-amber-100">
+              {extractionNotice} {extractionNotice.startsWith('No selectable') && <a href="/pdf-to-text" className="font-bold underline">Open PDF to Text OCR</a>}
+            </div>
+          )}
 
           {totalPages > 0 && (
             <div className="glass-card p-5 rounded-2xl border border-slate-200/80 dark:border-slate-800 space-y-3">
@@ -473,7 +508,7 @@ export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => 
             ) : (
               <div className="m-auto text-center space-y-2 text-slate-400">
                 <FileSpreadsheet className="w-10 h-10 mx-auto stroke-1" />
-                <p className="text-xs font-bold">Upload a PDF containing tables or click "Try Sample PDF Table"</p>
+                <p className="text-xs font-bold">Choose a PDF with selectable text or try the sample table.</p>
               </div>
             )}
           </div>

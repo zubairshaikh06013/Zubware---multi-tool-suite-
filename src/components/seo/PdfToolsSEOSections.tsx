@@ -937,7 +937,7 @@ export const PdfToolsSEOSection: React.FC<PdfToolsSEOSectionProps> = ({ tool, on
               PDF to Excel: Extract Tables to Microsoft Excel (.XLSX) &amp; CSV
             </h2>
             <p className="mt-3 text-base sm:text-lg leading-relaxed text-slate-600">
-              Stop manually retyping numbers from PDF invoices, bank account statements, tax summaries, and inventory manifests. Zubware PDF to Excel groups text coordinates into tabular rows and columns, displays an editable interactive grid, and exports directly to <code className="rounded bg-emerald-100/80 px-1.5 py-0.5 text-xs font-mono font-semibold text-emerald-800">.xlsx</code> and <code className="rounded bg-emerald-100/80 px-1.5 py-0.5 text-xs font-mono font-semibold text-emerald-800">.csv</code> in your browser.
+              For PDFs with selectable text, Zubware estimates rows and cells from text positions, lets you correct the grid, then exports <code className="rounded bg-emerald-100/80 px-1.5 py-0.5 text-xs font-mono font-semibold text-emerald-800">.xlsx</code> or <code className="rounded bg-emerald-100/80 px-1.5 py-0.5 text-xs font-mono font-semibold text-emerald-800">.csv</code> in your browser. Scanned pages need OCR first. Complex statements, merged cells and uneven spacing may require manual editing.
             </p>
           </div>
 
@@ -945,7 +945,7 @@ export const PdfToolsSEOSection: React.FC<PdfToolsSEOSectionProps> = ({ tool, on
             <div className="rounded-xl border border-slate-200/90 bg-white p-5 shadow-sm">
               <h3 className="font-semibold text-slate-900 text-base mb-2">Geometric Coordinate Bucketing</h3>
               <p className="text-sm leading-relaxed text-slate-600">
-                Extracts raw PDF text glyphs alongside their precise 2D (X, Y) page coordinates. Groups text elements sharing similar Y positions into coherent rows, then orders items by horizontal X coordinates to preserve column alignment.
+                Reads text fragments and their (X, Y) page coordinates. Groups nearby Y positions into rows and uses horizontal gaps to split cells. This is an estimate, so inspect the result before export.
               </p>
             </div>
             <div className="rounded-xl border border-slate-200/90 bg-white p-5 shadow-sm">
@@ -957,7 +957,7 @@ export const PdfToolsSEOSection: React.FC<PdfToolsSEOSectionProps> = ({ tool, on
             <div className="rounded-xl border border-slate-200/90 bg-white p-5 shadow-sm">
               <h3 className="font-semibold text-slate-900 text-base mb-2">Dual XLSX &amp; CSV Export</h3>
               <p className="text-sm leading-relaxed text-slate-600">
-                Download authentic OpenXML <code className="font-mono text-xs text-emerald-700">.xlsx</code> spreadsheets for Microsoft Excel and Apple Numbers, or export standard comma-separated <code className="font-mono text-xs text-emerald-700">.csv</code> files for Google Sheets and accounting software.
+                Download an OpenXML <code className="font-mono text-xs text-emerald-700">.xlsx</code> workbook with text cells, or a comma-separated <code className="font-mono text-xs text-emerald-700">.csv</code> file. PDF formulas and original spreadsheet formatting are not reconstructed.
               </p>
             </div>
           </div>

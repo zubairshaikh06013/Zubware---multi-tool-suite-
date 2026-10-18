@@ -177,7 +177,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'pdf-to-text':
       'Zubware PDF to Text Converter extracts text from research papers, ebooks, and documents using a dual-engine architecture: instantaneous digital vector text extraction via pdfjs-dist, and client-side neural optical character recognition (OCR) via Tesseract.js for scanned, image-only documents across multiple languages with complete privacy.',
     'pdf-to-excel':
-      'Zubware PDF to Excel Converter reconstructs tabular data from PDF invoices, bank account statements, and tax forms into editable spreadsheets. Groups text coordinates into rows and columns, provides an interactive table editor, and exports directly to Microsoft Excel (.xlsx) and CSV formats in browser memory.',
+      'Zubware PDF to Excel reads selectable PDF text and estimates rows and cells from page positions. Review and edit the extracted grid before exporting XLSX or CSV in your browser. Scanned or image-only pages need OCR first; complex layouts may require manual corrections.',
     'pdf-signature':
       'Zubware Sign PDF Online provides a fast, privacy-focused electronic signing workflow with 3 signature creation methods (draw with mouse/touchscreen, type cursive script, or upload signature image) and multi-page placement controls. Embeds signatures directly into PDF documents using client-side WebAssembly with zero server storage.',
     'pdf-compressor':

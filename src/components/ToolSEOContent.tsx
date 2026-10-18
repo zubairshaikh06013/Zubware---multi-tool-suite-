@@ -251,7 +251,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 Photo and signature requirements vary by exam, recruitment year, and application portal. Read the current official upload instructions for the required file format, dimensions, and KB range before choosing a preset. A small file alone does not guarantee acceptance.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                With Zubware's <strong>By Target Size (KB)</strong> mode, you simply select the <strong>20 KB</strong> or <strong>50 KB</strong> preset. The engine automatically optimizes quality and resolution so your file fits precisely under the required upload ceiling.
+                Choose <strong>By Target Size</strong> and enter your form's limit or try a <strong>20 KB</strong> or <strong>50 KB</strong> example. The tool adjusts quality and dimensions where possible, then shows the actual byte size. If a very small limit is not reached, try JPG or a larger permissible size.
               </p>
             </div>
 
@@ -302,7 +302,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 This tool processes the selected image in your browser. Keep a backup of the original and check readability before sharing the compressed copy.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware Image Compressor operates completely inside your local browser memory using <strong>HTML5 Canvas and WebAssembly</strong>. Your files are decoded, compressed, and encoded directly on your CPU/GPU, ensuring your sensitive data never leaves your device.
+                Zubware Image Compressor uses browser image decoding and <strong>HTML5 Canvas</strong> to create the output. The tool does not upload the selected images to Zubware servers. Keep a copy of the original image and inspect the exported file before submitting it.
               </p>
             </div>
           </div>

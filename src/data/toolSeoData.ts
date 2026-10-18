@@ -147,7 +147,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "faq": [
       {
         "question": "How to compress image to 20KB, 50KB, or 100KB online?",
-        "answer": "Upload your JPG, PNG, or WebP photo into Zubware Image Compressor, select 'By Target Size (KB)' mode, and choose a preset button (20KB, 50KB, 100KB, or 200KB) or enter your exact required KB value. The tool automatically computes the optimal quality and dimensions to keep your photo under the selected limit while balancing size and readability. Very small targets may require lower resolution or visible quality loss."
+        "answer": "Upload a JPG, PNG, or WebP photo, choose By Target Size, then select a preset or enter a limit from 1 KB to 20 MB. Check the actual output size before uploading: very small targets may not be reachable without losing too much detail, particularly for PNG images."
       },
       {
         "question": "Photo ka size kaise kam kare (How to reduce photo size)?",
@@ -155,7 +155,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Can I compress photos for government exams, SSC, UPSC, and job portals?",
-        "answer": "Yes. Most Indian government, banking, and recruitment portals (SSC, UPSC, State PSC, IBPS, NTA, Railway, and State Police) enforce strict photo upload limits between 20KB and 50KB, and signatures between 10KB and 20KB. Zubware's Target Size mode is built specifically to meet these exact portal constraints."
+        "answer": "You can use the target size mode for forms, but each portal sets its own current rules for format, dimensions, and minimum or maximum KB. Read those instructions and check the actual compressed result before submitting."
       },
       {
         "question": "Mobile mein photo ka size kaise kam kare?",
@@ -163,11 +163,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Does compressing an image reduce its visual quality?",
-        "answer": "Zubware uses adaptive compression algorithms that discard redundant metadata and imperceptible color details while preserving facial features and sharpness. When compressing a large 5MB photo to 20KB, resolution is progressively scaled to ensure the result looks crisp at document upload sizes."
+        "answer": "Compression can reduce detail. JPG and WebP adjust quality and, when necessary, dimensions; PNG may need smaller dimensions because it is lossless. A 5 MB photo compressed to 20 KB can visibly lose sharpness. Inspect the image at full size before submitting it."
       },
       {
         "question": "Is it safe to compress private photos, ID proofs, and signatures?",
-        "answer": "Yes, 100% safe. Unlike traditional online compressors that transmit your images to remote cloud servers, Zubware compresses all files entirely inside your device's browser memory using HTML5 Canvas and WebAssembly. Your photos, signatures, and IDs are never uploaded to any server."
+        "answer": "This tool processes selected images locally in your browser with Canvas and does not upload them to Zubware servers. Keep an original backup and remove downloads from shared devices when finished."
       },
       {
         "question": "Which image formats can be compressed and exported?",

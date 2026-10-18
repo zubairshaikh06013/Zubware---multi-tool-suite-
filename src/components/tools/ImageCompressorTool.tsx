@@ -46,6 +46,8 @@ const POPULAR_SEARCH_PRESETS = [
   { label: 'Image compressor to 300kb', value: 300, unit: 'KB' as const, desc: 'Official identity & certificate uploads' },
   { label: 'Image compressor to 500kb', value: 500, unit: 'KB' as const, desc: 'Blog illustrations & portfolio images' }
 ];
+const SUPPORTED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp']);
+const MAX_TARGET_BYTES = 20 * DECIMAL_MB_BYTES;
 
 export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShowToast }) => {
   const { t } = useLanguage();
@@ -60,10 +62,13 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
   const [isProcessing, setIsProcessing] = useState(false);
 
   const handleFilesAdded = async (files: File[]) => {
-    const validFiles = files.filter((f) => f.type.startsWith('image/'));
+    const validFiles = files.filter((f) => SUPPORTED_IMAGE_TYPES.has(f.type));
     if (validFiles.length === 0) {
-      onShowToast('Please select valid image files');
+      onShowToast('Choose a JPG, PNG, or WebP image. Other formats are not supported here.');
       return;
+    }
+    if (validFiles.length !== files.length) {
+      onShowToast(`Skipped ${files.length - validFiles.length} unsupported file(s). Use JPG, PNG, or WebP.`);
     }
 
     const newItems: BatchQueueItem[] = await Promise.all(
@@ -275,7 +280,7 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
           ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(source, 0, 0, canvas.width, canvas.height);
 
-          canvas.toBlob((b) => resBlob(b), mimeType, q);
+          canvas.toBlob((b) => resBlob(b?.type === mimeType ? b : null), mimeType, q);
         });
       };
 
@@ -288,7 +293,7 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
         finalBlob = await renderBlob(1.0, qValue / 100);
         if (!finalBlob) {
           cleanup();
-          return { ...item, status: 'error', errorMessage: 'Compression failed' };
+          return { ...item, status: 'error', errorMessage: 'This browser cannot export the selected format. Choose JPG or PNG.' };
         }
         const reductionPct = Math.round(((item.file.size - finalBlob.size) / item.file.size) * 100);
         label = `Quality ${qValue}% • ${formatDecimalBytes(finalBlob.size)} (${reductionPct > 0 ? `${reductionPct}% reduction` : 'Optimized'})`;
@@ -379,7 +384,7 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
 
         if (!bestCandidate) {
           cleanup();
-          return { ...item, status: 'error', errorMessage: 'Could not reach target size' };
+          return { ...item, status: 'error', errorMessage: 'Could not create this format in your browser. Choose JPG or PNG, or increase the target.' };
         }
 
         finalBlob = bestCandidate;
@@ -452,6 +457,10 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
 
   const compressBatch = async (targetIds?: string[]) => {
     if (items.length === 0) return;
+    if (mode === 'target' && (customInputStr.trim() === '' || !Number.isFinite(Number(customInputStr)) || parseTargetBytes(Number(customInputStr), targetUnit) < 1000 || parseTargetBytes(Number(customInputStr), targetUnit) > MAX_TARGET_BYTES)) {
+      onShowToast('Enter a target between 1 KB and 20 MB.');
+      return;
+    }
     setIsProcessing(true);
 
     const targetItems = targetIds && targetIds.length > 0
@@ -486,9 +495,18 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
     }
 
     const zip = new JSZip();
+    const usedNames = new Set<string>();
     readyItems.forEach((item, index) => {
       const fileName = item.downloadFileName || `${item.file.name.replace(/\.[^/.]+$/, '')}-compressed-${index + 1}.jpg`;
-      zip.file(fileName, item.resultBlob!);
+      let uniqueName = fileName;
+      let suffix = 2;
+      while (usedNames.has(uniqueName.toLowerCase())) {
+        const dot = fileName.lastIndexOf('.');
+        uniqueName = dot > 0 ? `${fileName.slice(0, dot)}-${suffix}${fileName.slice(dot)}` : `${fileName}-${suffix}`;
+        suffix++;
+      }
+      usedNames.add(uniqueName.toLowerCase());
+      zip.file(uniqueName, item.resultBlob!);
     });
 
     const content = await zip.generateAsync({ type: 'blob' });
@@ -539,9 +557,9 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
             : undefined
         }
         isProcessing={isProcessing}
-        accept="image/*"
+        accept="image/jpeg,image/png,image/webp"
         title={t('dropImagesCompress', 'Drop your images here or click to upload')}
-        subtitle={t('supportsMultipleFiles', 'Supports multiple files (PNG, JPG, WebP, AVIF, GIF)')}
+        subtitle="Supports multiple JPG, PNG, and WebP files"
         customControls={
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800 space-y-4">
             {/* Mode Selector */}
@@ -599,8 +617,8 @@ export const ImageCompressorTool: React.FC<ImageCompressorToolProps> = ({ onShow
                   <div className="flex items-center gap-1.5">
                     <input
                       type="number"
-                      min="5"
-                      max="50000"
+                      min={targetUnit === 'KB' ? 1 : 0.001}
+                      max={targetUnit === 'KB' ? 20000 : 20}
                       value={customInputStr}
                       onChange={(e) => {
                         setCustomInputStr(e.target.value);

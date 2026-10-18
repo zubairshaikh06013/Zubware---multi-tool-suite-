@@ -183,7 +183,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'pdf-compressor':
       'Zubware PDF Compressor reduces the file size of PDF documents directly in your browser without compromising readable text or vector layouts. Select from Extreme, Recommended, or High Quality compression presets to optimize scanned forms, multi-page reports, and contracts for email attachments and portal upload limits. All compression algorithms run 100% locally in your device memory with zero server uploads.',
     'image-compressor':
-      'Zubware Image Compressor reduces the byte size of JPG, PNG, and WebP photos to exact limits like 20KB, 50KB, 100KB, or 200KB with adjustable quality and resolution. Small size targets can reduce detail; inspect the downloaded image before submitting it. Designed for government exam application forms (SSC, UPSC, State PSC), job portals, and web optimization, all compression algorithms run 100% locally in your browser memory with zero server uploads.',
+      'Compress JPG, PNG, and WebP images in your browser. Choose an example limit such as 20KB, 50KB, 100KB, or 200KB, or enter a custom target from 1 KB to 20 MB. Check the actual result: small limits can reduce image detail and some cannot be achieved for every input. Selected images are not uploaded to Zubware servers.',
     'image-resizer':
       'Zubware Image Resizer modifies image dimensions by exact pixels, percentage, or predefined social media and document presets while preserving original aspect ratios. Designed for photo portals, profile pictures, and banners, resizing happens instantly on your device via HTML5 canvas with zero server uploads.',
     'ats-resume-checker':

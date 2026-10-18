@@ -320,3 +320,17 @@ for(const icon of FAVICON_MANIFEST.icons) assert.ok(faviconArchive.file(icon.src
 assert.equal(await faviconArchive.file('favicon-head.html')!.async('string'),FAVICON_HEAD_HTML);
 await assert.rejects(createFaviconBundle({}),/Missing PNG/);
 console.log('Production favicon ZIP builder: all 13 entries, real ICO, manifest targets, HTML parity and missing-input rejection passed.');
+
+const {cleanedImageMime,cleanedImageName,cleanedImagesZip}=await import('../src/lib/cleanImageExport');
+assert.equal(cleanedImageMime('image/jpeg'),'image/jpeg');
+for(const mime of ['image/png','image/webp','image/gif','image/svg+xml','']) assert.equal(cleanedImageMime(mime),'image/png');
+assert.equal(cleanedImageName('photo.webp','image/png'),'photo_no_exif.png');
+assert.equal(cleanedImageName('photo','image/png'),'photo_no_exif.png');
+const cleanedBlob=new Blob([iconPng],{type:'image/png'});
+const cleanedArchive=await FaviconZip.loadAsync(await (await cleanedImagesZip([
+ {name:'sample.webp',blob:cleanedBlob},{name:'sample.png',blob:cleanedBlob},{name:'SAMPLE.gif',blob:cleanedBlob}
+])).arrayBuffer());
+assert.deepEqual(Object.keys(cleanedArchive.files),['sample_no_exif.png','sample_no_exif-2.png','SAMPLE_no_exif-3.png']);
+for(const name of Object.keys(cleanedArchive.files)) assert.deepEqual(await cleanedArchive.file(name)!.async('uint8array'),iconPng);
+await assert.rejects(cleanedImagesZip([]),/No cleaned images/);
+console.log('EXIF alpha-safe format selection, output names and collision-safe ZIP payloads passed.');

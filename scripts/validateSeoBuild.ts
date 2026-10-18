@@ -136,6 +136,26 @@ export function validateSeoBuild(distDir: string): void {
       if (!sitemapPaths.has(target)) errors.push(`Legacy redirect target missing from sitemap: ${target}`);
     }
   }
+  // Keep a machine-readable crawl audit alongside the deployment artifacts.
+  // It helps prioritize pages that Google has discovered but has not crawled.
+  // This measures HTML link reachability, not actual Google indexing status.
+  const crawlAudit = {
+    generatedAt: new Date().toISOString(),
+    sitemapUrlCount: sitemapPaths.size,
+    reachableFromHomepage: depth.size,
+    unreachable: unreachable.sort(),
+    deeperThanThreeClicks: deep.map(([route, clicks]) => ({ route, clicks }))
+      .sort((a, b) => b.clicks - a.clicks || a.route.localeCompare(b.route)),
+    brokenInternalLinks: [...brokenInternalLinks].sort(),
+    routes: [...sitemapPaths].sort().map(route => ({
+      route,
+      homepageClicks: depth.get(route) ?? null,
+      outgoingInternalLinks: crawlGraph.get(route)?.size ?? 0,
+      hasIncomingInternalLink: incoming.has(route)
+    }))
+  };
+  fs.writeFileSync(path.join(distDir, 'seo-crawl-audit.json'), JSON.stringify(crawlAudit, null, 2) + '\n');
+  console.log('[Zubware SEO] Wrote seo-crawl-audit.json with homepage depth and orphan diagnostics.');
   const robots = fs.readFileSync(path.join(distDir, 'robots.txt'), 'utf8');
   if (!robots.includes(`Sitemap: ${SITE_ORIGIN}/sitemap.xml`)) errors.push('Robots sitemap declaration missing');
   if (errors.length) throw new Error(`SEO artifact validation failed:\n${[...new Set(errors)].join('\n')}`);

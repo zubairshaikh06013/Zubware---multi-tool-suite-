@@ -1,15 +1,16 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { getTranslatedTools, TOOLS_DATA } from '../../data/toolsData';
-import { CATEGORIES_DATA, CategoryItem } from '../../data/categoriesData';
+import { CATEGORIES_DATA } from '../../data/categoriesData';
 import { CATEGORY_AUTHORITY_MAP } from '../../data/categoryAuthorityData';
 import { BLOG_ARTICLES } from '../../data/blogArticles';
 import { useLanguage } from '../../context/LanguageContext';
 import { getLinkUrl } from '../../lib/paths';
-import { toggleFavorite, isFavorite } from '../../lib/userStore';
-import { ArrowRight, CheckCircle2, Star, Filter, Sparkles, BookOpen, ChevronDown, Layers, HelpCircle } from 'lucide-react';
+import { toggleFavorite, getFavorites } from '../../lib/userStore';
+import { ArrowRight, CheckCircle2, Star, Sparkles, BookOpen, ChevronDown, Layers, HelpCircle } from 'lucide-react';
 import { SEOHead } from '../SEOHead';
 import { Breadcrumb } from '../Breadcrumb';
 import { directoryTags, filterDirectoryTools } from '../../lib/toolDirectory';
+import type { ToolId } from '../../types';
 import { ToolIcon } from '../common/ToolIcon';
 
 interface CategoryPageProps {
@@ -31,6 +32,16 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [tagQuery, setTagQuery] = useState('');
   const [showTagPicker, setShowTagPicker] = useState(false);
+  const [favoriteIds, setFavoriteIds] = useState<ToolId[]>(getFavorites);
+  useEffect(() => {
+    const refresh = () => setFavoriteIds(getFavorites());
+    window.addEventListener('zubware_favorites_updated', refresh);
+    window.addEventListener('storage', refresh);
+    return () => {
+      window.removeEventListener('zubware_favorites_updated', refresh);
+      window.removeEventListener('storage', refresh);
+    };
+  }, []);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
@@ -104,7 +115,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
     onNavigate(getLinkUrl(path));
   };
 
-  const handleToggleFav = (id: any, e: React.MouseEvent) => {
+  const handleToggleFav = (id: ToolId, e: React.MouseEvent) => {
+    e.preventDefault();
     e.stopPropagation();
     const added = toggleFavorite(id);
     onShowToast(added ? t('addedFavorite', 'Added to favorites!') : t('removedFavorite', 'Removed from favorites'));
@@ -293,21 +305,21 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
       {/* Tool Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {finalTools.map((tool) => {
-          const fav = isFavorite(tool.id);
+          const fav = favoriteIds.includes(tool.id);
           return (
+            <article key={tool.id} className="relative h-full">
             <a
-              key={tool.id}
               href={getLinkUrl(tool.path)}
               aria-label={`Open ${tool.title}`}
               onClick={(e) => {
-                if ((e.target as HTMLElement).closest('button')) return;
+                if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
                 e.preventDefault();
                 onNavigate(getLinkUrl(tool.path));
               }}
-              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all relative block shadow-xs hover:shadow-md"
+              className="glass-card h-full flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all relative block shadow-xs hover:shadow-md"
             >
               <div>
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center justify-between mb-4 pr-12">
                   <ToolIcon 
                     toolId={tool.id} 
                     category={tool.category} 
@@ -315,19 +327,6 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                     className="group-hover:scale-110 transition-transform shadow-xs" 
                   />
                   <div className="flex items-center gap-1.5">
-                    <button
-                      type="button"
-                      onClick={(e) => handleToggleFav(tool.id, e)}
-                      aria-label={fav ? `Remove ${tool.title} from favorites` : `Add ${tool.title} to favorites`}
-                      className={`p-2 rounded-xl transition-all cursor-pointer ${
-                        fav
-                          ? 'bg-amber-500/10 text-amber-500'
-                          : 'text-slate-300 dark:text-slate-600 hover:text-amber-500'
-                      }`}
-                      title={fav ? 'Remove Favorite' : 'Add to Favorite'}
-                    >
-                      <Star className={`w-4 h-4 ${fav ? 'fill-amber-500' : ''}`} aria-hidden="true" />
-                    </button>
                     {tool.badge && (
                       <span className="text-[10px] font-bold uppercase px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
                         {tool.badge}
@@ -362,6 +361,21 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 </span>
               </div>
             </a>
+                    <button
+                      type="button"
+                      onClick={(e) => handleToggleFav(tool.id, e)}
+                      aria-label={fav ? `Remove ${tool.title} from favorites` : `Add ${tool.title} to favorites`}
+                      aria-pressed={fav}
+                      className={`absolute right-6 top-6 z-10 p-2 rounded-xl transition-all cursor-pointer ${
+                        fav
+                          ? 'bg-amber-500/10 text-amber-500'
+                          : 'text-slate-300 dark:text-slate-600 hover:text-amber-500'
+                      }`}
+                      title={fav ? 'Remove Favorite' : 'Add to Favorite'}
+                    >
+                      <Star className={`w-4 h-4 ${fav ? 'fill-amber-500' : ''}`} aria-hidden="true" />
+                    </button>
+            </article>
           );
         })}
       </div>

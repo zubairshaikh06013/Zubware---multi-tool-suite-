@@ -1,4 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import JSZip from 'jszip';
+import { decodeBrowserImage } from '../../../lib/browserImageDecode';
+import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
+import { rotatedImageBounds, rotationExportMime } from '../../../lib/imageRotation';
+import { imageExportExtension, uniqueImageExportName } from '../../../lib/imageExport';
+import React, { useState, useEffect, useRef } from 'react';
 import { RotateCcw, RotateCw, Download, RefreshCw, Layers } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
 import { ImageFileInfoPanel } from './ImageFileInfoPanel';
@@ -16,6 +21,9 @@ interface ProcessedFileItem {
   file: File;
   previewUrl: string;
   angle: number;
+  blob: Blob;
+  width: number;
+  height: number;
 }
 
 export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, onNavigate }) => {
@@ -27,85 +35,104 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
   const [stage, setStage] = useState<ProcessingStage>('Reading Image');
   const [progress, setProgress] = useState<number>(0);
 
-  const handleImageSelected = (selectedFiles: File[]) => {
-    if (!selectedFiles.length) return;
-    setFiles(selectedFiles);
+  const runRef = useRef(0);
+  const itemsRef = useRef<ProcessedFileItem[]>([]);
+  const [errors, setErrors] = useState<string[]>([]);
+  const [isZipping, setIsZipping] = useState(false);
+  const replaceItems = (next: ProcessedFileItem[]) => {
+    itemsRef.current.forEach(item => URL.revokeObjectURL(item.previewUrl));
+    itemsRef.current = next;
+    setItems(next);
+  };
+  useEffect(() => () => {
+    runRef.current++;
+    itemsRef.current.forEach(item => URL.revokeObjectURL(item.previewUrl));
+  }, []);
+
+  const renderRotations = async (fileList: File[], rotAngle: number) => {
+    const run = ++runRef.current;
+    replaceItems([]);
+    setErrors([]);
     setIsProcessing(true);
-    setStage('Reading Image');
-    setProgress(30);
-
-    setTimeout(() => {
-      setStage('Processing');
-      setProgress(70);
-      renderRotations(selectedFiles, angle);
-    }, 200);
-  };
-
-  const renderRotations = (fileList: File[], rotAngle: number) => {
-    const list: ProcessedFileItem[] = [];
-    let count = 0;
-
-    fileList.forEach((file) => {
-      const img = new Image();
-      const url = URL.createObjectURL(file);
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const rad = (rotAngle * Math.PI) / 180;
-        const sin = Math.abs(Math.sin(rad));
-        const cos = Math.abs(Math.cos(rad));
-
-        const w = img.width;
-        const h = img.height;
-
-        canvas.width = w * cos + h * sin;
-        canvas.height = w * sin + h * cos;
-
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-          ctx.translate(canvas.width / 2, canvas.height / 2);
-          ctx.rotate(rad);
-          ctx.drawImage(img, -w / 2, -h / 2);
+    setStage('Processing');
+    setProgress(0);
+    const results: ProcessedFileItem[] = [];
+    const failures: string[] = [];
+    try {
+      for (const file of fileList) {
+        let sourceUrl: string | undefined;
+        try {
+          const {image, url} = await decodeBrowserImage(file);
+          sourceUrl = url;
+          if (run !== runRef.current) break;
+          const bounds = rotatedImageBounds(image.naturalWidth, image.naturalHeight, rotAngle);
+          const canvas = document.createElement('canvas');
+          canvas.width = bounds.width;
+          canvas.height = bounds.height;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) throw new Error('Image canvas is unavailable. Try a smaller image.');
+          const mime = rotationExportMime(file.type);
+          if (mime === 'image/jpeg') {ctx.fillStyle='#ffffff';ctx.fillRect(0,0,canvas.width,canvas.height);}
+          ctx.translate(canvas.width/2, canvas.height/2);
+          ctx.rotate(bounds.angle*Math.PI/180);
+          ctx.drawImage(image,-image.naturalWidth/2,-image.naturalHeight/2);
+          const blob = await encodeCanvasBlob(canvas,mime,0.92);
+          if (run !== runRef.current) break;
+          results.push({file,blob,previewUrl:URL.createObjectURL(blob),angle:bounds.angle,width:bounds.width,height:bounds.height});
+        } catch (error) {
+          failures.push(`${file.name}: ${error instanceof Error ? error.message : 'Rotation failed.'}`);
+        } finally {
+          if (sourceUrl) URL.revokeObjectURL(sourceUrl);
         }
-
-        const outUrl = canvas.toDataURL(file.type || 'image/png');
-        list.push({ file, previewUrl: outUrl, angle: rotAngle });
-        count++;
-
-        if (count === fileList.length) {
-          setItems(list);
-          setStage('Completed');
-          setProgress(100);
-          setTimeout(() => setIsProcessing(false), 300);
-        }
-      };
-      img.src = url;
-    });
-  };
-
-  const handleAngleChange = (newAngle: number) => {
-    setAngle(newAngle);
-    if (files.length) {
-      setIsProcessing(true);
-      setStage('Processing');
-      setProgress(50);
-      renderRotations(files, newAngle);
+        if (run !== runRef.current) break;
+        setProgress(Math.round((results.length+failures.length)/fileList.length*100));
+      }
+      if (run !== runRef.current) {results.forEach(item => URL.revokeObjectURL(item.previewUrl));return;}
+      replaceItems(results);
+      setErrors(failures);
+      setStage('Completed');
+      setProgress(100);
+      if (failures.length) onShowToast(`${results.length} rotated; ${failures.length} failed. Check the file errors.`);
+    } finally {
+      if (run === runRef.current) setIsProcessing(false);
     }
   };
 
+  const handleImageSelected = (selectedFiles: File[]) => {
+    if (!selectedFiles.length) return;
+    setFiles(selectedFiles);
+    void renderRotations(selectedFiles, angle);
+  };
+  const handleAngleChange = (newAngle: number) => {
+    setAngle(newAngle);
+    if (files.length) void renderRotations(files, newAngle);
+  };
+  const outputName = (item: ProcessedFileItem) => `${item.file.name.replace(/\.[^/.]+$/, '') || 'rotated'}_rotated_${item.angle}deg.${imageExportExtension(item.blob.type)}`;
   const handleDownloadItem = (item: ProcessedFileItem) => {
     const link = document.createElement('a');
-    const baseName = item.file.name.substring(0, item.file.name.lastIndexOf('.')) || 'rotated';
-    const ext = item.file.name.split('.').pop() || 'png';
-    link.download = `${baseName}_rotated_${item.angle}deg.${ext}`;
+    link.download = outputName(item);
     link.href = item.previewUrl;
     link.click();
     onShowToast('Rotated image downloaded!');
   };
-
-  const handleDownloadAll = () => {
-    items.forEach((item, idx) => {
-      setTimeout(() => handleDownloadItem(item), idx * 200);
-    });
+  const handleDownloadAll = async () => {
+    if (isProcessing || isZipping || !items.length) return;
+    const run = runRef.current;
+    setIsZipping(true);
+    try {
+      const zip = new JSZip();
+      const names = new Set<string>();
+      items.forEach(item => zip.file(uniqueImageExportName(outputName(item),names),item.blob));
+      const blob = await zip.generateAsync({type:'blob'});
+      if (run !== runRef.current) return;
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `rotated-images-${angle}deg.zip`;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url),1000);
+    } catch {onShowToast('Could not create the ZIP. Try individual image downloads.');}
+    finally {setIsZipping(false);}
   };
 
   return (
@@ -118,6 +145,8 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
         <div className="space-y-6">
           {isProcessing && <ImageProcessingProgress stage={stage} progress={progress} />}
 
+          {errors.length > 0 && <div role="alert" className="p-4 rounded-2xl bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 text-sm space-y-1">{errors.map((error,index) => <p key={index}>{error}</p>)}</div>}
+          <p className="text-xs text-slate-500 dark:text-slate-400">JPG and WebP sources keep their format when supported. Other inputs export as PNG. Animated images become a still frame.</p>
           {/* Preset Buttons & Slider */}
           <div className="p-6 rounded-3xl glass-panel space-y-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
@@ -167,6 +196,7 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
                 type="range"
                 min="0"
                 max="360"
+                aria-label="Rotation angle"
                 value={angle}
                 onChange={(e) => handleAngleChange(parseInt(e.target.value))}
                 className="w-full accent-indigo-600 cursor-pointer"
@@ -184,6 +214,7 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
 
                 <div className="space-y-2">
                   <p className="text-xs font-bold text-slate-800 dark:text-slate-200 truncate">{item.file.name}</p>
+                  <p className="text-xs text-slate-500">{item.width} × {item.height} px · {imageExportExtension(item.blob.type).toUpperCase()}</p>
                   <button
                     type="button"
                     onClick={() => handleDownloadItem(item)}
@@ -201,8 +232,12 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
             <button
               type="button"
               onClick={() => {
+                runRef.current++;
                 setFiles([]);
-                setItems([]);
+                replaceItems([]);
+                setErrors([]);
+                setIsProcessing(false);
+                setAngle(90);
               }}
               className="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-1.5 cursor-pointer"
             >
@@ -213,9 +248,10 @@ export const RotateImageTool: React.FC<RotateImageToolProps> = ({ onShowToast, o
               <button
                 type="button"
                 onClick={handleDownloadAll}
+                disabled={isProcessing || isZipping}
                 className="px-6 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 cursor-pointer"
               >
-                <Layers className="w-4 h-4" /> Download All ({items.length})
+                <Layers className="w-4 h-4" /> {isZipping ? 'Creating ZIP…' : `Download ZIP (${items.length})`}
               </button>
             )}
           </div>

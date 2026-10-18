@@ -39,7 +39,7 @@ export function validateSeoBuild(distDir: string): void {
   const crawlGraph = new Map<string, Set<string>>();
   const brokenInternalLinks = new Set<string>();
   const legacyHtmlInternalLinks = new Set<string>();
-      faqQuestions: (html.match(/"@type"\s*:\s*"Question"/g) || []).length,
+  const contentQuality = new Map<string, { visibleWords: number; faqQuestions: number; howToSteps: number }>();
   const sitemapPaths = new Set(urls.map(url => new URL(url).pathname.replace(/\/$/, '') || '/'));
   // The signed-in dashboard is an intentionally non-indexable client-side route.
   const nonIndexableAppRoutes = new Set(['/dashboard']);

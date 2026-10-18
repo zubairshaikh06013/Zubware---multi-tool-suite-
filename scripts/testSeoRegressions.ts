@@ -112,3 +112,16 @@ assert.equal(STANDARD_DEDUCTION_2025.single, 15750);
 assert.equal(STANDARD_DEDUCTION_2026.married_joint, 32200);
 assert.equal(SS_WAGE_CAPS['2026'], 184500);
 console.log('Official 2026 federal tax table regression examples passed.');
+
+// Card metadata must stay synchronized without shipping article bodies to listing/tool routes.
+const { readFileSync } = await import('node:fs');
+const catalog = JSON.parse(readFileSync(new URL('../src/data/blogCatalog.json', import.meta.url), 'utf8'));
+assert.deepEqual(catalog.map((article: any) => article.slug), BLOG_ARTICLES.map(article => article.slug));
+for (const article of BLOG_ARTICLES) {
+  const card = catalog.find((item: any) => item.slug === article.slug);
+  for (const key of ['title', 'description', 'canonicalPath', 'publishedTime', 'category', 'readingTime', 'tags', 'excerpt', 'relatedToolIds'] as const) assert.deepEqual(card[key], article[key]);
+  assert.equal(card.author.name, article.author.name);
+  assert.ok(!('sections' in card) && !('faqs' in card) && !('takeaways' in card));
+}
+for (const tool of TOOLS_DATA) assert.deepEqual(getMatchingGuidesForTool(tool, catalog).map(article => article.slug), getMatchingGuidesForTool(tool, BLOG_ARTICLES).map(article => article.slug));
+console.log('Blog metadata freshness and related-guide parity passed for every tool.');

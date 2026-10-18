@@ -1,0 +1,32 @@
+name: Refresh vulnerable dependency lockfile
+on:
+  push:
+    branches: [security/fix-audited-dependencies]
+    paths:
+      - '.github/workflows/refresh-security-lock.yml'
+permissions:
+  contents: write
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: security/fix-audited-dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Refresh vulnerable lockfile dependencies without major upgrades
+        run: |
+          npm audit fix --package-lock-only --ignore-scripts
+          npm audit --omit=dev --audit-level=high
+      - name: Commit regenerated lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix(deps): update vulnerable transitive dependency lockfile"
+            git push origin HEAD:security/fix-audited-dependencies
+          fi

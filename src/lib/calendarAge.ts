@@ -1,5 +1,5 @@
 const DAY_MS = 86400000;
-const utcDay = (date: Date) => {
+export const calendarDay = (date: Date) => {
   const result = new Date(0);
   result.setUTCFullYear(date.getFullYear(), date.getMonth(), date.getDate());
   result.setUTCHours(0, 0, 0, 0);
@@ -18,17 +18,28 @@ export function calendarAnniversary(birth: Date, year: number, month = birth.get
 }
 
 export function calendarAge(birth: Date, target: Date) {
-  if (!Number.isFinite(birth.getTime()) || !Number.isFinite(target.getTime()) || utcDay(birth) > utcDay(target)) return null;
+  if (!Number.isFinite(birth.getTime()) || !Number.isFinite(target.getTime()) || calendarDay(birth) > calendarDay(target)) return null;
   let totalMonths = (target.getFullYear() - birth.getFullYear()) * 12 + target.getMonth() - birth.getMonth();
   let anchor = calendarAnniversary(birth, birth.getFullYear(), birth.getMonth() + totalMonths);
-  if (utcDay(anchor) > utcDay(target)) {
+  if (calendarDay(anchor) > calendarDay(target)) {
     totalMonths--;
     anchor = calendarAnniversary(birth, birth.getFullYear(), birth.getMonth() + totalMonths);
   }
   return {
     years: Math.floor(totalMonths / 12),
     months: totalMonths % 12,
-    days: utcDay(target) - utcDay(anchor),
-    totalDays: utcDay(target) - utcDay(birth),
+    days: calendarDay(target) - calendarDay(anchor),
+    totalDays: calendarDay(target) - calendarDay(birth),
   };
+}
+
+/** Parse a date-only input without UTC conversion or JavaScript's 1900 offset. */
+export function parseCalendarDate(value: string): Date | null {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+  const [year, month, day] = value.split('-').map(Number);
+  if (year < 1) return null;
+  const date = new Date(0);
+  date.setFullYear(year, month - 1, day);
+  date.setHours(0, 0, 0, 0);
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day ? date : null;
 }

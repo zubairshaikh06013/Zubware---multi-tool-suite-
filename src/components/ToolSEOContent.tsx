@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ToolMeta, FAQItem } from '../types';
 import { ChevronDown, ShieldCheck, Zap, HardDrive, CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
 import { getLinkUrl, getToolCanonicalPath, getToolHowToHeading, getToolIntroParagraph, NETWORK_DEPENDENT_TOOL_IDS } from '../lib/paths';
-import { BLOG_ARTICLES } from '../data/blogArticles';
+import BLOG_ARTICLES from '../data/blogCatalog.json';
 import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
 import { ToolIcon } from './common/ToolIcon';
 import { getToolSeoData } from '../data/toolSeoData';

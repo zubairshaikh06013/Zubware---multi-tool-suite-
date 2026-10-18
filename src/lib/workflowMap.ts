@@ -200,7 +200,7 @@ export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: 
 /**
  * Returns matching cornerstone blog articles for a tool.
  */
-export function getMatchingGuidesForTool(tool: ToolMeta, articles: BlogArticle[], maxCount: number = 2): BlogArticle[] {
+export function getMatchingGuidesForTool<T extends Pick<BlogArticle, 'slug' | 'title' | 'category' | 'tags' | 'relatedToolIds'>>(tool: ToolMeta, articles: T[], maxCount: number = 2): T[] {
   const toolCat = tool.category.toLowerCase().replace(/^[^\w]+/, '').trim();
   const toolWords = tool.title.toLowerCase().split(/\s+/).filter(w => w.length > 3);
 

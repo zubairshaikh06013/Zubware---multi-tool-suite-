@@ -4,11 +4,15 @@ import path from 'path';
 import fs from 'fs';
 import {defineConfig, Plugin} from 'vite';
 import { generateSeoHtmlAndSitemap } from './scripts/generateSeoAndSitemap';
+import { generateBlogCatalog } from './scripts/generateBlogCatalog';
 import { validateSeoBuild } from './scripts/validateSeoBuild';
 
 function generateToolPagesAndSitemapPlugin(): Plugin {
   return {
     name: 'generate-tool-pages-and-sitemap',
+    buildStart() {
+      generateBlogCatalog();
+    },
     closeBundle() {
       try {
         generateSeoHtmlAndSitemap();

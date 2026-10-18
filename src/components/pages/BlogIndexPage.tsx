@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BookOpen, Clock, Calendar, ArrowRight, ShieldCheck, Tag, Sparkles } from 'lucide-react';
-import { BLOG_ARTICLES } from '../../data/blogArticles';
+import BLOG_ARTICLES from '../../data/blogCatalog.json';
 import { SEOHead } from '../SEOHead';
 import { Breadcrumb } from '../Breadcrumb';
 import { getLinkUrl } from '../../lib/paths';

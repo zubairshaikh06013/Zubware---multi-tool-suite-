@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { getTranslatedTools, TOOLS_DATA } from '../../data/toolsData';
 import { CATEGORIES_DATA } from '../../data/categoriesData';
 import { CATEGORY_AUTHORITY_MAP } from '../../data/categoryAuthorityData';
-import { BLOG_ARTICLES } from '../../data/blogArticles';
+import BLOG_ARTICLES from '../../data/blogCatalog.json';
 import { useLanguage } from '../../context/LanguageContext';
 import { getLinkUrl } from '../../lib/paths';
 import { toggleFavorite, getFavorites } from '../../lib/userStore';

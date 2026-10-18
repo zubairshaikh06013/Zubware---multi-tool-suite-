@@ -43,4 +43,5 @@ jobs:
           node --import tsx scripts/testSeoRegressions.ts
           node --import tsx scripts/testToolReliability.ts
           node --import tsx scripts/testDataConversions.ts
+          node --import tsx scripts/testNoPaidApiGuard.ts
 

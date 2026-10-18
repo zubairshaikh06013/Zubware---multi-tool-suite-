@@ -1,5 +1,7 @@
-# Worker Git deployment check
+# Worker deployment verification
 
-Cloudflare Worker build settings: `echo Worker build ready` and `npx wrangler deploy --config workers/background-remover/wrangler.jsonc`.
+Production branch: `main`. Root: `workers/background-remover`. Build: `node --check src/index.js`. Deploy: `npx wrangler@4.151.1 deploy --config wrangler.jsonc`. Preview builds are disabled.
 
-This change triggers the first Git-connected build after connecting the repository. Verify deployment logs, `api.zubware.com`, Images and RATE_LIMITER bindings, and a real photo test before marking the service working.
+Preserve the existing `api.zubware.com` custom domain and bindings. The checked-in `REMOTE_BACKGROUND_REMOVAL_ENABLED` value is `"false"`. Verify a POST from the website origin returns 503 with an on-device alternative, before any Images call. Root GET remains a health response and allowed OPTIONS remains 204.
+
+Run `node --import tsx scripts/testNoPaidApiGuard.ts` from the repository root to check both Worker entry points and the frontend guard. Do not enable remote processing or upgrade plans without the owner’s explicit authorization. Billing access is separate from deployment access; existing subscriptions were not verified.

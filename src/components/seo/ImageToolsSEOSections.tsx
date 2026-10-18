@@ -53,7 +53,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 Automatic Neural Network Segmentation
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware Background Remover isolates subjects and removes image backdrops automatically using browser-based machine learning. Unlike legacy tools that require tedious manual lasso tracing, our in-browser segmentation model identifies human portraits, e-commerce products, animals, and graphic objects with sub-pixel precision along hair strands and soft edges.
+                Zubware Background Remover uses browser-based machine learning to estimate the foreground subject. Hair, fur, glass, thin objects and low-contrast edges can be imperfect; inspect the cutout before using it.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Export transparent 32-bit PNG files with true alpha channels, ready for seamless layering over marketing banners, product listings, or presentation slides.
@@ -66,10 +66,10 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 E-Commerce Catalogs &amp; ID Photos
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Online marketplaces like Amazon, Flipkart, Shopify, and Meesho mandate clean, distraction-free product presentations. Use Zubware to strip cluttered room backgrounds from your product photos in seconds, replacing them with pure white (#ffffff) or transparent backgrounds.
+                Prepare transparent cutouts for product photos, presentations or graphics. Processing time depends on your device, model download and image size. Preview background colors help inspection; the downloaded PNG remains transparent.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                For exam registrations (SSC, UPSC, NEET, IBPS) and passport applications, remove uneven wall shadows and export compliant headshots with clean solid backgrounds.
+                For product listings, exams or identity photos, check the destination requirements for background color, size and framing. This tool does not certify compliance or guarantee acceptance.
               </p>
             </div>
           </div>
@@ -89,7 +89,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
               </div>
               <div className="p-3 rounded-xl bg-white border border-slate-300 text-slate-900">
                 <span className="text-xs font-bold block">Pure White</span>
-                <span className="text-[11px] text-slate-600">Simulates Amazon &amp; Shopify listings</span>
+                <span className="text-[11px] text-slate-600">Checks edges on a light background</span>
               </div>
               <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-white">
                 <span className="text-xs font-bold block">Solid Black</span>
@@ -105,19 +105,19 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Lock className="w-5 h-5 text-emerald-500" /> 100% Private Client-Side AI Execution
+                <Lock className="w-5 h-5 text-emerald-500" /> On-device AI Processing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Traditional background removal platforms upload your personal selfies, client photographs, and proprietary catalog images to remote cloud servers, storing copies in their databases.
+                Quick Removal and Private Removal process the selected photo on your device. The browser may download model resources before it can start.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware runs machine learning segmentation models entirely in your local browser memory via WebAssembly. Your photos never leave your smartphone or computer, ensuring absolute privacy and zero risk of data leaks.
+                The available modes do not upload your photo for background removal. Ordinary website and model-download requests still use the network. Online Smart AI Removal is currently unavailable.
               </p>
             </div>
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Zap className="w-5 h-5 text-amber-500" /> Best Practices for Flawless Cutouts
+                <Zap className="w-5 h-5 text-amber-500" /> Tips for Cleaner Cutouts
               </h3>
               <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
                 <li><strong>High Contrast:</strong> Ensure strong contrast between your subject and the backdrop (e.g. dark clothes against light walls).</li>
@@ -155,7 +155,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                   Image Compressor →
                 </span>
                 <span className="text-slate-500 dark:text-slate-400 text-[11px]">
-                  Compress your transparent PNG or product JPG to 20KB, 50KB, or 100KB.
+                  Try reducing file size; check output quality and transparency.
                 </span>
               </a>
               <a
@@ -167,7 +167,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                   Passport Photo Maker →
                 </span>
                 <span className="text-slate-500 dark:text-slate-400 text-[11px]">
-                  Format 35x45mm or 2x2" biometric ID photos with official background shades.
+                  Prepare photo dimensions and check the destination’s official rules.
                 </span>
               </a>
               <a

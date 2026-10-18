@@ -541,9 +541,9 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "background-removal-ai-browser-guide",
-    "title": "How to Remove Image Backgrounds: Smart AI, Quick & Private Modes",
-    "metaTitle": "How to Remove Image Backgrounds Online — 3 AI Modes | Zubware",
-    "description": "Step-by-step background removal guide: choose Smart AI, Quick or Private mode, protect photo privacy, inspect edges and download a transparent PNG.",
+    "title": "How to Remove Image Backgrounds: Quick & Private Modes",
+    "metaTitle": "Remove Image Backgrounds on Your Device | Zubware",
+    "description": "Step-by-step background removal guide: choose Quick or Private mode, protect photo privacy, inspect edges and download a transparent PNG.",
     "canonicalPath": "/blog/background-removal-ai-browser-guide",
     "publishedTime": "2026-09-26T00:00:00Z",
     "modifiedTime": "2026-10-18T00:00:00Z",
@@ -562,14 +562,14 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "Background Remover",
       "Remove Image Background",
       "Transparent PNG",
-      "Smart AI Removal",
+      "On-device Processing",
       "Quick Removal",
       "Private Removal",
       "Product Photography"
     ],
-    "excerpt": "Choose the right background-removal option for your photo. This guide explains online processing and upload consent, local privacy, step-by-step workflow, troubleshooting, and transparent PNG best practices.",
+    "excerpt": "Choose the right background-removal option for your photo. This guide explains local processing and photo privacy, step-by-step workflow, troubleshooting, and transparent PNG best practices.",
     "takeaways": [
-      "Smart AI Removal uses Cloudflare online processing and requires explicit photo-upload permission; avoid sensitive images.",
+      "Quick Removal and Private Removal process photos on your device. Online Smart AI Removal is currently unavailable.",
       "Quick Removal runs locally with reduced input detail; Private Removal runs locally with more resource demand.",
       "Preview the transparent cutout on white, black and checkerboard backgrounds and compare against the original before downloading.",
       "A transparent PNG is not automatically an approved ID photo or a solid-white product photo; verify destination requirements."
@@ -578,32 +578,32 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       {
         "id": "choose-background-removal-mode",
         "title": "1. Which background-removal option should you choose?",
-        "content": "**Smart AI Removal (recommended):** Suitable for users who want convenient online AI processing, including on mobile. You must explicitly agree to send your selected image to Cloudflare and then start removal. JPG, PNG and WebP files up to 10 MB are supported. Speed and quality vary. Do not upload sensitive photos.\n\n**Quick Removal:** Runs on your own device without uploading the selected photo. It can reduce input detail to make local processing more manageable; inspect fine hair, fur and thin objects.\n\n**Private Removal:** Also runs on your device without a photo upload and uses a larger input than Quick Removal. It can require more memory and time, especially on mobile. Local modes may download the AI model before processing."
+        "content": "**Quick Removal:** Runs on your own device without uploading the selected photo. It can reduce input detail to make local processing more manageable; inspect fine hair, fur and thin objects.\n\n**Private Removal:** Also runs on your device without a photo upload and uses a larger input than Quick Removal. It can require more memory and time, especially on mobile. Local modes may download the AI model before processing."
       },
       {
         "id": "step-by-step-workflow",
         "title": "2. Complete workflow: from upload to transparent PNG",
-        "content": "1. Open [Zubware Background Remover](/background-remover).\n2. Select **Smart AI Removal**, **Quick Removal** or **Private Removal** based on privacy and device needs.\n3. Choose a JPG, PNG or WebP image. For Smart AI, keep the file under 10 MB and review the consent text.\n4. With Smart AI, check the permission box and press **Start Smart AI Removal**. With Quick or Private, processing starts on your device after file selection.\n5. Wait for processing; larger images and slower devices may take longer.\n6. Compare the original and result using the before/after slider. Try checkerboard, white and black preview backgrounds to spot missed areas or halos.\n7. Check the original and output dimensions and file sizes shown in the result.\n8. Download the transparent PNG. Keep your original file for corrections or future use."
+        "content": "1. Open [Zubware Background Remover](/background-remover).\n2. Select **Quick Removal** or **Private Removal** based on detail and device needs.\n3. Choose a JPG, PNG or WebP image. Keep the file under 20 MB; smaller photos can help on low-memory devices.\n4. Processing starts on your device after file selection.\n5. Wait for processing; larger images and slower devices may take longer.\n6. Compare the original and result using the before/after slider. Try checkerboard, white and black preview backgrounds to spot missed areas or halos.\n7. Check the original and output dimensions and file sizes shown in the result.\n8. Download the transparent PNG. Keep your original file for corrections or future use."
       },
       {
         "id": "best-practices-clean-cutouts",
         "title": "3. Best practices for cleaner background removal",
-        "content": "- Use a sharp, well-lit photo with a clear subject and background contrast.\n- Avoid motion blur, extreme compression, strong shadows and cluttered backgrounds.\n- For hair, fur, lace, glass and transparent products, inspect edges at different preview colors; AI results may be imperfect.\n- Try another mode when fine details are lost. Do not assume online processing always produces better results.\n- A checkerboard pattern in the preview indicates transparency; it is not part of the downloaded PNG.\n- For product listings, check each marketplace's rules before adding a solid white background with [Background Color Changer](/background-color-changer).\n- For ID or passport photos, verify official dimensions, background color and face framing. Background removal alone does not ensure compliance."
+        "content": "- Use a sharp, well-lit photo with a clear subject and background contrast.\n- Avoid motion blur, extreme compression, strong shadows and cluttered backgrounds.\n- For hair, fur, lace, glass and transparent products, inspect edges at different preview colors; AI results may be imperfect.\n- Try another mode when fine details are lost. Check the output rather than assuming a larger model will always improve it.\n- A checkerboard pattern in the preview indicates transparency; it is not part of the downloaded PNG.\n- For product listings, check each marketplace's rules before adding a solid white background with [Background Color Changer](/background-color-changer).\n- For ID or passport photos, verify official dimensions, background color and face framing. Background removal alone does not ensure compliance."
       },
       {
         "id": "privacy-and-online-upload",
         "title": "4. Privacy: what leaves your device?",
-        "content": "Quick Removal and Private Removal process the selected photo locally; they do not upload it for background removal. The website still makes ordinary network requests, and local modes may download model resources.\n\nSmart AI Removal sends the selected photo to Cloudflare only after you check the upload-consent box and start the operation. Cloudflare processes the request and returns an image. Avoid confidential or sensitive photos if you do not want them transmitted to a third-party processor. Read the [Privacy Policy](/privacy) for additional information about network requests, measurement and external providers."
+        "content": "Quick Removal and Private Removal process the selected photo locally; they do not upload it for background removal. The website still makes ordinary network requests, and local modes may download model resources.\n\nOnline Smart AI Removal is currently unavailable. The available modes do not send your photo to Cloudflare for processing. Read the [Privacy Policy](/privacy) for additional information about network requests, measurement and external providers."
       },
       {
         "id": "troubleshooting-and-output",
         "title": "5. Troubleshooting, file limits and output quality",
-        "content": "**Upload is blocked:** Smart AI accepts JPG, PNG or WebP up to 10 MB; select a smaller image or switch to a local mode. Local processing depends on your device's available memory.\n\n**It is taking too long:** Large images and first-time model downloads can be slow. Try a smaller photo or Quick Removal on a low-memory device.\n\n**Hair or edges look wrong:** Use better lighting, more subject/background contrast or another mode. The tool does not guarantee pixel-perfect cutouts.\n\n**Output dimensions changed:** Different modes may produce different dimensions. Read the original and output pixel values shown in the tool rather than assuming identical resolution.\n\n**Need a white background?** The downloaded PNG is transparent. Use [Background Color Changer](/background-color-changer) if your destination requires white, and check its rules.\n\n**Need a smaller file?** After downloading, try [Image Compressor](/image-compressor), but confirm transparency is preserved when choosing a format."
+        "content": "**File is rejected:** Choose JPG, PNG or WebP up to 20 MB; select a smaller image if necessary. Local processing depends on your device's available memory.\n\n**It is taking too long:** Large images and first-time model downloads can be slow. Try a smaller photo or Quick Removal on a low-memory device.\n\n**Hair or edges look wrong:** Use better lighting, more subject/background contrast or another mode. The tool does not guarantee pixel-perfect cutouts.\n\n**Output dimensions changed:** Different modes may produce different dimensions. Read the original and output pixel values shown in the tool rather than assuming identical resolution.\n\n**Need a white background?** The downloaded PNG is transparent. Use [Background Color Changer](/background-color-changer) if your destination requires white, and check its rules.\n\n**Need a smaller file?** After downloading, try [Image Compressor](/image-compressor), but confirm transparency is preserved when choosing a format."
       },
       {
         "id": "real-world-examples",
         "title": "6. Example workflows for portraits and product photos",
-        "content": "**Portrait:** Choose a well-lit photo with a distinct background. Use Smart AI if you consent to online processing, or Private Removal to keep the photo local. Inspect hair on both light and dark backdrops, then download PNG.\n\n**Product photo:** Photograph an item with soft lighting and visible edge contrast. Use Quick Removal for an initial local preview, then try Private or Smart AI if necessary. Compare edges around handles and reflective surfaces. Download the transparent PNG, or create a white-background version if required by the marketplace.\n\n**Profile graphic:** Check that transparent edges look natural against both dark and light layouts. Crop or resize the final asset separately if the destination requires exact pixel dimensions."
+        "content": "**Portrait:** Choose a well-lit photo with a distinct background. Use Private Removal to process the photo on your device. Inspect hair on both light and dark backdrops, then download PNG.\n\n**Product photo:** Photograph an item with soft lighting and visible edge contrast. Use Quick Removal for an initial local preview, then try Private Removal if necessary. Compare edges around handles and reflective surfaces. Download the transparent PNG, or create a white-background version if required by the marketplace.\n\n**Profile graphic:** Check that transparent edges look natural against both dark and light layouts. Crop or resize the final asset separately if the destination requires exact pixel dimensions."
       }
     ],
     "howTo": {
@@ -612,15 +612,15 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       "steps": [
         {
           "name": "Choose a mode",
-          "text": "Choose Smart AI Removal for online processing with consent, Quick Removal for faster local processing or Private Removal for local processing with more input detail."
+          "text": "Choose Quick Removal for reduced input detail or Private Removal for a larger local input."
         },
         {
           "name": "Select your photo",
-          "text": "Choose a JPG, PNG or WebP image. Smart AI supports up to 10 MB and requires consent before upload."
+          "text": "Choose a JPG, PNG or WebP image. The local tool accepts up to 20 MB; available device memory also affects processing."
         },
         {
           "name": "Remove the background",
-          "text": "For Smart AI, agree to the upload and press Start Smart AI Removal. Quick and Private modes start processing locally when the file is selected."
+          "text": "Quick and Private modes start processing locally when the file is selected."
         },
         {
           "name": "Inspect the cutout",
@@ -635,15 +635,15 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
     "faqs": [
       {
         "question": "Does Zubware upload my image to a server?",
-        "answer": "Only in Smart AI Removal after you give explicit consent and start. The photo is sent to Cloudflare for processing. Quick Removal and Private Removal process the photo locally without a photo upload."
+        "answer": "Quick Removal and Private Removal process the photo locally without a photo upload. Online Smart AI Removal is currently unavailable."
       },
       {
         "question": "Which mode is best on a phone?",
-        "answer": "Smart AI Removal avoids running the background-removal model on your phone, but requires uploading your photo. Quick Removal is a local alternative that may reduce detail. Actual performance varies."
+        "answer": "Quick Removal can be more manageable on a phone because it reduces input detail. Processing speed still depends on the device and model download."
       },
       {
-        "question": "Is Smart AI Removal free and does it need an account?",
-        "answer": "The tool is offered without an account. Cloudflare processing can be rate-limited and availability may vary."
+        "question": "Is background removal free and does it need an account?",
+        "answer": "Quick Removal and Private Removal are available without an account. They run on your device. Online Smart AI Removal is currently unavailable."
       },
       {
         "question": "Will I get a transparent PNG?",

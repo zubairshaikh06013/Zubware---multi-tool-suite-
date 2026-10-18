@@ -10,7 +10,9 @@ export const ZubwareLogo: React.FC<ZubwareLogoProps> = ({ className = 'w-9 h-9',
 
   return (
     <img
-      src="/assets/Zzxx.png?v=4"
+      src="/icon.png?v=5"
+      width={512}
+      height={512}
       alt="Zubware Logo"
       className={`${className} shrink-0`}
       style={style}

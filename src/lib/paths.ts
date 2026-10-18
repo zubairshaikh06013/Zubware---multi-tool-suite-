@@ -326,7 +326,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'heic-to-jpg':
       'Zubware HEIC to JPG Converter transforms Apple iPhone and iPad HEIC and HEIF photos into universal high-resolution JPG images directly in your browser. Batch convert multiple live photos or camera roll exports with adjustable JPEG quality and no account login. JPEG is a lossy format; compare the result with your original. All conversion algorithms execute 100% locally on your device with zero server uploads.',
     'background-remover':
-      'Zubware Background Remover uses on-device machine learning to create transparent PNG cutouts. Choose Quick or Private Removal, inspect edges and compare output dimensions before downloading. Processing time and quality depend on your image, browser and device.',
+      'Zubware Background Remover creates transparent PNG cutouts. Quick and Private modes run on your device. Smart AI Removal can send your selected photo to Cloudflare only after you give consent and start. Inspect edges and dimensions before downloading; speed and quality depend on the image and chosen mode.',
     'passport-photo-maker':
       'Zubware Passport & Visa Photo Maker creates officially compliant biometric ID photos for India (MEA online 35x45mm & visa 2x2"), United States (2x2"), Schengen Europe (35x45mm), UK, Canada, and Australia. Use biometric head and eye alignment guides, fine-tune zoom, rotation, and lighting, change background colors to official white or light grey, and download individual JPGs or printable 4x6" multi-photo PDF sheets.',
     'signature-maker':

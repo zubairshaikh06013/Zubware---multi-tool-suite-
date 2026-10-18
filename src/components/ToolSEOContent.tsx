@@ -25,6 +25,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   const isNetworkTool = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
+  const hasOptionalCloudflareAI = tool.id === 'background-remover';
   const seoData = getToolSeoData(tool.id);
   const toolFaqs = (tool.faq && tool.faq.length > 0) ? tool.faq : seoData.faq;
   const toolHowTo = (tool.howTo && tool.howTo.length > 0) ? tool.howTo : seoData.howTo;
@@ -37,7 +38,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     },
     {
       question: `How does ${tool.navTitle} handle data and privacy?`,
-      answer: isNetworkTool
+      answer: hasOptionalCloudflareAI
+        ? 'Quick and Private Removal run locally. Smart AI Removal sends the selected photo to Cloudflare only after you consent and start.'
+        : isNetworkTool
         ? `${tool.title} communicates directly with the specified external endpoints from your browser. Zubware does not store your payload data or requests on our servers.`
         : `Processing happens locally in your browser for this tool; files and data are not uploaded to Zubware servers.`
     },
@@ -47,7 +50,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
     },
     {
       question: `How fast is processing with ${tool.navTitle}?`,
-      answer: isNetworkTool
+      answer: hasOptionalCloudflareAI
+        ? 'Processing speed depends on the chosen mode, device and, for Smart AI, the network and Cloudflare availability.'
+        : isNetworkTool
         ? `Processing speed depends on network latency and the response time of the target endpoint.`
         : `Processing is performed in your browser on your device's engine, eliminating server upload queues.`
     }
@@ -135,6 +140,11 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
             </h3>
             {tool.id === 'subtitle-generator' ? (
               <p>Video playback, manual captions, and exports stay in your browser. Optional microphone dictation may send audio to your browser provider for speech recognition.</p>
+            ) : hasOptionalCloudflareAI ? (
+              <>
+                <p>Quick and Private Removal process the selected photo on your device. The browser may download model files.</p>
+                <p>Smart AI Removal uploads the photo to Cloudflare only when you choose it, agree to the upload and press Start. The Images Free plan has a monthly limit, so online processing may be unavailable.</p>
+              </>
             ) : isNetworkTool ? (
               <>
                 <p>
@@ -172,7 +182,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Execution Engine</span>
             <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-1 block">
-              {isNetworkTool ? 'Browser (Direct API)' : 'Client Browser'}
+              {hasOptionalCloudflareAI ? 'Browser / Cloudflare' : isNetworkTool ? 'Browser (Direct API)' : 'Client Browser'}
             </span>
           </div>
           <div className="glass-card p-4 rounded-2xl">
@@ -182,7 +192,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="glass-card p-4 rounded-2xl">
             <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Server Uploads</span>
             <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1 block">
-              {tool.id === 'subtitle-generator' ? 'Optional voice service' : isNetworkTool ? 'Direct to API Host' : 'None (Browser-Side)'}
+              {tool.id === 'subtitle-generator' ? 'Optional voice service' : hasOptionalCloudflareAI ? 'Cloudflare with consent' : isNetworkTool ? 'Direct to API Host' : 'None (Browser-Side)'}
             </span>
           </div>
         </div>

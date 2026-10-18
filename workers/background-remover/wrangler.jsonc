@@ -1,5 +1,4 @@
 {
-  "vars": { "REMOTE_BACKGROUND_REMOVAL_ENABLED": "false" },
   "name": "zubware-background-remover",
   "main": "src/index.js",
   "compatibility_date": "2026-10-17",

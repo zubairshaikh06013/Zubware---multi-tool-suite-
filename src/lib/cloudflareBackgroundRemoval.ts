@@ -1,8 +1,5 @@
 import type { BackgroundRemovalProgress, BackgroundRemovalResult } from './backgroundRemoval';
 
-// Disabled until the owner explicitly approves a verified no-charge deployment.
-export const REMOTE_BACKGROUND_REMOVAL_ENABLED = false;
-
 const API = 'https://api.zubware.com/remove-background';
 const MAX_BYTES = 10 * 1024 * 1024;
 
@@ -27,9 +24,6 @@ export async function processCloudflareBackgroundRemoval(
   file: File,
   onProgress?: (progress: BackgroundRemovalProgress) => void
 ): Promise<BackgroundRemovalResult> {
-  if (!REMOTE_BACKGROUND_REMOVAL_ENABLED) {
-    throw new Error('Online removal is unavailable. Choose Quick Removal or Private Removal.');
-  }
   const mime = file.type.toLowerCase();
   if (!['image/jpeg', 'image/png', 'image/webp'].includes(mime)) {
     throw new Error('Cloudflare AI supports JPG, PNG or WebP. Please choose a supported image.');
@@ -58,6 +52,7 @@ export async function processCloudflareBackgroundRemoval(
   if (!response.ok) {
     const message = (await response.text().catch(() => '')).slice(0, 160);
     if (response.status === 429) throw new Error('Cloudflare AI is busy. Wait a minute or use Browser mode.');
+    if (response.status === 503) throw new Error('Online AI is temporarily unavailable or the free allowance has been reached. Try Quick Removal or Private Removal.');
     throw new Error(message || 'Cloudflare AI could not remove the background. Try Browser mode.');
   }
   const blob = await response.blob();

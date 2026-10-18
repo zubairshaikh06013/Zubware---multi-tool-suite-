@@ -35,7 +35,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate: _onNavigate })
             Zubware was created by <strong>Zubair Shaikh</strong> to solve a pervasive problem on the modern web: traditional file tools force users to upload their confidential documents, private photos, and personal information to unknown third-party cloud servers.
           </p>
           <p className="text-slate-600 dark:text-slate-300">
-            Many Zubware utilities process data directly inside your browser using HTML5 Canvas, WebAssembly, and modern Web APIs. Background Remover's available Quick and Private modes process the photo on your device; online Smart AI Removal is currently unavailable. Some network utilities connect to URLs you specify.
+            Many Zubware utilities process data directly inside your browser using HTML5 Canvas, WebAssembly, and modern Web APIs. Some features use online services: for example, Background Remover's Smart AI Removal sends a selected photo to Cloudflare only after you consent and start. Its Quick and Private modes process the photo on your device.
           </p>
         </div>
 

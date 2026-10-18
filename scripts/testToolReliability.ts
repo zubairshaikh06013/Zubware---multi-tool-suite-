@@ -280,3 +280,26 @@ for(const [width,height,border] of [[360,240,30],[7,5,2.5],[1,1,0.5]]) {
   assert.ok(Math.abs(rects[1].x-rects[0].x-2*border/3)<1e-8);
 }
 console.log('Outer/inner dimensions, tiny-image border limits and symmetric double-border spacing passed.');
+
+const {faviconImageRect,packPngIco,FAVICON_HEAD_HTML,FAVICON_MANIFEST}=await import('../src/lib/faviconPackage');
+assert.deepEqual(faviconImageRect(400,200,32),{x:0,y:8,width:32,height:16});
+assert.deepEqual(faviconImageRect(200,400,32),{x:8,y:0,width:16,height:32});
+assert.throws(()=>faviconImageRect(0,200,32));
+const iconPng=Uint8Array.from(Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jG8sAAAAASUVORK5CYII=','base64'));
+const ico=packPngIco([{size:1,png:iconPng},{size:1,png:iconPng}]);
+const icoView=new DataView(ico.buffer);
+assert.deepEqual(Array.from(ico.slice(0,6)),[0,0,1,0,2,0]);
+for(let i=0;i<2;i++) {
+  const entry=6+16*i, offset=icoView.getUint32(entry+12,true), length=icoView.getUint32(entry+8,true);
+  assert.equal(offset,38+i*iconPng.length);assert.equal(length,iconPng.length);
+  assert.deepEqual(ico.slice(offset,offset+length),iconPng);
+  assert.equal(icoView.getUint16(entry+4,true),1);assert.equal(icoView.getUint16(entry+6,true),32);
+}
+assert.throws(()=>packPngIco([]));
+assert.throws(()=>packPngIco([{size:32,png:iconPng}]),/dimensions/);
+assert.throws(()=>packPngIco([{size:257,png:iconPng}]));
+assert.throws(()=>packPngIco([{size:1,png:new Uint8Array(40)}]));
+assert.ok(FAVICON_HEAD_HTML.includes('rel="icon" type="image/x-icon"'));
+assert.ok(!FAVICON_HEAD_HTML.includes('className'));
+assert.deepEqual(FAVICON_MANIFEST.icons.map(icon=>icon.sizes),['192x192','512x512']);
+console.log('Favicon aspect-fit, ICO directory/payload offsets, invalid inputs and integration tags passed.');

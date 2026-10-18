@@ -27,7 +27,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   const [splitOrientation, setSplitOrientation] = useState<'v' | 'h'>('v');
   const [splitPct, setSplitPct] = useState<number>(50);
   const splitInputRef = useRef<HTMLInputElement>(null);
-  const splitCanvasRef = useRef<HTMLCanvasElement>(null);
+  const splitCanvasRef = useRef<HTMLCanvasElement|null>(null);
   const [splitImgTrim, setSplitImgTrim] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
 
   // --- COMBINE MODE STATE ---
@@ -39,7 +39,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   const [combinePct, setCombinePct] = useState<number>(50);
   const inputARef = useRef<HTMLInputElement>(null);
   const inputBRef = useRef<HTMLInputElement>(null);
-  const combineCanvasRef = useRef<HTMLCanvasElement>(null);
+  const combineCanvasRef = useRef<HTMLCanvasElement|null>(null);
   const [copied, setCopied] = useState(false);
 
   const formatSize = (bytes: number) => {
@@ -152,6 +152,8 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     ctx.restore();
   }, [splitImg, splitImgTrim, splitOrientation, splitPct, getRect]);
 
+  const mountSplitCanvas=useCallback((node:HTMLCanvasElement|null)=>{splitCanvasRef.current=node;if(node) {try {drawSplit();} catch(failure) {setError(failure instanceof Error?failure.message:'Could not draw split preview.');}}},[drawSplit]);
+
   useEffect(() => {
     if (activeTab === 'split') {try {drawSplit();setError('');} catch(failure) {setError(failure instanceof Error?failure.message:'Could not draw split preview.');}}
   }, [activeTab, drawSplit]);
@@ -257,6 +259,8 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     ctx.beginPath(); ctx.arc(handleX, handleY, 5, 0, Math.PI * 2); ctx.fill();
     ctx.restore();
   }, [combineLayout, imgA, imgB]);
+
+  const mountCombineCanvas=useCallback((node:HTMLCanvasElement|null)=>{combineCanvasRef.current=node;if(node) {try {drawCombine();} catch(failure) {setError(failure instanceof Error?failure.message:'Could not draw combined preview.');}}},[drawCombine]);
 
   useEffect(() => {
     if (activeTab === 'combine') {try {drawCombine();setError('');} catch(failure) {setError(failure instanceof Error?failure.message:'Could not draw combined preview.');}}
@@ -494,10 +498,12 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                 {/* Canvas Preview Container */}
                 <div className="relative overflow-hidden rounded-2xl bg-slate-950/90 border border-slate-800 p-2 flex items-center justify-center min-h-[240px]">
                   <canvas
-                    ref={splitCanvasRef}
+                    ref={mountSplitCanvas}
                     onPointerDown={handleSplitPointerDown}
                     onPointerMove={handleSplitPointerMove}
                     onPointerUp={handleSplitPointerUp}
+                    onPointerCancel={handleSplitPointerUp}
+                    onLostPointerCapture={handleSplitPointerUp}
                     className="max-h-[50vh] w-auto max-w-full cursor-grab active:cursor-grabbing rounded-lg object-contain touch-none"
                   />
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[11px] font-medium text-white border border-slate-700 shadow-lg">
@@ -681,10 +687,12 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                 {/* Canvas Preview */}
                 <div className="relative overflow-hidden rounded-2xl bg-slate-950/90 border border-slate-800 p-2 flex items-center justify-center min-h-[240px]">
                   <canvas
-                    ref={combineCanvasRef}
+                    ref={mountCombineCanvas}
                     onPointerDown={handleCombinePointerDown}
                     onPointerMove={handleCombinePointerMove}
                     onPointerUp={handleCombinePointerUp}
+                    onPointerCancel={handleCombinePointerUp}
+                    onLostPointerCapture={handleCombinePointerUp}
                     className="max-h-[50vh] w-auto max-w-full cursor-grab active:cursor-grabbing rounded-lg object-contain touch-none"
                   />
                   <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3.5 py-1 bg-slate-900/90 backdrop-blur-md rounded-full text-[11px] font-medium text-white border border-slate-700 shadow-lg">

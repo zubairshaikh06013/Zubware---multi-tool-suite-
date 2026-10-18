@@ -235,7 +235,7 @@ console.log('Centered watermark placement, rotated corners and oversized-logo bo
 
 const {colorSample,imagePixelCoordinates}=await import('../src/lib/colorSample');
 for(const [channels,hsv] of [[ [255,0,0],'hsv(0, 100%, 100%)'],[[0,255,0],'hsv(120, 100%, 100%)'],[[0,0,255],'hsv(240, 100%, 100%)'],[[128,128,128],'hsv(0, 0%, 50%)'],[[255,255,255],'hsv(0, 0%, 100%)'],[[0,0,0],'hsv(0, 0%, 0%)']] as const) {
- assert.equal(colorSample(...channels).hsv,hsv);
+ assert.equal(colorSample(channels[0],channels[1],channels[2]).hsv,hsv);
 }
 assert.equal(colorSample(255,0,0,128).hex,'#FF000080');
 assert.equal(colorSample(255,0,0,128).rgb,'rgba(255, 0, 0, 0.502)');

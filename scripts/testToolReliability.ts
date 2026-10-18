@@ -119,3 +119,25 @@ try {
   else delete (globalThis as any).localStorage;
 }
 console.log('Search relevance and corrupted-favorites regressions passed.');
+
+// Batch exports must use actual MIME types and preserve same-name files in a ZIP.
+const { IMAGE_EXPORT_MIME, imageExportExtension, uniqueImageExportName } = await import('../src/lib/imageExport');
+assert.equal(IMAGE_EXPORT_MIME.bmp, 'image/bmp');
+assert.equal(IMAGE_EXPORT_MIME.avif, 'image/avif');
+assert.equal(imageExportExtension('image/jpeg'), 'jpg');
+assert.throws(() => imageExportExtension('application/octet-stream'));
+const usedNames = new Set<string>();
+assert.equal(uniqueImageExportName('sample.bmp', usedNames), 'sample.bmp');
+assert.equal(uniqueImageExportName('sample.bmp', usedNames), 'sample-2.bmp');
+assert.equal(uniqueImageExportName('SAMPLE.BMP', usedNames), 'SAMPLE-3.BMP');
+assert.equal(uniqueImageExportName('../sample.bmp', usedNames), '.._sample.bmp');
+const { default: JSZip } = await import('jszip');
+const zipFixture = new JSZip();
+const fixtureNames = new Set<string>();
+zipFixture.file(uniqueImageExportName('sample.png', fixtureNames), 'first image');
+zipFixture.file(uniqueImageExportName('sample.png', fixtureNames), 'second image');
+const loadedZip = await JSZip.loadAsync(await zipFixture.generateAsync({type:'uint8array'}));
+assert.equal(Object.keys(loadedZip.files).length, 2);
+assert.equal(await loadedZip.file('sample.png')!.async('string'), 'first image');
+assert.equal(await loadedZip.file('sample-2.png')!.async('string'), 'second image');
+console.log('Image output format and duplicate ZIP entry regressions passed.');

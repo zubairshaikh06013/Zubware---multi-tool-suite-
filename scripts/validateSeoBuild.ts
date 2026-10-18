@@ -39,6 +39,7 @@ export function validateSeoBuild(distDir: string): void {
   const crawlGraph = new Map<string, Set<string>>();
   const brokenInternalLinks = new Set<string>();
   const legacyHtmlInternalLinks = new Set<string>();
+  const contentQuality = new Map<string, { visibleWords: number; faqQuestions: number; howToSteps: number }>();
   const sitemapPaths = new Set(urls.map(url => new URL(url).pathname.replace(/\/$/, '') || '/'));
   // The signed-in dashboard is an intentionally non-indexable client-side route.
   const nonIndexableAppRoutes = new Set(['/dashboard']);
@@ -53,6 +54,19 @@ export function validateSeoBuild(distDir: string): void {
     const filename = path.join(distDir, slug, 'index.html');
     if (!fs.existsSync(filename)) { errors.push(`Missing page: ${url}`); continue; }
     const html = fs.readFileSync(filename, 'utf8');
+    // Lightweight editorial triage of prerendered HTML, not a Google ranking score.
+    // Strip scripts/styles and tags so hidden metadata cannot inflate page word counts.
+    const visibleText = html
+      .replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, ' ')
+      .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&(?:[a-z]+|#\\d+|#x[0-9a-f]+);/gi, ' ')
+      .replace(/\\s+/g, ' ').trim();
+    contentQuality.set(parsed.pathname.replace(/\\/$/, '') || '/', {
+      visibleWords: visibleText ? visibleText.split(' ').length : 0,
+      faqQuestions: (html.match(/"@type"\\s*:\\s*"Question"/g) || []).length,
+      howToSteps: (html.match(/"@type"\\s*:\\s*"HowToStep"/g) || []).length
+    });
     const outgoing = new Set<string>();
     crawlGraph.set(parsed.pathname.replace(/\/$/, '') || '/', outgoing);
     const canonical = extractCanonicalHrefs(html);
@@ -153,6 +167,10 @@ export function validateSeoBuild(distDir: string): void {
       .sort((a, b) => b.clicks - a.clicks || a.route.localeCompare(b.route)),
     brokenInternalLinks: [...brokenInternalLinks].sort(),
     legacyHtmlInternalLinks: [...legacyHtmlInternalLinks].sort(),
+    // Editorial review candidates only: low word count does not imply non-indexability.
+    contentReviewCandidates: [...contentQuality].filter(([, q]) => q.visibleWords < 250)
+      .map(([route, q]) => ({ route, ...q }))
+      .sort((a, b) => a.visibleWords - b.visibleWords || a.route.localeCompare(b.route)),
     routes: [...sitemapPaths].sort().map(route => ({
       route,
       homepageClicks: depth.get(route) ?? null,

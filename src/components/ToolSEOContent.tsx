@@ -945,10 +945,10 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 <span className="text-indigo-600">🎯</span> Why Portals Require Photo &amp; Signature in One Image File
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Several prominent recruitment boards across India—including <strong>MPPEB / Vyapam (MPESB), High Court recruitment cells, State Police selection boards, Postal circles, and various State Subordinate Services commissions</strong>—mandate that candidates upload a single consolidated JPG image featuring both their passport photograph and signature.
+                Some application forms ask for one combined photo and signature image, while others require separate files. Check your application instructions before using this tool.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                This requirement ensures the candidate&apos;s signature is permanently bound to their biometric face image, preventing identity tampering and ensuring clear rendering on test hall attendance sheets and official admit cards.
+                If a combined file is requested, check the required layout, dimensions, format, and maximum file size in the form instructions.
               </p>
             </div>
 
@@ -963,11 +963,11 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
                 <li><strong>Step 1:</strong> <strong>&ldquo;1. Upload Photo&rdquo;</strong> mein apni recent passport size photo select karein.</li>
                 <li><strong>Step 2:</strong> <strong>&ldquo;2. Upload Signature&rdquo;</strong> mein apna scanned signature select karein.</li>
                 <li><strong>Step 3:</strong> <strong>&ldquo;Vertical (Stacked)&rdquo;</strong> mode chunein jisme photo upar aur signature neeche rehti hai.</li>
-                <li><strong>Step 4:</strong> <strong>&ldquo;Exam Portal (300×460)&rdquo;</strong> preset chunein ya custom dimensions adjust karein.</li>
-                <li><strong>Step 5:</strong> <strong>Download Composite (JPG)</strong> par click karke portal-ready file save karein.</li>
+                <li><strong>Step 4:</strong> <strong>&ldquo;Vertical (300×460)&rdquo;</strong> example chunein ya apne form ke mutabiq dimensions adjust karein.</li>
+                <li><strong>Step 5:</strong> Final pixels aur file size check karke <strong>Download Composite (JPG)</strong> par click karein.</li>
               </ul>
               <p className="text-xs text-slate-500 dark:text-slate-400">
-                Composite image turant ban jati hai aur seedhe government application form mein upload karne ke liye ready hoti hai.
+                Har portal ki dimensions, format aur KB limit alag ho sakti hai; upload se pehle apne form ke rules dekhein.
               </p>
             </div>
           </div>
@@ -975,36 +975,36 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📐</span> Vertical vs. Horizontal Modes &amp; Standard Application Presets
+                <span className="text-indigo-600">📐</span> Vertical vs. Horizontal Modes &amp; Example Sizes
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Zubware provides flexible layout and proportion controls designed for diverse official formats:
               </p>
               <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
                 <li>
-                  <strong>Vertical Stacked Mode:</strong> Places the passport photo on top (300 × 350 px) and the signature directly below (300 × 100 px), matching the exact proportions requested in official exam notifications.
+                  <strong>Vertical Stacked Mode:</strong> Places the photo above the signature; the 300 × 350 px photo and 300 × 100 px signature are example sizes.
                 </li>
                 <li>
                   <strong>Horizontal Side-by-Side Mode:</strong> Places photo on the left and signature on the right, perfect for staff identity badges, club memberships, and driving credentials.
                 </li>
                 <li>
-                  <strong>Quick Presets:</strong> One-click presets include Exam Portal (300 × 460 px), Standard ID (240 × 390 px), High Res (400 × 670 px), and Side-by-Side Card.
+                  <strong>Quick Presets:</strong> One-click vertical output examples include 300 × 460 px, 240 × 390 px, and 400 × 670 px, plus a side-by-side card layout. Changing the gap or padding changes the output size.
                 </li>
                 <li>
-                  <strong>Fine-Tuning Sliders:</strong> Customize individual photo/signature widths, gap spacing (0–40px), padding, and optional dividing borders (1px, 2px, 4px) with custom border color selection.
+                  <strong>Fine-Tuning Sliders:</strong> Customize photo and signature widths, gap (0–40 px), padding, and outer border (none, 1, 2, or 4 px) with a color picker.
                 </li>
               </ul>
             </div>
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-500">🔒</span> Form-Ready JPG Output with 100% Client-Side Privacy
+                <span className="text-emerald-500">🔒</span> JPG or PNG Output with Browser Processing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Government and exam portal verification scripts reject files containing watermarks, unsupported image codecs, or incorrect aspect ratios. Zubware generates clean, unwatermarked JPG and PNG composite files ready for immediate upload.
+                Zubware exports unwatermarked JPG and PNG images. The result is not automatically compliant with every portal; check the image dimensions and approximate KB size shown above.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Everything runs directly in your local browser memory via HTML5 Canvas. Your sensitive facial photographs and legal signatures are never uploaded to remote cloud servers or logged in external databases, guaranteeing total biometric confidentiality.
+                Composition runs in your browser with HTML5 Canvas. This tool does not upload the selected images to Zubware servers. On a shared device, remove downloaded copies after use.
               </p>
             </div>
           </div>

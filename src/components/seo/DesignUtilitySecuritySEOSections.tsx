@@ -2188,7 +2188,7 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
               Photo and Signature Joiner Guide: Combine Passport Photo & Signature for Online Forms
             </h2>
             <p className="mt-3 text-base text-slate-600 dark:text-slate-300 max-w-4xl leading-relaxed">
-              Many major competitive examination boards, public service commissions, and recruitment portals (such as SSC, UPSC, IBPS, Railway RRB, and State PSCs) mandate that candidates upload a single consolidated image containing both their photograph and handwritten signature. Zubware Photo and Signature Joiner merges both images into one compliant file directly in your browser without requiring photo editing software or third-party server uploads.
+              Some application forms request one image containing both a photo and signature. Upload both images here, select a layout, and export a JPG or PNG in your browser. Read your own form's required dimensions, format, and file size before uploading the result.
             </p>
           </div>
 
@@ -2198,7 +2198,7 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
                 <Palette className="w-5 h-5 text-indigo-500" /> Flexible Layout Configurations
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                Choose between classic Vertical Stacking (photo on top, signature underneath), Horizontal Side-by-Side arrangement, or Overlay mode to match the exact requirements of your application form.
+                Choose vertical stacking (photo above signature) or horizontal placement (photo next to signature). Set each image's dimensions and check the output size shown in the preview.
               </p>
               <ul className="text-xs space-y-1.5 text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Configurable photo & signature pixel dimensions</li>
@@ -2211,7 +2211,7 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
                 <Zap className="w-5 h-5 text-amber-500" /> Preserves Resolution & Legibility
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                Renders composite graphics on an HTML5 high-DPI canvas to prevent pixelation, jagged facial outlines, or illegible signature ink lines during export.
+                The canvas crops the photo to fill its frame and fits the signature inside its frame without stretching. Enlarging a small source image can reduce sharpness, so inspect the preview before downloading.
               </p>
               <ul className="text-xs space-y-1.5 text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Real-time interactive canvas preview</li>
@@ -2224,24 +2224,24 @@ export const DesignUtilitySecuritySEOSection: React.FC<Props> = ({ tool, onNavig
                 <ShieldCheck className="w-5 h-5 text-emerald-500" /> Complete Device Privacy
               </h3>
               <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                Candidate photographs and handwritten signatures represent sensitive biometric data. All image scaling and composition occur purely in your browser memory with zero cloud transmission.
+                Photo and signature composition happens in your browser. The tool does not upload either image to Zubware servers.
               </p>
               <ul className="text-xs space-y-1.5 text-slate-500 dark:text-slate-400 pt-2 border-t border-slate-100 dark:border-slate-800">
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Zero server uploads or cloud archiving</li>
                 <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> No signup or phone number required</li>
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> Safe for cyber café and shared terminal use</li>
+                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" /> On shared devices, remove downloaded copies after use</li>
               </ul>
             </div>
           </div>
 
           <div className="space-y-6 pt-2">
             <div className="space-y-3">
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Why Exam Portals Mandate Combined Photo & Signature Slips</h3>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white">Check Your Application's Upload Instructions</h3>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Recruitment gateways automate candidate document verification by printing admit cards, roll number slips, and attendance sheets with both facial portrait and signature visible side-by-side. Submitting two separate files when the portal requests a single combined slip leads to immediate form submission rejection or disqualification during verification.
+                Upload rules differ by application. Some ask for two separate files, while others request a combined image. Use this joiner only when your form asks for one file.
               </p>
               <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                By setting the photo card to standard passport dimensions (e.g., 300×350 px) and the signature strip to 300×100 px with a clean 10 px gap and 1 px border, you generate a balanced, professional document slip that complies with official upload dimensions.
+                The 300×460 px example uses a 300×350 px photo, a 300×100 px signature, a 10 px gap, and zero outer padding. Presets are examples, not official specifications. Confirm the resulting pixels and file size against your form.
               </p>
             </div>
           </div>

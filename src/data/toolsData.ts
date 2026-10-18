@@ -9195,7 +9195,10 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "High Resolution Rendering (up to 300 DPI)",
       "Custom Page Range Support",
       "Individual Page Download & ZIP Export",
-      "In    "tags": [
+      "Instant Grid Preview",
+      "Client-Side Processing"
+    ],
+    "tags": [
       "PDF to JPG",
       "PDF to JPEG Converter",
       "Convert PDF Pages to JPG",
@@ -9211,9 +9214,6 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "PDF to JPG Without Signup",
       "Browser Based PDF to JPG",
       "Private PDF to JPG Conversion"
-    ],      "Office",
-      "Converter",
-      "PDF Tools"
     ],
     "trending": false,
     "featured": false,

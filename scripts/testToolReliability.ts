@@ -165,3 +165,15 @@ assert.equal(rotationExportMime('image/gif'), 'image/png');
 assert.equal(rotationExportMime('image/svg+xml'), 'image/png');
 assert.equal(rotationExportMime('image/jpeg'), 'image/jpeg');
 console.log('Rotation bounds, quarter turns and truthful export MIME checks passed.');
+
+const {cropPixelRectangle,normalizeCropRectangle,presetCropRectangle} = await import('../src/lib/imageCrop');
+assert.deepEqual(cropPixelRectangle({x:25,y:25,width:50,height:50},640,480), {x:160,y:120,width:320,height:240});
+assert.deepEqual(cropPixelRectangle({x:100,y:100,width:0,height:0},640,480), {x:639,y:479,width:1,height:1});
+assert.deepEqual(cropPixelRectangle({x:-10,y:-10,width:200,height:200},640,480), {x:0,y:0,width:640,height:480});
+assert.throws(() => normalizeCropRectangle({x:NaN,y:0,width:10,height:10},640,480));
+const square = cropPixelRectangle(presetCropRectangle(640,480,1),640,480);
+assert.equal(square.width,square.height);
+const wide = cropPixelRectangle(presetCropRectangle(4000,400,16/9),4000,400);
+assert.ok(Math.abs(wide.width/wide.height-16/9)<0.01);
+assert.ok(wide.width<=4000 && wide.height<=400);
+console.log('Crop pixel bounds, edge clamps and extreme-aspect presets passed.');

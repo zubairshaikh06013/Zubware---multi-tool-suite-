@@ -9408,11 +9408,11 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "features": [
       "Vertical Stack Mode (Photo on Top, Signature Below) for Recruitment Admit Cards",
       "Horizontal Side-by-Side Mode for Identity Badges & Office Credentials",
-      "Application Presets: Exam Portal (300×460), Standard ID (240×390), High Res (400×670)",
+      "Example Output Sizes: 300×460, 240×390, and 400×670 px; check your form's rules",
       "Independent Width & Height Sizing Controls for Both Photo and Signature",
       "Customizable Gap & Padding Spacing Sliders (0px to 40px)",
       "Adjustable Outer Border Width (0 to 4px) with Custom Color Picker",
-      "Direct Form-Ready JPG or Transparent PNG Download with Zero Watermark",
+      "JPG or PNG Download with Zero Watermark; verify final file requirements",
       "100% Private Client-Side Processing with No Server Uploads"
     ],
     "tags": [

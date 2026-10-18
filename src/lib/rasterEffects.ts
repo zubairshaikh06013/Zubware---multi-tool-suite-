@@ -11,7 +11,7 @@ function canvas(width:number,height:number) {
   return {canvas:result,context};
 }
 export function blurredCanvas(source:HTMLCanvasElement,strength:number) {
-  const {width:w,height:h}=source,pad=Math.ceil(strength*3);
+  const {width:w,height:h}=source,pad=Math.ceil(strength*4);
   const padded=canvas(w+pad*2,h+pad*2),ctx=padded.context;ctx.imageSmoothingEnabled=false;
   ctx.drawImage(source,pad,pad);
   ctx.drawImage(source,0,0,w,1,pad,0,w,pad);ctx.drawImage(source,0,h-1,w,1,pad,h+pad,w,pad);
@@ -26,4 +26,17 @@ export function pixelatedCanvas(source:HTMLCanvasElement,size:number) {
   small.context.imageSmoothingEnabled=false;small.context.drawImage(source,0,0,small.canvas.width,small.canvas.height);
   const output=canvas(source.width,source.height);output.context.imageSmoothingEnabled=false;
   output.context.drawImage(small.canvas,0,0,source.width,source.height);return output.canvas;
+}
+
+/** Blend one effect patch through a circular brush without changing opacity at opaque edges. */
+export function blendBrushPatch(original:Uint8ClampedArray,effect:Uint8ClampedArray,width:number,height:number,left:number,top:number,x:number,y:number,radius:number) {
+  for(let py=0;py<height;py++) for(let px=0;px<width;px++) {
+    const coverage=Math.max(0,Math.min(1,radius+0.5-Math.hypot(left+px+0.5-x,top+py+0.5-y)));
+    if(!coverage) continue;
+    const offset=(py*width+px)*4;
+    const previousAlpha=original[offset+3]/255*(1-coverage),effectAlpha=effect[offset+3]/255*coverage;
+    const alpha=previousAlpha+effectAlpha;
+    for(let channel=0;channel<3;channel++) original[offset+channel]=alpha?Math.round((original[offset+channel]*previousAlpha+effect[offset+channel]*effectAlpha)/alpha):0;
+    original[offset+3]=Math.round(alpha*255);
+  }
 }

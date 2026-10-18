@@ -2060,6 +2060,20 @@ function renderHomepageContent(): string {
         </div>
       </section>
 
+      <!-- Direct homepage discovery links to editorial guides, not just the blog index. -->
+      <section aria-labelledby="featured-guides-heading" style="margin-bottom: 3rem;">
+        <h2 id="featured-guides-heading" style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Popular How-To Guides</h2>
+        <p style="color: #475569; margin-bottom: 1rem;">Learn practical workflows and choose the right browser tool for your task.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
+          ${BLOG_ARTICLES.slice(0, 12).map(article => `
+            <a href="${DOMAIN}${article.canonicalPath}" style="display: block; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; text-decoration: none; background: #fff;">
+              <strong style="display: block; color: #0f172a; margin-bottom: 0.35rem;">${escapeHtml(article.title)}</strong>
+              <span style="font-size: 0.85rem; color: #475569;">${escapeHtml(article.excerpt)}</span>
+            </a>`).join('')}
+        </div>
+        <p style="margin-top: 1rem;"><a href="${DOMAIN}/blog" style="color: #4f46e5; font-weight: 700;">Browse all guides &rarr;</a></p>
+      </section>
+
       <!-- Complete Directory of Tools by Category -->
       <section style="display: flex; flex-direction: column; gap: 3rem; margin-bottom: 4rem;">
         <div style="text-align: center; margin-bottom: 1rem;">

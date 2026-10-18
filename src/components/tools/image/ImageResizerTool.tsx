@@ -1,3 +1,6 @@
+import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
+import { imageExportExtension } from '../../../lib/imageExport';
+import { imageResizeDimensions } from '../../../lib/imageResize';
 import React, { useState, useEffect, useRef } from 'react';
 import JSZip from 'jszip';
 import { 
@@ -54,6 +57,7 @@ interface ResizedFileItem {
   resizedBlob: Blob | null;
   resizedSize?: number;
   status: 'idle' | 'processing' | 'done' | 'error';
+  errorMessage?: string;
 }
 
 interface ImageResizerToolProps {
@@ -75,6 +79,74 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
+  const processingRef = useRef(false);
+  const runRef = useRef(0);
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
+  useEffect(() => () => {
+    runRef.current++;
+    itemsRef.current.forEach(item => URL.revokeObjectURL(item.previewUrl));
+  }, []);
+  useEffect(() => {
+    setItems(previous => previous.map(item => ({...item, status:'idle', resizedBlob:null, resizedSize:undefined, errorMessage:undefined})));
+  }, [resizeMode, width, height, percentage, lockAspect, exportFormat, quality]);
+
+  const handleFilesAdded = async (files: File[]) => {
+    if (processingRef.current) return;
+    const importRun = runRef.current;
+    const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+    if (validFiles.length === 0) {
+      onShowToast('Please select valid image files.');
+      return;
+    }
+
+    const loaded: ResizedFileItem[] = [];
+    for (const file of validFiles) {
+      const previewUrl = URL.createObjectURL(file);
+      const dims = await new Promise<{ w: number; h: number } | null>((resolve) => {
+        const img = new Image();
+        img.onload = () => resolve({ w: img.naturalWidth || img.width, h: img.naturalHeight || img.height });
+        img.onerror = () => resolve(null);
+        img.src = previewUrl;
+      });
+
+      if (!dims || !dims.w || !dims.h) {
+        URL.revokeObjectURL(previewUrl);
+        continue;
+      }
+      loaded.push({
+        id: Math.random().toString(36).substring(2, 9),
+        file,
+        previewUrl,
+        origW: dims.w,
+        origH: dims.h,
+        targetW: dims.w,
+        targetH: dims.h,
+        resizedBlob: null,
+        status: 'idle'
+      });
+    }
+
+    if (importRun !== runRef.current || processingRef.current) {
+      loaded.forEach(item => URL.revokeObjectURL(item.previewUrl));
+      return;
+    }
+    if (loaded.length === 0) {
+      onShowToast('These images could not be decoded. Try JPG, PNG, or WebP.');
+      return;
+    }
+    // Default primary dimension to first file if not set
+    if (items.length === 0 && loaded.length > 0) {
+      const first = loaded[0];
+      setWidth(first.origW);
+      setHeight(first.origH);
+      setActiveAspect(first.origW / (first.origH || 1));
+    }
+
+    setItems(prev => [...prev, ...loaded]);
+    onShowToast(`Added ${loaded.length} image(s)${loaded.length < files.length ? `; skipped ${files.length - loaded.length} unreadable or unsupported file(s)` : ''}.`);
+  };
+
   // Paste support
   useEffect(() => {
     const handlePaste = (e: ClipboardEvent) => {
@@ -94,49 +166,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
     };
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
-  }, []);
-
-  const handleFilesAdded = async (files: File[]) => {
-    const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
-    if (validFiles.length === 0) {
-      onShowToast('Please select valid image files.');
-      return;
-    }
-
-    const loaded: ResizedFileItem[] = [];
-    for (const file of validFiles) {
-      const previewUrl = URL.createObjectURL(file);
-      const dims = await new Promise<{ w: number; h: number }>((resolve) => {
-        const img = new Image();
-        img.onload = () => resolve({ w: img.naturalWidth || img.width, h: img.naturalHeight || img.height });
-        img.onerror = () => resolve({ w: 800, h: 600 });
-        img.src = previewUrl;
-      });
-
-      loaded.push({
-        id: Math.random().toString(36).substring(2, 9),
-        file,
-        previewUrl,
-        origW: dims.w,
-        origH: dims.h,
-        targetW: dims.w,
-        targetH: dims.h,
-        resizedBlob: null,
-        status: 'idle'
-      });
-    }
-
-    // Default primary dimension to first file if not set
-    if (items.length === 0 && loaded.length > 0) {
-      const first = loaded[0];
-      setWidth(first.origW);
-      setHeight(first.origH);
-      setActiveAspect(first.origW / (first.origH || 1));
-    }
-
-    setItems(prev => [...prev, ...loaded]);
-    onShowToast(`Added ${loaded.length} image(s) to resizer.`);
-  };
+  }, [items.length]);
 
   const handleWidthChange = (val: number) => {
     setWidth(val);
@@ -162,107 +192,94 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   const resizeSingle = async (item: ResizedFileItem): Promise<ResizedFileItem> => {
     return new Promise((resolve) => {
       const img = new Image();
-      img.onload = () => {
-        let finalW = width;
-        let finalH = height;
+      img.onload = async () => {
+        try {
+          const dimensions = imageResizeDimensions(item.origW, item.origH, {
+            mode:resizeMode, width, height, percentage, preserveBatchAspect:items.length > 1 && lockAspect,
+          });
+          const finalW = dimensions.width;
+          const finalH = dimensions.height;
 
-        if (resizeMode === 'percentage') {
-          finalW = Math.max(1, Math.round((item.origW * percentage) / 100));
-          finalH = Math.max(1, Math.round((item.origH * percentage) / 100));
-        } else if (resizeMode === 'dimensions' && items.length > 1 && lockAspect) {
-          // Proportionally scale individual files in batch
-          const scale = width / item.origW;
-          finalW = width;
-          finalH = Math.max(1, Math.round(item.origH * scale));
-        }
-
-        const canvas = document.createElement('canvas');
-        canvas.width = finalW;
-        canvas.height = finalH;
-        const ctx = canvas.getContext('2d');
-        if (!ctx) {
-          resolve({ ...item, status: 'error' });
-          return;
-        }
-
-        // Clean high quality image scaling
-        ctx.imageSmoothingEnabled = true;
-        ctx.imageSmoothingQuality = 'high';
-
-        // Background for jpeg
-        if (exportFormat === 'image/jpeg' || exportFormat === 'image/bmp') {
-          ctx.fillStyle = '#FFFFFF';
-          ctx.fillRect(0, 0, finalW, finalH);
-        }
-
-        ctx.drawImage(img, 0, 0, finalW, finalH);
-
-        if (exportFormat === 'image/bmp') {
-          try {
-            const imgData = ctx.getImageData(0, 0, finalW, finalH);
-            const bmpBytes = encodeBmpFromImageData(imgData);
-            const bmpBlob = new Blob([bmpBytes], { type: 'image/bmp' });
-            resolve({
-              ...item,
-              targetW: finalW,
-              targetH: finalH,
-              resizedBlob: bmpBlob,
-              resizedSize: bmpBlob.size,
-              status: 'done'
-            });
-            return;
-          } catch {
-            resolve({ ...item, status: 'error' });
+          const canvas = document.createElement('canvas');
+          canvas.width = finalW;
+          canvas.height = finalH;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) {
+            resolve({ ...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:'This image could not be resized. Try smaller dimensions.' });
             return;
           }
-        }
 
-        const expQuality = (exportFormat === 'image/jpeg' || exportFormat === 'image/webp') ? quality / 100 : undefined;
+          // Clean high quality image scaling
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
 
-        canvas.toBlob(
-          (blob) => {
-            if (blob) {
+          // Background for jpeg
+          if (exportFormat === 'image/jpeg' || exportFormat === 'image/bmp') {
+            ctx.fillStyle = '#FFFFFF';
+            ctx.fillRect(0, 0, finalW, finalH);
+          }
+
+          ctx.drawImage(img, 0, 0, finalW, finalH);
+
+          if (exportFormat === 'image/bmp') {
+            try {
+              const imgData = ctx.getImageData(0, 0, finalW, finalH);
+              const bmpBytes = encodeBmpFromImageData(imgData);
+              const bmpBlob = new Blob([bmpBytes], { type: 'image/bmp' });
               resolve({
                 ...item,
                 targetW: finalW,
                 targetH: finalH,
-                resizedBlob: blob,
-                resizedSize: blob.size,
+                resizedBlob: bmpBlob,
+                resizedSize: bmpBlob.size,
                 status: 'done'
               });
-            } else {
-              resolve({ ...item, status: 'error' });
+              return;
+            } catch {
+              resolve({ ...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:'This image could not be resized. Try smaller dimensions.' });
+              return;
             }
-          },
-          exportFormat,
-          expQuality
-        );
-      };
+          }
 
-      img.onerror = () => resolve({ ...item, status: 'error' });
+          const expQuality = (exportFormat === 'image/jpeg' || exportFormat === 'image/webp') ? quality / 100 : undefined;
+
+          const blob = await encodeCanvasBlob(canvas, exportFormat, expQuality);
+          resolve({...item, targetW:finalW, targetH:finalH, resizedBlob:blob, resizedSize:blob.size, status:'done', errorMessage:undefined});
+        } catch (error) {
+          resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:error instanceof Error ? error.message : 'Resize failed. Try smaller dimensions.'});
+        }
+      };
+      img.onerror = () => resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:'Image could not be decoded. Please select it again.'});
       img.src = item.previewUrl;
     });
   };
 
-  const resizeAll = async () => {
-    if (items.length === 0) return;
+  const resizeAll = async (onlyId?: string) => {
+    if (items.length === 0 || processingRef.current) return;
+    processingRef.current = true;
+    const run = ++runRef.current;
     setIsProcessing(true);
-
-    const updated: ResizedFileItem[] = [];
-    for (const item of items) {
-      const res = await resizeSingle(item);
-      updated.push(res);
+    const jobs = items.filter(item => !onlyId || item.id === onlyId).map(item => ({...item, resizedBlob:null, resizedSize:undefined, errorMessage:undefined, status:'processing' as const}));
+    setItems(previous => previous.map(item => jobs.find(job => job.id === item.id) || item));
+    let done = 0;
+    try {
+      for (const item of jobs) {
+        const result = await resizeSingle(item).catch(error => ({...item, resizedBlob:null, resizedSize:undefined, status:'error' as const, errorMessage:error instanceof Error ? error.message : 'Resize failed.'}));
+        if (run !== runRef.current) return;
+        if (result.status === 'done') done++;
+        setItems(previous => previous.map(existing => existing.id === result.id ? result : existing));
+      }
+      onShowToast(`${done} image(s) resized${done < jobs.length ? `; ${jobs.length - done} failed. Check the queue.` : '.'}`);
+    } finally {
+      processingRef.current = false;
+      if (run === runRef.current) setIsProcessing(false);
     }
-
-    setItems(updated);
-    setIsProcessing(false);
-    onShowToast('All images resized successfully!');
   };
 
   const downloadSingle = (item: ResizedFileItem) => {
     if (!item.resizedBlob) return;
     const baseName = item.file.name.replace(/\.[^/.]+$/, '');
-    const ext = exportFormat === 'image/jpeg' ? 'jpg' : exportFormat === 'image/webp' ? 'webp' : exportFormat === 'image/bmp' ? 'bmp' : 'png';
+    const ext = imageExportExtension(item.resizedBlob.type);
     const url = URL.createObjectURL(item.resizedBlob);
     const a = document.createElement('a');
     a.href = url;
@@ -270,40 +287,54 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
 
   const downloadAllZip = async () => {
-    const ready = items.filter(i => i.resizedBlob);
+    if (processingRef.current) return;
+    const ready = items.filter(i => i.status === 'done' && i.resizedBlob);
     if (ready.length === 0) {
       onShowToast('Please resize images first.');
       return;
     }
 
-    const zip = new JSZip();
-    const ext = exportFormat === 'image/jpeg' ? 'jpg' : exportFormat === 'image/webp' ? 'webp' : exportFormat === 'image/bmp' ? 'bmp' : 'png';
-    ready.forEach((item, idx) => {
-      const baseName = item.file.name.replace(/\.[^/.]+$/, '');
-      zip.file(`${baseName}-resized-${item.targetW}x${item.targetH}-${idx + 1}.${ext}`, item.resizedBlob!);
-    });
+    processingRef.current = true;
+    setIsProcessing(true);
+    try {
+      const zip = new JSZip();
+      ready.forEach((item, idx) => {
+        const ext = imageExportExtension(item.resizedBlob!.type);
+        const baseName = item.file.name.replace(/\.[^/.]+$/, '');
+        zip.file(`${baseName}-resized-${item.targetW}x${item.targetH}-${idx + 1}.${ext}`, item.resizedBlob!);
+      });
 
-    const blob = await zip.generateAsync({ type: 'blob' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `zubware-resized-images-${Date.now()}.zip`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    onShowToast('Downloaded all resized images in ZIP!');
+      const blob = await zip.generateAsync({ type: 'blob' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `zubware-resized-images-${Date.now()}.zip`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      onShowToast('Downloaded all resized images in ZIP!');
+    } catch {
+      onShowToast('Could not create the ZIP. Try downloading images individually.');
+    } finally {
+      processingRef.current = false;
+      setIsProcessing(false);
+    }
   };
 
   const removeItem = (id: string) => {
+    if (processingRef.current) return;
+    const item = items.find(item => item.id === id);
+    if (item) URL.revokeObjectURL(item.previewUrl);
     setItems(prev => prev.filter(i => i.id !== id));
   };
 
   const clearAll = () => {
+    if (processingRef.current) return;
     items.forEach(i => URL.revokeObjectURL(i.previewUrl));
     setItems([]);
     onShowToast('Queue cleared.');
@@ -318,15 +349,16 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
           </span>
           <div className="flex items-center gap-2">
             <button
-              onClick={resizeAll}
+              onClick={() => resizeAll()}
               disabled={isProcessing}
               className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:opacity-50 text-white text-xs font-bold transition-all shadow-sm cursor-pointer flex items-center gap-2"
             >
               <RefreshCw className={`w-4 h-4 ${isProcessing ? 'animate-spin' : ''}`} />
-              <span>{isProcessing ? 'Resizing...' : 'Resize All Images'}</span>
+              <span>{isProcessing ? 'Processing...' : 'Resize All Images'}</span>
             </button>
             <button
               onClick={clearAll}
+              disabled={isProcessing}
               className="p-2.5 text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 rounded-xl transition-all cursor-pointer"
               title="Clear All"
             >
@@ -337,7 +369,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
       )}
 
       {/* Control Settings Bar */}
-      <div className="glass-card p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 space-y-5">
+      <fieldset disabled={isProcessing} className="glass-card p-6 rounded-3xl border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 space-y-5">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200/80 dark:border-slate-800 pb-4">
           <div className="flex items-center gap-2 bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
             <button
@@ -376,18 +408,20 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
         {resizeMode === 'dimensions' && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 items-end">
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Width (px)</label>
+              <label htmlFor="resize-width" className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Width (px)</label>
               <input
                 type="number"
+                id="resize-width" min="1" max="16384" step="1"
                 value={width}
                 onChange={(e) => handleWidthChange(Math.max(1, Number(e.target.value)))}
                 className="w-full px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold text-slate-800 dark:text-slate-200"
               />
             </div>
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Height (px)</label>
+              <label htmlFor="resize-height" className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1.5">Height (px)</label>
               <input
                 type="number"
+                id="resize-height" min="1" max="16384" step="1"
                 value={height}
                 onChange={(e) => handleHeightChange(Math.max(1, Number(e.target.value)))}
                 className="w-full px-3.5 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm font-bold text-slate-800 dark:text-slate-200"
@@ -471,6 +505,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
               Output Format
             </label>
             <select
+              aria-label="Output Format"
               value={exportFormat}
               onChange={(e) => setExportFormat(e.target.value as any)}
               className="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-xs font-bold text-slate-800 dark:text-slate-200"
@@ -499,7 +534,8 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
             </div>
           )}
         </div>
-      </div>
+        <p className="text-xs text-slate-500 dark:text-slate-400">Output limit: 16,384 pixels per side and 40 megapixels. Change settings and resize again to create a new download.</p>
+      </fieldset>
 
       {/* Upload Drag & Drop Area */}
       <div
@@ -533,6 +569,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
           <span>Browse Images to Resize</span>
           <input
             type="file"
+            disabled={isProcessing}
             multiple
             accept="image/*"
             onChange={(e) => e.target.files && handleFilesAdded(Array.from(e.target.files))}
@@ -551,6 +588,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
             {items.some(i => i.resizedBlob) && (
               <button
                 onClick={downloadAllZip}
+                disabled={isProcessing}
                 className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer shadow-sm"
               >
                 <FileArchive className="w-4 h-4" />
@@ -579,7 +617,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
                       <span>{item.origW}×{item.origH}</span>
                       <ArrowRight className="w-3 h-3 text-indigo-500" />
                       <span className="font-bold text-indigo-600 dark:text-indigo-400">
-                        {item.targetW || width}×{item.targetH || height}
+                        {item.status === 'done' ? `${item.targetW}×${item.targetH}` : item.status === 'processing' ? 'Resizing…' : 'Not resized'}
                       </span>
                     </div>
                     <div className="flex items-center gap-2 text-[11px] text-slate-400">
@@ -593,6 +631,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
                         </>
                       )}
                     </div>
+                    {item.errorMessage && <p role="alert" className="text-xs text-rose-600 dark:text-rose-400">{item.errorMessage}</p>}
                   </div>
                 </div>
 
@@ -607,10 +646,8 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
                     </button>
                   ) : (
                     <button
-                      onClick={async () => {
-                        const updated = await resizeSingle(item);
-                        setItems(items.map(i => (i.id === item.id ? updated : i)));
-                      }}
+                      onClick={() => resizeAll(item.id)}
+                      disabled={isProcessing}
                       className="p-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 transition-all cursor-pointer"
                       title="Resize Image"
                     >
@@ -619,6 +656,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
                   )}
                   <button
                     onClick={() => removeItem(item.id)}
+                    disabled={isProcessing}
                     className="p-2 rounded-xl text-slate-400 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-all cursor-pointer"
                     title="Remove Image"
                   >

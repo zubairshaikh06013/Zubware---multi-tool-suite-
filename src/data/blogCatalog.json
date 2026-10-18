@@ -1,0 +1,1221 @@
+[
+  {
+    "slug": "how-to-compress-pdf-without-losing-readability",
+    "title": "How to Compress a PDF Without Losing Readability",
+    "description": "Learn how to reduce PDF file size while preserving clear, readable text. Understand lossy vs. lossless compression, target file sizes, and client-side optimization.",
+    "canonicalPath": "/blog/how-to-compress-pdf-without-losing-readability",
+    "publishedTime": "2026-09-23T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "PDF Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "PDF Compression",
+      "Reduce PDF Size",
+      "Compress PDF",
+      "PDF Optimization",
+      "Document Readability",
+      "Free PDF Tools"
+    ],
+    "excerpt": "Choose a PDF compression setting, understand when pages may become images, and check the downloaded result before uploading it elsewhere. Results depend on your document; there is no guaranteed reduction percentage.",
+    "relatedToolIds": [
+      "pdf-compressor",
+      "pdf-size-adjuster",
+      "pdf-merge",
+      "pdf-split",
+      "unlock-pdf",
+      "protect-pdf"
+    ]
+  },
+  {
+    "slug": "merge-split-pdf-browser-workflow-guide",
+    "title": "How to Merge, Split, and Reorder PDFs Securely in the Browser",
+    "description": "Master browser-based PDF page manipulation. Learn how to combine multiple files, extract custom page ranges, rotate orientations, and protect document privacy.",
+    "canonicalPath": "/blog/merge-split-pdf-browser-workflow-guide",
+    "publishedTime": "2026-09-24T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "PDF Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Merge PDF",
+      "Split PDF",
+      "Reorder PDF",
+      "PDF Pages",
+      "Browser PDF Tools",
+      "Document Privacy"
+    ],
+    "excerpt": "Combining signed contracts, splitting tax filings into standalone schedules, or deleting blank pages shouldn't require exposing private records to remote cloud servers. Learn the mechanics of in-browser page tree manipulation and zero-leak document processing.",
+    "relatedToolIds": [
+      "pdf-merge",
+      "pdf-split",
+      "delete-pdf-pages",
+      "extract-pdf-pages",
+      "pdf-compressor",
+      "protect-pdf"
+    ]
+  },
+  {
+    "slug": "pdf-to-word-excel-conversion-guide",
+    "title": "PDF to Word and Excel: What Converts and What Needs Checking",
+    "description": "Use selectable-text PDFs for editable DOCX or spreadsheet exports, and check reading order, columns and totals before relying on the result.",
+    "canonicalPath": "/blog/pdf-to-word-excel-conversion-guide",
+    "publishedTime": "2026-09-25T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "PDF Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "PDF to Word",
+      "PDF to Excel",
+      "Document Conversion",
+      "OCR Extraction",
+      "Table Reconstruction",
+      "PDF Tools"
+    ],
+    "excerpt": "Use selectable-text PDFs for editable DOCX or spreadsheet exports, and check reading order, columns and totals before relying on the result.",
+    "relatedToolIds": [
+      "pdf-to-word",
+      "pdf-to-excel",
+      "word-to-pdf",
+      "pdf-to-text",
+      "pdf-compressor",
+      "edit-pdf"
+    ]
+  },
+  {
+    "slug": "client-side-image-optimization-guide",
+    "title": "Client-Side Image Optimization: WebP, Compression & Quality Preservation",
+    "description": "Master in-browser image optimization. Compare WebP, AVIF, JPG, and PNG compression algorithms, canvas downsampling math, and client-side privacy benefits.",
+    "canonicalPath": "/blog/client-side-image-optimization-guide",
+    "publishedTime": "2026-09-23T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Image Optimization",
+      "Compress Images",
+      "WebP Converter",
+      "Browser Compression",
+      "Client-Side Image Processing",
+      "Image Quality"
+    ],
+    "excerpt": "Images constitute over 60% of modern web page weight and mobile data consumption. Learn how format selection, HTML5 Canvas downsampling mathematics, and client-side encoding reduce file sizes by up to 85% while keeping visual details razor-sharp.",
+    "relatedToolIds": [
+      "image-compressor",
+      "image-resizer",
+      "image-converter",
+      "batch-image-converter",
+      "heic-to-jpg",
+      "background-remover"
+    ]
+  },
+  {
+    "slug": "passport-size-photo-maker-guidelines",
+    "title": "Passport Photo Preparation: Check the Official Requirements",
+    "description": "Use photo sizing tools only after checking the instructions for your exact country, application route and document type.",
+    "canonicalPath": "/blog/passport-size-photo-maker-guidelines",
+    "publishedTime": "2026-09-25T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Passport Photo",
+      "Passport Dimensions",
+      "Visa Photo Requirements",
+      "Photo Resizer",
+      "Government Exam Photo",
+      "Passport Size Photo Maker"
+    ],
+    "excerpt": "Use photo sizing tools only after checking the instructions for your exact country, application route and document type.",
+    "relatedToolIds": [
+      "passport-photo-maker",
+      "background-remover",
+      "photo-signature-joiner",
+      "signature-resizer",
+      "image-compressor",
+      "crop-image"
+    ]
+  },
+  {
+    "slug": "background-removal-ai-browser-guide",
+    "title": "How to Remove Image Backgrounds: Smart AI, Quick & Private Modes",
+    "description": "Step-by-step background removal guide: choose Smart AI, Quick or Private mode, protect photo privacy, inspect edges and download a transparent PNG.",
+    "canonicalPath": "/blog/background-removal-ai-browser-guide",
+    "publishedTime": "2026-09-26T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "6 min read",
+    "tags": [
+      "Background Remover",
+      "Remove Image Background",
+      "Transparent PNG",
+      "Smart AI Removal",
+      "Quick Removal",
+      "Private Removal",
+      "Product Photography"
+    ],
+    "excerpt": "Choose the right background-removal option for your photo. This guide explains online processing and upload consent, local privacy, step-by-step workflow, troubleshooting, and transparent PNG best practices.",
+    "relatedToolIds": [
+      "background-remover",
+      "background-color-changer",
+      "passport-photo-maker",
+      "image-compressor",
+      "crop-image",
+      "image-converter"
+    ]
+  },
+  {
+    "slug": "offline-developer-tools-privacy-guide",
+    "title": "The Developer Privacy Handbook: Formatting, Decoding & Hashing Without Server Leakage",
+    "description": "Learn why pasting production JSON, JWTs, and database dumps into cloud formatters leaks credentials. Discover client-side sandboxed developer tooling.",
+    "canonicalPath": "/blog/offline-developer-tools-privacy-guide",
+    "publishedTime": "2026-09-23T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Developer Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Developer Privacy",
+      "Offline Dev Tools",
+      "JSON Formatter",
+      "JWT Decoder",
+      "Client-Side Security",
+      "Data Leak Prevention"
+    ],
+    "excerpt": "Pasting production API responses, OAuth bearer tokens, SQL queries, or private configuration blocks into random third-party web utilities is one of the most common vectors for corporate credential leaks. Here is the architectural case for zero-upload, client-side developer tooling.",
+    "relatedToolIds": [
+      "json-formatter",
+      "json-validator",
+      "jwt-decoder",
+      "base64-encoder-decoder",
+      "hash-generator",
+      "url-encoder-decoder"
+    ]
+  },
+  {
+    "slug": "json-formatting-validation-debugging-guide",
+    "title": "JSON Formatting, Syntax Validation & Debugging for Developers",
+    "description": "Learn JSON syntax validation, common formatting errors, trailing comma issues, and practical ways to inspect JSON in your browser.",
+    "canonicalPath": "/blog/json-formatting-validation-debugging-guide",
+    "publishedTime": "2026-09-26T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Developer Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "JSON Formatter",
+      "JSON Validator",
+      "JSON Schema",
+      "Syntax Errors",
+      "RFC 8259",
+      "Developer Tools"
+    ],
+    "excerpt": "JSON is the lingua franca of modern REST and GraphQL APIs, yet subtle syntax bugs like unescaped quotes, trailing commas, and BigInt precision loss cause thousands of production parsing exceptions. Here is the definitive engineering guide to JSON validation, formatting, and schema compliance.",
+    "relatedToolIds": [
+      "json-formatter",
+      "json-validator",
+      "json-to-csv",
+      "json-to-xml",
+      "xml-to-json",
+      "csv-to-json"
+    ]
+  },
+  {
+    "slug": "jwt-security-decoding-claims-guide",
+    "title": "Understanding JSON Web Tokens (JWT): Structure, Decoding & Verification",
+    "description": "Learn how JSON Web Tokens work under RFC 7519. Decode Headers, Payloads, and Signatures, prevent the alg:none exploit, and inspect claims locally in your browser.",
+    "canonicalPath": "/blog/jwt-security-decoding-claims-guide",
+    "publishedTime": "2026-09-27T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Developer Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "JWT Decoder",
+      "JSON Web Token",
+      "OAuth2 Security",
+      "Bearer Tokens",
+      "RFC 7519",
+      "Web Security"
+    ],
+    "excerpt": "JSON Web Tokens underpin authentication across modern single-page apps, microservices, and OAuth 2.0 flows. Learn how the Header, Payload, and Signature are encoded, why decoding a token does not verify its integrity, and how to avoid critical vulnerabilities like the alg:none exploit.",
+    "relatedToolIds": [
+      "jwt-decoder",
+      "base64-encoder-decoder",
+      "hash-generator",
+      "json-formatter",
+      "url-encoder-decoder",
+      "json-validator"
+    ]
+  },
+  {
+    "slug": "financial-calculators-sip-emi-gst-guide",
+    "title": "SIP, EMI and GST Calculations: Check the Assumptions",
+    "description": "Understand contribution timing, reducing-balance payments and inclusive tax arithmetic before comparing calculator results.",
+    "canonicalPath": "/blog/financial-calculators-sip-emi-gst-guide",
+    "publishedTime": "2026-09-24T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Calculator Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "SIP Calculator",
+      "EMI Calculator",
+      "GST Calculator",
+      "Financial Formulas",
+      "Loan Amortization",
+      "Compound Interest"
+    ],
+    "excerpt": "Understand contribution timing, reducing-balance payments and inclusive tax arithmetic before comparing calculator results.",
+    "relatedToolIds": [
+      "emi-calculator",
+      "loan-calculator",
+      "compound-interest-calculator",
+      "roi-calculator",
+      "percentage-calculator",
+      "gst-invoice-generator"
+    ]
+  },
+  {
+    "slug": "compound-interest-wealth-accumulation-guide",
+    "title": "Compound Interest and CAGR: Read the Model Correctly",
+    "description": "Separate deposits from growth and understand the timing assumptions behind compound-interest and CAGR results.",
+    "canonicalPath": "/blog/compound-interest-wealth-accumulation-guide",
+    "publishedTime": "2026-09-28T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Financial Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Compound Interest",
+      "CAGR Calculator",
+      "Wealth Building",
+      "Rule of 72",
+      "APY vs APR",
+      "Investment Math"
+    ],
+    "excerpt": "Separate deposits from growth and understand the timing assumptions behind compound-interest and CAGR results.",
+    "relatedToolIds": [
+      "compound-interest-calculator",
+      "roi-calculator",
+      "percentage-calculator",
+      "emi-calculator",
+      "loan-calculator",
+      "salary-hike-calculator"
+    ]
+  },
+  {
+    "slug": "emi-loan-amortization-strategies",
+    "title": "Loan Amortization and Extra Payments: A Checkable Example",
+    "description": "Understand interest and principal in a payment schedule without relying on invented savings case studies.",
+    "canonicalPath": "/blog/emi-loan-amortization-strategies",
+    "publishedTime": "2026-09-28T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Financial Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "EMI Calculator",
+      "Loan Amortization",
+      "Mortgage Prepayment",
+      "Home Loan Interest",
+      "Tenure Reduction",
+      "Debt Payoff"
+    ],
+    "excerpt": "Understand interest and principal in a payment schedule without relying on invented savings case studies.",
+    "relatedToolIds": [
+      "emi-calculator",
+      "loan-calculator",
+      "loan-eligibility-calculator",
+      "compound-interest-calculator",
+      "percentage-calculator",
+      "personal-loan-calculator"
+    ]
+  },
+  {
+    "slug": "freelancer-gst-invoicing-tax-compliance",
+    "title": "GST Invoice Drafting: Data Entry and Verification",
+    "description": "Prepare an invoice draft with checked line items and tax arithmetic, while keeping registration and filing requirements separate.",
+    "canonicalPath": "/blog/freelancer-gst-invoicing-tax-compliance",
+    "publishedTime": "2026-09-29T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Business Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "GST Invoice",
+      "Freelancer Tax",
+      "GST Calculator",
+      "Invoice Generator",
+      "SAC Codes",
+      "IGST vs CGST"
+    ],
+    "excerpt": "Prepare an invoice draft with checked line items and tax arithmetic, while keeping registration and filing requirements separate.",
+    "relatedToolIds": [
+      "gst-invoice-generator",
+      "percentage-calculator",
+      "currency-calculator",
+      "working-days-calculator",
+      "discount-calculator",
+      "emi-calculator"
+    ]
+  },
+  {
+    "slug": "clean-text-processing-formatting-guide",
+    "title": "Clean Text Processing: Diffs, Word Counts, ATS Formatting & Case Conversion",
+    "description": "Learn how to sanitize text for code and resumes. Remove invisible Unicode characters, calculate Levenshtein diffs, and master case conversions.",
+    "canonicalPath": "/blog/clean-text-processing-formatting-guide",
+    "publishedTime": "2026-09-24T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Text Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Text Cleaner",
+      "Text Diff",
+      "Word Counter",
+      "Case Converter",
+      "Unicode Sanitization",
+      "ATS Resume Formatting"
+    ],
+    "excerpt": "Invisible zero-width Unicode spaces, non-breaking whitespace, curly smart quotes, and erratic line-break encodings can quietly break code builds, corrupt database records, and cause resume parser failures. Master the art of client-side text sanitization and diff analysis.",
+    "relatedToolIds": [
+      "case-converter",
+      "word-counter",
+      "character-counter",
+      "find-and-replace",
+      "markdown-editor",
+      "text-cleaner"
+    ]
+  },
+  {
+    "slug": "habit-tracking-science-daily-routines",
+    "title": "The Neuroscience of Habit Formation: Streak Tracking & Habit Stacking",
+    "description": "Explore the behavioral psychology of habit loops, implementation intentions, the Seinfeld streak effect, and how friction reduction builds lasting daily routines.",
+    "canonicalPath": "/blog/habit-tracking-science-daily-routines",
+    "publishedTime": "2026-09-29T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Productivity Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Habit Tracker",
+      "Habit Stacking",
+      "Productivity Systems",
+      "Streak Tracking",
+      "Goal Setting",
+      "Daily Routines"
+    ],
+    "excerpt": "Over 40% of our daily behaviors are not conscious decisions, but automatic neurological habits formed in the basal ganglia. Understand the four-stage habit loop, why visual streak tracking triggers positive dopamine reinforcement, and how to engineer lasting daily routines.",
+    "relatedToolIds": [
+      "countdown-timer",
+      "online-stopwatch",
+      "reading-time-calculator",
+      "word-counter",
+      "working-days-calculator",
+      "pomodoro-timer"
+    ]
+  },
+  {
+    "slug": "password-security-entropy-brute-force-math",
+    "title": "Password Entropy & Security: Why Length Trumps Complexity in 2026",
+    "description": "Learn the mathematical formula for Shannon password entropy. Compare short complex passwords vs long Diceware passphrases and analyze GPU brute-force crack times.",
+    "canonicalPath": "/blog/password-security-entropy-brute-force-math",
+    "publishedTime": "2026-09-30T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Security Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "Password Strength",
+      "Password Entropy",
+      "Passphrase Generator",
+      "Brute Force Math",
+      "NIST SP 800-63B",
+      "Cybersecurity"
+    ],
+    "excerpt": "Understand what random-password entropy measures, why wordlist size matters, and why a published example or a cracking-time promise should not be treated as a secure password.",
+    "relatedToolIds": [
+      "password-strength-checker",
+      "passphrase-generator",
+      "hash-generator",
+      "text-encrypt-decrypt",
+      "file-checksum-verifier",
+      "base64-encoder-decoder"
+    ]
+  },
+  {
+    "slug": "qr-code-security-phishing-prevention",
+    "title": "QR Code Security & Quishing: Detecting Malicious Barcodes Before Scanning",
+    "description": "Learn how QR code phishing (Quishing) works. Inspect encoded URL payloads in an isolated browser sandbox, spot malicious redirects, and stay safe.",
+    "canonicalPath": "/blog/qr-code-security-phishing-prevention",
+    "publishedTime": "2026-09-30T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Security Guides",
+    "readingTime": "3 min read",
+    "tags": [
+      "QR Code Safety",
+      "Quishing Prevention",
+      "Malicious QR Codes",
+      "QR Code Decoder",
+      "Cybersecurity",
+      "Phishing Prevention"
+    ],
+    "excerpt": "QR codes are everywhere—from restaurant menus and parking meters to corporate two-factor enrollment emails. But because human eyes cannot read optical 2D barcodes, cybercriminals increasingly deploy \"Quishing\" attacks to hijack bank accounts and steal credentials. Here is how to inspect QR codes safely.",
+    "relatedToolIds": [
+      "qr-code-safety-checker",
+      "qr-generator",
+      "qr-code-decoder",
+      "url-parser",
+      "url-encoder-decoder",
+      "hash-generator"
+    ]
+  },
+  {
+    "slug": "youtube-growth-metadata-thumbnails-guide",
+    "title": "The YouTube Growth Blueprint: Titles, Tags, Descriptions, and High-CTR Thumbnails",
+    "description": "Master YouTube SEO and Click-Through Rate (CTR). Optimize video titles, keyword descriptions, tag taxonomy, and thumbnail design avoiding timestamp badges.",
+    "canonicalPath": "/blog/youtube-growth-metadata-thumbnails-guide",
+    "publishedTime": "2026-09-24T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Creator & Social Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "YouTube SEO",
+      "High CTR Thumbnails",
+      "YouTube Tags",
+      "Video Descriptions",
+      "YouTube Growth",
+      "Creator Tools"
+    ],
+    "excerpt": "YouTube functions as the world's second-largest search engine, processing over 3 billion monthly searches. Learn how the recommendation algorithm evaluates Click-Through Rate (CTR) and Average View Duration (AVD), how to avoid the bottom-right timestamp badge collision on thumbnails, and how to craft high-converting titles.",
+    "relatedToolIds": [
+      "youtube-title-generator",
+      "youtube-tags-generator",
+      "youtube-description-generator",
+      "youtube-timestamp-generator",
+      "video-aspect-ratio",
+      "word-counter"
+    ]
+  },
+  {
+    "slug": "browser-video-audio-creation-guide",
+    "title": "Browser-Based Video Creation: Puzzle Shorts, Script-to-Video & Web Audio Production",
+    "description": "Learn how modern browsers render video and audio using Web Audio API and HTML5 Canvas. Create viral puzzle shorts and video clips without desktop software.",
+    "canonicalPath": "/blog/browser-video-audio-creation-guide",
+    "publishedTime": "2026-09-24T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Video & Audio Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Browser Video Creation",
+      "Web Audio API",
+      "MediaRecorder",
+      "HTML5 Canvas Video",
+      "Shorts Creator",
+      "Client-Side Media"
+    ],
+    "excerpt": "Rendering viral vertical Shorts, animated brain teasers, and soundscapes once required complex desktop non-linear editors and expensive cloud rendering queues. Discover how the modern Web Audio API and HTML5 Canvas capture pipeline enable instantaneous video creation directly in your browser.",
+    "relatedToolIds": [
+      "video-aspect-ratio",
+      "video-compressor",
+      "video-trimmer",
+      "video-to-gif",
+      "video-to-audio",
+      "lofi-maker"
+    ]
+  },
+  {
+    "slug": "lofi-music-production-ambient-sound-design",
+    "title": "The Science of Lofi Music: Chord Progressions, BPM & Ambient Layering",
+    "description": "Learn the music theory and production secrets of lofi hip-hop. Master jazz 7th chords, the 70-85 BPM sweet spot, vinyl texture synthesis, and frequency filtering.",
+    "canonicalPath": "/blog/lofi-music-production-ambient-sound-design",
+    "publishedTime": "2026-09-27T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Audio Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Lofi Music",
+      "Audio Production",
+      "Jazz Chords",
+      "Web Audio API",
+      "Ambient Sound",
+      "Lofi Generator"
+    ],
+    "excerpt": "Lofi hip-hop has become the global soundtrack for deep study, coding, and relaxation. But creating authentic lofi requires more than just slapping rain sounds over a beat. Understand the jazz harmony, deliberate sonic degradation, and psychoacoustic textures that define the genre.",
+    "relatedToolIds": [
+      "lofi-maker",
+      "slowed-and-reverb",
+      "video-to-audio",
+      "video-compressor",
+      "countdown-timer",
+      "online-stopwatch"
+    ]
+  },
+  {
+    "slug": "slowed-reverb-audio-trend-explained",
+    "title": "The Aesthetics of Slowed & Reverb: Pitch Shifting, Decay & Spatial Audio",
+    "description": "Explore the audio engineering behind the slowed and reverb phenomenon. Master pitch shifting, convolution reverb impulses, and spatial audio psychoacoustics.",
+    "canonicalPath": "/blog/slowed-reverb-audio-trend-explained",
+    "publishedTime": "2026-09-27T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Audio Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Slowed and Reverb",
+      "Audio Effects",
+      "Pitch Shifting",
+      "Convolution Reverb",
+      "Web Audio API",
+      "Sound Design"
+    ],
+    "excerpt": "What began as the Houston \"chopped and screwed\" hip-hop movement has evolved into a global Internet subculture: \"Slowed + Reverb\". Discover the psychoacoustic engineering, time-stretching algorithms, and cavernous impulse responses that transform ordinary pop tracks into atmospheric masterpieces.",
+    "relatedToolIds": [
+      "slowed-and-reverb",
+      "video-to-audio",
+      "lofi-maker",
+      "video-compressor",
+      "video-trimmer",
+      "video-to-gif"
+    ]
+  },
+  {
+    "slug": "video-aspect-ratio-guide-reels-shorts-tiktok",
+    "title": "Mastering Video Aspect Ratios: 9:16 Shorts, 16:9 Landscape & 1:1 Squares",
+    "description": "Complete guide to video aspect ratios. Master vertical 9:16 (Shorts, Reels, TikTok), 16:9 landscape, and 1:1 square formats. Avoid UI overlay clipping.",
+    "canonicalPath": "/blog/video-aspect-ratio-guide-reels-shorts-tiktok",
+    "publishedTime": "2026-09-28T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Video Guides",
+    "readingTime": "3 min read",
+    "tags": [
+      "Video Aspect Ratio",
+      "9:16 Video",
+      "YouTube Shorts Ratio",
+      "Instagram Reels Dimensions",
+      "TikTok Sizing",
+      "Video Resizer"
+    ],
+    "excerpt": "Posting horizontal 16:9 video onto vertical short-form platforms introduces ugly black letterbox borders and causes severe audience drop-off. Understand the mathematical aspect ratios, exact pixel dimensions, and platform UI safe zones across TikTok, Instagram Reels, and YouTube Shorts.",
+    "relatedToolIds": [
+      "video-aspect-ratio",
+      "video-compressor",
+      "video-trimmer",
+      "video-to-gif",
+      "video-to-audio",
+      "image-resizer"
+    ]
+  },
+  {
+    "slug": "youtube-banner-safe-area-responsive-design",
+    "title": "YouTube Channel Art Safe Area: Designing Banners for Mobile, Desktop & TV",
+    "description": "Complete YouTube banner dimensions guide. Master the 2560x1440 canvas, 1546x423 mobile safe zone, desktop cutoffs, and responsive branding layout.",
+    "canonicalPath": "/blog/youtube-banner-safe-area-responsive-design",
+    "publishedTime": "2026-09-28T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Creator Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "YouTube Banner",
+      "Channel Art Dimensions",
+      "Safe Area",
+      "YouTube Banner Size",
+      "Responsive Design",
+      "Channel Branding"
+    ],
+    "excerpt": "Designing a YouTube channel banner that looks stunning on a 65-inch Smart TV while keeping your logo, upload schedule, and social links fully visible on a 6-inch mobile smartphone is a major design headache. Here is the official pixel-by-pixel responsive safe area blueprint.",
+    "relatedToolIds": [
+      "image-resizer",
+      "image-compressor",
+      "crop-image",
+      "youtube-title-generator",
+      "youtube-tags-generator",
+      "passport-photo-maker"
+    ]
+  },
+  {
+    "slug": "viral-youtube-hooks-titles-psychology",
+    "title": "The Psychology of High-CTR YouTube Titles & Viral Video Hooks",
+    "description": "Learn the cognitive psychology of viral YouTube hooks. Master the Curiosity Gap, the 3-second rule, pattern interrupts, and 50-character title optimization.",
+    "canonicalPath": "/blog/viral-youtube-hooks-titles-psychology",
+    "publishedTime": "2026-09-29T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Creator Guides",
+    "readingTime": "3 min read",
+    "tags": [
+      "YouTube Titles",
+      "Viral Hooks",
+      "Curiosity Gap",
+      "YouTube CTR",
+      "Audience Retention",
+      "Creator Psychology"
+    ],
+    "excerpt": "Great content that nobody clicks on is dead on arrival. Conversely, high-click titles that disappoint viewers result in immediate bounces that trigger algorithmic penalties. Understand the cognitive psychology of the Curiosity Gap, the 3-second hook structure, and how to write irresistible titles.",
+    "relatedToolIds": [
+      "youtube-title-generator",
+      "youtube-description-generator",
+      "youtube-tags-generator",
+      "word-counter",
+      "character-counter",
+      "video-aspect-ratio"
+    ]
+  },
+  {
+    "slug": "instagram-growth-hashtags-captions-strategy",
+    "title": "Instagram SEO in 2026: Hashtag Strategy, Carousel Copy & Bio Optimization",
+    "description": "Master Instagram search optimization in 2026. Explore semantic keyword indexing, targeted hashtag grouping, high-retention carousel copy, and bio architecture.",
+    "canonicalPath": "/blog/instagram-growth-hashtags-captions-strategy",
+    "publishedTime": "2026-09-29T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Creator Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Instagram SEO",
+      "Hashtag Strategy",
+      "Carousel Copy",
+      "Bio Optimization",
+      "Social Media Growth",
+      "Instagram Algorithm"
+    ],
+    "excerpt": "Instagram has evolved from a pure chronological photo feed into a sophisticated visual search engine powered by AI semantic indexing. Learn how Instagram ranks Explore and Search results, why the 30-hashtag spam strategy is dead, and how carousel swipe velocity drives account reach.",
+    "relatedToolIds": [
+      "instagram-bio-generator",
+      "social-character-counter",
+      "image-resizer",
+      "crop-image",
+      "video-aspect-ratio",
+      "text-cleaner"
+    ]
+  },
+  {
+    "slug": "css-modern-styling-glassmorphism-gradients",
+    "title": "Modern CSS Visual Effects: Glassmorphism, Dynamic Gradients & Box Shadows",
+    "description": "Master modern CSS styling. Create performant glassmorphism with backdrop-filter, layer multi-stop gradients, and build realistic multi-layered box shadows.",
+    "canonicalPath": "/blog/css-modern-styling-glassmorphism-gradients",
+    "publishedTime": "2026-09-30T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Design Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "CSS Effects",
+      "Glassmorphism",
+      "CSS Gradients",
+      "Box Shadows",
+      "Frontend Styling",
+      "Web Design"
+    ],
+    "excerpt": "Modern web UI design has moved past flat, uninspired cards toward tactile, multi-layered interfaces. Learn the production CSS code behind Frosted Glass (Glassmorphism), multi-stop mesh gradients, and multi-layered box shadows without causing GPU jank.",
+    "relatedToolIds": [
+      "contrast-checker",
+      "color-palette-generator",
+      "image-color-picker",
+      "markdown-editor",
+      "text-cleaner",
+      "unit-converter"
+    ]
+  },
+  {
+    "slug": "color-theory-accessible-contrast-palette-design",
+    "title": "Color Theory & WCAG Accessibility: Contrast Ratios for Web UI Design",
+    "description": "Master WCAG 2.1 color accessibility. Understand relative luminance mathematics, 4.5:1 Level AA and 7:1 Level AAA contrast ratios, and color blindness palettes.",
+    "canonicalPath": "/blog/color-theory-accessible-contrast-palette-design",
+    "publishedTime": "2026-09-30T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Design Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "WCAG Accessibility",
+      "Contrast Ratio",
+      "Color Theory",
+      "Web Design",
+      "Color Contrast Checker",
+      "Inclusive Design"
+    ],
+    "excerpt": "Over 2.2 billion people worldwide live with visual impairments or color blindness. Designing trendy low-contrast grey text on white backgrounds excludes millions of users and triggers legal ADA compliance liabilities. Master the mathematics of W3C relative luminance and accessible palette design.",
+    "relatedToolIds": [
+      "contrast-checker",
+      "color-palette-generator",
+      "image-color-picker",
+      "text-cleaner",
+      "unit-converter",
+      "markdown-editor"
+    ]
+  },
+  {
+    "slug": "ai-prompt-engineering-mastery-guide",
+    "title": "AI Prompt Engineering Mastery: Structuring Role, Context, and Few-Shot Directives",
+    "description": "Master prompt engineering for LLMs. Learn the RCIO framework, Few-Shot prompting, Chain-of-Thought (CoT) reasoning, and output constraints to eliminate hallucinations.",
+    "canonicalPath": "/blog/ai-prompt-engineering-mastery-guide",
+    "publishedTime": "2026-09-24T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "AI & Prompt Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Prompt Engineering",
+      "Few-Shot Prompting",
+      "Chain-of-Thought",
+      "LLM Architecture",
+      "AI Prompt Builder",
+      "ChatGPT Prompts"
+    ],
+    "excerpt": "Vague prompts produce generic, robotic AI outputs. Transforming large language models into precision engineering assistants requires structured instruction design. Master the RCIO framework, Few-Shot in-context learning, and Chain-of-Thought reasoning to eliminate hallucinations.",
+    "relatedToolIds": [
+      "midjourney-prompt-builder",
+      "flux-prompt-builder",
+      "product-photo-prompt-builder",
+      "logo-prompt-builder",
+      "veo-prompt-builder",
+      "markdown-editor"
+    ]
+  },
+  {
+    "slug": "ats-resume-optimization-career-guide",
+    "title": "Beating the ATS: The Complete Guide to Applicant Tracking Systems & Resume Optimization",
+    "description": "Learn how Applicant Tracking Systems (ATS) parse resumes. Avoid layout traps, optimize keyword density, and format clean PDFs that pass recruiter screens.",
+    "canonicalPath": "/blog/ats-resume-optimization-career-guide",
+    "publishedTime": "2026-09-25T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Career & Resume Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "ATS Resume",
+      "Resume Builder",
+      "ATS Checker",
+      "Resume Optimization",
+      "Job Search",
+      "Career Tools"
+    ],
+    "excerpt": "Over 98% of Fortune 500 corporations and 75% of mid-size enterprises screen job applicants through Applicant Tracking Systems (ATS) like Workday, Taleo, and Greenhouse before any human recruiter reviews a resume. Discover how parsing engines extract skills, and how to format clean resumes that score high.",
+    "relatedToolIds": [
+      "resume-builder",
+      "resume-score-analyzer",
+      "linkedin-headline-generator",
+      "linkedin-summary-generator",
+      "professional-skill-library",
+      "word-counter"
+    ]
+  },
+  {
+    "slug": "bmi-body-composition-tdee-health-guide",
+    "title": "BMI and Calorie Estimates: How to Read the Results",
+    "description": "Check units and assumptions before interpreting BMI or calorie estimates; a calculator does not assess your complete health.",
+    "canonicalPath": "/blog/bmi-body-composition-tdee-health-guide",
+    "publishedTime": "2026-09-30T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Health & Fitness",
+    "readingTime": "2 min read",
+    "tags": [
+      "BMI Calculator",
+      "TDEE Calculator",
+      "Calorie Calculator",
+      "Body Composition",
+      "Health Metrics",
+      "BMR Math"
+    ],
+    "excerpt": "Check units and assumptions before interpreting BMI or calorie estimates; a calculator does not assess your complete health.",
+    "relatedToolIds": [
+      "calorie-calculator",
+      "weight-gain-calculator",
+      "water-intake-calculator",
+      "unit-converter",
+      "percentage-calculator",
+      "countdown-timer"
+    ]
+  },
+  {
+    "slug": "pdf-security-encryption-watermarking-guide",
+    "title": "PDF Passwords and Watermarks: What They Protect",
+    "description": "Understand opening passwords, permission flags and visible watermarks before choosing a PDF protection workflow.",
+    "canonicalPath": "/blog/pdf-security-encryption-watermarking-guide",
+    "publishedTime": "2026-10-01T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "PDF Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "PDF Security",
+      "Password Protect PDF",
+      "Encrypt PDF",
+      "PDF Watermark",
+      "PDF Permissions",
+      "Client-Side Cryptography"
+    ],
+    "excerpt": "Understand opening passwords, permission flags and visible watermarks before choosing a PDF protection workflow.",
+    "relatedToolIds": [
+      "protect-pdf",
+      "unlock-pdf",
+      "pdf-watermark",
+      "pdf-compressor",
+      "pdf-merge",
+      "edit-pdf"
+    ]
+  },
+  {
+    "slug": "how-to-electronically-sign-pdf-contracts",
+    "title": "Add a Visible Signature to a PDF: Workflow and Limits",
+    "description": "Place a signature mark in a PDF and inspect the output. A visible signature image is different from a certificate-backed digital signature.",
+    "canonicalPath": "/blog/how-to-electronically-sign-pdf-contracts",
+    "publishedTime": "2026-10-01T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "PDF Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Sign PDF",
+      "Electronic Signature",
+      "Digital Signature",
+      "ESIGN Act",
+      "Contract Signing",
+      "PDF Tools"
+    ],
+    "excerpt": "Place a signature mark in a PDF and inspect the output. A visible signature image is different from a certificate-backed digital signature.",
+    "relatedToolIds": [
+      "pdf-signature",
+      "signature-maker",
+      "edit-pdf",
+      "photo-signature-joiner",
+      "signature-resizer",
+      "protect-pdf"
+    ]
+  },
+  {
+    "slug": "complete-image-formats-conversion-guide",
+    "title": "The Complete Web Image Formats Guide: WebP, AVIF, PNG, JPG & HEIC",
+    "description": "Master image formats across the web. Compare WebP, AVIF, PNG, JPEG, and iPhone HEIC compression, browser compatibility, and conversion workflows.",
+    "canonicalPath": "/blog/complete-image-formats-conversion-guide",
+    "publishedTime": "2026-10-02T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Image Formats",
+      "WebP Converter",
+      "HEIC to JPG",
+      "AVIF vs WebP",
+      "Image Compression",
+      "Web Performance"
+    ],
+    "excerpt": "From Apple's proprietary iPhone HEIC container to next-generation AVIF and universally compatible WebP, modern digital image formats present a confusing landscape of compression algorithms and browser support matrices. Here is the definitive technical comparison and conversion blueprint.",
+    "relatedToolIds": [
+      "heic-to-jpg",
+      "image-converter",
+      "batch-image-converter",
+      "image-compressor",
+      "image-resizer",
+      "crop-image"
+    ]
+  },
+  {
+    "slug": "remove-exif-metadata-photo-privacy-guide",
+    "title": "Remove EXIF Metadata: Re-encoding and Photo Privacy",
+    "description": "Understand how Zubware creates a fresh image, why JPEG quality can change, and what to check before sharing a photo.",
+    "canonicalPath": "/blog/remove-exif-metadata-photo-privacy-guide",
+    "publishedTime": "2026-10-02T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "EXIF Remover",
+      "Photo Privacy",
+      "Strip Geolocation",
+      "Metadata Scrubber",
+      "Digital Forensics",
+      "Cybersecurity"
+    ],
+    "excerpt": "Understand how Zubware creates a fresh image, why JPEG quality can change, and what to check before sharing a photo.",
+    "relatedToolIds": [
+      "exif-remover",
+      "image-info-viewer",
+      "image-compressor",
+      "batch-image-converter",
+      "heic-to-jpg",
+      "image-watermark"
+    ]
+  },
+  {
+    "slug": "json-xml-csv-yaml-data-transformation-guide",
+    "title": "JSON, CSV and XML Conversion Without Silent Data Loss",
+    "description": "Preserve identifiers, quoted multiline fields and nested values when moving between common data formats.",
+    "canonicalPath": "/blog/json-xml-csv-yaml-data-transformation-guide",
+    "publishedTime": "2026-10-03T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Developer Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "JSON to CSV",
+      "CSV to JSON",
+      "JSON to XML",
+      "XML to JSON",
+      "YAML Converter",
+      "Data Engineering"
+    ],
+    "excerpt": "Preserve identifiers, quoted multiline fields and nested values when moving between common data formats.",
+    "relatedToolIds": [
+      "json-to-csv",
+      "csv-to-json",
+      "json-to-xml",
+      "xml-to-json",
+      "json-formatter",
+      "json-validator"
+    ]
+  },
+  {
+    "slug": "regex-tester-pattern-debugging-guide",
+    "title": "Regex Demystified: Pattern Testing, Tokenization & Avoiding ReDoS",
+    "description": "Master regular expressions. Learn lookaheads, lookbehinds, non-capturing groups, and how to avoid catastrophic backtracking (ReDoS) vulnerability.",
+    "canonicalPath": "/blog/regex-tester-pattern-debugging-guide",
+    "publishedTime": "2026-10-03T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Developer Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Regex Tester",
+      "Regular Expressions",
+      "ReDoS Prevention",
+      "Pattern Matching",
+      "Lookaheads",
+      "Developer Tools"
+    ],
+    "excerpt": "Regular expressions are simultaneously one of software engineering's most potent superpowers and a frequent cause of catastrophic server crashes. Master regex syntax tokens, understand positive and negative lookarounds, and learn how to audit patterns against Regular Expression Denial of Service (ReDoS).",
+    "relatedToolIds": [
+      "regex-tester",
+      "url-parser",
+      "email-extractor",
+      "url-extractor",
+      "json-validator",
+      "find-and-replace"
+    ]
+  },
+  {
+    "slug": "cron-expression-generator-scheduling-guide",
+    "title": "Mastering Cron Expressions: Schedule Syntax, Crontab Generators & Pitfalls",
+    "description": "Learn Unix crontab syntax. Master the 5-field schedule format, special operators (*, /, -, ,), timezone drift, and automated crontab generation.",
+    "canonicalPath": "/blog/cron-expression-generator-scheduling-guide",
+    "publishedTime": "2026-10-04T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Developer Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Cron Generator",
+      "Cron Expression",
+      "Crontab Syntax",
+      "Task Scheduling",
+      "DevOps Tools",
+      "Linux Administration"
+    ],
+    "excerpt": "Configuring scheduled background jobs, automated database backups, and recurring billing tasks requires precision cron expressions. But one misplaced asterisk can accidentally execute a heavy batch job every single minute instead of once per week. Master the 5-field Unix crontab syntax and avoid dangerous production scheduling traps.",
+    "relatedToolIds": [
+      "cron-expression-generator",
+      "unix-timestamp-converter",
+      "time-zone-converter",
+      "working-days-calculator",
+      "countdown-timer",
+      "online-clock"
+    ]
+  },
+  {
+    "slug": "compress-convert-video-browser-ffmpeg-guide",
+    "title": "Browser Video Compression: Formats, Quality and Limits",
+    "description": "Zubware records resized video frames with browser MediaRecorder APIs. Understand the output format and test playback before sharing.",
+    "canonicalPath": "/blog/compress-convert-video-browser-ffmpeg-guide",
+    "publishedTime": "2026-10-04T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Video Guides",
+    "readingTime": "2 min read",
+    "tags": [
+      "Video Compressor",
+      "WebAssembly FFmpeg",
+      "Video Transcoding",
+      "CRF Bitrate",
+      "Browser Video Tools",
+      "Client-Side Video"
+    ],
+    "excerpt": "Zubware records resized video frames with browser MediaRecorder APIs. Understand the output format and test playback before sharing.",
+    "relatedToolIds": [
+      "video-compressor",
+      "video-aspect-ratio",
+      "video-trimmer",
+      "video-to-gif",
+      "video-to-audio",
+      "image-compressor"
+    ]
+  },
+  {
+    "slug": "salary-negotiation-ctc-hike-calculator-guide",
+    "title": "Salary Architecture & Negotiation: Demystifying CTC, In-Hand Pay & Hike Math",
+    "description": "Learn compensation architecture. Master the mathematical salary hike formula, CTC to in-hand deductions, provident fund math, and counter-offer negotiation.",
+    "canonicalPath": "/blog/salary-negotiation-ctc-hike-calculator-guide",
+    "publishedTime": "2026-10-04T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Career Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Salary Hike Calculator",
+      "CTC Calculator",
+      "In-Hand Salary",
+      "Salary Negotiation",
+      "Compensation Planning",
+      "Career Tools"
+    ],
+    "excerpt": "Receiving an offer letter with an impressive top-line \"Cost to Company\" (CTC) often leads to rude awakening on payday when monthly bank deposits fall 30% below expectations. Deconstruct the components of modern compensation packages, master percentage hike math, and negotiate counter-offers with confidence.",
+    "relatedToolIds": [
+      "salary-hike-calculator",
+      "ctc-calculator",
+      "percentage-calculator",
+      "us-income-tax-calculator",
+      "notice-period-calculator",
+      "experience-calculator"
+    ]
+  },
+  {
+    "slug": "linkedin-profile-headline-summary-optimization-guide",
+    "title": "LinkedIn Profile Architecture: SEO Headlines, Summaries & Recruiter Discovery",
+    "description": "Learn how LinkedIn Recruiter search algorithms rank profiles. Optimize your 220-character headline, keyword-rich summary, and search visibility.",
+    "canonicalPath": "/blog/linkedin-profile-headline-summary-optimization-guide",
+    "publishedTime": "2026-10-05T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Career Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "LinkedIn SEO",
+      "LinkedIn Headline",
+      "LinkedIn Summary",
+      "Recruiter Search",
+      "Career Branding",
+      "Resume Builder"
+    ],
+    "excerpt": "Over 87% of corporate recruiters actively source candidates on LinkedIn using LinkedIn Recruiter enterprise search. But having an invisible headline like \"Software Engineer at TechCorp\" hides your profile behind thousands of competitors. Learn how LinkedIn's search engine ranks profiles and how to build high-converting headlines.",
+    "relatedToolIds": [
+      "linkedin-headline-generator",
+      "linkedin-summary-generator",
+      "resume-score-analyzer",
+      "professional-skill-library",
+      "resume-builder",
+      "character-counter"
+    ]
+  },
+  {
+    "slug": "markdown-syntax-technical-writing-guide",
+    "title": "Markdown Technical Writing Guide: Syntax, Tables, Code Blocks & HTML Export",
+    "description": "Master Markdown and GitHub Flavored Markdown (GFM). Build clean tables, task lists, fenced code blocks with syntax highlighting, and export to HTML.",
+    "canonicalPath": "/blog/markdown-syntax-technical-writing-guide",
+    "publishedTime": "2026-10-05T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Text & Writing Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Markdown Editor",
+      "Markdown Syntax",
+      "GitHub Flavored Markdown",
+      "Technical Writing",
+      "Markdown to HTML",
+      "Documentation Tools"
+    ],
+    "excerpt": "Invented by John Gruber in 2004, Markdown has become the global standard for software documentation, GitHub READMEs, and technical authoring. Master CommonMark and GitHub Flavored Markdown (GFM) extensions: syntax-highlighted code fences, multi-column tables, task lists, and secure HTML export.",
+    "relatedToolIds": [
+      "markdown-editor",
+      "word-counter",
+      "character-counter",
+      "reading-time-calculator",
+      "case-converter",
+      "text-cleaner"
+    ]
+  },
+  {
+    "slug": "diffusion-model-prompting-lighting-camera-guide",
+    "title": "Diffusion Model Cinematography: Camera Lenses, Lighting & Aspect Ratios in Midjourney & Flux",
+    "description": "Master image generation prompting for Midjourney, Flux, and SDXL. Learn focal length optics, lighting styles, color grading, and aspect ratio syntax.",
+    "canonicalPath": "/blog/diffusion-model-prompting-lighting-camera-guide",
+    "publishedTime": "2026-10-05T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "AI Prompt Guides",
+    "readingTime": "7 min read",
+    "tags": [
+      "Midjourney Prompts",
+      "Flux Prompts",
+      "AI Image Generation",
+      "Diffusion Models",
+      "Cinematic Prompts",
+      "Prompt Builder"
+    ],
+    "excerpt": "Typing lazy buzzwords like \"hyperrealistic, 8k, photorealistic, trending on ArtStation\" no longer works on modern diffusion models like Flux.1 and Midjourney v6. State-of-the-art models understand real-world optics, cinematographic lighting setups, camera sensors, and focal lengths. Master the optical vocabulary of visual generation.",
+    "relatedToolIds": [
+      "midjourney-prompt-builder",
+      "flux-prompt-builder",
+      "product-photo-prompt-builder",
+      "logo-prompt-builder",
+      "veo-prompt-builder",
+      "image-resizer"
+    ]
+  }
+]

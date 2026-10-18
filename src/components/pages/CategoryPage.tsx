@@ -9,6 +9,7 @@ import { toggleFavorite, isFavorite } from '../../lib/userStore';
 import { ArrowRight, CheckCircle2, Star, Filter, Sparkles, BookOpen, ChevronDown, Layers, HelpCircle } from 'lucide-react';
 import { SEOHead } from '../SEOHead';
 import { Breadcrumb } from '../Breadcrumb';
+import { directoryTags, filterDirectoryTools } from '../../lib/toolDirectory';
 import { ToolIcon } from '../common/ToolIcon';
 
 interface CategoryPageProps {
@@ -23,14 +24,19 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
   onShowToast,
 }) => {
   const { currentLang, t } = useLanguage();
-  const allTools = getTranslatedTools(currentLang);
+  const allTools = useMemo(() => getTranslatedTools(currentLang), [currentLang]);
 
   const [activeCategory, setActiveCategory] = useState<string>(categorySlug || 'all');
   const [selectedTag, setSelectedTag] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState('');
+  const [tagQuery, setTagQuery] = useState('');
+  const [showTagPicker, setShowTagPicker] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
     setSelectedTag('All');
+    setTagQuery('');
+    setShowTagPicker(false);
     setOpenFaq(0);
     if (categorySlug) {
       setActiveCategory(categorySlug);
@@ -57,18 +63,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
     ];
   }, [activeCategory, activeCategoryMeta.defaultName]);
 
-  // Filter tools by active category
-  const filteredTools = allTools.filter((tool) => activeCategoryMeta.match(tool.category));
-
-  // Extract all tags from filtered tools
-  const allTags = Array.from(
-    new Set(filteredTools.flatMap((tool) => tool.tags || []))
-  );
-
-  const finalTools = filteredTools.filter((tool) => {
-    if (selectedTag === 'All') return true;
-    return tool.tags && tool.tags.includes(selectedTag);
-  });
+  const filteredTools = useMemo(() => allTools.filter(tool => activeCategoryMeta.match(tool.category)), [allTools, activeCategoryMeta]);
+  const tags = useMemo(() => directoryTags(filteredTools), [filteredTools]);
+  const popularTags = useMemo(() => tags.filter(({ tag }) => !['free', 'online', 'tool', 'tools'].includes(tag.toLowerCase())).slice(0, 12), [tags]);
+  const matchingTags = useMemo(() => tags.filter(({ tag }) => tag.toLocaleLowerCase().includes(tagQuery.trim().toLocaleLowerCase())), [tags, tagQuery]);
+  const finalTools = useMemo(() => filterDirectoryTools(filteredTools, searchQuery, selectedTag), [filteredTools, searchQuery, selectedTag]);
 
   // Matching guides from the 30-article library
   const matchingGuides = useMemo(() => {
@@ -255,39 +254,41 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
         </section>
       )}
 
-      {/* Tags Filter Pill List */}
-      {allTags.length > 0 && (
-        <div className="flex items-center gap-2 overflow-x-auto py-1 scrollbar-none text-xs" role="toolbar" aria-label="Tag filter">
-          <span className="text-slate-400 font-bold flex items-center gap-1 shrink-0">
-            <Filter className="w-3.5 h-3.5" aria-hidden="true" /> Tags:
-          </span>
-          <button
-            onClick={() => setSelectedTag('All')}
-            aria-label="Filter by all tags"
-            className={`px-3 py-1 rounded-full text-[11px] font-semibold transition-all cursor-pointer ${
-              selectedTag === 'All'
-                ? 'bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 font-bold'
-                : 'bg-slate-100/80 dark:bg-slate-800/80 text-slate-500 hover:text-slate-900 dark:hover:text-white'
-            }`}
-          >
-            All ({filteredTools.length})
-          </button>
-          {allTags.map((tag) => (
-            <button
-              key={tag}
-              onClick={() => setSelectedTag(tag)}
-              aria-label={`Filter by tag ${tag}`}
-              className={`px-3 py-1 rounded-full text-[11px] font-semibold transition-all whitespace-nowrap cursor-pointer ${
-                selectedTag === tag
-                  ? 'bg-indigo-600 text-white font-bold'
-                  : 'bg-slate-100/80 dark:bg-slate-800/80 text-slate-500 hover:text-slate-900 dark:hover:text-white'
-              }`}
-            >
-              #{tag}
+      <section className="glass-panel p-5 rounded-3xl space-y-4" aria-label="Find tools in this category">
+        <label htmlFor="directory-search" className="block text-sm font-bold text-slate-900 dark:text-white">Find a tool</label>
+        <input id="directory-search" type="search" value={searchQuery} onChange={e => setSearchQuery(e.target.value)}
+          placeholder="Search tools, for example PDF merge or photo resize"
+          className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-base text-slate-900 dark:text-white" />
+        <div className="flex flex-wrap gap-2" role="toolbar" aria-label="Tag filter">
+          <button type="button" onClick={() => setSelectedTag('All')} aria-label="Filter by all tags" aria-pressed={selectedTag === 'All'}
+            className={`px-3 py-2 rounded-xl text-xs font-semibold ${selectedTag === 'All' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200'}`}>All ({filteredTools.length})</button>
+          {popularTags.map(({tag, count}) => (
+            <button key={tag} type="button" onClick={() => setSelectedTag(tag)} aria-label={`Filter by tag ${tag}`} aria-pressed={selectedTag === tag}
+              className={`px-3 py-2 rounded-xl text-xs font-semibold ${selectedTag === tag ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200'}`}>
+              {tag} ({count})
             </button>
           ))}
+          <button type="button" onClick={() => setShowTagPicker(!showTagPicker)} aria-expanded={showTagPicker} aria-controls="directory-tag-picker"
+            className="px-3 py-2 rounded-xl text-xs font-bold text-indigo-600 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-700">Browse all tags</button>
         </div>
-      )}
+        {showTagPicker && (
+          <div id="directory-tag-picker" className="space-y-3 border-t border-slate-200 dark:border-slate-700 pt-4">
+            <label htmlFor="directory-tag-search" className="block text-xs font-bold text-slate-700 dark:text-slate-200">Search tags</label>
+            <input id="directory-tag-search" type="search" value={tagQuery} onChange={e => setTagQuery(e.target.value)} placeholder="Type a topic or task"
+              className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 text-base text-slate-900 dark:text-white" />
+            <p className="text-xs text-slate-500 dark:text-slate-400">{matchingTags.length > 30 ? `Showing 30 of ${matchingTags.length} matching tags. Refine your search to find a specific tag.` : `${matchingTags.length} matching tags`}</p>
+            <div className="flex flex-wrap gap-2">
+              {matchingTags.slice(0, 30).map(({tag, count}) => <button key={tag} type="button" onClick={() => { setSelectedTag(tag); setShowTagPicker(false); }}
+                aria-pressed={selectedTag === tag} className="px-3 py-2 rounded-xl text-xs bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">{tag} ({count})</button>)}
+            </div>
+          </div>
+        )}
+        <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+          <p role="status" className="text-slate-600 dark:text-slate-300">{finalTools.length} of {filteredTools.length} tools{selectedTag !== 'All' ? ` · Tag: ${selectedTag}` : ''}</p>
+          {(searchQuery || selectedTag !== 'All') && <button type="button" onClick={() => { setSearchQuery(''); setSelectedTag('All'); }} className="font-bold text-indigo-600 dark:text-indigo-300">Clear filters</button>}
+        </div>
+        {finalTools.length === 0 && <p className="text-sm text-slate-600 dark:text-slate-300">No tools match these filters. Try a shorter search or clear the selected tag.</p>}
+      </section>
 
       {/* Tool Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

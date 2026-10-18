@@ -1,6 +1,11 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Download, Share2, ArrowRightLeft, Scissors, Layers, RefreshCw, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import JSZip from 'jszip';
+import {decodeBrowserImage} from '../../lib/browserImageDecode';
+import {encodeCanvasBlob} from '../../lib/canvasEncoding';
+import {MAX_RESIZE_EDGE,MAX_RESIZE_PIXELS} from '../../lib/imageResize';
+import {alphaContentBounds,splitImageRectangles,combinedImageLayout,combineRatioAtPosition,ImageRectangle} from '../../lib/imageSplitCombine';
 import { useLanguage } from '../../context/LanguageContext';
 
 interface ImageSplitterMergerToolProps {
@@ -45,35 +50,52 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + ' ' + sizes[i];
   };
 
-  // Helper: compute transparent padding auto-trim
-  const computeTrim = useCallback((img: HTMLImageElement) => {
-    const c = document.createElement('canvas');
-    c.width = img.naturalWidth;
-    c.height = img.naturalHeight;
-    const cx = c.getContext('2d');
-    if (!cx) return { x: 0, y: 0, w: img.naturalWidth, h: img.naturalHeight };
-    cx.drawImage(img, 0, 0);
+  const [error,setError] = useState('');
+  const [exporting,setExporting] = useState(false);
+  const loads = useRef({split:0,a:0,b:0});
+  const sourceUrls = useRef({split:'',a:'',b:''});
+  const trims = useRef(new WeakMap<HTMLImageElement,ImageRectangle>());
+  const exportKey=JSON.stringify([activeTab,trimPadding,splitImg?.src,splitPct,splitOrientation,imgA?.src,imgB?.src,combinePct,combineOrientation]);
+  const exportRef=useRef(exportKey);exportRef.current=exportKey;
+  const alive=useRef(true);
+  useEffect(()=>setCopied(false),[exportKey]);
+  useEffect(()=>{alive.current=true;return()=>{alive.current=false;loads.current.split++;loads.current.a++;loads.current.b++;Object.values(sourceUrls.current).forEach(url=>{if(url) URL.revokeObjectURL(url);});};},[]);
+  const computeTrim = useCallback((img:HTMLImageElement):ImageRectangle => {
+    const cached=trims.current.get(img);if(cached) return cached;
+    if(img.naturalWidth>MAX_RESIZE_EDGE || img.naturalHeight>MAX_RESIZE_EDGE || img.naturalWidth*img.naturalHeight>MAX_RESIZE_PIXELS) throw new Error('Choose images up to 16,384 px per side and 40 megapixels.');
+    const canvas=document.createElement('canvas');canvas.width=img.naturalWidth;canvas.height=img.naturalHeight;
+    const ctx=canvas.getContext('2d');if(!ctx) throw new Error('Could not inspect image padding. Try a smaller image.');
+    ctx.drawImage(img,0,0);
+    const result=alphaContentBounds(ctx.getImageData(0,0,canvas.width,canvas.height).data,canvas.width,canvas.height);
+    trims.current.set(img,result);return result;
+  },[]);
+  const selectImage = async (file:File,slot:'split'|'a'|'b') => {
+    const run=++loads.current[slot];setError('');
+    let temporaryUrl:string|undefined;
     try {
-      const data = cx.getImageData(0, 0, c.width, c.height).data;
-      let minX = c.width, minY = c.height, maxX = 0, maxY = 0, found = false;
-      const step = 2;
-      for (let y = 0; y < c.height; y += step) {
-        for (let x = 0; x < c.width; x += step) {
-          if (data[(y * c.width + x) * 4 + 3] > 10) {
-            found = true;
-            if (x < minX) minX = x;
-            if (x > maxX) maxX = x;
-            if (y < minY) minY = y;
-            if (y > maxY) maxY = y;
-          }
-        }
-      }
-      if (!found) return { x: 0, y: 0, w: img.naturalWidth, h: img.naturalHeight };
-      return { x: minX, y: minY, w: Math.max(1, maxX - minX), h: Math.max(1, maxY - minY) };
-    } catch {
-      return { x: 0, y: 0, w: img.naturalWidth, h: img.naturalHeight };
-    }
-  }, []);
+      const decoded=await decodeBrowserImage(file);temporaryUrl=decoded.url;
+      const trim=computeTrim(decoded.image);
+      if(run!==loads.current[slot] || !alive.current) return;
+      if(sourceUrls.current[slot]) URL.revokeObjectURL(sourceUrls.current[slot]);
+      sourceUrls.current[slot]=decoded.url;temporaryUrl=undefined;
+      if(slot==='split') {setSplitImg(decoded.image);setSplitFile(file);setSplitImgTrim(trim);}
+      if(slot==='a') {setImgA(decoded.image);setFileA(file);}
+      if(slot==='b') {setImgB(decoded.image);setFileB(file);}
+      onShowToast('Image loaded successfully');
+    } catch(failure) {
+      if(run===loads.current[slot] && alive.current) setError(failure instanceof Error?failure.message:'Could not open this image.');
+    } finally {if(temporaryUrl) URL.revokeObjectURL(temporaryUrl);}
+  };
+  const saveBlob = (blob:Blob,name:string) => {
+    const url=URL.createObjectURL(blob),link=document.createElement('a');link.download=name;link.href=url;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+  };
+  const runExport = async (work:(current:()=>boolean)=>Promise<void>) => {
+    if(exporting) return;
+    const key=exportKey,current=()=>alive.current && key===exportRef.current;
+    setExporting(true);setError('');
+    try {await work(current);} catch(failure) {if(current()) setError(failure instanceof Error?failure.message:'Could not export this image.');}
+    finally {if(alive.current) setExporting(false);}
+  };
 
   const getRect = useCallback((img: HTMLImageElement, cachedTrim: { x: number; y: number; w: number; h: number } | null) => {
     if (trimPadding) {
@@ -82,21 +104,6 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     }
     return { x: 0, y: 0, w: img.naturalWidth, h: img.naturalHeight };
   }, [trimPadding, computeTrim]);
-
-  // Load Image helper
-  const loadImage = (file: File): Promise<HTMLImageElement> => {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      img.onload = () => resolve(img);
-      img.onerror = reject;
-      img.src = URL.createObjectURL(file);
-    });
-  };
-
-  // Canvas export to Blob
-  const canvasToBlob = (canvas: HTMLCanvasElement): Promise<Blob | null> => {
-    return new Promise(res => canvas.toBlob(res, 'image/png'));
-  };
 
   // --- DRAW SPLIT CANVAS ---
   const drawSplit = useCallback(() => {
@@ -108,8 +115,8 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     const r = getRect(splitImg, splitImgTrim);
     const MAXDIM = 1200;
     const scale = Math.min(1, MAXDIM / Math.max(r.w, r.h));
-    const cw = Math.round(r.w * scale);
-    const ch = Math.round(r.h * scale);
+    const cw = Math.max(1,Math.round(r.w * scale));
+    const ch = Math.max(1,Math.round(r.h * scale));
 
     canvas.width = cw;
     canvas.height = ch;
@@ -146,7 +153,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   }, [splitImg, splitImgTrim, splitOrientation, splitPct, getRect]);
 
   useEffect(() => {
-    if (activeTab === 'split') drawSplit();
+    if (activeTab === 'split') {try {drawSplit();setError('');} catch(failure) {setError(failure instanceof Error?failure.message:'Could not draw split preview.');}}
   }, [activeTab, drawSplit]);
 
   // --- SPLIT CANVAS DRAG HANDLER ---
@@ -177,113 +184,36 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   const buildSplitParts = () => {
     if (!splitImg) return null;
     const r = getRect(splitImg, splitImgTrim);
-    const pct = splitPct / 100;
-    const cA = document.createElement('canvas');
-    const cB = document.createElement('canvas');
-
-    if (splitOrientation === 'v') {
-      const w = Math.round(r.w * pct);
-      const rw = r.w - w;
-      cA.width = w; cA.height = r.h;
-      cA.getContext('2d')?.drawImage(splitImg, r.x, r.y, w, r.h, 0, 0, w, r.h);
-      cB.width = rw; cB.height = r.h;
-      cB.getContext('2d')?.drawImage(splitImg, r.x + w, r.y, rw, r.h, 0, 0, rw, r.h);
-    } else {
-      const h = Math.round(r.h * pct);
-      const rh = r.h - h;
-      cA.width = r.w; cA.height = h;
-      cA.getContext('2d')?.drawImage(splitImg, r.x, r.y, r.w, h, 0, 0, r.w, h);
-      cB.width = r.w; cB.height = rh;
-      cB.getContext('2d')?.drawImage(splitImg, r.x, r.y + h, r.w, rh, 0, 0, r.w, rh);
+    const parts=splitImageRectangles(r,splitPct,splitOrientation).map(rect=>{
+      const canvas=document.createElement('canvas');canvas.width=rect.w;canvas.height=rect.h;
+      const ctx=canvas.getContext('2d');if(!ctx) throw new Error('Could not create split canvas.');
+      ctx.drawImage(splitImg,rect.x,rect.y,rect.w,rect.h,0,0,rect.w,rect.h);return canvas;
+    });
+    return {cA:parts[0],cB:parts[1]};
+  };
+  const splitBlobs = async () => {
+    const parts=buildSplitParts();if(!parts) throw new Error('Select an image first.');
+    return [await encodeCanvasBlob(parts.cA,'image/png'),await encodeCanvasBlob(parts.cB,'image/png')];
+  };
+  const saveSplitZip = async (blobs:Blob[],current:()=>boolean) => {
+    const zip=new JSZip();zip.file('split-part-a.png',blobs[0]);zip.file('split-part-b.png',blobs[1]);
+    const blob=await zip.generateAsync({type:'blob'});if(current()) {saveBlob(blob,'split-parts.zip');onShowToast('Both split parts saved in one ZIP.');}
+  };
+  const downloadSplitBoth = () => runExport(async current=>{const blobs=await splitBlobs();if(current()) await saveSplitZip(blobs,current);});
+  const shareSplitBoth = () => runExport(async current=>{
+    const blobs=await splitBlobs();if(!current()) return;
+    const files=blobs.map((blob,index)=>new File([blob],`split-part-${index?'b':'a'}.png`,{type:'image/png'}));
+    if(navigator.canShare?.({files})) {
+      try {await navigator.share({files,title:'Split Parts from Zubware'});return;}
+      catch(failure) {if(failure instanceof DOMException && failure.name==='AbortError') return;}
     }
-    return { cA, cB };
-  };
-
-  const downloadSplitBoth = async () => {
-    const parts = buildSplitParts();
-    if (!parts) return;
-    const blobA = await canvasToBlob(parts.cA);
-    const blobB = await canvasToBlob(parts.cB);
-    if (!blobA || !blobB) return;
-
-    const a1 = document.createElement('a'); a1.download = 'split-part-a.png'; a1.href = URL.createObjectURL(blobA); a1.click();
-    setTimeout(() => {
-      const a2 = document.createElement('a'); a2.download = 'split-part-b.png'; a2.href = URL.createObjectURL(blobB); a2.click();
-      onShowToast('Both split parts downloaded!');
-    }, 400);
-  };
-
-  const shareSplitBoth = async () => {
-    const parts = buildSplitParts();
-    if (!parts) return;
-    const blobA = await canvasToBlob(parts.cA);
-    const blobB = await canvasToBlob(parts.cB);
-    if (!blobA || !blobB) return;
-
-    const files = [
-      new File([blobA], 'split-part-a.png', { type: 'image/png' }),
-      new File([blobB], 'split-part-b.png', { type: 'image/png' })
-    ];
-
-    if (navigator.canShare && navigator.canShare({ files })) {
-      try {
-        await navigator.share({ files, title: 'Split Parts from Zubware' });
-        onShowToast('Shared both split images!');
-        return;
-      } catch {
-        // User cancelled share
-      }
-    }
-    downloadSplitBoth();
-  };
+    if(current()) await saveSplitZip(blobs,current);
+  });
 
   // --- COMBINE MODE CALCULATIONS & DRAWING ---
   const combineLayout = useCallback(() => {
     if (!imgA || !imgB) return null;
-    const pct = combinePct / 100;
-    const MAXDIM = 1200;
-    const rA = getRect(imgA, null);
-    const rB = getRect(imgB, null);
-
-    if (combineOrientation === 'v') {
-      const targetH = Math.min(rA.h, rB.h, MAXDIM);
-      const scaleA = targetH / rA.h;
-      const scaleB = targetH / rB.h;
-      const cropAW = rA.w * pct;
-      const cropBW = rB.w * (1 - pct);
-      const Lw = Math.max(1, Math.round(cropAW * scaleA));
-      const Rw = Math.max(1, Math.round(cropBW * scaleB));
-      return {
-        pct,
-        orient: 'v',
-        totalW: Lw + Rw,
-        totalH: targetH,
-        aSrc: [rA.x, rA.y, cropAW, rA.h] as [number, number, number, number],
-        aDst: [0, 0, Lw, targetH] as [number, number, number, number],
-        bSrc: [rB.x + rB.w - cropBW, rB.y, cropBW, rB.h] as [number, number, number, number],
-        bDst: [Lw, 0, Rw, targetH] as [number, number, number, number],
-        seamPos: Lw
-      };
-    } else {
-      const targetW = Math.min(rA.w, rB.w, MAXDIM);
-      const scaleA = targetW / rA.w;
-      const scaleB = targetW / rB.w;
-      const cropAH = rA.h * pct;
-      const cropBH = rB.h * (1 - pct);
-      const Th = Math.max(1, Math.round(cropAH * scaleA));
-      const Bh = Math.max(1, Math.round(cropBH * scaleB));
-      return {
-        pct,
-        orient: 'h',
-        totalW: targetW,
-        totalH: Th + Bh,
-        aSrc: [rA.x, rA.y, rA.w, cropAH] as [number, number, number, number],
-        aDst: [0, 0, targetW, Th] as [number, number, number, number],
-        bSrc: [rB.x, rB.y + rB.h - cropBH, rB.w, cropBH] as [number, number, number, number],
-        bDst: [0, Th, targetW, Bh] as [number, number, number, number],
-        seamPos: Th
-      };
-    }
+    return combinedImageLayout(getRect(imgA,null),getRect(imgB,null),combinePct,combineOrientation);
   }, [imgA, imgB, combinePct, combineOrientation, getRect]);
 
   const drawCombine = useCallback(() => {
@@ -295,8 +225,10 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     const L = combineLayout();
     if (!L) return;
 
-    canvas.width = L.totalW;
-    canvas.height = L.totalH;
+    const scale=Math.min(1,1200/Math.max(L.totalW,L.totalH));
+    canvas.width = Math.max(1,Math.round(L.totalW*scale));
+    canvas.height = Math.max(1,Math.round(L.totalH*scale));
+    ctx.scale(canvas.width/L.totalW,canvas.height/L.totalH);
     ctx.clearRect(0, 0, L.totalW, L.totalH);
     ctx.drawImage(imgA, ...L.aSrc, ...L.aDst);
     ctx.drawImage(imgB, ...L.bSrc, ...L.bDst);
@@ -327,7 +259,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   }, [combineLayout, imgA, imgB]);
 
   useEffect(() => {
-    if (activeTab === 'combine') drawCombine();
+    if (activeTab === 'combine') {try {drawCombine();setError('');} catch(failure) {setError(failure instanceof Error?failure.message:'Could not draw combined preview.');}}
   }, [activeTab, drawCombine]);
 
   // COMBINE POINTER DRAG
@@ -351,36 +283,27 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
     } else {
       pct = ((e.clientY - rect.top) / rect.height) * 100;
     }
+    if(imgA && imgB) pct=combineRatioAtPosition(getRect(imgA,null),getRect(imgB,null),pct/100,combineOrientation);
     setCombinePct(Math.min(95, Math.max(5, Math.round(pct))));
   };
 
-  const downloadCombinedImage = async () => {
-    if (!combineCanvasRef.current) return;
-    const blob = await canvasToBlob(combineCanvasRef.current);
-    if (!blob) return;
-    const a = document.createElement('a');
-    a.download = 'combined-image.png';
-    a.href = URL.createObjectURL(blob);
-    a.click();
-    onShowToast('Combined image saved!');
+  const combinedBlob = async () => {
+    const layout=combineLayout();if(!layout || !imgA || !imgB) throw new Error('Choose both images first.');
+    const canvas=document.createElement('canvas');canvas.width=layout.totalW;canvas.height=layout.totalH;
+    const ctx=canvas.getContext('2d');if(!ctx) throw new Error('Could not create combined canvas.');
+    ctx.drawImage(imgA,...layout.aSrc,...layout.aDst);ctx.drawImage(imgB,...layout.bSrc,...layout.bDst);
+    return encodeCanvasBlob(canvas,'image/png');
   };
-
-  const copyCombinedToClipboard = async () => {
-    if (!combineCanvasRef.current) return;
-    const blob = await canvasToBlob(combineCanvasRef.current);
-    if (!blob) return;
-    try {
-      await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
-      setCopied(true);
-      onShowToast(t('copiedToClipboard', 'Copied to Clipboard'));
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      onShowToast('Clipboard not supported, downloading image...');
-      downloadCombinedImage();
-    }
-  };
+  const downloadCombinedImage = () => runExport(async current=>{const blob=await combinedBlob();if(current()) {saveBlob(blob,'combined-image.png');onShowToast('Combined image saved!');}});
+  const copyCombinedToClipboard = () => runExport(async current=>{
+    const blob=await combinedBlob();if(!current()) return;
+    try {await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);if(current()) {setCopied(true);onShowToast(t('copiedToClipboard','Copied to Clipboard'));}}
+    catch {if(current()) {saveBlob(blob,'combined-image.png');onShowToast('Clipboard unavailable; image downloaded.');}}
+  });
 
   const swapImages = () => {
+    loads.current.a++;loads.current.b++;
+    [sourceUrls.current.a,sourceUrls.current.b]=[sourceUrls.current.b,sourceUrls.current.a];
     const tempImg = imgA;
     setImgA(imgB);
     setImgB(tempImg);
@@ -393,6 +316,9 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   };
 
   const handleReset = () => {
+    loads.current.split++;loads.current.a++;loads.current.b++;
+    Object.values(sourceUrls.current).forEach(url=>{if(url) URL.revokeObjectURL(url);});sourceUrls.current={split:'',a:'',b:''};
+    setError('');setCopied(false);setSplitPct(50);setCombinePct(50);setSplitOrientation('v');setCombineOrientation('v');
     setSplitImg(null);
     setSplitFile(null);
     setSplitImgTrim(null);
@@ -409,6 +335,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
   return (
     <div className="w-full max-w-3xl mx-auto my-6 glass-panel rounded-3xl p-5 sm:p-7 shadow-xl transition-all">
       
+      {error && <p role="alert" className="p-3 mb-4 rounded-xl bg-rose-50 dark:bg-rose-950/30 text-rose-700 dark:text-rose-300 text-sm">{error}</p>}
       {/* Header bar */}
       <div className="flex items-center justify-between p-5 border-b border-white/20 dark:border-white/10 rounded-2xl glass-card">
         <div className="flex items-center gap-3">
@@ -433,6 +360,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
       </div>
 
       <div className="p-4 sm:p-6 space-y-6">
+        <p className="text-xs text-slate-500">Preview handles and guide lines are excluded from downloads. Combined output keeps the smaller input's shared dimension; previews fit within 1,200 pixels. Split parts retain their source pixels. Animated inputs export a still frame.</p>
         {/* Global Option */}
         <div className="flex items-center justify-between p-4 rounded-2xl glass-card text-xs sm:text-sm">
           <span className="text-slate-700 dark:text-slate-300">
@@ -441,6 +369,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
           <label className="relative inline-flex items-center cursor-pointer">
             <input
               type="checkbox"
+              aria-label="Auto-trim transparent padding"
               checked={trimPadding}
               onChange={(e) => setTrimPadding(e.target.checked)}
               className="sr-only peer"
@@ -499,21 +428,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
               <div
                 onClick={() => splitInputRef.current?.click()}
                 onDragOver={(e) => e.preventDefault()}
-                onDrop={async (e) => {
-                  e.preventDefault();
-                  const file = e.dataTransfer.files?.[0];
-                  if (file && file.type.startsWith('image/')) {
-                    try {
-                      const img = await loadImage(file);
-                      setSplitImg(img);
-                      setSplitFile(file);
-                      setSplitImgTrim(computeTrim(img));
-                      onShowToast('Image loaded successfully');
-                    } catch {
-                      onShowToast('Failed to load image');
-                    }
-                  }
-                }}
+                onDrop={e=>{e.preventDefault();const file=e.dataTransfer.files?.[0];if(file) void selectImage(file,'split');}}
                 className="flex flex-col items-center justify-center p-10 border-2 border-dashed border-indigo-300/60 dark:border-indigo-900/50 rounded-3xl glass-card hover:border-indigo-500 dark:hover:border-indigo-400 transition-colors cursor-pointer text-center group"
               >
                 <div className="w-16 h-16 bg-white/90 dark:bg-slate-800/90 rounded-2xl shadow-sm flex items-center justify-center mb-4 group-hover:scale-110 transition-transform border border-white/50 dark:border-white/10">
@@ -536,20 +451,8 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                   type="file"
                   accept="image/*"
                   className="hidden"
-                  onChange={async (e) => {
-                    const file = e.target.files?.[0];
-                    if (file) {
-                      try {
-                        const img = await loadImage(file);
-                        setSplitImg(img);
-                        setSplitFile(file);
-                        setSplitImgTrim(computeTrim(img));
-                        onShowToast('Image loaded successfully');
-                      } catch {
-                        onShowToast('Failed to load image');
-                      }
-                    }
-                  }}
+                  aria-label="Split source image"
+                  onChange={e=>{const file=e.target.files?.[0];e.target.value='';if(file) void selectImage(file,'split');}}
                 />
               </div>
             ) : (
@@ -613,6 +516,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                     type="range"
                     min="5"
                     max="95"
+                    aria-label="Split position"
                     value={splitPct}
                     onChange={(e) => setSplitPct(Number(e.target.value))}
                     className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
@@ -634,12 +538,14 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <button
                     onClick={downloadSplitBoth}
+                    disabled={exporting}
                     className="flex items-center justify-center gap-2 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs sm:text-sm rounded-xl shadow-md shadow-indigo-600/20 transition-all active:scale-[0.98] cursor-pointer"
                   >
-                    <Download className="w-4 h-4" /> {t('downloadBothParts', 'Download Both Parts')}
+                    <Download className="w-4 h-4" /> {t('downloadPartsZip', 'Download Parts ZIP')}
                   </button>
                   <button
                     onClick={shareSplitBoth}
+                    disabled={exporting}
                     className="flex items-center justify-center gap-2 py-3 px-4 glass-btn text-slate-800 dark:text-slate-200 font-semibold text-xs sm:text-sm rounded-xl transition-all active:scale-[0.98] cursor-pointer"
                   >
                     <Share2 className="w-4 h-4" /> {t('shareBothParts', 'Share Both Parts')}
@@ -688,19 +594,8 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        try {
-                          const img = await loadImage(file);
-                          setImgA(img);
-                          setFileA(file);
-                          onShowToast('Image A loaded');
-                        } catch {
-                          onShowToast('Failed to load Image A');
-                        }
-                      }
-                    }}
+                  aria-label="Image A"
+                  onChange={e=>{const file=e.target.files?.[0];e.target.value='';if(file) void selectImage(file,'a');}}
                   />
                 </label>
               </div>
@@ -743,19 +638,8 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                     type="file"
                     accept="image/*"
                     className="hidden"
-                    onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        try {
-                          const img = await loadImage(file);
-                          setImgB(img);
-                          setFileB(file);
-                          onShowToast('Image B loaded');
-                        } catch {
-                          onShowToast('Failed to load Image B');
-                        }
-                      }
-                    }}
+                  aria-label="Image B"
+                  onChange={e=>{const file=e.target.files?.[0];e.target.value='';if(file) void selectImage(file,'b');}}
                   />
                 </label>
               </div>
@@ -819,6 +703,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                     type="range"
                     min="5"
                     max="95"
+                    aria-label="Combine ratio"
                     value={combinePct}
                     onChange={(e) => setCombinePct(Number(e.target.value))}
                     className="w-full h-2 bg-slate-200 dark:bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-600"
@@ -840,12 +725,14 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                   <button
                     onClick={downloadCombinedImage}
+                    disabled={exporting}
                     className="flex items-center justify-center gap-2 py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-xs sm:text-sm rounded-xl shadow-md shadow-indigo-600/20 transition-all active:scale-[0.98] cursor-pointer"
                   >
                     <Download className="w-4 h-4" /> {t('saveCombinedImage', 'Save Combined Image')}
                   </button>
                   <button
                     onClick={copyCombinedToClipboard}
+                    disabled={exporting}
                     className="flex items-center justify-center gap-2 py-3 px-4 glass-btn text-slate-900 dark:text-white font-semibold text-xs sm:text-sm rounded-xl transition-all active:scale-[0.98] cursor-pointer"
                   >
                     {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4" />}

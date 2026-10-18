@@ -10,8 +10,10 @@ export interface ImageMetadata {
   lastModified: string;
   estimatedPrintSize: string;
   exifData: Record<string, string>;
+  exifStatus: string;
 }
 
+import { inspectJpegExif } from './jpegExif';
 import { formatDecimalBytes } from './fileSizeStandard';
 import { encodeCanvasBlob } from './canvasEncoding';
 import { cleanedImageMime } from './cleanImageExport';
@@ -62,7 +64,7 @@ export async function getImageMetadata(file: File, img: HTMLImageElement): Promi
   }
 
   // Parse EXIF tags from array buffer if available
-  const exifData = await parseExifTags(file);
+  const inspection = inspectJpegExif(new Uint8Array(await file.arrayBuffer()));
 
   return {
     fileName: file.name,
@@ -71,46 +73,13 @@ export async function getImageMetadata(file: File, img: HTMLImageElement): Promi
     width,
     height,
     aspectRatio,
-    colorDepth: '24-bit sRGB' + (hasTransparency ? ' + Alpha' : ''),
+    colorDepth: 'Browser-decoded RGB' + (hasTransparency ? ' + Alpha' : ''),
     hasTransparency,
     lastModified: new Date(file.lastModified).toLocaleString(),
     estimatedPrintSize,
-    exifData
+    exifData: inspection.tags,
+    exifStatus: inspection.status
   };
-}
-
-async function parseExifTags(file: File): Promise<Record<string, string>> {
-  const tags: Record<string, string> = {};
-  try {
-    const buffer = await file.arrayBuffer();
-    const view = new DataView(buffer);
-
-    // Basic JPEG EXIF Header check
-    if (view.getUint16(0, false) === 0xFFD8) {
-      let offset = 2;
-      const length = view.byteLength;
-      while (offset < length) {
-        const marker = view.getUint16(offset, false);
-        offset += 2;
-        if (marker === 0xFFE1) {
-          // APP1 EXIF
-          tags['EXIF Header'] = 'APP1 Marker Present';
-          tags['Camera Device'] = 'Standard Digital Camera';
-          tags['GPS Location'] = 'Coordinates Embedded in Metadata';
-          tags['Software'] = 'Exif tool parser v2.0';
-          tags['Date Taken'] = new Date(file.lastModified).toLocaleString();
-          break;
-        } else if ((marker & 0xFF00) !== 0xFF00) {
-          break;
-        } else {
-          offset += view.getUint16(offset, false);
-        }
-      }
-    }
-  } catch {
-    // Ignore buffer read errors silently
-  }
-  return tags;
 }
 
 /** Redraw only the decoded pixels; source metadata is never copied into the new encoder. */

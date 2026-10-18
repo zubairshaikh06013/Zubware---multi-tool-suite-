@@ -636,18 +636,18 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "image-info-viewer",
     "title": "Image Information Viewer — Inspect EXIF, Dimensions & Metadata",
     "navTitle": "Image Info Viewer",
-    "description": "Inspect image metadata, exact pixel dimensions, color depth, aspect ratio, and EXIF camera tags online. Generate detailed photo diagnostic reports.",
+    "description": "Inspect decoded image dimensions, aspect ratio, file size and selected JPEG EXIF camera/GPS fields. Copy an inspection report with clear format limitations.",
     "icon": "🔍",
     "path": "/image-info-viewer",
     "filename": "image-info-viewer.html",
     "category": "🖼️ Image Tools",
     "badge": "New",
     "features": [
-      "Exact Pixel Width, Height & Megapixel Calculations",
+      "Decoded Pixel Width & Height",
       "Aspect Ratio Detection & Standard Print Size Estimates",
-      "Detailed EXIF Camera Data (Shutter, ISO, Aperture, Model)",
-      "MIME Type, File Size in KB/MB & Color Bit Depth",
-      "Transparency Detection for Alpha Channel Assets",
+      "Selected JPEG EXIF Camera, Date & GPS Fields",
+      "Reported File Format, File Size & Decoded Color",
+      "Preview Sample for Alpha Transparency",
       "Client-Side Inspection Without Network File Uploads"
     ],
     "tags": [

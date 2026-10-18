@@ -334,3 +334,27 @@ assert.deepEqual(Object.keys(cleanedArchive.files),['sample_no_exif.png','sample
 for(const name of Object.keys(cleanedArchive.files)) assert.deepEqual(await cleanedArchive.file(name)!.async('uint8array'),iconPng);
 await assert.rejects(cleanedImagesZip([]),/No cleaned images/);
 console.log('EXIF alpha-safe format selection, output names and collision-safe ZIP payloads passed.');
+
+const {inspectJpegExif}=await import('../src/lib/jpegExif');
+const knownExif=Uint8Array.from(Buffer.from('/9j/4QEWRXhpZgAATU0AKgAAAAgABgEPAAIAAAAKAAAAVgEQAAIAAAALAAAAYAExAAIAAAAMAAAAbAE7AAIAAAAKAAAAeIdpAAQAAAABAAAAgoglAAQAAAABAAAAqAAAAABRQSBDYW1lcmEATW9kZWwgVGVzdAAAUUEgU29mdHdhcmUAUUEgQXJ0aXN0AAABkAMAAgAAABQAAACUAAAAADIwMjA6MDE6MDIgMDM6MDQ6MDUAAAQAAQACAAAAAlMAAAAAAgAFAAAAAwAAAN4AAwACAAAAAlcAAAAABAAFAAAAAwAAAPYAAAAAAAAACgAAAAEAAAAeAAAAAQAAAAAAAAABAAAAFAAAAAEAAAAPAAAAAQAAAAAAAAAB/9o=','base64'));
+const exifInspection=inspectJpegExif(knownExif);
+assert.equal(exifInspection.tags['Camera Make'],'QA Camera');
+assert.equal(exifInspection.tags['Camera Model'],'Model Test');
+assert.equal(exifInspection.tags['Artist'],'QA Artist');
+assert.equal(exifInspection.tags['Date Taken'],'2020:01:02 03:04:05');
+assert.equal(exifInspection.tags['GPS Latitude'],'-10.500000');
+assert.equal(exifInspection.tags['GPS Longitude'],'-20.250000');
+assert.ok(!('GPS Location' in exifInspection.tags));
+assert.equal(Object.keys(inspectJpegExif(new Uint8Array([255,216,255,218])).tags).length,0);
+assert.match(inspectJpegExif(iconPng).status,/not inspected/);
+// APP1 can carry XMP instead of EXIF: never fabricate GPS or camera tags.
+assert.deepEqual(inspectJpegExif(new Uint8Array([255,216,255,225,0,5,88,77,80,255,218])).tags,{});
+for(let length=0;length<knownExif.length;length++) assert.doesNotThrow(()=>inspectJpegExif(knownExif.slice(0,length)));
+// A little-endian TIFF with one inline ASCII Make value.
+const littleExif=new Uint8Array([255,216,255,225,0,34,69,120,105,102,0,0,73,73,42,0,8,0,0,0,1,0,15,1,2,0,4,0,0,0,65,66,67,0,0,0,0,0,255,218]);
+littleExif[5]=34;
+assert.equal(inspectJpegExif(littleExif).tags['Camera Make'],'ABC');
+const brokenExif=knownExif.slice();brokenExif.fill(255,16,20);
+assert.deepEqual(inspectJpegExif(brokenExif).tags,{});
+assert.match(inspectJpegExif(brokenExif).status,/could not be decoded/);
+console.log('Real JPEG EXIF fields, signed GPS, stored capture dates, both TIFF byte orders, XMP distinction and truncated-header safety passed.');

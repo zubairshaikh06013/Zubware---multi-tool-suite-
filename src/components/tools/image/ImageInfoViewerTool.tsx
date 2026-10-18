@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Info, Copy, Check, RefreshCw, FileText, Calendar, Printer, Shield } from 'lucide-react';
 import { ImageUploadArea } from './ImageUploadArea';
 import { getImageMetadata, ImageMetadata, formatBytes } from '../../../lib/imageUtils';
-import { SEOHead } from '../../SEOHead';
-import { Breadcrumb } from '../../Breadcrumb';
-import { getLinkUrl } from '../../../lib/paths';
+import { decodeBrowserImage } from '../../../lib/browserImageDecode';
 
 interface ImageInfoViewerToolProps {
   onShowToast: (msg: string) => void;
@@ -17,22 +15,27 @@ export const ImageInfoViewerTool: React.FC<ImageInfoViewerToolProps> = ({ onShow
   const [imageObj, setImageObj] = useState<HTMLImageElement | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
 
-  const handleImageSelected = async (files: File[]) => {
-    if (!files.length) return;
-    const selectedFile = files[0];
-    setFile(selectedFile);
-
-    const img = new Image();
-    const url = URL.createObjectURL(selectedFile);
-    img.onload = async () => {
-      setImageObj(img);
-      const meta = await getImageMetadata(selectedFile, img);
-      setMetadata(meta);
-    };
-    img.src = url;
+  const [error,setError]=useState('');
+  const generation=useRef(0), sourceUrl=useRef('');
+  const copyTimer=useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+  const release=()=>{if(sourceUrl.current) URL.revokeObjectURL(sourceUrl.current);sourceUrl.current='';};
+  useEffect(()=>()=>{generation.current++;release();clearTimeout(copyTimer.current);},[]);
+  const reset=()=>{generation.current++;release();clearTimeout(copyTimer.current);setFile(null);setMetadata(null);setImageObj(null);setCopied(false);setError('');};
+  const handleImageSelected=async(files:File[])=>{
+    if(!files.length)return;
+    reset();const run=generation.current;setFile(files[0]);let url='';
+    try {
+      const decoded=await decodeBrowserImage(files[0]);url=decoded.url;
+      if(run!==generation.current)return;
+      const meta=await getImageMetadata(files[0],decoded.image);
+      if(run!==generation.current)return;
+      sourceUrl.current=url;url='';setImageObj(decoded.image);setMetadata(meta);
+    } catch(cause){if(run===generation.current){setFile(null);setError(cause instanceof Error?cause.message:'Unable to inspect image.');}}
+    finally{if(url) URL.revokeObjectURL(url);}
   };
 
-  const copyReport = () => {
+  const copyReport = async () => {
+    const run=generation.current;
     if (!metadata) return;
     const report = `Image Information Report
 ---------------------------
@@ -42,22 +45,27 @@ Format: ${metadata.format}
 Resolution: ${metadata.width} × ${metadata.height} px
 Aspect Ratio: ${metadata.aspectRatio}
 Color Depth: ${metadata.colorDepth}
-Transparency: ${metadata.hasTransparency ? 'Yes (Alpha Channel)' : 'No'}
+Transparency Sample: ${metadata.hasTransparency ? 'Alpha detected' : 'No alpha detected in preview sample'}
 Last Modified: ${metadata.lastModified}
 Estimated Print Size: ${metadata.estimatedPrintSize}
-EXIF Tags Found: ${Object.keys(metadata.exifData).length}
+EXIF Inspection: ${metadata.exifStatus}
+Selected EXIF Fields: ${Object.keys(metadata.exifData).length}
+${Object.entries(metadata.exifData).map(([key,value])=>`${key}: ${value}`).join('\n')}
 ---------------------------
 Generated with Zubware Image Tools`;
 
-    navigator.clipboard.writeText(report);
-    setCopied(true);
-    onShowToast('Image report copied to clipboard!');
-    setTimeout(() => setCopied(false), 2000);
+    try {
+      await navigator.clipboard.writeText(report);
+      if(run!==generation.current)return;
+      setCopied(true);onShowToast('Image report copied to clipboard!');clearTimeout(copyTimer.current);
+      copyTimer.current=setTimeout(()=>setCopied(false),2000);
+    } catch {if(run===generation.current)onShowToast('Clipboard unavailable. Try again after allowing clipboard access.');}
   };
 
   return (
     <div className="space-y-6">
-      
+      {error && <p role="alert" className="text-sm text-red-600">{error}</p>}
+      {file && !metadata && <div><p role="status">Reading image…</p><button type="button" onClick={reset}>Cancel</button></div>}
 
       {!file ? (
         <ImageUploadArea onImageSelected={handleImageSelected} />
@@ -88,10 +96,7 @@ Generated with Zubware Image Tools`;
 
                   <button
                     type="button"
-                    onClick={() => {
-                      setFile(null);
-                      setMetadata(null);
-                    }}
+                    onClick={reset}
                     className="px-3.5 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 text-slate-700 dark:text-slate-300 font-bold text-xs flex items-center gap-1 cursor-pointer"
                   >
                     <RefreshCw className="w-3.5 h-3.5" /> Inspect Another
@@ -112,7 +117,7 @@ Generated with Zubware Image Tools`;
                 </div>
 
                 <div className="p-4 rounded-2xl bg-slate-100/60 dark:bg-slate-900/60 space-y-1">
-                  <span className="text-[10px] font-bold uppercase text-slate-400">Color Depth & Alpha</span>
+                  <span className="text-[10px] font-bold uppercase text-slate-400">Decoded Color & Alpha</span>
                   <p className="text-sm font-extrabold text-slate-800 dark:text-slate-200">{metadata.colorDepth}</p>
                 </div>
 
@@ -132,10 +137,10 @@ Generated with Zubware Image Tools`;
 
                 <div className="p-4 rounded-2xl bg-slate-100/60 dark:bg-slate-900/60 space-y-1">
                   <span className="text-[10px] font-bold uppercase text-slate-400 flex items-center gap-1">
-                    <Shield className="w-3.5 h-3.5 text-emerald-500" /> Transparency Channel
+                    <Shield className="w-3.5 h-3.5 text-emerald-500" /> Transparency Sample
                   </span>
                   <p className="text-xs font-extrabold text-emerald-600 dark:text-emerald-400">
-                    {metadata.hasTransparency ? 'Yes (Alpha Present)' : 'No (Opaque)'}
+                    {metadata.hasTransparency ? 'Yes (Alpha Present)' : 'No alpha detected in preview sample'}
                   </p>
                 </div>
               </div>
@@ -143,9 +148,10 @@ Generated with Zubware Image Tools`;
               {/* EXIF Data Block */}
               <div className="p-5 rounded-2xl glass-card space-y-3">
                 <h4 className="text-xs font-bold uppercase tracking-widest text-slate-400 flex items-center gap-1.5">
-                  <FileText className="w-4 h-4 text-indigo-500" /> EXIF Metadata Header Info
+                  <FileText className="w-4 h-4 text-indigo-500" /> Selected JPEG EXIF Fields
                 </h4>
 
+                <p className="text-xs text-slate-500">{metadata.exifStatus}</p>
                 {Object.keys(metadata.exifData).length > 0 ? (
                   <div className="space-y-2 text-xs">
                     {Object.entries(metadata.exifData).map(([k, v]) => (
@@ -156,7 +162,7 @@ Generated with Zubware Image Tools`;
                     ))}
                   </div>
                 ) : (
-                  <p className="text-xs text-slate-500 italic">No EXIF tags detected or already stripped.</p>
+                  <p className="text-xs text-slate-500 italic">No selected EXIF values available. This does not establish that the file is free of metadata.</p>
                 )}
               </div>
             </div>

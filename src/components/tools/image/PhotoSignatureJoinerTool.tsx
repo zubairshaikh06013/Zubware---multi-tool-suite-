@@ -13,7 +13,24 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../../../context/LanguageContext';
 
-type LayoutMode = 'vertical' | 'horizontal' | 'overlay';
+type LayoutMode = 'vertical' | 'horizontal';
+const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
+const acceptedTypes = new Set(['image/jpeg', 'image/png', 'image/webp']);
+
+const drawPhoto = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number, y: number, width: number, height: number) => {
+  const sourceRatio = img.width / img.height;
+  const targetRatio = width / height;
+  const sourceWidth = sourceRatio > targetRatio ? img.height * targetRatio : img.width;
+  const sourceHeight = sourceRatio > targetRatio ? img.height : img.width / targetRatio;
+  ctx.drawImage(img, (img.width - sourceWidth) / 2, (img.height - sourceHeight) / 2, sourceWidth, sourceHeight, x, y, width, height);
+};
+
+const drawSignature = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number, y: number, width: number, height: number) => {
+  const scale = Math.min(width / img.width, height / img.height);
+  const drawWidth = img.width * scale;
+  const drawHeight = img.height * scale;
+  ctx.drawImage(img, x + (width - drawWidth) / 2, y + (height - drawHeight) / 2, drawWidth, drawHeight);
+};
 
 export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const { t } = useLanguage();
@@ -40,42 +57,52 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [outputDataUrl, setOutputDataUrl] = useState<string>('');
 
-  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+  const loadImage = (file: File, onLoaded: (img: HTMLImageElement) => void) => {
+    if (!acceptedTypes.has(file.type) || file.size > MAX_IMAGE_BYTES || file.size === 0) {
+      onShowToast('Choose a JPG, PNG, or WebP image up to 25 MB.');
+      return;
+    }
     const img = new Image();
     const reader = new FileReader();
     reader.onload = (ev) => {
-      img.onload = () => {
-        setPhotoImg(img);
-        onShowToast('Passport/Candidate photo loaded.');
-      };
+      img.onload = () => onLoaded(img);
+      img.onerror = () => onShowToast('This image could not be opened. Try another file.');
       img.src = ev.target?.result as string;
     };
+    reader.onerror = () => onShowToast('This image could not be read. Try another file.');
     reader.readAsDataURL(file);
+  };
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file) return;
+    setPhotoImg(null);
+    loadImage(file, (img) => {
+      setPhotoImg(img);
+      onShowToast('Passport/Candidate photo loaded.');
+    });
   };
 
   const handleSigUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    e.target.value = '';
     if (!file) return;
-    const img = new Image();
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      img.onload = () => {
-        setSigImg(img);
-        onShowToast('Signature image loaded.');
-      };
-      img.src = ev.target?.result as string;
-    };
-    reader.readAsDataURL(file);
+    setSigImg(null);
+    loadImage(file, (img) => {
+      setSigImg(img);
+      onShowToast('Signature image loaded.');
+    });
   };
 
-  const applyPreset = (pW: number, pH: number, sW: number, sH: number, mode: LayoutMode) => {
+  const applyPreset = (pW: number, pH: number, sW: number, sH: number, mode: LayoutMode, presetGap = 10) => {
     setLayoutMode(mode);
     setPhotoWidth(pW);
     setPhotoHeight(pH);
     setSigWidth(sW);
     setSigHeight(sH);
+    setGap(presetGap);
+    setPadding(0);
     onShowToast('Applied layout preset.');
   };
 
@@ -90,10 +117,6 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
     } else if (layoutMode === 'horizontal') {
       totalCanvasWidth = photoWidth + sigWidth + gap + padding * 2;
       totalCanvasHeight = Math.max(photoHeight, sigHeight) + padding * 2;
-    } else {
-      // overlay
-      totalCanvasWidth = photoWidth + padding * 2;
-      totalCanvasHeight = photoHeight + padding * 2;
     }
 
     const canvas = document.createElement('canvas');
@@ -121,7 +144,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       const photoY = padding;
 
       if (photoImg) {
-        ctx.drawImage(photoImg, photoX, photoY, photoWidth, photoHeight);
+        drawPhoto(ctx, photoImg, photoX, photoY, photoWidth, photoHeight);
       } else {
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(photoX, photoY, photoWidth, photoHeight);
@@ -136,7 +159,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       const sigY = photoY + photoHeight + gap;
 
       if (sigImg) {
-        ctx.drawImage(sigImg, sigX, sigY, sigWidth, sigHeight);
+        drawSignature(ctx, sigImg, sigX, sigY, sigWidth, sigHeight);
       } else {
         ctx.fillStyle = '#f8fafc';
         ctx.fillRect(sigX, sigY, sigWidth, sigHeight);
@@ -150,7 +173,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       const photoY = padding + (totalCanvasHeight - padding * 2 - photoHeight) / 2;
 
       if (photoImg) {
-        ctx.drawImage(photoImg, photoX, photoY, photoWidth, photoHeight);
+        drawPhoto(ctx, photoImg, photoX, photoY, photoWidth, photoHeight);
       } else {
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(photoX, photoY, photoWidth, photoHeight);
@@ -164,7 +187,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       const sigY = padding + (totalCanvasHeight - padding * 2 - sigHeight) / 2;
 
       if (sigImg) {
-        ctx.drawImage(sigImg, sigX, sigY, sigWidth, sigHeight);
+        drawSignature(ctx, sigImg, sigX, sigY, sigWidth, sigHeight);
       } else {
         ctx.fillStyle = '#f8fafc';
         ctx.fillRect(sigX, sigY, sigWidth, sigHeight);
@@ -176,8 +199,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
     }
 
     const mime = exportFormat === 'jpeg' ? 'image/jpeg' : 'image/png';
-    const dataUrl = canvas.toDataURL(mime, 0.95);
-    setOutputDataUrl(dataUrl);
+    setOutputDataUrl(photoImg && sigImg ? canvas.toDataURL(mime, 0.95) : '');
 
     // Also update preview ref
     const targetRef = previewCanvasRef.current;
@@ -192,7 +214,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   }, [photoImg, sigImg, layoutMode, photoWidth, photoHeight, sigWidth, sigHeight, gap, padding, borderWidth, borderColor, bgColor, exportFormat]);
 
   const handleDownload = () => {
-    if (!outputDataUrl) return;
+    if (!photoImg || !sigImg || !outputDataUrl) return;
     const a = document.createElement('a');
     a.href = outputDataUrl;
     const ext = exportFormat === 'jpeg' ? 'jpg' : 'png';
@@ -230,7 +252,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
               <CheckCircle2 className="w-3.5 h-3.5" /> Photo Loaded ({photoImg.width} × {photoImg.height} px)
             </span>
           )}
-          <input type="file" accept="image/*" onChange={handlePhotoUpload} className="hidden" />
+          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handlePhotoUpload} className="hidden" />
         </label>
 
         {/* Upload Signature */}
@@ -239,13 +261,13 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
           <span className="text-sm font-bold text-slate-900 dark:text-white">
             {sigImg ? 'Change Signature Image' : '2. Upload Signature'}
           </span>
-          <span className="text-xs text-slate-500 mt-0.5">Transparent PNG or scan</span>
+          <span className="text-xs text-slate-500 mt-0.5">JPG, PNG, WebP up to 25MB</span>
           {sigImg && (
             <span className="mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
               <CheckCircle2 className="w-3.5 h-3.5" /> Signature Loaded ({sigImg.width} × {sigImg.height} px)
             </span>
           )}
-          <input type="file" accept="image/*" onChange={handleSigUpload} className="hidden" />
+          <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleSigUpload} className="hidden" />
         </label>
       </div>
 
@@ -288,28 +310,28 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
 
             {/* Form Presets */}
             <div>
-              <label className="text-xs font-bold text-slate-500 block mb-1.5">Standard Application Presets</label>
+              <label className="text-xs font-bold text-slate-500 block mb-1.5">Example Output Sizes</label>
               <div className="grid grid-cols-2 gap-1.5">
                 <button
                   type="button"
                   onClick={() => applyPreset(300, 350, 300, 100, 'vertical')}
                   className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-left text-xs font-bold hover:border-indigo-500 cursor-pointer"
                 >
-                  Exam Portal (300×460)
+                  Vertical (300×460)
                 </button>
                 <button
                   type="button"
                   onClick={() => applyPreset(240, 300, 240, 80, 'vertical')}
                   className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-left text-xs font-bold hover:border-indigo-500 cursor-pointer"
                 >
-                  Standard ID (240×390)
+                  Vertical (240×390)
                 </button>
                 <button
                   type="button"
-                  onClick={() => applyPreset(400, 500, 400, 150, 'vertical')}
+                  onClick={() => applyPreset(400, 500, 400, 150, 'vertical', 20)}
                   className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-left text-xs font-bold hover:border-indigo-500 cursor-pointer"
                 >
-                  High Res (400×670)
+                  Vertical (400×670)
                 </button>
                 <button
                   type="button"
@@ -319,6 +341,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                   Side-by-Side Card
                 </button>
               </div>
+              <p className="mt-2 text-[11px] text-slate-500">Presets set the shown total pixels with zero padding. Check your application form’s required dimensions and file size; changing spacing changes the total.</p>
             </div>
 
             <hr className="border-slate-200/60 dark:border-slate-800" />
@@ -333,14 +356,16 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                   <input
                     type="number"
                     value={photoWidth}
-                    onChange={(e) => setPhotoWidth(parseInt(e.target.value) || 100)}
+                    min={16} max={2000}
+                    onChange={(e) => setPhotoWidth(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
                     className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold"
                     placeholder="Width"
                   />
                   <input
                     type="number"
                     value={photoHeight}
-                    onChange={(e) => setPhotoHeight(parseInt(e.target.value) || 100)}
+                    min={16} max={2000}
+                    onChange={(e) => setPhotoHeight(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
                     className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold"
                     placeholder="Height"
                   />
@@ -355,14 +380,16 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                   <input
                     type="number"
                     value={sigWidth}
-                    onChange={(e) => setSigWidth(parseInt(e.target.value) || 100)}
+                    min={16} max={2000}
+                    onChange={(e) => setSigWidth(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
                     className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold"
                     placeholder="Width"
                   />
                   <input
                     type="number"
                     value={sigHeight}
-                    onChange={(e) => setSigHeight(parseInt(e.target.value) || 50)}
+                    min={16} max={2000}
+                    onChange={(e) => setSigHeight(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
                     className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold"
                     placeholder="Height"
                   />
@@ -474,11 +501,13 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
             </div>
 
             {/* Action Bar */}
+            <p className="text-xs text-slate-500">Output: {layoutMode === 'vertical' ? Math.max(photoWidth, sigWidth) + padding * 2 : photoWidth + sigWidth + gap + padding * 2} × {layoutMode === 'vertical' ? photoHeight + sigHeight + gap + padding * 2 : Math.max(photoHeight, sigHeight) + padding * 2} px{outputDataUrl && photoImg && sigImg ? ` · about ${Math.round((outputDataUrl.split(',')[1]?.length || 0) * 3 / 4 / 1024)} KB` : ''}. Confirm your portal accepts the final dimensions and file size.</p>
             <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={handleDownload}
-                className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all"
+                disabled={!photoImg || !sigImg || !outputDataUrl}
+                className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all"
               >
                 <Download className="w-4 h-4" /> Download Composite ({exportFormat.toUpperCase()})
               </button>

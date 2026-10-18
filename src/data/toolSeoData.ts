@@ -8073,7 +8073,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {
         "title": "Upload Passport Photo & Signature",
-        "desc": "Select or drag your candidate passport photo into slot 1 and your scanned signature image into slot 2."
+        "desc": "Select a JPG, PNG, or WebP photo and signature, each up to 25 MB. Both files are required to download the result."
       },
       {
         "title": "Choose Layout Arrangement",
@@ -8081,11 +8081,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Select Preset or Customize Sizing",
-        "desc": "Click a standard preset like Exam Portal (300×460 px) or input custom pixel widths and heights for each element."
+        "desc": "Choose an example size such as 300 × 460 px, or enter the photo and signature dimensions from your application instructions. The displayed output dimensions include the gap and padding."
       },
       {
         "title": "Fine-Tune Spacing, Border & Format",
-        "desc": "Adjust spacing gap, outer padding, optional separation border color, and choose form-ready JPG format."
+        "desc": "Adjust the gap, padding, outer border, and JPG or PNG format. Check the final dimensions and file size against your portal's requirements."
       },
       {
         "title": "Download Combined Image",
@@ -8095,11 +8095,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "faq": [
       {
         "question": "Why do exam and job recruitment portals require photo and signature in a single image file?",
-        "answer": "Several Indian recruitment boards (such as MPPEB/Vyapam, High Court recruitments, State Police boards, and departmental recruitment portals) require candidates to upload a single combined file to ensure the applicant's signature is indelibly joined to their photograph. This prevents impersonation during biometric verification at exam test centers."
+        "answer": "Some application forms ask for a single file containing both a photo and a signature. Requirements vary by portal, so read your own form's instructions for layout, dimensions, format, and file size before uploading."
       },
       {
         "question": "What is the standard vertical layout ratio for combined photo and signature?",
-        "answer": "Standard recruitment guidelines typically specify an overall canvas width of 300 pixels and height of 460 pixels (or 400 × 670 pixels for high resolution). In this configuration, the passport photo occupies approximately 300 × 350 pixels on top, and the signature occupies 300 × 100 pixels directly beneath it with a clean gap or border."
+        "answer": "There is no universal size. The 300 × 460 px example combines a 300 × 350 px photo, a 300 × 100 px signature, and a 10 px gap, with no outer padding. Changing any of these changes the output dimensions. Follow your application's own requirements."
       },
       {
         "question": "Can I adjust individual photo and signature dimensions independently?",
@@ -8107,11 +8107,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Can I add an outer border or change background color?",
-        "answer": "Yes. You can customize the outer border thickness (None, 1px, 2px, or 4px) and choose a custom border color using the color picker. You can also toggle between crisp white, light slate, or transparent backgrounds."
+        "answer": "You can choose no border or a 1, 2, or 4 px outer border and select its color. The exported background is white."
       },
       {
         "question": "Which format should I use when downloading the combined image for forms?",
-        "answer": "Most government application portals mandate JPG/JPEG format for image uploads. Select JPG before clicking download to ensure 100% compatibility with online application verification systems."
+        "answer": "Use the format your form requires. This tool exports JPG or PNG. Always check the portal's accepted formats, pixel dimensions, and maximum file size; an export is not automatically compliant."
       },
       {
         "question": "Are my passport photos or signature images uploaded to your servers?",

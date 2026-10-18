@@ -61,3 +61,19 @@ assert.equal(calendarAge(date('2026-10-18'), date('2026-10-18'))?.totalDays, 0);
 assert.equal(calendarAge(date('2026-03-07'), date('2026-03-09'))?.totalDays, 2);
 assert.equal(calendarDay(calendarAnniversary(date('0096-02-29'), 99)) - calendarDay(date('0099-02-27')), 1);
 console.log('Calendar age, leap-day, month-end and early-year regressions passed.');
+
+// Directory searches combine words with the selected tag without hiding tools by default.
+const { filterDirectoryTools, directoryTags } = await import('../src/lib/toolDirectory');
+const { TOOLS_DATA } = await import('../src/data/toolsData');
+assert.equal(filterDirectoryTools(TOOLS_DATA, '   ').length, TOOLS_DATA.length);
+assert.ok(filterDirectoryTools(TOOLS_DATA, '  PDF   MERGE ').some(tool => tool.id === 'pdf-merge'));
+assert.ok(filterDirectoryTools(TOOLS_DATA, 'photo resize').length > 0);
+assert.equal(filterDirectoryTools(TOOLS_DATA, 'nonexistent-utility-xyz').length, 0);
+const tagged = filterDirectoryTools(TOOLS_DATA, '', 'PDF');
+assert.ok(tagged.length > 0);
+assert.ok(tagged.every(tool => tool.tags?.includes('PDF')));
+assert.equal(filterDirectoryTools(TOOLS_DATA, 'nonexistent-utility-xyz', 'PDF').length, 0);
+const tagFixture = directoryTags([{tags:['PDF','PDF','Image']}, {tags:['PDF']}]);
+assert.deepEqual(tagFixture, [{tag:'PDF',count:2}, {tag:'Image',count:1}]);
+assert.ok(directoryTags(TOOLS_DATA).every(({count}) => count <= TOOLS_DATA.length));
+console.log('Directory search, combined filters and per-tool tag counts passed.');

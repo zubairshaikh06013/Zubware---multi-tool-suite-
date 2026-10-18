@@ -244,3 +244,13 @@ assert.equal(colorSample(0,0,0).cmyk,'cmyk(0%, 0%, 0%, 100%)');
 assert.deepEqual(imagePixelCoordinates(110,70,{left:10,top:20,width:100,height:50},640,480),{x:639,y:479});
 assert.deepEqual(imagePixelCoordinates(0,0,{left:10,top:20,width:100,height:50},640,480),{x:0,y:0});
 console.log('Shared image/screen HSV, alpha-aware colors and edge pixel coordinates passed.');
+
+const {rasterHistoryLimit,strokePoints}=await import('../src/lib/rasterEffects');
+assert.equal(rasterHistoryLimit(400,240),12);
+assert.equal(rasterHistoryLimit(4000,4000),2);
+for(const [w,h] of [[100,100],[1000,1000],[4000,4000],[8000,5000]]) assert.ok(rasterHistoryLimit(w,h)>=2 && rasterHistoryLimit(w,h)<=12);
+const brushPath=strokePoints({x:0,y:0},{x:120,y:90},10);
+assert.deepEqual(brushPath.at(-1),{x:120,y:90});
+let previousPoint={x:0,y:0};for(const point of brushPath){assert.ok(Math.hypot(point.x-previousPoint.x,point.y-previousPoint.y)<=10+1e-8);previousPoint=point;}
+assert.deepEqual(strokePoints({x:5,y:5},{x:5,y:5},10),[{x:5,y:5}]);
+console.log('Bounded raster history and continuous brush path spacing passed.');

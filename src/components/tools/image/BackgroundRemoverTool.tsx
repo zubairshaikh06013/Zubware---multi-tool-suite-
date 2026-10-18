@@ -105,7 +105,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
 
     // Browser mode remains automatic. Cloudflare uploads require a separate explicit click.
     if (processingMode !== 'cloudflare') runRemoval(file);
-  }, [onShowToast]);
+  }, [onShowToast, processingMode, cloudflareConsent]);
 
   // Execute AI Background Removal
   const runRemoval = async (fileToProcess: File) => {

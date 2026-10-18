@@ -7,7 +7,7 @@ import {imageExportExtension} from '../lib/imageExport';
 import {rotationExportMime} from '../lib/imageRotation';
 import {MAX_RESIZE_EDGE,MAX_RESIZE_PIXELS} from '../lib/imageResize';
 import {imagePixelCoordinates} from '../lib/colorSample';
-import {rasterHistoryLimit,strokePoints} from '../lib/rasterEffects';
+import {rasterHistoryLimit,strokePoints,blendBrushPatch} from '../lib/rasterEffects';
 
 export function useRasterEditor(suffix:string,onShowToast:(message:string)=>void) {
   const [file,setFile]=useState<File|null>(null),[imageObj,setImageObj]=useState<HTMLImageElement|null>(null);
@@ -90,7 +90,12 @@ export function useCanvasBrush(editor:ReturnType<typeof useRasterEditor>,radius:
   const point=(event:ReactPointerEvent<HTMLCanvasElement>)=>imagePixelCoordinates(event.clientX,event.clientY,event.currentTarget.getBoundingClientRect(),event.currentTarget.width,event.currentTarget.height);
   const paint=(x:number,y:number)=>{
     const canvas=editor.canvasRef.current,ctx=canvas?.getContext('2d'),active=stroke.current;if(!canvas || !ctx || !active) return;
-    ctx.save();ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);ctx.clip();ctx.globalCompositeOperation='copy';ctx.drawImage(active.source,0,0);ctx.restore();
+    const left=Math.max(0,Math.floor(x-radius-1)),top=Math.max(0,Math.floor(y-radius-1));
+    const width=Math.min(canvas.width,Math.ceil(x+radius+1))-left,height=Math.min(canvas.height,Math.ceil(y+radius+1))-top;
+    if(width<1 || height<1) return;
+    const effectContext=active.source.getContext('2d');if(!effectContext) return;
+    const patch=ctx.getImageData(left,top,width,height),effectPatch=effectContext.getImageData(left,top,width,height);
+    blendBrushPatch(patch.data,effectPatch.data,width,height,left,top,x,y,radius);ctx.putImageData(patch,left,top);
   };
   const onPointerDown=(event:ReactPointerEvent<HTMLCanvasElement>)=>{
     if(!editor.ready || !enabled || event.button!==0) return;

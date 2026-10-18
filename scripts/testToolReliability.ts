@@ -266,3 +266,17 @@ const transparentPatch=new Uint8ClampedArray([0,0,0,0]);
 blendBrushPatch(transparentPatch,new Uint8ClampedArray([255,0,0,128]),1,1,0,0,0.5,0.5,1);
 assert.deepEqual(Array.from(transparentPatch),[255,0,0,128]);
 console.log('Brush blending preserves opaque alpha, transparent colors and pixels outside the stroke.');
+
+const {borderGeometry,doubleBorderRects}=await import('../src/lib/imageDecoration');
+assert.deepEqual(borderGeometry(320,200,20,true),{width:360,height:240,border:20});
+assert.deepEqual(borderGeometry(7,5,100,false),{width:7,height:5,border:2.5});
+for(const [width,height,border] of [[360,240,30],[7,5,2.5],[1,1,0.5]]) {
+  const rects=doubleBorderRects(width,height,border);
+  for(const rect of rects) {
+    assert.ok(rect.width>=0 && rect.height>=0);
+    assert.ok(Math.abs(rect.x-(width-rect.x-rect.width))<1e-8);
+    assert.ok(Math.abs(rect.y-(height-rect.y-rect.height))<1e-8);
+  }
+  assert.ok(Math.abs(rects[1].x-rects[0].x-2*border/3)<1e-8);
+}
+console.log('Outer/inner dimensions, tiny-image border limits and symmetric double-border spacing passed.');

@@ -33,6 +33,23 @@ export function validateSeoBuild(distDir: string): void {
   const errors: string[] = [];
   const sitemap = fs.readFileSync(path.join(distDir, 'sitemap.xml'), 'utf8');
   const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
+  // Google treats sitemap lastmod as a hint only when it is trustworthy.
+  // Catch malformed or future-dated values before shipping the sitemap.
+  const todayUtc = new Date().toISOString().slice(0, 10);
+  for (const entry of sitemap.matchAll(/<url>\s*([\s\S]*?)\s*<\/url>/g)) {
+    const xml = entry[1];
+    const loc = xml.match(/<loc>([^<]+)<\/loc>/)?.[1] || '(missing loc)';
+    const dates = [...xml.matchAll(/<lastmod>([^<]*)<\/lastmod>/g)].map(match => match[1]);
+    if (dates.length > 1) errors.push(`Multiple sitemap lastmod values: ${loc}`);
+    for (const value of dates) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(value) ||
+          Number.isNaN(Date.parse(`${value}T00:00:00Z`)) ||
+          new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) !== value ||
+          value > todayUtc) {
+        errors.push(`Invalid or future sitemap lastmod: ${loc} (${value})`);
+      }
+    }
+  }
   const titles = new Map<string, string>();
   const descriptions = new Map<string, string>();
   const incoming = new Set<string>();

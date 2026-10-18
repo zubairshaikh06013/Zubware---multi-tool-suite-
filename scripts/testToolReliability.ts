@@ -219,3 +219,28 @@ assert.equal(stacked.totalW,200);assert.equal(stacked.totalH,100);
 assert.throws(()=>combinedImageLayout({x:0,y:0,w:20000,h:20000},{x:0,y:0,w:20000,h:20000},50,'v'),/40 megapixels/);
 assert.ok(Math.abs(combineRatioAtPosition({x:0,y:0,w:400,h:200},{x:0,y:0,w:200,h:200},0.5,'v')-100/3)<1e-8);
 console.log('Exact alpha bounds, gap-free splits, full-resolution combine and seam placement passed.');
+
+const {watermarkPlacement}=await import('../src/lib/watermarkPlacement');
+assert.deepEqual(watermarkPlacement(200,100,60,20,0,'center'),{x:100,y:50,scale:1,rotatedWidth:60,rotatedHeight:20});
+assert.deepEqual(watermarkPlacement(200,100,60,20,90,'bottom-right'),{x:185,y:65,scale:1,rotatedWidth:20,rotatedHeight:60});
+for(const position of ['center','top-left','top-right','bottom-left','bottom-right'] as const) {
+ for(const angle of [0,45,90,-30,180]) {
+  const p=watermarkPlacement(80,40,1000,400,angle,position);
+  assert.ok(p.x-p.rotatedWidth/2>=-1e-8 && p.x+p.rotatedWidth/2<=80+1e-8);
+  assert.ok(p.y-p.rotatedHeight/2>=-1e-8 && p.y+p.rotatedHeight/2<=40+1e-8);
+ }
+}
+assert.throws(()=>watermarkPlacement(200,100,0,40,0,'center'));
+console.log('Centered watermark placement, rotated corners and oversized-logo bounds passed.');
+
+const {colorSample,imagePixelCoordinates}=await import('../src/lib/colorSample');
+for(const [channels,hsv] of [[ [255,0,0],'hsv(0, 100%, 100%)'],[[0,255,0],'hsv(120, 100%, 100%)'],[[0,0,255],'hsv(240, 100%, 100%)'],[[128,128,128],'hsv(0, 0%, 50%)'],[[255,255,255],'hsv(0, 0%, 100%)'],[[0,0,0],'hsv(0, 0%, 0%)']] as const) {
+ assert.equal(colorSample(channels[0],channels[1],channels[2]).hsv,hsv);
+}
+assert.equal(colorSample(255,0,0,128).hex,'#FF000080');
+assert.equal(colorSample(255,0,0,128).rgb,'rgba(255, 0, 0, 0.502)');
+assert.equal(colorSample(0,0,0,0).hex,'#00000000');
+assert.equal(colorSample(0,0,0).cmyk,'cmyk(0%, 0%, 0%, 100%)');
+assert.deepEqual(imagePixelCoordinates(110,70,{left:10,top:20,width:100,height:50},640,480),{x:639,y:479});
+assert.deepEqual(imagePixelCoordinates(0,0,{left:10,top:20,width:100,height:50},640,480),{x:0,y:0});
+console.log('Shared image/screen HSV, alpha-aware colors and edge pixel coordinates passed.');

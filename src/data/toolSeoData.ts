@@ -7805,11 +7805,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "What rendering scale should I choose for web display versus professional printing?",
-      "answer": "Use 1.0x to 1.5x (72 to 110 DPI) for fast web sharing, email attachments, and online application portals. Choose 2.0x to 3.0x (150 to 300 DPI equivalent) for high-resolution presentations and professional printing."
+      "answer": "Start with 1.0x to 1.5x for quick web sharing and smaller JPGs. Try 2.0x to 3.0x when small text or diagrams need more pixels. The effective print DPI also depends on the PDF page size and how large you print the image; a render scale alone does not guarantee 300 DPI."
     },
     {
       "question": "How does the JPG compression quality setting affect visual fidelity and file size?",
-      "answer": "A setting of 85% provides the optimal sweet spot between crisp text and compact file sizes. Raising quality to 95%-100% preserves subtle photographic gradients at the expense of larger file sizes."
+      "answer": "Try around 85% as a starting point, then inspect the exported image at full size. Higher quality usually increases file size, but it cannot restore details missing from the original PDF. Text-heavy pages may look cleaner with a higher render scale than with a higher JPG quality setting alone."
     },
     {
       "question": "Can I convert a specific page without processing the entire document?",
@@ -8287,11 +8287,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "faq": [
     {
       "question": "How does PDF to Word conversion work locally in the browser without server uploads?",
-      "answer": "The tool utilizes pdfjs-dist in client-side WebAssembly memory to extract text elements and spatial coordinates. It then constructs a genuine OpenXML package (.docx) containing valid word/document.xml and relationship structures using JSZip."
+      "answer": "The tool reads selectable PDF text and its positions in your browser, then generates an editable Word document. PDF and Word represent layouts differently, so complex tables, columns, fonts, and spacing may need manual cleanup after conversion."
     },
     {
       "question": "Can I edit the converted .docx file in Microsoft Word, Google Docs, and LibreOffice?",
-      "answer": "Yes. The generated .docx package complies with standard ISO/IEC 29500 Office Open XML specifications, ensuring seamless compatibility across Microsoft Word, Google Docs, Apple Pages, and LibreOffice."
+      "answer": "The generated DOCX is intended for use with Word-compatible editors, including Microsoft Word, Google Docs, and LibreOffice. Compatibility and visual fidelity can vary with complex source PDFs, so review the document after opening it."
     },
     {
       "question": "How accurately does the converter preserve headings, fonts, and paragraph styles?",
@@ -8299,7 +8299,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "question": "Does the converter preserve original document page breaks?",
-      "answer": "Yes. The engine identifies individual PDF page boundaries and inserts corresponding OpenXML w:pageBreak tags to maintain the original pagination flow in Word."
+      "answer": "PDF page boundaries can help guide the converted document, but Word may reflow paragraphs and move content when fonts, margins, or page settings differ. Check page breaks and pagination in the exported DOCX before sharing."
     },
     {
       "question": "Can scanned PDFs or image-only documents be converted directly to Word?",

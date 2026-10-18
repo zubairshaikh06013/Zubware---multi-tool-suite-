@@ -1,7 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Upload, FileSpreadsheet, Download, Copy, Check, Plus, Trash2, Table } from 'lucide-react';
 import * as pdfjsLib from 'pdfjs-dist';
+import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url';
 import JSZip from 'jszip';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 export function PdfToExcelTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
   const [file, setFile] = useState<File | null>(null);

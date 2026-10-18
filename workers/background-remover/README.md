@@ -16,8 +16,10 @@ CORS supports zubware.com, www.zubware.com, the project's pages.dev host, and it
 
 The Worker is Git-connected. The website’s `npm run build` is not the Worker build; website deployment is handled separately by Cloudflare Pages.
 
-## No-paid-API safeguard (2026-10-18)
+## Free AI and cost controls
 
-The owner requires no paid APIs. Remote image processing is disabled in the frontend and the Worker fails closed unless `REMOTE_BACKGROUND_REMOVAL_ENABLED` is exactly `"true"`. Both checked-in Worker configurations set it to `"false"`. Requests are rejected before upload reads, rate-limiter calls or Images transformations. Browser Quick/Private modes remain available.
+The owner allows free AI features and does not authorize paid APIs, subscriptions, or automatic upgrades. This Worker uses the existing Cloudflare Images binding with foreground segmentation and a 5-per-minute per-IP rate limiter. It does not enable a plan or add an AI provider. The online mode requires photo-upload consent; Quick and Private modes run locally.
 
-Do not enable the flag, add a paid API, upgrade a plan or purchase resources without the owner's explicit authorization. Cloudflare Images Free has a hard transformation allowance, while paid plans can incur usage charges. The connector could not read billing/subscriptions, so the actual account plan and any existing bill were not verified. This guard does not cancel existing subscriptions or guarantee that unrelated Cloudflare services incur no charges.
+Cloudflare states Images Free includes 5,000 unique transformations monthly and rejects new transformations after that without a charge or automatic plan upgrade. Paid Images includes the first 5,000 transformations, then charges for overage. We cannot read this account's Images plan or total usage with the current connector. Therefore do not describe an unknown existing Paid plan as a guaranteed zero bill. If no-charge operation must be guaranteed across account settings, confirm Images Free in Cloudflare billing before relying on the online mode. On 503 or rate limits, users can switch to local processing.
+
+Sources: https://developers.cloudflare.com/images/pricing/ and https://developers.cloudflare.com/images/optimization/binding/

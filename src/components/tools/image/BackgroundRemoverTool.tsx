@@ -16,7 +16,7 @@ import {
   Zap
 } from 'lucide-react';
 import { processBackgroundRemoval, BackgroundRemovalResult, BackgroundRemovalMode, BackgroundRemovalProgress } from '../../../lib/backgroundRemoval';
-import { processCloudflareBackgroundRemoval, REMOTE_BACKGROUND_REMOVAL_ENABLED } from '../../../lib/cloudflareBackgroundRemoval';
+import { processCloudflareBackgroundRemoval } from '../../../lib/cloudflareBackgroundRemoval';
 import { formatBytes } from '../../../lib/imageUtils';
 import { getLinkUrl } from '../../../lib/paths';
 
@@ -254,16 +254,16 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
       <section aria-labelledby="bg-mode-heading" className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 sm:p-5 shadow-sm">
         <div className="mb-4">
           <h2 id="bg-mode-heading" className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">Choose the best option for your photo</h2>
-          <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">Choose Quick Removal for smaller inputs or Private Removal for more detail. Both process on your device and create a transparent PNG.</p>
+          <p className="mt-1 text-xs sm:text-sm text-slate-500 dark:text-slate-400">Not sure which to choose? Smart AI Removal is recommended for most photos. All options create a transparent PNG.</p>
         </div>
         <fieldset disabled={isProcessing}>
           <legend className="sr-only">Background removal processing mode</legend>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {([
               { id: 'cloudflare', icon: '🚀', title: 'Smart AI Removal', subtitle: 'Recommended for most photos', detail: 'Works well on mobile · Up to 10 MB · Upload permission required', badge: 'RECOMMENDED' },
               { id: 'fast', icon: '⚡', title: 'Quick Removal', subtitle: 'Faster processing on your device', detail: 'No upload · Fine details may be reduced', badge: 'PRIVATE' },
               { id: 'quality', icon: '🔒', title: 'Private Removal', subtitle: 'Keeps your photo on your device', detail: 'No upload · May take longer on mobile', badge: 'PRIVATE' }
-            ] as const).filter(mode => mode.id !== 'cloudflare' || REMOTE_BACKGROUND_REMOVAL_ENABLED).map(mode => (
+            ] as const).map(mode => (
               <label key={mode.id} className={`relative flex items-start gap-3 rounded-xl border-2 p-3.5 sm:p-4 cursor-pointer transition-colors ${processingMode === mode.id ? 'border-indigo-500 bg-indigo-50/70 dark:bg-indigo-950/30' : 'border-slate-200 dark:border-slate-700 hover:border-indigo-300 dark:hover:border-indigo-700'} ${isProcessing ? 'opacity-60 cursor-not-allowed' : ''}`}>
                 <input type="radio" name="bg-removal-mode" value={mode.id} checked={processingMode === mode.id} onChange={() => setProcessingMode(mode.id)} className="mt-1 accent-indigo-600 shrink-0" />
                 <span className="min-w-0 flex-1">
@@ -283,7 +283,7 @@ export const BackgroundRemoverTool: React.FC<BackgroundRemoverToolProps> = ({ on
               <Lock className="w-4 h-4 mt-0.5 shrink-0 text-indigo-600 dark:text-indigo-400" aria-hidden="true" />
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100">{processingMode === 'cloudflare' ? 'Smart AI Removal · Upload permission required' : 'Your photo stays on your device'}</p>
-                <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{processingMode === 'cloudflare' ? 'Smart AI Removal sends your selected photo to our processing provider, Cloudflare, only after you give permission and start. Avoid private or sensitive photos. Results and speed may vary.' : 'Quick Removal and Private Removal process photos on your device. Your photo is not uploaded for processing.'}</p>
+                <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{processingMode === 'cloudflare' ? 'Smart AI Removal sends your selected photo to Cloudflare only after you give permission and start. It uses Cloudflare Images; the Free plan stops new processing after its monthly allowance. Avoid sensitive photos. If online processing is unavailable, use Quick or Private Removal.' : 'Quick Removal and Private Removal process photos on your device. Your photo is not uploaded for processing.'}</p>
               </div>
             </div>
             {processingMode === 'cloudflare' && (

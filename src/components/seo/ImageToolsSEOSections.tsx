@@ -108,10 +108,10 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 <Lock className="w-5 h-5 text-emerald-500" /> On-device AI Processing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Quick Removal and Private Removal process the selected photo on your device. The browser may download model resources before it can start.
+                Quick Removal and Private Removal process the selected photo on your device. The browser may download model resources before it can start. Smart AI Removal is an optional Cloudflare processing mode that uploads the selected photo after you give permission and start.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                The available modes do not upload your photo for background removal. Ordinary website and model-download requests still use the network. Online Smart AI Removal is currently unavailable.
+                The local modes do not upload your photo for background removal. If you choose Smart AI Removal, your photo is sent to Cloudflare after explicit consent. Check the privacy notice and avoid uploading sensitive images.
               </p>
             </div>
 

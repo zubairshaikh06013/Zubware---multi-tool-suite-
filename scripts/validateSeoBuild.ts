@@ -57,8 +57,8 @@ export function validateSeoBuild(distDir: string): void {
     // Lightweight editorial triage of prerendered HTML, not a Google ranking score.
     // Strip scripts/styles and tags so hidden metadata cannot inflate page word counts.
     const visibleText = html
-      .replace(/<script\\b[^>]*>[\\s\\S]*?<\\/script>/gi, ' ')
-      .replace(/<style\\b[^>]*>[\\s\\S]*?<\\/style>/gi, ' ')
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, ' ')
       .replace(/<[^>]+>/g, ' ')
       .replace(/&(?:[a-z]+|#\\d+|#x[0-9a-f]+);/gi, ' ')
       .replace(/\\s+/g, ' ').trim();

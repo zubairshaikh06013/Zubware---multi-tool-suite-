@@ -9,6 +9,12 @@ Zubware is a collection of browser-accessible tools for everyday image, PDF, and
 
 Explore more utilities at [Zubware.com](https://www.zubware.com).
 
+## Free educational resources
+
+- [Image optimization guide and publishing checklist](docs/free-image-optimization-guide.md) — practical steps for compression, resizing, background removal, and checking exports before publishing.
+
+These resources are free to reference in tutorials and learning materials. Please credit the original guide when adapting its content.
+
 ## Local development
 
 Requires Node.js.

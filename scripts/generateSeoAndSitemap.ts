@@ -2636,7 +2636,7 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       loc: articleCanonical,
       priority: '0.8',
       changefreq: 'monthly',
-      lastmod: (article.modifiedTime || article.publishedTime || '2026-09-24').split('T')[0]
+      lastmod: (article.modifiedTime || article.publishedTime)?.split('T')[0]
     });
   }
 

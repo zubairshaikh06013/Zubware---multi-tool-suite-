@@ -1,20 +1,31 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Zubware — Free Online Tools
 
-# Run and deploy your AI Studio app
+**Website:** https://www.zubware.com
 
-This contains everything you need to run your app locally.
+Zubware is a collection of browser-accessible tools for everyday image, PDF, and digital workflows. Try the tools directly on the website:
 
-View your app in AI Studio: https://ai.studio/apps/224ca21a-6b44-4b8e-920b-de45a35d48c9
+- [Image Compressor](https://www.zubware.com/image-compressor) — compress images and use target-size and batch-download options.
+- [Image Resizer](https://www.zubware.com/image-resizer) — resize by pixels, percentages, and common social-media dimensions.
 
-## Run Locally
+Explore more utilities at [Zubware.com](https://www.zubware.com).
 
-**Prerequisites:**  Node.js
+## Local development
 
+Requires Node.js.
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+```bash
+npm install
+npm run dev
+```
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+Some optional AI-powered functionality may require additional configuration. Do not add paid API credentials unless you intend to use them.
+
+## Contributing
+
+Please open a GitHub issue with a reproducible bug report or a specific improvement suggestion. Avoid submitting private API keys or other secrets.

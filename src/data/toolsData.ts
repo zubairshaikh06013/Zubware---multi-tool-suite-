@@ -9185,7 +9185,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "pdf-to-jpg",
     "title": "PDF to JPG Converter — Convert PDF Pages to Images Online",
     "navTitle": "PDF to JPG",
-    "description": "Convert PDF pages to JPG images in your browser. Choose page ranges and image resolution, preview rendered pages, then download JPG files individually or as a ZIP. No account needed.",
+    "description": "Convert PDF pages into JPG images in your browser. Select page ranges and rendering resolution, preview each page, then download individual JPG files or a ZIP archive. No account required.",
     "icon": "🖼️",
     "path": "/pdf-to-jpg",
     "filename": "pdf-to-jpg.html",

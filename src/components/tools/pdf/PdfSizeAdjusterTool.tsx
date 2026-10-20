@@ -196,7 +196,9 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
         if (result.isAlreadyOptimized) {
           onShowToast('PDF is already highly optimized. Original file preserved.');
         } else {
-          onShowToast('PDF size reduced successfully!');
+          onShowToast(result.targetReached
+            ? `Exact target reached: ${result.actualBytes.toLocaleString()} bytes.`
+            : 'Target could not be reached safely. See the result warning.');
         }
       }
     } catch (err: any) {

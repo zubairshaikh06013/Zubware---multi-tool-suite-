@@ -1,5 +1,6 @@
 import { PDFDocument, PDFName } from 'pdf-lib';
 import { jsPDF } from 'jspdf';
+import { matchPdfByteLength } from './exactPdfSize';
 
 /**
  * Zubware Centralized Decimal Size Constants
@@ -216,6 +217,9 @@ export async function reducePdfSize(
   presetLevel: ReduceQualityLevel = 'medium',
   onProgress?: (stage: string, percent: number) => void
 ): Promise<ReduceResult> {
+  if (!Number.isSafeInteger(targetBytes) || targetBytes <= 0 || targetBytes > MAX_SAFE_TARGET_BYTES) {
+    throw new Error('Enter a valid target size greater than zero and up to 50 MB.');
+  }
   const originalBytes = pdfBuffer.byteLength;
 
   if (targetBytes >= originalBytes) {
@@ -356,6 +360,14 @@ export async function reducePdfSize(
       modeNotice: 'Original file preserved without degradation.',
       warningNotice: 'This PDF is already highly optimized, so further compression would not significantly reduce its size.'
     };
+  }
+
+  // Compression chooses a valid candidate at or below the target; whitespace
+  // matches the remaining bytes without changing page content or xref offsets.
+  if (bestSize <= targetBytes) {
+    bestBytes = matchPdfByteLength(bestBytes, targetBytes);
+    bestSize = bestBytes.length;
+    modeNotice += ' Exact target size matched using PDF whitespace padding; page quality is unchanged by padding.';
   }
 
   // Validate resulting PDF

@@ -27,7 +27,7 @@ const ImageSplitterMergerTool = lazy(() => import('./components/tools/ImageSplit
 const BackgroundRemoverTool = lazy(() => import('./components/tools/image/BackgroundRemoverTool').then(m => ({ default: m.BackgroundRemoverTool })));
 const ImageCompressorTool = lazyWithRetry(() => import('./components/tools/ImageCompressorTool').then(m => ({ default: m.ImageCompressorTool })));
 const ImageConverterTool = lazy(() => import('./components/tools/ImageConverterTool').then(m => ({ default: m.ImageConverterTool })));
-const ImageResizerTool = lazy(() => import('./components/tools/image/ImageResizerTool').then(m => ({ default: m.ImageResizerTool })));
+const ImageResizerTool = lazyWithRetry(() => import('./components/tools/image/ImageResizerTool').then(m => ({ default: m.ImageResizerTool })));
 const CropImageTool = lazy(() => import('./components/tools/image/CropImageTool').then(m => ({ default: m.CropImageTool })));
 const RotateImageTool = lazy(() => import('./components/tools/image/RotateImageTool').then(m => ({ default: m.RotateImageTool })));
 const FlipImageTool = lazy(() => import('./components/tools/image/FlipImageTool').then(m => ({ default: m.FlipImageTool })));

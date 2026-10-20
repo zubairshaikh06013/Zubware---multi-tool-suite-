@@ -44,6 +44,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
 
   const [processingError, setProcessingError] = useState('');
   const [audioNotice, setAudioNotice] = useState('');
+  const [compatibilityMode, setCompatibilityMode] = useState(false);
   const stopActive = useRef<(() => void) | null>(null);
   useEffect(() => () => stopActive.current?.(), []);
   useEffect(() => () => { if (videoUrl) URL.revokeObjectURL(videoUrl); }, [videoUrl]);
@@ -85,6 +86,8 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
     setIsProcessing(true); setProgress(0); setProcessingError(''); setAudioNotice('');
     setCompressedBlob(null); setCompressedUrl(null);
     let stream: MediaStream | undefined, audioStream: MediaStream | undefined;
+    let audioContext: AudioContext | undefined;
+    let audioSource: MediaElementAudioSourceNode | undefined;
     let recorder: MediaRecorder | undefined, frame = 0, cancelled = false;
     let recordingTimer: ReturnType<typeof setTimeout> | undefined;
     let rejectRecording: ((reason: Error) => void) | undefined;
@@ -94,12 +97,29 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
       if (recorder && recorder.state !== 'inactive') recorder.stop();
       stream?.getTracks().forEach(track => track.stop());
       audioStream?.getTracks().forEach(track => track.stop());
+      audioSource?.disconnect();
+      if (audioContext && audioContext.state !== 'closed') void audioContext.close().catch(() => {});
+      video.muted = true;
     };
     stopActive.current = cleanup;
     try {
       if (typeof MediaRecorder === 'undefined') throw new Error('Video recording is not available in this browser.');
       if (!video.videoWidth || !video.videoHeight || !Number.isFinite(video.duration) || video.duration <= 0) throw new Error('Wait for the video to load, or try a supported video file.');
       video.pause(); video.muted = true;
+      const capture = (video as HTMLVideoElement & {captureStream?: () => MediaStream}).captureStream;
+      const useCompatibility = compatibilityMode || !capture;
+      // Resume during the click gesture, before seek/playback awaits consume activation.
+      if (useCompatibility && typeof AudioContext !== 'undefined') {
+        audioContext = new AudioContext();
+        await audioContext.resume();
+        if (audioContext.state !== 'running') throw new Error('Audio could not start. Tap Start again and keep this tab active.');
+        audioSource = audioContext.createMediaElementSource(video);
+        const destination = audioContext.createMediaStreamDestination();
+        audioSource.connect(destination);
+        audioStream = destination.stream;
+        // Route audio only to the recording, never to speakers or a microphone.
+        video.muted = false;
+      }
       // Seeking to an already-current time does not reliably dispatch seeked.
       if (video.currentTime > 0) {
         await new Promise<void>((resolve, reject) => {
@@ -110,7 +130,8 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
           video.currentTime = 0;
         });
       }
-      const canvas = document.createElement('canvas');
+      const canvas = canvasRef.current;
+      if (!canvas) throw new Error('The recording preview is not ready. Try again.');
       const ctx = canvas.getContext('2d');
       if (!ctx || !canvas.captureStream) throw new Error('Canvas video recording is not supported in this browser.');
       const width = Math.max(2, Math.round(video.videoWidth * resolutionScale / 2) * 2);
@@ -119,23 +140,28 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
       canvas.width = width; canvas.height = height;
       ctx.drawImage(video, 0, 0, width, height);
       stream = canvas.captureStream(fps);
-      const capture = (video as HTMLVideoElement & {captureStream?: () => MediaStream}).captureStream;
-      if (capture) {
+      const canvasTrack = stream.getVideoTracks()[0] as CanvasCaptureMediaStreamTrack | undefined;
+      if (!canvasTrack) throw new Error('This browser did not provide a video recording track.');
+      if (audioStream) {
+        audioStream.getAudioTracks().forEach(track => stream!.addTrack(track));
+        setAudioNotice('Compatibility audio capture enabled. Check sound in the exported video.');
+      } else if (capture) {
         audioStream = capture.call(video);
         const audioTracks = audioStream.getAudioTracks();
         audioTracks.forEach(track => stream!.addTrack(track));
         if (!audioTracks.length) setAudioNotice('No audio track was captured. Verify sound in the output.');
-      } else setAudioNotice('This browser cannot capture the source audio here. Output will be silent.');
-      const mimeType = ['video/webm;codecs=vp8','video/webm;codecs=vp9','video/webm'].find(type => MediaRecorder.isTypeSupported(type));
-      if (!mimeType) throw new Error('This browser cannot record the required WebM format.');
-      recorder = new MediaRecorder(stream, {mimeType, videoBitsPerSecond: getBitrate()});
+      } else setAudioNotice('Audio capture is unavailable in this browser. Output will be silent.');
+      const mimeType = useCompatibility ? '' : ['video/webm;codecs=vp8','video/webm;codecs=vp9','video/webm'].find(type => MediaRecorder.isTypeSupported(type));
+      if (!useCompatibility && !mimeType) throw new Error('Try Compatibility mode: this browser cannot record the selected WebM format.');
+      // Let older browsers choose their native encoder instead of trusting codec claims.
+      recorder = new MediaRecorder(stream, { ...(mimeType ? {mimeType} : {}), videoBitsPerSecond: getBitrate() });
       const chunks: Blob[] = [];
       const completed = new Promise<Blob>((resolve, reject) => {
         rejectRecording = reject;
         recorder!.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
         recorder!.onerror = () => reject(new Error('Video recording failed. Try a shorter clip or lower resolution.'));
         recorder!.onstop = () => {
-          const blob = new Blob(chunks, {type: recorder!.mimeType || mimeType});
+          const blob = new Blob(chunks, {type: recorder!.mimeType || mimeType || chunks[0]?.type || 'video/webm'});
           if (!video.ended) reject(new Error('Recording stopped before the video finished. Keep this tab active and try again.'));
           else if (!blob.size) reject(new Error('The recorder produced an empty file.'));
           else resolve(blob);
@@ -149,6 +175,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
       const render = () => {
         if (cancelled) return;
         ctx.drawImage(video, 0, 0, width, height);
+        if (useCompatibility && typeof canvasTrack.requestFrame === 'function') canvasTrack.requestFrame();
         setProgress(Math.min(99, Math.round(video.currentTime / video.duration * 100)));
         if (video.ended || video.paused) { if (recorder!.state !== 'inactive') recorder!.stop(); return; }
         frame = requestAnimationFrame(render);
@@ -160,7 +187,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
       await validateRecordedVideo(blob);
       if (!cancelled) {
         setCompressedBlob(blob); setCompressedUrl(URL.createObjectURL(blob)); setProgress(100);
-        onShowToast('WebM recording finished. Check size, playback and audio before sharing.');
+        onShowToast('Video recording finished. Check size, playback and audio before sharing.');
       }
     } catch (error) {
       if (!cancelled) {
@@ -192,8 +219,8 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
 
   return (
     <div className="p-6 sm:p-8 space-y-6">
-      <p className="text-xs text-slate-500">Records WebM using browser playback. Encoding can take the clip’s duration or longer; output is not guaranteed smaller. Keep this tab active and check the exported audio.</p>
-      {processingError && <p role="alert" className="text-red-600">{processingError}</p>}
+      <p className="text-xs text-slate-500">Records video using browser playback. Compatibility mode uses your browser’s default output format. Encoding can take the clip’s duration or longer; output is not guaranteed smaller. Keep this tab active and check the exported audio.</p>
+      {processingError && <p role="alert" className="text-red-600">{processingError} Enable Compatibility mode below to try a different recording method.</p>}
       {audioNotice && <p role="status" className="text-amber-600">{audioNotice}</p>}
       {/* Header */}
       <div className="flex items-center justify-between border-b border-slate-200/80 dark:border-slate-800 pb-4">
@@ -315,6 +342,11 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
               </div>
             </div>
 
+            <label className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300">
+              <input type="checkbox" checked={compatibilityMode} disabled={isProcessing}
+                onChange={e => setCompatibilityMode(e.target.checked)} />
+              Compatibility mode — try this if recording fails. Also used automatically when direct audio capture is unavailable.
+            </label>
             <button
               onClick={processCompression}
               disabled={!videoUrl || isProcessing}
@@ -365,6 +397,8 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
             />
           )}
 
+          <canvas ref={canvasRef} aria-label="Recording preview"
+            className={isProcessing ? 'w-full max-h-48 object-contain rounded-xl' : 'hidden'} />
           <div className="p-4 rounded-3xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex-1 flex flex-col items-center justify-center min-h-[300px]">
             {compressedUrl ? (
               <div className="space-y-4 w-full text-center">
@@ -405,7 +439,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
             <div className="flex items-center justify-end">
               <a
                 href={compressedUrl}
-                download={`compressed_${videoFile?.name.replace(/\.[^/.]+$/, '') || 'video'}.webm`}
+                download={`compressed_${videoFile?.name.replace(/\.[^/.]+$/, '') || 'video'}.${compressedBlob?.type.includes('mp4') ? 'mp4' : 'webm'}`} 
                 className="px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-2 shadow-sm"
               >
                 <Download className="w-4 h-4" /> Download Compressed Video

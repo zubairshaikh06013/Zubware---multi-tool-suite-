@@ -365,9 +365,17 @@ export async function reducePdfSize(
   // Compression chooses a valid candidate at or below the target; whitespace
   // matches the remaining bytes without changing page content or xref offsets.
   if (bestSize <= targetBytes) {
-    bestBytes = matchPdfByteLength(bestBytes, targetBytes);
-    bestSize = bestBytes.length;
-    modeNotice += ' Exact target size matched using PDF whitespace padding; page quality is unchanged by padding.';
+    // Size matching is optional: a PDF that already fits must remain downloadable
+    // even when its cross-reference layout does not support safe padding.
+    try {
+      const matchedBytes = matchPdfByteLength(bestBytes, targetBytes);
+      bestBytes = matchedBytes;
+      bestSize = matchedBytes.length;
+      modeNotice += ' Exact target size matched using PDF whitespace padding; page quality is unchanged by padding.';
+    } catch (paddingError) {
+      console.warn('Exact PDF size matching unavailable; keeping the valid smaller PDF.', paddingError);
+      modeNotice += ' Output is below the requested maximum size; exact byte matching was unavailable.';
+    }
   }
 
   // Validate resulting PDF

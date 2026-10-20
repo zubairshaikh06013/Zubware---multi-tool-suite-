@@ -180,9 +180,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "image-resizer",
-    "title": "Free Online Image Resizer — Resize Photos by Pixels or Percentage",
+    "title": "Photo Resizer Online Free — Resize Photos for Forms & Social Media",
     "navTitle": "Image Resizer",
-    "description": "Resize photos to exact pixel dimensions or a percentage, keep aspect ratio locked when needed, and use social media size presets. Batch resize images and export JPG, PNG or WebP files; enlarging small images cannot restore missing detail.",
+    "description": "Resize photos online for free to custom pixel dimensions, including India application photo presets (300×400, 350×450 and 400×400 px). Keep aspect ratio when needed, batch resize, and export JPG, PNG or WebP. Check the exact requirements of your form before uploading.",
     "icon": "📐",
     "path": "/image-resizer",
     "filename": "image-resizer.html",
@@ -191,7 +191,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "features": [
       "Exact Pixel Dimensions Resizing with Lock Aspect Ratio",
       "Percentage Scaling Slider from 1% to 500%",
-      "Social Media Presets (Instagram 1:1, Stories 9:16, YouTube 16:9, LinkedIn)",
+      "India Application Photo Presets (300×400, 350×450, 400×400 px) and Social Media Sizes",
       "Display Resolution Presets (Full HD 1080p, 4K Ultra HD, 720p)",
       "WebP, JPEG, PNG, and BMP Output Formats with Quality Slider",
       "Multi-Image Batch Resizing with Simultaneous ZIP Download"
@@ -6046,7 +6046,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "pdf-compressor",
     "title": "PDF Compressor — Compress PDF Files Online Free",
     "navTitle": "PDF Compressor",
-    "description": "Compress PDF files online for free. Reduce PDF size with Extreme, Recommended, and High Quality presets. 100% private in-browser compression with zero uploads.",
+    "description": "Compress PDF online free for document uploads and application forms. Enter a target such as 100 KB, 200 KB or 500 KB, choose compression quality and see the actual result size. Some PDFs cannot reach an exact target without losing readability. Processing runs in your browser.",
     "icon": "🗜️",
     "path": "/pdf-compressor",
     "filename": "pdf-compressor.html",
@@ -6229,7 +6229,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "signature-resizer",
     "title": "Signature Resizer — Resize Signature Images for Online Exam Forms",
     "navTitle": "Signature Resizer",
-    "description": "Resize signature images to required pixel dimensions and KB limits for SSC, UPSC, IBPS, and state exam forms. Auto-crop empty edges with zero server upload.",
+    "description": "Resize signature online for Indian exam and application forms. Choose 10 KB, 20 KB, 50 KB or 100 KB limits, adjust pixel dimensions, crop margins and download JPG or PNG. Check each form’s official requirements; files exceeding your selected limit are flagged.",
     "icon": "📏",
     "path": "/signature-resizer",
     "filename": "signature-resizer.html",
@@ -6238,7 +6238,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "features": [
       "Custom Dimensions in Pixels (px), Centimeters (cm), Millimeters (mm) & Inches",
       "Official Exam Presets for SSC, UPSC, IBPS, Passport/Visa & Application Forms",
-      "Target File Size Limits (< 20 KB, < 50 KB, < 100 KB) with Adaptive JPEG Compression",
+      "Target File Size Limits (10 KB, 20 KB, 50 KB, 100 KB) with JPEG Compression and Limit Warning",
       "Auto-Crop Empty White Margins & Tight Non-Ink Boundary Trimming",
       "Aspect Ratio Lock & Instant Scaling Percentages (25% to 200%)",
       "Solid White Background or Transparent Canvas with Direct JPG/PNG Download",

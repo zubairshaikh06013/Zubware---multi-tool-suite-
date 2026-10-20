@@ -182,7 +182,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "image-resizer",
     "title": "Photo Resizer Online Free — Resize Photos for Forms & Social Media",
     "navTitle": "Image Resizer",
-    "description": "Resize photos online for free to custom pixel dimensions, including India application photo presets (300×400, 350×450 and 400×400 px). Keep aspect ratio when needed, batch resize, and export JPG, PNG or WebP. Check the exact requirements of your form before uploading.",
+    "description": "Resize photos online for free to custom pixel dimensions, including India application photo presets (300×400, 350×450 and 400×400 px). Set a maximum 20KB, 50KB, 100KB, 200KB or 500KB with JPEG/WebP, keep aspect ratio, and batch resize. Check your form's official dimensions and format rules.",
     "icon": "📐",
     "path": "/image-resizer",
     "filename": "image-resizer.html",
@@ -192,6 +192,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "Exact Pixel Dimensions Resizing with Lock Aspect Ratio",
       "Percentage Scaling Slider from 1% to 500%",
       "India Application Photo Presets (300×400, 350×450, 400×400 px) and Social Media Sizes",
+      "Optional Maximum File Size (20KB, 50KB, 100KB, 200KB, 500KB) for JPEG/WebP",
       "Display Resolution Presets (Full HD 1080p, 4K Ultra HD, 720p)",
       "WebP, JPEG, PNG, and BMP Output Formats with Quality Slider",
       "Multi-Image Batch Resizing with Simultaneous ZIP Download"

@@ -231,6 +231,10 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
               const imgData = ctx.getImageData(0, 0, finalW, finalH);
               const bmpBytes = encodeBmpFromImageData(imgData);
               const bmpBlob = new Blob([bmpBytes], { type: 'image/bmp' });
+              if (targetKb > 0 && bmpBlob.size > targetKb * 1000) {
+                resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:`BMP exceeds ${targetKb} KB. Select JPEG/WebP or smaller dimensions.`});
+                return;
+              }
               resolve({
                 ...item,
                 targetW: finalW,
@@ -272,6 +276,11 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
               resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:`Cannot reach ${targetKb} KB at these dimensions. Try smaller width/height.`});
               return;
             }
+          }
+          // Enforce the selected limit for every output format, including PNG/BMP.
+          if (targetKb > 0 && blob.size > targetKb * 1000) {
+            resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:`Output exceeds ${targetKb} KB. Select JPEG/WebP or smaller dimensions.`});
+            return;
           }
           resolve({...item, targetW:finalW, targetH:finalH, resizedBlob:blob, resizedSize:blob.size, status:'done', errorMessage:undefined});
         } catch (error) {

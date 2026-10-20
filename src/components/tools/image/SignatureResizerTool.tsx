@@ -457,6 +457,17 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                     </div>
                   </div>
 
+                  <section aria-label="Signature upload instructions" className="rounded-xl p-3 bg-indigo-50/70 dark:bg-indigo-950/30 space-y-2">
+                    <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">Signature Resize for Indian Exam Forms</h3>
+                    <ol className="list-decimal pl-4 space-y-1 text-xs text-slate-700 dark:text-slate-300">
+                      <li>Check the official application notice for signature dimensions, file format and minimum/maximum KB.</li>
+                      <li>Upload a clear image of your signature and crop unnecessary white margins if required.</li>
+                      <li>Choose the correct width, height and JPG/PNG format. Use a KB limit only if your form specifies one.</li>
+                      <li>Review the preview and resulting file size before downloading. An over-limit result cannot be downloaded.</li>
+                    </ol>
+                    <p className="text-xs text-amber-800 dark:text-amber-300">These are general resizing controls, not verified official SSC, UPSC, IBPS or state-exam presets. Requirements vary by notification and year.</p>
+                  </section>
+
                   {/* Target File Size Cap (KB) */}
                   <div>
                     <label className="text-[11px] font-bold text-slate-500 block mb-1">

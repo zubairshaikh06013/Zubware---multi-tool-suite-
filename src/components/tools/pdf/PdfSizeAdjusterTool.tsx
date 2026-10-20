@@ -389,6 +389,24 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
                 <p className="text-xs text-amber-800 dark:text-amber-300">Exact KB results are not always possible. Strong compression may reduce image clarity. Always check the final file size and quality before submission.</p>
               </section>
 
+              <section aria-label="Popular PDF target sizes" className="rounded-xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50/60 dark:bg-indigo-950/20 p-4 space-y-3">
+                <h3 className="text-sm font-extrabold text-slate-800 dark:text-slate-100">Compress PDF to 100KB, 200KB or 500KB</h3>
+                <p className="text-xs text-slate-600 dark:text-slate-300">Choose your application form's maximum PDF size. The actual result may be smaller or larger if compression cannot reach the target.</p>
+                <div className="flex flex-wrap gap-2">
+                  {[100, 200, 300, 500].map(kb => (
+                    <button key={kb} type="button" disabled={isProcessing}
+                      onClick={() => { setTargetSizeVal(kb); setTargetUnit('KB'); }}
+                      className={`px-3 py-2 rounded-xl border text-xs font-bold ${targetUnit === 'KB' && targetSizeVal === kb ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-white dark:bg-slate-800 border-indigo-200 dark:border-slate-700 text-indigo-700 dark:text-indigo-300'}`}>
+                      PDF to {kb}KB
+                    </button>
+                  ))}
+                </div>
+                <nav aria-label="Related form tools" className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold">
+                  <a href="/image-resizer" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Photo Resize to 50KB</a>
+                  <a href="/signature-resizer" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Signature Resize to 20KB</a>
+                </nav>
+              </section>
+
               {/* Presets */}
               <div className="space-y-2">
                 <div className="text-xs font-bold text-slate-600 dark:text-slate-400">

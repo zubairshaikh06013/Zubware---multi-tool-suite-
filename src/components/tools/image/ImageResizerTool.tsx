@@ -83,6 +83,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   const [exportFormat, setExportFormat] = useState<'image/png' | 'image/jpeg' | 'image/webp' | 'image/bmp'>('image/webp');
   const [quality, setQuality] = useState<number>(90);
   const [targetKb, setTargetKb] = useState<number>(0);
+  const [indiaFormsOnly, setIndiaFormsOnly] = useState<boolean>(false);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
@@ -548,8 +549,12 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
             <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">
               Select Preset Dimensions
             </label>
+            <label className="flex items-center gap-2 text-xs font-semibold text-slate-600 dark:text-slate-300 mb-2">
+              <input type="checkbox" checked={indiaFormsOnly} onChange={(e) => setIndiaFormsOnly(e.target.checked)} />
+              Show India application photo sizes only
+            </label>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-              {PRESETS.map((preset, idx) => (
+              {(indiaFormsOnly ? PRESETS.filter(p => p.category === 'India Forms') : PRESETS).map((preset, idx) => (
                 <button
                   key={idx}
                   onClick={() => applyPreset(preset)}

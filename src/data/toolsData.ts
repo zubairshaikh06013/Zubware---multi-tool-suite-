@@ -211,7 +211,13 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "instagram photo resizer",
       "youtube thumbnail resizer",
       "resize JPG PNG WebP",
-      "resize image without signup"
+      "resize image without signup",
+      "photo resize 20kb",
+      "photo resize 50kb",
+      "photo resize 100kb",
+      "photo resize for government job form",
+      "photo resize 200x230 pixels",
+      "passport photo resize online"
     ],
     "trending": false,
     "featured": false,
@@ -6238,7 +6244,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "badge": "New",
     "features": [
       "Custom Dimensions in Pixels (px), Centimeters (cm), Millimeters (mm) & Inches",
-      "Official Exam Presets for SSC, UPSC, IBPS, Passport/Visa & Application Forms",
+      "Custom Signature Sizes for Application Forms (Verify Official Exam Requirements)",
       "Target File Size Limits (10 KB, 20 KB, 50 KB, 100 KB) with JPEG Compression and Limit Warning",
       "Auto-Crop Empty White Margins & Tight Non-Ink Boundary Trimming",
       "Aspect Ratio Lock & Instant Scaling Percentages (25% to 200%)",
@@ -6246,16 +6252,16 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "100% Client-Side Browser Processing with Zero Server Uploads & Full Privacy"
     ],
     "tags": [
-      "Free",
-      "Online",
-      "Tool",
-      "Image",
-      "Photo",
-      "Graphic",
-      "Converter",
-      "Compressor",
-      "Canvas",
-      "Design"
+      "signature resize online",
+      "signature resize 10kb to 20kb",
+      "signature size reducer",
+      "signature resizer for government forms",
+      "signature resize in pixels",
+      "signature resize JPG",
+      "signature resize 50kb",
+      "signature resize for exam application",
+      "online signature crop",
+      "signature photo size change"
     ],
     "trending": false,
     "featured": false,

@@ -144,15 +144,19 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
+        '@id': `${domain}/#website`,
         'name': 'Zubware',
-        'url': domain
+        'alternateName': ['Zubware.com', 'Zubware Multi Tool Suite'],
+        'url': `${domain}/`,
+        'publisher': { '@id': `${domain}/#organization` }
       },
       // Organization Entity
       {
         '@context': 'https://schema.org',
         '@type': 'Organization',
+        '@id': `${domain}/#organization`,
         'name': 'Zubware',
-        'url': domain,
+        'url': `${domain}/`,
         'logo': `${domain}/icon.png`,
         'description': 'Zubware is a multi-tool suite offering 300+ free online browser-based tools for PDF, images, developers, and productivity.'
       }

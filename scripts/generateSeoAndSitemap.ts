@@ -2362,7 +2362,10 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     '@graph': [
       {
         '@type': 'WebSite',
+        '@id': `${DOMAIN}/#website`,
         'name': 'Zubware',
+        'alternateName': ['Zubware.com', 'Zubware Multi Tool Suite'],
+        'publisher': { '@id': `${DOMAIN}/#organization` },
         'url': `${DOMAIN}/`,
         'potentialAction': {
           '@type': 'SearchAction',
@@ -2372,6 +2375,7 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       },
       {
         '@type': 'Organization',
+        '@id': `${DOMAIN}/#organization`,
         'name': 'Zubware',
         'url': `${DOMAIN}/`,
         'logo': `${DOMAIN}/icon.png`,

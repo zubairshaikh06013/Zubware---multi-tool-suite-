@@ -140,7 +140,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "desc": "Pick a target limit such as 20KB, 50KB, or 100KB for portal uploads, or adjust the Quality slider to reduce file size."
       },
       {
-        "title": "PDF compress karke download karein",
+        "title": "PDF कंप्रेस करके डाउनलोड करें",
         "desc": "Inspect before/after file sizes and savings percentage, then download your compressed photos individually or as a ZIP archive."
       }
     ],
@@ -232,20 +232,20 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "image-resizer": {
     "howTo": [
       {
-        "title": "Photo upload kaise karein",
-        "desc": "Apne mobile ya computer se JPG, PNG ya WebP photo select karein. Ek saath kai photos bhi add kar sakte hain."
+        "title": "फोटो अपलोड कैसे करें?",
+        "desc": "अपने मोबाइल या कंप्यूटर से JPG, PNG या WebP फोटो चुनें। एक साथ कई फोटो भी जोड़ सकते हैं।"
       },
       {
-        "title": "Photo ki width, height ya KB kaise set karein",
-        "desc": "Form mein diye gaye pixel size ko set karein, ya 20KB, 50KB, 100KB jaise file-size shortcut chunein. Form ki official requirements zaroor check karein."
+        "title": "फोटो की चौड़ाई, ऊंचाई और KB साइज कैसे सेट करें?",
+        "desc": "फॉर्म में दिया गया पिक्सेल साइज सेट करें या 20KB, 50KB, 100KB वाला बटन चुनें। फॉर्म में बताई गई सही साइज की शर्त जरूर चेक करें।"
       },
       {
-        "title": "Photo size ka preset kaise chunein",
-        "desc": "Government form ke liye 200×230 ya 100×120 pixel jaise generic presets milte hain. Social media ke liye bhi alag presets hain."
+        "title": "फोटो का साइज कैसे चुनें?",
+        "desc": "सरकारी फॉर्म के लिए 200×230 या 100×120 पिक्सेल जैसे साइज चुन सकते हैं। सोशल मीडिया के लिए भी अलग साइज मौजूद हैं।"
       },
       {
-        "title": "Photo download kaise karein",
-        "desc": "JPG, PNG ya WebP format chunein, photo resize karein aur Download dabayein. Ek se zyada photos hon to ZIP bhi download kar sakte hain."
+        "title": "फोटो डाउनलोड कैसे करें?",
+        "desc": "JPG, PNG या WebP फॉर्मेट चुनें। फोटो का साइज बदलें और Download पर क्लिक करें। कई फोटो हों तो ZIP फाइल भी डाउनलोड कर सकते हैं।"
       }
     ],
     "faq": [
@@ -7706,7 +7706,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "desc": "Select the large PDF document you need to shrink for email attachments or upload limits."
       },
       {
-        "title": "PDF ko 100KB, 200KB ya 500KB karein Preset",
+        "title": "PDF का साइज 100KB, 200KB या 500KB कैसे करें? Preset",
         "desc": "Choose Low compression for maximum visual sharpness, Medium for balanced quality, or Strong for maximum file size reduction."
       },
       {
@@ -7740,16 +7740,16 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "pdf-compressor": {
     "howTo": [
       {
-        "title": "PDF file upload karein",
-        "desc": "Mobile ya computer se PDF file select karein."
+        "title": "PDF फाइल अपलोड करें",
+        "desc": "मोबाइल या कंप्यूटर से अपनी PDF फाइल चुनें।"
       },
       {
         "title": "Select Compression Strength",
-        "desc": "100KB, 200KB ya 500KB ka target chunein. Har PDF ko exact target tak chhota karna mumkin nahi hota."
+        "desc": "100KB, 200KB या 500KB का टारगेट चुनें। ध्यान दें, हर PDF को बिल्कुल उसी साइज तक छोटा करना संभव नहीं होता।"
       },
       {
         "title": "Compress and Download",
-        "desc": "Compress button dabayein. Naya file size check karein aur PDF download karein."
+        "desc": "Compress बटन दबाएं। नया फाइल साइज चेक करें और PDF डाउनलोड कर लें।"
       }
     ],
     "faq": [
@@ -8026,20 +8026,20 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "signature-resizer": {
     "howTo": [
       {
-        "title": "Signature ki photo upload karein",
-        "desc": "Safed kagaz par kiye hue signature ki saaf photo mobile se lein aur JPG, PNG ya WebP file upload karein."
+        "title": "सिग्नेचर की फोटो अपलोड करें",
+        "desc": "सफेद कागज पर किए गए सिग्नेचर की साफ फोटो लें। फिर JPG, PNG या WebP फाइल अपलोड करें।"
       },
       {
-        "title": "Signature ki width aur height set karein",
-        "desc": "Form mein jo pixel size diya hai, wahi set karein. Har exam ke rules alag ho sakte hain."
+        "title": "सिग्नेचर की चौड़ाई और ऊंचाई सेट करें",
+        "desc": "फॉर्म में सिग्नेचर का जो पिक्सेल साइज दिया है, वही सेट करें। हर परीक्षा के नियम अलग हो सकते हैं।"
       },
       {
-        "title": "Signature ka size 10KB ya 20KB karein",
-        "desc": "Extra safed jagah hatane ke liye auto-crop chunein. Phir 10KB ya 20KB ka size shortcut select karein."
+        "title": "सिग्नेचर का साइज 10KB या 20KB कैसे करें?",
+        "desc": "सिग्नेचर के आसपास की खाली जगह हटाने के लिए Auto Crop चुनें। फिर 10KB या 20KB वाला बटन दबाएं।"
       },
       {
-        "title": "Signature check karke download karein",
-        "desc": "Download se pehle signature saaf dikh raha hai ya nahi aur size form ke rule ke andar hai ya nahi, check karein."
+        "title": "सिग्नेचर चेक करके डाउनलोड करें",
+        "desc": "डाउनलोड करने से पहले देखें कि सिग्नेचर साफ दिख रहा है और फाइल का साइज फॉर्म की शर्त के मुताबिक है।"
       }
     ],
     "faq": [

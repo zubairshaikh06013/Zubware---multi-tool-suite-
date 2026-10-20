@@ -1,6 +1,38 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, Video, Download, Sliders, RefreshCw, Check, Sparkles, AlertCircle, Play, Pause, Film } from 'lucide-react';
 
+
+// A non-empty Blob can contain only a WebM header. Require a decoded frame
+// before exposing a success message or download; codec support alone is not enough.
+async function validateRecordedVideo(blob: Blob): Promise<void> {
+  const probe = document.createElement('video');
+  const url = URL.createObjectURL(blob);
+  probe.muted = true;
+  probe.playsInline = true;
+  probe.preload = 'auto';
+  try {
+    await new Promise<void>((resolve, reject) => {
+      const finish = (error?: Error) => {
+        clearTimeout(timer);
+        probe.onloadeddata = null;
+        probe.onerror = null;
+        error ? reject(error) : resolve();
+      };
+      const timer = setTimeout(() => finish(new Error('This browser could not validate the recorded video. Try Chrome or a lower resolution.')), 15000);
+      probe.onerror = () => finish(new Error('This browser produced an unplayable video. Try Chrome or a lower resolution.'));
+      probe.onloadeddata = () => finish(probe.videoWidth > 0 && probe.videoHeight > 0
+        ? undefined : new Error('The recording contains no video frames. Try Chrome.'));
+      probe.src = url;
+      probe.load();
+    });
+  } finally {
+    probe.pause();
+    probe.removeAttribute('src');
+    probe.load();
+    URL.revokeObjectURL(url);
+  }
+}
+
 export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string) => void }) {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [videoUrl, setVideoUrl] = useState<string | null>(null);
@@ -54,8 +86,11 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
     setCompressedBlob(null); setCompressedUrl(null);
     let stream: MediaStream | undefined, audioStream: MediaStream | undefined;
     let recorder: MediaRecorder | undefined, frame = 0, cancelled = false;
+    let recordingTimer: ReturnType<typeof setTimeout> | undefined;
+    let rejectRecording: ((reason: Error) => void) | undefined;
     const cleanup = () => {
-      cancelled = true; cancelAnimationFrame(frame); video.pause();
+      cancelled = true; clearTimeout(recordingTimer); cancelAnimationFrame(frame); video.pause();
+      rejectRecording?.(new Error('Recording cancelled.'));
       if (recorder && recorder.state !== 'inactive') recorder.stop();
       stream?.getTracks().forEach(track => track.stop());
       audioStream?.getTracks().forEach(track => track.stop());
@@ -91,21 +126,24 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
         audioTracks.forEach(track => stream!.addTrack(track));
         if (!audioTracks.length) setAudioNotice('No audio track was captured. Verify sound in the output.');
       } else setAudioNotice('This browser cannot capture the source audio here. Output will be silent.');
-      const mimeType = ['video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(type => MediaRecorder.isTypeSupported(type));
+      const mimeType = ['video/webm;codecs=vp8','video/webm;codecs=vp9','video/webm'].find(type => MediaRecorder.isTypeSupported(type));
       if (!mimeType) throw new Error('This browser cannot record the required WebM format.');
       recorder = new MediaRecorder(stream, {mimeType, videoBitsPerSecond: getBitrate()});
       const chunks: Blob[] = [];
       const completed = new Promise<Blob>((resolve, reject) => {
+        rejectRecording = reject;
         recorder!.ondataavailable = event => { if (event.data.size) chunks.push(event.data); };
         recorder!.onerror = () => reject(new Error('Video recording failed. Try a shorter clip or lower resolution.'));
         recorder!.onstop = () => {
           const blob = new Blob(chunks, {type: recorder!.mimeType || mimeType});
-          if (!blob.size) reject(new Error('The recorder produced an empty file.'));
+          if (!video.ended) reject(new Error('Recording stopped before the video finished. Keep this tab active and try again.'));
+          else if (!blob.size) reject(new Error('The recorder produced an empty file.'));
           else resolve(blob);
         };
       });
       // Attach rejection handling immediately, including failures before playback starts.
       void completed.catch(() => {});
+      recordingTimer = setTimeout(() => rejectRecording?.(new Error('Recording timed out. Keep this tab active, or try a shorter clip in Chrome.')), Math.max(30000, video.duration * 2000 + 15000));
       recorder.start(100);
       await video.play();
       const render = () => {
@@ -117,6 +155,9 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
       };
       render();
       const blob = await completed;
+      clearTimeout(recordingTimer);
+      if (cancelled) return;
+      await validateRecordedVideo(blob);
       if (!cancelled) {
         setCompressedBlob(blob); setCompressedUrl(URL.createObjectURL(blob)); setProgress(100);
         onShowToast('WebM recording finished. Check size, playback and audio before sharing.');
@@ -146,7 +187,7 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
   const getSavingsPercent = () => {
     if (!videoFile || !compressedBlob) return 0;
     const diff = videoFile.size - compressedBlob.size;
-    return Math.round((diff / videoFile.size) * 100);
+    return Math.min(99, Math.round((diff / videoFile.size) * 100));
   };
 
   return (
@@ -316,7 +357,9 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
               key={playbackKey}
               ref={videoRef}
               src={videoUrl}
-              className="hidden"
+              className="w-full max-h-48 rounded-xl"
+              aria-label="Source video"
+              muted
               playsInline
               preload="auto"
             />
@@ -327,6 +370,10 @@ export function VideoCompressorTool({ onShowToast }: { onShowToast: (msg: string
               <div className="space-y-4 w-full text-center">
                 <video
                   src={compressedUrl}
+                  onError={() => {
+                    setCompressedBlob(null); setCompressedUrl(null);
+                    setProcessingError('The recorded video cannot play in this browser. Try Chrome or a lower resolution. No download was kept.');
+                  }}
                   controls={!isProcessing}
                   className="max-h-64 mx-auto rounded-2xl shadow-sm border border-slate-200 dark:border-slate-800 w-full"
                 />

@@ -237,7 +237,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Select Resizing Mode (Dimensions, %, or Presets)",
-        "desc": "Choose between Exact Dimensions (width and height in px with aspect ratio lock), Percentage Scaling (1% to 500%), or Social Media Presets."
+        "desc": "Choose exact pixel dimensions, percentage scaling, or India application photo presets. Check the target form's official dimensions."
       },
       {
         "title": "Pick Social Media or Display Preset",
@@ -7745,7 +7745,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Select Compression Strength",
-        "desc": "Pick Recommended (~50-65% reduction), Extreme (maximum savings), or High Quality (light compression) preset."
+        "desc": "Choose a compression level and optionally set a maximum size such as 100 KB, 200 KB or 500 KB. Actual savings depend on PDF content."
       },
       {
         "title": "Compress and Download",
@@ -8031,7 +8031,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Select Exam Preset or Units",
-        "desc": "Choose a recruitment preset (e.g. 140 × 60 px for SSC/IBPS) or enter custom width and height in px, cm, mm, or inches."
+        "desc": "Enter the pixel dimensions specified by your application form, or choose a generic preset. Exam requirements vary by portal."
       },
       {
         "title": "Configure Crop, Background & File Size Cap",

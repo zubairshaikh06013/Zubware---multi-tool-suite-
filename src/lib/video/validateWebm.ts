@@ -19,13 +19,17 @@ export function validateWebmFrames(data: Uint8Array, expectedDuration: number): 
     for (let n = start; n < end; n++) value = value * 256 + data[n];
     return value;
   };
-  const walk = (start: number, end: number, depth = 0) => {
+  const walk = (start: number, end: number, depth = 0, inCluster = false): number => {
     if (depth > 8) throw new Error('Invalid recording structure.');
     let trackNumber = -1, trackType = -1;
     for (let offset = start; offset < end;) {
+      const elementStart = offset;
       const id = vint(offset, true); offset += id.length;
+      // MediaRecorder emits consecutive unknown-size Clusters. The next Cluster
+      // ends the previous one; it must not be treated as its nested child.
+      if (inCluster && id.value === 0x1f43b675) return elementStart;
       const size = vint(offset); offset += size.length;
-      const next = size.unknown ? end : offset + size.value;
+      let next = size.unknown ? end : offset + size.value;
       if (next > end || next < offset) throw new Error('Incomplete recording.');
       if (id.value === 0xd7) trackNumber = uint(offset, next);
       if (id.value === 0x83) trackType = uint(offset, next);
@@ -40,10 +44,14 @@ export function validateWebmFrames(data: Uint8Array, expectedDuration: number): 
           frames++; first = Math.min(first, time); last = Math.max(last, time);
         }
       }
-      if ([0x18538067, 0x1549a966, 0x1654ae6b, 0xae, 0x1f43b675, 0xa0].includes(id.value)) walk(offset, next, depth + 1);
+      if ([0x18538067, 0x1549a966, 0x1654ae6b, 0xae, 0x1f43b675, 0xa0].includes(id.value)) {
+        const consumed = walk(offset, next, depth + 1, id.value === 0x1f43b675);
+        if (size.unknown) next = consumed;
+      }
       offset = next;
     }
     if (trackType === 1) videoTrack = trackNumber;
+    return end;
   };
   walk(0, data.length);
   if (!frames) throw new Error('This browser saved audio without video frames. Enable Software compatibility mode and retry.');

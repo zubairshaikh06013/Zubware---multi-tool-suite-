@@ -567,6 +567,17 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
           </div>
         )}
 
+        <section aria-label="Indian application photo guide" className="rounded-2xl bg-indigo-50/70 dark:bg-indigo-950/30 p-4 space-y-2">
+          <h3 className="font-bold text-sm text-slate-800 dark:text-slate-100">Photo Resize for Indian Application Forms — How to Use</h3>
+          <ol className="list-decimal pl-5 space-y-1 text-xs text-slate-700 dark:text-slate-300">
+            <li>Read your application's official notification for exact pixel dimensions, file size and JPG/PNG format.</li>
+            <li>Select an India Forms preset above, or choose Exact Dimensions and enter the required width and height.</li>
+            <li>Set Maximum Photo File Size to your form's KB limit; select JPG for forms that require JPEG.</li>
+            <li>Upload your photo, click Resize All Images, and verify the resulting dimensions and KB before downloading.</li>
+          </ol>
+          <p className="text-xs text-amber-800 dark:text-amber-300">Presets are examples, not guaranteed SSC, UPSC, IBPS or other official requirements. Some applications require live camera capture instead of a resized upload. Stretching a photo to different proportions may distort the face.</p>
+        </section>
+
         {/* Export format & quality controls */}
         <div className="pt-4 border-t border-slate-100 dark:border-slate-800 grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>

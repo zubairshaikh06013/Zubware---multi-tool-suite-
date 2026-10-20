@@ -251,6 +251,23 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
   return (
     <div className="space-y-6 p-4 sm:p-6">
+      <section aria-label="Quick signature resize sizes" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50/60 dark:bg-indigo-950/20 p-4 space-y-3">
+        <h2 className="text-sm font-extrabold text-slate-800 dark:text-slate-100">Signature Resize - 10KB, 20KB, 50KB, 100KB</h2>
+        <p className="text-xs text-slate-600 dark:text-slate-300">Choose a maximum size, then upload your signature. Confirm your form's required pixel dimensions and format before submitting.</p>
+        <div className="flex flex-wrap gap-2">
+          {[10, 20, 50, 100].map(kb => (
+            <button key={kb} type="button" onClick={() => { setMaxKbLimit(kb); setExportFormat('jpeg'); }}
+              className={`px-3 py-2 rounded-xl text-xs font-bold border ${maxKbLimit === kb && exportFormat === 'jpeg' ? 'bg-indigo-600 border-indigo-600 text-white' : 'bg-white dark:bg-slate-800 border-indigo-200 dark:border-slate-700 text-indigo-700 dark:text-indigo-300'}`}>
+              Signature under {kb}KB
+            </button>
+          ))}
+        </div>
+        <nav aria-label="Related form tools" className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold">
+          <a href="/image-resizer" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Photo Resize 20KB-50KB</a>
+          <a href="/pdf-compressor" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Compress PDF to 200KB</a>
+          <a href="/photo-signature-joiner" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Join Photo and Signature</a>
+        </nav>
+      </section>
       {/* Privacy Notice */}
       <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200/60 dark:border-emerald-800/40">
         <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />

@@ -193,6 +193,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   };
 
   const applyPreset = (preset: ResizePreset) => {
+    setResizeMode('preset');
     setWidth(preset.width);
     setHeight(preset.height);
     setActiveAspect(preset.width / preset.height);

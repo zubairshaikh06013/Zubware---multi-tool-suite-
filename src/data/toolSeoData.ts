@@ -250,20 +250,20 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ],
     "faq": [
       {
-        "question": "How do I resize an image without losing quality or stretching?",
-        "answer": "Upload your picture to Zubware Image Resizer and ensure the 'Lock Aspect Ratio' toggle is enabled (chain link icon). When you enter a new width, the height calculates automatically based on the original proportions, preventing distortion or stretching."
+        "question": "फोटो का साइज बदलने पर फोटो खिंची हुई क्यों दिखती है?",
+        "answer": "फोटो अपलोड करें और Lock Aspect Ratio चालू रखें। इससे चौड़ाई बदलने पर ऊंचाई भी उसी हिसाब से बदलेगी और फोटो खिंची हुई नहीं दिखेगी।"
       },
       {
         "question": "What is the best photo resolution for Instagram posts and stories?",
         "answer": "For standard feed square posts, use 1080×1080 px (1:1). For portrait posts, use 1080×1350 px (4:5). For Instagram Stories and Reels, use 1080×1920 px (9:16). Zubware includes one-click presets for all of these standard social media dimensions."
       },
       {
-        "question": "Can I resize photos by percentage instead of exact pixels?",
-        "answer": "Yes. Switch to 'Percentage' mode and use the slider or input field to scale your image up or down (e.g., 25%, 50%, 75%, 200%). Both width and height scale proportionately."
+        "question": "क्या फोटो का साइज प्रतिशत (%) में बदल सकते हैं?",
+        "answer": "हां। Percentage मोड चुनकर 25%, 50% या अपनी जरूरत के हिसाब से साइज सेट करें। फोटो की चौड़ाई और ऊंचाई साथ में बदलेंगी।"
       },
       {
-        "question": "Can I resize multiple photos simultaneously in batch?",
-        "answer": "Yes. Add multiple images to the queue and configure your target width, height, or preset. All images will be resized simultaneously, and you can download them all together in a single ZIP archive."
+        "question": "क्या एक साथ कई फोटो का साइज बदल सकते हैं?",
+        "answer": "हां। कई फोटो अपलोड करके साइज सेट करें। तैयार फोटो एक साथ ZIP फाइल में डाउनलोड कर सकते हैं।"
       },
       {
         "question": "Will resizing photos reduce their file size in megabytes?",
@@ -7762,8 +7762,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "answer": "PDF ka size kam karne ke liye PDF file ko Zubware PDF Compressor mein select ya drag karein. Portal ya email requirement ke hisaab se Recommended ya Extreme compression preset chunein, aur Compress button dabayein. File bina kisi server upload ke aapke browser mein turant compress hokar download ho jayegi."
       },
       {
-        "question": "Which compression preset should I choose for email attachments and portal uploads?",
-        "answer": "Use the Recommended (Medium) preset for job resumes, contracts, and standard email attachments (~50% to 65% reduction with great visual fidelity). If you are uploading to a government portal or recruitment form with strict upload caps (such as 1MB or 2MB), select Extreme Compression for maximum size reduction (~70% to 85%)."
+        "question": "फॉर्म में PDF अपलोड करने के लिए कौन-सा साइज चुनें?",
+        "answer": "फॉर्म में जितनी KB या MB की लिमिट दी है, वही टारगेट चुनें। PDF में ज्यादा फोटो हों तो साइज कम हो सकता है, लेकिन हर फाइल को बिल्कुल तय साइज तक छोटा करना संभव नहीं होता।"
       },
       {
         "question": "Can I compress multi-page PDF documents and scanned forms?",
@@ -7778,8 +7778,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "answer": "Yes, 100% safe. Traditional online PDF tools upload your sensitive documents to external cloud servers. Zubware PDF Compressor runs entirely inside your browser memory using client-side JavaScript and WebAssembly. Your files never leave your device and are never sent to any remote server."
       },
       {
-        "question": "Why did my PDF file compress only slightly?",
-        "answer": "PDFs that consist primarily of plain vector text or documents that have already been heavily optimized have few redundant bytes to eliminate. Image-heavy PDFs, presentations, and high-DPI scanned documents experience the highest size reductions (often between 50% and 85%)."
+        "question": "PDF का साइज कम क्यों नहीं हो रहा?",
+        "answer": "अगर PDF पहले से कंप्रेस है या उसमें ज्यादातर टेक्स्ट है, तो उसका साइज ज्यादा कम नहीं होगा। स्कैन की हुई या फोटो वाली PDF में अक्सर ज्यादा कमी आ सकती है।"
       }
     ]
   },
@@ -8044,12 +8044,12 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ],
     "faq": [
       {
-        "question": "How do I resize and compress a signature image to under 20KB for SSC, IBPS, or UPSC portals?",
-        "answer": "Upload your signature, set the required dimensions (typically 140 × 60 pixels for SSC and IBPS Bank exams), and click the '< 20 KB' button under Target File Size Limit. Zubware automatically adjusts JPEG compression quality in your browser so the resulting file stays strictly below the 20 KB threshold without pixelating or blurring pen strokes."
+        "question": "सरकारी फॉर्म के लिए सिग्नेचर 20KB से कम कैसे करें?",
+        "answer": "सिग्नेचर की फोटो अपलोड करें। अपने फॉर्म में दिया गया पिक्सेल साइज सेट करें और 20KB वाला बटन चुनें। रिजल्ट डाउनलोड करने से पहले फाइल का साइज और सिग्नेचर की साफ-सफाई जरूर चेक करें।"
       },
       {
-        "question": "What are the standard signature dimensions and file sizes for Indian competitive exams?",
-        "answer": "Most major Indian portals require: SSC (CGL, CHSL, MTS, GD) — 140 × 60 px, 10 KB to 20 KB in JPG format; IBPS & SBI Bank exams — 140 × 60 px, 10 KB to 20 KB; UPSC (Civil Services, NDA, CDS) — minimum 350 × 350 px, 20 KB to 300 KB; NTA NEET & JEE — 4 cm × 2 cm (approx. 140 × 70 px), 4 KB to 30 KB; and Railway RRB — 140 × 60 px, 10 KB to 20 KB in JPG format."
+        "question": "SSC, बैंक या दूसरे एग्जाम के लिए सिग्नेचर का सही साइज क्या है?",
+        "answer": "हर भर्ती और एग्जाम फॉर्म की सिग्नेचर साइज की शर्त अलग हो सकती है। फॉर्म के निर्देशों में पिक्सेल, KB और JPG/PNG फॉर्मेट चेक करें। उसी के हिसाब से यहां साइज सेट करें।"
       },
       {
         "question": "Can I convert signature measurements from centimeters (cm) to pixels (px)?",

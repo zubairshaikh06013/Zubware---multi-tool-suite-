@@ -145,8 +145,8 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
       onShowToast('These images could not be decoded. Try JPG, PNG, or WebP.');
       return;
     }
-    // Default primary dimension to first file if not set
-    if (items.length === 0 && loaded.length > 0) {
+    // Preserve dimensions chosen before upload, especially India form presets.
+    if (items.length === 0 && loaded.length > 0 && resizeMode === 'dimensions' && width === 1200 && height === 800) {
       const first = loaded[0];
       setWidth(first.origW);
       setHeight(first.origH);
@@ -205,7 +205,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
       img.onload = async () => {
         try {
           const dimensions = imageResizeDimensions(item.origW, item.origH, {
-            mode:resizeMode, width, height, percentage, preserveBatchAspect:items.length > 1 && lockAspect,
+            mode:resizeMode, width, height, percentage, preserveBatchAspect:resizeMode !== 'preset' && items.length > 1 && lockAspect,
           });
           const finalW = dimensions.width;
           const finalH = dimensions.height;

@@ -225,6 +225,10 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
   const handleDownload = () => {
     if (!outputBlob || !file) return;
+    if (maxKbLimit && outputBlob.size > maxKbLimit * 1024) {
+      onShowToast(`Unable to meet ${maxKbLimit} KB limit. Try smaller dimensions or a different image.`);
+      return;
+    }
     const ext = exportFormat === 'jpeg' ? 'jpg' : 'png';
     const baseName = file.name.replace(/\.[^/.]+$/, '');
     const url = URL.createObjectURL(outputBlob);
@@ -459,7 +463,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                       Target File Size Limit (Optional): {maxKbLimit ? `${maxKbLimit} KB` : 'No Limit'}
                     </label>
                     <div className="flex gap-1.5">
-                      {[20, 50, 100].map((kb) => (
+                      {[10, 20, 50, 100].map((kb) => (
                         <button
                           key={kb}
                           type="button"
@@ -542,12 +546,18 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   )}
                 </div>
 
+                {maxKbLimit && outputBlob && outputBlob.size > maxKbLimit * 1024 && (
+                  <p role="alert" className="text-xs font-semibold text-rose-600 dark:text-rose-400">
+                    File is larger than the selected {maxKbLimit} KB limit. Reduce dimensions to meet the form requirement.
+                  </p>
+                )}
+
                 {/* Action Buttons */}
                 <div className="flex items-center justify-end gap-3 pt-2">
                   <button
                     type="button"
                     onClick={handleDownload}
-                    disabled={!outputBlob}
+                    disabled={!outputBlob || Boolean(maxKbLimit && outputBlob.size > maxKbLimit * 1024)}
                     className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all disabled:opacity-40"
                   >
                     <Download className="w-4 h-4" /> Download Resized Signature

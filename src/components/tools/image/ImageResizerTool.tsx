@@ -102,9 +102,11 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   const handleFilesAdded = async (files: File[]) => {
     if (processingRef.current) return;
     const importRun = runRef.current;
-    const validFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+    // Restrict uploads to formats supported by browser canvas decoding.
+    const validFiles = Array.from(files).filter(f => ['image/jpeg', 'image/png', 'image/webp', 'image/bmp', 'image/gif'].includes(f.type));
+    const rejected = files.length - validFiles.length;
     if (validFiles.length === 0) {
-      onShowToast('Please select valid image files.');
+      onShowToast('Please select JPG, PNG, WebP, BMP or GIF images.');
       return;
     }
 
@@ -152,7 +154,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
     }
 
     setItems(prev => [...prev, ...loaded]);
-    onShowToast(`Added ${loaded.length} image(s)${loaded.length < files.length ? `; skipped ${files.length - loaded.length} unreadable or unsupported file(s)` : ''}.`);
+    onShowToast(`Added ${loaded.length} image(s)${rejected || loaded.length < validFiles.length ? `; skipped ${files.length - loaded.length} unreadable or unsupported file(s)` : ''}.`);
   };
 
   // Paste support

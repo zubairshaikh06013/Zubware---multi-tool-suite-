@@ -140,7 +140,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "desc": "Pick a target limit such as 20KB, 50KB, or 100KB for portal uploads, or adjust the Quality slider to reduce file size."
       },
       {
-        "title": "Compress and Download",
+        "title": "PDF compress karke download karein",
         "desc": "Inspect before/after file sizes and savings percentage, then download your compressed photos individually or as a ZIP archive."
       }
     ],
@@ -232,20 +232,20 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "image-resizer": {
     "howTo": [
       {
-        "title": "Upload Photos to Resize",
-        "desc": "Drag and drop or select one or multiple images from your device. Clipboard paste (Ctrl+V / Cmd+V) is also supported."
+        "title": "Photo upload kaise karein",
+        "desc": "Apne mobile ya computer se JPG, PNG ya WebP photo select karein. Ek saath kai photos bhi add kar sakte hain."
       },
       {
-        "title": "Select Resizing Mode (Dimensions, %, or Presets)",
-        "desc": "Choose exact pixel dimensions, percentage scaling, or India application photo presets. Check the target form's official dimensions."
+        "title": "Photo ki width, height ya KB kaise set karein",
+        "desc": "Form mein diye gaye pixel size ko set karein, ya 20KB, 50KB, 100KB jaise file-size shortcut chunein. Form ki official requirements zaroor check karein."
       },
       {
-        "title": "Pick Social Media or Display Preset",
-        "desc": "Quickly apply presets like Instagram Square (1080x1080), Instagram Story (1080x1920), YouTube Thumbnail (1280x720), LinkedIn Header, Full HD, or 4K."
+        "title": "Photo size ka preset kaise chunein",
+        "desc": "Government form ke liye 200×230 ya 100×120 pixel jaise generic presets milte hain. Social media ke liye bhi alag presets hain."
       },
       {
-        "title": "Select Output Format & Download",
-        "desc": "Choose WebP, JPEG, PNG, or BMP export, fine-tune the quality slider, and download resized pictures individually or as a ZIP package."
+        "title": "Photo download kaise karein",
+        "desc": "JPG, PNG ya WebP format chunein, photo resize karein aur Download dabayein. Ek se zyada photos hon to ZIP bhi download kar sakte hain."
       }
     ],
     "faq": [
@@ -7706,7 +7706,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "desc": "Select the large PDF document you need to shrink for email attachments or upload limits."
       },
       {
-        "title": "Select Compression Strength Preset",
+        "title": "PDF ko 100KB, 200KB ya 500KB karein Preset",
         "desc": "Choose Low compression for maximum visual sharpness, Medium for balanced quality, or Strong for maximum file size reduction."
       },
       {
@@ -7740,16 +7740,16 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "pdf-compressor": {
     "howTo": [
       {
-        "title": "Select or Drag Your PDF",
-        "desc": "Choose a PDF file from your device or drag and drop it directly into the compressor."
+        "title": "PDF file upload karein",
+        "desc": "Mobile ya computer se PDF file select karein."
       },
       {
         "title": "Select Compression Strength",
-        "desc": "Choose a compression level and optionally set a maximum size such as 100 KB, 200 KB or 500 KB. Actual savings depend on PDF content."
+        "desc": "100KB, 200KB ya 500KB ka target chunein. Har PDF ko exact target tak chhota karna mumkin nahi hota."
       },
       {
         "title": "Compress and Download",
-        "desc": "Click Compress PDF, view the space saved and reduction percentage, then download your optimized document."
+        "desc": "Compress button dabayein. Naya file size check karein aur PDF download karein."
       }
     ],
     "faq": [
@@ -8026,20 +8026,20 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "signature-resizer": {
     "howTo": [
       {
-        "title": "Upload Scanned Signature Photo",
-        "desc": "Select or drop your handwritten signature photo (JPG, PNG, or WebP) captured with a smartphone or flatbed scanner."
+        "title": "Signature ki photo upload karein",
+        "desc": "Safed kagaz par kiye hue signature ki saaf photo mobile se lein aur JPG, PNG ya WebP file upload karein."
       },
       {
-        "title": "Select Exam Preset or Units",
-        "desc": "Enter the pixel dimensions specified by your application form, or choose a generic preset. Exam requirements vary by portal."
+        "title": "Signature ki width aur height set karein",
+        "desc": "Form mein jo pixel size diya hai, wahi set karein. Har exam ke rules alag ho sakte hain."
       },
       {
-        "title": "Configure Crop, Background & File Size Cap",
-        "desc": "Enable auto-crop to remove blank paper margins, select transparent or white background, and pick a KB limit like < 20 KB."
+        "title": "Signature ka size 10KB ya 20KB karein",
+        "desc": "Extra safed jagah hatane ke liye auto-crop chunein. Phir 10KB ya 20KB ka size shortcut select karein."
       },
       {
-        "title": "Preview Live Dimensions & Download",
-        "desc": "Compare original vs output dimensions in the live preview and download your form-compliant JPG or PNG image instantly."
+        "title": "Signature check karke download karein",
+        "desc": "Download se pehle signature saaf dikh raha hai ya nahi aur size form ke rule ke andar hai ya nahi, check karein."
       }
     ],
     "faq": [

@@ -624,6 +624,29 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
         <p className="text-xs text-slate-500 dark:text-slate-400">Output limit: 16,384 pixels per side and 40 megapixels. Change settings and resize again to create a new download.</p>
       </fieldset>
 
+      <section aria-label="Popular photo resize shortcuts" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-white/80 dark:bg-slate-900/70 p-4 space-y-3">
+        <h2 className="text-sm font-extrabold text-slate-800 dark:text-slate-100">Popular Photo Resize Tasks - 20KB, 50KB, 100KB</h2>
+        <p className="text-xs text-slate-600 dark:text-slate-400">Choose a maximum size, upload a photo, then resize. These limits are examples; follow the exact requirements of your application.</p>
+        <div className="flex flex-wrap gap-2">
+          {[20, 50, 100, 200].map(kb => (
+            <button key={kb} type="button" disabled={isProcessing}
+              onClick={() => { setTargetKb(kb); setExportFormat('image/jpeg'); }}
+              className={`px-3 py-2 rounded-xl text-xs font-bold border transition-colors ${targetKb === kb && exportFormat === 'image/jpeg' ? 'bg-indigo-600 text-white border-indigo-600' : 'bg-indigo-50 dark:bg-slate-800 border-indigo-200 dark:border-slate-700 text-indigo-700 dark:text-indigo-300'}`}>
+              Photo under {kb}KB
+            </button>
+          ))}
+          <button type="button" disabled={isProcessing} onClick={() => { setResizeMode('preset'); setIndiaFormsOnly(true); }}
+            className="px-3 py-2 rounded-xl text-xs font-bold border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200">
+            India Form Photo Sizes
+          </button>
+        </div>
+        <nav aria-label="Related application tools" className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold">
+          <a href="/signature-resizer" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Resize Signature to 10KB-20KB</a>
+          <a href="/pdf-compressor" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Compress PDF to 200KB</a>
+          <a href="/photo-signature-joiner" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Join Photo and Signature</a>
+        </nav>
+      </section>
+
       {/* Upload Drag & Drop Area */}
       <div
         onDragOver={(e) => { e.preventDefault(); setIsDragOver(true); }}

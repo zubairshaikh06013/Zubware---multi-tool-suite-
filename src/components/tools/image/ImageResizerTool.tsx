@@ -32,6 +32,10 @@ interface ResizePreset {
 }
 
 const PRESETS: ResizePreset[] = [
+  // Generic application-photo dimensions; always verify the specific form's requirements.
+  { name: 'Application Photo Portrait (3:4)', category: 'India Forms', width: 300, height: 400 },
+  { name: 'Application Photo Portrait (3.5:4.5)', category: 'India Forms', width: 350, height: 450 },
+  { name: 'Application Photo Square (1:1)', category: 'India Forms', width: 400, height: 400 },
   { name: 'Instagram Square (1:1)', category: 'Social', width: 1080, height: 1080 },
   { name: 'Instagram Story / Reel (9:16)', category: 'Social', width: 1080, height: 1920 },
   { name: 'Instagram Portrait (4:5)', category: 'Social', width: 1080, height: 1350 },

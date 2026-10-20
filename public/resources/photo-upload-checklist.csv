@@ -1,0 +1,12 @@
+check,destination_requirement,observed_value,pass_or_fail,license
+Accepted image format,,,,CC0-1.0
+Maximum bytes and unit,,,,CC0-1.0
+Minimum bytes if specified,,,,CC0-1.0
+Width in pixels,,,,CC0-1.0
+Height in pixels,,,,CC0-1.0
+Aspect ratio,,,,CC0-1.0
+Orientation,,,,CC0-1.0
+Required crop and background,,,,CC0-1.0
+Readability of fine detail,,,,CC0-1.0
+Filename restrictions if specified,,,,CC0-1.0
+Exact downloaded file selected,,,,CC0-1.0

@@ -2,7 +2,6 @@ import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
 import { imageExportExtension } from '../../../lib/imageExport';
 import { imageResizeDimensions } from '../../../lib/imageResize';
 import React, { useState, useEffect, useRef } from 'react';
-import JSZip from 'jszip';
 import { 
   Download, 
   Trash2, 
@@ -345,6 +344,8 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
     processingRef.current = true;
     setIsProcessing(true);
     try {
+      // Load the ZIP library only when a user downloads a batch.
+      const { default: JSZip } = await import('jszip');
       const zip = new JSZip();
       ready.forEach((item, idx) => {
         const ext = imageExportExtension(item.resizedBlob!.type);

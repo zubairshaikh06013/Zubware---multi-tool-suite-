@@ -1,5 +1,51 @@
 [
   {
+    "slug": "photo-upload-rejected-file-size-format-checklist",
+    "title": "Photo Upload Rejected? Check Bytes, Pixels and Format",
+    "description": "Troubleshoot rejected photo uploads with a byte-size reference, format checks and a repeatable resize-and-compress workflow. Includes a downloadable checklist.",
+    "canonicalPath": "/blog/photo-upload-rejected-file-size-format-checklist",
+    "publishedTime": "2026-10-20T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "6 min read",
+    "tags": [
+      "Photo upload",
+      "Image compression",
+      "KB vs KiB",
+      "Upload checklist"
+    ],
+    "excerpt": "Troubleshoot rejected photo uploads with a byte-size reference, format checks and a repeatable resize-and-compress workflow. Includes a downloadable checklist.",
+    "relatedToolIds": [
+      "image-compressor",
+      "image-resizer",
+      "image-converter"
+    ]
+  },
+  {
+    "slug": "age-calculator-leap-year-month-end-test-cases",
+    "title": "Age Calculator: Leap-Year and Month-End Test Cases",
+    "description": "Understand calendar age with eight reproducible date pairs, leap-day and month-end examples, and a downloadable CSV for testing calculators.",
+    "canonicalPath": "/blog/age-calculator-leap-year-month-end-test-cases",
+    "publishedTime": "2026-10-20T00:00:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Calculator Guides",
+    "readingTime": "6 min read",
+    "tags": [
+      "Age calculator",
+      "Leap year",
+      "Calendar age",
+      "Test cases"
+    ],
+    "excerpt": "Understand calendar age with eight reproducible date pairs, leap-day and month-end examples, and a downloadable CSV for testing calculators.",
+    "relatedToolIds": [
+      "age-calculator"
+    ]
+  },
+  {
     "slug": "how-to-compress-pdf-without-losing-readability",
     "title": "How to Compress a PDF Without Losing Readability",
     "description": "Learn how to reduce PDF file size while preserving clear, readable text. Understand lossy vs. lossless compression, target file sizes, and client-side optimization.",

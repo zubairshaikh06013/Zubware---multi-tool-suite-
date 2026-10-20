@@ -1,0 +1,9 @@
+birth_date,target_date,years,months,days,total_days,convention,license
+2000-01-01,2025-01-01,25,0,0,9132,clamped-anniversary-exclusive-start,CC0-1.0
+1995-05-15,2024-10-20,29,5,5,10751,clamped-anniversary-exclusive-start,CC0-1.0
+2004-02-29,2024-03-01,20,0,1,7306,clamped-anniversary-exclusive-start,CC0-1.0
+2000-01-31,2026-03-01,26,1,1,9526,clamped-anniversary-exclusive-start,CC0-1.0
+2023-01-31,2023-02-28,0,1,0,28,clamped-anniversary-exclusive-start,CC0-1.0
+2024-01-31,2024-02-29,0,1,0,29,clamped-anniversary-exclusive-start,CC0-1.0
+2004-02-29,2023-02-28,19,0,0,6939,clamped-anniversary-exclusive-start,CC0-1.0
+2024-02-29,2024-02-29,0,0,0,0,clamped-anniversary-exclusive-start,CC0-1.0

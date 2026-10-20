@@ -3,17 +3,25 @@ import type { ToolMeta } from '../types';
 type SearchableTool = Pick<ToolMeta, 'title' | 'navTitle' | 'description' | 'tags'> & Partial<Pick<ToolMeta, 'id' | 'category' | 'features'>>;
 const normalize = (value: string) => value.normalize('NFKC').toLocaleLowerCase().replace(/[-_/–—]+/g, ' ').replace(/\s+/g, ' ').trim();
 
+// Prefix matching supports typing while avoiding infix matches such as age in mortgage.
+const words = (text: string): string[] => text.match(/[\p{L}\p{M}\p{N}]+/gu) || [];
+const hasTerms = (text: string, terms: string[]) => {
+  const tokens = words(text);
+  return terms.every(term => tokens.some(token => token.startsWith(term)));
+};
+
 export function filterDirectoryTools<T extends SearchableTool>(tools: T[], query: string, tag = 'All'): T[] {
   const phrase = normalize(query);
-  const terms = phrase.split(' ').filter(Boolean);
+  const terms = words(phrase);
+  if (phrase && !terms.length) return [];
   const matches = tools.flatMap((tool, index) => {
     if (tag !== 'All' && !tool.tags?.some(value => value.toLocaleLowerCase() === tag.toLocaleLowerCase())) return [];
     const names = [tool.title, tool.navTitle || '', tool.id || ''].map(normalize);
     const text = normalize([tool.title, tool.navTitle, tool.id, tool.category, tool.description, ...(tool.tags || []), ...(tool.features || [])].join(' '));
-    if (!terms.every(term => text.includes(term))) return [];
+    if (!hasTerms(text, terms)) return [];
     const score = !phrase ? 0 : names.some(name => name === phrase) ? 1000
       : names.some(name => name.includes(phrase)) ? 700
-      : terms.every(term => names.some(name => name.includes(term))) ? 500
+      : hasTerms(names.join(' '), terms) ? 500
       : tool.tags?.some(value => normalize(value) === phrase) ? 250 : 100;
     return [{ tool, score, index }];
   });

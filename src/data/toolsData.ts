@@ -1,3 +1,4 @@
+import { SITE_SUMMARY, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from './siteTrustContent';
 import { ToolMeta, FAQItem } from '../types';
 import { LanguageCode, getTranslation } from '../lib/i18n';
 import { getToolKeywords } from '../lib/toolKeywords';
@@ -4779,10 +4780,6 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "Free",
       "Online",
       "Tool",
-      "exact age calculator",
-      "date of birth calculator",
-      "calculate age in years months days",
-      "current age finder",
       "Design",
       "CSS",
       "Color",
@@ -8298,10 +8295,6 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "Free",
       "Online",
       "Tool",
-      "exact age calculator",
-      "date of birth calculator",
-      "calculate age in years months days",
-      "current age finder",
       "Security",
       "Privacy",
       "Password",
@@ -10299,11 +10292,11 @@ export function getTranslatedTools(lang: LanguageCode): ToolMeta[] {
 export const HOMEPAGE_FAQS: FAQItem[] = [
   {
     question: "What is Zubware and what tools are available?",
-    answer: "Zubware is a comprehensive online multi-tool suite offering over 300+ instant browser tools for PDF editing, image processing, video creation, developer utilities, financial calculators, and career documents. File and document utilities process data locally in your browser with zero server uploads."
+    answer: SITE_SUMMARY
   },
   {
     question: "Are my files, PDFs, or private data uploaded to any server?",
-    answer: "No. For local tools, processing executes client-side inside your browser sandbox using HTML5 Canvas, WebAssembly, and pdf-lib. Your confidential tax numbers, resume drafts, PDFs, and photos never touch external servers."
+    answer: PROCESSING_PRIVACY_SUMMARY + " Background Remover Smart AI Removal uploads a selected photo to Cloudflare only after consent; Quick and Private Removal keep photo processing on your device."
   },
   {
     question: "How does the latest Income Tax Calculator calculate taxes for 2025 and 2026?",
@@ -10314,8 +10307,8 @@ export const HOMEPAGE_FAQS: FAQItem[] = [
     answer: "The PDF suite includes drag-and-drop page reordering, real-time page rotation (90° increments), individual page deletion, PDF merge, PDF split with odd/even extraction, high-speed client-side compression, thumbnail preview modals, and stage-by-stage processing progress bars."
   },
   {
-    question: "Is Zubware completely free to use without limits or watermarks?",
-    answer: "Yes, Zubware tools are 100% free with no forced account signups, no subscription paywalls, and zero added watermarks."
+    question: "Is Zubware free to use, and are there usage limits?",
+    answer: FREE_TOOLS_SUMMARY
   },
   {
     question: "Can I use Zubware tools on mobile devices?",

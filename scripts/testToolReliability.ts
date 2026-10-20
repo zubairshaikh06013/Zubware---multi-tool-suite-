@@ -358,3 +358,15 @@ const brokenExif=knownExif.slice();brokenExif.fill(255,16,20);
 assert.deepEqual(inspectJpegExif(brokenExif).tags,{});
 assert.match(inspectJpegExif(brokenExif).status,/could not be decoded/);
 console.log('Real JPEG EXIF fields, signed GPS, stored capture dates, both TIFF byte orders, XMP distinction and truncated-header safety passed.');
+
+// A short word must not match inside an unrelated longer word.
+const ageMatches = filterDirectoryTools(TOOLS_DATA, 'age calculator');
+assert.equal(ageMatches[0]?.id, 'age-calculator');
+assert.ok(ageMatches.some(tool => tool.id === 'cat-age-calculator'));
+for (const id of ['percentage-calculator', 'loan-calculator', 'mileage-calculator']) {
+  assert.ok(!ageMatches.some(tool => tool.id === id), `Unrelated age search result: ${id}`);
+}
+assert.ok(filterDirectoryTools(TOOLS_DATA, 'image compres').some(tool => tool.id === 'image-compressor'));
+assert.equal(filterDirectoryTools(TOOLS_DATA, '!!!').length, 0);
+assert.equal(filterDirectoryTools([{ title: 'आयु कैलकुलेटर', navTitle: 'आयु कैलकुलेटर', description: '', tags: [] }], 'आयु').length, 1);
+console.log('Directory word-boundary, partial-input and Unicode search checks passed.');

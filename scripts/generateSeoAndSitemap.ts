@@ -1,3 +1,4 @@
+import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from '../src/data/siteTrustContent';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { AgeCalculationExamples } from '../src/components/seo/AgeCalculationExamples';
@@ -636,11 +637,13 @@ function renderStaticSiteFooter(): string {
               Zubware
             </div>
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.5; margin: 0 0 1rem 0;">
-              Over ${TOOLS_DATA.length} free browser utilities for creators, developers, designers, and students with private client-side processing.
+              ${SITE_SUMMARY}
             </p>
             <div style="display: inline-block; font-size: 0.7rem; font-weight: 700; color: #166534; background: #dcfce7; padding: 0.2rem 0.5rem; border-radius: 0.375rem; border: 1px solid #bbf7d0;">
-              ✓ 100% Client-Side Privacy
+              ${PROCESSING_PRIVACY_TITLE}
             </div>
+            <p style="font-size: 0.8rem; line-height: 1.5;">${PROCESSING_PRIVACY_SUMMARY}</p>
+            <p style="font-size: 0.8rem; line-height: 1.5;">${FREE_TOOLS_SUMMARY}</p>
           </div>
           <div>
             <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
@@ -687,7 +690,7 @@ function renderStaticSiteFooter(): string {
           </div>
         </div>
         <div style="border-top: 1px solid #e2e8f0; padding-top: 1.5rem; text-align: center; font-size: 0.75rem; color: #94a3b8;">
-          © 2026 Zubware.com. All Rights Reserved. Instant, private browser utilities.
+          © 2026 Zubware.com. All Rights Reserved. Tools for everyday tasks.
         </div>
       </div>
     </footer>

@@ -1,3 +1,6 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { AgeCalculationExamples } from '../src/components/seo/AgeCalculationExamples';
 import { ABOUT_QUALITY, REPORT_A_PROBLEM, PRIVACY_NOTES, SITE_REVIEW_DATE } from '../src/data/siteTrustContent';
 import fs from 'fs';
 import { marked } from 'marked';
@@ -769,6 +772,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
       ${getStaticVideoBusinessSectionHtml(tool.id, DOMAIN)}
       ${getStaticPdfToolSectionHtml(tool.id, DOMAIN)}
       ${getStaticDesignUtilitySecuritySectionHtml(tool.id, DOMAIN)}
+      ${tool.id === 'age-calculator' ? renderToStaticMarkup(createElement(AgeCalculationExamples)) : ''}
 
       ${tool.id === 'image-compressor' ? `
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">

@@ -1,3 +1,4 @@
+import { AgeCalculationExamples } from './seo/AgeCalculationExamples';
 import React, { useState } from 'react';
 import { ToolMeta, FAQItem } from '../types';
 import { ChevronDown, ShieldCheck, Zap, HardDrive, CheckCircle2, ArrowRight, BookOpen } from 'lucide-react';
@@ -1281,76 +1282,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
             </div>
           </div>
 
-          {/* Worked Historical Examples (Step 8) */}
-          <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-4 border border-indigo-200/60 dark:border-indigo-900/60">
-            <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-3">
-              <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-                Verified Calculations
-              </span>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mt-1">
-                Worked Age Calculation Examples (Static Historical Benchmarks)
-              </h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                These static reference examples demonstrate exact calendar arithmetic across standard years, uneven month intervals, and leap years:
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
-                  Example 1: Milestone Anniversary
-                </span>
-                <div className="text-xs space-y-1 text-slate-600 dark:text-slate-300">
-                  <p><strong>Date of Birth:</strong> January 1, 2000</p>
-                  <p><strong>Reference Date:</strong> January 1, 2025</p>
-                </div>
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">
-                    25 Years, 0 Months, 0 Days
-                  </p>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
-                    Exactly 9,132 elapsed days, including 7 February 29 dates from 2000 through 2024.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
-                  Example 2: Uneven Month Dates
-                </span>
-                <div className="text-xs space-y-1 text-slate-600 dark:text-slate-300">
-                  <p><strong>Date of Birth:</strong> May 15, 1995</p>
-                  <p><strong>Reference Date:</strong> October 20, 2024</p>
-                </div>
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">
-                    29 Years, 5 Months, 5 Days
-                  </p>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
-                    Total: 10,751 elapsed calendar days | 1,535 full weeks.
-                  </p>
-                </div>
-              </div>
-
-              <div className="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-2">
-                <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
-                  Example 3: Leap Year Birthday
-                </span>
-                <div className="text-xs space-y-1 text-slate-600 dark:text-slate-300">
-                  <p><strong>Date of Birth:</strong> February 29, 2004</p>
-                  <p><strong>Reference Date:</strong> March 1, 2024</p>
-                </div>
-                <div className="pt-2 border-t border-slate-100 dark:border-slate-800">
-                  <p className="text-sm font-black text-indigo-600 dark:text-indigo-400">
-                    20 Years, 0 Months, 1 Day
-                  </p>
-                  <p className="text-[11px] text-slate-500 mt-0.5">
-                    Exactly 7,306 calendar days lived since the 2004 leap day.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <AgeCalculationExamples />
 
           {/* Internal Links Related Cluster */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">

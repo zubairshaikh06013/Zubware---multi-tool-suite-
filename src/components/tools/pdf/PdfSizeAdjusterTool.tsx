@@ -378,6 +378,17 @@ export const PdfSizeAdjusterTool: React.FC<PdfSizeAdjusterToolProps> = ({
                 </div>
               </div>
 
+              <section aria-label="PDF size reduction instructions" className="rounded-xl bg-indigo-50/70 dark:bg-indigo-950/30 p-4 space-y-2">
+                <h3 className="font-bold text-sm text-slate-800 dark:text-slate-100">PDF Size Kam Kaise Kare - Application Forms</h3>
+                <ol className="list-decimal pl-5 space-y-1 text-xs text-slate-700 dark:text-slate-300">
+                  <li>Check your application form's maximum PDF size, such as 200 KB or 500 KB.</li>
+                  <li>Upload your PDF, enter the target size in KB and select compression settings.</li>
+                  <li>Start compression and check the actual output size against the required limit.</li>
+                  <li>Open the downloaded PDF and verify all pages, text and signatures remain readable.</li>
+                </ol>
+                <p className="text-xs text-amber-800 dark:text-amber-300">Exact KB results are not always possible. Strong compression may reduce image clarity. Always check the final file size and quality before submission.</p>
+              </section>
+
               {/* Presets */}
               <div className="space-y-2">
                 <div className="text-xs font-bold text-slate-600 dark:text-slate-400">

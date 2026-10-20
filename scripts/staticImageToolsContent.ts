@@ -1,3 +1,4 @@
+import { BACKGROUND_REMOVAL_NOTES } from '../src/data/siteTrustContent';
 /**
  * Static HTML evergreen content generator for Batch 2 Image Tools
  * Injected into renderStaticToolContent in scripts/generateSeoAndSitemap.ts
@@ -14,10 +15,10 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
             <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Automatic Neural Network Cutouts
+              Choose a Processing Mode
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Isolate subjects and eliminate distracting backdrops automatically using browser-based machine learning. Our in-browser segmentation model identifies human portraits, e-commerce products, animals, and graphic objects with sub-pixel precision along hair strands and soft edges.
+              ${BACKGROUND_REMOVAL_NOTES.quality}
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -25,7 +26,7 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
               E-Commerce Product Listings &amp; ID Photos
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Marketplaces like Amazon, Flipkart, Shopify, and Meesho mandate clean white or transparent product presentations. Remove cluttered room backgrounds in seconds to showcase jewelry, apparel, shoes, and gadgets. For exam forms (SSC, UPSC) and passport applications, remove background shadows effortlessly.
+              ${BACKGROUND_REMOVAL_NOTES.uses}
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
@@ -33,15 +34,15 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
               Multi-Backdrop Quality Inspection
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Switch between checkerboard transparency, pure white (#ffffff), solid black, and neutral studio grey backdrops to inspect edge cleanliness before downloading your 32-bit transparent PNG.
+              ${BACKGROUND_REMOVAL_NOTES.limits}
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
             <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              100% Client-Side Privacy (Zero Server Uploads)
+              Local Modes and Optional Online Processing
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              All machine learning neural networks execute 100% locally in your device browser RAM via WebAssembly. Your personal selfies, family photos, and commercial catalog assets are never sent to remote servers.
+              ${BACKGROUND_REMOVAL_NOTES.privacy}
             </p>
           </div>
         </div>

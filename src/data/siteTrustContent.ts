@@ -8,3 +8,15 @@ export const PRIVACY_NOTES = {
 };
 export const ABOUT_QUALITY = 'Zubware is maintained by Zubair Shaikh. Tools are intended for everyday tasks such as preparing images, working with documents and checking calculations. Supported formats, limits and assumptions differ by tool and browser. Review the result before submitting an application or relying on it for an important decision.';
 export const REPORT_A_PROBLEM = 'To report a problem, include the tool URL, browser/device, steps to reproduce, and expected versus actual result. Use a non-sensitive sample where possible. Contact actions prepare a draft in your email app or WhatsApp; you must send it there.';
+
+// Shared wording for the rendered site and build-time HTML.
+export const SITE_SUMMARY = 'Free online tools for images, PDFs, calculations and everyday tasks. Processing options vary by tool.';
+export const PROCESSING_PRIVACY_TITLE = 'Local and Online Processing';
+export const PROCESSING_PRIVACY_SUMMARY = 'Local tools process files on your device. Online features may send data to a service; check the tool notice before starting.';
+export const FREE_TOOLS_SUMMARY = 'Free to use. File-size, device and online-service limits may apply; check each tool for details.';
+export const BACKGROUND_REMOVAL_NOTES = {
+  quality: 'Choose Quick or Private Removal for on-device processing, or Smart AI Removal for optional online processing. Hair, fur, glass and low-contrast edges can be imperfect; inspect the cutout before using it.',
+  uses: 'Prepare transparent cutouts for product photos, presentations or graphics. Check the destination requirements for background color, size and framing; this tool does not certify compliance or guarantee acceptance.',
+  privacy: 'Quick Removal and Private Removal process the selected photo on your device. The browser may download model resources first. Smart AI Removal sends the selected photo to Cloudflare only after you give permission and start.',
+  limits: 'Smart AI Removal accepts photos up to 10 MB and depends on online-service availability and allowance. If it is unavailable, use Quick or Private Removal. Preview background colors are for inspection; the downloaded PNG remains transparent.'
+};

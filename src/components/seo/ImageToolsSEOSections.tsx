@@ -1,3 +1,4 @@
+import { BACKGROUND_REMOVAL_NOTES } from '../../data/siteTrustContent';
 import React from 'react';
 import { ToolMeta } from '../../types';
 import { getLinkUrl } from '../../lib/paths';
@@ -53,7 +54,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 Automatic Neural Network Segmentation
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware Background Remover uses browser-based machine learning to estimate the foreground subject. Hair, fur, glass, thin objects and low-contrast edges can be imperfect; inspect the cutout before using it.
+                {BACKGROUND_REMOVAL_NOTES.quality}
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Export transparent 32-bit PNG files with true alpha channels, ready for seamless layering over marketing banners, product listings, or presentation slides.
@@ -69,7 +70,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 Prepare transparent cutouts for product photos, presentations or graphics. Processing time depends on your device, model download and image size. Preview background colors help inspection; the downloaded PNG remains transparent.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                For product listings, exams or identity photos, check the destination requirements for background color, size and framing. This tool does not certify compliance or guarantee acceptance.
+                {BACKGROUND_REMOVAL_NOTES.uses}
               </p>
             </div>
           </div>
@@ -105,13 +106,13 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Lock className="w-5 h-5 text-emerald-500" /> On-device AI Processing
+                <Lock className="w-5 h-5 text-emerald-500" /> Local Modes and Optional Online Processing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Quick Removal and Private Removal process the selected photo on your device. The browser may download model resources before it can start. Smart AI Removal is an optional Cloudflare processing mode that uploads the selected photo after you give permission and start.
+                {BACKGROUND_REMOVAL_NOTES.privacy}
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                The local modes do not upload your photo for background removal. If you choose Smart AI Removal, your photo is sent to Cloudflare after explicit consent. Check the privacy notice and avoid uploading sensitive images.
+                {BACKGROUND_REMOVAL_NOTES.limits}
               </p>
             </div>
 
@@ -123,7 +124,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 <li><strong>High Contrast:</strong> Ensure strong contrast between your subject and the backdrop (e.g. dark clothes against light walls).</li>
                 <li><strong>Clear Focus:</strong> Sharp, in-focus subjects produce cleaner silhouette contours than blurry or motion-smeared shots.</li>
                 <li><strong>Even Lighting:</strong> Avoid harsh unilateral shadows that obscure subject boundaries.</li>
-                <li><strong>File Formats:</strong> Upload JPG, PNG, or WebP images up to 20MB directly from your phone gallery or desktop.</li>
+                <li><strong>File Formats:</strong> Use JPG, PNG, or WebP images. Local modes accept up to 20 MB; Smart AI Removal accepts up to 10 MB.</li>
               </ul>
             </div>
           </div>

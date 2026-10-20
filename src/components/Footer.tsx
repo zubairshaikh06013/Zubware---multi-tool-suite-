@@ -1,3 +1,4 @@
+import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from '../data/siteTrustContent';
 import React from 'react';
 import { ShieldCheck, Zap, Lock } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -23,10 +24,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </div>
             <div>
               <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-                {t('zeroServerUploads', 'Client-Side Privacy')}
+                {t('zeroServerUploads', PROCESSING_PRIVACY_TITLE)}
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {t('zeroServerUploadsDesc', 'Processing happens locally in your browser for offline tools; files are not uploaded to Zubware servers.')}
+                {t('zeroServerUploadsDesc', PROCESSING_PRIVACY_SUMMARY)}
               </p>
             </div>
           </div>
@@ -54,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 {t('freeForever', 'Free Online Tools')}
               </h3>
               <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-                {t('freeForeverDesc', 'No subscription, watermarks, or daily caps. High quality output for creators and professionals.')}
+                {t('freeForeverDesc', FREE_TOOLS_SUMMARY)}
               </p>
             </div>
           </div>
@@ -76,7 +77,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-              300+ free online tools for creators, developers, designers, and students with private browser processing.
+              {SITE_SUMMARY}
             </p>
           </div>
 

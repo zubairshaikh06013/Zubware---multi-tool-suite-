@@ -38,7 +38,6 @@ const PRESETS: ResizePreset[] = [
   { name: 'Application Photo Square (1:1)', category: 'India Forms', width: 400, height: 400 },
   { name: 'Application Photo (200×230)', category: 'India Forms', width: 200, height: 230 },
   { name: 'Application Photo (100×120)', category: 'India Forms', width: 100, height: 120 },
-  { name: 'Application Photo (350×450)', category: 'India Forms', width: 350, height: 450 },
   { name: 'Instagram Square (1:1)', category: 'Social', width: 1080, height: 1080 },
   { name: 'Instagram Story / Reel (9:16)', category: 'Social', width: 1080, height: 1920 },
   { name: 'Instagram Portrait (4:5)', category: 'Social', width: 1080, height: 1350 },

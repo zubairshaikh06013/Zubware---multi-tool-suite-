@@ -80,6 +80,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   
   const [exportFormat, setExportFormat] = useState<'image/png' | 'image/jpeg' | 'image/webp' | 'image/bmp'>('image/webp');
   const [quality, setQuality] = useState<number>(90);
+  const [targetKb, setTargetKb] = useState<number>(0);
   const [isProcessing, setIsProcessing] = useState<boolean>(false);
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
@@ -93,7 +94,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
   }, []);
   useEffect(() => {
     setItems(previous => previous.map(item => ({...item, status:'idle', resizedBlob:null, resizedSize:undefined, errorMessage:undefined})));
-  }, [resizeMode, width, height, percentage, lockAspect, exportFormat, quality]);
+  }, [resizeMode, width, height, percentage, lockAspect, exportFormat, quality, targetKb]);
 
   const handleFilesAdded = async (files: File[]) => {
     if (processingRef.current) return;
@@ -247,7 +248,31 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
 
           const expQuality = (exportFormat === 'image/jpeg' || exportFormat === 'image/webp') ? quality / 100 : undefined;
 
-          const blob = await encodeCanvasBlob(canvas, exportFormat, expQuality);
+          let blob = await encodeCanvasBlob(canvas, exportFormat, expQuality);
+          if (targetKb > 0 && (exportFormat === 'image/jpeg' || exportFormat === 'image/webp')) {
+            const limit = targetKb * 1000;
+            if (blob.size > limit) {
+              let smallest = blob;
+              let low = 0.05;
+              let high = Math.min(1, quality / 100);
+              for (let attempt = 0; attempt < 9; attempt++) {
+                const midpoint = (low + high) / 2;
+                const candidate = await encodeCanvasBlob(canvas, exportFormat, midpoint);
+                if (candidate.size < smallest.size) smallest = candidate;
+                if (candidate.size <= limit) {
+                  blob = candidate;
+                  low = midpoint;
+                } else {
+                  high = midpoint;
+                }
+              }
+              if (blob.size > limit) blob = smallest;
+            }
+            if (blob.size > limit) {
+              resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:`Cannot reach ${targetKb} KB at these dimensions. Try smaller width/height.`});
+              return;
+            }
+          }
           resolve({...item, targetW:finalW, targetH:finalH, resizedBlob:blob, resizedSize:blob.size, status:'done', errorMessage:undefined});
         } catch (error) {
           resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:error instanceof Error ? error.message : 'Resize failed. Try smaller dimensions.'});
@@ -406,6 +431,35 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-500" />
             <span>Local Browser Processing</span>
           </span>
+        </div>
+
+        {/* India application form size limits (decimal KB). */}
+        <div className="space-y-2">
+          <label htmlFor="photo-target-kb" className="block text-xs font-bold text-slate-600 dark:text-slate-300">
+            Maximum Photo File Size (KB) — Optional
+          </label>
+          <div className="flex flex-wrap items-center gap-2">
+            <input id="photo-target-kb" type="number" min="0" max="5000" step="1"
+              value={targetKb || ''}
+              placeholder="No limit"
+              onChange={(e) => {
+                const kb = Math.max(0, Math.min(5000, Math.floor(Number(e.target.value) || 0)));
+                setTargetKb(kb);
+                if (kb > 0 && exportFormat !== 'image/jpeg' && exportFormat !== 'image/webp') setExportFormat('image/jpeg');
+              }}
+              className="w-28 px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-sm"
+            />
+            {[20, 50, 100, 200, 500].map(kb => (
+              <button type="button" key={kb} onClick={() => {
+                setTargetKb(kb);
+                if (exportFormat !== 'image/jpeg' && exportFormat !== 'image/webp') setExportFormat('image/jpeg');
+              }} className={`px-3 py-2 rounded-lg text-xs font-bold ${targetKb === kb ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300'}`}>
+                {kb} KB
+              </button>
+            ))}
+            <button type="button" onClick={() => setTargetKb(0)} className="text-xs underline text-slate-500">Clear</button>
+          </div>
+          <p className="text-xs text-slate-500">Uses JPEG/WebP quality adjustment. If the selected dimensions cannot fit under the limit, the tool shows an error instead of downloading an oversized image. Check your application form's official size and format rules.</p>
         </div>
 
         {/* Mode-Specific Controls */}

@@ -213,10 +213,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 23,
-    en: "How far away from a fire hydrant should you park your vehicle?",
-    hi: "फायर हाइड्रेंट (अग्निशामक नल) से कितनी दूरी पर वाहन पार्क करना चाहिए?",
-    options_en: ["At least 3 meters away", "Right in front", "1 meter away", "Distance does not matter"],
-    options_hi: ["कम से कम 3 मीटर दूर", "ठीक सामने", "1 मीटर दूर", "दूरी से कोई फर्क नहीं पड़ता"],
+    en: "Why must you avoid parking in front of a fire hydrant?",
+    hi: "फायर हाइड्रेंट के सामने गाड़ी पार्क क्यों नहीं करनी चाहिए?",
+    options_en: ["It can block emergency firefighting access","It saves fuel","It improves traffic flow","It makes the vehicle easier to find"],
+    options_hi: ["इससे फायर ब्रिगेड को पानी लेने में रुकावट हो सकती है","इससे पेट्रोल बचता है","इससे ट्रैफिक तेज चलता है","इससे गाड़ी आसानी से मिलती है"],
     correctIndex: 0
   },
   {
@@ -269,10 +269,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 30,
-    en: "What is the validity of a Pollution Under Control (PUC) certificate for a new BS6 motor vehicle?",
-    hi: "एक नए BS6 मोटर वाहन के लिए प्रदूषण नियंत्रण (PUC) प्रमाण पत्र की वैधता कितनी होती है?",
-    options_en: ["1 year from registration date", "6 months", "3 months", "5 years"],
-    options_hi: ["पंजीकरण तिथि से 1 वर्ष", "6 महीने", "3 महीने", "5 वर्ष"],
+    en: "What should you do when your vehicle's PUC certificate expires?",
+    hi: "गाड़ी का PUC सर्टिफिकेट खत्म हो जाए तो क्या करना चाहिए?",
+    options_en: ["Get the emissions test done and renew the certificate","Keep driving without checking","Change the number plate","Only wash the exhaust pipe"],
+    options_hi: ["एमिशन टेस्ट कराकर सर्टिफिकेट रिन्यू कराएं","बिना चेक किए गाड़ी चलाते रहें","नंबर प्लेट बदल दें","सिर्फ साइलेंसर धो लें"],
     correctIndex: 0
   },
   {
@@ -317,10 +317,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 36,
-    en: "What is the speed limit for passenger cars on national highways in India unless marked otherwise?",
-    hi: "भारत में राष्ट्रीय राजमार्गों पर यात्री कारों की सामान्य गति सीमा कितनी है (यदि अन्यथा न दर्शाया गया हो)?",
-    options_en: ["100 km/h", "140 km/h", "60 km/h", "80 km/h"],
-    options_hi: ["100 किमी/घंटा", "140 किमी/घंटा", "60 किमी/घंटा", "80 किमी/घंटा"],
+    en: "Which speed should you follow on a highway?",
+    hi: "हाईवे पर गाड़ी किस स्पीड से चलानी चाहिए?",
+    options_en: ["Within the posted limit and safe for conditions","Always 140 km/h","As fast as other drivers","The vehicle's maximum speed"],
+    options_hi: ["लगे हुए स्पीड लिमिट बोर्ड और सड़क की हालत के अनुसार","हमेशा 140 किमी/घंटा","जितनी तेज बाकी गाड़ियां चल रही हों","गाड़ी की सबसे ज्यादा स्पीड पर"],
     correctIndex: 0
   },
   {
@@ -333,10 +333,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 38,
-    en: "Is carrying passengers in a commercial goods vehicle permitted?",
-    hi: "क्या वाणिज्यिक मालवाहक वाहन (गुड्स व्हीकल) में यात्रियों को ले जाने की अनुमति है?",
-    options_en: ["No, strictly illegal except authorized loader staff", "Yes, if tailgate is closed", "Yes, up to 10 people allowed", "Yes, on local rural roads"],
-    options_hi: ["नहीं, अधिकृत लोडर्स के अलावा सख्त गैर-कानूनी है", "हां, यदि पीछे का डाला बंद हो", "हां, 10 लोगों तक की अनुमति है", "हां, स्थानीय ग्रामीण सड़कों पर"],
+    en: "What should you check before carrying people in a goods vehicle?",
+    hi: "मालवाहक वाहन में लोगों को बैठाने से पहले क्या चेक करना चाहिए?",
+    options_en: ["Whether the vehicle and permit legally allow passengers","Whether the tailgate closes","Whether the road is empty","Whether the trip is short"],
+    options_hi: ["वाहन और परमिट में यात्रियों को बैठाने की अनुमति है या नहीं","पीछे का डाला बंद होता है या नहीं","सड़क खाली है या नहीं","रास्ता छोटा है या नहीं"],
     correctIndex: 0
   },
   {
@@ -381,10 +381,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 44,
-    en: "What is the penalty for driving without a valid third-party motor insurance policy?",
-    hi: "वैध थर्ड-पार्टी मोटर बीमा के बिना गाड़ी चलाने पर क्या जुर्माना है?",
-    options_en: ["Fine up to ₹2,000 and/or imprisonment up to 3 months", "₹100 fine", "Only warnings", "RTO registration renewal"],
-    options_hi: ["₹2,000 तक जुर्माना और/या 3 महीने तक की जेल", "₹100 जुर्माना", "केवल चेतावनी", "RTO पंजीकरण नवीनीकरण"],
+    en: "Why is valid third-party motor insurance important?",
+    hi: "वैध थर्ड-पार्टी मोटर बीमा क्यों जरूरी है?",
+    options_en: ["It is legally required and covers eligible third-party liabilities","It replaces a driving licence","It eliminates traffic fines","It allows unlimited speed"],
+    options_hi: ["यह कानूनन जरूरी है और योग्य थर्ड-पार्टी दावों के लिए सुरक्षा देता है","यह ड्राइविंग लाइसेंस की जगह लेता है","इससे ट्रैफिक जुर्माने खत्म हो जाते हैं","इससे किसी भी स्पीड पर चल सकते हैं"],
     correctIndex: 0
   },
   {
@@ -413,10 +413,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 48,
-    en: "What is the maximum allowed tint percentage for front windshield and rear glass in India?",
-    hi: "भारत में फ्रंट विंडशील्ड और रियर ग्लास के लिए स्वीकृत अधिकतम टिंट (कांच का कालापन) कितना है?",
-    options_en: ["Minimum 70% Visual Light Transmission (VLT)", "Minimum 30% VLT", "100% pitch dark tint", "Any percentage allowed"],
-    options_hi: ["न्यूनतम 70% विज़ुअल लाइट ट्रांसमिशन (VLT)", "न्यूनतम 30% VLT", "100% पूरी तरह काला टिंट", "कोई भी प्रतिशत अनुमत"],
+    en: "What should you do before installing tinted film on car windows?",
+    hi: "कार के शीशों पर टिंट फिल्म लगाने से पहले क्या करना चाहिए?",
+    options_en: ["Check current legal restrictions and required visibility","Install the darkest film","Cover the windscreen completely","Ask only the car wash"],
+    options_hi: ["मौजूदा कानूनी नियम और जरूरी विजिबिलिटी चेक करें","सबसे काली फिल्म लगाएं","विंडस्क्रीन पूरी ढक दें","सिर्फ कार वॉश से पूछें"],
     correctIndex: 0
   },
   {
@@ -453,10 +453,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 53,
-    en: "When two vehicles meet on a narrow bridge where passing is impossible, who should reverse?",
-    hi: "जब दो वाहन ऐसे संकरे पुल पर आ जाएं जहां पास होना असंभव हो तो किसे पीछे हटना चाहिए?",
-    options_en: ["Vehicle closest to bridge entrance / exit should yield or reverse", "Lighter vehicle always", "Vehicle coming from south", "No vehicle should move"],
-    options_hi: ["जो वाहन पुल के मुहाने के सबसे करीब हो उसे पीछे हटना चाहिए", "हमेशा हल्का वाहन", "दक्षिण से आने वाला वाहन", "किसी वाहन को नहीं हिलना चाहिए"],
+    en: "What should drivers do when meeting on a narrow bridge?",
+    hi: "संकरे पुल पर दो गाड़ियां आमने-सामने आ जाएं तो क्या करें?",
+    options_en: ["Stop safely and coordinate who can give way","Both accelerate","Drive onto the footpath","Keep honking and force through"],
+    options_hi: ["सुरक्षित रुककर तय करें कौन रास्ता दे सकता है","दोनों स्पीड बढ़ा दें","फुटपाथ पर गाड़ी चढ़ा दें","लगातार हॉर्न देकर जबरदस्ती निकलें"],
     correctIndex: 0
   },
   {
@@ -477,10 +477,10 @@ const QUESTION_BANK: Question[] = [
   },
   {
     id: 56,
-    en: "What is the penalty for racing or speed trials on public roads without permission?",
-    hi: "बिना अनुमति सार्वजनिक सड़कों पर रेसिंग या रेस ट्रायल करने पर क्या सजा है?",
-    options_en: ["Imprisonment up to 1 month and/or fine up to ₹5,000", "₹200 fine", "No penalty", "Tire puncture"],
-    options_hi: ["1 महीने तक की जेल और/या ₹5,000 तक जुर्माना", "₹200 जुर्माना", "कोई सजा नहीं", "टायर पंचर"],
+    en: "Why should you avoid racing on public roads?",
+    hi: "पब्लिक सड़क पर रेसिंग क्यों नहीं करनी चाहिए?",
+    options_en: ["It endangers people and can violate traffic laws","It improves tyre life","It is always permitted at night","It reduces stopping distance"],
+    options_hi: ["इससे लोगों को खतरा होता है और ट्रैफिक कानून टूट सकते हैं","इससे टायर ज्यादा चलते हैं","रात में हमेशा अनुमति होती है","इससे ब्रेकिंग दूरी कम होती है"],
     correctIndex: 0
   },
   {

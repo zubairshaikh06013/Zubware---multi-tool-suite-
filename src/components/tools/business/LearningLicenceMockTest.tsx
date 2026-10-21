@@ -853,6 +853,18 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     } catch { return []; }
   });
 
+  // Short safety-focused explanations for the newly added practice questions.
+  const questionExplanations: Record<number, { hi: string; en: string }> = {
+    1001: { hi: 'ट्रैफिक पुलिस के इशारे को मानना जरूरी है, भले ही सिग्नल हरा हो।', en: 'Follow the traffic officer’s directions even if the signal is green.' },
+    1002: { hi: 'नींद में ड्राइविंग से हादसे का खतरा बढ़ता है। सुरक्षित जगह रुककर आराम करें।', en: 'Drowsy driving raises crash risk. Pull over safely and rest.' },
+    1003: { hi: 'फोन देखने से सड़क पर ध्यान कम हो जाता है और रिएक्शन में देर होती है।', en: 'Phone use distracts you from traffic and slows reactions.' },
+    1004: { hi: 'अंधे मोड़ पर सामने से आने वाली गाड़ी नहीं दिख सकती, इसलिए स्पीड कम रखें।', en: 'On blind curves, reduce speed because oncoming traffic may be hidden.' },
+    1005: { hi: 'मोड़ने या लेन बदलने से पहले इंडिकेटर देने से दूसरे ड्राइवर सावधान होते हैं।', en: 'Signal before turning or changing lanes to warn other road users.' },
+    1006: { hi: 'जेब्रा क्रॉसिंग पर पैदल चलने वालों को सुरक्षित रास्ता दें।', en: 'Give pedestrians safe passage at zebra crossings.' },
+    1007: { hi: 'बारिश में सड़क फिसल सकती है और ब्रेक लगाने में ज्यादा दूरी लगती है।', en: 'Wet roads reduce grip and increase stopping distance.' },
+    1008: { hi: 'दरवाजा खोलने से पहले पीछे देखें, ताकि साइकिल या गाड़ी से टक्कर न हो।', en: 'Check for approaching cyclists and vehicles before opening the door.' }
+  };
+
   // Traffic Sign Mode States
   const [signTestState, setSignTestState] = useState<'start' | 'in_progress' | 'result'>('start');
   const [signQuestions, setSignQuestions] = useState<SignQuestion[]>([]);
@@ -1387,6 +1399,12 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
                             <span className="font-bold opacity-75">{text.yourAns}</span>
                             <span>{userSelected !== undefined ? optionsList[userSelected] : (lang === 'en' ? 'Unanswered' : 'उत्तर नहीं दिया')}</span>
                           </div>
+                          {questionExplanations[q.id] && (
+                            <p className="text-xs text-slate-600 dark:text-slate-300 pt-2">
+                              <strong>{lang === 'en' ? 'Why: ' : 'क्यों: '}</strong>
+                              {questionExplanations[q.id][lang]}
+                            </p>
+                          )}
                           {!isCorrect && (
                             <div className="flex items-start gap-1.5 text-emerald-700 dark:text-emerald-400 font-bold">
                               <span className="font-bold opacity-75">{text.correctAns}</span>

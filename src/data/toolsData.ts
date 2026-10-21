@@ -978,7 +978,6 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "badge": "New",
     "features": ["9:16 animated avatar preview", "Hindi and English browser speech preview", "Approximate captions", "WebM video export with uploaded narration", "Free local browser rendering"],
     "tags": ["avatar", "video", "cartoon", "script to video", "reels", "shorts", "hindi", "captions"],
-    "keywords": ["animated avatar video maker", "free talking cartoon maker", "script to avatar video", "hindi avatar video maker"],
     "trending": false,
     "featured": false,
     "editorsPick": false

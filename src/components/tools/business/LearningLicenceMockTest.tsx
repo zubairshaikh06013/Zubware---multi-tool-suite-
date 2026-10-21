@@ -971,7 +971,19 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     40: { hi: "आपातकालीन वाहन को रास्ता देते समय आसपास के ट्रैफिक को भी ध्यान में रखें।", en: "Yield safely to emergency vehicles while watching surrounding traffic." },
     41: { hi: "बिना गेट वाली रेलवे क्रॉसिंग पर रुककर दोनों तरफ देखें और ट्रेन न आने पर ही पार करें।", en: "At an ungated rail crossing, stop, check both ways and cross only when safe." },
     43: { hi: "न्यूट्रल में ढलान उतरने से इंजन ब्रेकिंग खत्म होती है और नियंत्रण घटता है।", en: "Coasting downhill in neutral removes engine braking and reduces control." },
-    45: { hi: "यू-टर्न से पहले सही दिशा का इंडिकेटर दें और पीछे-आगे का ट्रैफिक देखें।", en: "Signal your intended turn and check traffic before making a U-turn." }
+    45: { hi: "यू-टर्न से पहले सही दिशा का इंडिकेटर दें और पीछे-आगे का ट्रैफिक देखें।", en: "Signal your intended turn and check traffic before making a U-turn." },
+    46: { hi: "तेज बारिश में स्पीड कम करें, लाइट सही इस्तेमाल करें और आगे वाली गाड़ी से दूरी बढ़ाएं।", en: "In heavy rain, slow down, use appropriate lights and increase following distance." },
+    47: { hi: "पहाड़ी सड़क पर प्राथमिकता का नियम और सामने वाली गाड़ी की स्थिति देखकर सुरक्षित रास्ता दें।", en: "On narrow hill roads, follow priority rules and yield safely." },
+    49: { hi: "जेब्रा क्रॉसिंग के पास ज़िगज़ैग लाइनें सावधानी और पैदल यात्रियों पर ध्यान देने की चेतावनी हैं।", en: "Zigzag markings near crossings warn drivers to protect pedestrians." },
+    50: { hi: "लाल ट्रैफिक सिग्नल का मतलब स्टॉप लाइन से पहले रुकना है।", en: "A steady red signal means stop before the stop line." },
+    51: { hi: "ट्रैफिक पुलिस के निर्देश सिग्नल से अलग हों तो पुलिस के निर्देश मानें।", en: "Follow a traffic officer's direction even when it differs from the signal." },
+    52: { hi: "रियर-व्यू मिरर पीछे के ट्रैफिक को देखने में मदद करते हैं; ब्लाइंड स्पॉट भी जांचें।", en: "Rear-view mirrors help monitor traffic behind; also check blind spots." },
+    54: { hi: "टेलगेटिंग यानी आगे वाली गाड़ी के बहुत करीब चलना, जिससे रुकने का समय कम मिलता है।", en: "Tailgating means following too closely, leaving too little stopping distance." },
+    55: { hi: "स्टीयरिंग पर दोनों हाथ आरामदायक और नियंत्रित स्थिति में रखें।", en: "Keep both hands in a comfortable position that maintains steering control." },
+    57: { hi: "हैज़र्ड लाइटें खतरे या वाहन की खराबी की चेतावनी के लिए हैं, सामान्य ड्राइविंग में इंडिकेटर की जगह नहीं।", en: "Hazard lights warn of a hazard or breakdown, not a substitute for turn signals." },
+    58: { hi: "सामान्य LMV ड्राइविंग लाइसेंस की न्यूनतम उम्र 18 साल है।", en: "The minimum age for a standard light motor vehicle driving licence is 18." },
+    59: { hi: "रुकी बस के पास पैदल यात्री अचानक निकल सकते हैं; स्पीड कम रखें।", en: "Pedestrians may emerge around a stopped bus, so slow down." },
+    60: { hi: "येलो बॉक्स जंक्शन में तभी जाएं जब आगे निकलने की जगह साफ हो।", en: "Enter a yellow-box junction only when your exit is clear." }
   };
 
   // Traffic Sign Mode States

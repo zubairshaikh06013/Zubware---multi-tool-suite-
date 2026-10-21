@@ -640,6 +640,17 @@ function shuffleArray<T>(array: T[]): T[] {
 }
 
 // Render SVG Road Signs cleanly
+// Randomize both the question order and answer positions for every attempt.
+function randomizeAnswerPositions<T extends { options_en: [string, string, string, string]; options_hi: [string, string, string, string]; correctIndex: number }>(question: T): T {
+  const order = shuffleArray([0, 1, 2, 3]);
+  return {
+    ...question,
+    options_en: order.map(i => question.options_en[i]) as [string, string, string, string],
+    options_hi: order.map(i => question.options_hi[i]) as [string, string, string, string],
+    correctIndex: order.indexOf(question.correctIndex)
+  };
+}
+
 function RenderRoadSign({ signType }: { signType: string }) {
   switch (signType) {
     case 'stop':
@@ -810,7 +821,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
 
   // Start Main Test
   const startMainTest = () => {
-    const selected = shuffleArray(QUESTION_BANK).slice(0, 15);
+    const selected = shuffleArray(QUESTION_BANK).slice(0, 15).map(randomizeAnswerPositions);
     setQuestions(selected);
     setCurrentIndex(0);
     setUserAnswers({});
@@ -861,7 +872,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
 
   // Start Sign Test
   const startSignTest = () => {
-    const selected = shuffleArray(SIGN_QUESTION_BANK).slice(0, 10);
+    const selected = shuffleArray(SIGN_QUESTION_BANK).slice(0, 10).map(randomizeAnswerPositions);
     setSignQuestions(selected);
     setSignCurrentIndex(0);
     setSignUserAnswers({});

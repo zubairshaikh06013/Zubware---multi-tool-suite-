@@ -1,0 +1,25 @@
+name: Avatar Maker Build Diagnostics
+on:
+  pull_request:
+    paths:
+      - 'src/components/tools/video/AnimatedAvatarVideoMakerTool.tsx'
+      - 'src/App.tsx'
+      - 'src/data/toolsData.ts'
+      - '.github/workflows/avatar-maker-build.yml'
+  workflow_dispatch:
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Build without masking the independent security audit
+        run: npm run build
+      - name: TypeScript validation
+        run: npm run lint

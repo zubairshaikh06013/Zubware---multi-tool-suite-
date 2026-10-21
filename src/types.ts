@@ -26,6 +26,7 @@ export type ToolId =
   | 'heic-to-jpg'
   | 'bulk-image-renamer-resizer'
   | 'passport-photo-maker'
+  | 'animated-avatar-video-maker'
   | 'matching-parts-video-maker'
   | 'lofi-song-maker'
   | 'lofi-maker'

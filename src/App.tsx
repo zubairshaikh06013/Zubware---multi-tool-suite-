@@ -51,6 +51,7 @@ const ImageCompressionComparisonTool = lazy(() => import('./components/tools/ima
 const HeicToJpgTool = lazy(() => import('./components/tools/image/HeicToJpgTool').then(m => ({ default: m.HeicToJpgTool })));
 const BulkImageRenamerResizerTool = lazy(() => import('./components/tools/image/BulkImageRenamerResizerTool').then(m => ({ default: m.BulkImageRenamerResizerTool })));
 const PassportPhotoMakerTool = lazy(() => import('./components/tools/image/PassportPhotoMakerTool').then(m => ({ default: m.PassportPhotoMakerTool })));
+const AnimatedAvatarVideoMakerTool = lazy(() => import('./components/tools/video/AnimatedAvatarVideoMakerTool').then(m => ({ default: m.AnimatedAvatarVideoMakerTool })));
 const MatchingPartsPuzzleVideoMakerTool = lazy(() => import('./components/tools/video/MatchingPartsPuzzleVideoMakerTool').then(m => ({ default: m.MatchingPartsPuzzleVideoMakerTool })));
 const LofiMusicStudioTool = lazy(() => import('./components/tools/audio/LofiMusicStudioTool').then(m => ({ default: m.LofiMusicStudioTool })));
 const LofiMakerTool = lazy(() => import('./components/tools/audio/LofiMakerTool').then(m => ({ default: m.LofiMakerTool })));
@@ -494,6 +495,7 @@ export default function App() {
       if (t.id === 'photo-signature-joiner' && (pathSegment === 'photo-and-signature-joiner' || pathSegment === 'photo-and-signature-joiner.html')) return true;
       if (t.id === 'youtube-thumbnail-simulator' && (pathSegment.includes('thumbnail-simulator') || pathSegment.includes('youtube-thumbnail-feed-simulator'))) return true;
       if (t.id === 'youtube-banner-safe-area' && (pathSegment.includes('banner-safe-area') || pathSegment.includes('youtube-banner'))) return true;
+      if (t.id === 'animated-avatar-video-maker' && pathSegment.includes('animated-avatar-video-maker')) return true;
       if (t.id === 'matching-parts-video-maker' && pathSegment.includes('matching-parts')) return true;
       return false;
     });
@@ -1118,6 +1120,7 @@ export default function App() {
                   {activeTool.id === 'heic-to-jpg' && <HeicToJpgTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'bulk-image-renamer-resizer' && <BulkImageRenamerResizerTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'passport-photo-maker' && <PassportPhotoMakerTool onShowToast={triggerToast} onNavigate={navigateTo} />}
+                  {activeTool.id === 'animated-avatar-video-maker' && <AnimatedAvatarVideoMakerTool />}
                   {activeTool.id === 'matching-parts-video-maker' && <MatchingPartsPuzzleVideoMakerTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'lofi-song-maker' && <LofiMusicStudioTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'lofi-maker' && <LofiMakerTool onShowToast={triggerToast} onNavigate={navigateTo} />}

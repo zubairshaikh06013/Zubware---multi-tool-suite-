@@ -895,6 +895,18 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     onShowToast(lang === 'en' ? 'Mock Test Started! 🚦 Good Luck!' : 'मॉक टेस्ट शुरू! 🚦 शुभकामनाएं!');
   };
 
+  // Start a focused practice session containing only missed questions.
+  const retryWrongAnswers = () => {
+    const missed = questions.filter((q, idx) => userAnswers[idx] !== q.correctIndex);
+    if (!missed.length) return;
+    setQuestions(shuffleArray(missed).map(randomizeAnswerPositions));
+    setCurrentIndex(0);
+    setUserAnswers({});
+    setSelectedOption(null);
+    setTimeLeft(900);
+    setTestState('in_progress');
+  };
+
   // Option select main test
   const handleOptionSelect = (optionIdx: number) => {
     setSelectedOption(optionIdx);
@@ -908,7 +920,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
       return;
     }
 
-    if (currentIndex < 14) {
+    if (currentIndex < questions.length - 1) {
       const nextIdx = currentIndex + 1;
       setCurrentIndex(nextIdx);
       setSelectedOption(userAnswers[nextIdx] !== undefined ? userAnswers[nextIdx] : null);
@@ -1258,27 +1270,27 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
               {/* Pass / Fail Header */}
               <div
                 className={`p-6 rounded-3xl border space-y-3 ${
-                  mainScore >= 9
+                  mainScore / questions.length >= 0.6
                     ? 'bg-emerald-50/60 dark:bg-emerald-950/30 border-emerald-500/30 text-emerald-900 dark:text-emerald-200'
                     : 'bg-rose-50/60 dark:bg-rose-950/30 border-rose-500/30 text-rose-900 dark:text-rose-200'
                 }`}
               >
                 <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl shadow-inner">
-                  {mainScore >= 9 ? '🎉' : '❌'}
+                  {mainScore / questions.length >= 0.6 ? '🎉' : '❌'}
                 </div>
                 <h3 className="text-2xl font-black tracking-tight">
-                  {mainScore >= 9 ? text.passTitle : text.failTitle}
+                  {mainScore / questions.length >= 0.6 ? text.passTitle : text.failTitle}
                 </h3>
                 <p className="text-xs sm:text-sm opacity-90 max-w-md mx-auto">
-                  {mainScore >= 9 ? text.passMsg : text.failMsg}
+                  {mainScore / questions.length >= 0.6 ? text.passMsg : text.failMsg}
                 </p>
 
                 {/* Score Summary Badge */}
                 <div className="pt-2">
                   <span className="inline-block px-6 py-2.5 rounded-2xl bg-white dark:bg-slate-900 font-black text-xl sm:text-2xl shadow-sm border border-slate-200 dark:border-slate-800">
-                    {lang === 'en' ? `Score: ${mainScore} / 15` : `अंक: ${mainScore} / 15`}
+                    {lang === 'en' ? `Score: ${mainScore} / ${questions.length}` : `अंक: ${mainScore} / ${questions.length}`}
                     <span className="text-xs opacity-60 ml-2 font-semibold">
-                      ({Math.round((mainScore / 15) * 100)}%)
+                      ({Math.round((mainScore / questions.length) * 100)}%)
                     </span>
                   </span>
                 </div>
@@ -1293,6 +1305,11 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
                 <span>{text.retryBtn}</span>
               </button>
 
+              {questions.some((q, idx) => userAnswers[idx] !== q.correctIndex) && (
+                <button onClick={retryWrongAnswers} className="px-7 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm shadow-sm">
+                  {lang === 'en' ? 'Practice Wrong Answers Again' : 'गलत सवालों की दोबारा प्रैक्टिस करें'}
+                </button>
+              )}
               {/* Answer Review Section */}
               <div className="space-y-4 text-left pt-4 border-t border-slate-200 dark:border-slate-800">
                 <h4 className="text-sm font-black uppercase tracking-wider text-slate-900 dark:text-white flex items-center gap-2">

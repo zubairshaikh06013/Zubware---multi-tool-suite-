@@ -10,6 +10,7 @@ export function AnimatedAvatarVideoMakerTool() {
   const [recording, setRecording] = useState(false);
   const [message, setMessage] = useState('');
   const [color, setColor] = useState('#7c3aed');
+  const [fullscreen, setFullscreen] = useState(false);
   const frame = useRef(0);
   const speaking = useRef(false);
   const audioLevel = useRef(0);
@@ -19,7 +20,10 @@ export function AnimatedAvatarVideoMakerTool() {
   const samplesRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
   const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
   const audioContextRef = useRef<AudioContext | null>(null);
-  const words = script.trim().split(/\s+/).filter(Boolean);
+  const narration = script.split(/\n/).filter(line => !/^\s*[#!]/.test(line)).join(' ');
+  const words = narration.trim().split(/\s+/).filter(Boolean);
+  const labels = script.split(/\n/).filter(line => /^\s*#/.test(line)).map(line => line.replace(/^\s*#\s*/, ''));
+  const stickers = script.split(/\n/).filter(line => /^\s*!/.test(line)).map(line => line.replace(/^\s*!\s*/, ''));
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -58,7 +62,18 @@ export function AnimatedAvatarVideoMakerTool() {
       ctx.fillStyle = '#7f1d1d'; ctx.beginPath();
       ctx.ellipse(540, cy + 115, 65, speaking.current ? 9 + audioLevel.current * 75 : 9, 0, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#fff'; ctx.font = 'bold 54px sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText('ZUBWARE VIDEO MAKER', 540, 160);
+      ctx.fillText('ZUBWARE REEL STUDIO', 540, 130);
+      const step = playbackDuration.current > 0 ? Math.min(labels.length - 1, Math.floor(playbackTime.current / playbackDuration.current * labels.length)) : 0;
+      if (labels.length) {
+        ctx.fillStyle = '#ff9a5c'; ctx.fillRect(140, 235, 800, 95);
+        ctx.fillStyle = '#111827'; ctx.font = 'bold 53px sans-serif';
+        ctx.fillText(labels[Math.max(0, step)].slice(0, 28), 540, 300);
+      }
+      if (stickers.length) {
+        ctx.fillStyle = '#ff3d6e'; ctx.fillRect(145, 410, 790, 140);
+        ctx.fillStyle = '#fff'; ctx.font = 'bold 80px sans-serif';
+        ctx.fillText(stickers[Math.max(0, Math.min(stickers.length - 1, step))].slice(0, 16), 540, 505);
+      }
       ctx.fillStyle = '#000b'; ctx.fillRect(65, 1490, 950, 250);
       ctx.fillStyle = '#fff'; ctx.font = 'bold 55px sans-serif';
       const index = playbackDuration.current > 0
@@ -87,7 +102,7 @@ export function AnimatedAvatarVideoMakerTool() {
     playbackDuration.current = 0;
     if (!('speechSynthesis' in window)) { setMessage('This browser does not support text-to-speech.'); return; }
     speechSynthesis.cancel();
-    const utterance = new SpeechSynthesisUtterance(script);
+    const utterance = new SpeechSynthesisUtterance(narration);
     utterance.lang = voiceLang; utterance.rate = 0.95;
     utterance.onstart = () => { speaking.current = true; };
     utterance.onend = () => { speaking.current = false; };
@@ -124,8 +139,10 @@ export function AnimatedAvatarVideoMakerTool() {
       analyser.fftSize = 512;
       analyserRef.current = analyser;
       samplesRef.current = new Uint8Array(analyser.fftSize);
+      source.disconnect();
       source.connect(analyser);
       const destination = audioCtx.createMediaStreamDestination();
+      analyser.disconnect();
       analyser.connect(destination);
       analyser.connect(audioCtx.destination);
       const stream = canvas.captureStream(30);
@@ -164,7 +181,7 @@ export function AnimatedAvatarVideoMakerTool() {
 
   return <section className="mx-auto max-w-5xl p-4 text-slate-900 dark:text-white">
     <h1 className="text-3xl font-bold mb-2">Free Animated Avatar Video Maker</h1>
-    <p className="mb-5">Create talking cartoon videos with captions. Free, browser-based and no API key required.</p>
+    <p className="mb-5">Create talking cartoon videos with audio-reactive lips, word highlights, step labels and stickers. Free and browser-based. Use # for a step label and ! for a sticker on separate lines.</p>
     <div className="grid gap-6 md:grid-cols-2">
       <div className="space-y-4">
         <label className="block font-semibold">Video script
@@ -186,8 +203,9 @@ export function AnimatedAvatarVideoMakerTool() {
         <button type="button" disabled={recording || !audioFile} onClick={exportVideo} className="rounded-lg bg-emerald-600 px-5 py-3 text-white disabled:opacity-50">Export 9:16 WebM video</button>
         <p role="status" aria-live="polite">{message}</p>
       </div>
-      <div className="mx-auto w-full max-w-xs">
-        <canvas ref={canvasRef} width={1080} height={1920} className="w-full rounded-2xl shadow-xl" aria-label="Animated avatar video preview" />
+      <div className={fullscreen ? 'fixed inset-0 z-[100] bg-black flex items-center justify-center p-1' : 'mx-auto w-full max-w-xs'}>
+        <button type="button" onClick={() => setFullscreen(value => !value)} className={fullscreen ? 'absolute top-4 right-4 z-10 rounded-lg bg-white px-4 py-2 text-black' : 'mb-2 rounded-lg bg-indigo-600 px-4 py-2 text-white'}>{fullscreen ? 'Close full screen' : 'Full-screen 9:16 preview'}</button>
+        <canvas ref={canvasRef} width={1080} height={1920} className={fullscreen ? 'max-h-[94dvh] max-w-full aspect-[9/16] object-contain rounded-xl' : 'w-full rounded-2xl shadow-xl'} aria-label="Animated avatar video preview" />
       </div>
     </div>
     <audio ref={audioRef} hidden />

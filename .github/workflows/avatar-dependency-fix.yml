@@ -1,0 +1,36 @@
+name: Avatar Vite Security Fix
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - '.github/workflows/avatar-dependency-fix.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fix-vite:
+    if: github.event_name == 'workflow_dispatch' || (github.event.pull_request.head.repo.full_name == github.repository && github.head_ref == 'feature/animated-avatar-video-maker')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/animated-avatar-video-maker
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Update vulnerable dependencies without force or major upgrade
+        run: npm audit fix
+      - name: Confirm production dependency audit
+        run: npm audit --omit=dev --audit-level=high
+      - name: Commit updated lockfile
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add package-lock.json package.json
+          if ! git diff --cached --quiet; then
+            git commit -m "fix: update vulnerable npm dependency lockfile"
+            git push origin HEAD:feature/animated-avatar-video-maker
+          fi

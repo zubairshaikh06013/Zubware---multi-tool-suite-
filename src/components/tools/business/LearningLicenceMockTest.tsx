@@ -984,16 +984,16 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     58: { hi: "सामान्य LMV ड्राइविंग लाइसेंस की न्यूनतम उम्र 18 साल है।", en: "The minimum age for a standard light motor vehicle driving licence is 18." },
     59: { hi: "रुकी बस के पास पैदल यात्री अचानक निकल सकते हैं; स्पीड कम रखें।", en: "Pedestrians may emerge around a stopped bus, so slow down." },
     60: { hi: "येलो बॉक्स जंक्शन में तभी जाएं जब आगे निकलने की जगह साफ हो।", en: "Enter a yellow-box junction only when your exit is clear." },
-    23: { hi: "फायर हाइड्रेंट के सामने गाड़ी खड़ी करने से आग बुझाने के काम में रुकावट आती है।", en: "Parking in front of a hydrant can obstruct firefighting access." }
+    23: { hi: "फायर हाइड्रेंट के सामने गाड़ी खड़ी करने से आग बुझाने के काम में रुकावट आती है।", en: "Parking in front of a hydrant can obstruct firefighting access." },
     25: { hi: "ड्राइविंग के लिए कौन से दस्तावेज जरूरी हैं, यह वाहन और उपयोग के हिसाब से बदल सकता है।", en: "Required documents depend on vehicle category and use; verify current rules." },
-    30: { hi: "PUC की वैधता खत्म होने पर नया उत्सर्जन परीक्षण कराएं और सर्टिफिकेट रिन्यू करें।", en: "Renew an expired PUC certificate after the required emissions test." }
+    30: { hi: "PUC की वैधता खत्म होने पर नया उत्सर्जन परीक्षण कराएं और सर्टिफिकेट रिन्यू करें।", en: "Renew an expired PUC certificate after the required emissions test." },
     34: { hi: "चोट वाले हादसे में घायल को मदद देना और कानूनी रिपोर्टिंग जिम्मेदारियां निभाना जरूरी है।", en: "After an injury crash, assist victims and comply with applicable reporting duties." },
-    36: { hi: "सड़क पर लगे स्पीड बोर्ड और मौसम व ट्रैफिक के अनुसार सुरक्षित गति रखें।", en: "Follow posted speed limits and adjust speed to conditions." }
-    38: { hi: "मालवाहक गाड़ी में यात्रियों को ले जाने से पहले कानूनी अनुमति और परमिट चेक करें।", en: "Check legal authorization and permit conditions before carrying passengers in a goods vehicle." }
+    36: { hi: "सड़क पर लगे स्पीड बोर्ड और मौसम व ट्रैफिक के अनुसार सुरक्षित गति रखें।", en: "Follow posted speed limits and adjust speed to conditions." },
+    38: { hi: "मालवाहक गाड़ी में यात्रियों को ले जाने से पहले कानूनी अनुमति और परमिट चेक करें।", en: "Check legal authorization and permit conditions before carrying passengers in a goods vehicle." },
     42: { hi: "वाहन की आगे की लाइटों का रंग और प्रकार मोटर वाहन नियमों के मुताबिक होना चाहिए।", en: "Front lamp colour and type must comply with applicable motor vehicle rules." },
-    44: { hi: "थर्ड-पार्टी बीमा कानूनन जरूरी है और योग्य तीसरे पक्ष के दावों के लिए कवर देता है।", en: "Third-party insurance is mandatory and covers eligible third-party liabilities." }
-    48: { hi: "टिंट लगाने से पहले मौजूदा नियम और शीशों की जरूरी दृश्यता चेक करें।", en: "Check current tint restrictions and visibility requirements before installation." }
-    53: { hi: "संकरे पुल पर रुककर सुरक्षित तरीके से तय करें कि कौन गाड़ी पीछे कर सकता है।", en: "Stop and coordinate a safe way to yield on a narrow bridge." }
+    44: { hi: "थर्ड-पार्टी बीमा कानूनन जरूरी है और योग्य तीसरे पक्ष के दावों के लिए कवर देता है।", en: "Third-party insurance is mandatory and covers eligible third-party liabilities." },
+    48: { hi: "टिंट लगाने से पहले मौजूदा नियम और शीशों की जरूरी दृश्यता चेक करें।", en: "Check current tint restrictions and visibility requirements before installation." },
+    53: { hi: "संकरे पुल पर रुककर सुरक्षित तरीके से तय करें कि कौन गाड़ी पीछे कर सकता है।", en: "Stop and coordinate a safe way to yield on a narrow bridge." },
     56: { hi: "सार्वजनिक सड़क पर रेसिंग से दूसरों की जान खतरे में पड़ सकती है।", en: "Racing on public roads endangers others and may violate traffic laws." }
   };
 

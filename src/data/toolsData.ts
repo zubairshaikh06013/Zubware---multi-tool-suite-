@@ -967,6 +967,23 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "editorsPick": false
   },
   {
+  {
+    "id": "animated-avatar-video-maker",
+    "title": "Free Animated Avatar Video Maker — Script to Talking Cartoon Video",
+    "navTitle": "Animated Avatar Video",
+    "description": "Make vertical talking cartoon avatar videos from scripts with browser voice preview, captions and WebM export using your own narration. No paid API.",
+    "icon": "🎭",
+    "path": "/animated-avatar-video-maker",
+    "filename": "animated-avatar-video-maker.html",
+    "category": "📹 Video Tools",
+    "badge": "New",
+    "features": ["9:16 animated avatar preview", "Hindi and English browser speech preview", "Approximate captions", "WebM video export with uploaded narration", "Free local browser rendering"],
+    "tags": ["avatar", "video", "cartoon", "script to video", "reels", "shorts", "hindi", "captions"],
+    "keywords": ["animated avatar video maker", "free talking cartoon maker", "script to avatar video", "hindi avatar video maker"],
+    "trending": false,
+    "featured": false,
+    "editorsPick": false
+  },
     "id": "matching-parts-video-maker",
     "title": "Matching Parts Puzzle Video Maker — Create Viral Puzzle Shorts & Reels",
     "navTitle": "Matching Parts Video",

@@ -917,6 +917,13 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     } catch { return []; }
   });
 
+  // Persist score history outside React's state updater to avoid repeated writes.
+  useEffect(() => {
+    try {
+      localStorage.setItem('zubware-ll-score-history-v1', JSON.stringify(scoreHistory));
+    } catch { /* Storage may be unavailable */ }
+  }, [scoreHistory]);
+
   // Short safety-focused explanations for the newly added practice questions.
   const questionExplanations: Record<number, { hi: string; en: string }> = {
     1001: { hi: 'ट्रैफिक पुलिस के इशारे को मानना जरूरी है, भले ही सिग्नल हरा हो।', en: 'Follow the traffic officer’s directions even if the signal is green.' },
@@ -1092,11 +1099,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
       correct: questions.filter((q, idx) => userAnswers[idx] === q.correctIndex).length,
       total: questions.length
     };
-    setScoreHistory(prev => {
-      const updated = [record, ...prev].slice(0, 20);
-      try { localStorage.setItem('zubware-ll-score-history-v1', JSON.stringify(updated)); } catch { /* Storage may be unavailable */ }
-      return updated;
-    });
+    setScoreHistory(prev => [record, ...prev].slice(0, 20));
     setTestState('result');
     onShowToast(lang === 'en' ? 'Test Completed! Viewing Results.' : 'टेस्ट पूरा हुआ! परिणाम देखें।');
   };

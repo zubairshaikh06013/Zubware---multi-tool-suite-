@@ -12,6 +12,13 @@ export function AnimatedAvatarVideoMakerTool() {
   const [color, setColor] = useState('#7c3aed');
   const frame = useRef(0);
   const speaking = useRef(false);
+  const audioLevel = useRef(0);
+  const playbackTime = useRef(0);
+  const playbackDuration = useRef(0);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const samplesRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
+  const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
+  const audioContextRef = useRef<AudioContext | null>(null);
   const words = script.trim().split(/\s+/).filter(Boolean);
 
   useEffect(() => {
@@ -31,6 +38,15 @@ export function AnimatedAvatarVideoMakerTool() {
       for (let i = 0; i < 12; i++) {
         ctx.beginPath(); ctx.arc((i * 193) % w, (i * 287 + t * 12) % h, 20 + i * 5, 0, Math.PI * 2); ctx.fill();
       }
+      const analyser = analyserRef.current;
+      const samples = samplesRef.current;
+      if (analyser && samples && speaking.current) {
+        analyser.getByteTimeDomainData(samples);
+        let energy = 0;
+        for (const sample of samples) energy += ((sample - 128) / 128) ** 2;
+        const target = Math.min(1, Math.sqrt(energy / samples.length) * 5);
+        audioLevel.current += (target - audioLevel.current) * 0.4;
+      } else audioLevel.current *= 0.8;
       const cy = 780 + Math.sin(t * 2) * 8;
       ctx.fillStyle = '#2563eb'; ctx.beginPath(); ctx.ellipse(540, 1250, 340, 320, 0, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#f4b183'; ctx.beginPath(); ctx.ellipse(540, cy, 230, 280, 0, 0, Math.PI * 2); ctx.fill();
@@ -40,15 +56,27 @@ export function AnimatedAvatarVideoMakerTool() {
         ctx.fillStyle = '#111827'; ctx.beginPath(); ctx.arc(x, cy - 26, 13, 0, Math.PI * 2); ctx.fill();
       }
       ctx.fillStyle = '#7f1d1d'; ctx.beginPath();
-      ctx.ellipse(540, cy + 115, 65, speaking.current ? 15 + Math.abs(Math.sin(t * 14)) * 65 : 9, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.ellipse(540, cy + 115, 65, speaking.current ? 9 + audioLevel.current * 75 : 9, 0, 0, Math.PI * 2); ctx.fill();
       ctx.fillStyle = '#fff'; ctx.font = 'bold 54px sans-serif'; ctx.textAlign = 'center';
       ctx.fillText('ZUBWARE VIDEO MAKER', 540, 160);
       ctx.fillStyle = '#000b'; ctx.fillRect(65, 1490, 950, 250);
       ctx.fillStyle = '#fff'; ctx.font = 'bold 55px sans-serif';
-      const index = Math.floor(t * 2.3) % Math.max(1, words.length);
-      const caption = words.slice(index, index + 5).join(' ');
-      const lines = caption.match(/.{1,27}(?:\s|$)/g) || [caption];
-      lines.slice(0, 3).forEach((line, i) => ctx.fillText(line.trim(), 540, 1580 + i * 68, 900));
+      const index = playbackDuration.current > 0
+        ? Math.min(words.length - 1, Math.floor((playbackTime.current / playbackDuration.current) * words.length))
+        : Math.floor(t * 2.3) % Math.max(1, words.length);
+      const groupStart = Math.floor(Math.max(0, index) / 4) * 4;
+      const group = words.slice(groupStart, groupStart + 4);
+      ctx.font = 'bold 65px sans-serif';
+      const widths = group.map(word => ctx.measureText(word).width);
+      const total = widths.reduce((a, b) => a + b, 0) + (group.length - 1) * 22;
+      let x = (w - total) / 2;
+      group.forEach((word, i) => {
+        ctx.fillStyle = groupStart + i === index ? '#facc15' : '#ffffff';
+        ctx.textAlign = 'left';
+        ctx.fillText(word, x, 1620);
+        x += widths[i] + 22;
+      });
+      ctx.textAlign = 'center';
       raf = requestAnimationFrame(render);
     };
     render();
@@ -56,6 +84,7 @@ export function AnimatedAvatarVideoMakerTool() {
   }, [script, color]);
 
   const preview = () => {
+    playbackDuration.current = 0;
     if (!('speechSynthesis' in window)) { setMessage('This browser does not support text-to-speech.'); return; }
     speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(script);
@@ -87,11 +116,18 @@ export function AnimatedAvatarVideoMakerTool() {
         audio.onloadedmetadata = () => resolve();
         audio.onerror = () => reject(new Error('Audio could not be loaded'));
       });
-      const audioCtx = new AudioContext();
-      const source = audioCtx.createMediaElementSource(audio);
+      const audioCtx = audioContextRef.current || new AudioContext();
+      audioContextRef.current = audioCtx;
+      const source = sourceRef.current || audioCtx.createMediaElementSource(audio);
+      sourceRef.current = source;
+      const analyser = audioCtx.createAnalyser();
+      analyser.fftSize = 512;
+      analyserRef.current = analyser;
+      samplesRef.current = new Uint8Array(analyser.fftSize);
+      source.connect(analyser);
       const destination = audioCtx.createMediaStreamDestination();
-      source.connect(destination);
-      source.connect(audioCtx.destination);
+      analyser.connect(destination);
+      analyser.connect(audioCtx.destination);
       const stream = canvas.captureStream(30);
       destination.stream.getAudioTracks().forEach(track => stream.addTrack(track));
       const recorder = new MediaRecorder(stream, { mimeType: mime });
@@ -104,7 +140,8 @@ export function AnimatedAvatarVideoMakerTool() {
         link.href = downloadUrl; link.download = 'zubware-avatar-video.webm'; link.click();
         setTimeout(() => URL.revokeObjectURL(downloadUrl), 30000);
         stream.getTracks().forEach(track => track.stop());
-        audioCtx.close(); URL.revokeObjectURL(url);
+        analyser.disconnect(); analyserRef.current = null;
+        URL.revokeObjectURL(url);
         speaking.current = false; setRecording(false);
         setMessage('WebM video download ready. MP4 export future update mein aayega.');
       };
@@ -113,6 +150,9 @@ export function AnimatedAvatarVideoMakerTool() {
       recorder.start(250);
       setRecording(true); setMessage('Recording video...');
       audio.currentTime = 0;
+      playbackDuration.current = audio.duration;
+      playbackTime.current = 0;
+      audio.ontimeupdate = () => { playbackTime.current = audio.currentTime; };
       speaking.current = true;
       audio.onended = () => recorder.state !== 'inactive' && recorder.stop();
       await audio.play();

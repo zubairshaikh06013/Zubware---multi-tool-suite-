@@ -934,7 +934,27 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     1105: { hi: "मोड़ से पहले धीमे होने पर गाड़ी पर नियंत्रण बेहतर रहता है।", en: "Slowing before a bend helps maintain control." },
     1106: { hi: "फिसलने पर अचानक ब्रेक या स्टीयरिंग से नियंत्रण और बिगड़ सकता है।", en: "Sudden braking or steering can worsen a skid." },
     1107: { hi: "बच्चे अचानक सड़क पर आ सकते हैं, इसलिए धीमे चलें।", en: "Children may step into the road unexpectedly." },
-    1108: { hi: "आगे का रास्ता साफ न दिखे तो ओवरटेक करना खतरनाक है।", en: "Never overtake when you cannot see the road ahead clearly." }
+    1108: { hi: "आगे का रास्ता साफ न दिखे तो ओवरटेक करना खतरनाक है।", en: "Never overtake when you cannot see the road ahead clearly." },
+    1: { hi: "टिमटिमाती लाल बत्ती पर पहले पूरी तरह रुकें और रास्ता साफ हो तभी आगे बढ़ें।", en: "A flashing red signal requires a complete stop before proceeding safely." },
+    2: { hi: "स्कूल के पास बच्चे अचानक सड़क पर आ सकते हैं, इसलिए धीमे चलें।", en: "Children may enter the road unexpectedly near schools; slow down." },
+    3: { hi: "50cc तक की बिना गियर वाली मोटरसाइकिल के लिए 16 साल की आयु वाला विशेष प्रावधान है; बाकी शर्तें भी लागू होती हैं।", en: "A special age provision applies to gearless motorcycles up to 50cc, subject to applicable conditions." },
+    4: { hi: "लर्नर लाइसेंस आम तौर पर जारी होने की तारीख से छह महीने के लिए मान्य होता है।", en: "A learner's licence is generally valid for six months." },
+    5: { hi: "आगे वाली गाड़ी से समय के हिसाब से दूरी रखें; बारिश में और ज्यादा दूरी चाहिए।", en: "Leave a time-based following gap and increase it in poor conditions." },
+    6: { hi: "बाईं ओर से ओवरटेक सामान्य नियम नहीं है; कुछ खास स्थितियों में ही अनुमति होती है।", en: "Overtaking on the left is an exception, not the general rule." },
+    7: { hi: "एम्बुलेंस और फायर ब्रिगेड को बिना खतरा पैदा किए रास्ता दें।", en: "Safely yield to emergency vehicles." },
+    8: { hi: "शराब पीकर ड्राइविंग गंभीर अपराध है; जुर्माना और सजा मौजूदा कानून के अनुसार तय होते हैं।", en: "Drink-driving is a serious offence; current statutory penalties apply." },
+    9: { hi: "लगातार ठोस सड़क रेखा पार करने या ओवरटेक करने पर रोक दर्शाती है; स्थानीय सड़क चिन्ह देखें।", en: "Solid centre lines restrict crossing or overtaking; follow the posted markings." },
+    10: { hi: "लर्नर वाहन पर L का निशान और लागू सुपरविजन नियमों का पालन जरूरी है।", en: "Learner drivers must display L markings and follow applicable supervision rules." },
+    11: { hi: "लर्नर वाहन पर L निशान आगे और पीछे दिखाई देना चाहिए।", en: "L markings should be visible at the front and rear." },
+    12: { hi: "कोहरे में हाई बीम की रोशनी वापस परावर्तित होकर दृश्यता घटा सकती है।", en: "High beams can reflect from fog and worsen visibility." },
+    13: { hi: "खराब गाड़ी को सुरक्षित किनारे लगाएं और दूसरे वाहनों को चेतावनी दें।", en: "Move a disabled vehicle safely aside and warn approaching traffic." },
+    14: { hi: "बिना सिग्नल वाले चौराहे पर सावधानी से रास्ता दें; संकेत और प्राथमिकता नियम देखें।", en: "At uncontrolled junctions, follow right-of-way rules and proceed cautiously." },
+    15: { hi: "दोपहिया वाहन पर चालक के अलावा सामान्यतः सिर्फ एक व्यक्ति बैठ सकता है।", en: "A two-wheeler generally carries only one pillion passenger." },
+    16: { hi: "दोपहिया वाहन पर चालक और पीछे बैठने वाले की हेलमेट सुरक्षा जरूरी है; लागू छूट देखें।", en: "Helmets protect riders and pillion passengers; check applicable exemptions." },
+    17: { hi: "राउंडअबाउट में पहले से चल रहे ट्रैफिक को रास्ता दें।", en: "Yield to vehicles already circulating in a roundabout." },
+    18: { hi: "टिमटिमाती पीली बत्ती पर धीमे होकर सावधानी से आगे बढ़ें।", en: "A flashing amber signal means proceed carefully at reduced speed." },
+    19: { hi: "लेन बदलने से पहले शीशे, ब्लाइंड स्पॉट और इंडिकेटर चेक करें।", en: "Check mirrors and blind spots, then signal before changing lanes." },
+    20: { hi: "फोन का इस्तेमाल ध्यान भटकाता है और ड्राइविंग के दौरान कानूनी कार्रवाई हो सकती है।", en: "Using a phone distracts drivers and can lead to legal penalties." }
   };
 
   // Traffic Sign Mode States

@@ -967,7 +967,6 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "editorsPick": false
   },
   {
-  {
     "id": "animated-avatar-video-maker",
     "title": "Free Animated Avatar Video Maker — Script to Talking Cartoon Video",
     "navTitle": "Animated Avatar Video",
@@ -984,6 +983,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "featured": false,
     "editorsPick": false
   },
+  {
     "id": "matching-parts-video-maker",
     "title": "Matching Parts Puzzle Video Maker — Create Viral Puzzle Shorts & Reels",
     "navTitle": "Matching Parts Video",

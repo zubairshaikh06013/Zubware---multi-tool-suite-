@@ -514,6 +514,70 @@ const QUESTION_BANK: Question[] = [
     options_en: ["Do not enter box unless your exit pathway is clear", "VIP emergency parking box", "Speed acceleration box", "Two-wheeler waiting zone"],
     options_hi: ["बॉक्स में तब तक प्रवेश न करें जब तक आगे निकलने का रास्ता साफ न हो", "वीआईपी इमरजेंसी पार्किंग बॉक्स", "स्पीड एक्सीलरेशन बॉक्स", "दोपहिया वाहन वेटिंग ज़ोन"],
     correctIndex: 0
+  },
+  {
+    id: 1001,
+    en: "What should you do when a traffic police officer signals you to stop despite a green light?",
+    hi: "हरी बत्ती होने पर भी ट्रैफिक पुलिस रुकने का इशारा करे तो क्या करें?",
+    options_en: ["Follow the officer's signal and stop", "Ignore the officer and proceed", "Honk and speed up", "Stop only if other cars stop"],
+    options_hi: ["पुलिस के इशारे का पालन करें और रुकें", "पुलिस को अनदेखा करके आगे बढ़ें", "हॉर्न बजाकर तेज चलें", "दूसरी गाड़ियां रुकें तभी रुकें"],
+    correctIndex: 0
+  },
+  {
+    id: 1002,
+    en: "What is the safest action if you feel sleepy while driving?",
+    hi: "गाड़ी चलाते समय नींद आने लगे तो सबसे सुरक्षित क्या है?",
+    options_en: ["Stop at a safe place and rest", "Open the window and keep driving", "Increase speed to reach sooner", "Look at your phone to stay awake"],
+    options_hi: ["सुरक्षित जगह गाड़ी रोककर आराम करें", "खिड़की खोलकर चलाते रहें", "जल्दी पहुंचने के लिए स्पीड बढ़ाएं", "जागने के लिए फोन देखें"],
+    correctIndex: 0
+  },
+  {
+    id: 1003,
+    en: "Why should you avoid using your phone while driving?",
+    hi: "ड्राइविंग करते समय फोन इस्तेमाल करने से क्यों बचना चाहिए?",
+    options_en: ["It distracts attention from the road", "It improves reaction time", "It makes braking easier", "It reduces traffic"],
+    options_hi: ["इससे सड़क से ध्यान हट जाता है", "इससे जल्दी रिएक्शन होता है", "इससे ब्रेक लगाना आसान होता है", "इससे ट्रैफिक कम होता है"],
+    correctIndex: 0
+  },
+  {
+    id: 1004,
+    en: "What should you do when approaching a blind curve?",
+    hi: "आगे का रास्ता न दिखने वाले मोड़ पर क्या करना चाहिए?",
+    options_en: ["Slow down and stay in your lane", "Overtake quickly", "Drive in the middle of the road", "Turn off headlights"],
+    options_hi: ["स्पीड कम करें और अपनी लेन में रहें", "जल्दी से ओवरटेक करें", "सड़क के बीच में चलें", "हेडलाइट बंद कर दें"],
+    correctIndex: 0
+  },
+  {
+    id: 1005,
+    en: "When should you use your turn indicators?",
+    hi: "गाड़ी के इंडिकेटर कब इस्तेमाल करने चाहिए?",
+    options_en: ["Before turning or changing lanes", "Only after completing a turn", "Only at night", "Only on highways"],
+    options_hi: ["मुड़ने या लेन बदलने से पहले", "मोड़ पूरा होने के बाद", "सिर्फ रात में", "सिर्फ हाईवे पर"],
+    correctIndex: 0
+  },
+  {
+    id: 1006,
+    en: "What should you do if pedestrians are crossing at a zebra crossing?",
+    hi: "जेब्रा क्रॉसिंग पर लोग सड़क पार कर रहे हों तो क्या करें?",
+    options_en: ["Stop and allow them to cross safely", "Honk until they move", "Drive around them", "Accelerate before they cross"],
+    options_hi: ["रुकें और उन्हें सुरक्षित पार करने दें", "उनके हटने तक हॉर्न बजाएं", "उनके आसपास से गाड़ी निकालें", "उनसे पहले निकलने के लिए स्पीड बढ़ाएं"],
+    correctIndex: 0
+  },
+  {
+    id: 1007,
+    en: "What is the safest way to drive in heavy rain?",
+    hi: "तेज बारिश में सुरक्षित ड्राइविंग कैसे करें?",
+    options_en: ["Reduce speed and increase following distance", "Use cruise control at high speed", "Brake sharply at every puddle", "Follow the vehicle ahead very closely"],
+    options_hi: ["स्पीड कम करें और आगे वाली गाड़ी से ज्यादा दूरी रखें", "तेज स्पीड पर क्रूज कंट्रोल चलाएं", "हर गड्ढे पर अचानक ब्रेक लगाएं", "आगे वाली गाड़ी के बहुत पास चलें"],
+    correctIndex: 0
+  },
+  {
+    id: 1008,
+    en: "What should you check before opening a parked car door into traffic?",
+    hi: "सड़क किनारे खड़ी कार का दरवाजा खोलने से पहले क्या देखें?",
+    options_en: ["Check for approaching vehicles and cyclists", "Open immediately without looking", "Honk before opening", "Only check the rear seat"],
+    options_hi: ["पीछे से आ रही गाड़ियां और साइकिल वाले देखें", "बिना देखे तुरंत खोल दें", "खोलने से पहले हॉर्न बजाएं", "सिर्फ पीछे की सीट देखें"],
+    correctIndex: 0
   }
 ];
 

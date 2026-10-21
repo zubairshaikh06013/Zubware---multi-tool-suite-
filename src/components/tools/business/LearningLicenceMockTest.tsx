@@ -578,6 +578,70 @@ const QUESTION_BANK: Question[] = [
     options_en: ["Check for approaching vehicles and cyclists", "Open immediately without looking", "Honk before opening", "Only check the rear seat"],
     options_hi: ["पीछे से आ रही गाड़ियां और साइकिल वाले देखें", "बिना देखे तुरंत खोल दें", "खोलने से पहले हॉर्न बजाएं", "सिर्फ पीछे की सीट देखें"],
     correctIndex: 0
+  },
+  {
+    id: 1101,
+    en: "Before moving a vehicle from a parked position, what should you do?",
+    hi: "खड़ी गाड़ी चलाने से पहले क्या करना चाहिए?",
+    options_en: ["Check mirrors, blind spots and signal","Move immediately without checking","Only honk twice","Switch on hazard lights and accelerate"],
+    options_hi: ["शीशे और ब्लाइंड स्पॉट देखें, फिर इंडिकेटर दें","बिना देखे तुरंत गाड़ी चलाएं","सिर्फ दो बार हॉर्न बजाएं","हैज़र्ड लाइट जलाकर तेज चलें"],
+    correctIndex: 0
+  },
+  {
+    id: 1102,
+    en: "What should you do if an emergency vehicle approaches from behind?",
+    hi: "पीछे से एम्बुलेंस या फायर ब्रिगेड आए तो क्या करें?",
+    options_en: ["Safely give way without blocking traffic","Race ahead of it","Stop abruptly in the middle of the lane","Ignore it if the signal is green"],
+    options_hi: ["सुरक्षित तरीके से रास्ता दें","उससे तेज गाड़ी चलाएं","लेन के बीच अचानक रुक जाएं","हरी बत्ती हो तो अनदेखा करें"],
+    correctIndex: 0
+  },
+  {
+    id: 1103,
+    en: "Why should you wear a seat belt in a car?",
+    hi: "कार में सीट बेल्ट क्यों पहननी चाहिए?",
+    options_en: ["It reduces injury risk during sudden stops and crashes","It improves fuel mileage","It replaces airbags","It prevents the engine from stalling"],
+    options_hi: ["अचानक ब्रेक या हादसे में चोट का खतरा कम होता है","पेट्रोल की बचत होती है","एयरबैग की जरूरत खत्म होती है","इंजन बंद नहीं होता"],
+    correctIndex: 0
+  },
+  {
+    id: 1104,
+    en: "What should you do when the road is flooded and water depth is unknown?",
+    hi: "सड़क पर पानी भरा हो और गहराई पता न हो तो क्या करें?",
+    options_en: ["Avoid entering and choose a safer route","Drive fast to create a wave","Follow any vehicle closely","Stop in deep water and restart repeatedly"],
+    options_hi: ["पानी में न जाएं और सुरक्षित दूसरा रास्ता चुनें","तेजी से पानी में गाड़ी डालें","किसी भी गाड़ी के बिल्कुल पीछे चलें","गहरे पानी में बार-बार स्टार्ट करें"],
+    correctIndex: 0
+  },
+  {
+    id: 1105,
+    en: "What is the safe way to approach a sharp bend?",
+    hi: "तेज मोड़ के पास सुरक्षित तरीके से कैसे चलें?",
+    options_en: ["Slow down before entering the bend","Brake hard in the middle of the bend","Overtake on the bend","Drive on the wrong side for a better view"],
+    options_hi: ["मोड़ शुरू होने से पहले स्पीड कम करें","मोड़ के बीच अचानक तेज ब्रेक लगाएं","मोड़ पर ओवरटेक करें","अच्छा दिखने के लिए गलत साइड चलें"],
+    correctIndex: 0
+  },
+  {
+    id: 1106,
+    en: "What should you do if a tyre loses grip on a wet road?",
+    hi: "गीली सड़क पर टायर की पकड़ कम हो जाए तो क्या करें?",
+    options_en: ["Ease off the accelerator and steer smoothly","Brake and turn sharply","Accelerate harder","Pull the parking brake"],
+    options_hi: ["एक्सीलरेटर धीरे छोड़ें और स्टीयरिंग आराम से संभालें","तेज ब्रेक लगाकर अचानक मोड़ें","और तेज एक्सीलरेटर दबाएं","हैंडब्रेक खींचें"],
+    correctIndex: 0
+  },
+  {
+    id: 1107,
+    en: "How should you react to a child near the edge of the road?",
+    hi: "सड़क किनारे बच्चा दिखे तो क्या करें?",
+    options_en: ["Slow down and be ready to stop","Honk continuously and maintain speed","Accelerate to pass quickly","Assume the child will stay still"],
+    options_hi: ["स्पीड कम करें और रुकने के लिए तैयार रहें","लगातार हॉर्न बजाकर उसी स्पीड पर चलें","जल्दी निकलने के लिए स्पीड बढ़ाएं","मान लें बच्चा वहीं खड़ा रहेगा"],
+    correctIndex: 0
+  },
+  {
+    id: 1108,
+    en: "When should you avoid overtaking?",
+    hi: "कब ओवरटेक नहीं करना चाहिए?",
+    options_en: ["When you cannot clearly see the road ahead","When the road ahead is clear and overtaking is permitted","When traffic is light","When your mirrors are adjusted"],
+    options_hi: ["जब आगे की सड़क साफ दिखाई न दे","जब सड़क साफ हो और ओवरटेक की अनुमति हो","जब ट्रैफिक कम हो","जब शीशे सही लगे हों"],
+    correctIndex: 0
   }
 ];
 
@@ -830,7 +894,7 @@ function RenderRoadSign({ signType }: { signType: string }) {
 
 export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: string) => void }) {
   // Global Language Toggle state: 'en' | 'hi'
-  const [lang, setLang] = useState<'en' | 'hi'>('en');
+  const [lang, setLang] = useState<'en' | 'hi'>('hi');
 
   // Mode Selection: 'test' (Mock Test) | 'signs' (Traffic Signs)
   const [activeTab, setActiveTab] = useState<'test' | 'signs'>('test');
@@ -862,7 +926,15 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     1005: { hi: 'मोड़ने या लेन बदलने से पहले इंडिकेटर देने से दूसरे ड्राइवर सावधान होते हैं।', en: 'Signal before turning or changing lanes to warn other road users.' },
     1006: { hi: 'जेब्रा क्रॉसिंग पर पैदल चलने वालों को सुरक्षित रास्ता दें।', en: 'Give pedestrians safe passage at zebra crossings.' },
     1007: { hi: 'बारिश में सड़क फिसल सकती है और ब्रेक लगाने में ज्यादा दूरी लगती है।', en: 'Wet roads reduce grip and increase stopping distance.' },
-    1008: { hi: 'दरवाजा खोलने से पहले पीछे देखें, ताकि साइकिल या गाड़ी से टक्कर न हो।', en: 'Check for approaching cyclists and vehicles before opening the door.' }
+    1008: { hi: 'दरवाजा खोलने से पहले पीछे देखें, ताकि साइकिल या गाड़ी से टक्कर न हो।', en: 'Check for approaching cyclists and vehicles before opening the door.' },
+    1101: { hi: "गाड़ी आगे बढ़ाने से पहले आसपास देखना और इंडिकेटर देना टक्कर से बचाता है।", en: "Check surroundings and signal before pulling out." },
+    1102: { hi: "इमरजेंसी वाहन को बिना अचानक रुकावट पैदा किए रास्ता देना चाहिए।", en: "Make room safely for emergency vehicles without sudden hazards." },
+    1103: { hi: "सीट बेल्ट झटके और हादसे में गंभीर चोट का खतरा कम करती है।", en: "Seat belts reduce serious injury in crashes." },
+    1104: { hi: "पानी की गहराई और सड़क की हालत पता न हो तो उसमें गाड़ी न डालें।", en: "Avoid floodwater when depth and road conditions are unknown." },
+    1105: { hi: "मोड़ से पहले धीमे होने पर गाड़ी पर नियंत्रण बेहतर रहता है।", en: "Slowing before a bend helps maintain control." },
+    1106: { hi: "फिसलने पर अचानक ब्रेक या स्टीयरिंग से नियंत्रण और बिगड़ सकता है।", en: "Sudden braking or steering can worsen a skid." },
+    1107: { hi: "बच्चे अचानक सड़क पर आ सकते हैं, इसलिए धीमे चलें।", en: "Children may step into the road unexpectedly." },
+    1108: { hi: "आगे का रास्ता साफ न दिखे तो ओवरटेक करना खतरनाक है।", en: "Never overtake when you cannot see the road ahead clearly." }
   };
 
   // Traffic Sign Mode States

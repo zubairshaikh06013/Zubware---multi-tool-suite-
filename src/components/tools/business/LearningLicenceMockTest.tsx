@@ -1174,14 +1174,14 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
       lang === 'en' ? `Question ${curr} of ${total}` : `प्रश्न ${curr} में से ${total}`,
     nextBtn: lang === 'en' ? 'NEXT QUESTION' : 'अगला प्रश्न',
     finishBtn: lang === 'en' ? 'FINISH TEST' : 'टेस्ट समाप्त करें',
-    passTitle: lang === 'en' ? 'CONGRATULATIONS! YOU PASSED' : 'अभिनंदन! आप पास हो गए हैं',
-    failTitle: lang === 'en' ? 'NEEDS PRACTICE - TEST FAILED' : 'प्रैक्टिस की आवश्यकता है - फेल',
+    passTitle: lang === 'en' ? 'PRACTICE TARGET REACHED' : 'प्रैक्टिस का लक्ष्य पूरा हुआ',
+    failTitle: lang === 'en' ? 'KEEP PRACTICING' : 'थोड़ी और प्रैक्टिस करें',
     passMsg: lang === 'en'
-      ? 'Great job! You answered enough questions correctly to pass the practice test.'
-      : 'उत्कृष्ट प्रयास! आपने मॉक टेस्ट पास करने के लिए पर्याप्त सही उत्तर दिए।',
+      ? 'You reached the Zubware practice target of 60%. This is not an official RTO result.'
+      : 'आपने Zubware का 60% प्रैक्टिस लक्ष्य पूरा किया है। यह सरकारी RTO का रिजल्ट नहीं है।',
     failMsg: lang === 'en'
-      ? 'Keep practicing! Review your answers below and retry for a fresh question set.'
-      : 'अभ्यास जारी रखें! नीचे अपने उत्तरों की समीक्षा करें और पुनः प्रयास करें।',
+      ? 'Review your answers and try again to reach the Zubware 60% practice target.'
+      : 'गलत जवाब देखें और Zubware का 60% प्रैक्टिस लक्ष्य पूरा करने के लिए दोबारा कोशिश करें।',
     retryBtn: lang === 'en' ? 'RETRY FRESH TEST' : 'नया टेस्ट शुरू करें',
     reviewHeading: lang === 'en' ? 'Full Test Answer Review' : 'पूरे टेस्ट उत्तर की समीक्षा',
     yourAns: lang === 'en' ? 'Your Answer:' : 'आपका उत्तर:',
@@ -1189,9 +1189,9 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     correctBadge: lang === 'en' ? 'Correct' : 'सही',
     wrongBadge: lang === 'en' ? 'Incorrect' : 'गलत',
     disclaimerEn:
-      'This is a practice/mock test for learning purposes and is not an official government examination. Traffic rules, penalties and licensing requirements may vary or change. Follow the latest applicable rules and instructions from the relevant licensing authority.',
+      'This is an independent practice tool, not a government examination. The 15-question format and 60% target are Zubware practice settings, not official pass criteria. Verify current state-specific requirements with Sarathi and your RTO.',
     disclaimerHi:
-      'यह केवल सीखने और प्रैक्टिस के लिए मॉक टेस्ट है, सरकारी आधिकारिक परीक्षा नहीं। ट्रैफिक नियम, जुर्माने और लाइसेंस संबंधी आवश्यकताएं बदल सकती हैं। हमेशा संबंधित लाइसेंसिंग अथॉरिटी के नवीनतम नियमों और निर्देशों का पालन करें।'
+      'यह सरकारी परीक्षा नहीं, Zubware का प्रैक्टिस टूल है। 15 सवाल और 60% लक्ष्य सिर्फ इस प्रैक्टिस के लिए हैं, सरकारी पासिंग नियम नहीं। अपने राज्य के असली नियम Sarathi और RTO से चेक करें।'
   };
 
   const mainScore = calculateScore();

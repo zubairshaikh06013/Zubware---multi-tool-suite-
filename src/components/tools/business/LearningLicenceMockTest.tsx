@@ -1012,12 +1012,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     if (testState === 'in_progress' && timerEnabled) {
       timerRef.current = setInterval(() => {
         setTimeLeft((prev) => {
-          if (prev <= 1) {
-            if (timerRef.current) clearInterval(timerRef.current);
-            finishMainTest();
-            return 0;
-          }
-          return prev - 1;
+          return Math.max(0, prev - 1);
         });
       }, 1000);
     } else {
@@ -1028,6 +1023,14 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
       if (timerRef.current) clearInterval(timerRef.current);
     };
   }, [testState, timerEnabled]);
+
+  // Complete the test after the timer state reaches zero, not inside a state updater.
+  // React may replay state updaters, so side effects there can duplicate history.
+  useEffect(() => {
+    if (testState === 'in_progress' && timerEnabled && timeLeft === 0) {
+      finishMainTest();
+    }
+  }, [testState, timerEnabled, timeLeft]);
 
   // Format seconds into MM:SS
   const formatTimer = (seconds: number): string => {

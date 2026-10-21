@@ -983,7 +983,18 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     57: { hi: "हैज़र्ड लाइटें खतरे या वाहन की खराबी की चेतावनी के लिए हैं, सामान्य ड्राइविंग में इंडिकेटर की जगह नहीं।", en: "Hazard lights warn of a hazard or breakdown, not a substitute for turn signals." },
     58: { hi: "सामान्य LMV ड्राइविंग लाइसेंस की न्यूनतम उम्र 18 साल है।", en: "The minimum age for a standard light motor vehicle driving licence is 18." },
     59: { hi: "रुकी बस के पास पैदल यात्री अचानक निकल सकते हैं; स्पीड कम रखें।", en: "Pedestrians may emerge around a stopped bus, so slow down." },
-    60: { hi: "येलो बॉक्स जंक्शन में तभी जाएं जब आगे निकलने की जगह साफ हो।", en: "Enter a yellow-box junction only when your exit is clear." }
+    60: { hi: "येलो बॉक्स जंक्शन में तभी जाएं जब आगे निकलने की जगह साफ हो।", en: "Enter a yellow-box junction only when your exit is clear." },
+    23: { hi: "फायर हाइड्रेंट के पास पार्किंग से फायर ब्रिगेड का रास्ता और पानी की पहुंच रुक सकती है। स्थानीय पार्किंग नियम देखें।", en: "Parking near a fire hydrant can obstruct emergency access; follow local restrictions." },
+    25: { hi: "ड्राइविंग के लिए कौन से दस्तावेज जरूरी हैं, यह वाहन और उपयोग के हिसाब से बदल सकता है।", en: "Required documents depend on vehicle category and use; verify current rules." },
+    30: { hi: "PUC सर्टिफिकेट की वैधता वाहन की श्रेणी और लागू उत्सर्जन नियमों पर निर्भर करती है।", en: "PUC validity depends on the vehicle and applicable emissions rules." },
+    34: { hi: "चोट वाले हादसे में घायल को मदद देना और कानूनी रिपोर्टिंग जिम्मेदारियां निभाना जरूरी है।", en: "After an injury crash, assist victims and comply with applicable reporting duties." },
+    36: { hi: "हाईवे की स्पीड लिमिट सड़क की श्रेणी, संकेत और लागू सरकारी अधिसूचना पर निर्भर करती है।", en: "Speed limits depend on road classification, signs and current notifications." },
+    38: { hi: "मालवाहक वाहन में यात्रियों को ले जाने पर लागू वाहन और परमिट नियम देखें।", en: "Passenger carriage in goods vehicles is subject to vehicle and permit rules." },
+    42: { hi: "वाहन की आगे की लाइटों का रंग और प्रकार मोटर वाहन नियमों के मुताबिक होना चाहिए।", en: "Front lamp colour and type must comply with applicable motor vehicle rules." },
+    44: { hi: "थर्ड-पार्टी बीमा जरूरी है; बिना बीमा ड्राइविंग की सजा और जुर्माना मौजूदा कानून के अनुसार तय होता है।", en: "Third-party insurance is required; current law determines penalties." },
+    48: { hi: "विंडस्क्रीन और पीछे के शीशे की दृश्यता के लिए लागू VLT नियम मानें; अनधिकृत फिल्म से बचें।", en: "Follow applicable glass light-transmission rules; avoid unauthorized tint film." },
+    53: { hi: "तंग पुल पर पहले सुरक्षा देखें; रास्ता देने का फैसला वाहन की स्थिति और उपलब्ध जगह के हिसाब से करें।", en: "On a narrow bridge, prioritize safety and yield based on available space." },
+    56: { hi: "सार्वजनिक सड़क पर बिना अनुमति रेसिंग खतरनाक है और कानूनी कार्रवाई हो सकती है।", en: "Unauthorized racing on public roads is dangerous and punishable." }
   };
 
   // Traffic Sign Mode States

@@ -1013,6 +1013,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
 
   // Timer Ref
   const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const mainTestFinishedRef = useRef(false);
 
   // Timer logic for main test
   useEffect(() => {
@@ -1048,6 +1049,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
 
   // Start Main Test
   const startMainTest = () => {
+    mainTestFinishedRef.current = false;
     const selected = shuffleArray(QUESTION_BANK).slice(0, 15).map(randomizeAnswerPositions);
     setQuestions(selected);
     setCurrentIndex(0);
@@ -1060,6 +1062,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
 
   // Start a focused practice session containing only missed questions.
   const retryWrongAnswers = () => {
+    mainTestFinishedRef.current = false;
     const missed = questions.filter((q, idx) => userAnswers[idx] !== q.correctIndex);
     if (!missed.length) return;
     setQuestions(shuffleArray(missed).map(randomizeAnswerPositions));
@@ -1093,6 +1096,8 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
   };
 
   const finishMainTest = () => {
+    if (mainTestFinishedRef.current) return;
+    mainTestFinishedRef.current = true;
     if (timerRef.current) clearInterval(timerRef.current);
     const record = {
       date: new Date().toLocaleDateString(),

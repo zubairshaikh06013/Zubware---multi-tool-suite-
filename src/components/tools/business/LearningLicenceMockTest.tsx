@@ -954,7 +954,24 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
     17: { hi: "राउंडअबाउट में पहले से चल रहे ट्रैफिक को रास्ता दें।", en: "Yield to vehicles already circulating in a roundabout." },
     18: { hi: "टिमटिमाती पीली बत्ती पर धीमे होकर सावधानी से आगे बढ़ें।", en: "A flashing amber signal means proceed carefully at reduced speed." },
     19: { hi: "लेन बदलने से पहले शीशे, ब्लाइंड स्पॉट और इंडिकेटर चेक करें।", en: "Check mirrors and blind spots, then signal before changing lanes." },
-    20: { hi: "फोन का इस्तेमाल ध्यान भटकाता है और ड्राइविंग के दौरान कानूनी कार्रवाई हो सकती है।", en: "Using a phone distracts drivers and can lead to legal penalties." }
+    20: { hi: "फोन का इस्तेमाल ध्यान भटकाता है और ड्राइविंग के दौरान कानूनी कार्रवाई हो सकती है।", en: "Using a phone distracts drivers and can lead to legal penalties." },
+    21: { hi: "जहाँ हॉर्न बजाना मना है, वहाँ साइन बोर्ड और स्थानीय नियम मानें।", en: "Respect no-honking signs and applicable local restrictions." },
+    22: { hi: "लर्नर लाइसेंस मिलने के कम से कम 30 दिन बाद स्थायी ड्राइविंग टेस्ट के लिए आवेदन किया जा सकता है।", en: "A permanent driving licence test may generally be taken at least 30 days after learner licence issue." },
+    24: { hi: "ढलान पर लो गियर से इंजन ब्रेकिंग मिलती है और गाड़ी पर नियंत्रण बेहतर रहता है।", en: "A lower gear provides engine braking and better downhill control." },
+    26: { hi: "टायर और सड़क के बीच पानी की परत बनने से पकड़ कम होने को एक्वाप्लेनिंग कहते हैं।", en: "Aquaplaning occurs when water separates tyres from the road, reducing grip." },
+    27: { hi: "जेब्रा क्रॉसिंग पर पैदल चलने वालों को सुरक्षित रास्ता देना जरूरी है।", en: "Yield safely to pedestrians at a zebra crossing." },
+    28: { hi: "दो लगातार ठोस सेंटर लाइन आम तौर पर लाइन पार करने और ओवरटेक करने पर रोक दिखाती हैं।", en: "Double solid centre lines generally prohibit crossing or overtaking." },
+    29: { hi: "ABS तेज ब्रेकिंग के दौरान पहियों को लॉक होने से रोकने में मदद करता है।", en: "ABS helps prevent wheel lock-up under heavy braking." },
+    31: { hi: "हाथ के इशारे दूसरे सड़क उपयोगकर्ताओं को चालक की दिशा बदलने की मंशा बताते हैं।", en: "Hand signals communicate the driver's intended movement." },
+    32: { hi: "चढ़ाई पर कर्ब के साथ पार्किंग में पहियों की दिशा गाड़ी के लुढ़कने का जोखिम घटाती है।", en: "Wheel positioning when parked uphill can reduce the risk of rolling." },
+    33: { hi: "गुड समैरिटन सुरक्षा का उद्देश्य हादसे में मदद करने वालों को अनावश्यक परेशानी से बचाना है।", en: "Good Samaritan protections encourage people to help crash victims." },
+    35: { hi: "टायर फटने पर स्टीयरिंग संभालें, एक्सीलरेटर छोड़ें और अचानक ब्रेक न लगाएं।", en: "After a tyre blowout, steer steadily, ease off the accelerator and avoid sudden braking." },
+    37: { hi: "ब्लाइंड स्पॉट वह हिस्सा है जो सामान्य शीशों में साफ नहीं दिखता।", en: "A blind spot is an area not readily visible in normal mirrors." },
+    39: { hi: "टूटी सेंटर लाइन को पार करना तभी सुरक्षित है जब सड़क साफ हो और ओवरटेक की अनुमति हो।", en: "Cross a broken centre line only when permitted and safe." },
+    40: { hi: "आपातकालीन वाहन को रास्ता देते समय आसपास के ट्रैफिक को भी ध्यान में रखें।", en: "Yield safely to emergency vehicles while watching surrounding traffic." },
+    41: { hi: "बिना गेट वाली रेलवे क्रॉसिंग पर रुककर दोनों तरफ देखें और ट्रेन न आने पर ही पार करें।", en: "At an ungated rail crossing, stop, check both ways and cross only when safe." },
+    43: { hi: "न्यूट्रल में ढलान उतरने से इंजन ब्रेकिंग खत्म होती है और नियंत्रण घटता है।", en: "Coasting downhill in neutral removes engine braking and reduces control." },
+    45: { hi: "यू-टर्न से पहले सही दिशा का इंडिकेटर दें और पीछे-आगे का ट्रैफिक देखें।", en: "Signal your intended turn and check traffic before making a U-turn." }
   };
 
   // Traffic Sign Mode States

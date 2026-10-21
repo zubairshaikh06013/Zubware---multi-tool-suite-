@@ -844,6 +844,15 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
   const [userAnswers, setUserAnswers] = useState<Record<number, number>>({});
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
+  // Scores stay on this device only; no account or paid API required.
+  const [scoreHistory, setScoreHistory] = useState<Array<{ date: string; correct: number; total: number }>>(() => {
+    try {
+      const stored = localStorage.getItem('zubware-ll-score-history-v1');
+      const parsed: unknown = stored ? JSON.parse(stored) : [];
+      return Array.isArray(parsed) ? parsed.filter((item: any) => item && typeof item.correct === 'number' && typeof item.total === 'number' && typeof item.date === 'string').slice(0, 20) : [];
+    } catch { return []; }
+  });
+
   // Traffic Sign Mode States
   const [signTestState, setSignTestState] = useState<'start' | 'in_progress' | 'result'>('start');
   const [signQuestions, setSignQuestions] = useState<SignQuestion[]>([]);
@@ -931,6 +940,16 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
 
   const finishMainTest = () => {
     if (timerRef.current) clearInterval(timerRef.current);
+    const record = {
+      date: new Date().toLocaleDateString(),
+      correct: questions.filter((q, idx) => userAnswers[idx] === q.correctIndex).length,
+      total: questions.length
+    };
+    setScoreHistory(prev => {
+      const updated = [record, ...prev].slice(0, 20);
+      try { localStorage.setItem('zubware-ll-score-history-v1', JSON.stringify(updated)); } catch { /* Storage may be unavailable */ }
+      return updated;
+    });
     setTestState('result');
     onShowToast(lang === 'en' ? 'Test Completed! Viewing Results.' : 'टेस्ट पूरा हुआ! परिणाम देखें।');
   };
@@ -1309,6 +1328,22 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
                 <button onClick={retryWrongAnswers} className="px-7 py-3 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-sm shadow-sm">
                   {lang === 'en' ? 'Practice Wrong Answers Again' : 'गलत सवालों की दोबारा प्रैक्टिस करें'}
                 </button>
+              )}
+              {scoreHistory.length > 0 && (
+                <div className="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 text-left space-y-3">
+                  <h4 className="font-bold text-sm">{lang === 'en' ? 'Your Recent Test Scores' : 'आपके पिछले टेस्ट के स्कोर'}</h4>
+                  <div className="space-y-2">
+                    {scoreHistory.slice(0, 5).map((entry, idx) => (
+                      <div key={idx} className="flex justify-between gap-3 text-xs sm:text-sm">
+                        <span>{entry.date}</span>
+                        <span className="font-semibold">{entry.correct}/{entry.total} ({Math.round(entry.correct / Math.max(1, entry.total) * 100)}%)</span>
+                      </div>
+                    ))}
+                  </div>
+                  <button onClick={() => { setScoreHistory([]); try { localStorage.removeItem('zubware-ll-score-history-v1'); } catch {} }} className="text-xs underline text-slate-500">
+                    {lang === 'en' ? 'Clear score history' : 'स्कोर हिस्ट्री मिटाएं'}
+                  </button>
+                </div>
               )}
               {/* Answer Review Section */}
               <div className="space-y-4 text-left pt-4 border-t border-slate-200 dark:border-slate-800">

@@ -1716,6 +1716,25 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
         </>
       )}
 
+      <div className="rounded-2xl border border-indigo-200 dark:border-indigo-900 p-4 space-y-2 text-sm">
+        <h3 className="font-bold text-slate-900 dark:text-white">
+          {lang === 'hi' ? 'ऑफिशियल RTO टेस्ट की तैयारी' : 'Official RTO test preparation'}
+        </h3>
+        <p className="text-slate-600 dark:text-slate-300">
+          {lang === 'hi'
+            ? 'यह Zubware का प्रैक्टिस टेस्ट है। असली टेस्ट के सवाल, समय और पासिंग मार्क्स आपके राज्य में अलग हो सकते हैं।'
+            : 'This is Zubware practice, not an official exam. Questions, timing and pass criteria can vary by state.'}
+        </p>
+        <div className="flex flex-wrap gap-4">
+          <a href="https://sarathi.parivahan.gov.in/" target="_blank" rel="noopener noreferrer" className="font-bold text-indigo-600 dark:text-indigo-400 underline">
+            {lang === 'hi' ? 'सरकारी Sarathi पोर्टल' : 'Official Sarathi portal'}
+          </a>
+          <a href="https://parivahan.gov.in/parivahan/sites/default/files/DownloadForm/STALL_QB_ENGLISH_NEW.pdf" target="_blank" rel="noopener noreferrer" className="font-bold text-indigo-600 dark:text-indigo-400 underline">
+            {lang === 'hi' ? 'सरकारी सैंपल प्रश्न PDF' : 'Official sample question bank'}
+          </a>
+        </div>
+      </div>
+
       {/* Bottom Legal / Accuracy Disclaimer */}
       <div className="p-4 rounded-2xl bg-amber-50/60 dark:bg-amber-950/20 border border-amber-200/80 dark:border-amber-800/40 text-[11px] sm:text-xs text-amber-900 dark:text-amber-200/90 leading-relaxed space-y-1">
         <div className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">

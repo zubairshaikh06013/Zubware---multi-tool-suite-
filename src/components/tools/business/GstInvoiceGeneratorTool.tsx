@@ -338,12 +338,15 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   const [invoiceSearch, setInvoiceSearch] = useState('');
   const backupInput = useRef<HTMLInputElement>(null);
   const storageKey = 'zubware_gst_invoices_v1';
+  const storageRevision = useRef<string | null>(null);
   // Validate against defaults so optional image fields remain nullable even after upload.
   const parseSnapshot = (data: unknown) => validateInvoiceSnapshot(data, { ...snapshot(), supplier: { ...supplier, logoUrl: null }, signatureUrl: null });
   useEffect(() => {
     try {
-      const records = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      const stored = localStorage.getItem(storageKey);
+      const records = JSON.parse(stored || '[]');
       if (!Array.isArray(records) || records.length > 50) throw new Error('Invalid saved invoices');
+      storageRevision.current = stored;
       setSavedInvoices(records.map(record => {
         if (typeof record.id !== 'string' || typeof record.savedAt !== 'string') throw new Error('Invalid saved invoice');
         return { id: record.id, savedAt: record.savedAt, data: parseSnapshot(record.data) };
@@ -377,7 +380,12 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   };
   const persistInvoices = (records: SavedInvoice[]) => {
     if (storageReadFailed) throw new Error('Unreadable invoice storage');
-    localStorage.setItem(storageKey, JSON.stringify(records));
+    if (localStorage.getItem(storageKey) !== storageRevision.current) {
+      throw new Error('Invoices changed in another tab. Download a backup of this form, then reload before saving or deleting.');
+    }
+    const encoded = JSON.stringify(records);
+    localStorage.setItem(storageKey, encoded);
+    storageRevision.current = encoded;
     setSavedInvoices(records);
   };
   const handleSaveInvoice = () => {
@@ -392,7 +400,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
       const data = parseSnapshot(snapshot());
       persistInvoices([{ id, savedAt: new Date().toISOString(), data }, ...savedInvoices.filter(record => record.id !== id)]);
       onShowToast?.('Invoice saved. Find it in Saved invoices below.');
-    } catch { onShowToast?.('Could not save invoice. Check values or download a backup if browser storage is full.'); }
+    } catch (error) { onShowToast?.(error instanceof Error && error.message.startsWith('Invoices changed') ? error.message : 'Could not save invoice. Check values or download a backup if browser storage is full.'); }
   };
   const downloadBackup = () => {
     const blob = new Blob([JSON.stringify({ format: 'zubware-invoice', version: 1, data: snapshot() }, null, 2)], { type: 'application/json' });
@@ -855,7 +863,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
                 <button type="button" onClick={() => { if (window.confirm('Replace the current form with this saved invoice?')) applySnapshot(record.data); }} className="text-indigo-600 font-bold">Open</button>
                 <button type="button" onClick={() => {
                   if (!window.confirm('Delete this saved invoice? Download its backup first if needed.')) return;
-                  try { persistInvoices(savedInvoices.filter(item => item.id !== record.id)); } catch { onShowToast?.('Could not delete invoice from browser storage.'); }
+                  try { persistInvoices(savedInvoices.filter(item => item.id !== record.id)); } catch (error) { onShowToast?.(error instanceof Error && error.message.startsWith('Invoices changed') ? error.message : 'Could not delete invoice from browser storage.'); }
                 }} className="text-rose-600">Delete</button>
               </div>
             </div>

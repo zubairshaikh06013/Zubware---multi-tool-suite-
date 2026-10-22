@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import { TOOLS_DATA } from '../src/data/toolsData';
 const evidence: Record<string, string[]> = {
+  'photo-name-date-joiner': ['testPhotoLabel: measured long/multilingual text width and local date across India/US timezones; not full browser coverage'],
   'signature-resizer': ['testSignatureExport: stale callback cancellation and preview URL cleanup', 'testSignatureAppearance: real canvas proportions, ink/paper pixel handling; not full browser coverage'],
   'photo-signature-joiner': ['testCompositeImageExport: JPEG/PNG decoding, fixed dimensions, byte limits and failures', 'testPhotoFrame: crop bounds, aspect ratio and real pixel selection; not full browser coverage'],
   'ats-resume-checker': ['testResumeKeywords: whole-skill matching, punctuation and word counts; not employer ATS validation'],

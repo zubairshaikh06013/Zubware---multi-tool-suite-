@@ -14,6 +14,8 @@ import {
 import { useLanguage } from '../../../context/LanguageContext';
 import { UniversalFileUpload } from '../../common/UniversalFileUpload';
 
+import { localPhotoDate, fitPhotoLabel } from '../../../lib/photoLabel';
+
 type Placement = 'bottom-strip' | 'top-strip' | 'bottom-overlay';
 type DateFormat = 'DD/MM/YYYY' | 'MM/DD/YYYY' | 'YYYY-MM-DD' | 'DD-MMM-YYYY';
 
@@ -26,7 +28,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
 
   // Form Fields
   const [name, setName] = useState('JOHN DOE');
-  const [dateStr, setDateStr] = useState(new Date().toISOString().split('T')[0]);
+  const [dateStr, setDateStr] = useState(localPhotoDate());
   const [datePrefix, setDatePrefix] = useState('DOP: '); // Date of Photo
   const [dateFormat, setDateFormat] = useState<DateFormat>('DD/MM/YYYY');
   const [textTransform, setTextTransform] = useState<'uppercase' | 'capitalize' | 'none'>('uppercase');
@@ -47,10 +49,14 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
   const handleFileSelected = (files: File[]) => {
     if (!files || files.length === 0) return;
     const selected = files[0];
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(selected.type) || selected.size === 0 || selected.size > 25 * 1024 * 1024) { onShowToast('Choose a JPG, PNG or WebP image up to 25 MB.'); return; }
     const img = new Image();
     const reader = new FileReader();
+    reader.onerror = () => onShowToast('Unable to read this file. Try another image.');
+    img.onerror = () => onShowToast('Unable to decode this image. Try JPG, PNG or WebP.');
     reader.onload = (e) => {
       img.onload = () => {
+        if (img.width * img.height > 12000000 || img.width > 8192 || img.height > 6000) { onShowToast('Use a photo up to 12 megapixels, 8192 pixels wide and 6000 pixels tall.'); return; }
         setPhotoImg(img);
         setOrigFile(selected);
         onShowToast(`Photo loaded (${img.width} × ${img.height} px)`);
@@ -129,6 +135,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
       stripY = imgH - stripHeight;
     }
 
+    if (exportFormat === 'jpeg') { ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, canvasW, canvasH); }
     ctx.drawImage(photoImg, 0, photoY, imgW, imgH);
 
     // 2. Draw strip background
@@ -164,24 +171,24 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
     ctx.textBaseline = 'middle';
 
     // Font sizing based on strip height
-    const nameFontSize = Math.max(12, Math.round(stripHeight * 0.32));
-    const dateFontSize = Math.max(10, Math.round(stripHeight * 0.28));
+    const nameFontSize = stripHeight * 0.32;
+    const dateFontSize = stripHeight * 0.28;
 
+    const drawLabel = (text: string, preferred: number, y: number) => {
+      fitPhotoLabel(ctx, text, fontFamily, preferred, imgW * 0.92);
+      ctx.fillText(text, imgW / 2, y);
+    };
     if (displayName && displayDate) {
       const nameY = stripY + stripHeight * 0.35;
       const dateY = stripY + stripHeight * 0.72;
 
-      ctx.font = `bold ${nameFontSize}px ${fontFamily}`;
-      ctx.fillText(displayName, imgW / 2, nameY);
+      drawLabel(displayName, nameFontSize, nameY);
 
-      ctx.font = `bold ${dateFontSize}px ${fontFamily}`;
-      ctx.fillText(displayDate, imgW / 2, dateY);
+      drawLabel(displayDate, dateFontSize, dateY);
     } else if (displayName) {
-      ctx.font = `bold ${nameFontSize * 1.2}px ${fontFamily}`;
-      ctx.fillText(displayName, imgW / 2, stripY + stripHeight / 2);
+      drawLabel(displayName, nameFontSize * 1.2, stripY + stripHeight / 2);
     } else if (displayDate) {
-      ctx.font = `bold ${dateFontSize * 1.2}px ${fontFamily}`;
-      ctx.fillText(displayDate, imgW / 2, stripY + stripHeight / 2);
+      drawLabel(displayDate, dateFontSize * 1.2, stripY + stripHeight / 2);
     }
 
     // 5. Draw border around entire composite if enabled
@@ -234,7 +241,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
 
       {!photoImg ? (
         <UniversalFileUpload
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           multiple={false}
           maxSizeMB={25}
           title="Drop candidate photo here to add name & date"
@@ -263,6 +270,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
                 />
               </div>
 
+              <p className="text-xs text-slate-500">लंबा नाम strip में फिट करने के लिए छोटा किया जाता है। Preview में लिखावट साफ न दिखे तो बड़ी फोटो या बड़ी strip चुनें। सही नाम और फोटो लेने की असली तारीख भरें—Today केवल आपके device की आज की तारीख चुनता है।</p>
               {/* Date Input & Quick Buttons */}
               <div>
                 <div className="flex items-center justify-between mb-1">
@@ -270,7 +278,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
                   <div className="flex gap-1">
                     <button
                       type="button"
-                      onClick={() => setDateStr(new Date().toISOString().split('T')[0])}
+                      onClick={() => setDateStr(localPhotoDate())}
                       className="text-[10px] text-indigo-600 dark:text-indigo-400 font-bold hover:underline cursor-pointer"
                     >
                       Today

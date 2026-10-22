@@ -52,3 +52,13 @@ Mobile visual testing and ink enhancement remain pending.
 ## Coverage
 
 Only reviewed tools should be marked complete. The remaining suite, AdSense account status, live configuration and comprehensive mobile/browser testing are still pending. This document is a work queue, not an approval certificate.
+
+## Add Name and Date to Photo — 23 October 2026
+
+Inspected competitor page content (not interactive behavior):
+- https://tools.sarkaridiary.in/add-name-date/ — name/date and top/bottom strip.
+- https://imageonline.co/add-name-under-photo.php — font, colour, style and added space below the image.
+
+Zubware already has top/bottom strips, bottom overlay, date formats, prefix and font choices. Review found long text could exceed the photo width; minimum font sizes could exceed a small strip; Today used a UTC date.
+
+Implemented measured font fitting without stretching glyphs, proportional strip fonts, local calendar dates, opaque white backing for JPEG exports of transparent photos, and upload type/size/decode errors. Hindi UI guidance explains small-text readability and the need to enter the actual photo date. Tests cover measured long Latin/Devanagari strings and local calendar dates under Asia/Kolkata and America/Los_Angeles. Mobile UI, browser font availability and complete output workflows remain pending. The tool does not establish exam compliance or the actual capture date.

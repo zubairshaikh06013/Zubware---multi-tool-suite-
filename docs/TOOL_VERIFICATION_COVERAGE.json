@@ -1734,8 +1734,10 @@
       "path": "/photo-name-date-joiner",
       "name": "Name & Date on Photo",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testPhotoLabel: measured long/multilingual text width and local date across India/US timezones; not full browser coverage"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {

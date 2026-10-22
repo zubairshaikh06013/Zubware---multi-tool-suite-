@@ -1,3 +1,4 @@
+import { GstInvoiceGuide } from './GstInvoiceGuide';
 import React from 'react';
 import { ToolMeta } from '../../types';
 import { getLinkUrl } from '../../lib/paths';
@@ -390,120 +391,7 @@ export const VideoBusinessSEOSection: React.FC<VideoBusinessSEOSectionProps> = (
        5. GST INVOICE GENERATOR (gst-invoice-generator)
        ========================================================================= */
     case 'gst-invoice-generator':
-      return (
-        <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 border border-indigo-200/50 dark:border-indigo-900/40">
-          <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-              Indian Taxation &amp; GST Compliance Engine
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              GST Invoice Generator Online: Free Indian Tax Invoice &amp; Bill of Supply Maker
-            </h2>
-            <p className="text-slate-600 dark:text-slate-400 text-sm mt-2 max-w-4xl leading-relaxed">
-              Every GST-registered business in India is required by Section 31 of the CGST Act and Rule 46 of CGST Rules to issue standardized tax invoices with consecutive serial numbering, supplier and buyer GSTIN details, mandatory HSN/SAC codes, and accurate bifurcated tax calculations. Zubware’s GST Invoice Generator automates intra-state (CGST + SGST) versus inter-state (IGST) tax calculation, embeds dynamic UPI payment QR codes, manages reverse charge indicators, and renders print-ready vector PDF invoices directly in your browser.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-600 dark:text-emerald-400">
-                  <Calculator className="w-5 h-5" />
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  Automatic CGST / SGST vs IGST Split
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                The engine compares the Supplier State code with the Place of Supply (POS). If both match, the tax slab (0%, 5%, 12%, 18%, 28%) is split 50/50 into Central GST and State GST. If they differ, the full rate is applied as Integrated GST (IGST).
-              </p>
-            </div>
-
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-xl bg-purple-100 dark:bg-purple-950/60 text-purple-600 dark:text-purple-400">
-                  <Building2 className="w-5 h-5" />
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  37 States &amp; Union Territories Support
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Pre-configured with all 37 Indian state and Union Territory GST codes (01 Jammu &amp; Kashmir to 38 Ladakh). Entering a 15-character GSTIN automatically parses and validates the 2-digit state prefix.
-              </p>
-            </div>
-
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="p-2.5 rounded-xl bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400">
-                  <Receipt className="w-5 h-5" />
-                </span>
-                <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                  Dynamic UPI Payment QR Integration
-                </h3>
-              </div>
-              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-                Input your business UPI ID (VPA) to automatically render a scannable payment QR code on the invoice with the exact calculated invoice total. Customers scan with PhonePe, Google Pay, or Paytm for instant bank-to-bank settlement.
-              </p>
-            </div>
-          </div>
-
-          <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800">
-            <table className="w-full text-left text-xs text-slate-600 dark:text-slate-400">
-              <thead className="bg-slate-100 dark:bg-slate-800/60 text-slate-900 dark:text-slate-200 uppercase font-semibold">
-                <tr>
-                  <th className="p-3.5">Standard GST Slab</th>
-                  <th className="p-3.5">Intra-State Bifurcation</th>
-                  <th className="p-3.5">Inter-State Bifurcation</th>
-                  <th className="p-3.5">Typical Goods / Services Covered</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-200 dark:divide-slate-800">
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">0% (Nil Rated)</td>
-                  <td className="p-3.5">0% CGST + 0% SGST</td>
-                  <td className="p-3.5">0% IGST</td>
-                  <td className="p-3.5">Fresh milk, eggs, fresh vegetables, unbranded grains, books</td>
-                </tr>
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">5% Slab</td>
-                  <td className="p-3.5">2.5% CGST + 2.5% SGST</td>
-                  <td className="p-3.5">5% IGST</td>
-                  <td className="p-3.5">Packaged food, tea, coffee, edible oil, economy air transport</td>
-                </tr>
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">12% Slab</td>
-                  <td className="p-3.5">6.0% CGST + 6.0% SGST</td>
-                  <td className="p-3.5">12% IGST</td>
-                  <td className="p-3.5">Processed food, butter, cheese, business class air tickets</td>
-                </tr>
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">18% Slab (Standard)</td>
-                  <td className="p-3.5">9.0% CGST + 9.0% SGST</td>
-                  <td className="p-3.5">18% IGST</td>
-                  <td className="p-3.5">Software services, consulting, electronics, telecom, hotel stays</td>
-                </tr>
-                <tr className="hover:bg-slate-50 dark:hover:bg-slate-800/30">
-                  <td className="p-3.5 font-bold text-slate-900 dark:text-white">28% Slab (Luxury)</td>
-                  <td className="p-3.5">14.0% CGST + 14.0% SGST</td>
-                  <td className="p-3.5">28% IGST</td>
-                  <td className="p-3.5">Automobiles, air conditioners, cement, gaming, luxury goods</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div className="glass-card p-6 rounded-2xl space-y-3 border-l-4 border-amber-500">
-            <h3 className="font-bold text-slate-900 dark:text-white text-base flex items-center gap-2">
-              <AlertCircle className="w-5 h-5 text-amber-500" />
-              Statutory Disclaimer &amp; E-Invoicing Scope
-            </h3>
-            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
-              Zubware’s GST Invoice Generator produces formatted PDF tax invoices and bills of supply for business recordkeeping, quotation delivery, and billing clients. It is not an authorized GST Suvidha Provider (GSP) and does not automatically upload invoices to the Government Invoice Registration Portal (IRN portal). Businesses whose aggregate turnover exceeds the mandatory e-invoicing statutory threshold (₹5 Crores) must generate their Invoice Reference Number (IRN) and signed QR code through the government portal.
-            </p>
-          </div>
-        </section>
-      );
+      return <GstInvoiceGuide />;
 
     /* =========================================================================
        6. OMR SHEET GENERATOR (omr-sheet-generator)

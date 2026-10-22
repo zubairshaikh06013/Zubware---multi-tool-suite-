@@ -1,3 +1,7 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { GstInvoiceGuide } from '../src/components/seo/GstInvoiceGuide';
+
 /**
  * Static HTML evergreen content generator for Batch 3 Video & Business Tools
  * Injected into renderStaticToolContent in scripts/generateSeoAndSitemap.ts
@@ -198,52 +202,7 @@ export function getStaticVideoBusinessSectionHtml(toolId: string, DOMAIN: string
       </section>`;
 
     case 'gst-invoice-generator':
-      return `
-      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
-          GST Invoice Generator Online: Free Indian Tax Invoice &amp; Bill of Supply Maker
-        </h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Automatic CGST / SGST vs IGST Split
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              The engine compares the Supplier State code with the Place of Supply (POS). If both match, the tax slab (0%, 5%, 12%, 18%, 28%) is split 50/50 into Central GST and State GST. If they differ, the full rate is applied as Integrated GST (IGST).
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              37 States &amp; Union Territories Support
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Pre-configured with all 37 Indian state and Union Territory GST codes (01 Jammu &amp; Kashmir to 38 Ladakh). Entering a 15-character GSTIN automatically parses and validates the 2-digit state prefix.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Dynamic UPI Payment QR Integration
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Input your business UPI ID (VPA) to automatically render a scannable payment QR code on the invoice with the exact calculated invoice total. Customers scan with PhonePe, Google Pay, or Paytm for instant bank-to-bank settlement.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              100% Client-Side Privacy &amp; Draft Saving
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Your customer names, billing amounts, and bank account details are never transmitted to Zubware servers. Save drafts in local browser storage to reload anytime.
-            </p>
-          </div>
-        </div>
-        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #64748b;">
-          <strong>Related Business Tools:</strong>
-          <a href="${DOMAIN}/barcode-generator" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Free Barcode Generator</a> •
-          <a href="${DOMAIN}/sale-price-calculator" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Sale Price Calculator</a> •
-          <a href="${DOMAIN}/qr-generator" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">QR Code Generator</a>
-        </div>
-      </section>`;
+      return renderToStaticMarkup(createElement(GstInvoiceGuide));
 
     case 'omr-sheet-generator':
       return `

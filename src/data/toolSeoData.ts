@@ -1382,74 +1382,78 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "gst-invoice-generator": {
     "howTo": [
       {
-        "title": "Enter Supplier Profile & GSTIN",
-        "desc": "Input your registered business name, 15-character GSTIN (state code auto-detected), official address, state, contact info, and upload your company logo."
+        "title": "Replace the sample business details",
+        "desc": "Enter your business name, GSTIN where applicable, address, supplier state and contact details. Replace the sample bank account and UPI ID before sharing an invoice."
       },
       {
-        "title": "Fill Customer Billing & Shipping Information",
-        "desc": "Add client name, billing address, buyer GSTIN if B2B registered, separate delivery/shipping address if applicable, and verify Place of Supply."
+        "title": "Add the customer and invoice details",
+        "desc": "Enter the invoice number, date, customer billing details and shipping address if needed. Check Place of Supply and the selected document type."
       },
       {
-        "title": "Add Itemized Line Items & HSN/SAC Codes",
-        "desc": "Enter item descriptions, mandatory HSN or SAC codes, quantities, billing units (PCS, KGS, NOS, HRS), unit rate, discounts, and assign applicable GST slab (0%, 5%, 12%, 18%, 28%)."
+        "title": "Enter items, discounts and tax rates",
+        "desc": "Add descriptions, quantities, units, prices and relevant HSN/SAC codes. Choose the applicable tax rate for each item and review the tax mode. The tool does not determine your legal classification or tax rate."
       },
       {
-        "title": "Configure Bank Details & Dynamic UPI Payment QR",
-        "desc": "Add bank name, beneficiary account number, IFSC code, and payee UPI VPA ID to generate an instant scannable UPI QR code embedded with invoice total."
+        "title": "Record payments and check the balance",
+        "desc": "Enter bank details and your UPI ID. Record any Amount Received manually. The payment QR uses the remaining balance; it does not confirm that a payment has arrived."
       },
       {
-        "title": "Download PDF or Print Compliant Invoice",
-        "desc": "Review automatic CGST/SGST vs IGST tax split, set reverse charge if applicable, add terms and conditions, and click Download PDF or Print for instant A4 export."
+        "title": "Review, download or print",
+        "desc": "Check Live Preview, then use Download PDF or Print. For printing, select A4, 100% scale and no margins where supported. Verify the recipient, amounts and page count before sharing."
+      },
+      {
+        "title": "Save and back up your invoice",
+        "desc": "Use Save Draft for unfinished work or Save invoice for your searchable local invoice list. Download invoice backup exports the current invoice as JSON. Keep a PDF and backup before clearing browser data or changing devices."
       }
     ],
     "faq": [
       {
-        "question": "How does the generator automatically determine whether to charge CGST + SGST or IGST?",
-        "answer": "Under Indian GST legislation, tax bifurcation depends on the location of the supplier versus the Place of Supply (POS). When both are within the same Indian state or Union Territory (intra-state transaction), GST is split equally into Central GST (CGST) and State GST (SGST). When the supplier state and Place of Supply differ (inter-state transaction), Integrated GST (IGST) is levied at the full applicable tax rate."
+        "question": "Is this GST invoice generator free, and do I need an account?",
+        "answer": "You can create, preview, print and download invoices in your browser without creating an account. Invoice processing and local saving do not require a paid subscription."
       },
       {
-        "question": "What is the difference between a Tax Invoice and a Bill of Supply under Indian GST rules?",
-        "answer": "A Tax Invoice is issued by regular GST-registered businesses selling taxable goods or services, allowing the buyer to claim Input Tax Credit (ITC). A Bill of Supply is issued for exempt goods/services or by businesses enrolled under the GST Composition Scheme, where no GST is charged to the customer and no ITC can be claimed."
+        "question": "How does the tool choose CGST + SGST or IGST?",
+        "answer": "In automatic mode, the calculator compares Supplier State with Place of Supply. Matching values produce the tool’s CGST + SGST split; different values produce IGST. You can review the tax mode manually. Confirm the applicable treatment for your transaction, including exceptions and UTGST requirements; the tool does not resolve those rules for you."
       },
       {
-        "question": "Why are HSN and SAC codes mandatory on GST invoices?",
-        "answer": "Harmonized System of Nomenclature (HSN) for goods and Services Accounting Code (SAC) for services are standardized classification systems mandated by the CBIC. Businesses with annual turnover up to ₹5 Crores must include 4-digit codes on B2B invoices, while businesses above ₹5 Crores turnover must display 6-digit codes to ensure uniform tax administration."
+        "question": "Does entering a GSTIN verify the business registration?",
+        "answer": "No. Input checks are not a live GST registration lookup. Confirm the GSTIN, business details, HSN/SAC classification and applicable rate independently before issuing an invoice."
       },
       {
-        "question": "How does the dynamic UPI QR code work on the generated invoice?",
-        "answer": "The tool encodes standard NPCI UPI intent parameters (payee VPA address, payee business name, invoice reference, and exact calculated invoice amount) directly into a scannable QR code. When the customer scans the code with PhonePe, Google Pay, Paytm, or BHIM, the exact payable balance is pre-populated without manual entry errors."
+        "question": "How are discounts and other charges calculated?",
+        "answer": "For each line, quantity multiplied by rate gives the gross amount. The selected fixed or percentage discount reduces that line’s taxable value before the selected GST rate is applied. Other Charges are added after the item taxes; the tool does not calculate additional GST on that field. Review taxable charges separately rather than assuming that field handles their tax treatment."
       },
       {
-        "question": "What are the mandatory fields required for a legally valid GST invoice under Section 31 of the CGST Act?",
-        "answer": "Section 31 and Rule 46 of CGST Rules mandate: consecutive invoice serial number unique for a financial year, date of issue, supplier name, address, and GSTIN, recipient name, address, and GSTIN (if registered), Place of Supply along with state name and state code, HSN/SAC code, description of goods/services, total quantity and unit, taxable value, applicable tax rates, amount of tax broken down by CGST/SGST/IGST, and authorized signature."
+        "question": "What information is stored in the UPI payment QR?",
+        "answer": "The QR contains the entered UPI ID, business name, remaining amount and INR currency. It does not include an invoice reference or verify ownership of the UPI account. A compatible payment app may prefill these details; check the recipient and amount in that app before paying."
       },
       {
-        "question": "Does this invoice generator upload my client list, sales revenue, or bank details to an external server?",
-        "answer": "No. The invoice generator executes 100% locally in your web browser memory. Your client contact books, line-item pricing, bank account details, and turnover metrics are never sent, logged, or stored on Zubware servers."
+        "question": "What happens if the customer pays part of the invoice?",
+        "answer": "Enter the payment in Amount Received. For a ₹34,220 invoice with ₹10,000 received, Balance Due is ₹24,220 and the QR uses ₹24,220. When no balance remains, the payment QR is hidden. Payment status is entered manually and is not synced with your bank."
       },
       {
-        "question": "Can I save my invoice as a draft to update or re-print later?",
-        "answer": "Yes. Clicking Save Draft stores your current invoice details directly in your browser's private LocalStorage. When you return to the page, you can reload your saved draft to make additions or generate recurring invoices."
+        "question": "What is the difference between Save Draft and Save invoice?",
+        "answer": "Save Draft keeps the current working draft in this browser. Save invoice adds the invoice to a local list of up to 50 invoices that you can search by invoice number or customer. Reusing the same business and invoice number asks whether to replace the saved record. There is no automatic recurring billing."
       },
       {
-        "question": "Does this tool submit invoices to the Government GST Portal (e-Invoice IRN portal)?",
-        "answer": "No. This tool generates printable PDF tax invoices and bills of supply for business recordkeeping and direct client delivery. It does not connect to the Government GSTN e-Invoice portal (IRN/QR code) required for businesses with aggregate turnover exceeding the statutory mandatory e-invoicing threshold (₹5 Crores)."
+        "question": "How do I move an invoice to another phone or browser?",
+        "answer": "Open the invoice and choose Download invoice backup to export that current invoice as a JSON file. On the other device, choose Open backup, review the restored details, then Save invoice. The backup is not an export of your entire invoice list. A PDF is useful for sharing but cannot restore the editable form."
       },
       {
-        "question": "How is GST calculated when both line-item discounts and overall cash discounts are offered?",
-        "answer": "Under Section 15 of the CGST Act, discounts recorded on the invoice before or at the time of supply reduce the taxable value before GST is calculated. The tool calculates line item discounts (either percentage or fixed currency amount) to derive the net taxable base upon which statutory GST slabs are applied."
+        "question": "Can my saved invoices disappear if I clear browser data?",
+        "answer": "Yes. Drafts and saved invoices are stored in this browser, without cloud sync. Clearing site data, switching browsers or using a temporary browsing session can remove access to them. Export backups and PDFs first. Backup files contain customer and bank details, so keep them private."
       },
       {
-        "question": "What is Reverse Charge Mechanism (RCM) and how is it reflected on the invoice?",
-        "answer": "Reverse Charge applies when the liability to pay GST to the government shifts from the supplier to the recipient (e.g. goods transport agencies, specific legal services, or unregistered supplies under Section 9(3)/9(4)). The invoice includes a dedicated Reverse Charge indicator ('Yes' or 'No') as required by tax audit guidelines."
+        "question": "Is the payment QR a government e-invoice QR code?",
+        "answer": "No. This is a UPI payment QR. The tool does not submit invoices to an Invoice Registration Portal, generate an IRN or create an IRP-signed QR code. Check current e-invoicing applicability and complete the required registration process separately when it applies."
       },
       {
-        "question": "Can composition scheme dealers use this GST invoice generator?",
-        "answer": "Yes. Composition dealers should select 'Bill of Supply' as the invoice document type and enter a 0% tax rate, as composition taxpayers cannot charge GST from customers or claim input tax credit."
+        "question": "Does choosing Bill of Supply or Reverse Charge complete the compliance requirements?",
+        "answer": "No. Document type and Reverse Charge are invoice settings, not a compliance check. Changing the label does not determine the correct tax treatment or complete statutory requirements. Review the invoice fields and tax amounts for your situation before issuing it."
       },
       {
-        "question": "How do I print the invoice on standard A4 paper without cutting off borders or text?",
-        "answer": "Click the Print Invoice button. In your browser's print dialog, select Paper Size as 'A4', set Margins to 'Default' or 'Minimum', and check 'Print backgrounds' or 'Background graphics' so table headers and company colors print crisply."
+        "question": "How do I keep preview, print and PDF consistent?",
+        "answer": "The tool uses the same generated A4 pages for preview, printing and PDF download. In the print dialog choose A4, 100% scale and no margins where available; printer settings can still resize the output. PDFs contain rendered page images rather than selectable invoice text. If a download fails, try Print and your device’s Save as PDF option."
       }
     ]
   },

@@ -98,7 +98,7 @@ function getToolHowToHeading(tool: ToolMeta): string {
     'video-aspect-ratio': 'How to Convert Video Aspect Ratios for Reels, Shorts & YouTube',
     'video-compressor': 'How to Compress and Reduce Video File Size Online',
     'video-trimmer': 'How to Trim, Cut, and Split Video Clips in Your Browser',
-    'gst-invoice-generator': 'How to Generate GST-Compliant Invoices Online',
+    'gst-invoice-generator': 'How to Create, Save and Download a GST Invoice',
     'omr-sheet-generator': 'How to Generate and Print Custom OMR Answer Sheets & Keys',
     'barcode-generator': 'How to Generate High-Resolution 1D Barcodes in SVG and PNG',
     'loan-eligibility-calculator': 'How to Calculate Your Maximum Loan Eligibility and Borrowing Power',
@@ -203,7 +203,7 @@ function getToolIntroParagraph(tool: ToolMeta): string {
     'resume-builder':
       'Zubware Resume Builder is a free online CV maker that lets you design professional, ATS-friendly resumes directly in your browser. Choose from 20 modern and classic templates, customize work experience and education sections, tailor skills and certifications, and instantly download a high-resolution PDF or backup JSON file. All data is saved automatically in your browser storage with zero server uploads, no user tracking, and no sign-up required.',
     'gst-invoice-generator':
-      'Zubware GST Invoice Generator creates legally structured Indian tax invoices with automatic CGST, SGST, and IGST tax bifurcation, HSN/SAC code classification, dynamic UPI payment QR codes, and instant vector PDF downloads. Purpose-built for Indian small business owners, freelancers, GST-registered traders, and consultancies, financial calculations and high-resolution PDF rendering execute 100% locally in your web browser memory with complete data privacy.',
+      'Zubware GST Invoice Generator helps you prepare itemized invoices with discounts, CGST/SGST or IGST calculations, bank details and a UPI payment QR for the remaining balance. Preview A4 pages, download a PDF, and save invoices in your browser without an account. You supply the correct tax rates and business details; the tool does not verify GST registrations or submit government e-invoices.',
     'subtitle-generator':
       'Zubware Video Subtitle & SRT Generator creates, synchronizes, and exports timed caption tracks for your videos directly in your browser. Load MP4, WebM, or MOV files into the synchronized player, dictate dialogue in real time using the browser Web Speech API, fine-tune timestamps down to tenths of a second, and download standardized SubRip (.srt) or WebVTT (.vtt) files for YouTube Studio and video editors. Video files stay local; optional microphone dictation may send audio to your browser provider for speech recognition.',
     'video-aspect-ratio':

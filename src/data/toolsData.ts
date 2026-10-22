@@ -1146,7 +1146,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "gst-invoice-generator",
     "title": "GST Invoice Generator — Create & Download Invoices Online",
     "navTitle": "GST Invoice",
-    "description": "Create professional GST invoices online with automatic CGST, SGST, and IGST tax calculation, HSN/SAC codes, dynamic UPI payment QR codes, and PDF export.",
+    "description": "Create GST invoices with item discounts, CGST/SGST or IGST, UPI payment QR and A4 PDF download. Save invoices locally and export editable backups.",
     "icon": "🧾",
     "path": "/gst-invoice-generator",
     "filename": "gst-invoice-generator.html",
@@ -1158,7 +1158,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "HSN/SAC Code & Item Discounts",
       "Bank Details & Dynamic UPI Payment QR",
       "Print & High-Res PDF Invoice Export",
-      "Local Browser Draft Saving"
+      "Local Drafts, Saved Invoices & JSON Backup"
     ],
     "tags": [
       "gst",

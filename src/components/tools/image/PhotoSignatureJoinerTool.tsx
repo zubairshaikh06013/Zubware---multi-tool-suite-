@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../../../context/LanguageContext';
 
+import { photoFrame } from '../../../lib/photoFrame';
 import { exportCompositeImage } from '../../../lib/compositeImageExport';
 import { formatDecimalBytes, parseTargetBytes } from '../../../lib/fileSizeStandard';
 
@@ -20,12 +21,9 @@ type LayoutMode = 'vertical' | 'horizontal';
 const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
 const acceptedTypes = new Set(['image/jpeg', 'image/png', 'image/webp']);
 
-const drawPhoto = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number, y: number, width: number, height: number) => {
-  const sourceRatio = img.width / img.height;
-  const targetRatio = width / height;
-  const sourceWidth = sourceRatio > targetRatio ? img.height * targetRatio : img.width;
-  const sourceHeight = sourceRatio > targetRatio ? img.height : img.width / targetRatio;
-  ctx.drawImage(img, (img.width - sourceWidth) / 2, (img.height - sourceHeight) / 2, sourceWidth, sourceHeight, x, y, width, height);
+const drawPhoto = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number, y: number, width: number, height: number, zoom: number, positionX: number, positionY: number) => {
+  const crop = photoFrame(img.width, img.height, width, height, zoom, positionX, positionY);
+  ctx.drawImage(img, crop.x, crop.y, crop.width, crop.height, x, y, width, height);
 };
 
 const drawSignature = (ctx: CanvasRenderingContext2D, img: HTMLImageElement, x: number, y: number, width: number, height: number) => {
@@ -55,6 +53,11 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   const [borderColor, setBorderColor] = useState('#cbd5e1'); // slate-300
   const [bgColor, setBgColor] = useState<'#ffffff' | '#f8fafc' | 'transparent'>('#ffffff');
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg'>('jpeg');
+
+  const [photoZoom, setPhotoZoom] = useState(1);
+  const [photoPositionX, setPhotoX] = useState(50);
+  const [photoPositionY, setPhotoY] = useState(50);
+  const resetFraming = () => { setPhotoZoom(1); setPhotoX(50); setPhotoY(50); };
 
   const [maxKb, setMaxKb] = useState(0);
   const [outputBytes, setOutputBytes] = useState(0);
@@ -89,6 +92,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
     setPhotoImg(null);
     loadImage(file, (img) => {
       setPhotoImg(img);
+      resetFraming();
       onShowToast('Passport/Candidate photo loaded.');
     });
   };
@@ -146,7 +150,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       const photoY = padding;
 
       if (photoImg) {
-        drawPhoto(ctx, photoImg, photoX, photoY, photoWidth, photoHeight);
+        drawPhoto(ctx, photoImg, photoX, photoY, photoWidth, photoHeight, photoZoom, photoPositionX, photoPositionY);
       } else {
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(photoX, photoY, photoWidth, photoHeight);
@@ -175,7 +179,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       const photoY = padding + (totalCanvasHeight - padding * 2 - photoHeight) / 2;
 
       if (photoImg) {
-        drawPhoto(ctx, photoImg, photoX, photoY, photoWidth, photoHeight);
+        drawPhoto(ctx, photoImg, photoX, photoY, photoWidth, photoHeight, photoZoom, photoPositionX, photoPositionY);
       } else {
         ctx.fillStyle = '#f1f5f9';
         ctx.fillRect(photoX, photoY, photoWidth, photoHeight);
@@ -230,7 +234,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
         pCtx.drawImage(canvas, 0, 0);
       }
     }
-  }, [photoImg, sigImg, layoutMode, photoWidth, photoHeight, sigWidth, sigHeight, gap, padding, borderWidth, borderColor, bgColor, exportFormat, maxKb]);
+  }, [photoImg, sigImg, layoutMode, photoWidth, photoHeight, sigWidth, sigHeight, gap, padding, borderWidth, borderColor, bgColor, exportFormat, maxKb, photoZoom, photoPositionX, photoPositionY]);
 
   const handleDownload = () => {
     if (!photoImg || !sigImg || !outputDataUrl || exceedsLimit) return;
@@ -365,6 +369,14 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
 
             <hr className="border-slate-200/60 dark:border-slate-800" />
 
+            <fieldset className="space-y-2 text-xs">
+              <legend className="font-bold">Photo framing</legend>
+              <p className="text-slate-500">Keep the full face visible. These controls crop the photo; the signature stays fully inside its own area.</p>
+              <label className="block">Zoom: {photoZoom.toFixed(2)}×<input className="block w-full" type="range" min="1" max="3" step="0.05" value={photoZoom} onChange={e => setPhotoZoom(Number(e.target.value))} /></label>
+              <label className="block">Crop position — left to right<input className="block w-full" type="range" min="0" max="100" value={photoPositionX} onChange={e => setPhotoX(Number(e.target.value))} /></label>
+              <label className="block">Crop position — top to bottom<input className="block w-full" type="range" min="0" max="100" value={photoPositionY} onChange={e => setPhotoY(Number(e.target.value))} /></label>
+              <button type="button" onClick={resetFraming} className="rounded border px-3 py-2">Reset framing</button>
+            </fieldset>
             {/* Dimensions Sliders */}
             <div className="space-y-3">
               <div>

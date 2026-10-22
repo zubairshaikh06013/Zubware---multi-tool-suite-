@@ -19,6 +19,7 @@ Comparison sources inspected (page content, not interactive testing):
 Zubware baseline: custom photo/signature dimensions, two layouts, padding/gap/border, JPG/PNG export. It lacked a size ceiling and displayed an approximate binary-KB estimate. Preview showed the pre-encoding canvas.
 
 Implemented:
+- Photo zoom and horizontal/vertical crop-position controls, with reset and automatic framing reset on new photo upload.
 - Optional decimal-KB limit and 20/50/100 KB JPG buttons.
 - Bounded JPEG quality search without changing pixel dimensions; no promise that all limits can be reached.
 - Actual encoded output preview, actual-pixel mode, exact bytes and oversized-download guard.
@@ -27,7 +28,9 @@ Implemented:
 
 Evidence: testCompositeImageExport exercises real canvas-generated JPEG/PNG files, decodes dimensions, checks byte accounting including base64 padding, reachable/impossible limits and export failure. Full mobile UI, screen-reader behavior and device performance remain unverified.
 
-Remaining candidate improvements: manual photo positioning/zoom and optional signature margin cleanup. These need dedicated geometry/output tests before release. No claim of overall competitor superiority.
+Additional evidence: testPhotoFrame verifies portrait/landscape source crops, edge positions, zoom bounds and the pixels produced by real canvas draws.
+
+Remaining candidate improvements: optional signature margin cleanup. These need dedicated geometry/output tests before release. No claim of overall competitor superiority.
 
 ## Signature Resizer — comparison queue
 

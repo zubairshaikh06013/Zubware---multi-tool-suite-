@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
+import * as signatureAppearance from '../src/lib/signatureAppearance';
 
 // Exercise the real component effect with delayed canvas callbacks, including cleanup.
 const source = fs.readFileSync('src/components/tools/image/SignatureResizerTool.tsx', 'utf8');
@@ -15,7 +16,7 @@ const values: Record<number, any> = { 1: {width: 20, height: 20}, 6: 140, 7: 60,
 const react = { createElement: () => null, useRef: () => ({current: 0}), useState: (initial: any) => { const i = index++; return [i in values ? values[i] : initial, (v: any) => writes.push([i, v])]; }, useEffect: (f: () => any) => effects.push(f) };
 const ctx = { drawImage() {}, fillRect() {} };
 const exports: any = {};
-vm.runInNewContext(compiled, {exports, require: (name: string) => name === 'react' ? {...react, default: react} : name.includes('LanguageContext') ? {useLanguage: () => ({t: (s: string) => s})} : name.includes('pdfUtils') ? {formatBytes: String} : {}, document: {createElement: () => ({getContext: () => ctx, toBlob: (cb: any) => blobs.push(cb)})}, URL: {createObjectURL: () => 'blob:preview', revokeObjectURL: (s: string) => revoked.push(s)} });
+vm.runInNewContext(compiled, {exports, require: (name: string) => name === 'react' ? {...react, default: react} : name.includes('LanguageContext') ? {useLanguage: () => ({t: (s: string) => s})} : name.includes('signatureAppearance') ? signatureAppearance : name.includes('pdfUtils') ? {formatBytes: String} : {}, document: {createElement: () => ({getContext: () => ctx, toBlob: (cb: any) => blobs.push(cb)})}, URL: {createObjectURL: () => 'blob:preview', revokeObjectURL: (s: string) => revoked.push(s)} });
 exports.SignatureResizerTool({onShowToast() {}});
 const render = effects[1];
 const cleanup = render();

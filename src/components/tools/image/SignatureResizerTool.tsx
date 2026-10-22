@@ -16,6 +16,8 @@ import { useLanguage } from '../../../context/LanguageContext';
 import { UniversalFileUpload } from '../../common/UniversalFileUpload';
 import { formatBytes } from '../../../lib/pdfUtils';
 
+import { signatureFit, whitenSignaturePaper } from '../../../lib/signatureAppearance';
+
 type Unit = 'px' | 'cm' | 'mm' | 'in';
 
 const DPI = 96; // Standard screen/web DPI for conversions
@@ -45,6 +47,10 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
   // Output result
   const [outputBlob, setOutputBlob] = useState<Blob | null>(null);
   const [outputDataUrl, setOutputDataUrl] = useState<string>('');
+
+  const [preserveShape, setPreserveShape] = useState(true);
+  const [cleanPaper, setCleanPaper] = useState(false);
+  const [paperThreshold, setPaperThreshold] = useState(235);
 
   const uploadVersion = useRef(0);
   useEffect(() => () => { uploadVersion.current += 1; }, []);
@@ -151,6 +157,11 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
     const sCtx = sourceCanvas.getContext('2d');
     if (!sCtx) return;
     sCtx.drawImage(imgElement, 0, 0);
+    if (cleanPaper) {
+      const pixels = sCtx.getImageData(0, 0, sourceCanvas.width, sourceCanvas.height);
+      whitenSignaturePaper(pixels.data, paperThreshold);
+      sCtx.putImageData(pixels, 0, 0);
+    }
 
     let workingCanvas = sourceCanvas;
 
@@ -217,7 +228,8 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
     // High quality bicubic scaling
     fCtx.imageSmoothingEnabled = true;
     fCtx.imageSmoothingQuality = 'high';
-    fCtx.drawImage(workingCanvas, 0, 0, finalCanvas.width, finalCanvas.height);
+    const fit = preserveShape ? signatureFit(workingCanvas.width, workingCanvas.height, finalCanvas.width, finalCanvas.height) : { x: 0, y: 0, width: finalCanvas.width, height: finalCanvas.height };
+    fCtx.drawImage(workingCanvas, fit.x, fit.y, fit.width, fit.height);
 
     // Convert to Blob with file size limit check if requested
     const mime = exportFormat === 'jpeg' ? 'image/jpeg' : 'image/png';
@@ -244,7 +256,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
       cancelled = true;
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
-  }, [imgElement, targetWidth, targetHeight, cropMargins, backgroundMode, exportFormat, maxKbLimit]);
+  }, [imgElement, targetWidth, targetHeight, cropMargins, backgroundMode, exportFormat, maxKbLimit, preserveShape, cleanPaper, paperThreshold]);
 
   const handleDownload = () => {
     if (!outputBlob || !file) return;
@@ -437,6 +449,13 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
                 <hr className="border-slate-200/60 dark:border-slate-800" />
 
+                <div className="space-y-2 text-xs text-slate-700 dark:text-slate-300">
+                  <label className="flex gap-2"><input type="checkbox" checked={preserveShape} onChange={e => setPreserveShape(e.target.checked)} /> Keep signature shape — fit inside target dimensions</label>
+                  <p>फ़ाइल का pixel size वही रहेगा। यह विकल्प signature को खींचने के बजाय खाली जगह जोड़ता है।</p>
+                  <label className="flex gap-2"><input type="checkbox" checked={cleanPaper} onChange={e => setCleanPaper(e.target.checked)} /> Clean light paper background to white</label>
+                  {cleanPaper && <label className="block">Paper cutoff: {paperThreshold}<input className="block w-full" type="range" min="180" max="250" value={paperThreshold} onChange={e => setPaperThreshold(Number(e.target.value))} /></label>}
+                  <p>Paper cleanup हल्के grey pixels को सफेद करता है। हल्की लिखावट मिटे तो cutoff बढ़ाएँ या इसे बंद करें। Dark shadows नहीं हटेंगे।</p>
+                </div>
                 {/* Additional Formatting */}
                 <div className="space-y-3">
                   <label className="flex items-center gap-2 cursor-pointer">
@@ -461,7 +480,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                           backgroundMode === 'transparent' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800'
                         }`}
                       >
-                        Transparent
+                        Preserve Transparency
                       </button>
                       <button
                         type="button"

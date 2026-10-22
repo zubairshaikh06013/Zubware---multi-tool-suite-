@@ -457,8 +457,10 @@
       "path": "/ats-resume-checker",
       "name": "ATS Checker",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testResumeKeywords: whole-skill matching, punctuation and word counts; not employer ATS validation"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -1708,8 +1710,11 @@
       "path": "/signature-resizer",
       "name": "Signature Resizer",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testSignatureExport: stale callback cancellation and preview URL cleanup",
+        "testSignatureAppearance: real canvas proportions, ink/paper pixel handling; not full browser coverage"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -1717,8 +1722,11 @@
       "path": "/photo-signature-joiner",
       "name": "Photo & Signature Joiner",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testCompositeImageExport: JPEG/PNG decoding, fixed dimensions, byte limits and failures",
+        "testPhotoFrame: crop bounds, aspect ratio and real pixel selection; not full browser coverage"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {

@@ -1,6 +1,9 @@
 import fs from 'node:fs';
 import { TOOLS_DATA } from '../src/data/toolsData';
 const evidence: Record<string, string[]> = {
+  'signature-resizer': ['testSignatureExport: stale callback cancellation and preview URL cleanup', 'testSignatureAppearance: real canvas proportions, ink/paper pixel handling; not full browser coverage'],
+  'photo-signature-joiner': ['testCompositeImageExport: JPEG/PNG decoding, fixed dimensions, byte limits and failures', 'testPhotoFrame: crop bounds, aspect ratio and real pixel selection; not full browser coverage'],
+  'ats-resume-checker': ['testResumeKeywords: whole-skill matching, punctuation and word counts; not employer ATS validation'],
   'gst-invoice-generator': ['testInvoiceWorkspace: backup validation, payment balance/QR payload, page coverage and paise carry', 'testInvoiceCanvas: visible and centred label glyphs at 1x/2x/3x; not a mobile browser export test'],
   'image-compressor': ['testToolReliability: original preservation, MIME and target-size result selection; not every browser codec'],
   'image-resizer': ['testToolReliability: dimensions, aspect ratios, rounding and memory limits'],

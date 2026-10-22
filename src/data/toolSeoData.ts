@@ -8048,6 +8048,14 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ],
     "faq": [
       {
+        "question": "सिग्नेचर resize करने पर लिखावट खिंचने से कैसे बचाएँ?",
+        "answer": "Keep signature shape चालू रखें। फाइल की चौड़ाई और ऊंचाई वही रहेगी जो आपने सेट की है, लेकिन लिखावट का अनुपात नहीं बदलेगा। जरूरत होने पर आसपास खाली जगह जुड़ती है। Auto Crop और preview देखकर जांचें कि पूरी लिखावट साफ दिखाई दे रही है।"
+      },
+      {
+        "question": "सिग्नेचर की फोटो का हल्का grey background सफेद कैसे करें?",
+        "answer": "Clean light paper background विकल्प चालू करें। यह हल्के grey pixels को सफेद करता है; गहरे shadows को नहीं हटाता। हल्की लिखावट मिटने लगे तो cutoff बढ़ाएं या विकल्प बंद करें। यह setting मूल फोटो नहीं बदलती और सफेद background को transparent नहीं बनाती।"
+      },
+      {
         "question": "सरकारी फॉर्म के लिए सिग्नेचर 20KB से कम कैसे करें?",
         "answer": "सिग्नेचर की फोटो अपलोड करें। अपने फॉर्म में दिया गया पिक्सेल साइज सेट करें और 20KB वाला बटन चुनें। रिजल्ट डाउनलोड करने से पहले फाइल का साइज और सिग्नेचर की साफ-सफाई जरूर चेक करें।"
       },
@@ -8061,7 +8069,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "How does the auto-crop margins feature work?",
-        "answer": "When taking a mobile photo of a signature on paper, large empty margins often surround the ink strokes. Checking 'Auto-crop empty edges' scans canvas pixel data, identifies bounding ink coordinates, and trims blank white borders before scaling. This ensures your signature fills the designated upload frame rather than appearing as a tiny smudge."
+        "answer": "When taking a mobile photo of a signature on paper, large empty margins often surround the ink strokes. Checking 'Auto-crop empty edges' scans canvas pixel data, identifies bounding ink coordinates, and trims blank white borders before scaling. Keep signature shape is on by default: the cropped signature fits inside your target dimensions without stretching, with empty space where needed. Inspect the preview for faint strokes or dark paper shadows."
       },
       {
         "question": "Should I download my resized signature in JPG or PNG format?",

@@ -32,13 +32,22 @@ Additional evidence: testPhotoFrame verifies portrait/landscape source crops, ed
 
 Remaining candidate improvements: optional signature margin cleanup. These need dedicated geometry/output tests before release. No claim of overall competitor superiority.
 
-## Signature Resizer — comparison queue
+## Signature Resizer — appearance improvements
 
 Relevant pages discovered:
 - https://www.signatureresizer.com/ — crop, dimensions and KB targets.
 - https://weesize.com/signature-resizer — advertises background cleanup, ink enhancement and file-size controls.
 
-Previous Zubware batch fixed export cancellation, object-URL cleanup, upload errors and decimal maximum-KB checks. Background cleanup/ink enhancement require further competitor inspection and implementation review; they are not yet implemented or verified in this batch.
+Previous Zubware batch fixed export cancellation, object-URL cleanup, upload errors and decimal maximum-KB checks. The Weesize page was inspected and advertises paper cleanup and ink enhancement; interactive behavior was not independently tested.
+
+Implemented in the following batch:
+- Default contain-fit rendering after auto-crop preserves handwriting proportions while keeping the selected pixel dimensions.
+- Optional near-white paper cleanup with adjustable threshold, disabled by default; coloured/dark ink and pixel alpha are preserved by the threshold operation. Faint grey ink above the threshold can be removed, so preview guidance explains how to raise the cutoff or disable cleanup.
+- No claim of deep-shadow removal, transparent-background extraction or guaranteed form acceptance.
+- Added original Hindi FAQs explaining proportions and cleanup limitations.
+- testSignatureAppearance uses actual canvas rendering to check proportions and test pixels; testSignatureExport still covers cancellation and object-URL cleanup.
+
+Mobile visual testing and ink enhancement remain pending.
 
 ## Coverage
 

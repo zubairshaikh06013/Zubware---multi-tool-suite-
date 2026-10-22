@@ -28,6 +28,7 @@ import {
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import QRCode from 'qrcode';
+import { validateInvoiceSnapshot, buildInvoicePaymentUri, invoicePageSlices } from '../../../lib/invoiceWorkspace';
 
 interface GstInvoiceGeneratorToolProps {
   onShowToast?: (msg: string) => void;
@@ -143,7 +144,7 @@ export const UNIT_TYPES = ['Pcs', 'Box', 'Kg', 'Mtr', 'Hours', 'Days', 'Nos', 'S
 const GSTIN_REGEX = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/i;
 
 export function numberToIndianWords(num: number): string {
-  if (isNaN(num) || num < 0) return '';
+  if (!Number.isFinite(num) || num < 0) return '';
   if (num === 0) return 'Zero Rupees Only';
 
   const ones = [
@@ -170,8 +171,9 @@ export function numberToIndianWords(num: number): string {
     return str.trim();
   }
 
-  const rupees = Math.floor(num);
-  const paise = Math.round((num - rupees) * 100);
+  const totalPaise = Math.round((num + Number.EPSILON) * 100);
+  const rupees = Math.floor(totalPaise / 100);
+  const paise = totalPaise % 100;
 
   let rupeeStr = '';
 
@@ -328,77 +330,88 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
     }
   }, []);
 
-  // Generate UPI QR Code whenever upiId or amounts change
+  const snapshot = () => ({ supplier, invoiceMeta, customer, items, payment, terms, signatoryName, signatureUrl, otherCharges, otherChargesLabel, autoRoundOff, amountReceived, taxOverride });
+  type Snapshot = ReturnType<typeof snapshot>;
+  type SavedInvoice = { id: string; savedAt: string; data: Snapshot };
+  const [savedInvoices, setSavedInvoices] = useState<SavedInvoice[]>([]);
+  const [storageReadFailed, setStorageReadFailed] = useState(false);
+  const [invoiceSearch, setInvoiceSearch] = useState('');
+  const backupInput = useRef<HTMLInputElement>(null);
+  const storageKey = 'zubware_gst_invoices_v1';
+  // Validate against defaults so optional image fields remain nullable even after upload.
+  const parseSnapshot = (data: unknown) => validateInvoiceSnapshot(data, { ...snapshot(), supplier: { ...supplier, logoUrl: null }, signatureUrl: null });
   useEffect(() => {
-    const generateQr = async () => {
-      if (!payment.upiId || !payment.upiId.trim()) {
-        setUpiQrDataUrl(null);
-        return;
-      }
-      try {
-        const grandTotal = calculateTotals().grandTotal;
-        const upiUri = `upi://pay?pa=${payment.upiId.trim()}&pn=${encodeURIComponent(supplier.businessName || 'Business')}&am=${grandTotal}&cu=INR`;
-        const url = await QRCode.toDataURL(upiUri, { width: 140, margin: 1 });
-        setUpiQrDataUrl(url);
-      } catch (err) {
-        console.error('Failed to generate UPI QR code:', err);
-        setUpiQrDataUrl(null);
-      }
-    };
-    generateQr();
-  }, [payment.upiId, supplier.businessName, items, otherCharges, autoRoundOff]);
+    try {
+      const records = JSON.parse(localStorage.getItem(storageKey) || '[]');
+      if (!Array.isArray(records) || records.length > 50) throw new Error('Invalid saved invoices');
+      setSavedInvoices(records.map(record => {
+        if (typeof record.id !== 'string' || typeof record.savedAt !== 'string') throw new Error('Invalid saved invoice');
+        return { id: record.id, savedAt: record.savedAt, data: parseSnapshot(record.data) };
+      }));
+    } catch { setStorageReadFailed(true); onShowToast?.('Saved invoices could not be read. Existing browser data has not been changed.'); }
+  }, []);
 
-  // Load Draft handler
+  const applySnapshot = (data: Snapshot) => {
+    setSupplier(data.supplier); setInvoiceMeta(data.invoiceMeta); setCustomer(data.customer);
+    setItems(data.items); setPayment(data.payment); setTerms(data.terms);
+    setSignatoryName(data.signatoryName); setSignatureUrl(data.signatureUrl);
+    setOtherCharges(data.otherCharges); setOtherChargesLabel(data.otherChargesLabel);
+    setAutoRoundOff(data.autoRoundOff); setAmountReceived(data.amountReceived); setTaxOverride(data.taxOverride);
+  };
   const handleLoadDraft = () => {
     try {
       const saved = localStorage.getItem('zubware_gst_invoice_draft');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (parsed.supplier) setSupplier(parsed.supplier);
-        if (parsed.invoiceMeta) setInvoiceMeta(parsed.invoiceMeta);
-        if (parsed.customer) setCustomer(parsed.customer);
-        if (parsed.items) setItems(parsed.items);
-        if (parsed.payment) setPayment(parsed.payment);
-        if (parsed.terms) setTerms(parsed.terms);
-        if (parsed.signatoryName) setSignatoryName(parsed.signatoryName);
-        if (parsed.signatureUrl) setSignatureUrl(parsed.signatureUrl);
-        if (parsed.otherCharges !== undefined) setOtherCharges(parsed.otherCharges);
-        if (parsed.otherChargesLabel) setOtherChargesLabel(parsed.otherChargesLabel);
-        if (parsed.autoRoundOff !== undefined) setAutoRoundOff(parsed.autoRoundOff);
-        if (parsed.amountReceived !== undefined) setAmountReceived(parsed.amountReceived);
-        if (parsed.taxOverride) setTaxOverride(parsed.taxOverride);
-        if (onShowToast) onShowToast('Loaded previous invoice draft!');
-      }
+      if (!saved) return;
+      if (!window.confirm('Replace the current form with your saved draft?')) return;
+      applySnapshot(parseSnapshot(JSON.parse(saved)));
       setDraftExists(false);
-    } catch {
-      if (onShowToast) onShowToast('Failed to load draft.');
-    }
+      onShowToast?.('Draft restored, including cleared fields.');
+    } catch { onShowToast?.('Could not load this draft. Your current form has not been changed.'); }
   };
-
-  // Save Draft handler
   const handleSaveDraft = () => {
     try {
-      const payload = {
-        supplier,
-        invoiceMeta,
-        customer,
-        items,
-        payment,
-        terms,
-        signatoryName,
-        signatureUrl,
-        otherCharges,
-        otherChargesLabel,
-        autoRoundOff,
-        amountReceived,
-        taxOverride,
-        savedAt: new Date().toISOString()
-      };
-      localStorage.setItem('zubware_gst_invoice_draft', JSON.stringify(payload));
-      if (onShowToast) onShowToast('Invoice saved as draft locally! 💾');
-    } catch {
-      if (onShowToast) onShowToast('Failed to save draft locally.');
+      localStorage.setItem('zubware_gst_invoice_draft', JSON.stringify(snapshot()));
+      setDraftExists(true);
+      onShowToast?.('Draft saved in this browser.');
+    } catch { onShowToast?.('Browser storage is full or unavailable. Download a backup instead.'); }
+  };
+  const persistInvoices = (records: SavedInvoice[]) => {
+    if (storageReadFailed) throw new Error('Unreadable invoice storage');
+    localStorage.setItem(storageKey, JSON.stringify(records));
+    setSavedInvoices(records);
+  };
+  const handleSaveInvoice = () => {
+    if (!invoiceMeta.invoiceNumber.trim() || !supplier.businessName.trim()) {
+      onShowToast?.('Enter a business name and invoice number before saving.'); return;
     }
+    const id = JSON.stringify([(supplier.gstin.trim() || supplier.businessName.trim()).toUpperCase(), invoiceMeta.invoiceNumber.trim().toUpperCase()]);
+    const existing = savedInvoices.some(record => record.id === id);
+    if (existing && !window.confirm('An invoice with this number already exists for this business. Replace that saved invoice?')) return;
+    if (!existing && savedInvoices.length >= 50) { onShowToast?.('50 saved invoices reached. Back up and remove an older invoice first.'); return; }
+    try {
+      const data = parseSnapshot(snapshot());
+      persistInvoices([{ id, savedAt: new Date().toISOString(), data }, ...savedInvoices.filter(record => record.id !== id)]);
+      onShowToast?.('Invoice saved. Find it in Saved invoices below.');
+    } catch { onShowToast?.('Could not save invoice. Check values or download a backup if browser storage is full.'); }
+  };
+  const downloadBackup = () => {
+    const blob = new Blob([JSON.stringify({ format: 'zubware-invoice', version: 1, data: snapshot() }, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a'); link.href = url;
+    link.download = `${(invoiceMeta.invoiceNumber || 'invoice').replace(/[^a-zA-Z0-9_-]/g, '_')}-backup.json`;
+    link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+  const restoreBackup = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]; event.target.value = '';
+    if (!file) return;
+    try {
+      if (file.size > 8_000_000) throw new Error('Backup too large');
+      const backup = JSON.parse(await file.text());
+      if (backup.format !== 'zubware-invoice' || backup.version !== 1) throw new Error('Unsupported backup');
+      const data = parseSnapshot(backup.data);
+      if (!window.confirm('Replace the current form with this invoice backup?')) return;
+      applySnapshot(data); onShowToast?.('Backup opened. Use Save invoice to keep it in this browser.');
+    } catch { onShowToast?.('Invalid or unsupported invoice backup. Current form unchanged.'); }
   };
 
   // Reset Invoice handler
@@ -412,6 +425,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
       setTerms('1. Payment is due within 15 days of invoice date.\n2. Please quote invoice number in all wire transfers.\n3. Goods or services once provided are non-refundable.');
       setSignatoryName('Authorized Signatory');
       setSignatureUrl(null);
+      setOtherChargesLabel('Shipping & Packing');
       setOtherCharges(0);
       setAutoRoundOff(true);
       setAmountReceived(0);
@@ -620,31 +634,81 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
 
   const totals = calculateTotals();
 
+  useEffect(() => {
+    let cancelled = false;
+    setUpiQrDataUrl(null);
+    const uri = buildInvoicePaymentUri(payment.upiId, supplier.businessName, totals.balanceDue);
+    if (uri) QRCode.toDataURL(uri, { width: 140, margin: 1 }).then(url => {
+      if (!cancelled) setUpiQrDataUrl(url);
+    }).catch(() => { if (!cancelled) setUpiQrDataUrl(null); });
+    return () => { cancelled = true; };
+  }, [payment.upiId, supplier.businessName, totals.balanceDue]);
+
+
   // Export PDF Handler
   const handleDownloadPdf = async () => {
     if (!previewRef.current) return;
     setIsDownloading(true);
     if (onShowToast) onShowToast('Preparing A4 PDF Document...');
 
+    const exportContainer = document.createElement('div');
+    exportContainer.style.cssText = 'position:absolute;left:-10000px;top:0;width:794px;background:white;';
+    const exportDocument = previewRef.current.cloneNode(true) as HTMLDivElement;
+    exportDocument.removeAttribute('id');
+    exportDocument.style.width = '794px';
+    exportDocument.style.maxWidth = 'none';
+    exportContainer.appendChild(exportDocument); document.body.appendChild(exportContainer);
     try {
-      const canvas = await html2canvas(previewRef.current, {
+      await document.fonts.ready;
+      await Promise.all(Array.from(exportDocument.querySelectorAll('img')).map(img => img.decode().catch(() => undefined)));
+      // Resolve modern CSS colours through the browser before the legacy canvas renderer reads them.
+      const colourCanvas = document.createElement('canvas'); colourCanvas.width = colourCanvas.height = 1;
+      const colourContext = colourCanvas.getContext('2d', { willReadFrequently: true });
+      if (!colourContext) throw new Error('Canvas unavailable');
+      const colours = new Map<string, string>();
+      const rgb = (value: string) => {
+        if (!colours.has(value)) {
+          colourContext.clearRect(0, 0, 1, 1); colourContext.fillStyle = value; colourContext.fillRect(0, 0, 1, 1);
+          const [r, g, b, a] = colourContext.getImageData(0, 0, 1, 1).data;
+          colours.set(value, `rgba(${r},${g},${b},${a / 255})`);
+        }
+        return colours.get(value)!;
+      };
+      for (const node of [exportDocument, ...Array.from(exportDocument.querySelectorAll<HTMLElement>('*'))]) {
+        const style = getComputedStyle(node);
+        for (const property of ['color', 'background-color', 'border-top-color', 'border-right-color', 'border-bottom-color', 'border-left-color', 'outline-color', 'text-decoration-color']) {
+          node.style.setProperty(property, rgb(style.getPropertyValue(property)), 'important');
+        }
+        node.style.setProperty('box-shadow', 'none', 'important');
+        node.style.setProperty('text-shadow', 'none', 'important');
+      }
+      const rect = exportDocument.getBoundingClientRect();
+      const rows = Array.from(exportDocument.querySelectorAll('tr')).map(row => {
+        const bounds = row.getBoundingClientRect();
+        return { top: bounds.top - rect.top, bottom: bounds.bottom - rect.top };
+      });
+      const canvas = await html2canvas(exportDocument, {
         scale: 2,
         useCORS: true,
         logging: false,
         backgroundColor: '#ffffff'
       });
 
-      const imgData = canvas.toDataURL('image/jpeg', 0.98);
-      const pdf = new jsPDF({
-        orientation: 'p',
-        unit: 'mm',
-        format: 'a4'
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      const margin = 8;
+      const width = pdf.internal.pageSize.getWidth() - margin * 2;
+      const height = pdf.internal.pageSize.getHeight() - margin * 2;
+      const scale = canvas.width / rect.width;
+      const slices = invoicePageSlices(canvas.height, Math.floor(height * canvas.width / width), rows.map(row => ({ top: row.top * scale, bottom: row.bottom * scale })));
+      slices.forEach((slice, index) => {
+        if (index) pdf.addPage();
+        const page = document.createElement('canvas'); page.width = canvas.width; page.height = slice.height;
+        const context = page.getContext('2d');
+        if (!context) throw new Error('Canvas unavailable');
+        context.drawImage(canvas, 0, slice.start, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
+        pdf.addImage(page.toDataURL('image/jpeg', 0.98), 'JPEG', margin, margin, width, slice.height * width / canvas.width);
+        pdf.setFontSize(8); pdf.text(`Page ${index + 1} of ${slices.length}`, margin, pdf.internal.pageSize.getHeight() - 3);
       });
-
-      const pdfWidth = pdf.internal.pageSize.getWidth(); // 210mm
-      const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-      pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
 
       const sanitizedBusiness = (supplier.businessName || 'Invoice').replace(/[^a-zA-Z0-9_-]/g, '_');
       const sanitizedNumber = (invoiceMeta.invoiceNumber || 'INV-001').replace(/[^a-zA-Z0-9_-]/g, '_');
@@ -656,13 +720,24 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
       console.error('PDF Generation Error:', err);
       if (onShowToast) onShowToast('Failed to generate PDF. Please try the Print option.');
     } finally {
+      exportContainer.remove();
       setIsDownloading(false);
     }
   };
 
   // Print Handler
   const handlePrint = () => {
-    window.print();
+    if (!previewRef.current) return;
+    document.getElementById('invoice-print-root')?.remove();
+    const printRoot = previewRef.current.cloneNode(true) as HTMLDivElement;
+    printRoot.id = 'invoice-print-root';
+    printRoot.style.display = 'none';
+    document.body.appendChild(printRoot);
+    document.body.classList.add('printing-invoice');
+    const cleanup = () => { printRoot.remove(); document.body.classList.remove('printing-invoice'); };
+    window.addEventListener('afterprint', cleanup, { once: true });
+    try { window.print(); } catch { cleanup(); }
+
   };
 
   const supplierGstinValidation = validateGstin(supplier.gstin);
@@ -760,6 +835,33 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
           </button>
         </div>
       </div>
+
+      <section className="glass-card p-4 rounded-2xl space-y-3">
+        <h2 className="font-bold">Saved invoices / सेव किए गए बिल</h2>
+        <p className="text-xs text-slate-500">Up to 50 invoices in this browser. Clearing browser data removes them. Download an invoice backup before changing devices. Backups contain customer and bank details; keep them private.</p>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={handleSaveInvoice} className="px-3 py-2 rounded-xl bg-indigo-600 text-white text-sm">Save invoice</button>
+          <button type="button" onClick={downloadBackup} className="px-3 py-2 rounded-xl border text-sm">Download invoice backup</button>
+          <button type="button" onClick={() => backupInput.current?.click()} className="px-3 py-2 rounded-xl border text-sm">Open backup</button>
+          <input ref={backupInput} type="file" accept=".json,application/json" onChange={restoreBackup} className="hidden" aria-label="Open invoice backup" />
+        </div>
+        <input value={invoiceSearch} onChange={event => setInvoiceSearch(event.target.value)} placeholder="Search invoice number or customer" aria-label="Search saved invoices" className="w-full p-2 rounded-xl border bg-transparent" />
+        {savedInvoices.length === 0 && <p className="text-sm text-slate-500">No saved invoices yet.</p>}
+        <div className="max-h-64 overflow-y-auto space-y-2">
+          {savedInvoices.filter(record => `${record.data.invoiceMeta.invoiceNumber} ${record.data.customer.customerName}`.toLowerCase().includes(invoiceSearch.toLowerCase())).map(record => (
+            <div key={record.id} className="flex flex-wrap items-center justify-between gap-2 border rounded-xl p-3 text-sm">
+              <div><strong>{record.data.invoiceMeta.invoiceNumber}</strong> · {record.data.customer.customerName}<p className="text-xs text-slate-500">{record.data.supplier.businessName} · {record.data.invoiceMeta.invoiceDate}</p></div>
+              <div className="flex gap-3">
+                <button type="button" onClick={() => { if (window.confirm('Replace the current form with this saved invoice?')) applySnapshot(record.data); }} className="text-indigo-600 font-bold">Open</button>
+                <button type="button" onClick={() => {
+                  if (!window.confirm('Delete this saved invoice? Download its backup first if needed.')) return;
+                  try { persistInvoices(savedInvoices.filter(item => item.id !== record.id)); } catch { onShowToast?.('Could not delete invoice from browser storage.'); }
+                }} className="text-rose-600">Delete</button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* MAIN LAYOUT: SPLIT FORM & LIVE PREVIEW */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
@@ -1535,7 +1637,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
                     className="w-full px-3 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-900 dark:text-white font-medium outline-none"
                   />
                   <span className="text-[10px] text-slate-400 font-normal mt-1 block">
-                    Generates a instant scan-to-pay UPI QR code embedded on the printed invoice.
+                    Creates a UPI QR for the balance due. Fully paid invoices do not show a payment QR.
                   </span>
                 </div>
               </div>

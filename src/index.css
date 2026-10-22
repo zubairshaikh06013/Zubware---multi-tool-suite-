@@ -550,3 +550,16 @@ html, body {
     min-width: 7rem;
   }
 }
+
+@media print {
+  body.printing-invoice > *:not(#invoice-print-root) { display: none !important; }
+  body.printing-invoice #invoice-print-root,
+  body.printing-invoice #invoice-print-root * { visibility: visible !important; }
+  body.printing-invoice #invoice-print-root {
+    display: block !important; width: 100% !important; max-width: none !important;
+    min-height: 0 !important; margin: 0 !important; padding: 8mm !important;
+    box-shadow: none !important; border-radius: 0 !important;
+  }
+  #invoice-print-root tr { break-inside: avoid; }
+  #invoice-print-root thead { display: table-header-group; }
+}

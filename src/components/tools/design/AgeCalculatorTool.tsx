@@ -114,7 +114,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
 
   const copyAgeSummary = async () => {
     if (!result) return;
-    const text = `Date of birth: ${dob} | Age at date: ${targetDate} | Calendar age: ${result.years} years, ${result.months} months, ${result.days} days | Born on a ${result.birthDayOfWeek} | Zodiac: ${result.zodiacInfo.sign} (${result.zodiacInfo.element}) | Next Birthday in: ${result.daysToNextBday} days`;
+    const text = `Date of birth: ${dob} | Age at date: ${targetDate} | Calendar age: ${result.years} years, ${result.months} months, ${result.days} days | Total elapsed days: ${result.totalDays} | Born on a ${result.birthDayOfWeek} | Zodiac: ${result.zodiacInfo.sign} (${result.zodiacInfo.element}) | Next Birthday in: ${result.daysToNextBday} days`;
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
@@ -132,10 +132,10 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            Chronological Age Calculator & Life Milestones
+            Age Calculator by Date of Birth
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Exact age in years, months, and days, with next birthday countdown, zodiac sign, birthstone, and fun biological statistics.
+            Find how many days old you are, your age in years and months, and the days until your next birthday. Choose today or another reference date.
           </p>
         </div>
 
@@ -233,6 +233,16 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
                 {result.days}
               </span>
               <span className="text-sm sm:text-base font-bold text-slate-500 uppercase">Days</span>
+            </div>
+
+            <div className="border-t border-indigo-200/60 dark:border-indigo-900/60 pt-4 space-y-1">
+              <h3 className="text-sm font-bold text-slate-700 dark:text-slate-200">How many days old am I?</h3>
+              <p className="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400 break-words">
+                {result.totalDays.toLocaleString()} days old
+              </p>
+              <p className="text-xs text-slate-600 dark:text-slate-400">
+                From <time dateTime={dob}>{dob}</time> to <time dateTime={targetDate}>{targetDate}</time> (YYYY-MM-DD). The birth date is day zero; leap days are included.
+              </p>
             </div>
 
             <p className="text-xs text-slate-600 dark:text-slate-400 font-medium">

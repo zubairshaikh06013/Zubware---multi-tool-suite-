@@ -11,7 +11,10 @@ export const AGE_EXAMPLES = [
 export function AgeCalculationExamples() {
   return (
     <section className="glass-card p-6 sm:p-8 rounded-3xl space-y-4 border border-indigo-200/60 dark:border-indigo-900/60">
-      <h2 className="text-xl font-bold text-slate-900 dark:text-white">Age on a Specific Date: Worked Examples</h2>
+      <h2 className="text-xl font-bold text-slate-900 dark:text-white">Days Old Calculator by Date of Birth</h2>
+      <p className="text-sm text-slate-600 dark:text-slate-300">To find how many days old you are, enter your date of birth and select Set to Today in the calculator. For your age on a past or future date, change the reference date. The result shows total elapsed calendar days alongside your age in years, months, and days.</p>
+      <p className="text-sm text-slate-600 dark:text-slate-300">Your birth date counts as day zero and the following date as day one. Leap days count automatically. For example, February 28 to March 1 is 2 days in 2024, but 1 day in 2025. This is a date-only count, not an exact elapsed-time measurement from your birth hour.</p>
+      <h3 className="text-lg font-bold text-slate-900 dark:text-white">Age on a Specific Date: Worked Examples</h3>
       <p className="text-sm text-slate-600 dark:text-slate-300">Enter both the date of birth and reference date shown below to reproduce each result. Dates use YYYY-MM-DD. These fixed examples are not ages as of today.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {AGE_EXAMPLES.map(example => (

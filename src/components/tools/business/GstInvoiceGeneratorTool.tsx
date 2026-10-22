@@ -28,7 +28,7 @@ import {
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import QRCode from 'qrcode';
-import { validateInvoiceSnapshot, buildInvoicePaymentUri, invoicePageSlices, invoiceLabelBaseline } from '../../../lib/invoiceWorkspace';
+import { validateInvoiceSnapshot, buildInvoicePaymentUri, invoicePageSlices, paintInvoiceLabels } from '../../../lib/invoiceWorkspace';
 
 interface GstInvoiceGeneratorToolProps {
   onShowToast?: (msg: string) => void;
@@ -745,20 +745,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
       const scale = canvas.width / rect.width;
       const labelContext = canvas.getContext('2d');
       if (!labelContext) throw new Error('Canvas unavailable');
-      labelContext.save(); labelContext.scale(scale, scale);
-      labelContext.textBaseline = 'alphabetic';
-      for (const label of labels) {
-        labelContext.font = label.font;
-        labelContext.fillStyle = label.colour;
-        if ('letterSpacing' in labelContext) labelContext.letterSpacing = label.letterSpacing === 'normal' ? '0px' : label.letterSpacing;
-        const align = label.align === 'center' ? 'center' : ['right', 'end'].includes(label.align) ? 'right' : 'left';
-        labelContext.textAlign = align;
-        const x = align === 'center' ? label.left + label.width / 2 : align === 'right' ? label.left + label.width - label.paddingRight : label.left + label.paddingLeft;
-        const metrics = labelContext.measureText(label.text);
-        const y = invoiceLabelBaseline(label.top, label.height, metrics.actualBoundingBoxAscent, metrics.actualBoundingBoxDescent);
-        labelContext.fillText(label.text, x, y, Math.max(1, label.width - label.paddingLeft - label.paddingRight));
-      }
-      labelContext.restore();
+      paintInvoiceLabels(labelContext, labels, scale);
       const slices = invoicePageSlices(canvas.height, Math.floor(canvas.width * 297 / 210), rows.map(row => ({ top: row.top * scale, bottom: row.bottom * scale })));
       return slices.map(slice => {
         const page = document.createElement('canvas');

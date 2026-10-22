@@ -46,3 +46,29 @@ export function invoicePageSlices(height: number, capacity: number, rows: {top: 
 export function invoiceLabelBaseline(top: number, height: number, ascent: number, descent: number): number {
   return top + height / 2 + (ascent - descent) / 2;
 }
+
+export interface InvoiceCanvasLabel {
+  text: string; left: number; top: number; width: number; height: number;
+  paddingLeft: number; paddingRight: number; font: string; colour: string;
+  letterSpacing: string; align: string;
+}
+export function paintInvoiceLabels(context: CanvasRenderingContext2D, labels: InvoiceCanvasLabel[], scale: number) {
+      context.save();
+      // html2canvas leaves both its scale and offscreen translation on this
+      // context. Replace that transform; multiplying it sends text off-page.
+      context.setTransform(scale, 0, 0, scale, 0, 0);
+      context.globalAlpha = 1;
+      context.textBaseline = 'alphabetic';
+      for (const label of labels) {
+        context.font = label.font;
+        context.fillStyle = label.colour;
+        if ('letterSpacing' in context) context.letterSpacing = label.letterSpacing === 'normal' ? '0px' : label.letterSpacing;
+        const align = label.align === 'center' ? 'center' : ['right', 'end'].includes(label.align) ? 'right' : 'left';
+        context.textAlign = align;
+        const x = align === 'center' ? label.left + label.width / 2 : align === 'right' ? label.left + label.width - label.paddingRight : label.left + label.paddingLeft;
+        const metrics = context.measureText(label.text);
+        const y = invoiceLabelBaseline(label.top, label.height, metrics.actualBoundingBoxAscent, metrics.actualBoundingBoxDescent);
+        context.fillText(label.text, x, y, Math.max(1, label.width - label.paddingLeft - label.paddingRight));
+      }
+      context.restore();
+}

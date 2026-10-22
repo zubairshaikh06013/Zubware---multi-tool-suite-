@@ -669,6 +669,14 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
     exportDocument.style.maxWidth = 'none';
     exportContainer.appendChild(exportDocument); document.body.appendChild(exportContainer);
     try {
+      // Load the original webfont before measuring/rasterising. System fallback
+      // fonts can be replaced by an Android theme and change text placement.
+      const invoiceFonts = await Promise.all([400, 500, 600, 700, 800].map(weight =>
+        document.fonts.load(`${weight} 14px "Plus Jakarta Sans"`)
+      ));
+      if (invoiceFonts.some(faces => faces.length === 0)) {
+        throw new Error('Invoice font could not load. Check your connection and retry.');
+      }
       await document.fonts.ready;
       await Promise.all(Array.from(exportDocument.querySelectorAll('img')).map(img => img.decode().catch(() => undefined)));
       // Resolve modern CSS colours through the browser before the legacy canvas renderer reads them.
@@ -1837,7 +1845,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
                   </div>
 
                   <div className="text-right space-y-1 shrink-0">
-                    <span className="inline-block px-3 py-1 bg-slate-900 text-white font-black text-sm uppercase tracking-widest rounded-md">
+                    <span className="invoice-type-badge bg-slate-900 text-white text-sm uppercase tracking-widest rounded-md">
                       {invoiceMeta.invoiceType || 'TAX INVOICE'}
                     </span>
                     <div className="pt-2 text-slate-800 font-medium">
@@ -2015,7 +2023,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
                       )}
 
                       {/* GRAND TOTAL ROW */}
-                      <div className="flex justify-between items-center bg-slate-900 text-white p-2 rounded-lg font-black text-sm mt-1">
+                      <div className="invoice-grand-total flex justify-between items-center bg-slate-900 text-white p-2 rounded-lg text-sm mt-1">
                         <span>GRAND TOTAL:</span>
                         <span>₹{totals.grandTotal.toLocaleString('en-IN')}</span>
                       </div>

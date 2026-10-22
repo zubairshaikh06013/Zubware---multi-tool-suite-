@@ -560,10 +560,32 @@ html, body {
   padding: 32px;
   margin: 0;
   border-radius: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   gap: 32px;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
+}
+.invoice-sheet .invoice-type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 4px 12px;
+  line-height: 20px;
+  font-weight: 800;
+}
+.invoice-sheet thead th {
+  vertical-align: middle;
+  line-height: 14px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  font-weight: 700;
+}
+.invoice-sheet .invoice-grand-total {
+  min-height: 36px;
+  align-items: center;
+  line-height: 20px;
+  font-weight: 800;
 }
 @media print {
   @page zubware-invoice { size: A4 portrait; margin: 0; }

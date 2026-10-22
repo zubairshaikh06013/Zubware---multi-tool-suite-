@@ -313,6 +313,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   const [activeTab, setActiveTab] = useState<'form' | 'preview'>('form');
   const [activeFormSection, setActiveFormSection] = useState<'supplier' | 'invoice' | 'customer' | 'items' | 'payment' | 'terms'>('supplier');
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
+  const [pdfError, setPdfError] = useState<string | null>(null);
   const [draftExists, setDraftExists] = useState<boolean>(false);
   const [upiQrDataUrl, setUpiQrDataUrl] = useState<string | null>(null);
 
@@ -657,6 +658,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   const handleDownloadPdf = async () => {
     if (!previewRef.current) return;
     setIsDownloading(true);
+    setPdfError(null);
     if (onShowToast) onShowToast('Preparing A4 PDF Document...');
 
     const exportContainer = document.createElement('div');
@@ -699,7 +701,16 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         scale: 2,
         useCORS: true,
         logging: false,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
+        // html2canvas parses both document backgrounds even with an explicit
+        // backgroundColor option. Tailwind's body colour can still be oklch.
+        onclone: clonedDocument => {
+          for (const root of [clonedDocument.documentElement, clonedDocument.body]) {
+            root.style.setProperty('background-color', '#ffffff', 'important');
+            root.style.setProperty('background-image', 'none', 'important');
+            root.style.setProperty('color', '#0f172a', 'important');
+          }
+        }
       });
 
       const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
@@ -722,11 +733,12 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
       const sanitizedNumber = (invoiceMeta.invoiceNumber || 'INV-001').replace(/[^a-zA-Z0-9_-]/g, '_');
       const filename = `${sanitizedBusiness}-${sanitizedNumber}.pdf`;
 
-      pdf.save(filename);
-      if (onShowToast) onShowToast(`Downloaded ${filename}! 📄`);
+      await pdf.save(filename, { returnPromise: true });
+      if (onShowToast) onShowToast(`PDF ready: ${filename}. Check your downloads.`);
     } catch (err) {
       console.error('PDF Generation Error:', err);
-      if (onShowToast) onShowToast('Failed to generate PDF. Please try the Print option.');
+      setPdfError('PDF download could not finish. Use Print → Save as PDF. If you report this problem, include: ' + (err instanceof Error ? err.message : 'Unknown export error'));
+      if (onShowToast) onShowToast('PDF download failed. See the error below the download controls.');
     } finally {
       exportContainer.remove();
       setIsDownloading(false);
@@ -843,6 +855,8 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
           </button>
         </div>
       </div>
+
+      {pdfError && <div role="alert" className="rounded-xl border border-red-300 bg-red-50 p-3 text-sm text-red-900 break-words">{pdfError}</div>}
 
       <section className="glass-card p-4 rounded-2xl space-y-3">
         <h2 className="font-bold">Saved invoices / सेव किए गए बिल</h2>

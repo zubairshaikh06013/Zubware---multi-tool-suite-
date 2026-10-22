@@ -1,3 +1,4 @@
+import { toolProcessingNotice } from '../lib/toolProcessingNotice';
 import { AgeCalculationExamples } from './seo/AgeCalculationExamples';
 import React, { useState } from 'react';
 import { ToolMeta, FAQItem } from '../types';
@@ -107,7 +108,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
       <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-6">
         <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
           <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-            Overview & Value Proposition
+            About this tool
           </span>
           <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
             What is {tool.title}?
@@ -123,7 +124,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs sm:text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
           <div className="space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <Zap className="w-4 h-4 text-amber-500" /> Key Capability Highlights
+              <Zap className="w-4 h-4 text-amber-500" /> What you can do
             </h3>
             <ul className="space-y-2">
               {tool.features.map((feat, idx) => (
@@ -137,64 +138,9 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
           <div className="space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-500" /> Privacy & Execution Architecture
+              <ShieldCheck className="w-4 h-4 text-emerald-500" /> How your data is processed
             </h3>
-            {tool.id === 'subtitle-generator' ? (
-              <p>Video playback, manual captions, and exports stay in your browser. Optional microphone dictation may send audio to your browser provider for speech recognition.</p>
-            ) : hasOptionalCloudflareAI ? (
-              <>
-                <p>Quick and Private Removal process the selected photo on your device. The browser may download model files.</p>
-                <p>Smart AI Removal uploads the photo to Cloudflare only when you choose it, agree to the upload and press Start. The Images Free plan has a monthly limit, so online processing may be unavailable.</p>
-              </>
-            ) : isNetworkTool ? (
-              <>
-                <p>
-                  {tool.navTitle} connects directly from your browser to the specified external endpoint.
-                </p>
-                <p>
-                  Your requests and payloads are not recorded, intercepted, or stored on Zubware servers.
-                </p>
-              </>
-            ) : (
-              <>
-                <p>
-                  Processing happens locally in your browser for this tool; files and inputs are not uploaded to Zubware servers.
-                </p>
-                <p>
-                  Execution is handled directly by your browser engine using modern Web APIs, avoiding server upload bottlenecks and latency.
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* 2. SPECIFICATIONS & SUPPORTED FORMATS */}
-      <section className="glass-panel p-6 sm:p-8 rounded-3xl">
-        <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white mb-6">
-          Technical Specifications & Supported Formats
-        </h2>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
-          <div className="glass-card p-4 rounded-2xl">
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Category</span>
-            <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block">{tool.category.replace(/^[^\w]+/, '')}</span>
-          </div>
-          <div className="glass-card p-4 rounded-2xl">
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Execution Engine</span>
-            <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 mt-1 block">
-              {hasOptionalCloudflareAI ? 'Browser / Cloudflare' : isNetworkTool ? 'Browser (Direct API)' : 'Client Browser'}
-            </span>
-          </div>
-          <div className="glass-card p-4 rounded-2xl">
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Cost / License</span>
-            <span className="text-sm font-bold text-slate-900 dark:text-white mt-1 block">Free to Use</span>
-          </div>
-          <div className="glass-card p-4 rounded-2xl">
-            <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold block uppercase">Server Uploads</span>
-            <span className="text-sm font-bold text-indigo-600 dark:text-indigo-400 mt-1 block">
-              {tool.id === 'subtitle-generator' ? 'Optional voice service' : hasOptionalCloudflareAI ? 'Cloudflare with consent' : isNetworkTool ? 'Direct to API Host' : 'None (Browser-Side)'}
-            </span>
+            <p>{toolProcessingNotice(tool.id)}</p>
           </div>
         </div>
       </section>

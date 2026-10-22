@@ -813,8 +813,8 @@ export default function App() {
                       const allCategoryTools = translatedTools.filter(t => t.category === catName);
                       if (!allCategoryTools.length) return null;
                       const isFiltered = homeCategoryFilter !== 'All';
-                      const visibleTools = isFiltered ? allCategoryTools : allCategoryTools.slice(0, 6);
-                      const hasMore = !isFiltered && allCategoryTools.length > 6;
+                      const visibleTools = isFiltered ? allCategoryTools : allCategoryTools.slice(0, 3);
+                      const hasMore = !isFiltered && allCategoryTools.length > 3;
 
                     return (
                       <div key={catName} className="space-y-4">
@@ -829,13 +829,13 @@ export default function App() {
                           </div>
 
                           {hasMore && (
-                            <button
-                              onClick={() => setHomeCategoryFilter(catName)}
+                            <a
+                              href={getLinkUrl(`/category/${getCategoryForTool(catName)?.slug || 'all'}`)}
                               className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1 cursor-pointer transition-colors"
                             >
                               <span>View all {allCategoryTools.length} tools</span>
                               <ArrowRight className="w-3.5 h-3.5" />
-                            </button>
+                            </a>
                           )}
                         </div>
 
@@ -871,14 +871,7 @@ export default function App() {
                                   {tool.description}
                                 </p>
 
-                                <ul className="mt-4 space-y-1.5 border-t border-slate-100 dark:border-slate-800/60 pt-3">
-                                  {tool.features.slice(0, 3).map((f, i) => (
-                                    <li key={i} className="flex items-center gap-1.5 text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-                                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
-                                      <span>{f}</span>
-                                    </li>
-                                  ))}
-                                </ul>
+
                               </div>
 
                               <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">

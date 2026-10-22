@@ -1,3 +1,4 @@
+import { toolProcessingNotice } from '../src/lib/toolProcessingNotice';
 import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from '../src/data/siteTrustContent';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
@@ -464,7 +465,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
 
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
         <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
-          Overview &amp; Capabilities
+          About this tool
         </h2>
         <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 1rem;">
           ${escapeHtml(getToolIntroParagraph(tool))}
@@ -477,14 +478,10 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
           ${tool.features.map(f => `<li style="margin-bottom: 0.25rem;">${escapeHtml(f)}</li>`).join('\n          ')}
         </ul>` : ''}
         <h3 style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #475569; margin-bottom: 0.25rem;">
-          Execution &amp; Privacy
+          How your data is processed
         </h3>
         <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin: 0;">
-          ${tool.id === 'subtitle-generator'
-            ? `Video playback, manual captions, and exports stay local. Optional microphone dictation may send audio to your browser provider for speech recognition.`
-            : isNetwork
-            ? `This tool connects directly from your browser to the designated external endpoint. Zubware does not store your payload or request data on our servers.`
-            : `Processing happens locally in your browser for this tool; files and inputs are not uploaded to Zubware servers.`}
+          ${escapeHtml(toolProcessingNotice(tool.id))}
         </p>
       </section>
 
@@ -1785,13 +1782,13 @@ function renderHomepageContent(): string {
       <!-- Hero Value Proposition -->
       <section style="text-align: center; margin-bottom: 3.5rem;">
         <div style="display: inline-block; padding: 0.35rem 1rem; background-color: #eef2ff; color: #4f46e5; font-size: 0.8rem; font-weight: 800; border-radius: 9999px; margin-bottom: 1rem; border: 1px solid #c7d2fe;">
-          300+ Free Online Browser Utilities • Fast &amp; Private Processing
+          300+ Free Online Tools
         </div>
         <h1 style="font-size: 2.75rem; font-weight: 900; color: #0f172a; margin: 0 0 1rem 0; line-height: 1.2;">
-          Instant, Private Browser Tools for Creators &amp; Professionals
+          Free Browser Tools for Everyday Tasks
         </h1>
         <p style="font-size: 1.15rem; color: #475569; max-width: 48rem; margin: 0 auto 2rem auto; line-height: 1.6;">
-          Compress PDFs, convert images, decode JWTs, calculate financial loans, and format documents right inside your browser memory. No installations, zero wait times, and client-side data privacy.
+          Work with images, PDFs, text and calculations without installing software. Processing options and limits vary by tool; check its notice before using private files.
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
           <a href="${DOMAIN}/category/pdf-tools" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Explore PDF Tools &rarr;</a>
@@ -1801,28 +1798,14 @@ function renderHomepageContent(): string {
         </div>
       </section>
 
-      <!-- Direct homepage discovery links to editorial guides, not just the blog index. -->
-      <section aria-labelledby="featured-guides-heading" style="margin-bottom: 3rem;">
-        <h2 id="featured-guides-heading" style="font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Popular How-To Guides</h2>
-        <p style="color: #475569; margin-bottom: 1rem;">Learn practical workflows and choose the right browser tool for your task.</p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-          ${BLOG_ARTICLES.slice(0, 12).map(article => `
-            <a href="${DOMAIN}${article.canonicalPath}" style="display: block; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1rem; text-decoration: none; background: #fff;">
-              <strong style="display: block; color: #0f172a; margin-bottom: 0.35rem;">${escapeHtml(article.title)}</strong>
-              <span style="font-size: 0.85rem; color: #475569;">${escapeHtml(article.excerpt)}</span>
-            </a>`).join('')}
-        </div>
-        <p style="margin-top: 1rem;"><a href="${DOMAIN}/blog" style="color: #4f46e5; font-weight: 700;">Browse all guides &rarr;</a></p>
-      </section>
-
       <!-- Complete Directory of Tools by Category -->
       <section style="display: flex; flex-direction: column; gap: 3rem; margin-bottom: 4rem;">
         <div style="text-align: center; margin-bottom: 1rem;">
           <h2 style="font-size: 2rem; font-weight: 900; color: #0f172a; margin: 0 0 0.5rem 0;">
-            Browse All ${TOOLS_DATA.length} Free Online Tools
+            Explore Tools by Category
           </h2>
           <p style="font-size: 0.95rem; color: #64748b;">
-            Discover specialized utilities organized by workflow domain.
+            Start with a tool below or open a category to browse its full collection.
           </p>
         </div>
 
@@ -1838,7 +1821,7 @@ function renderHomepageContent(): string {
               <a href="${DOMAIN}/category/${cat.slug}" style="font-size: 0.8rem; color: #4f46e5; font-weight: 600; text-decoration: underline;">Explore ${escapeHtml(cat.defaultName)} Hub &rarr;</a>
             </div>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem;">
-              ${catTools.map(tool => `
+              ${catTools.slice(0, 3).map(tool => `
               <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
                   <span style="font-size: 1.4rem;">${tool.icon}</span>
@@ -1864,13 +1847,13 @@ function renderHomepageContent(): string {
               Knowledge Base &amp; Practical Guides
             </h2>
             <p style="font-size: 0.9rem; color: #64748b; margin: 0;">
-              In-depth engineering documentation and best practice articles.
+              Practical steps, examples and tips for using the tools.
             </p>
           </div>
           <a href="${DOMAIN}/blog" style="font-size: 0.85rem; font-weight: 700; color: #4f46e5; text-decoration: underline;">View All Guides &rarr;</a>
         </div>
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
-          ${BLOG_ARTICLES.map(article => `
+          ${BLOG_ARTICLES.slice(0, 6).map(article => `
           <a href="${DOMAIN}${article.canonicalPath}" style="display: block; padding: 1.25rem; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
             <div style="font-size: 0.75rem; font-weight: 700; color: #4f46e5; text-transform: uppercase; margin-bottom: 0.35rem;">
               ${escapeHtml(article.category)} • ${escapeHtml(article.readingTime)}
@@ -1888,10 +1871,10 @@ function renderHomepageContent(): string {
       <!-- Technical Architecture & Privacy -->
       <section style="margin-bottom: 4rem; padding: 2rem; background: #ffffff; border-radius: 1.5rem; border: 1px solid #e2e8f0;">
         <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-top: 0; margin-bottom: 0.75rem;">
-          Privacy Architecture: Local Browser-Based Execution
+          How Your Data Is Processed
         </h2>
         <p style="font-size: 0.95rem; color: #334155; line-height: 1.6;">
-          Unlike traditional web services that upload your sensitive documents, personal photographs, and source code to remote cloud farms, Zubware processes your data locally on your device for local tools using compiled WebAssembly, modern HTML5 Canvas, and Web Cryptography APIs. Files and inputs are not uploaded to Zubware servers.
+          Local tools process files on your device. Some features contact external services, including optional Smart AI background removal. Read the notice on each tool to understand its processing and limits.
         </p>
       </section>
 

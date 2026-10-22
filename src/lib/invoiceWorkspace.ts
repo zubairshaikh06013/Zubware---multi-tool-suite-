@@ -41,3 +41,8 @@ export function invoicePageSlices(height: number, capacity: number, rows: {top: 
   }
   return slices;
 }
+
+/** Centre the visible glyphs, rather than a font's line box, inside a label. */
+export function invoiceLabelBaseline(top: number, height: number, ascent: number, descent: number): number {
+  return top + height / 2 + (ascent - descent) / 2;
+}

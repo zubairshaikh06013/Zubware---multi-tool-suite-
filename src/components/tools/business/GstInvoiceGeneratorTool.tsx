@@ -28,7 +28,7 @@ import {
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 import QRCode from 'qrcode';
-import { validateInvoiceSnapshot, buildInvoicePaymentUri, invoicePageSlices } from '../../../lib/invoiceWorkspace';
+import { validateInvoiceSnapshot, buildInvoicePaymentUri, invoicePageSlices, invoiceLabelBaseline } from '../../../lib/invoiceWorkspace';
 
 interface GstInvoiceGeneratorToolProps {
   onShowToast?: (msg: string) => void;
@@ -705,6 +705,26 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         const bounds = row.getBoundingClientRect();
         return { top: bounds.top - rect.top, bottom: bounds.bottom - rect.top };
       });
+      // html2canvas's font baseline estimate shifts these short white labels
+      // down on Android. Keep their boxes, then paint the glyphs using measured
+      // ascent/descent so the visible text is centred in the actual box.
+      const labels = Array.from(exportDocument.querySelectorAll<HTMLElement>('.invoice-type-badge, thead th, .invoice-grand-total > span')).map(node => {
+        const style = getComputedStyle(node);
+        const bounds = node.getBoundingClientRect();
+        const text = node.textContent?.trim() || '';
+        const label = {
+          text: style.textTransform === 'uppercase' ? text.toUpperCase() : text,
+          left: bounds.left - rect.left, top: bounds.top - rect.top,
+          width: bounds.width, height: bounds.height,
+          paddingLeft: parseFloat(style.paddingLeft) || 0,
+          paddingRight: parseFloat(style.paddingRight) || 0,
+          font: `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`,
+          colour: style.color, letterSpacing: style.letterSpacing,
+          align: node.matches('.invoice-type-badge') ? 'center' : style.textAlign,
+        };
+        node.style.setProperty('color', 'transparent', 'important');
+        return label;
+      });
       const canvas = await html2canvas(exportDocument, {
         scale: 2,
         useCORS: true,
@@ -723,6 +743,22 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
 
       const pageHeight = Math.round(canvas.width * 297 / 210);
       const scale = canvas.width / rect.width;
+      const labelContext = canvas.getContext('2d');
+      if (!labelContext) throw new Error('Canvas unavailable');
+      labelContext.save(); labelContext.scale(scale, scale);
+      labelContext.textBaseline = 'alphabetic';
+      for (const label of labels) {
+        labelContext.font = label.font;
+        labelContext.fillStyle = label.colour;
+        if ('letterSpacing' in labelContext) labelContext.letterSpacing = label.letterSpacing === 'normal' ? '0px' : label.letterSpacing;
+        const align = label.align === 'center' ? 'center' : ['right', 'end'].includes(label.align) ? 'right' : 'left';
+        labelContext.textAlign = align;
+        const x = align === 'center' ? label.left + label.width / 2 : align === 'right' ? label.left + label.width - label.paddingRight : label.left + label.paddingLeft;
+        const metrics = labelContext.measureText(label.text);
+        const y = invoiceLabelBaseline(label.top, label.height, metrics.actualBoundingBoxAscent, metrics.actualBoundingBoxDescent);
+        labelContext.fillText(label.text, x, y, Math.max(1, label.width - label.paddingLeft - label.paddingRight));
+      }
+      labelContext.restore();
       const slices = invoicePageSlices(canvas.height, Math.floor(canvas.width * 297 / 210), rows.map(row => ({ top: row.top * scale, bottom: row.bottom * scale })));
       return slices.map(slice => {
         const page = document.createElement('canvas');

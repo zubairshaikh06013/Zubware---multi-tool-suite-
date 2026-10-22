@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { buildInvoicePaymentUri, invoicePageSlices, validateInvoiceSnapshot } from '../src/lib/invoiceWorkspace';
+import { buildInvoicePaymentUri, invoicePageSlices, validateInvoiceSnapshot, invoiceLabelBaseline } from '../src/lib/invoiceWorkspace';
 import { numberToIndianWords } from '../src/components/tools/business/GstInvoiceGeneratorTool';
 
 const uri = new URL(buildInvoicePaymentUri('shop@bank', 'A & B', 1180 - 500)!);
@@ -25,3 +25,13 @@ assert.throws(()=>validateInvoiceSnapshot({...template,supplier:null},template))
 assert.equal(numberToIndianWords(1.999),'Two Rupees Only');
 assert.equal(numberToIndianWords(1.01),'One Rupee and One Paise Only');
 console.log('Invoice backup validation, outstanding payment, page coverage and paise carry tests passed.');
+
+// Font metrics differ by face/device; visible ink must still sit at box centre.
+for (const [top, height, ascent, descent] of [[0,28,10,2], [100,36,13,0], [400,32,8,3], [20,28,9,-1]]) {
+  const baseline = invoiceLabelBaseline(top,height,ascent,descent);
+  const inkTop = baseline - ascent;
+  const inkBottom = baseline + descent;
+  assert.equal((inkTop + inkBottom) / 2, top + height / 2);
+  assert(inkTop >= top && inkBottom <= top + height);
+}
+console.log('Invoice label glyph-centering checks passed.');

@@ -559,10 +559,10 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
             <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Legal &amp; Business Compliance
+              Signature Images and Document Requirements
             </h3>
             <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Compliant with US ESIGN Act, EU eIDAS, and Indian IT Act 2000 provisions for commercial agreements, employment offers, invoices, and job portal submissions.
+              This creates a visual signature image, not a verified digital-signing certificate or signer audit trail. Check the recipient’s requirements before using the image on a document.
             </p>
           </div>
           <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">

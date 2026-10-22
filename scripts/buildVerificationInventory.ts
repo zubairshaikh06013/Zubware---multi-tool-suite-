@@ -1,6 +1,15 @@
 import fs from 'node:fs';
 import { TOOLS_DATA } from '../src/data/toolsData';
 const evidence: Record<string, string[]> = {
+  'gst-invoice-generator': ['testInvoiceWorkspace: backup validation, payment balance/QR payload, page coverage and paise carry', 'testInvoiceCanvas: visible and centred label glyphs at 1x/2x/3x; not a mobile browser export test'],
+  'image-compressor': ['testToolReliability: original preservation, MIME and target-size result selection; not every browser codec'],
+  'image-resizer': ['testToolReliability: dimensions, aspect ratios, rounding and memory limits'],
+  'crop-image': ['testToolReliability: crop bounds, edge clamps and extreme-aspect presets'],
+  'image-splitter-merger': ['testToolReliability: alpha bounds, gap-free split rectangles, combine layouts and seam positions'],
+  'image-watermark': ['testToolReliability: placement, rotated corners and oversized-logo bounds'],
+  'favicon-generator': ['testToolReliability: real ICO structure, complete ZIP entries, manifest/HTML targets and invalid input'],
+  'exif-remover': ['testToolReliability: alpha-safe export format, unique ZIP filenames and payloads; metadata removal still needs output inspection'],
+
   'csv-to-json': ['testDataConversions: multiline/quotes, identifiers, type inference, duplicate headers, record width, special property names'],
   'json-to-csv': ['testDataConversions: shared CSV serializer round-trip including CR/LF/quotes'],
   'csv-viewer': ['testDataConversions: shared parser/serializer fidelity; not every sort/filter interaction'],

@@ -8015,7 +8015,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Is an electronic signature created with Zubware legally binding?",
-        "answer": "In many jurisdictions (including under the US ESIGN Act, UETA, EU eIDAS regulations, and Indian Information Technology Act 2000), electronic signatures are recognized for general commercial contracts, invoices, agreements, and online job forms. Certain high-security government deeds or notarized affidavits may mandate certified cryptographic digital signatures (DSC)."
+        "answer": "This tool creates or places a visual signature. It does not verify the signer’s identity, issue a digital-signing certificate or provide an audit trail. A signature image alone does not establish legal validity. Check the recipient’s requirements and the rules applicable to your document before relying on it."
       },
       {
         "question": "Which file formats are supported for signature export?",
@@ -8665,13 +8665,13 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     },
     {
       "title": "Embed Signature & Download Signed PDF",
-      "desc": "Click Sign & Download to burn the signature into the vector document stream and save your legally signed PDF file."
+      "desc": "Click Sign & Download to burn the signature into the vector document stream and save your PDF with the visible signature."
     }
   ],
   "faq": [
     {
       "question": "Are electronic signatures created with Zubware legally recognized and valid?",
-      "answer": "Yes. Electronic signatures (e-signatures) placed on agreements are legally valid in most jurisdictions worldwide, including under the US ESIGN Act, the Uniform Electronic Transactions Act (UETA), and EU eIDAS regulations for standard business agreements."
+      "answer": "This tool creates or places a visual signature. It does not verify the signer’s identity, issue a digital-signing certificate or provide an audit trail. A signature image alone does not establish legal validity. Check the recipient’s requirements and the rules applicable to your document before relying on it."
     },
     {
       "question": "Can I draw my signature on a touchscreen smartphone, tablet, or with a computer mouse?",

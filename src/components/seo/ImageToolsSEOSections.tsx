@@ -1444,10 +1444,10 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <Lock className="w-5 h-5 text-emerald-500" /> Absolute Identity Privacy (Zero Server Logs)
+                <Lock className="w-5 h-5 text-emerald-500" /> Local Signature Processing
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Your signature is your legal identity. Unlike commercial e-signature platforms that store your biometric drawings in centralized databases, Zubware executes 100% locally inside your device browser memory.
+                Signature drawing and image processing run locally in your browser. The tool creates a visual signature image, not a verified digital-signing certificate or signer audit trail. Check the recipient’s requirements before using it.
               </p>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Your signature drawings, typed names, and scanned photos are never sent across the internet, recorded on Zubware servers, or used for AI training.

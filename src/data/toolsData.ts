@@ -1,3 +1,4 @@
+import { relevantToolTags } from '../lib/toolTagRelevance';
 import { SITE_SUMMARY, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from './siteTrustContent';
 import { ToolMeta, FAQItem } from '../types';
 import { LanguageCode, getTranslation } from '../lib/i18n';
@@ -10260,7 +10261,7 @@ function getToolTagsAndFlags(id: string, category: string): { tags: string[]; tr
   } else if (category.includes('Prompt')) {
     tags.push('AI', 'Prompt', 'ChatGPT', 'Midjourney', 'Gemini', 'Claude', 'Generator');
   } else {
-    tags.push('Security', 'Privacy', 'Password', 'QR', 'Productivity', 'Tools');
+    tags.push('Tools');
   }
 
   if (id.includes('pdf')) tags.push('PDF');
@@ -10271,7 +10272,8 @@ function getToolTagsAndFlags(id: string, category: string): { tags: string[]; tr
   if (id.includes('qr')) tags.push('QR');
   if (id.includes('calorie') || id.includes('weight')) tags.push('Health', 'Fitness', 'Calculator');
   if (id.includes('json')) tags.push('JSON');
-  if (id.includes('password')) tags.push('Security');
+  if (/password|passphrase/.test(id)) tags.push('Password', 'Security');
+  if (/hash|checksum|encrypt|decrypt|jwt/.test(id)) tags.push('Security');
 
   return {
     tags: Array.from(new Set(tags)),
@@ -10296,7 +10298,7 @@ export const TOOLS_DATA: ToolMeta[] = RAW_TOOLS_DATA.map(tool => {
     ...tool,
     path: cleanPath,
     badge: simplifyBadge(tool.badge),
-    tags: Array.from(new Set([...(tool.tags || []), ...tags])),
+    tags: relevantToolTags(tool.id, [...(tool.tags || []), ...tags]),
     trending: tool.trending ?? trending,
     featured: tool.featured ?? featured,
     editorsPick: tool.editorsPick ?? editorsPick

@@ -1,6 +1,15 @@
 # Search and publisher readiness
 
-Reviewed 20 October 2026. This is an engineering work record, not a ranking, indexing, or AdSense approval certificate.
+Reviewed 23 October 2026. This is an engineering work record, not a ranking, indexing, or AdSense approval certificate.
+
+## 23 October verification batch
+
+- Current production structure: 309 tool routes and 377 canonical sitemap URLs. The previous 374-page figures below describe the earlier review, not the current site total.
+- Re-ran `testToolReliability`, `testDataConversions`, `testFileSizeAccuracy`, `testInvoiceWorkspace` and `testInvoiceCanvas`; all passed. These verify specific calculations, validation and generated-output cases, not every tool or device.
+- Fixed irrelevant Password, QR and Security tags that made unrelated licence/music/calculator tools appear in capability filters. Added negative and positive directory-filter regressions.
+- Removed blanket legal-validity claims from signature-maker/PDF-signature FAQs and the static signature guide. Clarified that a visual signature is not a verified signing certificate or signer audit trail.
+- Source review found production Google Tag Manager loading and no directly embedded AdSense publisher code. This does not inspect tags remotely configured inside GTM or establish the AdSense account status.
+- Browser/device end-to-end coverage remains incomplete. Do not label the whole tool suite functionally verified or AdSense-approved.
 
 ## Completed in this review
 
@@ -18,7 +27,7 @@ Reviewed 20 October 2026. This is an engineering work record, not a ranking, ind
 | Priority | Work | Completion evidence |
 | --- | --- | --- |
 | High | Exercise each tool's inputs, errors and downloadable outputs on desktop and mobile | Recorded sample inputs, expected results, actual exported files and browser coverage per tool. An HTML audit does not establish tool functionality. |
-| High | Review remaining tool descriptions and guides against implementation | Remove unsupported format, accuracy, legal-validity and performance claims; cite authoritative sources for factual guidance. PDF-signature legal-validity statements and regex-guide safety guarantees need particular review. |
+| High | Review remaining tool descriptions and guides against implementation | Remove unsupported format, accuracy, legal-validity and performance claims; cite authoritative sources for factual guidance. Signature FAQ legal-validity claims were corrected in the 23 October batch. Other guides and format/performance claims still require review. |
 | High | Review generic category tags and generated keyword phrases | Keep tags useful for finding the actual tool; do not attach unrelated security, QR, CSS or age terms to other utilities. |
 | High | Inspect the actual AdSense account and site-review status | Confirm ownership and any specific review findings. Do not invent a publisher ID, ads.txt seller line, or approval state. |
 | High, before advertising | Review deployed ad/analytics configuration and applicable privacy choices | Disclosures and consent behavior match the actual services and geographic requirements; test before enabling ads. |

@@ -6,8 +6,10 @@
       "path": "/image-splitter-merger",
       "name": "Image Split & Combine",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: alpha bounds, gap-free split rectangles, combine layouts and seam positions"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -33,8 +35,10 @@
       "path": "/image-compressor",
       "name": "Image Compressor",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: original preservation, MIME and target-size result selection; not every browser codec"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -53,8 +57,10 @@
       "path": "/image-resizer",
       "name": "Image Resizer",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: dimensions, aspect ratios, rounding and memory limits"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -62,8 +68,10 @@
       "path": "/crop-image",
       "name": "Crop Image",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: crop bounds, edge clamps and extreme-aspect presets"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -89,8 +97,10 @@
       "path": "/image-watermark",
       "name": "Watermark Image",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: placement, rotated corners and oversized-logo bounds"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -116,8 +126,10 @@
       "path": "/exif-remover",
       "name": "EXIF Remover",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: alpha-safe export format, unique ZIP filenames and payloads; metadata removal still needs output inspection"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -188,8 +200,10 @@
       "path": "/favicon-generator",
       "name": "Favicon Generator",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testToolReliability: real ICO structure, complete ZIP entries, manifest/HTML targets and invalid input"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {
@@ -256,6 +270,15 @@
       "allInputsAndDevicesVerified": false
     },
     {
+      "id": "animated-avatar-video-maker",
+      "path": "/animated-avatar-video-maker",
+      "name": "Animated Avatar Video",
+      "structuralCheck": "canonical page and incoming link validated by build",
+      "functionalEvidence": [],
+      "functionalStatus": "not_functionally_verified",
+      "allInputsAndDevicesVerified": false
+    },
+    {
       "id": "matching-parts-video-maker",
       "path": "/matching-parts-video-maker",
       "name": "Matching Parts Video",
@@ -296,8 +319,11 @@
       "path": "/gst-invoice-generator",
       "name": "GST Invoice",
       "structuralCheck": "canonical page and incoming link validated by build",
-      "functionalEvidence": [],
-      "functionalStatus": "not_functionally_verified",
+      "functionalEvidence": [
+        "testInvoiceWorkspace: backup validation, payment balance/QR payload, page coverage and paise carry",
+        "testInvoiceCanvas: visible and centred label glyphs at 1x/2x/3x; not a mobile browser export test"
+      ],
+      "functionalStatus": "specific_regression_cases_only",
       "allInputsAndDevicesVerified": false
     },
     {

@@ -318,22 +318,8 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   const [upiQrDataUrl, setUpiQrDataUrl] = useState<string | null>(null);
 
   const previewRef = useRef<HTMLDivElement>(null);
-  const previewViewportRef = useRef<HTMLDivElement>(null);
-  const [previewSize, setPreviewSize] = useState({ scale: 1, height: 1122 });
-  useEffect(() => {
-    const viewport = previewViewportRef.current;
-    const sheet = previewRef.current;
-    if (!viewport || !sheet) return;
-    const update = () => {
-      if (!viewport.clientWidth) return;
-      const scale = Math.min(1, viewport.clientWidth / 794);
-      const height = sheet.offsetHeight * scale;
-      setPreviewSize(previous => previous.scale === scale && previous.height === height ? previous : { scale, height });
-    };
-    const observer = new ResizeObserver(update);
-    observer.observe(viewport); observer.observe(sheet); update();
-    return () => observer.disconnect();
-  }, []);
+  const pageCache = useRef<{ key: string; promise: Promise<string[]> } | null>(null);
+  const [renderedPreview, setRenderedPreview] = useState<{ key: string; pages: string[] } | null>(null);
 
   // Check for local draft on mount
   useEffect(() => {
@@ -670,13 +656,10 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   }, [payment.upiId, supplier.businessName, totals.balanceDue]);
 
 
-  // Export PDF Handler
-  const handleDownloadPdf = async () => {
-    if (!previewRef.current) return;
-    setIsDownloading(true);
-    setPdfError(null);
-    if (onShowToast) onShowToast('Preparing A4 PDF Document...');
-
+  // All three outputs consume the SAME raster pages, including page boundaries.
+  const renderKey = JSON.stringify({ ...snapshot(), upiQrDataUrl });
+  const renderInvoicePages = async (): Promise<string[]> => {
+    if (!previewRef.current) throw new Error('Invoice not ready');
     const exportContainer = document.createElement('div');
     exportContainer.style.cssText = 'position:absolute;left:-10000px;top:0;width:794px;background:white;';
     const exportDocument = previewRef.current.cloneNode(true) as HTMLDivElement;
@@ -730,53 +713,82 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         }
       });
 
-      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-      // The shared sheet already owns its A4 padding; do not add a second margin.
-      const margin = 0;
-      const width = pdf.internal.pageSize.getWidth() - margin * 2;
-      const height = pdf.internal.pageSize.getHeight() - margin * 2;
+      const pageHeight = Math.round(canvas.width * 297 / 210);
       const scale = canvas.width / rect.width;
-      const slices = invoicePageSlices(canvas.height, Math.floor(height * canvas.width / width), rows.map(row => ({ top: row.top * scale, bottom: row.bottom * scale })));
-      slices.forEach((slice, index) => {
-        if (index) pdf.addPage();
-        const page = document.createElement('canvas'); page.width = canvas.width; page.height = slice.height;
+      const slices = invoicePageSlices(canvas.height, Math.floor(canvas.width * 297 / 210), rows.map(row => ({ top: row.top * scale, bottom: row.bottom * scale })));
+      return slices.map(slice => {
+        const page = document.createElement('canvas');
+        page.width = canvas.width; page.height = pageHeight;
         const context = page.getContext('2d');
         if (!context) throw new Error('Canvas unavailable');
+        context.fillStyle = '#ffffff'; context.fillRect(0, 0, page.width, page.height);
         context.drawImage(canvas, 0, slice.start, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
-        pdf.addImage(page.toDataURL('image/jpeg', 0.98), 'JPEG', margin, margin, width, slice.height * width / canvas.width);
-
+        return page.toDataURL('image/jpeg', 0.98);
       });
+    } finally { exportContainer.remove(); }
+  };
+  const getInvoicePages = () => {
+    if (pageCache.current?.key === renderKey) return pageCache.current.promise;
+    const entry = { key: renderKey, promise: renderInvoicePages() };
+    pageCache.current = entry;
+    entry.promise.catch(() => { if (pageCache.current === entry) pageCache.current = null; });
+    return entry.promise;
+  };
+  useEffect(() => {
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      setPdfError(null);
+      getInvoicePages().then(pages => {
+        if (!cancelled) setRenderedPreview({ key: renderKey, pages });
+      }).catch(error => {
+        if (!cancelled) setPdfError(`Invoice rendering failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      });
+    }, 300);
+    return () => { cancelled = true; window.clearTimeout(timer); };
+  }, [renderKey]);
 
-      const sanitizedBusiness = (supplier.businessName || 'Invoice').replace(/[^a-zA-Z0-9_-]/g, '_');
-      const sanitizedNumber = (invoiceMeta.invoiceNumber || 'INV-001').replace(/[^a-zA-Z0-9_-]/g, '_');
-      const filename = `${sanitizedBusiness}-${sanitizedNumber}.pdf`;
-
+  const handleDownloadPdf = async () => {
+    setIsDownloading(true); setPdfError(null);
+    try {
+      const pages = await getInvoicePages();
+      setRenderedPreview({ key: renderKey, pages });
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
+      pages.forEach((page, index) => {
+        if (index) pdf.addPage();
+        pdf.addImage(page, 'JPEG', 0, 0, 210, 297);
+      });
+      const filename = `${(supplier.businessName || 'Invoice').replace(/[^a-zA-Z0-9_-]/g, '_')}-${(invoiceMeta.invoiceNumber || 'INV-001').replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
       await pdf.save(filename, { returnPromise: true });
-      if (onShowToast) onShowToast(`PDF ready: ${filename}. Check your downloads.`);
-    } catch (err) {
-      console.error('PDF Generation Error:', err);
-      setPdfError('PDF download could not finish. Use Print → Save as PDF. If you report this problem, include: ' + (err instanceof Error ? err.message : 'Unknown export error'));
-      if (onShowToast) onShowToast('PDF download failed. See the error below the download controls.');
-    } finally {
-      exportContainer.remove();
-      setIsDownloading(false);
-    }
+      onShowToast?.(`PDF ready: ${filename}. Check your downloads.`);
+    } catch (error) {
+      setPdfError(`PDF download failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally { setIsDownloading(false); }
   };
 
-  // Print Handler
-  const handlePrint = () => {
-    if (!previewRef.current) return;
-    document.getElementById('invoice-print-root')?.remove();
-    const printRoot = previewRef.current.cloneNode(true) as HTMLDivElement;
-    printRoot.id = 'invoice-print-root';
-    printRoot.style.transform = 'none';
-    printRoot.style.display = 'none';
-    document.body.appendChild(printRoot);
-    document.body.classList.add('printing-invoice');
-    const cleanup = () => { printRoot.remove(); document.body.classList.remove('printing-invoice'); };
-    window.addEventListener('afterprint', cleanup, { once: true });
-    try { window.print(); } catch { cleanup(); }
-
+  const handlePrint = async () => {
+    setIsDownloading(true); setPdfError(null);
+    let cleanup: (() => void) | undefined;
+    try {
+      const pages = await getInvoicePages();
+      setRenderedPreview({ key: renderKey, pages });
+      document.getElementById('invoice-print-root')?.remove();
+      const printRoot = document.createElement('div');
+      printRoot.id = 'invoice-print-root'; printRoot.style.display = 'none';
+      const images = pages.map((page, index) => {
+        const wrapper = document.createElement('div'); wrapper.className = 'invoice-print-page';
+        const img = document.createElement('img'); img.src = page; img.alt = `Invoice page ${index + 1}`;
+        wrapper.appendChild(img); printRoot.appendChild(wrapper); return img;
+      });
+      document.body.appendChild(printRoot);
+      cleanup = () => { printRoot.remove(); document.body.classList.remove('printing-invoice'); };
+      await Promise.all(images.map(img => img.decode()));
+      document.body.classList.add('printing-invoice');
+      window.addEventListener('afterprint', cleanup, { once: true });
+      window.print();
+    } catch (error) {
+      cleanup?.();
+      setPdfError(`Print failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    } finally { setIsDownloading(false); }
   };
 
   const supplierGstinValidation = validateGstin(supplier.gstin);
@@ -860,6 +872,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
 
           <button
             onClick={handlePrint}
+            disabled={isDownloading}
             className="px-3.5 py-2 rounded-xl bg-slate-200/80 dark:bg-slate-800 text-slate-700 dark:text-slate-200 hover:bg-slate-700 hover:text-white font-bold text-xs transition-all flex items-center gap-1.5"
           >
             <Printer className="w-3.5 h-3.5" /> Print
@@ -1787,18 +1800,22 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
               <Eye className="w-4 h-4 text-indigo-600" /> LIVE INVOICE PREVIEW (A4)
             </span>
             <span className="text-[11px] text-slate-500 dark:text-slate-400 font-medium">
-              Updates in real-time
+              Same pages used for Print and Download
             </span>
           </div>
 
           {/* PRINTABLE A4 CONTAINER WITH CRISP TYPOGRAPHY */}
           <div className="bg-slate-200/60 dark:bg-slate-900/80 p-2 sm:p-4 rounded-3xl shadow-inner border border-slate-300/50 dark:border-slate-800">
-            <div ref={previewViewportRef} className="w-full max-w-[794px] mx-auto overflow-hidden" style={{ height: previewSize.height }}>
+            <div className="w-full max-w-[794px] mx-auto space-y-3" aria-live="polite">
+              {renderedPreview?.key === renderKey ? renderedPreview.pages.map((page, index) => (
+                <img key={index} src={page} alt={`Invoice preview page ${index + 1} of ${renderedPreview.pages.length}`} className="block w-full h-auto bg-white" />
+              )) : <p role="status" className="bg-white p-6 text-sm text-slate-700">{pdfError ? 'Preview unavailable. See the error above.' : 'Preparing invoice preview…'}</p>}
+            </div>
+            <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', top: 0, width: 794, pointerEvents: 'none' }}>
             <div
               id="invoice-document-preview"
               ref={previewRef}
               className="invoice-sheet bg-white text-slate-900 text-[11px] leading-snug flex flex-col justify-between"
-              style={{ transform: `scale(${previewSize.scale})`, transformOrigin: 'top left' }}
             >
               {/* DOCUMENT TOP HEADER */}
               <div className="space-y-6">
@@ -2073,7 +2090,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
           </div>
 
           </div>
-          <p className="text-xs text-slate-500">Preview and PDF use A4. In the print dialog, select A4, 100% scale and enable background graphics if available. Printer settings can override the layout.</p>
+          <p className="text-xs text-slate-500">Preview, Print and Download use the same A4 pages. In the print dialog, select A4, 100% scale and no margins. Printer settings can change the paper size.</p>
           {/* DISCLAIMERS & E-INVOICING NOTES */}
           <div className="space-y-2 px-1 text-[11px] text-slate-500 dark:text-slate-400">
             <p className="italic">

@@ -551,13 +551,39 @@ html, body {
   }
 }
 
+/* One physical sheet shared by preview, canvas export and browser print. */
+.invoice-sheet {
+  box-sizing: border-box;
+  width: 794px;
+  min-width: 794px;
+  min-height: 1122px;
+  padding: 32px;
+  margin: 0;
+  border-radius: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  gap: 32px;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
 @media print {
+  @page zubware-invoice { size: A4 portrait; margin: 0; }
+  html:has(body.printing-invoice), body.printing-invoice {
+    margin: 0 !important; padding: 0 !important; min-height: 0 !important;
+    height: auto !important; max-width: none !important; overflow: visible !important;
+    background: white !important;
+  }
   body.printing-invoice > *:not(#invoice-print-root) { display: none !important; }
   body.printing-invoice #invoice-print-root,
-  body.printing-invoice #invoice-print-root * { visibility: visible !important; }
+  body.printing-invoice #invoice-print-root * {
+    visibility: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
   body.printing-invoice #invoice-print-root {
-    display: block !important; width: 100% !important; max-width: none !important;
-    min-height: 0 !important; margin: 0 !important; padding: 8mm !important;
+    page: zubware-invoice;
+    display: flex !important; width: 210mm !important; min-width: 0 !important;
+    max-width: none !important; min-height: 296.8mm !important;
+    margin: 0 !important; padding: 32px !important; transform: none !important;
     box-shadow: none !important; border-radius: 0 !important;
   }
   #invoice-print-root tr { break-inside: avoid; }

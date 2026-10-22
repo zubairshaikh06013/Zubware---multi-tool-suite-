@@ -318,6 +318,22 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   const [upiQrDataUrl, setUpiQrDataUrl] = useState<string | null>(null);
 
   const previewRef = useRef<HTMLDivElement>(null);
+  const previewViewportRef = useRef<HTMLDivElement>(null);
+  const [previewSize, setPreviewSize] = useState({ scale: 1, height: 1122 });
+  useEffect(() => {
+    const viewport = previewViewportRef.current;
+    const sheet = previewRef.current;
+    if (!viewport || !sheet) return;
+    const update = () => {
+      if (!viewport.clientWidth) return;
+      const scale = Math.min(1, viewport.clientWidth / 794);
+      const height = sheet.offsetHeight * scale;
+      setPreviewSize(previous => previous.scale === scale && previous.height === height ? previous : { scale, height });
+    };
+    const observer = new ResizeObserver(update);
+    observer.observe(viewport); observer.observe(sheet); update();
+    return () => observer.disconnect();
+  }, []);
 
   // Check for local draft on mount
   useEffect(() => {
@@ -665,6 +681,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
     exportContainer.style.cssText = 'position:absolute;left:-10000px;top:0;width:794px;background:white;';
     const exportDocument = previewRef.current.cloneNode(true) as HTMLDivElement;
     exportDocument.removeAttribute('id');
+    exportDocument.style.transform = 'none';
     exportDocument.style.width = '794px';
     exportDocument.style.maxWidth = 'none';
     exportContainer.appendChild(exportDocument); document.body.appendChild(exportContainer);
@@ -714,7 +731,8 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
       });
 
       const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' });
-      const margin = 8;
+      // The shared sheet already owns its A4 padding; do not add a second margin.
+      const margin = 0;
       const width = pdf.internal.pageSize.getWidth() - margin * 2;
       const height = pdf.internal.pageSize.getHeight() - margin * 2;
       const scale = canvas.width / rect.width;
@@ -726,7 +744,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         if (!context) throw new Error('Canvas unavailable');
         context.drawImage(canvas, 0, slice.start, canvas.width, slice.height, 0, 0, canvas.width, slice.height);
         pdf.addImage(page.toDataURL('image/jpeg', 0.98), 'JPEG', margin, margin, width, slice.height * width / canvas.width);
-        pdf.setFontSize(8); pdf.text(`Page ${index + 1} of ${slices.length}`, margin, pdf.internal.pageSize.getHeight() - 3);
+
       });
 
       const sanitizedBusiness = (supplier.businessName || 'Invoice').replace(/[^a-zA-Z0-9_-]/g, '_');
@@ -751,6 +769,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
     document.getElementById('invoice-print-root')?.remove();
     const printRoot = previewRef.current.cloneNode(true) as HTMLDivElement;
     printRoot.id = 'invoice-print-root';
+    printRoot.style.transform = 'none';
     printRoot.style.display = 'none';
     document.body.appendChild(printRoot);
     document.body.classList.add('printing-invoice');
@@ -1773,12 +1792,13 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
           </div>
 
           {/* PRINTABLE A4 CONTAINER WITH CRISP TYPOGRAPHY */}
-          <div className="bg-slate-200/60 dark:bg-slate-900/80 p-2 sm:p-4 rounded-3xl overflow-x-auto shadow-inner border border-slate-300/50 dark:border-slate-800">
-            
+          <div className="bg-slate-200/60 dark:bg-slate-900/80 p-2 sm:p-4 rounded-3xl shadow-inner border border-slate-300/50 dark:border-slate-800">
+            <div ref={previewViewportRef} className="w-full max-w-[794px] mx-auto overflow-hidden" style={{ height: previewSize.height }}>
             <div
               id="invoice-document-preview"
               ref={previewRef}
-              className="bg-white text-slate-900 p-6 sm:p-8 rounded-xl shadow-2xl mx-auto w-full max-w-[794px] min-h-[1050px] text-[11px] leading-snug font-sans flex flex-col justify-between print:shadow-none print:p-0 print:m-0"
+              className="invoice-sheet bg-white text-slate-900 text-[11px] leading-snug flex flex-col justify-between"
+              style={{ transform: `scale(${previewSize.scale})`, transformOrigin: 'top left' }}
             >
               {/* DOCUMENT TOP HEADER */}
               <div className="space-y-6">
@@ -2052,6 +2072,8 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
 
           </div>
 
+          </div>
+          <p className="text-xs text-slate-500">Preview and PDF use A4. In the print dialog, select A4, 100% scale and enable background graphics if available. Printer settings can override the layout.</p>
           {/* DISCLAIMERS & E-INVOICING NOTES */}
           <div className="space-y-2 px-1 text-[11px] text-slate-500 dark:text-slate-400">
             <p className="italic">

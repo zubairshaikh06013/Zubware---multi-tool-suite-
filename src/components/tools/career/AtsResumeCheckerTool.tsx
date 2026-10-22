@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { jsPDF } from 'jspdf';
 import { extractTextFromPdf } from '../../../lib/pdfUtils';
+import { hasResumeKeyword, resumeWordCount } from '../../../lib/resumeKeywordMatch';
 import { getActiveResume } from '../../../lib/resumeStore';
 import { 
   Target, 
@@ -97,7 +98,8 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
   const [copied, setCopied] = useState<boolean>(false);
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
 
-  const runAtsScan = (customResume?: string, customJob?: string) => {
+  const runAtsScan = (customResume?: string, customJob?: string, customTitle?: string) => {
+    setMatchResult(null);
     const resume = (customResume !== undefined ? customResume : resumeText).trim();
     const job = (customJob !== undefined ? customJob : jobDescription).trim();
 
@@ -132,8 +134,8 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
       ];
 
       // Find keywords mentioned in job description
-      const targetTech = TECH_KEYWORDS.filter(k => jobLower.includes(k));
-      const targetSoft = SOFT_KEYWORDS.filter(k => jobLower.includes(k));
+      const targetTech = TECH_KEYWORDS.filter(k => hasResumeKeyword(jobLower, k));
+      const targetSoft = SOFT_KEYWORDS.filter(k => hasResumeKeyword(jobLower, k));
       const allTarget = Array.from(new Set([...targetTech, ...targetSoft]));
 
       // If job description is unique text, extract capitalized domain words
@@ -151,7 +153,7 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
       const missingKeywords: string[] = [];
 
       allTarget.forEach(kw => {
-        if (resumeLower.includes(kw)) {
+        if (hasResumeKeyword(resumeLower, kw)) {
           matchedKeywords.push(kw);
         } else {
           missingKeywords.push(kw);
@@ -160,17 +162,18 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
 
       // Calculate scores
       const totalKeywords = Math.max(1, allTarget.length);
-      const hardMatches = targetTech.filter(k => resumeLower.includes(k)).length;
+      const hardMatches = targetTech.filter(k => hasResumeKeyword(resumeLower, k)).length;
       const hardTotal = Math.max(1, targetTech.length);
       const hardSkillsScore = Math.round((hardMatches / hardTotal) * 100);
 
-      const softMatches = targetSoft.filter(k => resumeLower.includes(k)).length;
+      const softMatches = targetSoft.filter(k => hasResumeKeyword(resumeLower, k)).length;
       const softTotal = Math.max(1, targetSoft.length);
       const softSkillsScore = Math.round((softMatches / softTotal) * 100);
 
       // Experience & title match
-      const titleWords = jobTitle.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-      const titleMatches = titleWords.filter(w => resumeLower.includes(w)).length;
+      const targetTitle = customTitle ?? jobTitle;
+      const titleWords = targetTitle.toLowerCase().split(/\s+/).filter(w => w.length > 3);
+      const titleMatches = titleWords.filter(w => hasResumeKeyword(resumeLower, w)).length;
       const experienceScore = Math.min(100, Math.round((titleMatches / Math.max(1, titleWords.length)) * 50 + (resume.length > 1000 ? 50 : 25)));
 
       // Formatting risks
@@ -192,7 +195,7 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
         });
       }
 
-      if (resume.length < 500) {
+      if (resumeWordCount(resume) < 100) {
         formattingRisks.push({
           issue: 'Low text content density',
           severity: 'medium',
@@ -215,7 +218,7 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
         tailoringTips.push(`Integrate the missing skills [${missingKeywords.slice(0, 4).join(', ')}] directly into your Experience bullet points where you have utilized them.`);
       }
       if (titleMatches < titleWords.length) {
-        tailoringTips.push(`Align your headline or professional summary title to reflect the target role "${jobTitle}".`);
+        tailoringTips.push(`Align your headline or professional summary title to reflect the target role "${targetTitle}".`);
       }
       tailoringTips.push('Ensure experience descriptions use the exact acronyms and tool names mentioned in the job description (e.g., CI/CD, AWS, TypeScript).');
 
@@ -245,6 +248,7 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
         setIsScanning(true);
         const buffer = await file.arrayBuffer();
         const extracted = await extractTextFromPdf(buffer);
+        if (!extracted.trim()) throw new Error('No readable text found. For a scanned PDF, extract text with OCR first or paste your resume text.');
         setResumeText(extracted);
         setResumeSource(file.name);
         setIsScanning(false);
@@ -266,7 +270,7 @@ export const AtsResumeCheckerTool: React.FC<AtsResumeCheckerToolProps> = ({ onSh
     setJobTitle('Senior Full Stack Engineer');
     setJobDescription(SAMPLE_JOB_DESCRIPTION);
     setResumeSource('Sample_Senior_Engineer_Resume.pdf');
-    runAtsScan(SAMPLE_RESUME_TEXT, SAMPLE_JOB_DESCRIPTION);
+    runAtsScan(SAMPLE_RESUME_TEXT, SAMPLE_JOB_DESCRIPTION, 'Senior Full Stack Engineer');
   };
 
   const loadActiveBuilderResume = () => {
@@ -376,7 +380,7 @@ ${matchResult.tailoringTips.map(t => `- ${t}`).join('\n')}`;
               ATS Resume Checker & Job Keyword Matcher
             </h2>
             <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
-              Compare your resume against any job description to discover matching skills, missing keywords, and ATS parsing readiness.
+              Compare resume text with a job description to review matching skills, missing keywords and contact details.
             </p>
           </div>
         </div>
@@ -392,6 +396,10 @@ ${matchResult.tailoringTips.map(t => `- ${t}`).join('\n')}`;
         </div>
       </div>
 
+      <p className="text-xs text-slate-600 dark:text-slate-300 px-2">
+        This is a text-based review, not an employer ATS test. The built-in skill list focuses on software roles.
+        Scores do not predict interviews or hiring decisions, and extracted text cannot verify a PDF’s visual layout.
+      </p>
       {/* Inputs Side-by-Side */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Column: Candidate Resume */}

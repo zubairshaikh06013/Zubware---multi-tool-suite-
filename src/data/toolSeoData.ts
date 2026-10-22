@@ -8089,14 +8089,18 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Fine-Tune Spacing, Border & Format",
-        "desc": "Adjust the gap, padding, outer border, and JPG or PNG format. Check the final dimensions and file size against your portal's requirements."
+        "desc": "Adjust spacing, border and JPG or PNG format. Set an optional maximum KB limit. JPG quality adjusts while pixel dimensions stay fixed; a result above your limit cannot be downloaded."
       },
       {
         "title": "Download Combined Image",
-        "desc": "Preview the combined image and download it as JPG or PNG. Check its dimensions, file size and legibility before uploading it to your form."
+        "desc": "Inspect the exported image in the preview, switch to actual pixels to check fine signature strokes, and review the measured bytes before downloading. Check your form requirements separately."
       }
     ],
     "faq": [
+      {
+        "question": "Can I keep the combined photo and signature under 20 KB or 50 KB?",
+        "answer": "Choose a JPG size button or enter a custom maximum in KB (1 KB = 1,000 bytes). The tool reduces JPEG quality without changing your pixel dimensions. If the limit cannot be met, it shows the measured size and blocks download. Increase the limit or change dimensions only if your form allows it. Preview the exported file to check legibility; size compliance alone does not guarantee acceptance."
+      },
       {
         "question": "Why do exam and job recruitment portals require photo and signature in a single image file?",
         "answer": "Some application forms ask for a single file containing both a photo and a signature. Requirements vary by portal, so read your own form's instructions for layout, dimensions, format, and file size before uploading."

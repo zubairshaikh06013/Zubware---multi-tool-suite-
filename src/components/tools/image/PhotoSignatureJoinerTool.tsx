@@ -13,6 +13,9 @@ import {
 } from 'lucide-react';
 import { useLanguage } from '../../../context/LanguageContext';
 
+import { exportCompositeImage } from '../../../lib/compositeImageExport';
+import { formatDecimalBytes, parseTargetBytes } from '../../../lib/fileSizeStandard';
+
 type LayoutMode = 'vertical' | 'horizontal';
 const MAX_IMAGE_BYTES = 25 * 1024 * 1024;
 const acceptedTypes = new Set(['image/jpeg', 'image/png', 'image/webp']);
@@ -52,6 +55,12 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   const [borderColor, setBorderColor] = useState('#cbd5e1'); // slate-300
   const [bgColor, setBgColor] = useState<'#ffffff' | '#f8fafc' | 'transparent'>('#ffffff');
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg'>('jpeg');
+
+  const [maxKb, setMaxKb] = useState(0);
+  const [outputBytes, setOutputBytes] = useState(0);
+  const [exportError, setExportError] = useState('');
+  const [actualSize, setActualSize] = useState(false);
+  const exceedsLimit = maxKb > 0 && outputBytes > parseTargetBytes(maxKb, 'KB');
 
   // Preview & Export Canvas
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -131,13 +140,6 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     }
 
-    // Draw Outer Border if requested
-    if (borderWidth > 0) {
-      ctx.strokeStyle = borderColor;
-      ctx.lineWidth = borderWidth;
-      ctx.strokeRect(borderWidth / 2, borderWidth / 2, canvas.width - borderWidth, canvas.height - borderWidth);
-    }
-
     if (layoutMode === 'vertical') {
       // Center photo horizontally
       const photoX = padding + (totalCanvasWidth - padding * 2 - photoWidth) / 2;
@@ -198,8 +200,25 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
       }
     }
 
-    const mime = exportFormat === 'jpeg' ? 'image/jpeg' : 'image/png';
-    setOutputDataUrl(photoImg && sigImg ? canvas.toDataURL(mime, 0.95) : '');
+    // Draw Outer Border if requested
+    if (borderWidth > 0) {
+      ctx.strokeStyle = borderColor;
+      ctx.lineWidth = borderWidth;
+      ctx.strokeRect(borderWidth / 2, borderWidth / 2, canvas.width - borderWidth, canvas.height - borderWidth);
+    }
+
+    setOutputDataUrl('');
+    setOutputBytes(0);
+    setExportError('');
+    if (photoImg && sigImg) {
+      try {
+        const result = exportCompositeImage(canvas, exportFormat, parseTargetBytes(maxKb, 'KB'));
+        setOutputDataUrl(result.url);
+        setOutputBytes(result.bytes);
+      } catch (error) {
+        setExportError(error instanceof Error ? error.message : 'Unable to export this image.');
+      }
+    }
 
     // Also update preview ref
     const targetRef = previewCanvasRef.current;
@@ -211,10 +230,10 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
         pCtx.drawImage(canvas, 0, 0);
       }
     }
-  }, [photoImg, sigImg, layoutMode, photoWidth, photoHeight, sigWidth, sigHeight, gap, padding, borderWidth, borderColor, bgColor, exportFormat]);
+  }, [photoImg, sigImg, layoutMode, photoWidth, photoHeight, sigWidth, sigHeight, gap, padding, borderWidth, borderColor, bgColor, exportFormat, maxKb]);
 
   const handleDownload = () => {
-    if (!photoImg || !sigImg || !outputDataUrl) return;
+    if (!photoImg || !sigImg || !outputDataUrl || exceedsLimit) return;
     const a = document.createElement('a');
     a.href = outputDataUrl;
     const ext = exportFormat === 'jpeg' ? 'jpg' : 'png';
@@ -459,7 +478,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                       exportFormat === 'jpeg' ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800'
                     }`}
                   >
-                    JPG (Best for Forms)
+                    JPG
                   </button>
                   <button
                     type="button"
@@ -493,20 +512,28 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
             </div>
 
             {/* Composite Display */}
-            <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center min-h-[380px] overflow-auto">
-              <canvas
-                ref={previewCanvasRef}
-                className="max-h-[500px] object-contain shadow-md rounded-lg bg-white"
-              />
+            <div className={`p-6 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex min-h-[380px] overflow-auto ${actualSize ? 'items-start justify-start' : 'items-center justify-center'}`}>
+              <canvas ref={previewCanvasRef} className={outputDataUrl ? 'hidden' : 'max-h-[500px] max-w-full object-contain shadow-md bg-white'} />
+              {outputDataUrl && <img src={outputDataUrl} alt="Combined photo and signature, showing the exported file" className={actualSize ? 'max-w-none shrink-0 bg-white' : 'max-w-full max-h-[500px] object-contain bg-white'} />}
             </div>
 
+            <div className="space-y-2">
+              <label className="block text-xs font-bold">Maximum file size (KB; 0 = no limit)
+                <input type="number" min="0" max="10000" step="1" value={maxKb} onChange={e => setMaxKb(Math.min(10000, Math.max(0, Number(e.target.value) || 0)))} className="ml-2 w-24 rounded border p-2 bg-white dark:bg-slate-900" />
+              </label>
+              <div className="flex gap-2">{[20, 50, 100].map(kb => <button type="button" key={kb} onClick={() => { setMaxKb(kb); setExportFormat('jpeg'); }} className="rounded border px-3 py-2 text-xs">{kb} KB JPG</button>)}</div>
+              <p className="text-xs text-slate-500">1 KB = 1,000 bytes. JPG quality adjusts to your limit; pixel dimensions stay fixed. PNG is measured without lossy compression.</p>
+              <label className="block text-xs"><input type="checkbox" checked={actualSize} onChange={e => setActualSize(e.target.checked)} /> View actual pixels (scroll to inspect)</label>
+              {exceedsLimit && <p role="alert" className="text-xs text-red-600">This file exceeds your limit. Increase the limit, choose JPG, or reduce dimensions if your form allows it. Download is disabled until it fits.</p>}
+              {exportError && <p role="alert" className="text-xs text-red-600">{exportError}</p>}
+            </div>
             {/* Action Bar */}
-            <p className="text-xs text-slate-500">Output: {layoutMode === 'vertical' ? Math.max(photoWidth, sigWidth) + padding * 2 : photoWidth + sigWidth + gap + padding * 2} × {layoutMode === 'vertical' ? photoHeight + sigHeight + gap + padding * 2 : Math.max(photoHeight, sigHeight) + padding * 2} px{outputDataUrl && photoImg && sigImg ? ` · about ${Math.round((outputDataUrl.split(',')[1]?.length || 0) * 3 / 4 / 1024)} KB` : ''}. Confirm your portal accepts the final dimensions and file size.</p>
+            <p className="text-xs text-slate-500">Output: {layoutMode === 'vertical' ? Math.max(photoWidth, sigWidth) + padding * 2 : photoWidth + sigWidth + gap + padding * 2} × {layoutMode === 'vertical' ? photoHeight + sigHeight + gap + padding * 2 : Math.max(photoHeight, sigHeight) + padding * 2} px{outputDataUrl && photoImg && sigImg ? ` · ${formatDecimalBytes(outputBytes)} (${outputBytes.toLocaleString()} bytes)` : ''}. Confirm your portal accepts the final dimensions and file size.</p>
             <div className="flex items-center justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={handleDownload}
-                disabled={!photoImg || !sigImg || !outputDataUrl}
+                disabled={!photoImg || !sigImg || !outputDataUrl || exceedsLimit}
                 className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all"
               >
                 <Download className="w-4 h-4" /> Download Composite ({exportFormat.toUpperCase()})

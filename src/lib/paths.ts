@@ -135,7 +135,7 @@ export function getToolHowToHeading(tool: { id: string; title: string; navTitle?
     'pdf-signature': 'How to Electronically Sign and Place Signatures on a PDF',
     'pdf-compressor': 'How to Compress and Reduce PDF File Size Online',
     'image-compressor': 'How to Compress Images to 20KB, 50KB, 100KB or 200KB',
-    'image-converter': 'How to Convert Images Between JPG, PNG, WebP, SVG & ICO',
+    'image-converter': 'How to Convert Images to JPG, PNG, WebP, BMP or ICO',
     'image-resizer': 'How to Resize Photos by Pixels or Percentage Online',
     'crop-image': 'How to Crop and Trim Photos to Custom Aspect Ratios',
     'image-watermark': 'How to Add Text and Logo Watermarks to Photos Online',
@@ -314,7 +314,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'sale-price-calculator':
       'Zubware Sale Price Calculator computes sequential retail markdowns, stacked promotional coupon codes, sales tax / VAT, and total out-of-pocket register costs across international currencies. Understand true effective discount percentages on clearance doorbusters with instantaneous browser calculations.',
     'learning-licence-mock-test':
-      'Zubware Learning Licence Mock Test is a free online practice simulator designed to help learner drivers prepare for the Indian RTO computer-based driving licence examination. Featuring real test questions based on the Motor Vehicles Act, mandatory traffic signs, and road safety regulations in bilingual English and Hindi, you can practice with an optional 15-minute exam timer or study at your own pace with instant answer explanations. All questions and results run 100% locally in your browser with zero sign-up required. (Note: Zubware is an independent educational practice tool and is not affiliated with the Ministry of Road Transport and Highways or any state RTO).',
+      'Zubware Learning Licence Mock Test provides independent practice questions about traffic signs, road rules and safe driving in English and Hindi. Use the optional timer and answer explanations to review your understanding. It is not an official RTO examination or a guarantee of the questions you will receive.',
     'signature-resizer':
       'Zubware Signature Resizer is a free online tool designed to crop, resize, and compress scanned signatures for government, exam, and job recruitment portals (including SSC, UPSC, IBPS, NEET, and State PSCs). Adjust dimensions in pixels (px), centimeters (cm), millimeters (mm), or inches, trim empty paper borders automatically, set strict maximum file size caps (such as < 20KB or < 50KB), and export in form-compliant JPG or transparent PNG format. All processing runs 100% locally in your browser with zero server uploads without uploading your signature to Zubware. Keep the downloaded file private.',
     'photo-signature-joiner':
@@ -328,7 +328,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'background-remover':
       'Zubware Background Remover creates transparent PNG cutouts. Quick and Private modes run on your device. Smart AI Removal can send your selected photo to Cloudflare only after you give consent and start. Inspect edges and dimensions before downloading; speed and quality depend on the image and chosen mode.',
     'passport-photo-maker':
-      'Zubware Passport & Visa Photo Maker creates officially compliant biometric ID photos for India (MEA online 35x45mm & visa 2x2"), United States (2x2"), Schengen Europe (35x45mm), UK, Canada, and Australia. Use biometric head and eye alignment guides, fine-tune zoom, rotation, and lighting, change background colors to official white or light grey, and download individual JPGs or printable 4x6" multi-photo PDF sheets.',
+      'Zubware Passport & Visa Photo Maker helps crop and size ID photos using country presets and alignment guides. Adjust your photo and export individual images or a printable sheet. Check the current dimensions, background and photo rules of the issuing authority before submitting; a preset does not guarantee acceptance.',
     'signature-maker':
       'Zubware Online Signature Maker creates professional electronic signatures for legal contracts, PDF documents, and online employment applications. Draw your autograph with smooth bezier pen strokes, generate realistic cursive signatures using elegant calligraphy fonts, or scan and clean a paper signature by removing paper background texture. Export in transparent PNG, solid white JPG, or vector SVG format with complete privacy.',
     'handwriting-to-text':
@@ -392,7 +392,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'text-encrypt-decrypt':
       'Zubware AES Text Encrypt & Decrypt provides client-side symmetric-key cryptography to secure confidential notes, messages, and credentials with a private secret key. Transform plaintext into clean Base64-encoded ciphertext or decrypt cipher payloads in local browser memory with zero tracking and zero server storage.',
     'jwt-decoder':
-      'Zubware JWT Decoder decodes and inspects JSON Web Tokens (JWT) directly inside your browser without transmitting sensitive authentication tokens over the network. Inspect token headers, signature algorithms (RS256, HS256), payload claims (sub, iss, aud, exp), human-readable expiration timestamps, and validation status in real time. Processing executes 100% locally in device memory, ensuring your confidential production credentials, session claims, and bearer tokens never leak to external servers.',
+      'Zubware JWT Decoder displays a JSON Web Token’s header, payload and time-related claims locally in your browser. Inspect the declared algorithm and expiration information without uploading the token. Decoding a token does not verify its signature, issuer or authenticity.',
   };
 
   if (priorityIntros[tool.id]) {

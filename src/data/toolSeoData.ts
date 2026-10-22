@@ -2299,11 +2299,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "faq": [
       {
         "question": "What is an ATS resume checker?",
-        "answer": "An ATS (Applicant Tracking System) resume checker is a diagnostic tool that scans your resume against a specific job posting. It evaluates keyword overlap, technical skills, core competencies, contact details, and text formatting to estimate how well automated recruiting software can parse and rank your application."
+        "answer": "An ATS (Applicant Tracking System) resume checker is a diagnostic tool that scans your resume against a specific job posting. It evaluates keyword overlap, technical skills, core competencies, contact details, and text formatting to help you review the wording of your resume. It does not reproduce an employer’s ATS or predict how your application will rank."
       },
       {
         "question": "What does the ATS resume score mean?",
-        "answer": "The ATS match score (0-100%) represents the mathematical alignment between your resume and the target job description. It is calculated from four dimensions: Technical Skills Match (45%), Title & Experience Alignment (25%), Soft Skills & Competencies (15%), and Formatting & Contact Safety (15%). A score of 80%+ indicates strong keyword alignment."
+        "answer": "The ATS match score (0-100%) represents the mathematical alignment between your resume and the target job description. It is calculated from four dimensions: Technical Skills Match (45%), Title & Experience Alignment (25%), Soft Skills & Competencies (15%), and Formatting & Contact Safety (15%). This is a tool-specific heuristic, not an employer score or a validated hiring threshold. Its built-in skill list focuses on software roles, so results may be less useful for other careers."
       },
       {
         "question": "How do I check if my resume is ATS friendly?",
@@ -2319,7 +2319,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Does a high ATS score guarantee an interview or job offer?",
-        "answer": "No automated tool can guarantee an interview. While high keyword alignment helps your resume pass initial automated filters and reach human recruiters, hiring managers ultimately make decisions based on portfolio quality, measurable achievements, cultural fit, and interview performance."
+        "answer": "No. This checker compares text using its own rules. A high score does not prove that an employer will accept, rank or shortlist your resume. Add only skills and experience you genuinely have."
       },
       {
         "question": "How can I improve my ATS resume score?",
@@ -8065,7 +8065,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Should I download my resized signature in JPG or PNG format?",
-        "answer": "For government recruitment portals, university admissions, and online exam forms, always select JPG format because most application portals reject PNG files. If you need a transparent signature for PDF contracts or digital document signing, choose PNG format."
+        "answer": "Use the format required by your application. JPG uses a white background and supports the maximum-KB compression options. PNG preserves existing transparency; it does not remove the white background of a photograph. Check the downloaded file against your form requirements."
       },
       {
         "question": "Is my handwritten legal signature uploaded or stored on any server?",
@@ -8081,7 +8081,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Choose Layout Arrangement",
-        "desc": "Select Vertical (Stacked) for standard exam admit cards, or choose Horizontal for employee and student ID cards."
+        "desc": "Choose Vertical (Stacked) or Horizontal to match your application instructions. Neither layout is a universal exam or ID-card requirement."
       },
       {
         "title": "Select Preset or Customize Sizing",
@@ -8093,7 +8093,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Download Combined Image",
-        "desc": "Preview the rendered composite canvas and click Download to save your unified image file for instant form submission."
+        "desc": "Preview the combined image and download it as JPG or PNG. Check its dimensions, file size and legibility before uploading it to your form."
       }
     ],
     "faq": [

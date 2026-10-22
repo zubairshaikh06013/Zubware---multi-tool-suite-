@@ -46,18 +46,30 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
   const [outputBlob, setOutputBlob] = useState<Blob | null>(null);
   const [outputDataUrl, setOutputDataUrl] = useState<string>('');
 
+  const uploadVersion = useRef(0);
+  useEffect(() => () => { uploadVersion.current += 1; }, []);
+
   const handleFileSelected = (files: File[]) => {
     if (!files || files.length === 0) return;
     const selected = files[0];
-    if (!selected.type.startsWith('image/')) {
-      onShowToast('Please select a valid image file.');
+    if (!['image/jpeg', 'image/png', 'image/webp'].includes(selected.type) || !selected.size || selected.size > 25 * 1024 * 1024) {
+      onShowToast('Select a JPG, PNG or WebP image up to 25 MB.');
       return;
     }
 
+    const version = ++uploadVersion.current;
+    const fail = () => { if (version === uploadVersion.current) onShowToast('Unable to read this image. Try a different JPG, PNG or WebP file.'); };
     const img = new Image();
     const reader = new FileReader();
+    reader.onerror = fail;
+    img.onerror = fail;
     reader.onload = (e) => {
       img.onload = () => {
+        if (version !== uploadVersion.current) return;
+        if (img.width * img.height > 16000000 || img.width > 8192 || img.height > 8192) {
+          onShowToast('Please use an image up to 16 megapixels and 8192 pixels per side.');
+          return;
+        }
         setFile(selected);
         setImgElement(img);
         setOrigWidth(img.width);
@@ -126,7 +138,12 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
   // Generate Resized Image Canvas
   useEffect(() => {
+    setOutputBlob(null);
+    setOutputDataUrl('');
     if (!imgElement) return;
+    if (![targetWidth, targetHeight].every(n => Number.isInteger(n) && n >= 1 && n <= 8192) || targetWidth * targetHeight > 16000000) return;
+    let cancelled = false;
+    let previewUrl = '';
 
     let sourceCanvas = document.createElement('canvas');
     sourceCanvas.width = imgElement.width;
@@ -171,8 +188,8 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
         const pad = 8;
         const cropX = Math.max(0, minX - pad);
         const cropY = Math.max(0, minY - pad);
-        const cropW = Math.min(sourceCanvas.width - cropX, maxX - minX + pad * 2);
-        const cropH = Math.min(sourceCanvas.height - cropY, maxY - minY + pad * 2);
+        const cropW = Math.min(sourceCanvas.width - cropX, maxX + 1 + pad - cropX);
+        const cropH = Math.min(sourceCanvas.height - cropY, maxY + 1 + pad - cropY);
 
         const trimmed = document.createElement('canvas');
         trimmed.width = cropW;
@@ -187,8 +204,8 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
     // Final Output Canvas with Target Dimensions
     const finalCanvas = document.createElement('canvas');
-    finalCanvas.width = Math.max(10, targetWidth);
-    finalCanvas.height = Math.max(10, targetHeight);
+    finalCanvas.width = targetWidth;
+    finalCanvas.height = targetHeight;
     const fCtx = finalCanvas.getContext('2d');
     if (!fCtx) return;
 
@@ -208,24 +225,30 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
     const buildBlob = (q: number) => {
       finalCanvas.toBlob((b) => {
+        if (cancelled) return;
         if (b) {
           // If KB limit is set and format is JPEG, attempt to compress further
-          if (maxKbLimit && b.size > maxKbLimit * 1024 && q > 0.2 && exportFormat === 'jpeg') {
+          if (maxKbLimit && b.size > maxKbLimit * 1000 && q > 0.2 && exportFormat === 'jpeg') {
             buildBlob(q - 0.15);
             return;
           }
           setOutputBlob(b);
-          setOutputDataUrl(URL.createObjectURL(b));
+          previewUrl = URL.createObjectURL(b);
+          setOutputDataUrl(previewUrl);
         }
       }, mime, q);
     };
 
     buildBlob(quality);
+    return () => {
+      cancelled = true;
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
   }, [imgElement, targetWidth, targetHeight, cropMargins, backgroundMode, exportFormat, maxKbLimit]);
 
   const handleDownload = () => {
     if (!outputBlob || !file) return;
-    if (maxKbLimit && outputBlob.size > maxKbLimit * 1024) {
+    if (maxKbLimit && outputBlob.size > maxKbLimit * 1000) {
       onShowToast(`Unable to meet ${maxKbLimit} KB limit. Try smaller dimensions or a different image.`);
       return;
     }
@@ -243,6 +266,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
   };
 
   const handleReset = () => {
+    uploadVersion.current += 1;
     setFile(null);
     setImgElement(null);
     setOutputBlob(null);
@@ -253,7 +277,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
     <div className="space-y-6 p-4 sm:p-6">
       <section aria-label="Quick signature resize sizes" className="rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50/60 dark:bg-indigo-950/20 p-4 space-y-3">
         <h2 className="text-sm font-extrabold text-slate-800 dark:text-slate-100">Signature Resize - 10KB, 20KB, 50KB, 100KB</h2>
-        <p className="text-xs text-slate-600 dark:text-slate-300">Choose a maximum size, then upload your signature. Confirm your form's required pixel dimensions and format before submitting.</p>
+        <p className="text-xs text-slate-600 dark:text-slate-300">Choose a maximum size (1 KB = 1,000 bytes), then upload your signature. Confirm your form's required pixel dimensions and format before submitting.</p>
         <div className="flex flex-wrap gap-2">
           {[10, 20, 50, 100].map(kb => (
             <button key={kb} type="button" onClick={() => { setMaxKbLimit(kb); setExportFormat('jpeg'); }}
@@ -276,7 +300,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
       {!imgElement ? (
         <UniversalFileUpload
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           multiple={false}
           maxSizeMB={25}
           title="Drop your signature image here to resize"
@@ -354,6 +378,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   </div>
                 </div>
 
+                {(![targetWidth, targetHeight].every(n => Number.isInteger(n) && n >= 1 && n <= 8192) || targetWidth * targetHeight > 16000000) && <p role="alert" className="text-xs text-red-600">Enter whole-pixel dimensions from 1 to 8192, up to 16 megapixels total.</p>}
                 {/* Scale Percentage Chips */}
                 <div>
                   <label className="text-[11px] font-bold text-slate-500 block mb-1.5">Quick Scale</label>
@@ -373,14 +398,14 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
                 {/* Official Exam & Form Presets */}
                 <div>
-                  <label className="text-[11px] font-bold text-slate-500 block mb-1.5">Government & Form Presets</label>
+                  <label className="text-[11px] font-bold text-slate-500 block mb-1.5">Example dimensions — check your form</label>
                   <div className="grid grid-cols-2 gap-1.5">
                     <button
                       type="button"
                       onClick={() => applyPreset(140, 60)}
                       className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-left hover:border-indigo-500 text-xs cursor-pointer"
                     >
-                      <div className="font-bold text-slate-900 dark:text-white">Exam Form</div>
+                      <div className="font-bold text-slate-900 dark:text-white">Compact signature</div>
                       <div className="text-[10px] text-slate-500">140 × 60 px</div>
                     </button>
                     <button
@@ -388,7 +413,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                       onClick={() => applyPreset(200, 100)}
                       className="p-2 rounded-xl border border-slate-200 dark:border-slate-800 text-left hover:border-indigo-500 text-xs cursor-pointer"
                     >
-                      <div className="font-bold text-slate-900 dark:text-white">Passport / Visa</div>
+                      <div className="font-bold text-slate-900 dark:text-white">Wide signature</div>
                       <div className="text-[10px] text-slate-500">200 × 100 px</div>
                     </button>
                     <button
@@ -574,7 +599,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   )}
                 </div>
 
-                {maxKbLimit && outputBlob && outputBlob.size > maxKbLimit * 1024 && (
+                {maxKbLimit && outputBlob && outputBlob.size > maxKbLimit * 1000 && (
                   <p role="alert" className="text-xs font-semibold text-rose-600 dark:text-rose-400">
                     File is larger than the selected {maxKbLimit} KB limit. Reduce dimensions to meet the form requirement.
                   </p>
@@ -585,7 +610,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   <button
                     type="button"
                     onClick={handleDownload}
-                    disabled={!outputBlob || Boolean(maxKbLimit && outputBlob.size > maxKbLimit * 1024)}
+                    disabled={!outputBlob || Boolean(maxKbLimit && outputBlob.size > maxKbLimit * 1000)}
                     className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all disabled:opacity-40"
                   >
                     <Download className="w-4 h-4" /> Download Resized Signature

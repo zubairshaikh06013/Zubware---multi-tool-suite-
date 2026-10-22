@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+import ts from 'typescript';
+
+// Exercise the real component effect with delayed canvas callbacks, including cleanup.
+const source = fs.readFileSync('src/components/tools/image/SignatureResizerTool.tsx', 'utf8');
+const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.React } }).outputText;
+const effects: Array<() => any> = [];
+const blobs: Array<(b: any) => void> = [];
+const writes: Array<[number, any]> = [];
+const revoked: string[] = [];
+let index = 0;
+const values: Record<number, any> = { 1: {width: 20, height: 20}, 6: 140, 7: 60, 9: false };
+const react = { createElement: () => null, useRef: () => ({current: 0}), useState: (initial: any) => { const i = index++; return [i in values ? values[i] : initial, (v: any) => writes.push([i, v])]; }, useEffect: (f: () => any) => effects.push(f) };
+const ctx = { drawImage() {}, fillRect() {} };
+const exports: any = {};
+vm.runInNewContext(compiled, {exports, require: (name: string) => name === 'react' ? {...react, default: react} : name.includes('LanguageContext') ? {useLanguage: () => ({t: (s: string) => s})} : name.includes('pdfUtils') ? {formatBytes: String} : {}, document: {createElement: () => ({getContext: () => ctx, toBlob: (cb: any) => blobs.push(cb)})}, URL: {createObjectURL: () => 'blob:preview', revokeObjectURL: (s: string) => revoked.push(s)} });
+exports.SignatureResizerTool({onShowToast() {}});
+const render = effects[1];
+const cleanup = render();
+cleanup();
+blobs.shift()!({size: 200});
+assert(!writes.some(([i,v]) => i === 13 && v), 'Cancelled export must not publish a stale blob');
+const cleanup2 = render();
+blobs.shift()!({size: 200});
+assert(writes.some(([i,v]) => i === 14 && v === 'blob:preview'), 'Current export must publish its preview');
+cleanup2();
+assert.deepEqual(revoked, ['blob:preview'], 'Preview URL must be released');
+console.log('Signature export: stale callbacks ignored; current preview published; URL released.');

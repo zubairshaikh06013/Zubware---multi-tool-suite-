@@ -3,6 +3,7 @@ import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FRE
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { AgeCalculationExamples } from '../src/components/seo/AgeCalculationExamples';
+import { GstInvoiceIntro } from '../src/components/seo/GstInvoiceIntro';
 import { ABOUT_QUALITY, REPORT_A_PROBLEM, PRIVACY_NOTES, SITE_REVIEW_DATE } from '../src/data/siteTrustContent';
 import fs from 'fs';
 import { marked } from 'marked';
@@ -461,6 +462,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
         <p style="font-size: 0.95rem; color: #475569; line-height: 1.6; margin-top: 0.5rem;">
           ${escapeHtml(tool.description)}
         </p>
+        ${tool.id === 'gst-invoice-generator' ? renderToStaticMarkup(createElement(GstInvoiceIntro)) : ''}
       </header>
 
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
@@ -1236,6 +1238,7 @@ function buildBlogArticleJsonLd(article: BlogArticle, canonicalUrl: string): obj
     },
     {
       '@type': 'Article',
+      'inLanguage': article.language || 'en',
       'headline': article.title,
       'description': article.description,
       'url': canonicalUrl,
@@ -1333,7 +1336,7 @@ function renderBlogArticleContent(article: BlogArticle): string {
     .filter((t): t is ToolMeta => Boolean(t));
 
   return `
-    <main style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif; line-height: 1.7;">
+    <main lang="${article.language || 'en'}" style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif; line-height: 1.7;">
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
         <a href="${DOMAIN}/blog" style="color: inherit; text-decoration: underline;">Guides &amp; Articles</a> &gt;

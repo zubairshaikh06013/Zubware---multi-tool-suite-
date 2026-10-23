@@ -47,7 +47,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
   'slowed-and-reverb': 'Slowed & Reverb Generator — Chill Audio Effects | Zubware',
 
   // --- Business & PDF Tools ---
-  'gst-invoice-generator': 'GST Invoice Generator — Free Tax Invoices PDF | Zubware',
+  'gst-invoice-generator': 'Free GST Invoice Generator & Bill Maker | Zubware',
   'pdf-merge': 'PDF Merge — Combine Multiple PDF Files Online | Zubware',
   'pdf-split': 'PDF Split — Extract & Separate PDF Pages Free | Zubware',
   'image-to-pdf': 'Image to PDF Converter — JPG & PNG to PDF Free | Zubware',

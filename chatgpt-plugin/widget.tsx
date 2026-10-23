@@ -46,6 +46,14 @@ function Widget() {
     setToast(message); clearTimeout(toastTimer.current);
     toastTimer.current = setTimeout(() => setToast(''), 4000);
   };
+  const openExternalLink = (event: React.MouseEvent<HTMLAnchorElement>, url: string) => {
+    if (bridge.current && bridgeStatus === 'Connected to ChatGPT') {
+      event.preventDefault();
+      void bridge.current.openLink({ url }).then(result => {
+        if (result.isError) showToast('Open this website: ' + url);
+      }).catch(() => showToast('Open this website: ' + url));
+    }
+  };
   const navigate = (path: string) => {
     const target = catalog.find(item => item.path === path.replace(/\.html$/, '') || '/' + item.id === path);
     if (target) setToolId(target.id);
@@ -59,8 +67,12 @@ function Widget() {
   return <LanguageProvider currentLang={language} onChangeLang={changeLanguage}>
     <main className="plugin-shell">
       <header className="plugin-header">
-        <button className="plugin-brand" onClick={() => setToolId('')}>Z<span>ubware</span></button>
-        <span>{catalog.length} tools</span>
+        <button className="plugin-brand" aria-label="Zubware — all tools" onClick={() => setToolId('')}>
+          <img className="plugin-logo" src="https://www.zubware.com/assets/zubware-original-upscaled.webp" width="44" height="44" alt="Zubware logo" />
+          <span className="plugin-brand-text"><strong>Zubware</strong><span className="plugin-domain">Free online tools</span></span>
+        </button>
+        <span className="plugin-tool-count">{catalog.length} tools</span>
+        <a className="plugin-website-button" href="https://www.zubware.com/" target="_blank" rel="noopener noreferrer" onClick={event => openExternalLink(event, 'https://www.zubware.com/')}>Visit Zubware.com ↗</a>
         <select aria-label="Tool language" value={language} onChange={e => void changeLanguage(e.target.value as LanguageCode)}><option value="en">English</option><option value="hi">हिंदी</option></select>
       </header>
       <p className="plugin-status">{bridgeStatus}</p>
@@ -68,9 +80,7 @@ function Widget() {
         <button className="plugin-back" onClick={() => setToolId('')}>← All tools</button>
         <h1>{tool.title}</h1><p className="plugin-description">{tool.description}</p>
         <p className="plugin-note">Choose files and settings in this panel. Opening a tool does not process your files. Some browser features may require the website.</p>
-        <a className="plugin-external" href={tool.url} target="_blank" rel="noopener noreferrer" onClick={event => {
-          if (bridge.current) { event.preventDefault(); void bridge.current.openLink({url:tool.url}).catch(() => showToast('Open this tool at ' + tool.url)); }
-        }}>Open on Zubware ↗</a>
+        <a className="plugin-external" href={tool.url} target="_blank" rel="noopener noreferrer" onClick={event => openExternalLink(event, tool.url)}>Use this tool on Zubware.com ↗</a>
         <ToolErrorBoundary key={tool.id} toolTitle={tool.title}><ToolRenderer activeTool={tool} triggerToast={showToast} navigateTo={navigate} /></ToolErrorBoundary>
       </> : <>
         <h1>What would you like to do?</h1><p className="plugin-description">Find a tool, choose your inputs, and work in your browser.</p>
@@ -81,7 +91,7 @@ function Widget() {
         {!visible.length && <p>No matching tools. Try another search or category.</p>}
       </>}
       {toast && <div role="status" className="plugin-toast">{toast}</div>}
-      <footer className="plugin-footer"><a href="https://www.zubware.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a> · <a href="https://www.zubware.com" target="_blank" rel="noopener noreferrer">Zubware.com</a></footer>
+      <footer className="plugin-footer"><a href="https://www.zubware.com/" target="_blank" rel="noopener noreferrer" onClick={event => openExternalLink(event, 'https://www.zubware.com/')}>Explore all tools at Zubware.com ↗</a><span> · </span><a href="https://www.zubware.com/privacy" target="_blank" rel="noopener noreferrer" onClick={event => openExternalLink(event, 'https://www.zubware.com/privacy')}>Privacy</a></footer>
     </main>
   </LanguageProvider>;
 }

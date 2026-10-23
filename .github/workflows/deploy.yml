@@ -37,6 +37,19 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Install ChatGPT plugin dependencies
+        run: npm ci
+        working-directory: chatgpt-plugin
+
+      - name: Build ChatGPT plugin interface
+        run: npm run build
+        working-directory: chatgpt-plugin
+        env:
+          ZUBWARE_PLUGIN_BASE: /chatgpt-plugin/
+
+      - name: Include ChatGPT plugin in website deployment
+        run: cp -R chatgpt-plugin/dist dist/chatgpt-plugin
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:

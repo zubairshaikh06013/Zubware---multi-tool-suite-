@@ -1,0 +1,29 @@
+name: Zubware ChatGPT plugin
+on:
+  pull_request:
+    paths:
+      - 'chatgpt-plugin/**'
+      - 'src/**'
+      - 'package*.json'
+      - '.github/workflows/chatgpt-plugin.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  plugin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm ci
+      - run: node scripts/prepareVideoEngine.mjs
+      - run: npm ci
+        working-directory: chatgpt-plugin
+      - run: npm run build
+        working-directory: chatgpt-plugin
+      - run: npm run check
+        working-directory: chatgpt-plugin
+      - run: npm test
+        working-directory: chatgpt-plugin

@@ -22,7 +22,7 @@ function Widget() {
   const visible = useMemo(() => {
     const terms = query.toLowerCase().trim().split(/\s+/).filter(Boolean);
     return catalog.filter(item => (!category || item.category === category) && terms.every(term =>
-      [item.title, item.description, item.id, item.category].join(' ').toLowerCase().includes(term)));
+      [item.title, item.description, item.id, item.category, ...item.features].join(' ').toLowerCase().includes(term)));
   }, [query, category]);
   useEffect(() => {
     if (window.parent === window) { setBridgeStatus('Browser preview'); return; }

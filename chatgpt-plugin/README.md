@@ -51,3 +51,9 @@ Completed locally: all 309 metadata/component mappings; production widget build;
 Not completed: visual browser QA (Chromium download failed in the execution environment), live ChatGPT connection, per-tool upload/processing/download tests, sandbox camera/microphone/storage behavior, codec/worker compatibility, public deployment and directory submission. Root-relative media-engine requests and third-party model resources may need dedicated sandbox adapters. The whole catalogue is integrated at the interface level; this is **not** a claim that all 309 tools already run successfully inside ChatGPT.
 
 External processing behavior remains that of each existing tool, including the website's background-removal endpoint. Review these per-tool data flows and update user-facing privacy information before public release. Do not enter real identity documents, passwords or confidential records during testing.
+
+## Hosted deployment
+
+The Pages workflow builds and publishes the standalone panel at `https://www.zubware.com/chatgpt-plugin/`. The Cloudflare entry point is `worker.mjs`; build its single-module bundle with `node build-worker.mjs` after building the panel with `ZUBWARE_PLUGIN_BASE=/chatgpt-plugin/`. It serves a stateless `/mcp` endpoint and `/health`. The widget HTML is embedded in the bundle; hashed static assets come from the website. No new storage service or paid plan is required. Rebuild and redeploy the Worker whenever widget asset hashes change.
+
+Worker-specific validation: `node --test test-worker.mjs` after building the bundle. This validates the real Worker handler, MCP protocol, hosted resource URLs, body size, origin checks and routes. It is separate from live ChatGPT per-tool validation.

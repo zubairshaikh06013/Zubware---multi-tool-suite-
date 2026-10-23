@@ -23,7 +23,13 @@ jobs:
         working-directory: chatgpt-plugin
       - run: npm run build
         working-directory: chatgpt-plugin
+        env:
+          ZUBWARE_PLUGIN_BASE: /chatgpt-plugin/
       - run: npm run check
         working-directory: chatgpt-plugin
       - run: npm test
+        working-directory: chatgpt-plugin
+      - run: node build-worker.mjs
+        working-directory: chatgpt-plugin
+      - run: node --test test-worker.mjs
         working-directory: chatgpt-plugin

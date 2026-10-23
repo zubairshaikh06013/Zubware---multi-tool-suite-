@@ -24,7 +24,7 @@ createServer(async (req,res) => {
       await server.connect(transport);await transport.handleRequest(req,res);return;
     }
     if(req.method!=='GET' && req.method!=='HEAD'){res.writeHead(405).end();return;}
-    const path = resolve(dir, '.' + decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname));
+    const path = resolve(dir, '.' + decodeURIComponent(url.pathname === '/' ? '/index.html' : url.pathname.replace(/^\/chatgpt-plugin(?=\/)/, '')));
     if(!path.startsWith(dir + sep)){res.writeHead(404).end();return;}
     try{
       const bytes=await readFile(path);

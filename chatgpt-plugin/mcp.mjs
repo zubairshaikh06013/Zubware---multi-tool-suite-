@@ -16,7 +16,7 @@ export function createZubwareServer({ html, assetOrigin }) {
   const server = new McpServer({ name:'zubware', version:'0.1.0' }, { instructions });
   registerAppResource(server, 'zubware-tools', RESOURCE_URI, {}, async () => ({ contents:[{
     uri:RESOURCE_URI,mimeType:RESOURCE_MIME_TYPE,
-    text:html.replace(/(src|href)="\/(?!\/)/g, `$1="${origin}/`),
+    text:(typeof html === 'function' ? await html() : html).replace(/(src|href)="\/(?!\/)/g, `$1="${origin}/`),
     _meta:{ ui:{ prefersBorder:true,csp:{
       resourceDomains:[origin,'https://www.zubware.com','https://cdn.jsdelivr.net','https://unpkg.com','https://huggingface.co','https://*.huggingface.co','https://*.hf.co','blob:','data:'],
       connectDomains:[origin,'https://api.zubware.com','https://www.zubware.com','https://cdn.jsdelivr.net','https://unpkg.com','https://huggingface.co','https://*.huggingface.co','https://*.hf.co'],

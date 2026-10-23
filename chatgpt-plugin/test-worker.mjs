@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import worker from './worker-dist/index.mjs';
+import {createWorker} from './worker-dist/index.mjs';
+const worker=createWorker({loadWidgetHtml:async()=>'<title>Zubware tools</title><script src="/chatgpt-plugin/assets/test.js"></script>'});
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 const host='https://zubware-chatgpt.zubairshaikh06013.workers.dev';

@@ -1,6 +1,5 @@
 import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
 import { createZubwareServer } from './mcp.mjs';
-import html from './dist/index.html';
 import catalog from './generated/catalog.json' with {type:'json'};
 const WEBSITE='https://www.zubware.com';
 const HOST='zubware-chatgpt.zubairshaikh06013.workers.dev';
@@ -18,7 +17,14 @@ async function boundedBody(request){
  const bytes=new Uint8Array(size);let offset=0;for(const chunk of chunks){bytes.set(chunk,offset);offset+=chunk.length;}
  return new TextDecoder().decode(bytes);
 }
-export default {
+async function currentWidgetHtml(){
+ const response=await fetch(WEBSITE+'/chatgpt-plugin/',{headers:{Accept:'text/html'},cache:'no-store'});
+ if(!response.ok)throw new Error('widget_unavailable');
+ const html=await boundedBody(response);
+ if(!html.includes('<title>Zubware tools</title>') || !html.includes('/chatgpt-plugin/assets/'))throw new Error('invalid_widget_document');
+ return html;
+}
+export function createWorker({loadWidgetHtml=currentWidgetHtml}={}){return {
  async fetch(request,env,ctx){
   const url=new URL(request.url);
   if(![HOST,'localhost','127.0.0.1'].includes(url.hostname))return new Response('Unknown host',{status:403});
@@ -31,7 +37,7 @@ export default {
   if(request.method!=='POST')return new Response('Use POST for stateless MCP',{status:405,headers:{...cors,Allow:'POST, OPTIONS'}});
   let body;
   try{body=await boundedBody(request);}catch{return new Response('Request too large',{status:413,headers:cors});}
-  const server=createZubwareServer({html,assetOrigin:WEBSITE});
+  const server=createZubwareServer({html:loadWidgetHtml,assetOrigin:WEBSITE});
   const transport=new WebStandardStreamableHTTPServerTransport({sessionIdGenerator:undefined,enableJsonResponse:true});
   try{
    await server.connect(transport);
@@ -41,4 +47,5 @@ export default {
   }catch(error){console.error(JSON.stringify({event:'mcp_request_failed',message:error instanceof Error?error.message:'unknown'}));return Response.json({error:'MCP request failed'},{status:500,headers:cors});}
   finally{await transport.close();await server.close();}
  }
-};
+};}
+export default createWorker();

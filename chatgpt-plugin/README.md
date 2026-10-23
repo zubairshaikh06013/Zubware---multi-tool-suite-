@@ -54,6 +54,6 @@ External processing behavior remains that of each existing tool, including the w
 
 ## Hosted deployment
 
-The Pages workflow builds and publishes the standalone panel at `https://www.zubware.com/chatgpt-plugin/`. The Cloudflare entry point is `worker.mjs`; build its single-module bundle with `node build-worker.mjs` after building the panel with `ZUBWARE_PLUGIN_BASE=/chatgpt-plugin/`. It serves a stateless `/mcp` endpoint and `/health`. The widget HTML is embedded in the bundle; hashed static assets come from the website. No new storage service or paid plan is required. Rebuild and redeploy the Worker whenever widget asset hashes change.
+The Pages workflow builds and publishes the standalone panel at `https://www.zubware.com/chatgpt-plugin/`. The Cloudflare entry point is `worker.mjs`; build its single-module bundle with `node build-worker.mjs` after building the panel with `ZUBWARE_PLUGIN_BASE=/chatgpt-plugin/`. It serves a stateless `/mcp` endpoint and `/health`. The Worker loads the current widget HTML from the website on each resource request; hashed static assets come from the website. No new storage service or paid plan is required. Website asset hash changes do not require a Worker redeployment. Redeploy the Worker when its MCP catalogue or server logic changes.
 
 Worker-specific validation: `node --test test-worker.mjs` after building the bundle. This validates the real Worker handler, MCP protocol, hosted resource URLs, body size, origin checks and routes. It is separate from live ChatGPT per-tool validation.

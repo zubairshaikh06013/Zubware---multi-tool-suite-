@@ -81,7 +81,7 @@ function Widget() {
         {!visible.length && <p>No matching tools. Try another search or category.</p>}
       </>}
       {toast && <div role="status" className="plugin-toast">{toast}</div>}
-      <footer className="plugin-footer"><a href="https://www.zubware.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy</a> · <a href="https://www.zubware.com" target="_blank" rel="noopener noreferrer">Zubware.com</a></footer>
+      <footer className="plugin-footer"><a href="https://www.zubware.com/privacy" target="_blank" rel="noopener noreferrer">Privacy</a> · <a href="https://www.zubware.com" target="_blank" rel="noopener noreferrer">Zubware.com</a></footer>
     </main>
   </LanguageProvider>;
 }

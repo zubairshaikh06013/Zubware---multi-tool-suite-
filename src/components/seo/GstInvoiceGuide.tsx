@@ -1,7 +1,32 @@
 import React from 'react';
+import { getLinkUrl } from '../../lib/paths';
 
 export const GstInvoiceGuide = () => (
         <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 border border-indigo-200/50 dark:border-indigo-900/40">
+          <div id="gst-invoice-format" className="space-y-4">
+            <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">GST invoice format: sample bill and PDF download</h2>
+            <p className="text-sm text-slate-600 dark:text-slate-400">See where seller, buyer, item taxes and balance due appear in an A4 invoice. This illustrative layout uses fictional details and an example 18% rate. Your invoice uses the details and settings you enter in the editor.</p>
+            <a href={getLinkUrl('/downloads/gst-invoice-sample.pdf')} className="block max-w-md mx-auto" aria-label="Open illustrative GST invoice sample PDF">
+              <img src={getLinkUrl('/downloads/gst-invoice-sample.png')} width="794" height="1123" loading="lazy" alt="Illustrative GST invoice: taxable value Rs 29,000, CGST Rs 2,610, SGST Rs 2,610, total Rs 34,220 and balance Rs 24,220 after a partial payment" className="w-full h-auto rounded-xl border border-slate-200 shadow-sm" />
+            </a>
+            <a href={getLinkUrl('/downloads/gst-invoice-sample.pdf')} download className="inline-block rounded-xl bg-indigo-600 px-5 py-3 text-sm font-bold text-white">Download sample invoice PDF</a>
+            <p lang="hi" className="text-sm text-slate-600 dark:text-slate-400">यह सिर्फ समझने के लिए sample है। अपना बिल बनाने के लिए ऊपर form में अपनी जानकारी भरें। Sample के नाम, GSTIN या payment details इस्तेमाल न करें।</p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-4 text-sm text-slate-700 dark:text-slate-300">
+            {[
+              ['UPI QR for the balance', 'Record a partial payment and the QR requests only the amount still due. A fully paid invoice hides the QR.'],
+              ['Find saved invoices', 'Keep up to 50 invoices in this browser and search by invoice number or customer name.'],
+              ['Move an editable invoice', 'Export the current invoice as a JSON backup, then open it on another device to continue editing.'],
+            ].map(([title, description]) => <div key={title} className="rounded-2xl bg-indigo-50 dark:bg-indigo-950 p-4 space-y-2"><h3 className="font-bold">{title}</h3><p>{description}</p></div>)}
+          </div>
+          <nav aria-label="GST invoice guides" className="space-y-3 text-sm">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">GST billing guides — आसान हिंदी में</h2>
+            <ul className="list-disc pl-5 space-y-3 text-indigo-600 dark:text-indigo-400">
+              <li><a className="underline" href={getLinkUrl('/blog/gst-invoice-format-guide')}>GST invoice format: sample bill और जरूरी details</a></li>
+              <li><a className="underline" href={getLinkUrl('/blog/cgst-sgst-igst-calculation-guide')}>CGST, SGST और IGST: calculation examples</a></li>
+              <li><a className="underline" href={getLinkUrl('/blog/hsn-sac-gstin-invoice-guide')}>HSN/SAC और GSTIN: invoice बनाने से पहले कैसे check करें</a></li>
+            </ul>
+          </nav>
           <div className="space-y-3">
             <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white">GST invoice example: from item prices to balance due</h2>
             <p className="text-sm text-slate-600 dark:text-slate-400">This worked example shows how the calculator handles a discount and partial payment. The 18% rate is an arithmetic example, not a recommendation for your goods or services. Other Charges are zero and rounding does not change this example.</p>

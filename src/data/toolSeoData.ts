@@ -1408,6 +1408,10 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ],
     "faq": [
       {
+        "question": "Can I use this as a free GST bill maker and download a sample invoice?",
+        "answer": "Yes. This GST invoice generator is also a free GST bill maker. Download the illustrative sample PDF to see the layout, then use the editor with your own details to create an A4 invoice. The public sample contains fictional details and is not an invoice to issue to a customer."
+      },
+      {
         "question": "Is this GST invoice generator free, and do I need an account?",
         "answer": "You can create, preview, print and download invoices in your browser without creating an account. Invoice processing and local saving do not require a paid subscription."
       },

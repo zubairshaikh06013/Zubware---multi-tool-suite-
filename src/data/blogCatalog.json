@@ -1,5 +1,74 @@
 [
   {
+    "slug": "gst-invoice-format-guide",
+    "title": "GST Invoice Format: Sample Bill और PDF बनाने की आसान गाइड",
+    "description": "GST invoice का sample देखें। Seller, buyer, items, tax और balance due की details समझें और free bill maker से अपना A4 PDF बनाएं।",
+    "canonicalPath": "/blog/gst-invoice-format-guide",
+    "publishedTime": "2026-10-23T22:10:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Business Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "GST Invoice",
+      "GST Invoice Format",
+      "GST Bill Maker",
+      "Hindi Guide"
+    ],
+    "excerpt": "एक sample invoice की मदद से समझें कि बिल में क्या भरना है, tax कहाँ दिखता है और PDF भेजने से पहले क्या देखना है।",
+    "relatedToolIds": [
+      "gst-invoice-generator"
+    ]
+  },
+  {
+    "slug": "cgst-sgst-igst-calculation-guide",
+    "title": "CGST, SGST और IGST Calculation: GST Invoice के आसान Examples",
+    "description": "Tax-exclusive और inclusive GST की calculation, discount और partial payment के examples समझें। GST invoice में tax mode और totals check करें।",
+    "canonicalPath": "/blog/cgst-sgst-igst-calculation-guide",
+    "publishedTime": "2026-10-23T22:10:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Business Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "GST Invoice",
+      "CGST",
+      "SGST",
+      "IGST",
+      "GST Calculation",
+      "Hindi Guide"
+    ],
+    "excerpt": "₹1,000 और ₹1,180 के examples से tax निकालना समझें और invoice में discount या advance payment की सही जगह पहचानें।",
+    "relatedToolIds": [
+      "gst-invoice-generator"
+    ]
+  },
+  {
+    "slug": "hsn-sac-gstin-invoice-guide",
+    "title": "HSN/SAC Code और GSTIN: GST Invoice से पहले कैसे Check करें",
+    "description": "GST Portal पर HSN/SAC खोजने और GSTIN details check करने का तरीका जानें। Format check, registration lookup और tax rate में फर्क समझें।",
+    "canonicalPath": "/blog/hsn-sac-gstin-invoice-guide",
+    "publishedTime": "2026-10-23T22:10:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Business Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "GST Invoice",
+      "HSN",
+      "SAC",
+      "GSTIN",
+      "Hindi Guide"
+    ],
+    "excerpt": "किसी दूसरे bill से code copy करने से पहले अपनी item description और taxpayer details को official portal पर check करें।",
+    "relatedToolIds": [
+      "gst-invoice-generator"
+    ]
+  },
+  {
     "slug": "photo-upload-rejected-file-size-format-checklist",
     "title": "Photo Upload Rejected? Check Bytes, Pixels and Format",
     "description": "Troubleshoot rejected photo uploads with a byte-size reference, format checks and a repeatable resize-and-compress workflow. Includes a downloadable checklist.",

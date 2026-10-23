@@ -441,6 +441,7 @@ export interface BlogArticleSection {
 }
 
 export interface BlogArticle {
+  language?: 'en' | 'hi';
   slug: string;
   title: string;
   metaTitle: string;

@@ -90,7 +90,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   // Financial & Business Calculator Clusters
   'emi-calculator': ['compound-interest-calculator', 'ctc-calculator', 'loan-calculator', 'gst-invoice-generator'],
   'compound-interest-calculator': ['emi-calculator', 'percentage-calculator', 'loan-calculator'],
-  'gst-invoice-generator': ['discount-calculator', 'percentage-calculator', 'emi-calculator', 'ctc-calculator'],
+  'gst-invoice-generator': ['discount-calculator', 'percentage-calculator', 'signature-maker', 'qr-generator'],
   'salary-hike-calculator': ['ctc-calculator', 'experience-calculator', 'working-days-calculator'],
   'ctc-calculator': ['salary-hike-calculator', 'notice-period-calculator', 'working-days-calculator'],
   'percentage-calculator': ['discount-calculator', 'compound-interest-calculator', 'scientific-calculator'],

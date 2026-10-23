@@ -1145,9 +1145,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "gst-invoice-generator",
-    "title": "GST Invoice Generator — Create & Download Invoices Online",
+    "title": "Free GST Invoice Generator & GST Bill Maker",
     "navTitle": "GST Invoice",
-    "description": "Create GST invoices with item discounts, CGST/SGST or IGST, UPI payment QR and A4 PDF download. Save invoices locally and export editable backups.",
+    "description": "Create GST bills online for free, without an account. Calculate CGST/SGST or IGST, add a UPI payment QR, save invoices and download A4 PDFs.",
     "icon": "🧾",
     "path": "/gst-invoice-generator",
     "filename": "gst-invoice-generator.html",

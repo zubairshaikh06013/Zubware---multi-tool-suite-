@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
+import { GstInvoiceIntro } from './components/seo/GstInvoiceIntro';
 import { Footer } from './components/Footer';
 import { Breadcrumb } from './components/Breadcrumb';
 import { BackButton } from './components/BackButton';
@@ -1080,6 +1081,7 @@ export default function App() {
                   <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
                     {activeTool.description}
                   </p>
+                  {activeTool.id === 'gst-invoice-generator' && <GstInvoiceIntro />}
                 </div>
 
               {/* THE TOOL COMPONENT INTERFACE WRAPPED IN FROSTED GLASS */}

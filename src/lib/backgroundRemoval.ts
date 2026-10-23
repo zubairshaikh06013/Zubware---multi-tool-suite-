@@ -1,5 +1,5 @@
-import { removeBackground } from '@imgly/background-removal';
-import type { Config } from '@imgly/background-removal';
+import { removeBackground } from '../vendor/background-removal';
+import type { Config } from '../vendor/background-removal';
 
 
 export type BackgroundRemovalMode = 'fast' | 'quality';

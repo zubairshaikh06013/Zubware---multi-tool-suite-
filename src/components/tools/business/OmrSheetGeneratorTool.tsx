@@ -696,6 +696,11 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
               </div>
             )}
 
+            <p className="text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+              Print on A4 at <strong>Actual Size / 100%</strong> (disable Fit to Page). Check the first printed sheet for clear, separate bubbles and correctly aligned corner marks before making copies. Commercial OMR scanner compatibility is not guaranteed without calibration.
+              {totalPages > 1 ? ' Download PDF includes every page; Save PNG downloads only the page currently previewed.' : ''}
+            </p>
+
             {/* Sheet Display Stage */}
             <div className="p-4 rounded-xl bg-slate-200/70 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center min-h-[500px] overflow-auto">
               <canvas

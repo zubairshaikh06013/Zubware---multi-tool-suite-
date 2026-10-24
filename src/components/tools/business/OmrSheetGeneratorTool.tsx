@@ -256,9 +256,11 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     const effectiveColumns = Math.min(maxReadableColumns, Math.max(columnsCount, Math.ceil(pageQuestions / 50)));
     const questionsPerCol = Math.ceil(pageQuestions / effectiveColumns);
     const colWidth = (contentWidth - (effectiveColumns - 1) * 20) / effectiveColumns;
-    const rowHeight = Math.min(26, (questionsAvailableHeight - 24) / questionsPerCol);
+    // Use the available A4 space for legible bubbles rather than leaving half the page empty.
+    // Reserve room for signatures and registration marks below the question grid.
+    const rowHeight = Math.min(46, (questionsAvailableHeight - 24) / questionsPerCol);
     // Never let adjacent bubbles overlap when a dense 150/200-question layout is selected.
-    const bubbleRadius = Math.max(3, Math.min(9, rowHeight * 0.32, (colWidth - 56) / (optionsPerQuestion * 2) - 2));
+    const bubbleRadius = Math.max(3, Math.min(12, rowHeight * 0.31, (colWidth - 56) / (optionsPerQuestion * 2) - 2));
 
     for (let c = 0; c < effectiveColumns; c++) {
       const colStartX = infoStartX + c * (colWidth + 20);
@@ -338,7 +340,9 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
     // 5. Signature Boxes Section at Bottom
     if (showSignatureBoxes) {
-      const sigY = canvas.height - pad - markSize - 55;
+      // Position signatures directly after the answer grid, with a minimum bottom margin.
+      const gridBottom = questionsStartY + 24 + questionsPerCol * rowHeight;
+      const sigY = Math.min(canvas.height - pad - markSize - 65, gridBottom + 42);
       const boxWidth = contentWidth * 0.42;
 
       ctx.strokeStyle = '#64748b';

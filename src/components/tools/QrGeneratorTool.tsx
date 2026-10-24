@@ -1077,7 +1077,19 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     { name: 'Cafe Menu', fg: '#78350f', bg: '#fffbeb', dot: 'dots' as const, eye: 'circle' as const },
                     { name: 'Eco Green', fg: '#14532d', bg: '#f0fdf4', dot: 'rounded' as const, eye: 'square' as const },
                     { name: 'Modern Teal', fg: '#115e59', bg: '#f0fdfa', dot: 'classy' as const, eye: 'rounded' as const },
-                    { name: 'Royal Purple', fg: '#581c87', bg: '#faf5ff', dot: 'dots' as const, eye: 'rounded' as const }
+                    { name: 'Royal Purple', fg: '#581c87', bg: '#faf5ff', dot: 'dots' as const, eye: 'rounded' as const },
+                    { name: 'Midnight Navy', fg: '#172554', bg: '#eff6ff', dot: 'square' as const, eye: 'rounded' as const },
+                    { name: 'Rose Studio', fg: '#881337', bg: '#fff1f2', dot: 'rounded' as const, eye: 'circle' as const },
+                    { name: 'Monochrome', fg: '#171717', bg: '#fafafa', dot: 'classy' as const, eye: 'square' as const },
+                    { name: 'Ocean Blue', fg: '#075985', bg: '#f0f9ff', dot: 'dots' as const, eye: 'circle' as const },
+                    { name: 'Warm Copper', fg: '#7c2d12', bg: '#fff7ed', dot: 'square' as const, eye: 'rounded' as const },
+                    { name: 'Olive Market', fg: '#365314', bg: '#f7fee7', dot: 'rounded' as const, eye: 'rounded' as const },
+                    { name: 'Slate Minimal', fg: '#334155', bg: '#f8fafc', dot: 'dots' as const, eye: 'square' as const },
+                    { name: 'Deep Plum', fg: '#701a75', bg: '#fdf4ff', dot: 'classy' as const, eye: 'rounded' as const },
+                    { name: 'Dark Espresso', fg: '#44403c', bg: '#fafaf9', dot: 'square' as const, eye: 'circle' as const },
+                    { name: 'Teal Contrast', fg: '#134e4a', bg: '#ccfbf1', dot: 'rounded' as const, eye: 'circle' as const },
+                    { name: 'Indigo Clean', fg: '#3730a3', bg: '#eef2ff', dot: 'square' as const, eye: 'square' as const },
+                    { name: 'Burgundy', fg: '#9f1239', bg: '#fff1f2', dot: 'dots' as const, eye: 'rounded' as const }
                   ].map(t => (
                     <button key={t.name} type="button" onClick={() => {
                       setFgColor(t.fg); setBgColor(t.bg); setTransparentBg(false);

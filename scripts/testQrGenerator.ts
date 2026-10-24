@@ -56,6 +56,18 @@ const logo = await sharp({ create: { width: 80, height: 40, channels: 4, backgro
 for (const framePosition of ['top', 'bottom'] as const) {
   await verify(payloads[4], { ...base, logoImage: `data:image/png;base64,${logo.toString('base64')}`, logoSize: 20, framePosition, frameText: 'SCAN FOR MENU', gradientType: 'radial', useGradient: true });
 }
+// Verify the six one-click design templates decode before shipping them to users.
+const quickDesigns = [
+  { fgColor: '#0f172a', bgColor: '#ffffff', dotStyle: 'square', cornerStyle: 'square' },
+  { fgColor: '#312e81', bgColor: '#eef2ff', dotStyle: 'rounded', cornerStyle: 'rounded' },
+  { fgColor: '#78350f', bgColor: '#fffbeb', dotStyle: 'dots', cornerStyle: 'circle' },
+  { fgColor: '#14532d', bgColor: '#f0fdf4', dotStyle: 'rounded', cornerStyle: 'square' },
+  { fgColor: '#115e59', bgColor: '#f0fdfa', dotStyle: 'classy', cornerStyle: 'rounded' },
+  { fgColor: '#581c87', bgColor: '#faf5ff', dotStyle: 'dots', cornerStyle: 'rounded' }
+] satisfies Array<Pick<QrDesign, 'fgColor' | 'bgColor' | 'dotStyle' | 'cornerStyle'>>;
+for (const template of quickDesigns) {
+  await verify(payloads[4], { ...base, ...template });
+}
 await verify(payloads[4], { ...base, transparentBg: true, dotStyle: 'dots', qrSize: 320 });
 await verify('A'.repeat(1200), { ...base, qrSize: 256, margin: 0 });
 for (const errorCorrection of ['L', 'M', 'Q', 'H'] as const) await verify(payloads[4], { ...base, errorCorrection });

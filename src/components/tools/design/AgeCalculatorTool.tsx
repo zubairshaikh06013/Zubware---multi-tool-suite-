@@ -250,20 +250,26 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             </p>
           </div>
 
+          <p className="text-xs text-slate-600 dark:text-slate-400">
+            Months and weeks below are completed units, with the remaining days shown separately. Hours, minutes and seconds use 24 hours per calendar day; they do not account for your birth time or daylight-saving clock changes.
+          </p>
+
           {/* Quick Metrics Breakdown Cards */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-              <span className="text-[10px] font-bold text-slate-400 uppercase">Total Months</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase">Completed Months</span>
               <div className="text-lg font-black text-slate-900 dark:text-white font-mono">
                 {result.totalMonths.toLocaleString()}
               </div>
+              <p className="text-xs text-slate-500">and {result.days} days</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
-              <span className="text-[10px] font-bold text-slate-400 uppercase">Total Weeks</span>
+              <span className="text-[10px] font-bold text-slate-400 uppercase">Completed Weeks</span>
               <div className="text-lg font-black text-slate-900 dark:text-white font-mono">
                 {result.totalWeeks.toLocaleString()}
               </div>
+              <p className="text-xs text-slate-500">and {result.totalDays % 7} days</p>
             </div>
 
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
@@ -282,14 +288,14 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
 
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Total Minutes</span>
-              <div className="text-lg font-black text-slate-900 dark:text-white font-mono truncate">
+              <div className="text-lg font-black text-slate-900 dark:text-white font-mono break-all">
                 {result.totalMinutes.toLocaleString()}
               </div>
             </div>
 
             <div className="p-4 rounded-2xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 space-y-1">
               <span className="text-[10px] font-bold text-slate-400 uppercase">Total Seconds</span>
-              <div className="text-lg font-black text-slate-900 dark:text-white font-mono truncate">
+              <div className="text-lg font-black text-slate-900 dark:text-white font-mono break-all">
                 {result.totalSeconds.toLocaleString()}
               </div>
             </div>

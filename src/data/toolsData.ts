@@ -4820,7 +4820,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "age-calculator",
     "title": "Age Calculator — Calculate Your Exact Age Online",
     "navTitle": "Age Calculator",
-    "description": "Free age calculator by date of birth. Find your exact age in years, months and days, calculate age on any date, and see your next birthday countdown.",
+    "description": "Calculate age by date of birth in years, months and days. Find how many days old you are, check age on a specific date, and see your next birthday countdown.",
     "icon": "🎂",
     "path": "/age-calculator",
     "filename": "age-calculator.html",
@@ -4829,12 +4829,12 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "features": [
       "Exact Chronological Age in Years, Months, and Days",
       "Custom Age at Date: Calculate Age on Past or Future Milestones",
-      "Comprehensive Time Units: Total Months, Weeks, Days, Hours, Minutes & Seconds",
+      "Completed Months and Weeks with Remaining Days; Total Calendar Days",
       "Next Birthday Countdown Timer with Day of the Week",
       "Day of Birth Detection & Astrological Signs (Zodiac, Chinese Zodiac, Birthstone)",
       "Biological Journey Milestones: Estimated Heartbeats, Breaths & Sleep Time",
       "One-Click Copy Age Summary Card to Clipboard",
-      "100% Client-Side Browser Processing with Zero Server Tracking"
+      "Age Calculations Run Locally in Your Browser"
     ],
     "tags": [
       "dob calculation",

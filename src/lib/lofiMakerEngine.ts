@@ -68,8 +68,10 @@ function createTapeSaturationCurve(): Float32Array {
  * Creates a subtle background vinyl noise buffer
  */
 function createSubtleVinylBuffer(ctx: BaseAudioContext, durationSec: number): AudioBuffer {
+  // Vinyl texture loops; avoid allocating a full-length stereo noise buffer
+  // (which can consume hundreds of MB for long songs on mobile).
   const sampleRate = ctx.sampleRate;
-  const length = Math.ceil(sampleRate * Math.max(1, durationSec));
+  const length = Math.ceil(sampleRate * Math.min(12, Math.max(1, durationSec)));
   const buffer = ctx.createBuffer(2, length, sampleRate);
   const left = buffer.getChannelData(0);
   const right = buffer.getChannelData(1);
@@ -202,6 +204,7 @@ export async function processAutomaticLofi(
     const vinylBuf = createSubtleVinylBuffer(offlineCtx, renderDuration);
     const vinylSource = offlineCtx.createBufferSource();
     vinylSource.buffer = vinylBuf;
+    vinylSource.loop = true;
     const vinylGain = offlineCtx.createGain();
     vinylGain.gain.value = vinylNoiseVolume * 0.12;
     vinylSource.connect(vinylGain);

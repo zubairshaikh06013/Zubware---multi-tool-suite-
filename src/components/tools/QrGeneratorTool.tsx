@@ -332,13 +332,19 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   // Export Formats
   const downloadPng = () => {
     if (!ready || !canvasRef.current) return;
-    const url = canvasRef.current.toDataURL('image/png');
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `qr-code-${qrType}.png`;
-    a.click();
-    saveToHistory(qrType, getConstructedText());
-    onShowToast('Downloaded high-res PNG!');
+    try {
+      canvasRef.current.toBlob(blob => {
+        if (!blob) { onShowToast('Could not create a PNG. Try again or download SVG.'); return; }
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `qr-code-${qrType}.png`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        saveToHistory(qrType, payload);
+        onShowToast('PNG download started.');
+      }, 'image/png');
+    } catch { onShowToast('PNG export failed. Try a simpler design or download SVG.'); }
   };
 
   const downloadSvg = async () => {

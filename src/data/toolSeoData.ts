@@ -2246,6 +2246,18 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "answer": "You can download a QR code for business materials such as cards, posters, menus and product packaging. Check that you have permission to use any logo or content you include. For printed materials, use a high-resolution PNG or SVG, keep enough clear space around the code, and test a physical sample before printing in bulk."
       },
       {
+        "question": "What size should I print a QR code so people can scan it?",
+        "answer": "For a close-range printed static QR code, start around 3 x 3 cm or larger and increase the size for longer scanning distances or dense content. Preserve the clear border, use strong contrast, and scan a sample at its real print size. There is no single minimum size that works for every camera, surface or viewing distance."
+      },
+      {
+        "question": "Can I scan a QR code with my phone camera without installing an app?",
+        "answer": "Many modern Android and iPhone camera apps can detect QR codes. Open the camera, point it at the full code in good light and tap the detected link or action. If nothing appears, try your phone's built-in QR scanner or check camera settings. Zubware creates the code; scanning support depends on the phone."
+      },
+      {
+        "question": "Why does a QR code work on screen but not after printing?",
+        "answer": "Printing can reduce contrast, blur small modules or crop the clear border. Glossy reflections, curved packaging and small print sizes can also make scanning harder. Export a crisp PNG or SVG, avoid stretching the design, and test a physical print under typical lighting before ordering a large batch."
+      },
+      {
         "question": "Can I generate UPI payment, contact or calendar QR codes?",
         "answer": "Yes. UPI mode accepts a payee ID, name and optional INR amount; verify the recipient in your payment app before paying. vCard mode encodes contact details. Event times use your device time zone and are converted to UTC. Phone, SMS, location and calendar handling depends on the scanner and installed apps, so confirm the result on the intended devices."
       }

@@ -47,6 +47,7 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
   const [isPlayingProcessed, setIsPlayingProcessed] = useState<boolean>(false);
   const [processedCurrentTime, setProcessedCurrentTime] = useState<number>(0);
   const [processedDuration, setProcessedDuration] = useState<number>(0);
+  const [lofiPreset, setLofiPreset] = useState<'classic' | 'dreamy' | 'warm'>('classic');
 
   // Clean up Object URLs on unmount
   useEffect(() => {
@@ -162,7 +163,12 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
 
     try {
       // 1. Automatic Audioalter-style Lofi Audio Processing (0.85x slowed, 35% space reverb, 4.5kHz lowpass)
-      const rendered = await processAutomaticLofi(audioBuffer, {}, (stage) => {
+      const presets = {
+        classic: { speed: 0.85, reverbWet: 0.35, lowPassCutoff: 4500, vinylNoiseVolume: 0.10 },
+        dreamy: { speed: 0.78, reverbWet: 0.48, lowPassCutoff: 3800, vinylNoiseVolume: 0.05 },
+        warm: { speed: 0.92, reverbWet: 0.22, lowPassCutoff: 5500, vinylNoiseVolume: 0.12 }
+      };
+      const rendered = await processAutomaticLofi(audioBuffer, presets[lofiPreset], (stage) => {
         setProcessingStage(stage);
       });
 
@@ -410,6 +416,16 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
                 {errorMessage}
               </div>
             )}
+
+            <div className="space-y-2">
+              <label htmlFor="lofi-preset" className="block text-sm font-bold text-slate-800 dark:text-slate-200">Choose your lofi sound</label>
+              <select id="lofi-preset" value={lofiPreset} disabled={isProcessing} onChange={e => { setLofiPreset(e.target.value as 'classic' | 'dreamy' | 'warm'); setProcessedMp3Blob(null); if (processedMp3Url) URL.revokeObjectURL(processedMp3Url); setProcessedMp3Url(null); }} className="w-full rounded-xl glass-input p-3 text-sm">
+                <option value="classic">Classic Lofi — slowed, warm &amp; reverb</option>
+                <option value="dreamy">Dreamy Night — slower &amp; spacious</option>
+                <option value="warm">Warm Tape — gentle slowdown &amp; subtle reverb</option>
+              </select>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Choose a preset, then generate a fresh preview. Changing presets clears the previous output.</p>
+            </div>
 
             {/* ONE-CLICK MAKE IT LOFI BUTTON */}
             <button

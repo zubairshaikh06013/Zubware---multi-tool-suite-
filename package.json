@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
+    "test:qr": "tsx scripts/testQrGenerator.ts",
     "prebuild": "node scripts/prepareVideoEngine.mjs",
     "predev": "node scripts/prepareVideoEngine.mjs",
     "postbuild": "node --import tsx scripts/generateSeoAndSitemap.ts && node --import tsx scripts/testCompactContent.ts"

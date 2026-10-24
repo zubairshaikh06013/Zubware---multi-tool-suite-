@@ -298,9 +298,9 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
         <div className="w-16 h-16 mx-auto rounded-2xl bg-indigo-600/10 dark:bg-indigo-400/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
           <Disc className="w-9 h-9 animate-spin-slow" />
         </div>
-        <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-          Convert Song to Lofi Online
-        </h1>
+        <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+          Make Your Lofi Version
+        </h2>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
           Convert your song to lofi for free with automatic slowdown, warm filtering and reverb. Preview the result and download an MP3, all in your browser.
         </p>

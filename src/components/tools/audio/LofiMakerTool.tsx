@@ -104,7 +104,12 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
     try {
       const arrayBuffer = await selectedFile.arrayBuffer();
       const audioCtx = new (window.AudioContext || (window as any).webkitAudioContext)();
-      const decodedBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      let decodedBuffer: AudioBuffer;
+      try {
+        decodedBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      } finally {
+        await audioCtx.close().catch(() => undefined);
+      }
 
       const check = validateAudioBuffer(decodedBuffer);
       if (!check.valid) {

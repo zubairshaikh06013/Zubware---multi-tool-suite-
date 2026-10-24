@@ -273,6 +273,9 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   }, [renderKey]);
 
   useEffect(() => () => { logoRequest.current += 1; }, []);
+  // Allow clicking the logo thumbnail itself to replace an existing logo.
+  const replaceLogo = () => fileInputRef.current?.click();
+
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     e.target.value = '';
@@ -1182,15 +1185,15 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   />
                   <button
                     type="button"
-                    onClick={() => fileInputRef.current?.click()}
+                    onClick={replaceLogo}
                     className="px-4 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 text-xs font-bold flex items-center gap-2 hover:bg-indigo-100 transition-colors cursor-pointer"
                   >
                     <Upload className="w-4 h-4" /> Upload Custom Logo
                   </button>
                   {logoImage && (
-                    <div className="w-12 h-12 rounded-xl border border-slate-300 dark:border-slate-700 p-1 flex items-center justify-center bg-white shadow-xs">
-                      <img src={logoImage} alt="Logo" className="max-w-full max-h-full object-contain" />
-                    </div>
+                    <button type="button" onClick={replaceLogo} title="Replace logo" aria-label="Replace QR logo" className="w-12 h-12 rounded-xl border border-slate-300 dark:border-slate-700 p-1 flex items-center justify-center bg-white shadow-xs cursor-pointer">
+                      <img src={logoImage} alt="Current QR logo" className="max-w-full max-h-full object-contain" />
+                    </button>
                   )}
                 </div>
 

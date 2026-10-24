@@ -158,20 +158,38 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     ctx.lineWidth = 1;
     ctx.strokeRect(infoStartX, curY, contentWidth * 0.58, 28);
 
-    // Candidate roll-number boxes: these settings must affect the actual printed sheet.
+    // Roll number: one writable box and a 0–9 bubble column for each digit.
+    // Keep the complete matrix within the left candidate-details area.
     if (showRollNoGrid) {
       const digits = Math.max(4, Math.min(10, rollNoDigits));
-      const startX = infoStartX;
-      const startY = curY + 34;
-      const boxW = Math.min(28, (contentWidth * 0.58 - 12) / digits);
+      const leftWidth = contentWidth * 0.58;
+      const startX = infoStartX + 8;
+      const startY = curY + 39;
+      const stepX = (leftWidth - 20) / digits;
+      const bubbleR = Math.min(6.5, stepX * 0.24);
+      ctx.textAlign = 'left';
       ctx.fillStyle = '#0f172a';
       ctx.font = 'bold 10px sans-serif';
-      ctx.fillText('ROLL NUMBER:', startX, startY + 11);
-      for (let i = 0; i < digits; i++) {
+      ctx.fillText('ROLL NUMBER (WRITE AND SHADE):', infoStartX, startY - 10);
+      for (let digit = 0; digit < digits; digit++) {
+        const centerX = startX + (digit + 0.5) * stepX;
         ctx.strokeStyle = '#64748b';
         ctx.lineWidth = 1;
-        ctx.strokeRect(startX + 95 + i * (boxW + 3), startY - 1, boxW, 21);
+        ctx.strokeRect(centerX - Math.min(12, stepX * 0.35), startY, Math.min(24, stepX * 0.7), 19);
+        for (let n = 0; n <= 9; n++) {
+          const cy = startY + 33 + n * 17;
+          ctx.beginPath();
+          ctx.arc(centerX, cy, bubbleR, 0, Math.PI * 2);
+          ctx.strokeStyle = '#0f172a';
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.font = '8px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillStyle = '#475569';
+          ctx.fillText(String(n), centerX, cy + 2.8);
+        }
       }
+      ctx.textAlign = 'left';
     }
 
     // Roll number or set code blocks
@@ -201,7 +219,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       ctx.textAlign = 'left';
     }
 
-    curY += showRollNoGrid ? 66 : 38;
+    curY += showRollNoGrid ? 260 : 38;
 
     // Instructions Section if enabled
     if (showInstructions) {

@@ -88,11 +88,11 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
   };
 
   // Generate canvas rendering of standard A4 sheet (2480 × 3508 at 300 DPI, or 1240 × 1754 at 150 DPI)
-  const renderOmrCanvas = (pageStart = 1, pageEnd = questionCount): HTMLCanvasElement => {
+  const renderOmrCanvas = (pageStart = 1, pageEnd = questionCount, outputContext?: CanvasRenderingContext2D): HTMLCanvasElement => {
     const canvas = document.createElement('canvas');
     canvas.width = 1240;
     canvas.height = 1754;
-    const ctx = canvas.getContext('2d');
+    const ctx = outputContext ?? canvas.getContext('2d');
     if (!ctx) return canvas;
 
     // Background
@@ -390,6 +390,69 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     totalPages
   ]);
 
+  // Replay the exact canvas drawing commands into native PDF vectors.
+  // This keeps text and bubble edges crisp at any zoom without embedding a bitmap.
+  const makePdfContext = (doc: jsPDF): CanvasRenderingContext2D => {
+    const sx = doc.internal.pageSize.getWidth() / 1240;
+    const sy = doc.internal.pageSize.getHeight() / 1754;
+    const state = { fillStyle: '#000000', strokeStyle: '#000000', lineWidth: 1, font: '10px sans-serif', textAlign: 'left' };
+    type Segment = { kind: 'move' | 'line' | 'circle'; x: number; y: number; r?: number };
+    let segments: Segment[] = [];
+    const color = (value: string): [number, number, number] => {
+      const match = /^#([0-9a-f]{6})$/i.exec(value);
+      if (!match) return [0, 0, 0];
+      return [0, 2, 4].map(i => parseInt(match[1].slice(i, i + 2), 16)) as [number, number, number];
+    };
+    const paint = (fill: boolean) => {
+      const rgb = color(String(fill ? state.fillStyle : state.strokeStyle));
+      if (fill) doc.setFillColor(...rgb); else doc.setDrawColor(...rgb);
+      doc.setLineWidth(state.lineWidth * sx);
+    };
+    const commands: Record<string, (...args: any[]) => void> = {
+      fillRect: (x, y, w, h) => { paint(true); doc.rect(x * sx, y * sy, w * sx, h * sy, 'F'); },
+      strokeRect: (x, y, w, h) => { paint(false); doc.rect(x * sx, y * sy, w * sx, h * sy, 'S'); },
+      beginPath: () => { segments = []; },
+      moveTo: (x, y) => { segments.push({ kind: 'move', x, y }); },
+      lineTo: (x, y) => { segments.push({ kind: 'line', x, y }); },
+      arc: (x, y, r) => { segments.push({ kind: 'circle', x, y, r }); },
+      stroke: () => {
+        paint(false);
+        segments.forEach((segment, i) => {
+          if (segment.kind === 'circle') doc.circle(segment.x * sx, segment.y * sy, (segment.r || 0) * sx, 'S');
+          if (segment.kind === 'line' && i > 0) {
+            const prev = segments[i - 1];
+            doc.line(prev.x * sx, prev.y * sy, segment.x * sx, segment.y * sy);
+          }
+        });
+      },
+      fill: () => {
+        paint(true);
+        segments.forEach(segment => {
+          if (segment.kind === 'circle') doc.circle(segment.x * sx, segment.y * sy, (segment.r || 0) * sx, 'F');
+        });
+      },
+      fillText: (value, x, y) => {
+        const px = Number(/([0-9.]+)px/.exec(state.font)?.[1] ?? 10);
+        doc.setFont('helvetica', state.font.includes('bold') ? 'bold' : 'normal');
+        doc.setFontSize(px * sy);
+        doc.setTextColor(...color(String(state.fillStyle)));
+        doc.text(String(value).replace(/[•●]/g, '·'), x * sx, y * sy, {
+          align: state.textAlign === 'center' ? 'center' : state.textAlign === 'right' ? 'right' : 'left'
+        });
+      }
+    };
+    return new Proxy({} as CanvasRenderingContext2D, {
+      get(_target, prop) {
+        if (prop in state) return (state as Record<string, unknown>)[String(prop)];
+        return commands[String(prop)];
+      },
+      set(_target, prop, value) {
+        (state as Record<string, unknown>)[String(prop)] = value;
+        return true;
+      }
+    });
+  };
+
   const handleDownloadPdf = () => {
     try {
       const doc = new jsPDF({
@@ -398,23 +461,18 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
         format: 'a4'
       });
 
-      const pW = doc.internal.pageSize.getWidth();
-      const pH = doc.internal.pageSize.getHeight();
-
       // Limit dense sheets to 100 questions per A4 page for readable print output.
       // Preserve the original question numbers and selected answer key across pages.
       const questionsPerPage = 100;
       for (let pageStart = 1; pageStart <= questionCount; pageStart += questionsPerPage) {
         if (pageStart > 1) doc.addPage();
         const pageEnd = Math.min(questionCount, pageStart + questionsPerPage - 1);
-        const canvas = renderOmrCanvas(pageStart, pageEnd);
-        const imgData = canvas.toDataURL('image/png');
-        doc.addImage(imgData, 'PNG', 0, 0, pW, pH);
+        renderOmrCanvas(pageStart, pageEnd, makePdfContext(doc));
       }
 
       const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
       doc.save(`${prefix}-${questionCount}q.pdf`);
-      onShowToast('Print-ready OMR PDF downloaded!');
+      onShowToast('Sharp vector OMR PDF downloaded!');
     } catch (err) {
       console.error(err);
       onShowToast('Failed to create PDF.');

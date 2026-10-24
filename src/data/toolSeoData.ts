@@ -2238,6 +2238,14 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "answer": "Use PNG for screens and applications that need a bitmap. Choose SVG for scalable QR modules in a design application; check that the application preserves the embedded logo. The A4 PDF includes a 120 mm wide QR image with its frame proportions preserved. Actual pixel dimensions are shown in the preview and round up to whole pixels per module. No single pixel count guarantees a good print at every size."
       },
       {
+        "question": "What is the difference between a static and a dynamic QR code?",
+        "answer": "A static QR code contains the destination or details directly in its pattern, so changing the content means generating and printing a new code. A dynamic QR code usually points to a hosted redirect that can be updated and may offer scan analytics. Zubware creates static codes, not editable dynamic redirects. If you need to update a menu later, link to a page you control and change that page's contents."
+      },
+      {
+        "question": "Can I use a Zubware QR code on business cards, packaging or commercial posters?",
+        "answer": "You can download a QR code for business materials such as cards, posters, menus and product packaging. Check that you have permission to use any logo or content you include. For printed materials, use a high-resolution PNG or SVG, keep enough clear space around the code, and test a physical sample before printing in bulk."
+      },
+      {
         "question": "Can I generate UPI payment, contact or calendar QR codes?",
         "answer": "Yes. UPI mode accepts a payee ID, name and optional INR amount; verify the recipient in your payment app before paying. vCard mode encodes contact details. Event times use your device time zone and are converted to UTC. Phone, SMS, location and calendar handling depends on the scanner and installed apps, so confirm the result on the intended devices."
       }

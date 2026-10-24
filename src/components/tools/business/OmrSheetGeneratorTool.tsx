@@ -86,7 +86,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
   };
 
   // Generate canvas rendering of standard A4 sheet (2480 × 3508 at 300 DPI, or 1240 × 1754 at 150 DPI)
-  const renderOmrCanvas = (): HTMLCanvasElement => {
+  const renderOmrCanvas = (pageStart = 1, pageEnd = questionCount): HTMLCanvasElement => {
     const canvas = document.createElement('canvas');
     canvas.width = 1240;
     canvas.height = 1754;
@@ -229,8 +229,9 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
     // Auto-increase columns for dense layouts to keep printed bubbles legible.
     // Four columns with six options need more horizontal space than this A4 grid offers.
-    const effectiveColumns = Math.max(columnsCount, Math.ceil(questionCount / 50));
-    const questionsPerCol = Math.ceil(questionCount / effectiveColumns);
+    const pageQuestions = pageEnd - pageStart + 1;
+    const effectiveColumns = Math.max(columnsCount, Math.ceil(pageQuestions / 50));
+    const questionsPerCol = Math.ceil(pageQuestions / effectiveColumns);
     const colWidth = (contentWidth - (effectiveColumns - 1) * 20) / effectiveColumns;
     const rowHeight = Math.min(26, (questionsAvailableHeight - 24) / questionsPerCol);
     // Never let adjacent bubbles overlap when a dense 150/200-question layout is selected.
@@ -254,8 +255,8 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
       // Draw Question Rows in this Column
       for (let r = 0; r < questionsPerCol; r++) {
-        const qNum = c * questionsPerCol + r + 1;
-        if (qNum > questionCount) break;
+        const qNum = pageStart + c * questionsPerCol + r;
+        if (qNum > pageEnd) break;
 
         const rowY = questionsStartY + 24 + r * rowHeight;
 
@@ -374,11 +375,16 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       const pW = doc.internal.pageSize.getWidth();
       const pH = doc.internal.pageSize.getHeight();
 
-      const canvas = renderOmrCanvas();
-      // Lossless PNG preserves sharp bubble outlines and registration marks.
-      // JPEG compression can introduce artifacts around high-contrast OMR marks.
-      const imgData = canvas.toDataURL('image/png');
-      doc.addImage(imgData, 'PNG', 0, 0, pW, pH);
+      // Limit dense sheets to 100 questions per A4 page for readable print output.
+      // Preserve the original question numbers and selected answer key across pages.
+      const questionsPerPage = 100;
+      for (let pageStart = 1; pageStart <= questionCount; pageStart += questionsPerPage) {
+        if (pageStart > 1) doc.addPage();
+        const pageEnd = Math.min(questionCount, pageStart + questionsPerPage - 1);
+        const canvas = renderOmrCanvas(pageStart, pageEnd);
+        const imgData = canvas.toDataURL('image/png');
+        doc.addImage(imgData, 'PNG', 0, 0, pW, pH);
+      }
 
       const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
       doc.save(`${prefix}-${questionCount}q.pdf`);

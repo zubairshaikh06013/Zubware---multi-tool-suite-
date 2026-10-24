@@ -424,7 +424,16 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
   const handleDownloadPng = () => {
     const page = Math.min(previewPage, totalPages);
     const canvas = renderOmrCanvas((page - 1) * 100 + 1, Math.min(questionCount, page * 100));
-    const url = canvas.toDataURL('image/png');
+    // Export at 300 DPI (2480 × 3508), not the 150 DPI preview size.
+    const printCanvas = document.createElement('canvas');
+    printCanvas.width = 2480;
+    printCanvas.height = 3508;
+    const printCtx = printCanvas.getContext('2d');
+    if (!printCtx) { onShowToast('Could not prepare high-resolution PNG.'); return; }
+    printCtx.imageSmoothingEnabled = true;
+    printCtx.imageSmoothingQuality = 'high';
+    printCtx.drawImage(canvas, 0, 0, printCanvas.width, printCanvas.height);
+    const url = printCanvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = url;
     const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
@@ -432,7 +441,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    onShowToast('High-res OMR PNG downloaded.');
+    onShowToast('300 DPI OMR PNG downloaded.');
   };
 
   return (

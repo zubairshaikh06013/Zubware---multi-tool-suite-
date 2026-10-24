@@ -245,7 +245,10 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
     // 4. Questions & Bubble Grid
     const questionsStartY = curY;
-    const questionsAvailableHeight = canvas.height - questionsStartY - (showSignatureBoxes ? 110 : 70);
+    // Reserve a real signature zone before calculating the answer-row height.
+    // The signature boxes and labels must never intersect the question table.
+    const signatureBottomReserve = showSignatureBoxes ? 155 : 70;
+    const questionsAvailableHeight = canvas.height - questionsStartY - signatureBottomReserve;
 
     // Auto-increase columns for dense layouts to keep printed bubbles legible.
     // Four columns with six options need more horizontal space than this A4 grid offers.
@@ -342,7 +345,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     if (showSignatureBoxes) {
       // Position signatures directly after the answer grid, with a minimum bottom margin.
       const gridBottom = questionsStartY + 24 + questionsPerCol * rowHeight;
-      const sigY = Math.min(canvas.height - pad - markSize - 65, gridBottom + 42);
+      const sigY = gridBottom + 28;
       const boxWidth = contentWidth * 0.42;
 
       ctx.strokeStyle = '#64748b';

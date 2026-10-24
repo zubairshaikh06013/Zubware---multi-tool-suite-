@@ -28,7 +28,11 @@ export function AgeCalculationExamples() {
       </div>
       <h3 className="text-lg font-bold">How month-end and leap-day ages are calculated</h3>
       <p className="text-sm text-slate-600 dark:text-slate-300">The calculator counts completed calendar months, then the days since that monthly anniversary. If the birth day does not exist in the destination month, it uses that month's last day. For example, January 31 to February 28 is one month in a non-leap year; January 31 to March 1 is one month and one day. February 29 birthdays use February 28 in non-leap years in this calculator.</p>
-      <h3 className="text-lg font-bold">Age in days versus age in years</h3>
+      <h3 className="text-lg font-bold">How old will I be on an exam or job application cutoff date?</h3>
+      <p className="text-sm text-slate-600 dark:text-slate-300">Use the date of birth printed on your official documents and enter the cutoff date specified in the exam, recruitment, or application notice as the reference date. For example, someone born on January 1, 2000 is 25 years old on January 1, 2025. The result is a calendar-age calculation, not a decision about eligibility: an authority may use different age limits, inclusive dates, or category-based relaxations.</p>
+      <h3 className="text-lg font-bold">What if my birthday is February 29?</h3>
+      <p className="text-sm text-slate-600 dark:text-slate-300">This tool treats February 28 as the anniversary of a February 29 birth date in non-leap years. Other systems may use March 1, particularly for legal or administrative purposes. Check the applicable official rule before relying on a result for an application.</p>
+            <h3 className="text-lg font-bold">Age in days versus age in years</h3>
       <p className="text-sm text-slate-600 dark:text-slate-300">Total elapsed days counts calendar days between the two dates, with the birth date itself at zero. Do not divide this number by 365 to obtain an exact calendar age: leap years and unequal month lengths change the result. For an application cutoff, choose the stated reference date and follow the organisation's own eligibility rules.</p>
     </section>
   );

@@ -396,9 +396,13 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             </div>
           </div>
         </div>
+      ) : !dob ? (
+        <div role="status" className="p-8 text-center text-sm text-slate-600 dark:text-slate-300 bg-slate-50 dark:bg-slate-900/40 rounded-3xl border border-slate-200 dark:border-slate-800">
+          Select your date of birth above to see your age in years, months, days, and total days old.
+        </div>
       ) : (
-        <div className="p-8 text-center text-xs text-rose-500 bg-rose-50/50 dark:bg-rose-950/20 rounded-3xl border border-rose-200 dark:border-rose-900">
-          Enter both valid dates. The reference date must be on or after the date of birth.
+        <div role="alert" className="p-8 text-center text-xs text-rose-600 dark:text-rose-400 bg-rose-50/50 dark:bg-rose-950/20 rounded-3xl border border-rose-200 dark:border-rose-900">
+          Enter valid dates. The reference date must be on or after your date of birth.
         </div>
       )}
     </div>

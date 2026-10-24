@@ -50,12 +50,12 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
   const [lofiPreset, setLofiPreset] = useState<'classic' | 'dreamy' | 'warm'>('classic');
 
   // Clean up Object URLs on unmount
-  useEffect(() => {
-    return () => {
-      if (originalAudioUrl) URL.revokeObjectURL(originalAudioUrl);
-      if (processedMp3Url) URL.revokeObjectURL(processedMp3Url);
-    };
-  }, []);
+  useEffect(() => () => {
+    if (originalAudioUrl) URL.revokeObjectURL(originalAudioUrl);
+  }, [originalAudioUrl]);
+  useEffect(() => () => {
+    if (processedMp3Url) URL.revokeObjectURL(processedMp3Url);
+  }, [processedMp3Url]);
 
   // Format seconds to mm:ss
   const formatTime = (seconds: number): string => {
@@ -85,9 +85,6 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
     }
 
     // Clean up previous URLs
-    if (originalAudioUrl) URL.revokeObjectURL(originalAudioUrl);
-    if (processedMp3Url) URL.revokeObjectURL(processedMp3Url);
-
     setFile(selectedFile);
     setAudioBuffer(null);
     setProcessedMp3Blob(null);
@@ -153,6 +150,10 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
 
     setIsProcessing(true);
     setErrorMessage(null);
+    // Never leave an older export downloadable while generating a new preset.
+    setProcessedMp3Blob(null);
+    setProcessedMp3Url(null);
+    setProcessedDuration(0);
     setProcessingStage('Creating Slowed & Reverb Lofi version...');
 
     // Pause audio playbacks
@@ -182,7 +183,6 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
         throw new Error('Sorry, we couldn\'t process this audio. Please try another file.');
       }
 
-      if (processedMp3Url) URL.revokeObjectURL(processedMp3Url);
       const mp3Url = URL.createObjectURL(mp3Blob);
 
       setProcessedMp3Blob(mp3Blob);
@@ -419,7 +419,7 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
 
             <div className="space-y-2">
               <label htmlFor="lofi-preset" className="block text-sm font-bold text-slate-800 dark:text-slate-200">Choose your lofi sound</label>
-              <select id="lofi-preset" value={lofiPreset} disabled={isProcessing} onChange={e => { setLofiPreset(e.target.value as 'classic' | 'dreamy' | 'warm'); setProcessedMp3Blob(null); if (processedMp3Url) URL.revokeObjectURL(processedMp3Url); setProcessedMp3Url(null); }} className="w-full rounded-xl glass-input p-3 text-sm">
+              <select id="lofi-preset" value={lofiPreset} disabled={isProcessing} onChange={e => { setLofiPreset(e.target.value as 'classic' | 'dreamy' | 'warm'); setProcessedMp3Blob(null); setProcessedMp3Url(null); }} className="w-full rounded-xl glass-input p-3 text-sm">
                 <option value="classic">Classic Lofi — slowed, warm &amp; reverb</option>
                 <option value="dreamy">Dreamy Night — slower &amp; spacious</option>
                 <option value="warm">Warm Tape — gentle slowdown &amp; subtle reverb</option>

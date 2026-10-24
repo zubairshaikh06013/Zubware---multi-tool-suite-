@@ -13,6 +13,14 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
   const decodeQrImage = (file: File) => {
     setError(null);
     setDecodedData(null);
+    if (!file.type.startsWith('image/')) {
+      setError('Please select an image file containing a QR code.');
+      return;
+    }
+    if (file.size > 15 * 1024 * 1024) {
+      setError('Image is too large. Choose an image smaller than 15 MB.');
+      return;
+    }
 
     const reader = new FileReader();
     reader.onload = (e) => {
@@ -28,12 +36,22 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
           return;
         }
 
+        if (!img.width || !img.height || img.width * img.height > 24_000_000) {
+          setError('Image dimensions are too large to scan safely. Resize the image and try again.');
+          return;
+        }
         canvas.width = img.width;
         canvas.height = img.height;
         ctx.drawImage(img, 0, 0, img.width, img.height);
 
-        const imageData = ctx.getImageData(0, 0, img.width, img.height);
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
+        let code;
+        try {
+          const imageData = ctx.getImageData(0, 0, img.width, img.height);
+          code = jsQR(imageData.data, imageData.width, imageData.height);
+        } catch {
+          setError('Unable to read this image. Try a clearer PNG or JPEG screenshot.');
+          return;
+        }
 
         if (code && code.data) {
           setDecodedData(code.data);
@@ -42,17 +60,20 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
           setError('No valid QR code detected in the uploaded image.');
         }
       };
+      img.onerror = () => setError('Could not load this image. Try PNG, JPEG or WebP.');
       img.src = src;
     };
+    reader.onerror = () => setError('Could not read the selected file. Please try again.');
     reader.readAsDataURL(file);
   };
 
   const handleCopy = () => {
     if (!decodedData) return;
-    navigator.clipboard.writeText(decodedData);
-    setCopied(true);
-    onShowToast('Copied decoded QR content!');
-    setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard.writeText(decodedData).then(() => {
+      setCopied(true);
+      onShowToast('Copied decoded QR content!');
+      setTimeout(() => setCopied(false), 2000);
+    }).catch(() => setError('Clipboard access was blocked. Select the decoded text and copy it manually.'));
   };
 
   return (
@@ -86,8 +107,8 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
               <Upload className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-900 dark:text-white">Click or drag & drop QR image</p>
-              <p className="text-[11px] text-slate-400 mt-0.5">Supports PNG, JPG, WEBP, GIF</p>
+              <p className="text-xs font-bold text-slate-900 dark:text-white">Choose a QR code image</p>
+              <p className="text-[11px] text-slate-400 mt-0.5">Supports common browser-readable image formats; maximum 15 MB</p>
             </div>
           </div>
 
@@ -130,7 +151,7 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
               </div>
 
               <div className="flex items-center justify-end gap-2">
-                {decodedData.startsWith('http') && (
+                {/^https?:\/\//i.test(decodedData) && (
                   <a
                     href={decodedData}
                     target="_blank"

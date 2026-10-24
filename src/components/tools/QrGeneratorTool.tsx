@@ -281,9 +281,6 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   }, [renderKey]);
 
   useEffect(() => () => { logoRequest.current += 1; }, []);
-  // Allow clicking the logo thumbnail itself to replace an existing logo.
-  const replaceLogo = () => fileInputRef.current?.click();
-
   const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     e.target.value = '';
@@ -1217,22 +1214,22 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <input
                     type="file"
                     ref={fileInputRef}
+                    id="qr-center-logo-upload"
                     accept="image/png,image/jpeg,image/webp"
                     onChange={handleLogoUpload}
-                    className="sr-only"
+                    className="absolute w-px h-px opacity-0 overflow-hidden"
                     aria-label="Choose QR center logo"
                   />
-                  <button
-                    type="button"
-                    onClick={replaceLogo}
+                  <label
+                    htmlFor="qr-center-logo-upload"
                     className="px-4 py-2.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 text-xs font-bold flex items-center gap-2 hover:bg-indigo-100 transition-colors cursor-pointer"
                   >
                     <Upload className="w-4 h-4" /> Upload Custom Logo
-                  </button>
+                  </label>
                   {logoImage && (
-                    <button type="button" onClick={replaceLogo} title="Replace logo" aria-label="Replace QR logo" className="w-12 h-12 rounded-xl border border-slate-300 dark:border-slate-700 p-1 flex items-center justify-center bg-white shadow-xs cursor-pointer">
+                    <label htmlFor="qr-center-logo-upload" title="Replace logo" aria-label="Replace QR logo" className="w-12 h-12 rounded-xl border border-slate-300 dark:border-slate-700 p-1 flex items-center justify-center bg-white shadow-xs cursor-pointer">
                       <img src={logoImage} alt="Current QR logo" className="max-w-full max-h-full object-contain" />
-                    </button>
+                    </label>
                   )}
                 </div>
 

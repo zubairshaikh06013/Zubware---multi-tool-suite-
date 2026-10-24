@@ -18,3 +18,11 @@
 
 /chatgpt-plugin/assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Internal QA pages must never appear in search results.
+/qa/*
+  X-Robots-Tag: noindex, nofollow
+
+# A not-found response is not an indexable landing page.
+/404.html
+  X-Robots-Tag: noindex, nofollow

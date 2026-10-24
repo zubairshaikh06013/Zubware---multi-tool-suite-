@@ -213,8 +213,9 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
     const questionsPerCol = Math.ceil(questionCount / columnsCount);
     const colWidth = (contentWidth - (columnsCount - 1) * 20) / columnsCount;
-    const rowHeight = Math.min(26, questionsAvailableHeight / questionsPerCol);
-    const bubbleRadius = Math.max(7, Math.min(9, rowHeight * 0.36));
+    const rowHeight = Math.min(26, (questionsAvailableHeight - 24) / questionsPerCol);
+    // Never let adjacent bubbles overlap when a dense 150/200-question layout is selected.
+    const bubbleRadius = Math.min(9, Math.max(3, rowHeight * 0.32), (colWidth - 56) / (optionsPerQuestion * 2) - 2);
 
     for (let c = 0; c < columnsCount; c++) {
       const colStartX = infoStartX + c * (colWidth + 20);
@@ -289,7 +290,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       // Outer border for column
       ctx.strokeStyle = '#94a3b8';
       ctx.lineWidth = 1;
-      ctx.strokeRect(colStartX, questionsStartY, colWidth, 20 + questionsPerCol * rowHeight);
+      ctx.strokeRect(colStartX, questionsStartY, colWidth, 24 + questionsPerCol * rowHeight);
     }
 
     // 5. Signature Boxes Section at Bottom

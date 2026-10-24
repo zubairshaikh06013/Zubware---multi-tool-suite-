@@ -6054,6 +6054,10 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "answer": "Enter your date of birth and keep the reference date set to today to calculate your current age. The calculator displays your age in completed years, months, and days."
   },
   {
+    "question": "Are the hours, minutes and seconds my exact age?",
+    "answer": "These figures convert elapsed calendar days using 24 hours per day. They do not use your birth time or account for daylight-saving clock changes, so they are not exact elapsed-time measurements."
+  },
+  {
     "question": "Can I calculate my exact age in years, months, and days?",
     "answer": "Yes. The calculator compares your birth date with the selected reference date and displays a calendar-based breakdown in years, months, and days. This is different from estimating age by dividing total days by 365."
   },
@@ -6070,8 +6074,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "answer": "Leap years contain February 29. The calculator uses the calendar dates entered to calculate elapsed days and the displayed age. If you were born on February 29, check the relevant organisation’s rules when calculating eligibility for an official purpose."
   },
   {
-    "question": "Can I calculate my age in total days and weeks?",
-    "answer": "Yes. The results include total elapsed calendar days and completed weeks, along with other time-unit calculations based on the elapsed days."
+    "question": "How many days old am I by date of birth?",
+    "answer": "Enter your date of birth and select Set to Today, or choose another reference date. The days-old result counts elapsed calendar days, including leap days, with your birth date as day zero. Completed weeks and remaining days are shown separately."
   },
   {
     "question": "How is the next birthday countdown calculated?",

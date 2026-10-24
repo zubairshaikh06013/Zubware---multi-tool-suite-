@@ -218,9 +218,14 @@ export async function encodeAudioBufferToMp3(
       mp3Data.push(new Uint8Array(mp3buf));
     }
 
-    if (onProgress && i % (sampleBlockSize * 100) === 0) {
-      const pct = Math.min(99, Math.round((i / numSamples) * 100));
-      onProgress(pct);
+    // Yield periodically so the browser can paint progress and respond to input
+    // during CPU-heavy encoding, rather than freezing the page until completion.
+    if (i % (sampleBlockSize * 100) === 0) {
+      if (onProgress) {
+        const pct = Math.min(99, Math.round((i / numSamples) * 100));
+        onProgress(pct);
+      }
+      await new Promise<void>(resolve => setTimeout(resolve, 0));
     }
   }
 

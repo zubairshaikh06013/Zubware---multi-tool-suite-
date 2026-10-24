@@ -52,6 +52,8 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
   const [cleanPaper, setCleanPaper] = useState(false);
   const [paperThreshold, setPaperThreshold] = useState(235);
 
+  const [exportError, setExportError] = useState('');
+
   const uploadVersion = useRef(0);
   useEffect(() => () => { uploadVersion.current += 1; }, []);
 
@@ -146,6 +148,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
   useEffect(() => {
     setOutputBlob(null);
     setOutputDataUrl('');
+    setExportError('');
     if (!imgElement) return;
     if (![targetWidth, targetHeight].every(n => Number.isInteger(n) && n >= 1 && n <= 8192) || targetWidth * targetHeight > 16000000) return;
     let cancelled = false;
@@ -236,19 +239,25 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
     let quality = 0.92;
 
     const buildBlob = (q: number) => {
-      finalCanvas.toBlob((b) => {
-        if (cancelled) return;
-        if (b) {
-          // If KB limit is set and format is JPEG, attempt to compress further
-          if (maxKbLimit && b.size > maxKbLimit * 1000 && q > 0.2 && exportFormat === 'jpeg') {
-            buildBlob(q - 0.15);
-            return;
+      try {
+        finalCanvas.toBlob((b) => {
+          if (cancelled) return;
+          if (b) {
+            // If KB limit is set and format is JPEG, attempt to compress further
+            if (maxKbLimit && b.size > maxKbLimit * 1000 && q > 0.2 && exportFormat === 'jpeg') {
+              buildBlob(q - 0.15);
+              return;
+            }
+            setOutputBlob(b);
+            previewUrl = URL.createObjectURL(b);
+            setOutputDataUrl(previewUrl);
+          } else {
+            setExportError('फ़ाइल नहीं बन पाई। छोटा साइज़ चुनें या दूसरी फ़ोटो लगाएँ।');
           }
-          setOutputBlob(b);
-          previewUrl = URL.createObjectURL(b);
-          setOutputDataUrl(previewUrl);
-        }
-      }, mime, q);
+        }, mime, q);
+      } catch {
+        if (!cancelled) setExportError('फ़ाइल नहीं बन पाई। छोटा साइज़ चुनें या दूसरी फ़ोटो लगाएँ।');
+      }
     };
 
     buildBlob(quality);
@@ -356,6 +365,8 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                     </label>
                     <input
                       type="number"
+                      aria-label={`Width in ${unit}`}
+                      min={0} step={unit === 'px' ? 1 : 0.01}
                       value={fromPx(targetWidth, unit)}
                       onChange={(e) => handleWidthChange(parseFloat(e.target.value) || 0)}
                       className="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
@@ -383,6 +394,8 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                     </label>
                     <input
                       type="number"
+                      aria-label={`Height in ${unit}`}
+                      min={0} step={unit === 'px' ? 1 : 0.01}
                       value={fromPx(targetHeight, unit)}
                       onChange={(e) => handleHeightChange(parseFloat(e.target.value) || 0)}
                       className="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
@@ -390,6 +403,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   </div>
                 </div>
 
+                {unit !== 'px' && <p className="text-xs text-slate-500">cm, mm और inch की गणना 96 DPI पर होती है। फ़ॉर्म में pixels दिए हों तो px चुनें।</p>}
                 {(![targetWidth, targetHeight].every(n => Number.isInteger(n) && n >= 1 && n <= 8192) || targetWidth * targetHeight > 16000000) && <p role="alert" className="text-xs text-red-600">Enter whole-pixel dimensions from 1 to 8192, up to 16 megapixels total.</p>}
                 {/* Scale Percentage Chips */}
                 <div>
@@ -534,7 +548,18 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                     <label className="text-[11px] font-bold text-slate-500 block mb-1">
                       Target File Size Limit (Optional): {maxKbLimit ? `${maxKbLimit} KB` : 'No Limit'}
                     </label>
-                    <div className="flex gap-1.5">
+                    <label className="block text-xs text-slate-700 dark:text-slate-300 mb-2">
+                      अधिकतम फ़ाइल साइज़ (KB)
+                      <input type="number" min="1" max="10000" step="1" value={maxKbLimit ?? ''}
+                        placeholder="कोई सीमा नहीं"
+                        onChange={e => {
+                          const value = Number(e.target.value);
+                          setMaxKbLimit(e.target.value === '' || !Number.isFinite(value) || value <= 0 ? null : Math.min(10000, Math.max(1, Math.round(value))));
+                        }}
+                        className="mt-1 block w-full rounded-xl border border-slate-200 dark:border-slate-800 p-2 bg-white dark:bg-slate-900" />
+                    </label>
+                    <p className="text-xs text-slate-500 mb-2">1 KB = 1,000 bytes। सीमा अधिकतम साइज़ है, बिल्कुल उतना साइज़ होने की गारंटी नहीं। JPG में quality घट सकती है; PNG का साइज़ केवल जाँचा जाता है।</p>
+                    <div className="flex flex-wrap gap-1.5">
                       {[10, 20, 50, 100].map((kb) => (
                         <button
                           key={kb}
@@ -588,7 +613,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   <div className="p-3 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800">
                     <span className="text-[10px] font-bold uppercase text-slate-500 block mb-0.5">Original File</span>
                     <div className="text-xs font-bold text-slate-900 dark:text-white">
-                      {origWidth} × {origHeight} px • {formatBytes(origSize)}
+                      {origWidth} × {origHeight} px • {formatBytes(origSize, 2)} ({origSize.toLocaleString()} bytes)
                     </div>
                   </div>
 
@@ -597,7 +622,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                       Resized Output
                     </span>
                     <div className="text-xs font-bold text-slate-900 dark:text-white">
-                      {targetWidth} × {targetHeight} px • {outputBlob ? formatBytes(outputBlob.size) : '...'}
+                      {targetWidth} × {targetHeight} px • {outputBlob ? `${formatBytes(outputBlob.size, 2)} (${outputBlob.size.toLocaleString()} bytes)` : '...'}
                     </div>
                   </div>
                 </div>
@@ -608,13 +633,13 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                     <img
                       src={outputDataUrl}
                       alt="Resized signature"
-                      className="max-h-48 object-contain shadow-sm rounded-lg"
+                      className="max-h-48 max-w-full object-contain shadow-sm rounded-lg"
                       style={{
                         backgroundColor: backgroundMode === 'white' ? '#ffffff' : 'transparent'
                       }}
                     />
                   ) : (
-                    <div className="text-slate-400 text-xs">Rendering preview...</div>
+                    <div role={exportError ? 'alert' : 'status'} className="text-slate-500 text-xs">{exportError || 'Rendering preview...'}</div>
                   )}
                 </div>
 

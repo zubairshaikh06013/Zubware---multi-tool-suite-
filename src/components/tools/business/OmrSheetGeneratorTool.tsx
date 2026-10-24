@@ -488,16 +488,15 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
   const handleDownloadPng = () => {
     const page = Math.min(previewPage, totalPages);
-    const canvas = renderOmrCanvas((page - 1) * 100 + 1, Math.min(questionCount, page * 100));
-    // Export at 300 DPI (2480 × 3508), not the 150 DPI preview size.
+    // Draw every shape and glyph directly at 300 DPI; do not upscale a 150 DPI bitmap.
+    // Canvas coordinates remain in the same logical A4 space as PDF and preview.
     const printCanvas = document.createElement('canvas');
     printCanvas.width = 2480;
     printCanvas.height = 3508;
     const printCtx = printCanvas.getContext('2d');
     if (!printCtx) { onShowToast('Could not prepare high-resolution PNG.'); return; }
-    printCtx.imageSmoothingEnabled = true;
-    printCtx.imageSmoothingQuality = 'high';
-    printCtx.drawImage(canvas, 0, 0, printCanvas.width, printCanvas.height);
+    printCtx.scale(2, 2);
+    renderOmrCanvas((page - 1) * 100 + 1, Math.min(questionCount, page * 100), printCtx);
     const url = printCanvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = url;

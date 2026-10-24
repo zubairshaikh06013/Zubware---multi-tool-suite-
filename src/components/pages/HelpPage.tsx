@@ -103,6 +103,33 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
         </p>
       </section>
 
+      {/* Practical troubleshooting: actionable guidance instead of generic SEO filler */}
+      <section className="glass-panel p-6 rounded-3xl space-y-4">
+        <h2 className="text-xl font-extrabold text-slate-900 dark:text-white">
+          Troubleshooting uploads, downloads and QR codes
+        </h2>
+        <div className="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+          <div>
+            <h3 className="font-bold text-slate-900 dark:text-white">A download did not start</h3>
+            <p>Check your browser's Downloads list and available device storage. If a tool opens a preview instead of saving a file, try its Download button rather than saving the preview. On mobile, retry in an updated Chrome browser if your current browser blocks generated downloads.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-900 dark:text-white">My file cannot be uploaded</h3>
+            <p>Check the file type and size shown by the tool. Some formats require a supported browser decoder. Try a smaller file or a standard PNG, JPEG or PDF where the tool supports it. Avoid refreshing the page while processing.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-900 dark:text-white">A QR code will not scan</h3>
+            <p>Use dark foreground colors on a light background, keep a clear quiet zone around the code and avoid oversized logos. The QR Generator includes a scan test: run it before printing or sharing a customized design.</p>
+          </div>
+          <div>
+            <h3 className="font-bold text-slate-900 dark:text-white">Is every tool completely offline?</h3>
+            <p>No. Many file and calculation tools run in the browser, but AI-powered or network-dependent features may need an internet connection or a remote service. Check each tool's own description before using sensitive files.</p>
+          </div>
+          <p>If the issue continues, include the tool name, browser, device, input format and the exact error message when contacting support. Do not send private documents or passwords in a support message.</p>
+          <button type="button" onClick={() => onNavigate('/contact')} className="font-bold text-indigo-600 dark:text-indigo-400 hover:underline">Contact Zubware support</button>
+        </div>
+      </section>
+
       {/* FAQ Accordion Section */}
       <section className="space-y-4">
         <h2 className="text-xl font-extrabold text-slate-900 dark:text-white flex items-center gap-2">

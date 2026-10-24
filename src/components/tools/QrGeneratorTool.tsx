@@ -302,7 +302,9 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       });
       if (image.width * image.height > 24000000) throw new Error('Choose a logo smaller than 24 megapixels.');
       const canvas = document.createElement('canvas');
-      const scale = Math.min(1, 1024 / Math.max(image.width, image.height));
+      // Keep high-resolution logo details for sharp SVG and print exports.
+      // Cap extreme dimensions to avoid excessive browser memory use.
+      const scale = Math.min(1, 2048 / Math.max(image.width, image.height));
       canvas.width = Math.max(1, Math.round(image.width * scale));
       canvas.height = Math.max(1, Math.round(image.height * scale));
       const context = canvas.getContext('2d');

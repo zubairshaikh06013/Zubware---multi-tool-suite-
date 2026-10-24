@@ -31,19 +31,33 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
         <section className="space-y-2">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">2. Free License & Permitted Use</h2>
           <p>
-            Zubware provides free, browser-based tools for personal, commercial, and educational use. You may split, compress, convert images, merge or split PDFs, generate QR codes, and use productivity utilities without subscription fees or watermarks.
+            Zubware offers browser-based utilities for personal, educational, and lawful business use. Features and available file formats vary by tool and browser. Please review the instructions and limitations shown on each tool page before relying on an output.
           </p>
         </section>
 
         <section className="space-y-2">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">3. User Responsibility & File Ownership</h2>
           <p>
-            You retain full copyright and ownership of all files and data processed through Zubware. Local tools process files directly inside your browser memory; Zubware does not store, review, or back up your processed files.
+            You remain responsible for ensuring that you have permission to use, upload, edit, and share any files or other content you provide. Many tools process files locally in your browser, while some AI-powered or network-dependent features may use remote services. Review the relevant tool information and our Privacy Policy before submitting sensitive content.
           </p>
         </section>
 
         <section className="space-y-2">
-          <h2 className="text-base font-extrabold text-slate-900 dark:text-white">4. Limitation of Liability</h2>
+          <h2 className="text-base font-extrabold text-slate-900 dark:text-white">4. Accuracy and Important Documents</h2>
+          <p>
+            Generated files, calculations, templates and previews may depend on browser support and the quality of your inputs. Check results before printing, publishing, submitting an application or using them for legal, financial or other important purposes. Keep your own backup of original files.
+          </p>
+        </section>
+
+        <section className="space-y-2">
+          <h2 className="text-base font-extrabold text-slate-900 dark:text-white">5. External Services and Availability</h2>
+          <p>
+            Some features may require an internet connection or third-party services. Availability, processing limits and supported formats can change. External websites linked from Zubware have their own terms and privacy practices.
+          </p>
+        </section>
+
+        <section className="space-y-2">
+          <h2 className="text-base font-extrabold text-slate-900 dark:text-white">6. Limitation of Liability</h2>
           <p>
             Zubware tools are provided "as is" without warranty of any kind. Under no circumstances shall Zubware or its operators be held liable for any damages or file loss resulting from the use or inability to use our website.
           </p>

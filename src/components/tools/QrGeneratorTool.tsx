@@ -35,7 +35,7 @@ interface QrGeneratorToolProps {
 }
 
 type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H';
-type DotStyle = 'square' | 'dots' | 'rounded' | 'classy';
+type DotStyle = 'square' | 'dots' | 'rounded' | 'classy' | 'diamond';
 type CornerStyle = 'square' | 'rounded' | 'circle';
 
 interface QrHistoryItem {
@@ -1103,12 +1103,13 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-2">
                     Body Pattern Shapes
                   </label>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                     {[
                       { id: 'square' as const, label: 'Square' },
                       { id: 'dots' as const, label: 'Dots / Circles' },
                       { id: 'rounded' as const, label: 'Rounded' },
-                      { id: 'classy' as const, label: 'Smooth' }
+                      { id: 'classy' as const, label: 'Smooth' },
+                      { id: 'diamond' as const, label: 'Diamond' }
                     ].map((s) => (
                       <button
                         key={s.id}

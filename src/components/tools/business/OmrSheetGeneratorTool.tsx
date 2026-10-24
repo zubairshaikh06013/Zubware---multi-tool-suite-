@@ -43,6 +43,8 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
   const [answerKey, setAnswerKey] = useState<Record<number, string>>({});
 
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [previewPage, setPreviewPage] = useState(1);
+  const totalPages = Math.ceil(questionCount / 100);
 
   const OPTION_LETTERS = ['A', 'B', 'C', 'D', 'E', 'F'];
 
@@ -339,7 +341,8 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
   // Render preview canvas
   useEffect(() => {
-    const canvas = renderOmrCanvas();
+    const page = Math.min(previewPage, totalPages);
+    const canvas = renderOmrCanvas((page - 1) * 100 + 1, Math.min(questionCount, page * 100));
     const pCanvas = previewCanvasRef.current;
     if (pCanvas) {
       pCanvas.width = canvas.width;
@@ -361,7 +364,9 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     showSignatureBoxes,
     showInstructions,
     sheetMode,
-    answerKey
+    answerKey,
+    previewPage,
+    totalPages
   ]);
 
   const handleDownloadPdf = () => {
@@ -396,12 +401,13 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
   };
 
   const handleDownloadPng = () => {
-    const canvas = renderOmrCanvas();
+    const page = Math.min(previewPage, totalPages);
+    const canvas = renderOmrCanvas((page - 1) * 100 + 1, Math.min(questionCount, page * 100));
     const url = canvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = url;
     const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
-    a.download = `${prefix}-${questionCount}q.png`;
+    a.download = `${prefix}-${questionCount}q-page-${page}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -660,6 +666,14 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
                 </button>
               </div>
             </div>
+
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between gap-3 text-xs font-bold text-slate-700 dark:text-slate-300">
+                <button type="button" disabled={previewPage <= 1} onClick={() => setPreviewPage(p => Math.max(1, p - 1))} className="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 disabled:opacity-40">Previous page</button>
+                <span>Preview page {Math.min(previewPage, totalPages)} of {totalPages} · PDF includes all pages</span>
+                <button type="button" disabled={previewPage >= totalPages} onClick={() => setPreviewPage(p => Math.min(totalPages, p + 1))} className="rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 disabled:opacity-40">Next page</button>
+              </div>
+            )}
 
             {/* Sheet Display Stage */}
             <div className="p-4 rounded-xl bg-slate-200/70 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center min-h-[500px] overflow-auto">

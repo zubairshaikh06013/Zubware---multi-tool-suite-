@@ -8259,7 +8259,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "howTo": [
       {"title":"Enter Exam Details","desc":"Add the institution name, exam title, subject and date to personalize your printable OMR sheet."},
       {"title":"Choose Questions and Options","desc":"Select a 20, 50, 100, 150 or 200-question preset, choose A–D, A–E or A–F answers and configure the column layout."},
-      {"title":"Configure Candidate Fields","desc":"Add 4–10 roll-number boxes, booklet set choices, instructions and candidate/invigilator signature spaces as needed."},
+      {"title":"Configure Candidate Fields","desc":"Add 4–10 roll-number writing boxes with corresponding 0–9 bubble columns, booklet set choices, instructions and candidate/invigilator signature spaces as needed."},
       {"title":"Create a Blank Sheet or Teacher Answer Key","desc":"Use Blank Student Sheet mode, or choose Teacher Answer Key and mark answers individually or paste a sequence such as A B C D."},
       {"title":"Preview and Export","desc":"Review each page using the preview controls. Download a printable A4 PDF with up to 100 questions per page, or save the selected preview page as PNG."}
     ],
@@ -8268,7 +8268,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       {"question":"How many questions can I put on an OMR sheet?","answer":"The tool offers presets for 20, 50, 100, 150 and 200 questions. PDF exports split questions across A4 pages after every 100 questions; for example, 200 questions produce two pages."},
       {"question":"Can I make a 4-option, 5-option or 6-option answer sheet?","answer":"Yes. Choose A–D, A–E or A–F. The layout limits the number of columns for denser option sets to improve spacing."},
       {"question":"Can teachers paste a complete answer key?","answer":"Yes. In Teacher Answer Key mode, enter letters separated by spaces or commas, or paste a continuous sequence such as ABCDA. You can also select answers individually and clear the key."},
-      {"question":"Does the roll-number field include 0–9 bubbles?","answer":"No. The current tool draws configurable blank roll-number boxes (4 to 10 digits), not a 0–9 bubble matrix."},
+      {"question":"Does the roll-number field include 0–9 bubbles?","answer":"Yes. When enabled, the roll-number section includes writable boxes and a separate 0–9 bubble column for each of 4 to 10 digits. Check a sample print for alignment before using it with any scanning software."},
       {"question":"Can I preview both pages of a 200-question sheet?","answer":"Yes. Use Previous page and Next page to review each page. Download PDF includes all pages, while Save PNG exports the page currently shown."},
       {"question":"Does the PDF contain vector-drawn bubbles?","answer":"No. The A4 PDF embeds a lossless PNG rendering of the sheet. This preserves the rendered outlines but is not a vector PDF."},
       {"question":"Will these sheets work with any commercial OMR scanner?","answer":"Compatibility is not guaranteed. Registration marks are provided, but scanner-specific templates, print scaling, bubble geometry and calibration need to be validated with the intended scanning system."},

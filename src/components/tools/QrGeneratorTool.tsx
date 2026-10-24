@@ -54,7 +54,15 @@ const COLOR_PRESETS = [
   { name: 'Crimson Bold', fg: '#dc2626', bg: '#fff1f2' },
   { name: 'Cyber Amber', fg: '#d97706', bg: '#fffbeb' },
   { name: 'Deep Ocean', fg: '#0284c7', bg: '#f0f9ff' },
-  { name: 'Dark Mode Invert', fg: '#f8fafc', bg: '#0f172a' }
+  { name: 'Dark Mode Invert', fg: '#f8fafc', bg: '#0f172a' },
+  { name: 'Midnight Blue', fg: '#172554', bg: '#eff6ff' },
+  { name: 'Forest Green', fg: '#14532d', bg: '#f0fdf4' },
+  { name: 'Coffee Brown', fg: '#78350f', bg: '#fffbeb' },
+  { name: 'Rose Boutique', fg: '#9f1239', bg: '#fff1f2' },
+  { name: 'Graphite', fg: '#262626', bg: '#fafafa' },
+  { name: 'Teal Studio', fg: '#115e59', bg: '#f0fdfa' },
+  { name: 'Plum', fg: '#701a75', bg: '#fdf4ff' },
+  { name: 'Copper', fg: '#9a3412', bg: '#fff7ed' }
 ];
 
 const QUICK_TEMPLATES = [
@@ -286,7 +294,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       });
       if (image.width * image.height > 24000000) throw new Error('Choose a logo smaller than 24 megapixels.');
       const canvas = document.createElement('canvas');
-      const scale = Math.min(1, 512 / Math.max(image.width, image.height));
+      const scale = Math.min(1, 1024 / Math.max(image.width, image.height));
       canvas.width = Math.max(1, Math.round(image.width * scale));
       canvas.height = Math.max(1, Math.round(image.height * scale));
       const context = canvas.getContext('2d');
@@ -1169,7 +1177,8 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     ref={fileInputRef}
                     accept="image/png,image/jpeg,image/webp"
                     onChange={handleLogoUpload}
-                    className="hidden"
+                    className="sr-only"
+                    aria-label="Choose QR center logo"
                   />
                   <button
                     type="button"

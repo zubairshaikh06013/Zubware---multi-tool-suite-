@@ -177,7 +177,9 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
 
       // 2. Encode to 320 kbps MP3
       setProcessingStage('Encoding MP3...');
-      const mp3Blob = await encodeAudioBufferToMp3(rendered, 320);
+      const mp3Blob = await encodeAudioBufferToMp3(rendered, 320, (percent) => {
+        setProcessingStage(`Encoding MP3... ${percent}%`);
+      });
 
       if (!mp3Blob || mp3Blob.size < 500) {
         throw new Error('Sorry, we couldn\'t process this audio. Please try another file.');

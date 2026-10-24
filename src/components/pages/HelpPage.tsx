@@ -28,12 +28,12 @@ export const HelpPage: React.FC<HelpPageProps> = ({ onNavigate }) => {
       desc: t('tip2Desc', 'On the Image Splitter tool, drag the seam line directly across the canvas image to visually select where to split your graphic with sub-pixel precision.')
     },
     {
-      title: t('tip3Title', '100% Offline Capability'),
-      desc: t('tip3Desc', 'Bookmark Zubware as a PWA or leave the tab open. All calculations, PDF manipulation, and image conversions run directly in your web browser memory.')
+      title: t('tip3Title', 'Browser-Based Processing'),
+      desc: t('tip3Desc', 'Many calculations, PDF operations and image conversions run in your browser. Some tools need an internet connection, and offline availability depends on what your browser has cached.')
     },
     {
-      title: t('tip4Title', 'Instant Local Storage'),
-      desc: t('tip4Desc', 'Your resumes, encrypted notes, habits, and tool statistics are stored safely in local browser storage without creating any user account.')
+      title: t('tip4Title', 'Understand Local Storage'),
+      desc: t('tip4Desc', 'Some tools save preferences or history in browser storage on your device. Clearing browser data may remove saved items, so export important work when a tool offers that option.')
     }
   ];
 

@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'public/_headers'
+      - 'public/404.html'
+      - 'public/404/**'
       - 'public/_redirects'
       - 'scripts/generateSeoAndSitemap.ts'
       - '.github/workflows/production-seo-http.yml'
@@ -49,9 +51,14 @@ jobs:
           # The HTTP probe is diagnostic; flag unexpected behavior without breaking production.
           if results['qa_internal']['status'] not in ('unknown','000'):
               assert 'noindex' in results['qa_internal']['headers'].get('x-robots-tag','').lower(), 'QA page missing X-Robots-Tag noindex'
-          for name in ('qa_internal_final','not_found_final'):
+          for name in ('qa_internal_final',):
               if results[name]['status'] not in ('unknown','000'):
                   assert 'noindex' in results[name]['headers'].get('x-robots-tag','').lower(), name+' missing final noindex header'
+          # A not-found page can be noindex via HTML meta rather than response header.
+          # Validate its actual HTML content separately instead of assuming X-Robots-Tag.
+          if results['not_found_final']['status'] == '200':
+              body = subprocess.run(['curl','-sS','--max-time','20',base+'/404'],capture_output=True,text=True).stdout.lower()
+              assert 'name="robots"' in body and 'noindex' in body, '404 HTML missing robots noindex'
           if results['qr_legacy']['status'] not in ('unknown','000'):
               assert results['qr_legacy']['status'] in ('301','308'), 'Legacy QR URL should redirect'
           PY

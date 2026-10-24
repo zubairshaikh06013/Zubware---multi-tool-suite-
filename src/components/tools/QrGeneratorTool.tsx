@@ -62,7 +62,15 @@ const COLOR_PRESETS = [
   { name: 'Graphite', fg: '#262626', bg: '#fafafa' },
   { name: 'Teal Studio', fg: '#115e59', bg: '#f0fdfa' },
   { name: 'Plum', fg: '#701a75', bg: '#fdf4ff' },
-  { name: 'Copper', fg: '#9a3412', bg: '#fff7ed' }
+  { name: 'Copper', fg: '#9a3412', bg: '#fff7ed' },
+  { name: 'Navy Corporate', fg: '#1e3a8a', bg: '#eff6ff' },
+  { name: 'Olive Market', fg: '#365314', bg: '#f7fee7' },
+  { name: 'Burgundy Wine', fg: '#881337', bg: '#fff1f2' },
+  { name: 'Ocean Teal', fg: '#134e4a', bg: '#ccfbf1' },
+  { name: 'Ink & Cream', fg: '#292524', bg: '#fefce8' },
+  { name: 'Purple Night', fg: '#581c87', bg: '#faf5ff' },
+  { name: 'Terracotta', fg: '#7c2d12', bg: '#ffedd5' },
+  { name: 'Deep Cyan', fg: '#155e75', bg: '#ecfeff' }
 ];
 
 const QUICK_TEMPLATES = [

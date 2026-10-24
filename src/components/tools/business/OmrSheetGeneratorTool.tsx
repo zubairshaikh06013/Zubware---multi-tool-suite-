@@ -232,12 +232,15 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     // Auto-increase columns for dense layouts to keep printed bubbles legible.
     // Four columns with six options need more horizontal space than this A4 grid offers.
     const pageQuestions = pageEnd - pageStart + 1;
-    const effectiveColumns = Math.max(columnsCount, Math.ceil(pageQuestions / 50));
+    // Keep each option cell wide enough for distinct, printable bubbles.
+    // At 6 options per question, a 4-column A4 layout is too narrow.
+    const maxReadableColumns = optionsPerQuestion === 6 ? 2 : optionsPerQuestion === 5 ? 3 : 4;
+    const effectiveColumns = Math.min(maxReadableColumns, Math.max(columnsCount, Math.ceil(pageQuestions / 50)));
     const questionsPerCol = Math.ceil(pageQuestions / effectiveColumns);
     const colWidth = (contentWidth - (effectiveColumns - 1) * 20) / effectiveColumns;
     const rowHeight = Math.min(26, (questionsAvailableHeight - 24) / questionsPerCol);
     // Never let adjacent bubbles overlap when a dense 150/200-question layout is selected.
-    const bubbleRadius = Math.min(9, Math.max(3, rowHeight * 0.32), (colWidth - 56) / (optionsPerQuestion * 2) - 2);
+    const bubbleRadius = Math.max(3, Math.min(9, rowHeight * 0.32, (colWidth - 56) / (optionsPerQuestion * 2) - 2));
 
     for (let c = 0; c < effectiveColumns; c++) {
       const colStartX = infoStartX + c * (colWidth + 20);

@@ -1,7 +1,7 @@
 import QRCode from 'qrcode';
 export interface QrDesign {
   qrSize: number; margin: number; fgColor: string; bgColor: string; transparentBg: boolean;
-  errorCorrection: 'L' | 'M' | 'Q' | 'H'; dotStyle: 'square' | 'dots' | 'rounded' | 'classy';
+  errorCorrection: 'L' | 'M' | 'Q' | 'H'; dotStyle: 'square' | 'dots' | 'rounded' | 'classy' | 'diamond';
   cornerStyle: 'square' | 'rounded' | 'circle'; useGradient: boolean; fgColor2: string;
   gradientType: 'linear' | 'radial'; logoImage: string | null; logoSize: number;
   frameText: string; frameColor: string; framePosition: 'top' | 'bottom';
@@ -49,7 +49,8 @@ export function renderQrSvg(content: string, d: QrDesign) {
     const x = (col + margin) * cell, y = (row + margin) * cell + offset;
     // Keep timing, alignment and format modules intact even with decorative data dots.
     const style = qr.modules.isReserved(row, col) ? 'square' : d.dotStyle;
-    if (style === 'dots' || style === 'classy') out.push(`<circle cx="${x + cell / 2}" cy="${y + cell / 2}" r="${cell * (style === 'dots' ? 0.46 : 0.5)}"/>`);
+    if (style === 'diamond') out.push(`<path d="M ${x + cell / 2} ${y} L ${x + cell} ${y + cell / 2} L ${x + cell / 2} ${y + cell} L ${x} ${y + cell / 2} Z"/>`);
+    else if (style === 'dots' || style === 'classy') out.push(`<circle cx="${x + cell / 2}" cy="${y + cell / 2}" r="${cell * (style === 'dots' ? 0.46 : 0.5)}"/>`);
     else out.push(`<rect x="${x}" y="${y}" width="${cell}" height="${cell}" rx="${style === 'rounded' ? cell * 0.25 : 0}"/>`);
   }
   // Continuous finder rings preserve the three recognisable corner targets.

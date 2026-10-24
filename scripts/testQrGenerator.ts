@@ -65,6 +65,8 @@ const quickDesigns = [
   { fgColor: '#115e59', bgColor: '#f0fdfa', dotStyle: 'classy', cornerStyle: 'rounded' },
   { fgColor: '#581c87', bgColor: '#faf5ff', dotStyle: 'dots', cornerStyle: 'rounded' }
 ] satisfies Array<Pick<QrDesign, 'fgColor' | 'bgColor' | 'dotStyle' | 'cornerStyle'>>;
+// Diamond data modules must remain machine-readable at standard print sizes.
+await verify(payloads[4], { ...base, dotStyle: 'diamond', cornerStyle: 'square', qrSize: 640 });
 for (const template of quickDesigns) {
   await verify(payloads[4], { ...base, ...template });
 }

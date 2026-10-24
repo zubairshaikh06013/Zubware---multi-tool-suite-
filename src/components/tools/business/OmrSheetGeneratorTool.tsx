@@ -69,6 +69,22 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     });
   };
 
+  // Paste answer keys as letters (e.g. ABCD) or comma/space-separated answers.
+  const [bulkAnswers, setBulkAnswers] = useState('');
+  const importAnswerKey = () => {
+    const tokens = bulkAnswers.trim().toUpperCase().split(/[\\s,;|]+/).filter(Boolean);
+    const letters = tokens.length === 1 ? tokens[0].split('') : tokens;
+    const valid = OPTION_LETTERS.slice(0, optionsPerQuestion);
+    if (!letters.length || letters.length > questionCount || letters.some(letter => !valid.includes(letter))) {
+      onShowToast(`Enter 1–${questionCount} answers using letters ${valid.join(', ')} only.`);
+      return;
+    }
+    const next: Record<number, string> = {};
+    letters.forEach((letter, index) => { next[index + 1] = letter; });
+    setAnswerKey(next);
+    onShowToast(`Imported ${letters.length} answers.`);
+  };
+
   // Generate canvas rendering of standard A4 sheet (2480 × 3508 at 300 DPI, or 1240 × 1754 at 150 DPI)
   const renderOmrCanvas = (): HTMLCanvasElement => {
     const canvas = document.createElement('canvas');
@@ -578,8 +594,15 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
             {sheetMode === 'answer-key' && (
               <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-900/40 text-xs text-amber-900 dark:text-amber-300">
-                <span className="font-bold block mb-1">Answer Key Mode Active:</span>
-                Click on the question options below to mark correct answers. Filled bubbles will appear in your download.
+                <span className="font-bold block mb-1">Answer Key Mode Active — {Object.keys(answerKey).filter(q => Number(q) <= questionCount && OPTION_LETTERS.slice(0, optionsPerQuestion).includes(answerKey[Number(q)])).length}/{questionCount} marked</span>
+                Click the question options below, or paste answers in bulk. Filled bubbles will appear in your download.
+                <div className="mt-2 space-y-2">
+                  <textarea aria-label="Paste answer key" value={bulkAnswers} onChange={e => setBulkAnswers(e.target.value)} rows={2} placeholder="Paste answers: A B C D A, or ABCDA" className="w-full p-2 rounded-lg border border-amber-300 dark:border-amber-800 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
+                  <div className="flex flex-wrap gap-2">
+                    <button type="button" onClick={importAnswerKey} className="rounded-lg bg-indigo-600 text-white px-3 py-1.5 font-bold">Import Answers</button>
+                    <button type="button" onClick={() => { setAnswerKey({}); setBulkAnswers(''); }} className="rounded-lg border border-amber-300 px-3 py-1.5 font-bold">Clear Key</button>
+                  </div>
+                </div>
                 <div className="mt-2 flex flex-wrap gap-1 max-h-36 overflow-y-auto p-1 bg-white dark:bg-slate-900 rounded-lg">
                   {Array.from({ length: questionCount }, (_, i) => i + 1).map((q) => (
                     <div key={q} className="flex items-center gap-1 border p-1 rounded">

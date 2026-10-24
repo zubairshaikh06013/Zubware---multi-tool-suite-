@@ -224,11 +224,15 @@ export async function processAutomaticLofi(
   }
 
   // Peak Normalization / Soft Safety Scaling
-  const channelData = renderedBuffer.getChannelData(0);
+  // Scan every sample in every channel: a loud transient in the right channel
+  // or between sparse sample points must not escape peak protection.
   let maxPeak = 0;
-  for (let i = 0; i < channelData.length; i += 10) {
-    const val = Math.abs(channelData[i]);
-    if (val > maxPeak) maxPeak = val;
+  for (let channel = 0; channel < renderedBuffer.numberOfChannels; channel++) {
+    const channelData = renderedBuffer.getChannelData(channel);
+    for (let i = 0; i < channelData.length; i++) {
+      const peak = Math.abs(channelData[i]);
+      if (peak > maxPeak) maxPeak = peak;
+    }
   }
 
   if (maxPeak > 0.90) {

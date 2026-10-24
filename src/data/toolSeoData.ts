@@ -8257,76 +8257,25 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "omr-sheet-generator": {
     "howTo": [
-      {
-        "title": "Enter Assessment & Institution Header Details",
-        "desc": "Input your school, university, or coaching academy name, examination title, subject/course name, and test date to generate a customized header."
-      },
-      {
-        "title": "Select Question Count & Bubble Options",
-        "desc": "Choose quick presets for 20, 50, 100, 120, or 150 questions (or set custom 10 to 200), and configure 4 (A–D), 5 (A–E), or 6 (A–F) multiple choice bubble options."
-      },
-      {
-        "title": "Configure Student Info Blocks & Columns",
-        "desc": "Toggle the student Roll Number bubble grid (4 to 10 numerical digits), Test Booklet Set code bubbles (Set A, B, C, D), candidate/invigilator signature blocks, and arrange in 1 to 4 columns."
-      },
-      {
-        "title": "Choose Mode: Blank Test Sheet vs Answer Key",
-        "desc": "Keep Blank Sheet mode for student examination printouts, or toggle to Answer Key mode to click and fill in the correct answer circles to create a teacher grading master."
-      },
-      {
-        "title": "Download High-Resolution A4 PDF or Print",
-        "desc": "Click Download PDF to export a 300 DPI vector-crisp A4 document with corner optical fiducial registration marks, or click Print for direct laser printer output."
-      }
+      {"title":"Enter Exam Details","desc":"Add the institution name, exam title, subject and date to personalize your printable OMR sheet."},
+      {"title":"Choose Questions and Options","desc":"Select a 20, 50, 100, 150 or 200-question preset, choose A–D, A–E or A–F answers and configure the column layout."},
+      {"title":"Configure Candidate Fields","desc":"Add 4–10 roll-number boxes, booklet set choices, instructions and candidate/invigilator signature spaces as needed."},
+      {"title":"Create a Blank Sheet or Teacher Answer Key","desc":"Use Blank Student Sheet mode, or choose Teacher Answer Key and mark answers individually or paste a sequence such as A B C D."},
+      {"title":"Preview and Export","desc":"Review each page using the preview controls. Download a printable A4 PDF with up to 100 questions per page, or save the selected preview page as PNG."}
     ],
     "faq": [
-      {
-        "question": "Can I print these OMR sheets on standard office A4 paper and desktop printers?",
-        "answer": "Yes. The OMR sheets are mathematically rendered to standard ISO A4 paper dimensions (210 × 297 mm). You can print them on standard laser, inkjet, or commercial digital copiers using regular 75 to 80 GSM white copy paper."
-      },
-      {
-        "question": "What are the solid black squares on the four corners of the OMR sheet?",
-        "answer": "Those are optical fiducial registration marks. Optical Mark Recognition hardware and document cameras rely on these four corner calibration markers to detect sheet orientation, calibrate rotational skew, and establish coordinate anchors across the bubble matrix."
-      },
-      {
-        "question": "How does Master Answer Key mode work?",
-        "answer": "Selecting Answer Key mode enables interactive clicking on the preview canvas. Teachers can click specific bubbles for each question (e.g. Question 1 = B, Question 2 = D) to shade them solid black and print an authoritative answer key sheet for physical overlay or grading reference."
-      },
-      {
-        "question": "What question configurations and option letters are supported?",
-        "answer": "The generator provides quick presets for 20, 50, 100, 120, and 150 questions, and supports custom counts up to 200 questions. You can configure 4 options (A, B, C, D), 5 options (A, B, C, D, E), or 6 options (A, B, C, D, E, F) per question."
-      },
-      {
-        "question": "How does the candidate Roll Number bubble grid work?",
-        "answer": "When enabled, a vertical 0–9 numerical bubbling grid is rendered at the top of the sheet. You can configure between 4 and 10 digits to match your institution's student enrollment, registration, or seat numbering convention."
-      },
-      {
-        "question": "Does this tool automatically scan, evaluate, or score physical sheets using a mobile camera?",
-        "answer": "No. This tool is a dedicated OMR Sheet and Answer Key generator that designs and exports print-ready sheets and master keys in PDF and PNG. It does not perform automated camera scanning or computerized algorithmic grading of filled student sheets."
-      },
-      {
-        "question": "Should candidates use a black ballpoint pen, blue ballpoint pen, or pencil to fill bubbles?",
-        "answer": "Standard instructions recommend a black or dark blue ballpoint pen for high-contrast optical density. Avoid gel pens or fountain pens that cause ink bleeding through paper fibers, and instruct candidates to darken the entire circle completely without stray marks."
-      },
-      {
-        "question": "How does the multi-column layout optimize space for 100 or 150 questions?",
-        "answer": "For 20–25 questions, a single column is used. For 50 questions, a 2-column layout ensures clean spacing. For 100 questions, 3 columns fit comfortably on A4, and for 120–150 questions, a 4-column layout fits all bubbles on a single page while maintaining legible spacing."
-      },
-      {
-        "question": "Can I include Booklet Set Codes for multiple test versions?",
-        "answer": "Yes. Toggle the Set Code option to display bubble circles for Set A, Set B, Set C, and Set D. This allows examination administrators to distribute shuffled question booklets while students clearly identify their version."
-      },
-      {
-        "question": "Is institution name, student data, or answer keys uploaded to external servers?",
-        "answer": "No. All canvas rendering and PDF generation execute locally in your web browser memory using HTML5 Canvas and jsPDF. No test papers, teacher answer keys, or school credentials are saved to external databases."
-      },
-      {
-        "question": "How can I avoid paper scaling or distortion when printing from Adobe Acrobat or Chrome?",
-        "answer": "In your print settings dialog, always select 'Actual Size' or 'Scale: 100%'. Do not select 'Fit to Printable Area' or 'Shrink Oversized Pages', as scaling can distort the fixed millimeter distances between registration marks and question bubbles."
-      },
-      {
-        "question": "Can I use this tool to create mock test sheets for competitive exams like NEET, JEE, and UPSC?",
-        "answer": "Yes. Coaching centers and students frequently generate 100-question and 150-question 4-option sheets to simulate realistic offline competitive exam conditions (NEET, JEE Mains, SSC CGL, Banking, and State PSCs)."
-      }
+      {"question":"Is this OMR sheet generator free?","answer":"Yes. You can configure and download printable OMR sheets and answer keys directly in your browser without a paid API."},
+      {"question":"How many questions can I put on an OMR sheet?","answer":"The tool offers presets for 20, 50, 100, 150 and 200 questions. PDF exports split questions across A4 pages after every 100 questions; for example, 200 questions produce two pages."},
+      {"question":"Can I make a 4-option, 5-option or 6-option answer sheet?","answer":"Yes. Choose A–D, A–E or A–F. The layout limits the number of columns for denser option sets to improve spacing."},
+      {"question":"Can teachers paste a complete answer key?","answer":"Yes. In Teacher Answer Key mode, enter letters separated by spaces or commas, or paste a continuous sequence such as ABCDA. You can also select answers individually and clear the key."},
+      {"question":"Does the roll-number field include 0–9 bubbles?","answer":"No. The current tool draws configurable blank roll-number boxes (4 to 10 digits), not a 0–9 bubble matrix."},
+      {"question":"Can I preview both pages of a 200-question sheet?","answer":"Yes. Use Previous page and Next page to review each page. Download PDF includes all pages, while Save PNG exports the page currently shown."},
+      {"question":"Does the PDF contain vector-drawn bubbles?","answer":"No. The A4 PDF embeds a lossless PNG rendering of the sheet. This preserves the rendered outlines but is not a vector PDF."},
+      {"question":"Will these sheets work with any commercial OMR scanner?","answer":"Compatibility is not guaranteed. Registration marks are provided, but scanner-specific templates, print scaling, bubble geometry and calibration need to be validated with the intended scanning system."},
+      {"question":"Can I scan and automatically grade completed student sheets here?","answer":"No. This tool generates blank answer sheets and teacher answer keys; it does not scan physical sheets or automatically grade responses."},
+      {"question":"What print settings should I use?","answer":"Use A4 paper and select Actual Size or 100% scaling. Print a sample first and check bubble legibility and alignment before distributing sheets."},
+      {"question":"Are exam details and answer keys uploaded?","answer":"The sheet preview and PDF generation run in your browser using Canvas and jsPDF; this generator does not upload your entered exam details or answer keys for processing."},
+      {"question":"Is this an official NEET, JEE or government exam OMR template?","answer":"No. It is a customizable practice and assessment sheet generator, not an official examination board template."}
     ]
   },
   "pdf-to-word": {

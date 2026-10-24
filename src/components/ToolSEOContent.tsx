@@ -335,81 +335,34 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
         </section>
       )}
 
-      {/* 3.7 DEDICATED QR CODE GENERATOR IN-DEPTH GUIDE (Targeting High-Intent Regional & Global Queries) */}
+      {/* Practical guidance for the QR generator's actual output. */}
       {tool.id === 'qr-generator' && (
         <section className="glass-panel p-6 sm:p-10 rounded-3xl space-y-8 border border-indigo-200/50 dark:border-indigo-900/40">
-          <div className="border-b border-slate-200/60 dark:border-slate-800/60 pb-4">
-            <span className="text-xs font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">
-              Complete Practical Guide &amp; Usage Instructions
-            </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">
-              QR Code Kaise Banaye? (How to Create a QR Code Online)
-            </h2>
-          </div>
-
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Make a QR code that works where you use it</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🌐</span> Create a QR Code From a URL or Website Link
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Whether you need a QR code for your business website, portfolio, Google Drive document, YouTube video, or restaurant menu, generating one takes seconds. Simply paste your complete web link (e.g., <code>https://example.com</code>) into the input box. The matrix updates in real time.
-              </p>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Because these are direct static QR codes, your URL is encoded directly into the matrix without third-party redirect links. Your QR codes remain active forever and will never break or expire.
-              </p>
+              <h3 className="text-lg font-bold">Restaurant menus, websites and shared documents</h3>
+              <p className="text-sm leading-relaxed">Paste the full HTTPS address into URL / Text. Open the destination in a signed-out browser to check that visitors can access it. For a menu, use a stable page you control so you can update the menu at the same address without reprinting the QR.</p>
+              <p className="text-sm leading-relaxed">A static QR keeps its original content and has no built-in expiry. It cannot repair an expired domain, deleted file or changed sharing permission. Zubware does not host your destination or add a tracking redirect.</p>
             </div>
-
             <div className="glass-card p-6 rounded-2xl space-y-3">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📱</span> QR Code Kaise Banaye? (Website Link &amp; Text Guide)
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Website link ya kisi bhi text ka QR code banana behad aasan hai:
-              </p>
-              <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
-                <li><strong>Step 1:</strong> Content tab mein apni website ka link ya plain text enter karein.</li>
-                <li><strong>Step 2:</strong> Design tab mein custom colors ya center brand logo choose karein.</li>
-                <li><strong>Step 3:</strong> Live preview ko apne mobile camera se scan karke verify karein.</li>
-                <li><strong>Step 4:</strong> <strong>PNG</strong>, <strong>Vector SVG</strong>, ya <strong>Printable A4 PDF</strong> par click karke save karein.</li>
+              <h3 className="text-lg font-bold">Guest Wi-Fi and WhatsApp enquiries</h3>
+              <p className="text-sm leading-relaxed">For guest Wi-Fi, preserve the exact network name and password, including spaces. Anyone with the QR image can read those details. Use a guest network instead of publishing a private network password.</p>
+              <p className="text-sm leading-relaxed">For customer enquiries, choose WhatsApp, enter the international phone number and add a message such as “I would like to ask about your menu.” The scan opens a chat for an active account; the visitor decides whether to send the message.</p>
+            </div>
+            <div className="glass-card p-6 rounded-2xl space-y-3">
+              <h3 className="text-lg font-bold">Choose an export and check a print sample</h3>
+              <ul className="text-sm space-y-2 list-disc pl-5">
+                <li><strong>PNG:</strong> Use for websites, slides and apps that need an image. Increase Target QR width when you need more pixels.</li>
+                <li><strong>SVG:</strong> Use for scalable QR artwork. Colors, shapes, the frame and your embedded raster logo are retained; the logo still has a finite resolution.</li>
+                <li><strong>A4 PDF:</strong> Download a centered 120 mm wide QR image with the frame in its correct proportions. Check the printer scale before producing a batch.</li>
               </ul>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Poora process aapke browser memory mein hota hai; kisi account signup ya subscription ki bilkul zaroorat nahi hai.
-              </p>
+              <p className="text-sm leading-relaxed">Keep the blank border clear. Run the built-in test, then scan a downloaded file and a print sample on the intended material and under real lighting. Gloss, distance, blur and low contrast can change the result.</p>
             </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🎨</span> High-Resolution PNG, Scalable SVG &amp; Print-Ready PDF
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Choose the exact format suited for your medium:
-              </p>
-              <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2">
-                <li>
-                  <strong>PNG Image:</strong> Crisp raster graphics perfect for social media posts, email signatures, presentation slides, and websites.
-                </li>
-                <li>
-                  <strong>Vector SVG:</strong> Scalable mathematical vector format ideal for graphic designers, commercial printing, billboards, stickers, and packaging without pixelation.
-                </li>
-                <li>
-                  <strong>A4 Print PDF:</strong> Pre-centered print sheet ready for physical display on office counters, tables, trade show booths, or posters.
-                </li>
-              </ul>
-            </div>
-
-            <div className="glass-card p-6 rounded-2xl space-y-3">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-500">🔒</span> 100% Client-Side Privacy (Zero Server Storage &amp; No Watermark)
-              </h3>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Many online QR generators store your sensitive links on remote servers, force account registration, inject watermarks, or deactivate your QR codes after 14 days unless you pay.
-              </p>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                Zubware operates 100% locally in your browser using HTML5 Canvas. Your URLs, passwords, Wi-Fi credentials, and contact details never leave your device. All generated QR codes are permanent, completely unwatermarked, and free forever.
-              </p>
+              <h3 className="text-lg font-bold">Know what the checks and history mean</h3>
+              <p className="text-sm leading-relaxed">The scan test compares the preview’s decoded content with your input. It does not certify a destination as safe, verify a UPI payee, connect to Wi-Fi or confirm compatibility with every phone. Use Review encoded content to catch a wrong number, link or payment amount.</p>
+              <p className="text-sm leading-relaxed">Generation and testing run locally in your browser. History is off by default. Enabling it saves downloaded or copied payloads unencrypted on this browser, including any sensitive details. Use Clear All to remove them, and remember that anyone receiving a downloaded QR can decode its content.</p>
             </div>
           </div>
 

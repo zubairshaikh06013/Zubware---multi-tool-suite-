@@ -28,7 +28,7 @@ const getTodayString = () => {
 };
 
 export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToast }) => {
-  const [dob, setDob] = useState<string>('1998-05-15');
+  const [dob, setDob] = useState<string>('');
   const [targetDate, setTargetDate] = useState<string>(getTodayString());
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -143,10 +143,10 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
           <button
             type="button"
             onClick={() => {
-              setDob('1998-05-15');
+              setDob('');
               setTargetDate(getTodayString());
               setCopied(false);
-              onShowToast('Reset to default dates');
+              onShowToast('Dates cleared; reference date set to today');
             }}
             className="p-2 sm:px-3 sm:py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer"
             title="Reset to default dates"
@@ -181,6 +181,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             onChange={e => { setDob(e.target.value); setCopied(false); }}
             min="0001-01-01"
             max="9999-12-31"
+            aria-describedby="age-date-help"
             className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white"
           />
         </div>
@@ -211,8 +212,8 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
         </div>
       </div>
 
-      <p className="text-xs text-slate-600 dark:text-slate-400">
-        Month-end dates use the last valid day of the destination month. A February 29 birthday uses February 28 in non-leap years here. Official eligibility rules may differ.
+      <p id="age-date-help" className="text-xs text-slate-600 dark:text-slate-400">
+        Enter your date of birth to calculate your age. Month-end dates use the last valid day of the destination month. A February 29 birthday uses February 28 in non-leap years here. Official eligibility rules may differ.
       </p>
       {result ? (
         <div className="space-y-6">

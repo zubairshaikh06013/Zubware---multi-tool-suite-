@@ -280,10 +280,10 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
           <Disc className="w-9 h-9 animate-spin-slow" />
         </div>
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-          🎧 Lofi Maker
+          Convert Song to Lofi Online
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 font-medium">
-          Turn your song into a smooth Lofi version in one click.
+          Convert your song to lofi for free with automatic slowdown, warm filtering and reverb. Preview the result and download an MP3, all in your browser.
         </p>
       </div>
 

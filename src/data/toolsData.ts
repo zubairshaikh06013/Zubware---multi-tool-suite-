@@ -1066,20 +1066,20 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "lofi-maker",
-    "title": "Lofi Maker — Transform Any Song into Chill Lofi Music Online",
+    "title": "Convert Song to Lofi Online Free",
     "navTitle": "Lofi Maker",
-    "description": "Transform any song into a chill Lofi track with warm vintage filters and tape ambience online. Adjust tempo and vinyl crackle directly in your browser.",
+    "description": "Convert a song to lofi online for free. Apply automatic slowdown, warm filtering and reverb, preview the result, and download an MP3 without uploading your audio to a server.",
     "icon": "🎧",
     "path": "/lofi-maker",
     "filename": "lofi-maker.html",
     "category": "🎵 Audio Tools",
     "features": [
-      "One-Click Lofi Audio Transformation Preset",
-      "Low-Pass EQ Filter to Cut Harsh Highs for Warm Tones",
-      "Adjustable Playback Tempo & Pitch Slowdown Sliders",
-      "Integrated Vinyl Noise & Ambient Rain Texture Overlay",
-      "Spacey Reverb Room Size and Wet/Dry Mix Control",
-      "Export Converted Audio Directly to WAV or MP3"
+      "One-click song to lofi conversion",
+      "Automatic slowdown, warm filtering and reverb",
+      "Subtle vinyl texture",
+      "Original and converted audio preview",
+      "Download the converted song as a 320 kbps MP3",
+      "Local browser processing with a 50 MB input limit"
     ],
     "tags": [
       "lofi",

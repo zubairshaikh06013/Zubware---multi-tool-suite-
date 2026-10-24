@@ -77,7 +77,7 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
 
   // Handle File Selection
   const handleFileChange = async (selectedFile: File) => {
-    if (!selectedFile) return;
+    if (!selectedFile || isDecoding || isProcessing) return;
 
     if (selectedFile.size > 50 * 1024 * 1024) {
       onShowToast('File size exceeds 50 MB limit. Please select a smaller song.');
@@ -85,6 +85,12 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
     }
 
     // Clean up previous URLs
+    if (originalAudioRef.current) originalAudioRef.current.pause();
+    if (processedAudioRef.current) processedAudioRef.current.pause();
+    setOriginalCurrentTime(0);
+    setProcessedCurrentTime(0);
+    setOriginalDuration(0);
+    setProcessedDuration(0);
     setFile(selectedFile);
     setAudioBuffer(null);
     setProcessedMp3Blob(null);

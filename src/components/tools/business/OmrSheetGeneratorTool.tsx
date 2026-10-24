@@ -140,6 +140,22 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     ctx.lineWidth = 1;
     ctx.strokeRect(infoStartX, curY, contentWidth * 0.58, 28);
 
+    // Candidate roll-number boxes: these settings must affect the actual printed sheet.
+    if (showRollNoGrid) {
+      const digits = Math.max(4, Math.min(10, rollNoDigits));
+      const startX = infoStartX;
+      const startY = curY + 34;
+      const boxW = Math.min(28, (contentWidth * 0.58 - 12) / digits);
+      ctx.fillStyle = '#0f172a';
+      ctx.font = 'bold 10px sans-serif';
+      ctx.fillText('ROLL NUMBER:', startX, startY + 11);
+      for (let i = 0; i < digits; i++) {
+        ctx.strokeStyle = '#64748b';
+        ctx.lineWidth = 1;
+        ctx.strokeRect(startX + 95 + i * (boxW + 3), startY - 1, boxW, 21);
+      }
+    }
+
     // Roll number or set code blocks
     let rightBlockX = infoStartX + contentWidth * 0.62;
     let rightBlockY = curY - 18;
@@ -167,7 +183,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       ctx.textAlign = 'left';
     }
 
-    curY += 38;
+    curY += showRollNoGrid ? 66 : 38;
 
     // Instructions Section if enabled
     if (showInstructions) {
@@ -319,6 +335,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     optionsPerQuestion,
     columnsCount,
     showRollNoGrid,
+    rollNoDigits,
     showSetCode,
     showSignatureBoxes,
     showInstructions,
@@ -506,6 +523,18 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
               {/* Toggles */}
               <div className="space-y-2 pt-1">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={showRollNoGrid} onChange={e => setShowRollNoGrid(e.target.checked)} className="rounded text-indigo-600" />
+                  <span className="text-xs font-semibold text-slate-700 dark:text-slate-300">Include roll number boxes</span>
+                </label>
+                {showRollNoGrid && (
+                  <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    Roll number digits
+                    <select value={rollNoDigits} onChange={e => setRollNoDigits(Number(e.target.value))} className="ml-2 rounded-lg border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 p-1.5">
+                      {[4, 5, 6, 7, 8, 9, 10].map(n => <option key={n} value={n}>{n}</option>)}
+                    </select>
+                  </label>
+                )}
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"

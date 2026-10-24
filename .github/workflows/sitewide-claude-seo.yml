@@ -1,0 +1,75 @@
+name: Sitewide SEO content quality (claude-seo)
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  content-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Zubware
+        uses: actions/checkout@v4
+        with:
+          path: site
+      - name: Checkout upstream Claude SEO
+        uses: actions/checkout@v4
+        with:
+          repository: AgriciDaniel/claude-seo
+          ref: 6be93f45064ffbadced572b5d5c95f55fd263af0
+          path: claude-seo
+          persist-credentials: false
+      - name: Install Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Build static SEO pages
+        working-directory: site
+        run: |
+          npm ci
+          npm run build
+      - name: Audit canonical and indexing metadata
+        run: python3 site/scripts/audit_generated_seo.py
+      - name: Run upstream content quality detector
+        shell: bash
+        run: |
+          mkdir -p reports
+          python3 - <<'PY'
+          import json, pathlib, subprocess, tempfile
+          from html.parser import HTMLParser
+          class VisibleText(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.parts=[]; self.skip=0
+              def handle_starttag(self, tag, attrs):
+                  if tag in ('script','style','noscript','svg'): self.skip+=1
+              def handle_endtag(self, tag):
+                  if tag in ('script','style','noscript','svg') and self.skip: self.skip-=1
+              def handle_data(self, data):
+                  if not self.skip: self.parts.append(data)
+          pages = sorted(pathlib.Path('site/dist').rglob('*.html'))
+          results = []
+          for page in pages:
+              parser = VisibleText()
+              parser.feed(page.read_text(encoding='utf-8',errors='replace'))
+              with tempfile.NamedTemporaryFile(mode='w',suffix='.txt',encoding='utf-8',delete=True) as tmp:
+                  tmp.write(' '.join(parser.parts)); tmp.flush()
+                  run = subprocess.run(
+                      ['python3','claude-seo/scripts/content_quality.py',tmp.name,'--json','--threshold','0'],
+                      text=True, capture_output=True)
+              if run.returncode == 0:
+                  data = json.loads(run.stdout)
+                  results.append({'page':str(page.relative_to('site/dist')),'quality':data['overall_quality'],'flags':data['flags']})
+              else:
+                  results.append({'page':str(page),'error':run.stderr[-500:]})
+          pathlib.Path('reports/claude-seo-content-quality.json').write_text(json.dumps({'upstream':'AgriciDaniel/claude-seo','pages_checked':len(pages),'results':results},indent=2))
+          print(f'Checked {len(pages)} HTML files. Advisory results saved to artifact.')
+          PY
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-seo-content-quality
+          path: |
+            reports/claude-seo-content-quality.json
+            site/reports/generated-seo-audit.json

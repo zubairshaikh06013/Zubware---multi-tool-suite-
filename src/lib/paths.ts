@@ -282,7 +282,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'json-validator':
       'Zubware JSON Validator verifies JSON syntax, highlights parse errors with exact line and column numbers, and formats messy code into readable indented structures. Ideal for API debugging and configuration audits, all validation and formatting execute locally in your browser with zero data retention.',
     'qr-generator':
-      'Zubware QR Code Generator creates high-resolution, customized QR codes instantly from website URLs, plain text, Wi-Fi networks, and contact cards. Designed for businesses, educators, event organizers, and everyday sharing, it runs smoothly on both desktop and mobile browsers. Every QR code is rendered 100% locally in your device memory with zero server uploads, no account registration, and no tracking redirects, giving you permanent, private QR codes that never expire.',
+      'Create a free QR code for a website, menu, Wi-Fi network, contact or WhatsApp chat. Add a logo, colors and a frame, then use the built-in scan test before downloading PNG, SVG or A4 PDF. QR generation runs in your browser with no sign-up. These are static codes: the encoded content stays fixed, while a linked website must remain available. History is optional and off by default.',
     'image-color-picker':
       'Zubware Color Picker extracts exact pixel color values from any photo, UI screenshot, or graphic with a real-time 9x magnifying loupe. You can inspect and copy colors across HEX, RGB, HSL, HSV, and CMYK formats, while clicked swatches are automatically saved to your session palette. All pixel sampling runs locally in browser memory.',
     'image-splitter-merger':

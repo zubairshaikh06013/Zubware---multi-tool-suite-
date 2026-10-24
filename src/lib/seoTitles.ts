@@ -60,7 +60,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
   'protect-pdf': 'Protect PDF — Add Password & Encrypt PDF Online | Zubware',
   'unlock-pdf': 'Unlock PDF — Remove Passwords from PDF Files | Zubware',
   'pdf-metadata': 'PDF Metadata Editor — View & Edit PDF Info Free | Zubware',
-  'qr-generator': 'QR Code Generator – Create QR Codes Online Free | Zubware',
+  'qr-generator': 'Free QR Code Generator with Logo & Scan Test | Zubware',
 
   // --- Career Tools ---
   'resume-builder': 'Free Resume Builder – Create a Professional Resume | Zubware',

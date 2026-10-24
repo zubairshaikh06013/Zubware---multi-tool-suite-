@@ -2180,54 +2180,66 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "qr-generator": {
     "howTo": [
       {
-        "title": "Enter or Select Content",
-        "desc": "Choose your content type (Website URL, Plain Text, Wi-Fi Network, or vCard Contact) and enter your details into the input field."
+        "title": "Choose what the QR code should do",
+        "desc": "Select URL / Text, Wi-Fi, vCard, WhatsApp, UPI, email, phone, SMS, location or event. For a website or menu, paste the complete HTTPS address. Fill required fields and review any validation message."
       },
       {
-        "title": "Customize Design & Logo (Optional)",
-        "desc": "Select custom colors, gradients, dot patterns, eye styles, or upload your center brand logo with automatic high error correction."
+        "title": "Customize without losing readability",
+        "desc": "Use dark modules on a light background and keep the four-module quiet zone. Add colors, a small PNG/JPEG/WebP logo or a call-to-action frame. Logo mode uses high error correction, but still needs testing."
       },
       {
-        "title": "Preview & Scan Test",
-        "desc": "Review the instant real-time preview and test-scan the matrix with your smartphone camera to ensure quick readability."
+        "title": "Check the content and test the design",
+        "desc": "Open Review encoded content to confirm the exact destination or details. Click Test this QR code to decode the current preview locally. The test checks the encoded content, not whether a website, account, network or payment recipient is valid."
       },
       {
-        "title": "Download PNG, SVG or PDF",
-        "desc": "Export your clean, unwatermarked QR code as a high-resolution PNG image, scalable vector SVG for printing, or printable A4 PDF."
+        "title": "Download and test in the real setting",
+        "desc": "Save PNG for digital use, SVG for scalable artwork, or A4 PDF for a print sheet. The exports keep your design and frame. Scan the downloaded file and a sample print with your phone before sharing widely."
       }
     ],
     "faq": [
       {
-        "question": "What is a QR code generator?",
-        "answer": "A QR code generator is a tool that converts text strings, website URLs, Wi-Fi credentials, contact cards (vCards), or payment details into a two-dimensional matrix barcode that can be scanned by any smartphone camera."
+        "question": "Is this QR code generator free without a sign-up or watermark?",
+        "answer": "Yes. You can create static QR codes and download PNG, SVG or A4 PDF without an account or watermark. Zubware does not impose a scan limit on these codes or require a subscription to keep them active."
       },
       {
-        "question": "How do I create a QR code from a URL?",
-        "answer": "Select the URL content tab, paste or type your full website address (including https://), and the QR code will instantly generate in real time. You can customize colors, dot styles, or embed a brand logo before downloading."
+        "question": "Do the QR codes expire, and can I change the destination later?",
+        "answer": "The static code itself has no expiry date. Its encoded data cannot be edited after you download or print it. A linked page can still move, expire or become unavailable. To update content without reprinting, use a URL you control and update the page at that same address. This tool does not provide dynamic redirects or scan analytics."
       },
       {
-        "question": "How do I create a QR code from plain text?",
-        "answer": "In the URL / Text input field, enter any plain text message, note, code, or instruction. The generator encodes your text directly into the matrix, which will display on the user's screen when scanned."
+        "question": "How do I make a QR code for a restaurant menu or website?",
+        "answer": "Choose URL / Text and paste the full HTTPS link to your published menu or website. Confirm it opens without requiring your private account. Add a short frame such as Scan for menu, run the scan test, and test a printed copy at the size and lighting you will actually use. The tool encodes your link; it does not host menu files."
       },
       {
-        "question": "Is this QR code generator free and unwatermarked?",
-        "answer": "Yes, 100% free with no watermarks, no hidden fees, and no scan limits. The generated QR codes belong entirely to you for personal and commercial use."
+        "question": "Can I add a logo and keep it in the SVG download?",
+        "answer": "Yes. Upload a PNG, JPEG or WebP logo up to 2 MB. Logos keep their aspect ratio, and SVG, PNG and PDF retain the colors, patterns and frame. SVG contains vector QR modules with an embedded raster logo, so the logo itself is not infinitely scalable. Keep it small and test before printing."
       },
       {
-        "question": "Can I create a QR code on my mobile phone?",
-        "answer": "Yes. Zubware QR Code Generator is fully responsive and runs on any modern mobile browser including Chrome on Android and Safari on iOS without downloading any mobile app."
+        "question": "What does the built-in QR scan test check?",
+        "answer": "It decodes the generated preview and compares the result with your exact encoded content. A pass is a useful design check, not a guarantee for every camera, printing material or scanning app. It does not visit URLs, check WhatsApp registration, connect to Wi-Fi or verify UPI payees. Transparent designs are tested against white; test them again on their final background."
       },
       {
-        "question": "Do I need to sign up or create an account to generate QR codes?",
-        "answer": "No account registration, email address, or login is required. You can immediately create, test, and download your QR codes upon opening the page."
+        "question": "Why does a QR code fail to scan?",
+        "answer": "Common causes are light dots on a dark background, low contrast, an oversized logo, a cropped border, very dense content or a blurred print. Use scan-friendly defaults to restore dark square modules, a white background and a four-module border. Shorten the content where possible, increase the export size and retest with your phone."
       },
       {
-        "question": "Is my QR code data uploaded to an external server?",
-        "answer": "No. All QR encoding and canvas rendering take place entirely inside your device's browser memory. Your links, Wi-Fi passwords, and contact cards are never sent to or stored on any remote server."
+        "question": "How do I create a Wi-Fi QR code with a password?",
+        "answer": "Choose WiFi, enter the exact network name and password, and select WPA / WPA2 Personal, WEP or an open network. Enable Hidden if appropriate. Special characters are escaped automatically and spaces are preserved. Anyone who sees the code can read its password, so share it only with intended guests. Enterprise Wi-Fi and device-specific connection behavior are not covered."
       },
       {
-        "question": "What formats can I download the QR code in?",
-        "answer": "You can download your QR code as a high-resolution PNG image, a scalable vector SVG file for infinite-resolution printing, or a print-ready A4 PDF document. You can also copy the image directly to your clipboard."
+        "question": "How do I create a WhatsApp QR code with a message?",
+        "answer": "Choose WhatsApp and enter the full phone number with country code, such as +1 212 555 0199. Add an optional message. The code contains a wa.me click-to-chat URL; the account must be active. Scanning can open a chat with the message prefilled, but does not send it automatically."
+      },
+      {
+        "question": "Is my QR content saved or uploaded?",
+        "answer": "QR encoding, logo preparation and the scan test run in your browser without uploading your entered content for processing. History is off by default. If you enable it for this visit, downloading or copying saves up to ten payloads unencrypted in this browser. Those may include passwords or contact information. Clear All deletes saved history; downloaded files and printed codes remain wherever you shared them."
+      },
+      {
+        "question": "Should I download PNG, SVG or PDF for printing?",
+        "answer": "Use PNG for screens and applications that need a bitmap. Choose SVG for scalable QR modules in a design application; check that the application preserves the embedded logo. The A4 PDF includes a 120 mm wide QR image with its frame proportions preserved. Actual pixel dimensions are shown in the preview and round up to whole pixels per module. No single pixel count guarantees a good print at every size."
+      },
+      {
+        "question": "Can I generate UPI payment, contact or calendar QR codes?",
+        "answer": "Yes. UPI mode accepts a payee ID, name and optional INR amount; verify the recipient in your payment app before paying. vCard mode encodes contact details. Event times use your device time zone and are converted to UTC. Phone, SMS, location and calendar handling depends on the scanner and installed apps, so confirm the result on the intended devices."
       }
     ]
   },

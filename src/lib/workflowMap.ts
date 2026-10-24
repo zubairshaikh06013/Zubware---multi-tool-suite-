@@ -120,7 +120,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'sort-lines': ['remove-duplicate-lines', 'text-cleaner'],
 
   // QR, Security & Productivity Clusters
-  'qr-generator': ['barcode-generator', 'qr-business-card-generator', 'random-password-generator', 'qr-code-decoder'],
+  'qr-generator': ['qr-code-decoder', 'qr-code-safety-checker', 'qr-business-card-generator', 'barcode-generator'],
   'barcode-generator': ['qr-generator', 'barcode-scanner', 'qr-business-card-generator'],
   'qr-code-decoder': ['qr-generator', 'barcode-scanner', 'qr-code-safety-checker'],
   'barcode-scanner': ['barcode-generator', 'qr-code-decoder'],

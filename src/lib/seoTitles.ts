@@ -43,7 +43,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
 
   // --- Audio Tools ---
   'lofi-song-maker': 'Lofi Music Studio — Beat Maker & Ambient Synth | Zubware',
-  'lofi-maker': 'Lofi Audio Maker — Slow & Filter Songs Online Free | Zubware',
+  'lofi-maker': 'Convert Song to Lofi Online Free | Zubware',
   'slowed-and-reverb': 'Slowed & Reverb Generator — Chill Audio Effects | Zubware',
 
   // --- Business & PDF Tools ---

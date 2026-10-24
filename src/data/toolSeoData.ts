@@ -1306,38 +1306,42 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   "lofi-maker": {
     "howTo": [
       {
-        "title": "Upload Audio Track",
-        "desc": "Select any MP3, WAV, or AAC audio file from your device to convert into a chill Lofi version."
+        "title": "Choose a song",
+        "desc": "Select an audio file up to 50 MB. MP3 and WAV are good starting options; support for other formats depends on your browser."
       },
       {
-        "title": "Fine-Tune Vintage Effects",
-        "desc": "Adjust the slowdown tempo slider, cut high frequencies with the low-pass filter, and blend vinyl crackle ambience."
+        "title": "Convert the song to lofi",
+        "desc": "Click MAKE IT LOFI to apply the automatic slowdown, warm filter, reverb and subtle vinyl texture. Wait for processing and MP3 encoding to finish."
       },
       {
-        "title": "Listen to Preview and Download",
-        "desc": "Preview the transformed Lofi music in real time and download the finished audio file to your computer or phone."
+        "title": "Preview and download the MP3",
+        "desc": "Listen to the original and converted versions, then download your lofi MP3 to your phone or computer."
       }
     ],
     "faq": [
       {
-        "question": "How does Lofi Maker turn normal music into Lofi audio?",
-        "answer": "It applies vintage low-pass filtering to remove harsh treble, slows down playback tempo slightly, and blends in subtle vinyl surface crackle."
+        "question": "How do I convert a song to lofi online?",
+        "answer": "Choose your audio file, click MAKE IT LOFI, and wait for the automatic effects to finish. Preview the converted song and download it as an MP3."
       },
       {
-        "question": "Can I adjust how slow and deep the audio becomes?",
-        "answer": "Yes. The speed and pitch slider lets you fine-tune playback between 0.75x and 1.0x to achieve the exact chill vibe you want."
+        "question": "Is this song to lofi converter free?",
+        "answer": "Yes. You can convert audio and download the MP3 for free without creating an account."
       },
       {
-        "question": "Can I turn off the background vinyl crackle if I only want the EQ effect?",
-        "answer": "Yes. The vinyl noise and ambient sliders are fully adjustable and can be turned down completely if you prefer clean audio."
+        "question": "Does this tool create new lofi beats?",
+        "answer": "This tool applies lofi effects to an existing song or recording. It does not compose a new beat from a text prompt."
       },
       {
-        "question": "Which audio formats can I upload for conversion?",
-        "answer": "You can upload MP3, WAV, AAC, M4A, OGG, and WebM audio files."
+        "question": "Can I adjust the speed and effects?",
+        "answer": "This converter uses an automatic preset. It does not offer individual speed, reverb or vinyl sliders."
       },
       {
-        "question": "Is my audio uploaded to an external server?",
-        "answer": "No. All digital audio processing runs locally via the Web Audio API inside your browser, keeping your songs private."
+        "question": "Can I convert MP3 to lofi, and which format can I download?",
+        "answer": "Yes. MP3 input is supported in compatible browsers, alongside WAV and other browser-decodable audio formats. The file limit is 50 MB and the output is a 320 kbps MP3. Encoding at this bitrate does not restore detail missing from the original recording."
+      },
+      {
+        "question": "Is my song uploaded to a server?",
+        "answer": "No. Audio decoding, effects and MP3 encoding run locally in your browser. Processing time depends on song length and your device."
       }
     ]
   },

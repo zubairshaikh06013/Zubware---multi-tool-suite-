@@ -1311,7 +1311,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Convert the song to lofi",
-        "desc": "Click MAKE IT LOFI to apply the automatic slowdown, warm filter, reverb and subtle vinyl texture. Wait for processing and MP3 encoding to finish."
+        "desc": "Choose Classic Lofi, Dreamy Night or Warm Tape, then click MAKE IT LOFI. The converter slows your song, applies warm filtering and reverb, and encodes the result as an MP3."
       },
       {
         "title": "Preview and download the MP3",
@@ -1333,7 +1333,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Can I adjust the speed and effects?",
-        "answer": "This converter uses an automatic preset. It does not offer individual speed, reverb or vinyl sliders."
+        "answer": "Yes. Choose between three ready-made sounds: Classic Lofi (0.85x), Dreamy Night (0.78x) and Warm Tape (0.92x). Each preset adjusts slowdown, reverb and warmth. Individual effect sliders are not available in this converter."
       },
       {
         "question": "Can I convert MP3 to lofi, and which format can I download?",

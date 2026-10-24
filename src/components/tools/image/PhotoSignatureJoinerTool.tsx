@@ -40,6 +40,12 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   const [photoImg, setPhotoImg] = useState<HTMLImageElement | null>(null);
   const [sigImg, setSigImg] = useState<HTMLImageElement | null>(null);
 
+  const [photoBytes, setPhotoBytes] = useState(0);
+  const [sigBytes, setSigBytes] = useState(0);
+  const photoRequest = useRef(0);
+  const sigRequest = useRef(0);
+  useEffect(() => () => { photoRequest.current++; sigRequest.current++; }, []);
+
   // Layout & Styling
   const [layoutMode, setLayoutMode] = useState<LayoutMode>('vertical');
   const [photoWidth, setPhotoWidth] = useState<number>(300);
@@ -69,7 +75,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [outputDataUrl, setOutputDataUrl] = useState<string>('');
 
-  const loadImage = (file: File, onLoaded: (img: HTMLImageElement) => void) => {
+  const loadImage = (file: File, onLoaded: (img: HTMLImageElement) => void, isCurrent: () => boolean) => {
     if (!acceptedTypes.has(file.type) || file.size > MAX_IMAGE_BYTES || file.size === 0) {
       onShowToast('Choose a JPG, PNG, or WebP image up to 25 MB.');
       return;
@@ -77,11 +83,12 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
     const img = new Image();
     const reader = new FileReader();
     reader.onload = (ev) => {
-      img.onload = () => onLoaded(img);
-      img.onerror = () => onShowToast('This image could not be opened. Try another file.');
+      if (!isCurrent()) return;
+      img.onload = () => { if (isCurrent()) onLoaded(img); };
+      img.onerror = () => { if (isCurrent()) onShowToast('This image could not be opened. Try another file.'); };
       img.src = ev.target?.result as string;
     };
-    reader.onerror = () => onShowToast('This image could not be read. Try another file.');
+    reader.onerror = () => { if (isCurrent()) onShowToast('This image could not be read. Try another file.'); };
     reader.readAsDataURL(file);
   };
 
@@ -89,23 +96,25 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
     const file = e.target.files?.[0];
     e.target.value = '';
     if (!file) return;
-    setPhotoImg(null);
+    const request = ++photoRequest.current;
     loadImage(file, (img) => {
       setPhotoImg(img);
+      setPhotoBytes(file.size);
       resetFraming();
       onShowToast('Passport/Candidate photo loaded.');
-    });
+    }, () => request === photoRequest.current);
   };
 
   const handleSigUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     e.target.value = '';
     if (!file) return;
-    setSigImg(null);
+    const request = ++sigRequest.current;
     loadImage(file, (img) => {
       setSigImg(img);
+      setSigBytes(file.size);
       onShowToast('Signature image loaded.');
-    });
+    }, () => request === sigRequest.current);
   };
 
   const applyPreset = (pW: number, pH: number, sW: number, sH: number, mode: LayoutMode, presetGap = 10) => {
@@ -249,6 +258,10 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   };
 
   const handleReset = () => {
+    photoRequest.current++;
+    sigRequest.current++;
+    setPhotoBytes(0);
+    setSigBytes(0);
     setPhotoImg(null);
     setSigImg(null);
   };
@@ -272,7 +285,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
           <span className="text-xs text-slate-500 mt-0.5">JPG, PNG, WebP up to 25MB</span>
           {photoImg && (
             <span className="mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Photo Loaded ({photoImg.width} × {photoImg.height} px)
+              <CheckCircle2 className="w-3.5 h-3.5" /> Photo Loaded ({photoImg.width} × {photoImg.height} px · {formatDecimalBytes(photoBytes)})
             </span>
           )}
           <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handlePhotoUpload} className="hidden" />
@@ -287,7 +300,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
           <span className="text-xs text-slate-500 mt-0.5">JPG, PNG, WebP up to 25MB</span>
           {sigImg && (
             <span className="mt-2 text-xs font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5" /> Signature Loaded ({sigImg.width} × {sigImg.height} px)
+              <CheckCircle2 className="w-3.5 h-3.5" /> Signature Loaded ({sigImg.width} × {sigImg.height} px · {formatDecimalBytes(sigBytes)})
             </span>
           )}
           <input type="file" accept="image/jpeg,image/png,image/webp" onChange={handleSigUpload} className="hidden" />
@@ -386,6 +399,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="number"
+                    aria-label="Photo width in pixels"
                     value={photoWidth}
                     min={16} max={2000}
                     onChange={(e) => setPhotoWidth(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
@@ -394,6 +408,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                   />
                   <input
                     type="number"
+                    aria-label="Photo height in pixels"
                     value={photoHeight}
                     min={16} max={2000}
                     onChange={(e) => setPhotoHeight(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
@@ -410,6 +425,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                 <div className="grid grid-cols-2 gap-2">
                   <input
                     type="number"
+                    aria-label="Signature width in pixels"
                     value={sigWidth}
                     min={16} max={2000}
                     onChange={(e) => setSigWidth(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}
@@ -418,6 +434,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
                   />
                   <input
                     type="number"
+                    aria-label="Signature height in pixels"
                     value={sigHeight}
                     min={16} max={2000}
                     onChange={(e) => setSigHeight(Math.min(2000, Math.max(16, parseInt(e.target.value, 10) || 16)))}

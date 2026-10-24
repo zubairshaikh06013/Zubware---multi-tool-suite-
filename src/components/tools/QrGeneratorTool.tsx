@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import QRCode from 'qrcode';
+import { buildQrPayload, type QrContentType } from '../../lib/qrPayload';
+import { renderQrSvg, qrContrast, escapeXml, type QrDesign } from '../../lib/qrCodeDesign';
 import { jsPDF } from 'jspdf';
 import {
   Download,
@@ -28,22 +29,10 @@ import {
   FileText,
   RotateCcw
 } from 'lucide-react';
-import { useLanguage } from '../../context/LanguageContext';
 
 interface QrGeneratorToolProps {
   onShowToast: (msg: string) => void;
 }
-
-type QrContentType =
-  | 'url'
-  | 'wifi'
-  | 'vcard'
-  | 'email'
-  | 'phone'
-  | 'sms'
-  | 'upi'
-  | 'geo'
-  | 'event';
 
 type ErrorCorrectionLevel = 'L' | 'M' | 'Q' | 'H';
 type DotStyle = 'square' | 'dots' | 'rounded' | 'classy';
@@ -76,7 +65,7 @@ const QUICK_TEMPLATES = [
 ];
 
 export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast }) => {
-  const { t } = useLanguage();
+
 
   // Content Type
   const [qrType, setQrType] = useState<QrContentType>('url');
@@ -131,7 +120,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   const [bgColor, setBgColor] = useState('#ffffff');
   const [transparentBg, setTransparentBg] = useState(false);
   const [qrSize, setQrSize] = useState<number>(320);
-  const [margin, setMargin] = useState<number>(2);
+  const [margin, setMargin] = useState<number>(4);
   const [errorCorrection, setErrorCorrection] = useState<ErrorCorrectionLevel>('H');
   const [dotStyle, setDotStyle] = useState<DotStyle>('square');
   const [cornerStyle, setCornerStyle] = useState<CornerStyle>('square');
@@ -143,7 +132,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
 
   // Center Logo
   const [logoImage, setLogoImage] = useState<string | null>(null);
-  const [logoSize, setLogoSize] = useState<number>(22); // percent of QR code
+  const [logoSize, setLogoSize] = useState<number>(16); // percent of QR code
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Call-To-Action Frame
@@ -157,12 +146,22 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   const [history, setHistory] = useState<QrHistoryItem[]>([]);
   const [activeTab, setActiveTab] = useState<'content' | 'design' | 'logo' | 'history'>('content');
 
+  const [historyEnabled, setHistoryEnabled] = useState(false);
+  const [rendered, setRendered] = useState<(ReturnType<typeof renderQrSvg> & { key: string }) | null>(null);
+  const [renderError, setRenderError] = useState('');
+  const [scanResult, setScanResult] = useState<{ key: string; message: string; passed: boolean } | null>(null);
+  const [logoLoading, setLogoLoading] = useState(false);
+  const logoRequest = useRef(0);
+  const renderRequest = useRef(0);
+
+  // Load existing history for deletion/restoration, but never opt users in automatically.
   // Load History from localStorage on mount
   useEffect(() => {
     try {
       const saved = localStorage.getItem('zubware_qr_history');
       if (saved) {
-        setHistory(JSON.parse(saved));
+        const items: unknown = JSON.parse(saved);
+        if (Array.isArray(items)) setHistory(items.filter(item => item && typeof item.id === 'string' && typeof item.title === 'string' && typeof item.content === 'string' && item.content.length <= 5000).slice(0, 10));
       }
     } catch {
       // Ignore storage errors
@@ -171,6 +170,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
 
   // Save item to history
   const saveToHistory = useCallback((type: QrContentType, content: string) => {
+    if (!historyEnabled) return;
     try {
       const title =
         type === 'url' ? content :
@@ -200,7 +200,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
     } catch {
       // Ignore
     }
-  }, [wifiSsid, vFirstName, vLastName, upiId, upiAmount, emailTo, phoneNumber, geoLat, geoLng, eventTitle]);
+  }, [historyEnabled, wifiSsid, vFirstName, vLastName, upiId, upiAmount, emailTo, phoneNumber, geoLat, geoLng, eventTitle]);
 
   const clearHistory = () => {
     setHistory([]);
@@ -212,341 +212,146 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
     }
   };
 
-  // Construct standard payload strings
-  const getConstructedText = useCallback(() => {
-    switch (qrType) {
-      case 'url':
-        return textValue.trim() || 'https://www.zubware.com';
-
-      case 'wifi': {
-        const ssid = wifiSsid.trim();
-        const enc = wifiEnc;
-        const pass = wifiPass;
-        const hidden = wifiHidden ? 'H:true;' : '';
-        return `WIFI:S:${ssid};T:${enc};P:${pass};${hidden};`;
-      }
-
-      case 'vcard': {
-        const parts = [
-          'BEGIN:VCARD',
-          'VERSION:3.0',
-          `N:${vLastName};${vFirstName};;;`,
-          `FN:${vFirstName} ${vLastName}`.trim(),
-          vOrg ? `ORG:${vOrg}` : '',
-          vTitle ? `TITLE:${vTitle}` : '',
-          vPhone ? `TEL;TYPE=CELL:${vPhone}` : '',
-          vEmail ? `EMAIL:${vEmail}` : '',
-          vUrl ? `URL:${vUrl}` : '',
-          vAddress ? `ADR;TYPE=WORK:;;${vAddress};;;;` : '',
-          'END:VCARD'
-        ].filter(Boolean);
-        return parts.join('\n');
-      }
-
-      case 'email': {
-        const to = emailTo.trim();
-        const sub = encodeURIComponent(emailSubject);
-        const b = encodeURIComponent(emailBody);
-        return `mailto:${to}?subject=${sub}&body=${b}`;
-      }
-
-      case 'phone': {
-        return `tel:${phoneNumber.trim()}`;
-      }
-
-      case 'sms': {
-        const num = phoneNumber.trim();
-        const msg = encodeURIComponent(smsMessage);
-        return `smsto:${num}:${msg}`;
-      }
-
-      case 'upi': {
-        // Indian Unified Payments Interface standard URL
-        const id = upiId.trim();
-        const pn = encodeURIComponent(upiName || 'Payee');
-        const am = upiAmount ? `&am=${encodeURIComponent(upiAmount)}` : '';
-        const tn = upiNote ? `&tn=${encodeURIComponent(upiNote)}` : '';
-        return `upi://pay?pa=${id}&pn=${pn}&cu=INR${am}${tn}`;
-      }
-
-      case 'geo': {
-        const lat = geoLat.trim() || '0';
-        const lng = geoLng.trim() || '0';
-        return `geo:${lat},${lng}?q=${lat},${lng}`;
-      }
-
-      case 'event': {
-        const sTime = eventStart ? eventStart.replace(/[-:]/g, '') + '00Z' : '';
-        const eTime = eventEnd ? eventEnd.replace(/[-:]/g, '') + '00Z' : '';
-        const parts = [
-          'BEGIN:VEVENT',
-          `SUMMARY:${eventTitle}`,
-          eventLocation ? `LOCATION:${eventLocation}` : '',
-          eventDescription ? `DESCRIPTION:${eventDescription}` : '',
-          sTime ? `DTSTART:${sTime}` : '',
-          eTime ? `DTEND:${eTime}` : '',
-          'END:VEVENT'
-        ].filter(Boolean);
-        return parts.join('\n');
-      }
-
-      default:
-        return 'https://www.zubware.com';
-    }
-  }, [
-    qrType,
-    textValue,
-    wifiSsid,
-    wifiPass,
-    wifiEnc,
-    wifiHidden,
-    vFirstName,
-    vLastName,
-    vOrg,
-    vTitle,
-    vPhone,
-    vEmail,
-    vUrl,
-    vAddress,
-    emailTo,
-    emailSubject,
-    emailBody,
-    phoneNumber,
-    smsMessage,
-    upiId,
-    upiName,
-    upiAmount,
-    upiNote,
-    geoLat,
-    geoLng,
-    eventTitle,
-    eventLocation,
-    eventStart,
-    eventEnd,
-    eventDescription
-  ]);
-
-  // Main Canvas Rendering Function with Custom Shapes, Gradients, Frames & Logos
-  const renderQrCanvas = useCallback(async () => {
-    if (!canvasRef.current) return;
-    const content = getConstructedText();
-    const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    try {
-      const qrData = QRCode.create(content, {
-        errorCorrectionLevel: logoImage ? 'H' : errorCorrection
-      });
-
-      const moduleCount = qrData.modules.size;
-      const effectiveMargin = margin;
-      const totalCells = moduleCount + effectiveMargin * 2;
-      const cellSize = Math.floor(qrSize / totalCells);
-      const actualQrWidth = cellSize * totalCells;
-
-      // Adjust height if frameText exists
-      const frameHeight = frameText.trim() ? 46 : 0;
-      const totalCanvasWidth = actualQrWidth;
-      const totalCanvasHeight = actualQrWidth + frameHeight;
-
-      canvas.width = totalCanvasWidth;
-      canvas.height = totalCanvasHeight;
-
-      // 1. Draw Background
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (!transparentBg) {
-        ctx.fillStyle = bgColor;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-
-      // Calculate QR vertical offset based on frame text position
-      const qrOffsetY = frameText.trim() && framePosition === 'top' ? frameHeight : 0;
-
-      // 2. Setup Foreground FillStyle (Solid or Gradient)
-      let fillStyle: string | CanvasGradient = fgColor;
-      if (useGradient) {
-        if (gradientType === 'linear') {
-          const grad = ctx.createLinearGradient(0, qrOffsetY, actualQrWidth, qrOffsetY + actualQrWidth);
-          grad.addColorStop(0, fgColor);
-          grad.addColorStop(1, fgColor2);
-          fillStyle = grad;
-        } else {
-          const cx = actualQrWidth / 2;
-          const cy = qrOffsetY + actualQrWidth / 2;
-          const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, actualQrWidth / 1.5);
-          grad.addColorStop(0, fgColor);
-          grad.addColorStop(1, fgColor2);
-          fillStyle = grad;
-        }
-      }
-      ctx.fillStyle = fillStyle;
-
-      // Helper to identify finder pattern eyes (top-left, top-right, bottom-left)
-      const isFinderPattern = (r: number, c: number) => {
-        if (r < 7 && c < 7) return true; // Top-Left
-        if (r < 7 && c >= moduleCount - 7) return true; // Top-Right
-        if (r >= moduleCount - 7 && c < 7) return true; // Bottom-Left
-        return false;
-      };
-
-      // 3. Render Data Modules & Eye Patterns
-      for (let r = 0; r < moduleCount; r++) {
-        for (let c = 0; c < moduleCount; c++) {
-          const isDark = qrData.modules.get(r, c);
-          if (!isDark) continue;
-
-          const x = (c + effectiveMargin) * cellSize;
-          const y = (r + effectiveMargin) * cellSize + qrOffsetY;
-
-          if (isFinderPattern(r, c)) {
-            // Render Finder Pattern Corner based on cornerStyle
-            if (cornerStyle === 'rounded') {
-              ctx.beginPath();
-              ctx.roundRect(x, y, cellSize, cellSize, 3);
-              ctx.fill();
-            } else if (cornerStyle === 'circle') {
-              ctx.beginPath();
-              ctx.arc(x + cellSize / 2, y + cellSize / 2, cellSize / 2, 0, Math.PI * 2);
-              ctx.fill();
-            } else {
-              ctx.fillRect(x, y, cellSize, cellSize);
-            }
-          } else {
-            // Render Data Modules based on dotStyle
-            if (dotStyle === 'dots') {
-              ctx.beginPath();
-              ctx.arc(x + cellSize / 2, y + cellSize / 2, (cellSize / 2) * 0.85, 0, Math.PI * 2);
-              ctx.fill();
-            } else if (dotStyle === 'rounded') {
-              ctx.beginPath();
-              ctx.roundRect(x + 0.5, y + 0.5, cellSize - 1, cellSize - 1, cellSize * 0.35);
-              ctx.fill();
-            } else if (dotStyle === 'classy') {
-              ctx.beginPath();
-              ctx.arc(x + cellSize / 2, y + cellSize / 2, cellSize / 2, 0, Math.PI * 2);
-              ctx.fill();
-            } else {
-              // Standard sharp square
-              ctx.fillRect(x, y, cellSize, cellSize);
-            }
-          }
-        }
-      }
-
-      // 4. Render Center Logo if uploaded
-      if (logoImage) {
-        const logo = new Image();
-        logo.crossOrigin = 'anonymous';
-        logo.src = logoImage;
-        await new Promise((resolve) => {
-          logo.onload = resolve;
-          logo.onerror = resolve;
-        });
-
-        const targetLogoSize = (actualQrWidth * (logoSize / 100));
-        const logoX = (actualQrWidth - targetLogoSize) / 2;
-        const logoY = qrOffsetY + (actualQrWidth - targetLogoSize) / 2;
-        const padding = 6;
-
-        // White badge behind logo for readability
-        ctx.fillStyle = bgColor;
-        ctx.beginPath();
-        ctx.roundRect(
-          logoX - padding,
-          logoY - padding,
-          targetLogoSize + padding * 2,
-          targetLogoSize + padding * 2,
-          10
-        );
-        ctx.fill();
-
-        ctx.strokeStyle = fgColor;
-        ctx.lineWidth = 1;
-        ctx.stroke();
-
-        ctx.drawImage(logo, logoX, logoY, targetLogoSize, targetLogoSize);
-      }
-
-      // 5. Render CTA Banner Frame if text specified
-      if (frameText.trim()) {
-        const bannerY = framePosition === 'bottom' ? actualQrWidth : 0;
-        ctx.fillStyle = frameColor;
-        ctx.fillRect(0, bannerY, actualQrWidth, frameHeight);
-
-        ctx.fillStyle = '#ffffff';
-        ctx.font = 'bold 14px ui-sans-serif, system-ui, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(frameText.trim(), actualQrWidth / 2, bannerY + frameHeight / 2);
-      }
-    } catch (err) {
-      console.error('QR Render Error:', err);
-    }
-  }, [
-    getConstructedText,
-    qrSize,
-    margin,
-    fgColor,
-    bgColor,
-    transparentBg,
-    errorCorrection,
-    dotStyle,
-    cornerStyle,
-    useGradient,
-    fgColor2,
-    gradientType,
-    logoImage,
-    logoSize,
-    frameText,
-    frameColor,
-    framePosition
-  ]);
+  let payload = '';
+  let validationError = '';
+  try {
+    payload = buildQrPayload(qrType, {
+      textValue, wifiSsid, wifiPass, wifiEnc, wifiHidden,
+      vFirstName, vLastName, vOrg, vTitle, vPhone, vEmail, vUrl, vAddress,
+      emailTo, emailSubject, emailBody, phoneNumber, smsMessage,
+      upiId, upiName, upiAmount, upiNote, geoLat, geoLng,
+      eventTitle, eventStart, eventEnd, eventLocation, eventDescription
+    });
+  } catch (error) { validationError = error instanceof Error ? error.message : 'Check your content.'; }
+  const design: QrDesign = {
+    qrSize, margin, fgColor, bgColor, transparentBg, errorCorrection, dotStyle, cornerStyle,
+    useGradient, fgColor2, gradientType, logoImage, logoSize, frameText, frameColor, framePosition
+  };
+  const renderKey = JSON.stringify({ payload, validationError, design });
+  const ready = !validationError && !renderError && !logoLoading && rendered?.key === renderKey;
+  const getConstructedText = () => payload;
+  const contrast = qrContrast(design);
 
   useEffect(() => {
-    renderQrCanvas();
-  }, [renderQrCanvas]);
+    const request = ++renderRequest.current;
+    setRenderError('');
+    setRendered(null);
+    const canvas = canvasRef.current;
+    canvas?.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
+    if (validationError) return;
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      try {
+        const output = renderQrSvg(payload, design);
+        const image = new Image();
+        image.onload = () => {
+          if (cancelled || request !== renderRequest.current || !canvas) return;
+          const context = canvas.getContext('2d');
+          if (!context) { setRenderError('This browser cannot create a canvas preview.'); return; }
+          canvas.width = output.width;
+          canvas.height = output.height;
+          context.drawImage(image, 0, 0);
+          setRendered({ ...output, key: renderKey });
+        };
+        image.onerror = () => {
+          if (!cancelled) setRenderError('Could not render this design. Remove the logo or try a simpler style.');
+        };
+        image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(output.svg)}`;
+      } catch (error) {
+        if (!cancelled) setRenderError(error instanceof Error ? error.message : 'Could not generate this code.');
+      }
+    }, 150);
+    return () => { cancelled = true; window.clearTimeout(timer); };
+  }, [renderKey]);
 
-  // Handle Logo Upload
-  const handleLogoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  useEffect(() => () => { logoRequest.current += 1; }, []);
+  const handleLogoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
+    e.target.value = '';
     if (!file) return;
-    if (!file.type.startsWith('image/')) {
-      onShowToast('Please select a valid image file (PNG, JPG, SVG).');
+    const request = ++logoRequest.current;
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type) || file.size > 2 * 1024 * 1024) {
+      setLogoLoading(false);
+      onShowToast('Choose a PNG, JPEG or WebP logo up to 2 MB.');
       return;
     }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setLogoImage(reader.result as string);
-      onShowToast('Logo uploaded into QR code!');
-    };
-    reader.readAsDataURL(file);
+    setLogoLoading(true);
+    const url = URL.createObjectURL(file);
+    try {
+      const image = new Image();
+      await new Promise<void>((resolve, reject) => {
+        image.onload = () => resolve();
+        image.onerror = () => reject(new Error('The logo image could not be read.'));
+        image.src = url;
+      });
+      if (image.width * image.height > 24000000) throw new Error('Choose a logo smaller than 24 megapixels.');
+      const canvas = document.createElement('canvas');
+      const scale = Math.min(1, 512 / Math.max(image.width, image.height));
+      canvas.width = Math.max(1, Math.round(image.width * scale));
+      canvas.height = Math.max(1, Math.round(image.height * scale));
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Image processing is unavailable in this browser.');
+      context.drawImage(image, 0, 0, canvas.width, canvas.height);
+      if (request === logoRequest.current) {
+        setLogoImage(canvas.toDataURL('image/png'));
+        onShowToast('Logo added. Run the scan test before downloading.');
+      }
+    } catch (error) {
+      if (request === logoRequest.current) onShowToast(error instanceof Error ? error.message : 'Logo upload failed.');
+    } finally {
+      URL.revokeObjectURL(url);
+      if (request === logoRequest.current) setLogoLoading(false);
+    }
+  };
+
+  const testScan = async () => {
+    if (!ready || !canvasRef.current) return;
+    try {
+      const source = canvasRef.current;
+      const canvas = document.createElement('canvas');
+      canvas.width = source.width; canvas.height = source.height;
+      const context = canvas.getContext('2d');
+      if (!context) throw new Error('Canvas unavailable');
+      context.fillStyle = '#ffffff'; context.fillRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(source, 0, 0);
+      const pixels = context.getImageData(0, 0, canvas.width, canvas.height);
+      const { default: jsQR } = await import('jsqr');
+      const decoded = jsQR(pixels.data, pixels.width, pixels.height, { inversionAttempts: 'attemptBoth' });
+      const passed = decoded?.data === payload;
+      setScanResult({ key: renderKey, passed, message: passed
+        ? 'Passed: the preview decodes to your exact content. Also test the downloaded file and a printed sample with your phone.'
+        : 'This design did not decode correctly. Use scan-friendly defaults, shorten the content or reduce the logo, then test again.' });
+    } catch { setScanResult({ key: renderKey, passed: false, message: 'Scan test could not run in this browser. Test with your phone before use.' }); }
+  };
+  const resetDesign = () => {
+    setFgColor('#0f172a'); setBgColor('#ffffff'); setTransparentBg(false); setUseGradient(false);
+    setDotStyle('square'); setCornerStyle('square'); setMargin(4); setErrorCorrection('H');
+    logoRequest.current += 1; setLogoLoading(false); setLogoImage(null); setQrSize(640);
   };
 
   // Export Formats
   const downloadPng = () => {
-    if (!canvasRef.current) return;
-    const url = canvasRef.current.toDataURL('image/png');
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `qr-code-${qrType}.png`;
-    a.click();
-    saveToHistory(qrType, getConstructedText());
-    onShowToast('Downloaded high-res PNG!');
+    if (!ready || !canvasRef.current) return;
+    try {
+      canvasRef.current.toBlob(blob => {
+        if (!blob) { onShowToast('Could not create a PNG. Try again or download SVG.'); return; }
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `qr-code-${qrType}.png`;
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        saveToHistory(qrType, payload);
+        onShowToast('PNG download started.');
+      }, 'image/png');
+    } catch { onShowToast('PNG export failed. Try a simpler design or download SVG.'); }
   };
 
   const downloadSvg = async () => {
     try {
       const content = getConstructedText();
-      const svgString = await QRCode.toString(content, {
-        type: 'svg',
-        margin,
-        color: {
-          dark: fgColor,
-          light: transparentBg ? '#00000000' : bgColor
-        },
-        errorCorrectionLevel: logoImage ? 'H' : errorCorrection
-      });
+      if (!ready || !rendered) return;
+      const svgString = rendered.svg;
 
       const blob = new Blob([svgString], { type: 'image/svg+xml;charset=utf-8' });
       const url = URL.createObjectURL(blob);
@@ -554,7 +359,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       a.href = url;
       a.download = `qr-code-${qrType}.svg`;
       a.click();
-      URL.revokeObjectURL(url);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
       saveToHistory(qrType, content);
       onShowToast('Downloaded Scalable Vector SVG!');
     } catch {
@@ -563,7 +368,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   };
 
   const downloadPdf = () => {
-    if (!canvasRef.current) return;
+    if (!ready || !canvasRef.current) return;
     try {
       const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       const imgData = canvasRef.current.toDataURL('image/png');
@@ -573,12 +378,13 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       doc.setTextColor(100);
       doc.text(`Type: ${qrType.toUpperCase()} • Generated with Zubware.com`, 105, 38, { align: 'center' });
 
-      // Center 120mm x 120mm QR Code
-      doc.addImage(imgData, 'PNG', 45, 50, 120, 120);
+      // Preserve the frame aspect ratio on the A4 print sheet.
+      const printHeight = 120 * canvasRef.current.height / canvasRef.current.width;
+      doc.addImage(imgData, 'PNG', 45, 50, 120, printHeight);
 
       doc.setFontSize(11);
       doc.setTextColor(50);
-      doc.text(frameText.trim() || 'Scan with your smartphone camera', 105, 185, { align: 'center' });
+      doc.text('Test this printed code with your phone before distribution.', 105, 65 + printHeight, { align: 'center' });
 
       doc.save(`qr-code-${qrType}.pdf`);
       saveToHistory(qrType, getConstructedText());
@@ -589,9 +395,9 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
   };
 
   const copyToClipboard = async () => {
-    if (!canvasRef.current) return;
+    if (!ready || !canvasRef.current) return;
     canvasRef.current.toBlob(async (blob) => {
-      if (!blob) return;
+      if (!blob) { onShowToast('Could not copy the image. Try downloading PNG.'); return; }
       try {
         await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
         setCopied(true);
@@ -599,13 +405,13 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
         onShowToast('Copied QR Code image to clipboard!');
         setTimeout(() => setCopied(false), 2000);
       } catch {
-        downloadPng();
+        onShowToast('Clipboard access is unavailable. Use PNG Image to download instead.');
       }
     });
   };
 
   const printQrCode = () => {
-    if (!canvasRef.current) return;
+    if (!ready || !canvasRef.current) return;
     const dataUrl = canvasRef.current.toDataURL();
     const win = window.open('', '_blank');
     if (win) {
@@ -622,7 +428,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
           </head>
           <body>
             <img src="${dataUrl}" />
-            <p>${frameText.trim() || 'Scan with Camera'}</p>
+            <p>${escapeXml(frameText.trim() || 'Scan with Camera')}</p>
             <script>
               window.onload = function() { window.print(); window.close(); }
             </script>
@@ -630,7 +436,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
         </html>
       `);
       win.document.close();
-    }
+    } else { onShowToast('Allow pop-ups to print, or download the A4 PDF.'); }
   };
 
   return (
@@ -699,6 +505,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     { id: 'email' as const, label: 'Email', icon: Mail },
                     { id: 'phone' as const, label: 'Phone', icon: Phone },
                     { id: 'sms' as const, label: 'SMS', icon: MessageSquare },
+                    { id: 'whatsapp' as const, label: 'WhatsApp', icon: MessageSquare },
                     { id: 'geo' as const, label: 'Location', icon: MapPin },
                     { id: 'event' as const, label: 'Event', icon: Calendar }
                   ].map((item) => {
@@ -707,6 +514,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     return (
                       <button
                         key={item.id}
+                        aria-pressed={isSelected}
                         onClick={() => setQrType(item.id)}
                         className={`p-2.5 rounded-xl flex flex-col items-center justify-center gap-1 text-xs font-bold transition-all cursor-pointer ${
                           isSelected
@@ -722,6 +530,10 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                 </div>
               </div>
 
+              {qrType === 'whatsapp' && <p className="text-sm">Use the full country code and an active WhatsApp number. The optional message is prefilled, never sent automatically.</p>}
+              {qrType === 'event' && <p className="text-sm">Enter times in your device time zone ({Intl.DateTimeFormat().resolvedOptions().timeZone}). They are encoded in UTC. Check the imported event before saving.</p>}
+              {qrType === 'upi' && <p className="text-sm">Use your verified UPI ID. The generator cannot verify the payee; confirm the recipient in your payment app before paying.</p>}
+              {qrType === 'sms' && <p className="text-sm">SMS message prefilling varies by phone and scanning app. Test on the devices your audience uses.</p>}
               {/* Dynamic Inputs per Content Type */}
               <div className="glass-card p-4 sm:p-5 rounded-2xl space-y-4">
                 {/* 1. URL / Plain Text */}
@@ -733,7 +545,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       </label>
                       <span className="text-[11px] text-slate-400">{textValue.length} characters</span>
                     </div>
-                    <textarea
+                    <textarea aria-label="Website URL or text"
                       rows={3}
                       value={textValue}
                       onChange={(e) => setTextValue(e.target.value)}
@@ -763,7 +575,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                         Network Name (SSID)
                       </label>
-                      <input
+                      <input aria-label="Wi-Fi network name"
                         type="text"
                         value={wifiSsid}
                         onChange={(e) => setWifiSsid(e.target.value)}
@@ -776,7 +588,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                           Password
                         </label>
-                        <input
+                        <input aria-label="Wi-Fi password"
                           type="text"
                           value={wifiPass}
                           disabled={wifiEnc === 'nopass'}
@@ -789,12 +601,12 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                           Security Type
                         </label>
-                        <select
+                        <select aria-label="Wi-Fi security"
                           value={wifiEnc}
                           onChange={(e) => setWifiEnc(e.target.value as any)}
                           className="w-full p-2.5 rounded-xl glass-input text-sm font-semibold text-slate-900 dark:text-white"
                         >
-                          <option value="WPA">WPA / WPA2 / WPA3</option>
+                          <option value="WPA">WPA / WPA2 Personal</option>
                           <option value="WEP">WEP</option>
                           <option value="nopass">None (Open Network)</option>
                         </select>
@@ -818,7 +630,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">First Name</label>
-                        <input
+                        <input aria-label="First name"
                           type="text"
                           value={vFirstName}
                           onChange={(e) => setVFirstName(e.target.value)}
@@ -828,7 +640,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Last Name</label>
-                        <input
+                        <input aria-label="Last name"
                           type="text"
                           value={vLastName}
                           onChange={(e) => setVLastName(e.target.value)}
@@ -840,7 +652,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Phone Number</label>
-                        <input
+                        <input aria-label="Contact phone"
                           type="tel"
                           value={vPhone}
                           onChange={(e) => setVPhone(e.target.value)}
@@ -850,7 +662,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Email Address</label>
-                        <input
+                        <input aria-label="Contact email"
                           type="email"
                           value={vEmail}
                           onChange={(e) => setVEmail(e.target.value)}
@@ -862,7 +674,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Company / Org</label>
-                        <input
+                        <input aria-label="Organization"
                           type="text"
                           value={vOrg}
                           onChange={(e) => setVOrg(e.target.value)}
@@ -872,7 +684,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Job Title</label>
-                        <input
+                        <input aria-label="Job title"
                           type="text"
                           value={vTitle}
                           onChange={(e) => setVTitle(e.target.value)}
@@ -883,7 +695,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Website URL</label>
-                      <input
+                      <input aria-label="Contact website"
                         type="url"
                         value={vUrl}
                         onChange={(e) => setVUrl(e.target.value)}
@@ -901,7 +713,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                         UPI VPA ID (e.g. mobile@upi, merchant@okaxis)
                       </label>
-                      <input
+                      <input aria-label="UPI ID"
                         type="text"
                         value={upiId}
                         onChange={(e) => setUpiId(e.target.value)}
@@ -914,7 +726,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                           Payee / Business Name
                         </label>
-                        <input
+                        <input aria-label="Upi name"
                           type="text"
                           value={upiName}
                           onChange={(e) => setUpiName(e.target.value)}
@@ -926,7 +738,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                           Amount in INR (Optional)
                         </label>
-                        <input
+                        <input aria-label="Upi amount"
                           type="number"
                           value={upiAmount}
                           onChange={(e) => setUpiAmount(e.target.value)}
@@ -939,7 +751,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                         Transaction Note / Bill Reference
                       </label>
-                      <input
+                      <input aria-label="Upi note"
                         type="text"
                         value={upiNote}
                         onChange={(e) => setUpiNote(e.target.value)}
@@ -955,7 +767,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <div className="space-y-3">
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Recipient Email</label>
-                      <input
+                      <input aria-label="Email to"
                         type="email"
                         value={emailTo}
                         onChange={(e) => setEmailTo(e.target.value)}
@@ -965,7 +777,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Subject</label>
-                      <input
+                      <input aria-label="Email subject"
                         type="text"
                         value={emailSubject}
                         onChange={(e) => setEmailSubject(e.target.value)}
@@ -975,7 +787,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Message Body</label>
-                      <textarea
+                      <textarea aria-label="Email body"
                         rows={2}
                         value={emailBody}
                         onChange={(e) => setEmailBody(e.target.value)}
@@ -990,7 +802,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                 {qrType === 'phone' && (
                   <div>
                     <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Phone Number</label>
-                    <input
+                    <input aria-label="Phone number"
                       type="tel"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value)}
@@ -1001,11 +813,11 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                 )}
 
                 {/* 7. SMS Message */}
-                {qrType === 'sms' && (
+                {(qrType === 'sms' || qrType === 'whatsapp') && (
                   <div className="space-y-3">
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Phone Number</label>
-                      <input
+                      <input aria-label="Phone number"
                         type="tel"
                         value={phoneNumber}
                         onChange={(e) => setPhoneNumber(e.target.value)}
@@ -1014,8 +826,8 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Pre-filled SMS Text</label>
-                      <textarea
+                      <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Pre-filled Message (Optional)</label>
+                      <textarea aria-label="Sms message"
                         rows={2}
                         value={smsMessage}
                         onChange={(e) => setSmsMessage(e.target.value)}
@@ -1031,7 +843,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <div className="grid grid-cols-2 gap-3">
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Latitude</label>
-                      <input
+                      <input aria-label="Geo lat"
                         type="text"
                         value={geoLat}
                         onChange={(e) => setGeoLat(e.target.value)}
@@ -1041,7 +853,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Longitude</label>
-                      <input
+                      <input aria-label="Geo lng"
                         type="text"
                         value={geoLng}
                         onChange={(e) => setGeoLng(e.target.value)}
@@ -1057,7 +869,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <div className="space-y-3">
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Event Title</label>
-                      <input
+                      <input aria-label="Event title"
                         type="text"
                         value={eventTitle}
                         onChange={(e) => setEventTitle(e.target.value)}
@@ -1068,7 +880,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Start Date & Time</label>
-                        <input
+                        <input aria-label="Event start"
                           type="datetime-local"
                           value={eventStart}
                           onChange={(e) => setEventStart(e.target.value)}
@@ -1077,7 +889,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       </div>
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">End Date & Time</label>
-                        <input
+                        <input aria-label="Event end"
                           type="datetime-local"
                           value={eventEnd}
                           onChange={(e) => setEventEnd(e.target.value)}
@@ -1087,7 +899,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     </div>
                     <div>
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">Location</label>
-                      <input
+                      <input aria-label="Event location"
                         type="text"
                         value={eventLocation}
                         onChange={(e) => setEventLocation(e.target.value)}
@@ -1104,6 +916,12 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
           {/* TAB 2: DESIGN, COLORS & SHAPES */}
           {activeTab === 'design' && (
             <div className="space-y-5">
+              <label className="block text-sm font-semibold">Target QR width
+                <select aria-label="Qr size" value={qrSize} onChange={e => setQrSize(Number(e.target.value))} className="w-full mt-2 p-2 glass-input rounded-lg">
+                  {[320, 640, 1024, 2048].map(size => <option key={size} value={size}>{size} pixels</option>)}
+                </select>
+                <span className="text-xs font-normal">Actual size rounds up to whole pixels per module; frame adds height. SVG scales for print.</span>
+              </label>
               {/* Color Presets */}
               <div>
                 <label className="block text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
@@ -1140,13 +958,13 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       Foreground Color
                     </label>
                     <div className="flex items-center gap-2">
-                      <input
+                      <input aria-label="Foreground color"
                         type="color"
                         value={fgColor}
                         onChange={(e) => setFgColor(e.target.value)}
                         className="w-9 h-9 rounded-lg border-0 cursor-pointer"
                       />
-                      <input
+                      <input aria-label="Foreground color"
                         type="text"
                         value={fgColor}
                         onChange={(e) => setFgColor(e.target.value)}
@@ -1160,14 +978,14 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       Background Color
                     </label>
                     <div className="flex items-center gap-2">
-                      <input
+                      <input aria-label="Background color"
                         type="color"
                         disabled={transparentBg}
                         value={bgColor}
                         onChange={(e) => setBgColor(e.target.value)}
                         className="w-9 h-9 rounded-lg border-0 cursor-pointer disabled:opacity-40"
                       />
-                      <input
+                      <input aria-label="Background color"
                         type="text"
                         disabled={transparentBg}
                         value={bgColor}
@@ -1205,7 +1023,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <div>
                         <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Gradient End Color</label>
                         <div className="flex items-center gap-2">
-                          <input
+                          <input aria-label="Gradient end color"
                             type="color"
                             value={fgColor2}
                             onChange={(e) => setFgColor2(e.target.value)}
@@ -1216,7 +1034,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       </div>
                       <div>
                         <label className="block text-[11px] font-bold text-slate-600 dark:text-slate-400 mb-1">Gradient Type</label>
-                        <select
+                        <select aria-label="Gradient type"
                           value={gradientType}
                           onChange={(e) => setGradientType(e.target.value as any)}
                           className="w-full p-2 rounded-lg glass-input text-xs font-semibold"
@@ -1246,6 +1064,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <button
                         key={s.id}
                         type="button"
+                        aria-pressed={dotStyle === s.id}
                         onClick={() => setDotStyle(s.id)}
                         className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                           dotStyle === s.id
@@ -1267,11 +1086,12 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     {[
                       { id: 'square' as const, label: 'Sharp Square' },
                       { id: 'rounded' as const, label: 'Rounded Edge' },
-                      { id: 'circle' as const, label: 'Full Circle' }
+                      { id: 'circle' as const, label: 'Soft Corners' }
                     ].map((c) => (
                       <button
                         key={c.id}
                         type="button"
+                        aria-pressed={cornerStyle === c.id}
                         onClick={() => setCornerStyle(c.id)}
                         className={`p-2 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                           cornerStyle === c.id
@@ -1292,10 +1112,10 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <span>Quiet Zone Margin</span>
                       <span>{margin} modules</span>
                     </div>
-                    <input
+                    <input aria-label="Quiet zone in modules"
                       type="range"
-                      min={0}
-                      max={5}
+                      min={4}
+                      max={12}
                       step={1}
                       value={margin}
                       onChange={(e) => setMargin(Number(e.target.value))}
@@ -1306,15 +1126,15 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                     <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                       Error Correction Level
                     </label>
-                    <select
+                    <select aria-label="Error correction"
                       value={errorCorrection}
                       onChange={(e) => setErrorCorrection(e.target.value as any)}
                       className="w-full p-2 rounded-lg glass-input text-xs font-semibold"
                     >
-                      <option value="L">Level L (7% Damage Tolerance)</option>
-                      <option value="M">Level M (15% Standard)</option>
-                      <option value="Q">Level Q (25% High)</option>
-                      <option value="H">Level H (30% Best for Logos)</option>
+                      <option value="L">Level L — low</option>
+                      <option value="M">Level M — standard</option>
+                      <option value="Q">Level Q — high</option>
+                      <option value="H">Level H — highest (automatic with logo)</option>
                     </select>
                   </div>
                 </div>
@@ -1330,12 +1150,12 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-sm font-bold text-slate-900 dark:text-white">Center Logo Overlay</h3>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Embed your brand logo in the center of the QR code.</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">PNG, JPEG or WebP, up to 2 MB. The logo keeps its original proportions.</p>
                   </div>
                   {logoImage && (
                     <button
                       type="button"
-                      onClick={() => setLogoImage(null)}
+                      onClick={() => { logoRequest.current += 1; setLogoLoading(false); setLogoImage(null); }}
                       className="text-xs text-rose-500 font-bold hover:underline cursor-pointer"
                     >
                       Remove Logo
@@ -1347,7 +1167,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <input
                     type="file"
                     ref={fileInputRef}
-                    accept="image/*"
+                    accept="image/png,image/jpeg,image/webp"
                     onChange={handleLogoUpload}
                     className="hidden"
                   />
@@ -1371,17 +1191,17 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <span>Logo Size Ratio</span>
                       <span>{logoSize}%</span>
                     </div>
-                    <input
+                    <input aria-label="Logo size"
                       type="range"
-                      min={12}
-                      max={28}
+                      min={10}
+                      max={20}
                       step={2}
                       value={logoSize}
                       onChange={(e) => setLogoSize(Number(e.target.value))}
                       className="w-full accent-indigo-600 cursor-pointer"
                     />
                     <span className="text-[11px] text-amber-600 dark:text-amber-400">
-                      *Error correction automatically locked to Level H (30%) to ensure scan reliability.
+                      Logo mode uses Level H. A logo can still make a code unreadable: keep it small and run the scan test.
                     </span>
                   </div>
                 )}
@@ -1398,7 +1218,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                   <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                     Frame Text (Leave blank for no frame)
                   </label>
-                  <input
+                  <input aria-label="Frame text"
                     type="text"
                     value={frameText}
                     onChange={(e) => setFrameText(e.target.value)}
@@ -1414,7 +1234,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <label className="block text-xs font-bold uppercase text-slate-700 dark:text-slate-300 mb-1">
                         Banner Position
                       </label>
-                      <select
+                      <select aria-label="Frame position"
                         value={framePosition}
                         onChange={(e) => setFramePosition(e.target.value as any)}
                         className="w-full p-2 rounded-lg glass-input text-xs font-semibold"
@@ -1428,7 +1248,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                         Banner Color
                       </label>
                       <div className="flex items-center gap-2">
-                        <input
+                        <input aria-label="Frame color"
                           type="color"
                           value={frameColor}
                           onChange={(e) => setFrameColor(e.target.value)}
@@ -1449,7 +1269,7 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
               <div className="flex items-center justify-between">
                 <div>
                   <h3 className="text-sm font-bold text-slate-900 dark:text-white">Recent Generated QR Codes</h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">Stored safely inside your device local storage.</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Optional, unencrypted storage on this browser. Saved codes can include Wi-Fi passwords and contact details.</p>
                 </div>
                 {history.length > 0 && (
                   <button
@@ -1462,9 +1282,14 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                 )}
               </div>
 
+              <label className="flex items-start gap-2 text-sm">
+                <input type="checkbox" checked={historyEnabled} onChange={e => setHistoryEnabled(e.target.checked)} />
+                Save downloaded or copied content in this browser (this visit only). Do not enable on shared devices.
+              </label>
+              <p className="text-xs text-slate-500">Restore loads encoded content into URL / Text; it does not restore design settings. Turning this off stops new saves. Use Clear All to delete existing history.</p>
               {history.length === 0 ? (
                 <div className="text-center py-8 text-slate-400 text-xs">
-                  No saved QR codes yet. Download or copy a code to save it here!
+                  No saved codes. Enable history below, then download or copy a code to keep its content here.
                 </div>
               ) : (
                 <div className="space-y-2 max-h-72 overflow-y-auto">
@@ -1480,10 +1305,10 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                       <button
                         type="button"
                         onClick={() => {
-                          setQrType(item.type);
-                          if (item.type === 'url') setTextValue(item.content);
+                          setQrType('url');
+                          setTextValue(item.content);
                           setActiveTab('content');
-                          onShowToast(`Loaded ${item.title}`);
+                          onShowToast('Restored exact encoded content in URL / Text mode.');
                         }}
                         className="px-3 py-1.5 rounded-lg bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 font-bold hover:bg-indigo-100 transition-colors shrink-0 cursor-pointer"
                       >
@@ -1501,27 +1326,44 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
         <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-3xl glass-card text-center space-y-5 sticky top-6">
           <div className="flex items-center justify-between w-full">
             <span className="text-xs font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Live Vector Preview
+              <Sparkles className="w-3.5 h-3.5 text-amber-500" /> Live QR Preview
             </span>
             <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400">
-              {qrSize} x {qrSize} px
+              {ready && rendered ? `${rendered.width} × ${rendered.height} px` : 'Updating'}
             </span>
           </div>
 
           {/* Interactive QR Display Canvas */}
           <div className="p-4 bg-white rounded-3xl shadow-xl border border-slate-200/80 dark:border-slate-700 inline-block transition-transform hover:scale-[1.02]">
-            <canvas ref={canvasRef} className="max-w-full h-auto rounded-xl" />
+            <canvas ref={canvasRef} role="img" aria-label="Generated QR code preview" className={`max-w-full h-auto ${ready ? '' : 'invisible'}`} />
           </div>
 
+          <div className="w-full text-left space-y-3 text-xs" aria-live="polite">
+            {(validationError || renderError) && <p role="alert" className="text-rose-600 dark:text-rose-400">{validationError || renderError}</p>}
+            {logoLoading && <p>Preparing logo…</p>}
+            {!validationError && !renderError && !ready && !logoLoading && <p>Updating preview…</p>}
+            {(contrast.inverted || contrast.ratio < 4.5) && <p className="text-amber-700 dark:text-amber-400">Use dark dots on a light background. Current contrast: {contrast.ratio.toFixed(1)}:1. This is a design warning, not a scan guarantee.</p>}
+            {transparentBg && <p>Transparent codes are tested on white here. Test again on your final background.</p>}
+            <button type="button" disabled={!ready} onClick={testScan} className="w-full rounded-xl bg-slate-900 text-white dark:bg-slate-100 dark:text-slate-900 p-3 font-bold disabled:opacity-40">Test this QR code</button>
+            {scanResult?.key === renderKey && <p className={scanResult.passed ? 'text-emerald-700 dark:text-emerald-400' : 'text-amber-700 dark:text-amber-400'}>{scanResult.message}</p>}
+            <button type="button" onClick={resetDesign} className="underline font-semibold">Use scan-friendly defaults</button>
+            <p>The scan test checks encoded content. It does not verify a website, WhatsApp account, Wi-Fi connection or payment recipient.</p>
+          </div>
+          {ready && <details className="w-full text-left text-xs">
+            <summary className="cursor-pointer font-semibold">Review encoded content (may contain private details)</summary>
+            <pre className="mt-2 max-h-40 overflow-auto whitespace-pre-wrap break-all p-2 bg-slate-100 dark:bg-slate-800 rounded-lg">{payload}</pre>
+          </details>}
           {/* Main Action Buttons */}
           <div className="grid grid-cols-2 gap-2.5 w-full">
             <button
+              disabled={!ready}
               onClick={downloadPng}
-              className="py-3 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="py-3 px-3 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-emerald-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <Download className="w-4 h-4" /> PNG Image
             </button>
             <button
+              disabled={!ready}
               onClick={downloadSvg}
               className="py-3 px-3 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold text-xs sm:text-sm rounded-xl shadow-md shadow-indigo-600/20 transition-all flex items-center justify-center gap-2 cursor-pointer"
             >
@@ -1531,18 +1373,21 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
 
           <div className="grid grid-cols-3 gap-2 w-full text-xs">
             <button
+              disabled={!ready}
               onClick={downloadPdf}
               className="py-2.5 px-2 glass-btn text-slate-700 dark:text-slate-200 font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:bg-slate-200/60"
             >
               <FileText className="w-3.5 h-3.5" /> PDF (A4)
             </button>
             <button
+              disabled={!ready}
               onClick={printQrCode}
               className="py-2.5 px-2 glass-btn text-slate-700 dark:text-slate-200 font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:bg-slate-200/60"
             >
               <Printer className="w-3.5 h-3.5" /> Print
             </button>
             <button
+              disabled={!ready}
               onClick={copyToClipboard}
               className="py-2.5 px-2 glass-btn text-slate-700 dark:text-slate-200 font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:bg-slate-200/60"
             >
@@ -1555,15 +1400,15 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
           <div className="w-full pt-3 border-t border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 space-y-1 text-left">
             <div className="flex justify-between">
               <span>Encoding Level:</span>
-              <span className="font-bold text-slate-700 dark:text-slate-300">Level {errorCorrection} (Max Durability)</span>
+              <span className="font-bold text-slate-700 dark:text-slate-300">Level {logoImage ? 'H (logo mode)' : errorCorrection}</span>
             </div>
             <div className="flex justify-between">
               <span>Resolution:</span>
-              <span className="font-bold text-slate-700 dark:text-slate-300">Print Ready 300 DPI</span>
+              <span className="font-bold text-slate-700 dark:text-slate-300">{ready && rendered ? `${rendered.cell} px per module` : '—'}</span>
             </div>
             <div className="flex justify-between">
               <span>Processing:</span>
-              <span className="font-bold text-emerald-600 dark:text-emerald-400">100% In-Browser Private</span>
+              <span className="font-bold text-emerald-600 dark:text-emerald-400">Generated in your browser</span>
             </div>
           </div>
         </div>

@@ -356,8 +356,10 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       const pH = doc.internal.pageSize.getHeight();
 
       const canvas = renderOmrCanvas();
-      const imgData = canvas.toDataURL('image/jpeg', 0.95);
-      doc.addImage(imgData, 'JPEG', 0, 0, pW, pH, undefined, 'FAST');
+      // Lossless PNG preserves sharp bubble outlines and registration marks.
+      // JPEG compression can introduce artifacts around high-contrast OMR marks.
+      const imgData = canvas.toDataURL('image/png');
+      doc.addImage(imgData, 'PNG', 0, 0, pW, pH);
 
       const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
       doc.save(`${prefix}-${questionCount}q.pdf`);

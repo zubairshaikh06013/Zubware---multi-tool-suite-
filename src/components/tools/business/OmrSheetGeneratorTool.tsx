@@ -422,14 +422,14 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       {/* Privacy Notice */}
       <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200/60 dark:border-emerald-800/40">
         <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
-        <span>Generated locally in your browser. Fully printable and ready for exam evaluation.</span>
+        <span>Generated locally in your browser. Print a sample at 100% scale; compatibility with OMR scanning systems requires validation.</span>
       </div>
 
       {/* Generator Notice */}
       <div className="flex items-start gap-2 p-3.5 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-900 dark:text-indigo-300 text-xs border border-indigo-200/60 dark:border-indigo-800/40">
         <Info className="w-4 h-4 shrink-0 text-indigo-600 dark:text-indigo-400 mt-0.5" />
         <span>
-          <strong>Printable OMR Sheet Generator:</strong> Design standardized optical answer sheets and official answer keys for schools, competitive mock exams, and assessments. Print directly or download as high-resolution PDF.
+          <strong>Printable OMR Sheet Generator:</strong> Create customizable practice answer sheets and teacher answer keys for schools, coaching centers, and mock exams. Download an A4 PDF or a preview-page PNG. This is not an official exam-board template.
         </span>
       </div>
 

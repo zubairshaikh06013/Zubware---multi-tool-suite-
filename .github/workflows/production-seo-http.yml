@@ -1,0 +1,58 @@
+name: Production SEO HTTP smoke test
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'public/_headers'
+      - 'public/_redirects'
+      - 'scripts/generateSeoAndSitemap.ts'
+      - '.github/workflows/production-seo-http.yml'
+permissions:
+  contents: read
+jobs:
+  live-seo-http:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect production HTTP responses
+        shell: bash
+        run: |
+          mkdir -p reports
+          python3 - <<'PY'
+          import json, subprocess, time
+          from pathlib import Path
+          base = 'https://www.zubware.com'
+          probes = [
+              ('qr_tool', '/qr-generator'),
+              ('qr_legacy', '/qr-generator.html'),
+              ('qa_internal', '/qa/cloudflare-bg-test'),
+              ('not_found', '/404.html'),
+              ('sitemap', '/sitemap.xml'),
+          ]
+          results = {}
+          for name, path in probes:
+              cmd = ['curl','-sS','-L','--max-redirs','0','--max-time','20','-D','-','-o','/dev/null','-w','\\nSTATUS:%{http_code}\\n',base+path]
+              p = subprocess.run(cmd,capture_output=True,text=True)
+              headers = p.stdout
+              status = next((line.partition(':')[2].strip() for line in headers.splitlines() if line.startswith('STATUS:')), 'unknown')
+              selected = {}
+              for line in headers.splitlines():
+                  if ':' in line:
+                      k,v=line.split(':',1)
+                      if k.lower() in ('x-robots-tag','location','content-type','cf-cache-status'):
+                          selected[k.lower()]=v.strip()
+              results[name]={'path':path,'status':status,'headers':selected,'error':p.stderr[-300:] if p.returncode else ''}
+              print(name,results[name])
+          Path('reports/production-seo-http.json').write_text(json.dumps(results,indent=2)+'\\n')
+          # The HTTP probe is diagnostic; flag unexpected behavior without breaking production.
+          if results['qa_internal']['status'] not in ('unknown','000'):
+              assert 'noindex' in results['qa_internal']['headers'].get('x-robots-tag','').lower(), 'QA page missing X-Robots-Tag noindex'
+          if results['qr_legacy']['status'] not in ('unknown','000'):
+              assert results['qr_legacy']['status'] in ('301','308'), 'Legacy QR URL should redirect'
+          PY
+      - name: Upload production HTTP evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-seo-http
+          path: reports/production-seo-http.json

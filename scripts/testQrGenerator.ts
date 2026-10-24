@@ -56,17 +56,30 @@ const logo = await sharp({ create: { width: 80, height: 40, channels: 4, backgro
 for (const framePosition of ['top', 'bottom'] as const) {
   await verify(payloads[4], { ...base, logoImage: `data:image/png;base64,${logo.toString('base64')}`, logoSize: 20, framePosition, frameText: 'SCAN FOR MENU', gradientType: 'radial', useGradient: true });
 }
-// Verify the six one-click design templates decode before shipping them to users.
+// Verify all eighteen one-click design templates decode before shipping them to users.
 const quickDesigns = [
   { fgColor: '#0f172a', bgColor: '#ffffff', dotStyle: 'square', cornerStyle: 'square' },
   { fgColor: '#312e81', bgColor: '#eef2ff', dotStyle: 'rounded', cornerStyle: 'rounded' },
   { fgColor: '#78350f', bgColor: '#fffbeb', dotStyle: 'dots', cornerStyle: 'circle' },
   { fgColor: '#14532d', bgColor: '#f0fdf4', dotStyle: 'rounded', cornerStyle: 'square' },
   { fgColor: '#115e59', bgColor: '#f0fdfa', dotStyle: 'classy', cornerStyle: 'rounded' },
-  { fgColor: '#581c87', bgColor: '#faf5ff', dotStyle: 'dots', cornerStyle: 'rounded' }
+  { fgColor: '#581c87', bgColor: '#faf5ff', dotStyle: 'dots', cornerStyle: 'rounded' },
+  { fgColor: '#172554', bgColor: '#eff6ff', dotStyle: 'square', cornerStyle: 'rounded' },
+  { fgColor: '#881337', bgColor: '#fff1f2', dotStyle: 'rounded', cornerStyle: 'circle' },
+  { fgColor: '#171717', bgColor: '#fafafa', dotStyle: 'classy', cornerStyle: 'square' },
+  { fgColor: '#075985', bgColor: '#f0f9ff', dotStyle: 'dots', cornerStyle: 'circle' },
+  { fgColor: '#7c2d12', bgColor: '#fff7ed', dotStyle: 'square', cornerStyle: 'rounded' },
+  { fgColor: '#365314', bgColor: '#f7fee7', dotStyle: 'rounded', cornerStyle: 'rounded' },
+  { fgColor: '#334155', bgColor: '#f8fafc', dotStyle: 'dots', cornerStyle: 'square' },
+  { fgColor: '#701a75', bgColor: '#fdf4ff', dotStyle: 'classy', cornerStyle: 'rounded' },
+  { fgColor: '#44403c', bgColor: '#fafaf9', dotStyle: 'square', cornerStyle: 'circle' },
+  { fgColor: '#134e4a', bgColor: '#ccfbf1', dotStyle: 'rounded', cornerStyle: 'circle' },
+  { fgColor: '#3730a3', bgColor: '#eef2ff', dotStyle: 'square', cornerStyle: 'square' },
+  { fgColor: '#9f1239', bgColor: '#fff1f2', dotStyle: 'dots', cornerStyle: 'rounded' }
 ] satisfies Array<Pick<QrDesign, 'fgColor' | 'bgColor' | 'dotStyle' | 'cornerStyle'>>;
 // Diamond data modules must remain machine-readable at standard print sizes.
 await verify(payloads[4], { ...base, dotStyle: 'diamond', cornerStyle: 'square', qrSize: 640 });
+assert.equal(quickDesigns.length, 18);
 for (const template of quickDesigns) {
   await verify(payloads[4], { ...base, ...template });
 }

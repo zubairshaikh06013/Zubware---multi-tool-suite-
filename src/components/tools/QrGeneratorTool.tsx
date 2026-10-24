@@ -357,7 +357,9 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
         const link = document.createElement('a');
         link.href = url;
         link.download = `qr-code-${qrType}.png`;
+        document.body.appendChild(link);
         link.click();
+        link.remove();
         setTimeout(() => URL.revokeObjectURL(url), 1000);
         saveToHistory(qrType, payload);
         onShowToast('PNG download started.');
@@ -376,7 +378,9 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       const a = document.createElement('a');
       a.href = url;
       a.download = `qr-code-${qrType}.svg`;
+      document.body.appendChild(a);
       a.click();
+      a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 1000);
       saveToHistory(qrType, content);
       onShowToast('Downloaded Scalable Vector SVG!');

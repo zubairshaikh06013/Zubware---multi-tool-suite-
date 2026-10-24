@@ -1067,6 +1067,36 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
                 )}
               </div>
 
+              {/* One-tap scan-friendly design combinations */}
+              <div className="glass-card p-4 rounded-2xl space-y-3">
+                <div>
+                  <h3 className="text-sm font-bold text-slate-900 dark:text-white">Quick QR Design Templates</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Apply a complete color, pattern and eye-style combination. Always run the scan test before printing.</p>
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  {[
+                    { name: 'Classic Print', fg: '#0f172a', bg: '#ffffff', dot: 'square' as const, eye: 'square' as const },
+                    { name: 'Soft Indigo', fg: '#312e81', bg: '#eef2ff', dot: 'rounded' as const, eye: 'rounded' as const },
+                    { name: 'Cafe Menu', fg: '#78350f', bg: '#fffbeb', dot: 'dots' as const, eye: 'circle' as const },
+                    { name: 'Eco Green', fg: '#14532d', bg: '#f0fdf4', dot: 'rounded' as const, eye: 'square' as const },
+                    { name: 'Modern Teal', fg: '#115e59', bg: '#f0fdfa', dot: 'classy' as const, eye: 'rounded' as const },
+                    { name: 'Royal Purple', fg: '#581c87', bg: '#faf5ff', dot: 'dots' as const, eye: 'rounded' as const }
+                  ].map(t => (
+                    <button key={t.name} type="button" onClick={() => {
+                      setFgColor(t.fg); setBgColor(t.bg); setTransparentBg(false);
+                      setUseGradient(false); setDotStyle(t.dot); setCornerStyle(t.eye);
+                      setMargin(4); setErrorCorrection('H');
+                    }} className="rounded-xl border border-slate-200 dark:border-slate-700 p-3 text-left hover:border-indigo-500 focus-visible:outline-2 focus-visible:outline-indigo-500 transition-colors">
+                      <span className="flex gap-1 mb-2" aria-hidden="true">
+                        <span className="w-5 h-5 rounded" style={{ backgroundColor: t.fg }} />
+                        <span className="w-5 h-5 rounded border border-slate-200" style={{ backgroundColor: t.bg }} />
+                      </span>
+                      <span className="text-xs font-bold text-slate-800 dark:text-slate-100">{t.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
               {/* Dot & Corner Styles */}
               <div className="glass-card p-4 rounded-2xl space-y-4">
                 <div>

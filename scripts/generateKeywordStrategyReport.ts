@@ -69,7 +69,7 @@ const newGuidesData: Array<{
     targetTool: 'exif-remover',
     slug: 'remove-exif-metadata-photo-privacy-guide',
     reason: 'Deep dive on GPS coordinate extraction, camera serial fingerprints, and in-browser APP1 binary marker slicing.',
-    internalLinks: ['/exif-remover', '/image-info-viewer', '/watermark-image', '/image-compressor']
+    internalLinks: ['/exif-remover', '/image-info-viewer', '/image-watermark', '/image-compressor']
   },
   {
     keyword: 'convert json to csv online',
@@ -397,7 +397,7 @@ Each new page was created ONLY after meeting all five strict criteria:
 | **password protect pdf online** | Security Architecture | \`protect-pdf\`, \`unlock-pdf\`, \`pdf-watermark\` | \`/blog/pdf-security-encryption-watermarking-guide\` | Covers ISO 32000-1 AES-256 vs RC4, User vs Owner passwords, and diagonal watermarking deterrence. |
 | **sign pdf online free** | Legal Tech & E-Sign | \`pdf-signature\`, \`signature-maker\`, \`edit-pdf\` | \`/blog/how-to-electronically-sign-pdf-contracts\` | Analyzes ESIGN, UETA, and eIDAS legal frameworks alongside in-browser vector signature placement. |
 | **convert heic to jpg online** | Media Compatibility | \`heic-to-jpg\`, \`image-converter\`, \`batch-image-converter\` | \`/blog/complete-image-formats-conversion-guide\` | Compares AVIF, WebP, PNG, JPG, and HEIC across compression efficiency and cross-platform browser support. |
-| **remove exif data from photos online** | Privacy & Metadata | \`exif-remover\`, \`image-info-viewer\`, \`watermark-image\` | \`/blog/remove-exif-metadata-photo-privacy-guide\` | Audits GPS geolocation coordinates, camera serial numbers, and in-browser APP1 binary marker slicing. |
+| **remove exif data from photos online** | Privacy & Metadata | \`exif-remover\`, \`image-info-viewer\`, \`image-watermark\` | \`/blog/remove-exif-metadata-photo-privacy-guide\` | Audits GPS geolocation coordinates, camera serial numbers, and in-browser APP1 binary marker slicing. |
 | **convert json to csv online** | Data Engineering | \`json-to-csv\`, \`csv-to-json\`, \`json-validator\` | \`/blog/json-xml-csv-yaml-data-transformation-guide\` | Explains recursive tree flattening into 2D tables, delimiter collision escaping, and XML namespace conversion. |
 | **regex tester online free** | Developer Security | \`regex-tester\`, \`url-parser\`, \`email-extractor\` | \`/blog/regex-tester-pattern-debugging-guide\` | Deep dive on tokenization, character classes, lookarounds, and preventing Catastrophic Backtracking (ReDoS). |
 | **cron expression generator** | DevOps Infrastructure | \`cron-expression-generator\`, \`unix-timestamp-converter\` | \`/blog/cron-expression-generator-scheduling-guide\` | Explains 5-field Unix crontab syntax, intervals, ranges, and timezone/Daylight Saving Time execution traps. |

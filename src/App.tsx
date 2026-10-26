@@ -489,6 +489,7 @@ export default function App() {
 
     // 3. Backward compatibility aliases for stopwatch, timezone converter and image splitter
     return translatedTools.find((t) => {
+      if (t.id === 'image-watermark' && (pathSegment === 'watermark-image' || pathSegment === 'watermark-image.html')) return true;
       if (t.id === 'online-stopwatch' && (pathSegment === 'stopwatch.html' || pathSegment === 'stopwatch')) return true;
       if (t.id === 'time-zone-converter' && (pathSegment === 'timezone-converter.html' || pathSegment === 'timezone-converter')) return true;
       if (t.id === 'image-splitter-merger' && pathSegment === 'image-splitter-merger.html') return true;

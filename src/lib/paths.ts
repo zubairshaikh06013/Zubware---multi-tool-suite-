@@ -56,6 +56,7 @@ export function getToolCanonicalPath(toolOrId: { id?: string; filename?: string;
   // If a string was provided (e.g. tool ID or path)
   if (typeof toolOrId === 'string') {
     const raw = toolOrId.trim().replace(/^\//, '').replace(/\.html$/, '');
+    if (raw === 'watermark-image') return '/image-watermark';
     if (raw === 'image-color-picker') return '/color-picker';
     if (raw === 'photo-and-signature-joiner') return '/photo-signature-joiner';
     if (raw === 'qr-code-generator') return '/qr-generator';

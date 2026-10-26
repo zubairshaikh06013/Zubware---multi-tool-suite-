@@ -164,7 +164,7 @@ export const SEO_TOPICAL_AUTHORITY_ROADMAP: SeoTopicPlan[] = [
     primaryKeyword: 'remove exif data from photos online',
     secondaryKeywords: ['strip photo metadata browser', 'view image exif data', 'digital photo privacy'],
     searchIntent: 'informational',
-    targetToolIds: ['exif-remover', 'image-info-viewer', 'watermark-image'],
+    targetToolIds: ['exif-remover', 'image-info-viewer', 'image-watermark'],
     workflowCluster: 'Image Privacy & EXIF',
     status: 'planned',
     targetWordCount: 1700,

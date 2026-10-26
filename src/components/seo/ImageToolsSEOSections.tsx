@@ -956,8 +956,8 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 </span>
               </a>
               <a
-                href={getLinkUrl('/watermark-image')}
-                onClick={(e) => handleNav(e, '/watermark-image')}
+                href={getLinkUrl('/image-watermark')}
+                onClick={(e) => handleNav(e, '/image-watermark')}
                 className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all block text-xs group"
               >
                 <span className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 block mb-1">
@@ -1497,8 +1497,8 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
                 </span>
               </a>
               <a
-                href={getLinkUrl('/watermark-image')}
-                onClick={(e) => handleNav(e, '/watermark-image')}
+                href={getLinkUrl('/image-watermark')}
+                onClick={(e) => handleNav(e, '/image-watermark')}
                 className="p-3 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all block text-xs group"
               >
                 <span className="font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 block mb-1">

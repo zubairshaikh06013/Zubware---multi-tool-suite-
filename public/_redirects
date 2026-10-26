@@ -45,6 +45,10 @@
 /dashboard/index.html /dashboard 301
 
 # 6. Tool Pages canonicalization (redirect legacy .html to clean canonical URL)
+/watermark-image /image-watermark 301
+/watermark-image.html /image-watermark 301
+/watermark-image/ /image-watermark 301
+/watermark-image/index.html /image-watermark 301
 /image-color-picker /color-picker 301
 /image-color-picker.html /color-picker 301
 /qr-code-generator /qr-generator 301

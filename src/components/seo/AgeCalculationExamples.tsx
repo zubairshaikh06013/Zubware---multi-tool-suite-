@@ -11,7 +11,15 @@ export const AGE_EXAMPLES = [
 export function AgeCalculationExamples() {
   return (
     <section className="glass-card p-6 sm:p-8 rounded-3xl space-y-4 border border-indigo-200/60 dark:border-indigo-900/60">
-      <h2 className="text-xl font-bold text-slate-900 dark:text-white">Days Old Calculator by Date of Birth</h2>
+      <h2 className="text-lg font-bold">Age Calculator from Date of Birth: Age as on Today or Any Date</h2>
+      <p className="text-sm text-slate-600 dark:text-slate-300">Use this free age calculator with DOB to find out your age today, or calculate your age till a date you choose. Enter your full date of birth, then set Age at Date to today, a past milestone or a future cutoff. The result separates completed years, months and days from total elapsed days and weeks.</p>
+      <h3 className="text-lg font-bold">Age calculator formula: completed years, not just year subtraction</h3>
+      <p className="text-sm text-slate-600 dark:text-slate-300">For completed years, subtract your birth year from the reference year, then subtract one if your birthday has not yet occurred by the reference date. For example, someone born on May 13, 1997 is 28 on May 12, 2026 and turns 29 on May 13, 2026. For months and days, use calendar anniversaries rather than assuming every month has 30 days. The month-end and February 29 conventions used here are explained below.</p>
+      <h3 className="text-lg font-bold">Age completed in years as on 31st December</h3>
+      <p className="text-sm text-slate-600 dark:text-slate-300">Choose December 31 of the required year in Age at Date, then read the completed years in the result. For a birth date of May 13, 1997 and a reference date of December 31, 2026, the result is 29 years, 7 months and 18 days: enter 29 if a form asks for completed years only. A reference date is not always today; use the date stated on the form.</p>
+      <h3 className="text-lg font-bold">Age calculator by year: born in 1992 or 2002?</h3>
+      <p className="text-sm text-slate-600 dark:text-slate-300">Someone born in 1992 turns 34 during 2026, but is still 33 before their birthday. Someone born in 2002 turns 24 during 2026 and is 23 before their birthday. A birth year alone cannot give an exact age in months and days. Enter the full date of birth and reference date for that breakdown.</p>
+      <h2 className="text-xl font-bold text-slate-900 dark:text-white">Days and Weeks Old Calculator by Date of Birth</h2>
       <p className="text-sm text-slate-600 dark:text-slate-300">To find how many days old you are, enter your date of birth and select Set to Today in the calculator. For your age on a past or future date, change the reference date. The result shows total elapsed calendar days alongside your age in years, months, and days.</p>
       <p className="text-sm text-slate-600 dark:text-slate-300">Your birth date counts as day zero and the following date as day one. Leap days count automatically. For example, February 28 to March 1 is 2 days in 2024, but 1 day in 2025. This is a date-only count, not an exact elapsed-time measurement from your birth hour.</p>
       <h3 className="text-lg font-bold text-slate-900 dark:text-white">Age on a Specific Date: Worked Examples</h3>

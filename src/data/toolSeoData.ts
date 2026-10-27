@@ -6081,6 +6081,18 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+{
+  "question": "How many weeks old am I?",
+  "answer": "Enter your date of birth and reference date. The calculator divides total elapsed calendar days by seven and shows completed weeks with the remaining days. For example, 100 days is 14 weeks and 2 days."
+},
+{
+  "question": "How do I find my age as on today?",
+  "answer": "Enter your full date of birth and select Set to Today. The calculator uses today's date from your device and displays completed years, months and days. Check your device date if the result seems unexpected."
+},
+{
+  "question": "How do I calculate age completed in years as on 31st December?",
+  "answer": "Set Age at Date to December 31 of the required year. Read the completed years rather than rounding up the months. For someone born on May 13, 1997, the age on December 31, 2026 is 29 years, 7 months and 18 days, so the completed-years value is 29."
+},
   {
     "question": "How do I calculate my age from my date of birth?",
     "answer": "Enter your date of birth and keep the reference date set to today to calculate your current age. The calculator displays your age in completed years, months, and days."
@@ -6094,7 +6106,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "answer": "Yes. The calculator compares your birth date with the selected reference date and displays a calendar-based breakdown in years, months, and days. This is different from estimating age by dividing total days by 365."
   },
   {
-    "question": "Can I calculate my age on a past or future date?",
+    "question": "How do I calculate my age till date or on a past or future date?",
     "answer": "Yes. Change the reference date to a date after your birth date. You can use this to check your age at a past milestone or on a future date."
   },
   {
@@ -6114,7 +6126,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "answer": "The calculator finds the next birthday date based on your birth month and day, then estimates the number of days remaining from the selected reference date. February 29 birthdays may need special consideration in non-leap years."
   },
   {
-    "question": "Can I use this age calculator on my phone?",
+    "question": "Can I use this age calculator without downloading an app?",
     "answer": "Yes. You can open the browser-based calculator on a compatible mobile device and enter your dates without installing a separate application."
   },
   {

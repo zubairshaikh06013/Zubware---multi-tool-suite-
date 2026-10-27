@@ -4805,9 +4805,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "age-calculator",
-    "title": "Age Calculator — Calculate Your Exact Age Online",
+    "title": "Age Calculator from Date of Birth — How Old Am I?",
     "navTitle": "Age Calculator",
-    "description": "Calculate age by date of birth in years, months and days. Find how many days old you are, check age on a specific date, and see your next birthday countdown.",
+    "description": "Free age calculator from date of birth (DOB). Find your age today or on any date in years, months and days, with total weeks and a birthday countdown.",
     "icon": "🎂",
     "path": "/age-calculator",
     "filename": "age-calculator.html",

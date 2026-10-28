@@ -1,0 +1,151 @@
+name: SEO toolkit - links and Lighthouse
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      full_site:
+        description: 'Audit every canonical page with Unlighthouse (slower)'
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: seo-toolkit-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm run test:seo-search
+      - name: Start exact static build and collect links
+        run: |
+          node scripts/serveSeoBuild.mjs > /tmp/seo-server.log 2>&1 &
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:4173/ > /dev/null
+          npm run audit:links:prepare
+      - name: Lychee broken-link audit
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-concurrency 2 --timeout 20 --max-retries 1 reports/audit-links.txt
+          format: json
+          output: reports/lychee.json
+          fail: true
+      - name: Test Pagefind search in a real browser
+        if: ${{ !cancelled() }}
+        run: node scripts/testSearchBrowser.mjs
+      - name: Stop local server before Lighthouse CI
+        if: always()
+        run: fuser -k 4173/tcp || true
+      - name: Lighthouse CI - mobile representative pages
+        if: ${{ !cancelled() }}
+        run: npm run audit:lighthouse
+      - name: Save audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-toolkit-${{ github.run_id }}
+          path: |
+            reports/
+            .lighthouseci/
+            dist/seo-crawl-audit.json
+          retention-days: 14
+  full-audit:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Start static site
+        run: |
+          node scripts/serveSeoBuild.mjs > /tmp/seo-server.log 2>&1 &
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:4173/ > /dev/null
+      - name: Unlighthouse audit
+        run: npm run audit:site
+        env:
+          FULL_SITE: ${{ inputs.full_site && '1' || '0' }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unlighthouse-${{ github.run_id }}
+          path: .unlighthouse/
+          include-hidden-files: true
+          retention-days: 14
+
+  seonaut:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: StJudeWasHere/seonaut
+          ref: a67387fe63a291be2ba49dd02399f20e453eb8b5
+          path: .seo-sources/seonaut
+          persist-credentials: false
+      - name: Start isolated SEOnaut and temporary database
+        run: docker compose -f ops/seo/seonaut.compose.yml up -d --build
+      - name: Crawl production and export findings
+        run: python3 scripts/runSeonautAudit.py
+      - name: Save SEOnaut evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seonaut-${{ github.run_id }}
+          path: reports/seonaut/
+          retention-days: 14
+      - name: Remove temporary crawler and database
+        if: always()
+        run: docker compose -f ops/seo/seonaut.compose.yml down -v
+  openseo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+        with:
+          repository: openwarelabs/open-seo
+          ref: 365ee818385900b5a0727dfcb6b18cc394239851
+          path: .seo-sources/openseo
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned upstream dependencies
+        working-directory: .seo-sources/openseo
+        run: npx --yes pnpm@12.10.1 install --frozen-lockfile
+      - name: Audit production HTML and crawl canonical pages
+        working-directory: .seo-sources/openseo
+        run: |
+          mkdir -p ../../reports/openseo
+          npx --yes pnpm@12.10.1 exec tsx scripts/scan.ts https://www.zubware.com --json > ../../reports/openseo/homepage.json
+          npx --yes pnpm@12.10.1 exec tsx scripts/crawl.ts https://www.zubware.com --pages 500 --json > ../../reports/openseo/crawl.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: openseo-${{ github.run_id }}
+          path: reports/openseo/
+          retention-days: 14

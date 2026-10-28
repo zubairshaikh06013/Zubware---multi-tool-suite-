@@ -14,7 +14,11 @@
     "test:omr": "tsx scripts/testOmrLayout.ts",
     "prebuild": "node scripts/prepareVideoEngine.mjs",
     "predev": "node scripts/prepareVideoEngine.mjs",
-    "postbuild": "node --import tsx scripts/generateSeoAndSitemap.ts && node --import tsx scripts/testCompactContent.ts"
+    "postbuild": "node --import tsx scripts/generateSeoAndSitemap.ts && node --import tsx scripts/testCompactContent.ts && node scripts/buildSearchIndex.mjs",
+    "audit:lighthouse": "lhci autorun",
+    "audit:site": "unlighthouse-ci",
+    "audit:links:prepare": "node scripts/prepareAuditLinks.mjs",
+    "test:seo-search": "node --import tsx scripts/testSeoSearch.ts"
   },
   "dependencies": {
     "@ffmpeg/core": "0.12.10",
@@ -53,14 +57,18 @@
     "zod": "4.6.7"
   },
   "devDependencies": {
+    "@lhci/cli": "0.15.1",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "@types/omggif": "^1.0.5",
     "@types/pdfjs-dist": "^2.10.378",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
+    "@unlighthouse/cli": "0.19.1",
     "autoprefixer": "^10.4.21",
     "esbuild": "^0.25.0",
+    "pagefind": "1.5.2",
+    "puppeteer-core": "25.16.0",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",

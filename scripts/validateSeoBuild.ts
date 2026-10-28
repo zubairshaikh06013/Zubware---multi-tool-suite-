@@ -108,7 +108,7 @@ export function validateSeoBuild(distDir: string): void {
     for (const href of capture(html, /<a\b[^>]*href="([^"]+)"/g)) {
       try {
         const link = new URL(href, url);
-        if (link.origin === SITE_ORIGIN && /\\.html$/i.test(link.pathname) && !link.pathname.startsWith('/assets/')) {
+        if (link.origin === SITE_ORIGIN && /\.html$/i.test(link.pathname) && !link.pathname.startsWith('/assets/')) {
           legacyHtmlInternalLinks.add(`${url} -> ${link.pathname}`);
         }
         if (link.origin === SITE_ORIGIN && link.pathname !== parsed.pathname) {

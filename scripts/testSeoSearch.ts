@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import { renderStaticBlogMarkdown } from './generateSeoAndSitemap';
+const html = renderStaticBlogMarkdown('[tool](/image-compressor) [absolute](https://www.zubware.com/qr-generator) [source](https://example.com) [unsafe](javascript:alert)');
+assert.match(html, /<a href="\/image-compressor">tool<\/a>/);
+assert.match(html, /<a href="https:\/\/www.zubware.com\/qr-generator">absolute<\/a>/);
+assert.ok(!html.includes('nofollow'));
+assert.ok(!html.includes('href="javascript:'));
+const sitemap = fs.readFileSync('dist/sitemap.xml','utf8');
+assert.ok([...sitemap.matchAll(/<loc>/g)].length > 0);
+assert.ok(fs.statSync('dist/pagefind/pagefind.js').size > 0);
+assert.ok(fs.readdirSync('dist/pagefind').some(f => f.endsWith('.pf_meta')));
+console.log('Internal blog links, unsafe-link filtering and generated Pagefind assets passed.');

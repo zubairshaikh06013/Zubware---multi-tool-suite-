@@ -49,7 +49,7 @@ const publicDir = path.resolve(rootDir, 'public');
 
 const DOMAIN = SITE_ORIGIN;
 
-function renderStaticBlogMarkdown(content: string): string {
+export function renderStaticBlogMarkdown(content: string): string {
   const renderer = new marked.Renderer();
 
   renderer.html = ({ text }) => escapeHtml(text);
@@ -67,7 +67,10 @@ function renderStaticBlogMarkdown(content: string): string {
 
     const safeUrl = escapeHtml(url);
     const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
-    return `<a href="${safeUrl}"${titleAttr} rel="nofollow noopener noreferrer">${label}</a>`;
+    // Editorial links to our own tools should remain ordinary crawlable links.
+    const internal = new URL(url, SITE_ORIGIN).origin === SITE_ORIGIN;
+    const rel = internal ? '' : ' rel="noopener noreferrer"';
+    return `<a href="${safeUrl}"${titleAttr}${rel}>${label}</a>`;
   };
 
   const html = marked.parse(content || '', {

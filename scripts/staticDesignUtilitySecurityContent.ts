@@ -17,21 +17,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">sRGB Relative Luminance Math</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">sRGB Relative Luminance Math</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Computes photometric brightness weighted by human retinal sensitivity: L = 0.2126*R + 0.7152*G + 0.0722*B after linearizing gamma-compressed 8-bit color channels.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Normalized float luminance (0.0 to 1.0)</li><li>Human eye weighting (green-dominant)</li><li>Contrast Ratio = (L1 + 0.05) / (L2 + 0.05)</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">WCAG 2.1 Compliance Tiers</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">WCAG 2.1 Compliance Tiers</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Evaluates color pairs across all formal W3C accessibility criteria for body typography, display headlines, and interactive components.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Normal Text AA: Minimum 4.5:1 ratio</li><li>Normal Text AAA: Minimum 7.0:1 ratio</li><li>Large Text AA: Minimum 3.0:1 ratio</li><li>UI Elements & Badges: Minimum 3.0:1 ratio</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Client-Side Privacy</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Client-Side Privacy</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All color parsing, luminance equations, and live card rendering execute entirely inside your browser memory with zero network requests.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero server telemetry</li><li>Instant real-time recalculation</li><li>Works completely offline</li>
@@ -80,21 +80,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Universal vCard 3.0 Standard</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Universal vCard 3.0 Standard</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Encodes structured electronic business cards (names, organizations, titles, phone numbers, emails, addresses, and URLs) recognized natively by smartphone camera systems.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Direct phone address book import</li><li>Works completely offline without Wi-Fi</li><li>No specialized mobile app required</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Vector SVG & PNG Export</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Vector SVG & PNG Export</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Generate razor-sharp vector SVG barcodes for luxury card stock printing or clean PNG images for email signatures and digital badges.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Infinite vector scalability (no pixelation)</li><li>Adjustable pixel dimensions (180–400px)</li><li>Custom margin and quiet-zone padding</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Reed-Solomon Error Correction</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Reed-Solomon Error Correction</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Configurable error correction (L, M, Q, H) allows business card QR codes to scan reliably even if scuffed, folded, or printed with a custom logo overlay.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Level M (15% recovery) for business cards</li><li>Level Q (25% recovery) for textured cardstock</li><li>Zero tracking redirects or expiring links</li>
@@ -143,21 +143,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">7 Physical & Digital Categories</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">7 Physical & Digital Categories</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Comprehensive coverage of international metric (SI), US customary, British imperial, and computing unit standards.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Length (m, km, mi, ft, in, yd, cm, mm)</li><li>Mass/Weight (kg, g, mg, t, lb, oz, st)</li><li>Temperature (Celsius, Fahrenheit, Kelvin)</li><li>Volume, Area, Speed & Digital Storage</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">High-Precision Scientific Factors</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">High-Precision Scientific Factors</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Grounded in official BIPM and NIST conversion factors to eliminate rounding drift across engineering calculations.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>1 inch = exactly 25.4 mm</li><li>1 pound = exactly 0.45359237 kg</li><li>Affine temperature scale transformations</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Instant In-Browser Execution</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Instant In-Browser Execution</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All conversions recalculate instantly on keystroke with zero server requests, zero latency, and one-click clipboard copying.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero network roundtrips</li><li>Reverse unit swap button</li><li>Clean decimal formatting</li>
@@ -206,21 +206,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">4 Specialized Calculation Modes</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">4 Specialized Calculation Modes</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Instantly toggle between real-world percentage queries with clear formula explanations for students and analysts.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Mode 1: Find P% of X (e.g. 15% of 200 = 30)</li><li>Mode 2: X is what % of Y (e.g. 30 of 200 = 15%)</li><li>Mode 3: Percentage Change from X to Y</li><li>Mode 4: Add or Subtract P% from Value</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Step-by-Step Mathematical Transparency</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Step-by-Step Mathematical Transparency</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Every calculation renders its underlying algebraic formula, helping learners understand percentage mechanics.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Clear numerator and denominator breakdown</li><li>Directional color indicators (green/red)</li><li>Exact decimal precision</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency Browser Math</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency Browser Math</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Calculates instantaneously on keystroke with zero external dependencies and zero data transmission.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Instant keyboard input</li><li>Copyable result summaries</li><li>Works offline</li>
@@ -269,21 +269,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Monthly Reducing Balance Math</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Monthly Reducing Balance Math</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Uses the universal banking formula: EMI = [P * r * (1 + r)^n] / [(1 + r)^n - 1] to calculate exact monthly payment obligations.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>P = Principal borrowed</li><li>r = Monthly interest rate (Annual % / 12 / 100)</li><li>n = Total tenure in months</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Prepayment Savings Simulator</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Prepayment Savings Simulator</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Test how small recurring extra monthly payments directly reduce principal, slashing total interest and shortening loan tenure.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Simulate $50, $100, or $200 extra payments</li><li>Calculate total interest dollars saved</li><li>Model accelerated loan freedom</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Annual Amortization Table</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Annual Amortization Table</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Review the year-by-year breakdown showing the gradual transition from front-loaded interest charges to rapid principal payoff.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Yearly principal paid</li><li>Yearly interest charges</li><li>Ending balance tracking</li>
@@ -332,21 +332,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sequential Stacked Discounts</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sequential Stacked Discounts</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Accurately computes cascading multi-coupon promotions (e.g. 20% off plus an extra 10% coupon) without common additive errors.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Sequential base reduction</li><li>Calculates true effective discount %</li><li>Prevents overestimating store savings</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sales Tax & VAT Integration</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sales Tax & VAT Integration</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Factor in local state sales tax or national VAT percentages calculated on the net discounted price to see exact checkout totals.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Configurable tax percentage</li><li>Breakdown of net price and tax dollars</li><li>Multi-currency symbol support</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Single Item & Shopping Cart Modes</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Single Item & Shopping Cart Modes</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Analyze clearance sticker prices for individual products or total up multiple items with differing discounts in Shopping Cart mode.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Instant clear and reset</li><li>One-click clipboard copying</li><li>100% private in-browser math</li>
@@ -395,21 +395,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Major International Currencies</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Major International Currencies</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Instant conversion between major global currencies: USD, EUR, GBP, INR, JPY, CAD, AUD, CHF, CNY, AED, and SGD.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Bidirectional unit swap</li><li>Reciprocal rate display (1 USD = X EUR)</li><li>High decimal precision</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Custom Bank Spread Settings</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Custom Bank Spread Settings</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Open Rate Settings to input your credit card or bank’s specific markup spread to see actual statement charges.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Model 1.5%–3.5% foreign transaction fees</li><li>Test hypothetical exchange rate scenarios</li><li>Custom rate persistence in session</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency & Total Privacy</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency & Total Privacy</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All conversions run locally in browser memory without connecting to external tracking servers or third-party ad networks.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Instant calculation on keystroke</li><li>Works offline without Wi-Fi</li><li>Zero financial data collection</li>
@@ -458,21 +458,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Standard Fixed-Rate Amortization</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Standard Fixed-Rate Amortization</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Models 15-year, 20-year, and 30-year fixed-rate mortgages and personal installment loans with full mathematical precision.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>P&I monthly payment calculation</li><li>Total interest paid over loan life</li><li>Lifetime total cash outlay</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Extra Principal Contribution Modeling</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Extra Principal Contribution Modeling</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">See how adding $50, $100, or $500 to your monthly payment shaves years off your mortgage and saves tens of thousands in interest.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Accelerated payoff year and month</li><li>Exact interest dollars eliminated</li><li>Shortened debt horizon</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Full Annual Amortization Breakdown</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Full Annual Amortization Breakdown</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Inspect the itemized schedule tracking the shift from interest charges to rapid home equity accumulation.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Annual principal reduction</li><li>Cumulative interest payments</li><li>Ending balance progression</li>
@@ -521,21 +521,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Margin vs Markup Disambiguation</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Margin vs Markup Disambiguation</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Eliminate common pricing confusion by instantly calculating both Profit Margin % and Markup % from Cost and Selling Price.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Margin % = (Profit / Revenue) × 100</li><li>Markup % = (Profit / Cost) × 100</li><li>Gross profit dollar calculation</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Return on Investment (ROI %)</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Return on Investment (ROI %)</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Evaluate capital expenditure and marketing campaigns: ROI = ((Total Gain - Investment Cost) / Investment Cost) × 100.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Net return dollars</li><li>Percentage yield calculation</li><li>Supports marketing ROAS modeling</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Break-Even Volume Analysis</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Break-Even Volume Analysis</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Determine the exact number of product units and gross revenue required to recover fixed operational overhead.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Fixed costs vs unit variable costs</li><li>Break-even unit threshold</li><li>Break-even revenue milestone</li>
@@ -584,21 +584,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Compound Interest Simulation</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Compound Interest Simulation</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Simulate long-term investing: A = P*(1 + r/n)^(n*t) with recurring monthly contributions and flexible compounding frequencies.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Daily, Monthly, Quarterly, or Annual compounding</li><li>Recurring monthly contribution support</li><li>Total principal vs interest breakdown</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Compound Annual Growth Rate (CAGR)</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Compound Annual Growth Rate (CAGR)</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Calculate smoothed annualized returns over multi-year periods: CAGR = ((Ending Value / Starting Value)^(1 / Years)) - 1.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Evaluates true geometric return</li><li>Smooths out volatile market years</li><li>Ideal for mutual funds, stocks, and real estate</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Year-by-Year Growth Table</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Year-by-Year Growth Table</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Review the annual breakdown tracking total invested capital, annual interest credited, and compounding exponential growth.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Clear visual timeline</li><li>One-click clipboard export</li><li>100% private in-browser computation</li>
@@ -647,21 +647,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Precise Millisecond Delta Math</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Precise Millisecond Delta Math</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Computes exact temporal intervals by calculating epoch millisecond offsets between the user system clock and target date.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Days, Hours, Minutes, and Seconds breakdown</li><li>Total weeks, total hours, and total days readout</li><li>Working business days calculation</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Past & Future Event Support</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Past & Future Event Support</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Automatically detects whether target dates are upcoming or have already passed, calculating elapsed time for anniversaries.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Live real-time ticking display</li><li>Automatic past date milestone mode</li><li>Leap year and DST aware</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Private Client-Side Operation</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Private Client-Side Operation</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All event names and dates exist solely in your active browser session. Zero personal schedules are uploaded or stored.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero server database storage</li><li>Shareable copy summaries</li><li>Works offline</li>
@@ -710,21 +710,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">High-Resolution performance.now()</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">High-Resolution performance.now()</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Operates on sub-millisecond hardware timestamps rather than uncalibrated setInterval counters for maximum precision.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Hours : Minutes : Seconds . Milliseconds (0.001s)</li><li>Zero timer drift over long durations</li><li>Fluid 60 FPS visual rendering</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Split Lap Timing & Benchmarking</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Split Lap Timing & Benchmarking</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Capture individual lap splits without halting the main timer, automatically highlighting fastest (green) and slowest (red) laps.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Individual lap duration tracking</li><li>Cumulative total time elapsed</li><li>One-click clipboard export of lap tables</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Keyboard Shortcuts & Offline Privacy</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Keyboard Shortcuts & Offline Privacy</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Operate the stopwatch hands-free using keyboard controls. Runs 100% client-side with zero network uploads.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Spacebar to Start / Pause</li><li>Press L to Record Lap</li><li>Press R to Reset</li>
@@ -773,21 +773,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Web Audio API Chime Synthesis</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Web Audio API Chime Synthesis</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Synthesizes clean harmonic bell chimes locally using Web Audio oscillators, guaranteeing reliable audio alarms without external audio files.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Pleasant 3-tone chime sequence</li><li>Never fails due to broken audio links</li><li>Works completely offline</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">HTML5 Desktop Notifications</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">HTML5 Desktop Notifications</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Sends an operating system notification when time expires so you never miss an alert while working in other desktop applications.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Background tab notification alert</li><li>System-level alert banners</li><li>Requires explicit user permission</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Study Presets & Fullscreen Mode</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Study Presets & Fullscreen Mode</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Quick buttons for 1m, 3m, 5m, 10m, 15m, 25m Pomodoro, 30m, and 1 hour, plus fullscreen toggle for classrooms and presentations.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Dedicated 25m Pomodoro study preset</li><li>+1 Minute quick extension button</li><li>Large high-contrast display</li>
@@ -836,21 +836,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Accurate Local Clock</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Accurate Local Clock</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Displays current local time down to the second, synchronized with your operating system’s network time protocol (NTP).</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>12-Hour (AM/PM) and 24-Hour Military toggles</li><li>Complete calendar date and day of week</li><li>Local IANA time zone and UTC offset</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Synchronized World Clocks</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Synchronized World Clocks</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Add multiple international cities to track global business hubs simultaneously with automated daylight status.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>London, New York, Tokyo, Sydney, Mumbai, Dubai</li><li>Visual Day and Night status badges</li><li>Automatic seasonal DST tracking</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency & Privacy</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency & Privacy</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Runs entirely client-side using the native Intl.DateTimeFormat API with zero tracking cookies and zero server logging.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero remote network roundtrips</li><li>Saves city preferences locally</li><li>Aesthetic full-screen desk clock</li>
@@ -899,21 +899,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Multi-City Synchronized Timeline</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Multi-City Synchronized Timeline</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Select an origin date and time to see synchronized local times across multiple global destinations simultaneously.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Dynamic source date and hour selector</li><li>Supports non-integer zones (IST +5:30, Nepal +5:45)</li><li>12-Hour and 24-Hour toggle</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Business Hours Overlap Visualizer</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Business Hours Overlap Visualizer</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Visual color badges highlight standard working hours (9:00 AM – 5:00 PM) across all target cities to spot mutual meeting windows.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Instant overlap identification</li><li>Daylight / Nighttime indicators</li><li>International date line day indicator (+1/-1 Day)</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">One-Click Meeting Invite Export</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">One-Click Meeting Invite Export</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Click Copy Times to copy a clear, formatted meeting invitation summary listing local times across all participants.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Pre-formatted for email and Slack</li><li>Zero server tracking</li><li>Works completely offline</li>
@@ -962,21 +962,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Metric & Imperial Dimensional Support</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Metric & Imperial Dimensional Support</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Input dimensions in feet, inches, and cubic yards, or meters, centimeters, and cubic meters for international construction.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Slabs, patios, footings, and walls</li><li>Automatic unit conversion</li><li>Custom wastage allowance (default 10%)</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Nominal Mix Ratios (M15, M20, M25)</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Nominal Mix Ratios (M15, M20, M25)</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Evaluates standard volumetric mix ratios (Cement : Sand : Gravel) based on civil engineering specifications.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>M15 (1:2:4) for non-structural slabs</li><li>M20 (1:1.5:3) for standard reinforced concrete</li><li>M25 (1:1:2) for heavy structural elements</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Detailed Material Batching Breakdown</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Detailed Material Batching Breakdown</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Calculates the exact number of 50kg cement bags (or 80lb/60lb premix bags), sand volume, and coarse gravel aggregate.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>50kg cement bag counts</li><li>Sand volume in cubic feet & tonnes</li><li>Gravel aggregate volume & tonnes</li>
@@ -1025,21 +1025,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Custom Alphabet Subsets & Filters</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Custom Alphabet Subsets & Filters</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Filter candidate letters to suit specific classroom or gaming needs with instant uniform random sampling.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>All 26 English letters (A–Z)</li><li>Vowels only (A, E, I, O, U)</li><li>Consonants only (21 letters)</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sampling With or Without Replacement</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sampling With or Without Replacement</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Toggle duplicate letters on or off. Sampling without replacement ensures each letter appears at most once per draw.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Generate 1 to 100 letters with duplicates</li><li>Draw up to 26 unique non-repeating letters</li><li>Case control: Uppercase, Lowercase, Mixed</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Flexible Output Formatting</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Flexible Output Formatting</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Separate generated letters with spaces, commas, new lines (one per line), or no delimiter for anagram generation.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>One-click clipboard copying</li><li>Instant re-roll button</li><li>100% private client-side math</li>
@@ -1088,21 +1088,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sandboxed Client-Side Decoding</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Sandboxed Client-Side Decoding</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Decodes QR barcodes in isolated browser memory using jsQR without triggering web navigation or executing malicious scripts.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Upload image file (PNG, JPG, WebP)</li><li>Scan live via device camera</li><li>Paste decoded URL / raw payload text</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Heuristic Threat Analysis</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Heuristic Threat Analysis</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Scans for deceptive structural patterns frequently employed in Quishing (QR code phishing) attacks.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Insecure HTTP protocol warnings</li><li>Flag non-HTTP schemes (javascript:, data:, tel:)</li><li>Raw IP address and dynamic DNS detection</li><li>Known URL shortener obfuscation warnings</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Cloud Data Transmission</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Cloud Data Transmission</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All image decoding and URL pattern evaluations execute 100% locally in your device memory. Scanned codes are never uploaded.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero telemetry logging</li><li>Protects private Wi-Fi and vCard data</li><li>Independent educational safety tool</li>
@@ -1151,21 +1151,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Standardized Net WPM Formula</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Standardized Net WPM Formula</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Evaluates speed using international 5-keystroke word standards: Net WPM = ((Total Typed Characters / 5) - Uncorrected Errors) / Minutes.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Standard 5-character word normalization</li><li>Penalizes uncorrected typographical errors</li><li>Gross WPM raw keystroke tracking</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">15s, 30s & 60s Timed Durations</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">15s, 30s & 60s Timed Durations</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Select quick sprint drills or formal 1-minute assessments with automatic timer activation upon your first keystroke.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Real-time character color-coding (green/red)</li><li>Multiple diverse literature passages</li><li>Immediate score card summary</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Client-Side Privacy</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Client-Side Privacy</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Keystroke timing, error calculations, and performance scores run locally in browser memory without recording or logging user text.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero keystroke logging</li><li>No account registration required</li><li>One-click score copying</li>
@@ -1214,21 +1214,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Native Web Crypto API Hashing</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Native Web Crypto API Hashing</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Computes cryptographic digests using browser hardware-accelerated crypto.subtle.digest for fast, secure in-memory execution.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>SHA-256 (Industry standard)</li><li>SHA-512 (High security)</li><li>SHA-1 & MD5 (Legacy validation)</li><li>Chunked FileReader memory streaming</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Automated Match Comparison</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Automated Match Comparison</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Paste the official hash published by the software developer to perform an instant case-insensitive byte match evaluation.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Green badge: Exact Match (File is intact)</li><li>Red badge: Hash Mismatch (Corrupted or altered)</li><li>One-click copy calculated hash</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Server Uploads (100% Private)</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Server Uploads (100% Private)</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Your operating system installers, firmware ROMs, disk ISOs, and sensitive documents are hashed completely offline on your computer.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Supports multi-gigabyte files</li><li>No server bandwidth queues</li><li>Complete corporate data confidentiality</li>
@@ -1277,21 +1277,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Cryptographically Secure CSPRNG</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Cryptographically Secure CSPRNG</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Draws random words using the browser’s cryptographically secure pseudorandom number generator rather than predictable Math.random().</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>window.crypto.getRandomValues() entropy</li><li>Uniform probability across all word slots</li><li>Zero pattern predictability</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Customizable Structure & Separators</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Customizable Structure & Separators</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Fine-tune passphrase formatting to balance human typing ease against legacy website complexity requirements.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>3 to 10 words; six-word default</li><li>Hyphen, underscore, space, or period separators</li><li>Capitalization, random number & symbol toggles</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Shannon Entropy & Crack-Time Resistance</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Shannon Entropy & Crack-Time Resistance</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">The entropy readout uses the actual wordlist size and independent random choices. It does not predict the speed of a real attack.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Exact entropy bits (E = W * log2(N))</li><li>Theoretical search-space estimate, not a cracking-time prediction</li><li>100% private in-browser generation</li>
@@ -1340,21 +1340,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Shannon Entropy & Crack Time</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Shannon Entropy & Crack Time</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Calculates mathematical information density in bits and estimates offline brute-force cracking resistance against 100B guesses/sec GPU rigs.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Information entropy bit score</li><li>Estimated crack time duration</li><li>Visual strength meter (Weak to Strong)</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Pattern & Vulnerability Auditing</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Pattern & Vulnerability Auditing</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Scans for predictable character structures that compromise passwords regardless of their length.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Sequential numbers (123456)</li><li>Common keyboard patterns (qwerty, asdf)</li><li>Repeated characters and dictionary stems</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Client-Side Privacy Guarantee</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% Client-Side Privacy Guarantee</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All password evaluation runs strictly in local browser memory. Passwords are never sent across the internet, logged, or stored.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero network requests</li><li>Never queries external breach APIs</li><li>Eye icon to toggle visibility</li>
@@ -1403,21 +1403,21 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
         
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Advanced Encryption Standard (AES)</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Advanced Encryption Standard (AES)</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Uses the global cryptographic benchmark established by NIST and trusted worldwide for commercial banking, government, and military data security.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Strong symmetric block cipher</li><li>Base64 ciphertext output for easy sharing</li><li>Error detection on incorrect key or altered cipher</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Dual Encrypt & Decrypt Workflow</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Dual Encrypt & Decrypt Workflow</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Easily toggle between Encrypt mode (plaintext to ciphertext) and Decrypt mode (ciphertext to plaintext) in an intuitive UI.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Secret passphrase protection</li><li>Show / hide key toggle</li><li>One-click clipboard copying and clear buttons</li>
         </ul>
       </div>
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% In-Browser Cryptography</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">100% In-Browser Cryptography</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All key scheduling, byte substitution, and cipher operations execute in your device browser RAM. No secrets touch our servers.</p>
         <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           <li>Zero server logging or storage</li><li>Works completely offline</li><li>No unrecoverable cloud keys</li>

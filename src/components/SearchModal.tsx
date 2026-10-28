@@ -6,6 +6,7 @@ import { getLinkUrl } from '../lib/paths';
 import { recordToolUsage, isFavorite } from '../lib/userStore';
 import { filterDirectoryTools } from '../lib/toolDirectory';
 import { ToolIcon } from './common/ToolIcon';
+import { searchSiteContent, type ContentSearchResult } from '../lib/contentSearch';
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -20,6 +21,19 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const { t, currentLang } = useLanguage();
+  const [contentResults, setContentResults] = useState<ContentSearchResult[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setContentResults([]);
+    if (!isOpen || query.trim().length < 2 || activeTag) return;
+    const timer = window.setTimeout(() => {
+      searchSiteContent(query).then(results => {
+        if (!cancelled) setContentResults(results);
+      }).catch(() => { /* Tool directory search remains available if the index cannot load. */ });
+    }, 250);
+    return () => { cancelled = true; window.clearTimeout(timer); };
+  }, [isOpen, query, activeTag]);
 
   useEffect(() => {
     try {
@@ -164,6 +178,22 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                   </button>
                 ))}
               </div>
+            )}
+
+            {contentResults.length > 0 && (
+              <section aria-label="Search tool content and guides" className="px-4 py-3 border-b border-slate-200 dark:border-slate-800 max-h-64 overflow-y-auto">
+                <p className="text-xs font-bold text-slate-600 dark:text-slate-300 mb-2">Tool content &amp; guides</p>
+                <div className="space-y-1" aria-live="polite">
+                  {contentResults.map(result => (
+                    <a key={result.url} href={result.url}
+                      onClick={event => { event.preventDefault(); saveSearchQuery(query); onSelectTool(result.url); onClose(); }}
+                      className="block rounded-xl p-2 hover:bg-indigo-50 dark:hover:bg-indigo-950">
+                      <span className="block text-xs font-semibold text-indigo-700 dark:text-indigo-300">{result.title}</span>
+                      <span className="block text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2">{result.excerpt}</span>
+                    </a>
+                  ))}
+                </div>
+              </section>
             )}
 
             {/* Results List */}

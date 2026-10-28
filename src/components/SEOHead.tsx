@@ -60,7 +60,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
   }
   const cleanPath = rawCleanPath;
   const fullUrl = `${domain}${cleanPath}`;
-  const defaultOgImage = `${domain}/icon.png`;
+  const defaultOgImage = `${domain}/social-card.png`;
   const imageToUse = ogImage || defaultOgImage;
   const effectiveOgType = ogType || (article ? 'article' : 'website');
 
@@ -116,6 +116,12 @@ export const SEOHead: React.FC<SEOHeadProps> = ({
     setMeta('property', 'og:url', fullUrl);
     setMeta('property', 'og:type', effectiveOgType);
     setMeta('property', 'og:image', imageToUse);
+    setMeta('property', 'og:image:alt', ogImage ? title : 'Zubware — free online tools for everyday tasks');
+    // Custom images may have different dimensions.
+    for (const [name, value] of [['og:image:width', '1200'], ['og:image:height', '630']]) {
+      if (!ogImage) setMeta('property', name, value);
+      else document.querySelector(`meta[property="${name}"]`)?.remove();
+    }
 
     if (article) {
       if (article.publishedTime) {

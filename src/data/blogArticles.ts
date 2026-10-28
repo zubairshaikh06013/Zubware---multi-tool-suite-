@@ -1801,7 +1801,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       {
         "id": "qr-code-security-phishing-prevention-ext-1",
         "title": "5. A hypothetical QR phishing example",
-        "content": "A hypothetical email asks the recipient to scan a QR code to update an account. Its payload could be https://login.example.com.account-check.example/auth, where the actual host is not login.example.com. Inspect the complete hostname and open the service through a known official route. This is an illustrative example using reserved example domains, not a documented campaign or a claim about 2,400 employees."
+        "content": "A hypothetical email asks the recipient to scan a QR code to update an account. Its payload could be `https://login.example.com.account-check.example/auth`, where the actual host is not login.example.com. Inspect the complete hostname and open the service through a known official route. This is an illustrative example using reserved example domains, not a documented campaign or a claim about 2,400 employees."
       },
       {
         "id": "qr-code-security-phishing-prevention-ext-2",

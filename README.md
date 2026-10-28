@@ -35,3 +35,8 @@ Some optional AI-powered functionality may require additional configuration. Do 
 ## Contributing
 
 Please open a GitHub issue with a reproducible bug report or a specific improvement suggestion. Avoid submitting private API keys or other secrets.
+
+## SEO checks and content search
+
+See [SEO toolkit](docs/seo-toolkit.md) for Pagefind search, Lighthouse CI,
+Unlighthouse, Lychee, SEOnaut and OpenSEO audit commands and report artifacts.

@@ -4,21 +4,16 @@
   "description": "300+ free online tools for PDF, images, developers, and productivity.",
   "icons": [
     {
-      "src": "/apple-touch-icon.png",
-      "sizes": "any",
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
-      "src": "/apple-touch-icon.png",
+      "src": "/icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
+      "purpose": "any"
     }
   ],
   "start_url": "/",

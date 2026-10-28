@@ -49,7 +49,7 @@ const publicDir = path.resolve(rootDir, 'public');
 
 const DOMAIN = SITE_ORIGIN;
 
-function renderStaticBlogMarkdown(content: string): string {
+export function renderStaticBlogMarkdown(content: string): string {
   const renderer = new marked.Renderer();
 
   renderer.html = ({ text }) => escapeHtml(text);
@@ -67,7 +67,10 @@ function renderStaticBlogMarkdown(content: string): string {
 
     const safeUrl = escapeHtml(url);
     const titleAttr = title ? ` title="${escapeHtml(title)}"` : '';
-    return `<a href="${safeUrl}"${titleAttr} rel="nofollow noopener noreferrer">${label}</a>`;
+    // Editorial links to our own tools should remain ordinary crawlable links.
+    const internal = new URL(url, SITE_ORIGIN).origin === SITE_ORIGIN;
+    const rel = internal ? '' : ' rel="noopener noreferrer"';
+    return `<a href="${safeUrl}"${titleAttr}${rel}>${label}</a>`;
   };
 
   const html = marked.parse(content || '', {
@@ -382,9 +385,9 @@ function renderStaticSiteFooter(): string {
             <p style="font-size: 0.8rem; line-height: 1.5;">${FREE_TOOLS_SUMMARY}</p>
           </div>
           <div>
-            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
+            <h2 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
               Tool Categories
-            </h4>
+            </h2>
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
               <li><a href="${DOMAIN}/category/pdf-tools" style="color: inherit; text-decoration: none;">PDF Tools &amp; Utilities</a></li>
               <li><a href="${DOMAIN}/category/image-tools" style="color: inherit; text-decoration: none;">Image &amp; Photo Tools</a></li>
@@ -395,9 +398,9 @@ function renderStaticSiteFooter(): string {
             </ul>
           </div>
           <div>
-            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
+            <h2 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
               Popular Utilities
-            </h4>
+            </h2>
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
               <li><a href="${DOMAIN}/pdf-merge" style="color: inherit; text-decoration: none;">PDF Merge Tool</a></li>
               <li><a href="${DOMAIN}/pdf-split" style="color: inherit; text-decoration: none;">PDF Splitter &amp; Extractor</a></li>
@@ -409,9 +412,9 @@ function renderStaticSiteFooter(): string {
             </ul>
           </div>
           <div>
-            <h4 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
+            <h2 style="font-size: 0.85rem; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 0.75rem 0;">
               Platform &amp; Legal
-            </h4>
+            </h2>
             <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
               <li><a href="${DOMAIN}/blog" style="color: inherit; text-decoration: none;">Guides &amp; Articles</a></li>
               <li><a href="${DOMAIN}/about" style="color: inherit; text-decoration: none;">About Zubware</a></li>
@@ -1958,7 +1961,7 @@ function injectMetadataIntoHtml(
   );
   html = html.replace(
     /<meta\s+property="og:image"\s+content="[\s\S]*?"\s*\/?>/i,
-    () => `<meta property="og:image" content="${DOMAIN}/icon.png" />`
+    () => `<meta property="og:image" content="${DOMAIN}/social-card.png" />`
   );
 
   // 5. Replace Twitter
@@ -1972,7 +1975,7 @@ function injectMetadataIntoHtml(
   );
   html = html.replace(
     /<meta\s+name="twitter:image"\s+content="[\s\S]*?"\s*\/?>/i,
-    () => `<meta name="twitter:image" content="${DOMAIN}/icon.png" />`
+    () => `<meta name="twitter:image" content="${DOMAIN}/social-card.png" />`
   );
 
   // 6. Inject robots, keywords (if present), and JSON-LD schema right after canonical tag

@@ -1,6 +1,6 @@
 import React from 'react';
 import { SEOHead } from './SEOHead';
-import { getToolSeoData } from '../data/toolSeoData';
+import { useToolSeoData } from '../hooks/useToolSeoData';
 import { getToolSeoTitle } from '../lib/seoTitles';
 import { getToolCanonicalPath, getToolHowToHeading } from '../lib/paths';
 import type { ToolMeta, BreadcrumbItem } from '../types';
@@ -20,7 +20,7 @@ export function ToolSEOHead({ activeTool, toolBreadcrumbList }: { activeTool: To
     activeTool.category.includes('Financial') ||
     /calculator|converter/i.test(activeTool.title);
 
-  const seoData = getToolSeoData(activeTool.id);
+  const seoData = useToolSeoData(activeTool.id);
   const toolFaqs = (activeTool.faq && activeTool.faq.length > 0)
     ? activeTool.faq
     : (seoData.faq && seoData.faq.length > 0)

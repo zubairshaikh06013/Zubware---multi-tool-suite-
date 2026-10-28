@@ -1,3 +1,4 @@
+import { QrDecoderGuide } from '../src/components/seo/QrDecoderGuide';
 import { buildPageModuleHints, pageModuleHint, type BuildManifest } from './pageModuleHints';
 import { toolProcessingNotice } from '../src/lib/toolProcessingNotice';
 import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from '../src/data/siteTrustContent';
@@ -11,7 +12,7 @@ import { marked } from 'marked';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { TOOLS_DATA as BASE_TOOLS_DATA, HOMEPAGE_FAQS } from '../src/data/toolsData';
-import { getToolSeoData } from '../src/data/toolSeoData';
+import { getToolSeoData, type ToolSeoData } from '../src/data/toolSeoData';
 import { ToolMeta } from '../src/types';
 
 function getFullToolDetails(tool: ToolMeta): ToolMeta {
@@ -514,6 +515,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
       ${getStaticPdfToolSectionHtml(tool.id, DOMAIN)}
       ${getStaticDesignUtilitySecuritySectionHtml(tool.id, DOMAIN)}
       ${tool.id === 'age-calculator' ? renderToStaticMarkup(createElement(AgeCalculationExamples)) : ''}
+      ${tool.id === 'qr-code-decoder' ? renderToStaticMarkup(createElement(QrDecoderGuide)) : ''}
 
       ${tool.id === 'image-compressor' ? `
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
@@ -1918,6 +1920,7 @@ function injectMetadataIntoHtml(
     bodyContent?: string;
     ogType?: string;
     robots?: string;
+    toolSeo?: ToolSeoData & { id: string };
   }
 ): string {
   const { title, description, canonicalUrl, keywords, jsonLdSchema, bodyContent, ogType, robots } = options;
@@ -1995,7 +1998,10 @@ function injectMetadataIntoHtml(
   const robotsTag = `\n    <meta name="robots" content="${escapeHtml(robotsDirective)}" />`;
   const schemaTag = `\n    <script id="json-ld-schema" type="application/ld+json">${JSON.stringify(jsonLdSchema)}</script>`;
 
-  const injection = `${keywordsTag}${robotsTag}${schemaTag}`;
+  const toolDataTag = options.toolSeo
+    ? `\n    <script id="tool-seo-data" type="application/json">${JSON.stringify(options.toolSeo).replace(/</g, '\\u003c')}</script>`
+    : '';
+  const injection = `${keywordsTag}${robotsTag}${schemaTag}${toolDataTag}`;
   html = html.replace(
     /(<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>)/i,
     (match) => `${match}${injection}`
@@ -2282,6 +2288,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   }
 
   // 3. Generate Tool Pages for all active tools in TOOLS_DATA
+  const toolDataDir = path.join(distDir, 'tool-seo');
+  fs.mkdirSync(toolDataDir, { recursive: true });
   const seenFilenames = new Set<string>();
   let toolCount = 0;
 
@@ -2297,6 +2305,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     const keywords = tool.tags && tool.tags.length > 0 ? tool.tags.join(', ') : undefined;
     const jsonLd = buildToolJsonLd(tool, canonicalUrl);
     const bodyContent = renderStaticToolContent(tool, TOOLS_DATA);
+    const toolSeo = { id: tool.id, faq: tool.faq || [], howTo: tool.howTo || [] };
+    fs.writeFileSync(path.join(toolDataDir, `${tool.id}.json`), JSON.stringify(toolSeo), 'utf8');
 
     const html = injectMetadataIntoHtml(pristineBaseHtml, {
       title,
@@ -2304,7 +2314,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
       canonicalUrl,
       keywords,
       jsonLdSchema: jsonLd,
-      bodyContent
+      bodyContent,
+      toolSeo
     });
 
     fs.writeFileSync(path.join(distDir, tool.filename), html, 'utf-8');

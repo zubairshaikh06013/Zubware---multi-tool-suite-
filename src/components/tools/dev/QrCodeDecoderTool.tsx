@@ -8,6 +8,7 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   const decodeQrImage = (file: File) => {
@@ -82,7 +83,7 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
         <div>
           <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
             <QrCode className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-            QR Code Decoder & Scanner
+            Decode a QR Code from an Image
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Upload any image containing a QR code to extract its underlying text or web link completely client-side.
@@ -95,9 +96,11 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Upload Dropzone */}
         <div className="space-y-4">
-          <label className="text-xs font-bold text-slate-700 dark:text-slate-300">Upload Image File</label>
-          <div className="glass-card p-8 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all text-center space-y-3 cursor-pointer relative">
+          <label htmlFor="qr-decoder-image" className="text-xs font-bold text-slate-700 dark:text-slate-300">Upload Image File</label>
+          <div onDragOver={e => e.preventDefault()} onDrop={e => { e.preventDefault(); const file = e.dataTransfer.files[0]; if (file) decodeQrImage(file); }} className="glass-card p-8 rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 hover:border-indigo-500 transition-all text-center space-y-3 cursor-pointer relative">
             <input
+              id="qr-decoder-image"
+              ref={fileInputRef}
               type="file"
               accept="image/*"
               onChange={(e) => e.target.files?.[0] && decodeQrImage(e.target.files[0])}
@@ -107,7 +110,7 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
               <Upload className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-bold text-slate-900 dark:text-white">Choose a QR code image</p>
+              <p className="text-xs font-bold text-slate-900 dark:text-white">Choose or drop a QR code image</p>
               <p className="text-[11px] text-slate-400 mt-0.5">Supports common browser-readable image formats; maximum 15 MB</p>
             </div>
           </div>
@@ -120,11 +123,13 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
               </div>
               <button
                 onClick={() => {
+                  if (fileInputRef.current) fileInputRef.current.value = '';
                   setImageSrc(null);
                   setDecodedData(null);
                   setError(null);
                   onShowToast('Cleared uploaded image');
                 }}
+                aria-label="Clear uploaded QR image"
                 className="p-2 text-rose-500 hover:bg-rose-500/10 rounded-xl cursor-pointer"
               >
                 <Trash2 className="w-4 h-4" />
@@ -138,7 +143,7 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
           <label className="text-xs font-bold text-indigo-600 dark:text-indigo-400">Decoded Payload Content</label>
 
           {error && (
-            <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2">
+            <div role="alert" className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2">
               <AlertCircle className="w-5 h-5 shrink-0" />
               {error}
             </div>

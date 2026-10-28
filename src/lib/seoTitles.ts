@@ -150,7 +150,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
 
   // --- CSS & Design Tools ---
   'color-converter': 'Color Converter — HEX, RGB, HSL & CMYK Online | Zubware',
-  'qr-code-decoder': 'QR Code Decoder — Scan & Read QR Codes Online | Zubware',
+  'qr-code-decoder': 'QR Code Decoder Online — Read QR Codes from Images | Zubware',
   'css-gradient-generator': 'CSS Gradient Generator — Linear & Radial Gradients | Zubware',
   'box-shadow-generator': 'CSS Box Shadow Generator — Multi-Layer Shadow Code | Zubware',
   'border-radius-generator': 'CSS Border Radius Generator — Fancy Smooth Corners | Zubware',

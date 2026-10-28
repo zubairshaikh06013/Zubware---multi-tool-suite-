@@ -30,3 +30,8 @@
 # Cloudflare redirects /404.html to /404; protect the final URL too.
 /404
   X-Robots-Tag: noindex, nofollow
+
+# Public per-tool guide data is revalidated and is not a search landing page.
+/tool-seo/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Robots-Tag: noindex

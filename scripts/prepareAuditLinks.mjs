@@ -12,5 +12,8 @@ for (const url of urls) {
   }
 }
 fs.mkdirSync('reports',{recursive:true});
-fs.writeFileSync('reports/audit-links.txt', [...links].sort().map(href => href.startsWith(origin + '/') ? target + href.slice(origin.length) : href).join('\n')+'\n');
+const internal = [...links].filter(href => new URL(href).origin === origin).sort().map(href => target + href.slice(origin.length));
+const external = [...links].filter(href => new URL(href).origin !== origin).sort();
+fs.writeFileSync('reports/audit-internal-links.txt', internal.join('\n')+'\n');
+fs.writeFileSync('reports/audit-external-links.txt', external.join('\n')+'\n');
 console.log(`Prepared ${links.size} unique page links for Lychee.`);

@@ -7,7 +7,7 @@ services:
       MYSQL_USER: seonaut
       MYSQL_PASSWORD: ephemeral-seo-user
     healthcheck:
-      test: [CMD, mysqladmin, ping, -h, localhost, -pephemeral-seo-root]
+      test: [CMD-SHELL, 'mysql -h 127.0.0.1 -useonaut -pephemeral-seo-user seonaut -e "SELECT 1"']
       interval: 5s
       retries: 40
   app:

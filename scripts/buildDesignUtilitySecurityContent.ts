@@ -1253,7 +1253,7 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
   for (const s of SECTIONS) {
     const cardsHtml = s.cards.map(c => `
       <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h4 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">${c.title}</h4>
+        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">${c.title}</h3>
         <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">${c.description}</p>
         ${c.points ? `<ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
           ${c.points.map(p => `<li>${p}</li>`).join('')}

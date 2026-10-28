@@ -40,12 +40,21 @@ jobs:
           done
           curl --fail --silent http://127.0.0.1:4173/ > /dev/null
           npm run audit:links:prepare
-      - name: Lychee broken-link audit
+      - name: Lychee internal broken-link audit
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --max-concurrency 2 --timeout 20 --max-retries 1 reports/audit-links.txt
+          args: --no-progress --max-concurrency 2 --timeout 20 --max-retries 1 reports/audit-internal-links.txt
           format: json
-          output: reports/lychee.json
+          output: reports/lychee-internal.json
+          fail: true
+      - name: Lychee external reference availability (advisory)
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        continue-on-error: true
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --max-concurrency 2 --timeout 20 --max-retries 1 reports/audit-external-links.txt
+          format: json
+          output: reports/lychee-external.json
           fail: true
       - name: Test Pagefind search in a real browser
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
@@ -116,6 +125,11 @@ jobs:
         run: docker compose -f ops/seo/seonaut.compose.yml up -d --build
       - name: Crawl production and export findings
         run: python3 scripts/runSeonautAudit.py
+      - name: Save container diagnostics
+        if: always()
+        run: |
+          mkdir -p reports/seonaut
+          docker compose -f ops/seo/seonaut.compose.yml logs --no-color > reports/seonaut/containers.log
       - name: Save SEOnaut evidence
         if: always()
         uses: actions/upload-artifact@v4

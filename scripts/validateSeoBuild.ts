@@ -28,6 +28,18 @@ export function extractCanonicalHrefs(html: string): string[] {
   });
 }
 
+/** Heading levels may move up freely, but must not skip a level going deeper. */
+export function hasSkippedHeadingLevel(html: string): boolean {
+  const markup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '').replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, '');
+  let previous = 0;
+  for (const match of markup.matchAll(/<h([1-6])\b/gi)) {
+    const level = Number(match[1]);
+    if (level > previous + 1) return true;
+    previous = level;
+  }
+  return false;
+}
+
 /** Validate the actual deploy artifact, rather than stale copies in public/. */
 export function validateSeoBuild(distDir: string): void {
   const errors: string[] = [];
@@ -90,6 +102,7 @@ export function validateSeoBuild(distDir: string): void {
     if (canonical.length !== 1 || canonical[0] !== url) errors.push(`Canonical mismatch: ${url}`);
     if ((html.match(/<h1\b/gi) || []).length !== 1) errors.push(`Expected one H1: ${url}`);
     if (hasNoindexRobotsMeta(html)) errors.push(`Indexable sitemap page has noindex: ${url}`);
+    if (hasSkippedHeadingLevel(html)) errors.push(`Skipped heading level: ${url}`);
     for (const [name, values, seen] of [
       ['title', capture(html, /<title>([\s\S]*?)<\/title>/g), titles],
       ['description', extractNamedMetaContent(html, 'description'), descriptions],

@@ -15,6 +15,8 @@ try {
   });
   assert.ok(matches.includes('/qr-generator'), JSON.stringify(matches));
   await page.click('button[aria-label="Open search dialog"]');
+  // SearchModal is lazy-loaded: wait for the input before typing.
+  await page.waitForSelector('#search-modal-title', { timeout: 20000 });
   await page.type('#search-modal-title', 'QR code');
   await page.waitForSelector('section[aria-label="Search tool content and guides"] a', { timeout: 20000 });
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false, 'Mobile page must not overflow');

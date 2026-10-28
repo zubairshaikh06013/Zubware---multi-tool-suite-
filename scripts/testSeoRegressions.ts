@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { hasNoindexRobotsMeta, extractCanonicalHrefs, extractNamedMetaContent } from './validateSeoBuild';
-import { calendarAge, calendarAnniversary } from '../src/lib/calendarAge';
+import { calendarAge, calendarAnniversary, nextCalendarBirthday } from '../src/lib/calendarAge';
 import { formatSubtitleTimestamp } from '../src/lib/subtitleTiming';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
 import { TOOLS_DATA } from '../src/data/toolsData';
@@ -64,6 +64,21 @@ assert.equal(calendarAge(date('2026-01-01'), new Date('invalid')), null);
 
 assert.equal(calendarAge(date('2025-01-01'), date('2024-01-01')), null);
 assert.equal(calendarAnniversary(date('2004-02-29'), 2025).getDate(), 28);
+for (const [birth, reference, expected, completedYears] of [
+  ['1995-05-15', '2026-05-14', '2026-05-15', 31],
+  ['1995-05-15', '2026-05-15', '2026-05-15', 31],
+  ['1995-05-15', '2026-05-16', '2027-05-15', 32],
+  ['2004-02-29', '2025-02-28', '2025-02-28', 21],
+  ['2004-02-29', '2025-03-01', '2026-02-28', 22],
+  ['2004-02-29', '2024-02-28', '2024-02-29', 20],
+  ['2030-01-01', '2026-10-28', '2030-01-01', 0],
+] as const) {
+  const birthday = nextCalendarBirthday(date(birth), date(reference));
+  assert.equal(birthday?.getTime(), date(expected).getTime(), `${birth}: birthday from ${reference}`);
+  assert.equal(calendarAge(date(birth), birthday!)?.years, completedYears);
+}
+assert.equal(nextCalendarBirthday(new Date('invalid'), date('2026-01-01')), null);
+assert.equal(nextCalendarBirthday(date('2000-01-01'), new Date('invalid')), null);
 assert.equal(formatSubtitleTimestamp(59.9999, ','), '00:01:00,000');
 assert.equal(formatSubtitleTimestamp(3600.125, '.'), '01:00:00.125');
 assert.equal(formatSubtitleTimestamp(1.001, ','), '00:00:01,001');

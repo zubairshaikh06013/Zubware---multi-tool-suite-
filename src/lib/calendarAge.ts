@@ -33,6 +33,16 @@ export function calendarAge(birth: Date, target: Date) {
   };
 }
 
+/** Birthday on or after a reference date, using the same leap-day convention as age. */
+export function nextCalendarBirthday(birth: Date, reference: Date): Date | null {
+  if (!Number.isFinite(birth.getTime()) || !Number.isFinite(reference.getTime())) return null;
+  let birthday = calendarAnniversary(birth, Math.max(birth.getFullYear(), reference.getFullYear()));
+  if (calendarDay(birthday) < calendarDay(reference)) {
+    birthday = calendarAnniversary(birth, birthday.getFullYear() + 1);
+  }
+  return birthday;
+}
+
 /** Parse a date-only input without UTC conversion or JavaScript's 1900 offset. */
 export function parseCalendarDate(value: string): Date | null {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;

@@ -23,7 +23,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'pdf-tools': {
     slug: 'pdf-tools',
     h1: 'Free Online PDF Tools & Document Utilities',
-    seoTitle: 'PDF Tools — Free Online PDF Merge, Split & Compress Utilities | Zubware',
+    seoTitle: 'PDF Tools - Merge, Split, Compress & Convert | Zubware',
     metaDescription: 'Browse free browser-based PDF utilities. Merge, split, compress, edit, convert, and sign PDF documents directly in your browser with local processing.',
     leadParagraph: 'Zubware PDF Tools provide a fast, secure, client-side document processing suite. Whether optimizing heavy PDFs for email attachments, merging multi-part contracts, rearranging invoice pages, or signing NDAs, all operations run inside your browser using WebAssembly. Confidential business files and personal records never touch an external server.',
     workflows: [
@@ -67,7 +67,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'image-tools': {
     slug: 'image-tools',
     h1: 'Free Online Image Tools & Photo Editors',
-    seoTitle: 'Image Tools — Free Online Image Compressor, Resizer & Converter | Zubware',
+    seoTitle: 'Image Tools - Compress, Resize & Convert | Zubware',
     metaDescription: 'Explore browser-based image utilities. Compress WebP, PNG & JPG files, remove backgrounds, resize photos, and convert formats directly in your browser.',
     leadParagraph: 'The Zubware Image Tools suite empowers designers, creators, and web developers to prepare visual assets with speed and privacy. Execute bulk resizing, canvas cropping, format conversion, and background cutouts right in your browser canvas without third-party subscriptions or waiting in server queues.',
     workflows: [
@@ -107,7 +107,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'creator-tools': {
     slug: 'creator-tools',
     h1: 'Creator & Social Media Optimization Tools',
-    seoTitle: 'Creator Tools — Free Social Media, YouTube & Content Utilities | Zubware',
+    seoTitle: 'Creator Tools - YouTube & Social Media | Zubware',
     metaDescription: 'Discover free tools for content creators, YouTubers, and social marketers. Character counters, bio generators, tag optimizers, and banner safe-area guides.',
     leadParagraph: 'Streamline your social distribution workflows across YouTube, TikTok, Instagram, X (Twitter), and LinkedIn. From character limit verifications to thumbnail feed previews and bio builders, Zubware creator utilities ensure every post achieves maximum engagement.',
     workflows: [
@@ -133,7 +133,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'video-tools': {
     slug: 'video-tools',
     h1: 'Browser Video Generators & Clip Utilities',
-    seoTitle: 'Video Tools — Free Video Clip & Shorts Generators | Zubware',
+    seoTitle: 'Video Tools - Clips, Reels & Shorts | Zubware',
     metaDescription: 'Browse free browser-based video clip tools and viral animation makers. Create engaging puzzle shorts and reels with zero software installations.',
     leadParagraph: 'Produce captivating short-form visual content directly within your browser. Assemble matching-part video puzzles, render procedural animations, and prep engaging video reels without heavy desktop editing software.',
     workflows: [
@@ -154,7 +154,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'audio-tools': {
     slug: 'audio-tools',
     h1: 'Online Audio Tools & Music Atmosphere Generators',
-    seoTitle: 'Audio Tools — Free Online Lofi Studio & Audio Effects | Zubware',
+    seoTitle: 'Audio Tools - Lofi Studio & Effects | Zubware',
     metaDescription: 'Explore free browser audio tools. Craft chill lofi beats, apply slowed and reverb effects, and design ambient soundscapes with zero plugins.',
     leadParagraph: 'Transform your audio tracks with client-side Web Audio API filters. Dial in slowed and reverb effects, generate procedural chill lofi beats, and design calming acoustic environments directly in your browser.',
     workflows: [
@@ -180,7 +180,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'business-tools': {
     slug: 'business-tools',
     h1: 'Free Business Invoicing & Commerce Tools',
-    seoTitle: 'Business Tools — Free GST Invoices, Receipts & Card Creators | Zubware',
+    seoTitle: 'Business Tools - GST Invoices, Receipts & Cards | Zubware',
     metaDescription: 'Explore free business tools. Generate GST invoices, printable receipts, and professional business cards with local browser privacy.',
     leadParagraph: 'Empower your small business, freelance practice, or consulting firm with instant administrative tools. Generate tax-compliant invoices, export printable PDF receipts, and configure branded business cards with zero monthly SaaS fees.',
     workflows: [
@@ -206,7 +206,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'text-tools': {
     slug: 'text-tools',
     h1: 'Text Editing, Formatting & Word Counter Tools',
-    seoTitle: 'Text Tools — Free Online Word Counter, Diff & Case Converter | Zubware',
+    seoTitle: 'Text Tools - Word Count, Diff & Case Converter | Zubware',
     metaDescription: 'Browse free online text tools. Count words and characters, convert letter cases, inspect text diffs, and clean whitespace instantly.',
     leadParagraph: 'Clean, format, inspect, and analyze textual content with precision. Whether debugging markdown documentation, removing unwanted line breaks, comparing source revisions, or auditing word counts, Zubware text utilities deliver instant results.',
     workflows: [
@@ -237,7 +237,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'career-tools': {
     slug: 'career-tools',
     h1: 'Career, ATS Resume & Compensation Tools',
-    seoTitle: 'Career Tools — Free ATS Resume Checker, Builder & Salary Tools | Zubware',
+    seoTitle: 'Career Tools - Resume Checker, CV & Salary | Zubware',
     metaDescription: 'Discover career tools. Test resumes against ATS bots, build modern CVs, calculate notice periods, and evaluate CTC salary hikes.',
     leadParagraph: 'Accelerate your job search and professional transitions. Analyze your resume against Applicant Tracking System (ATS) parsing rules, craft tailored cover letters, and accurately compute CTC revisions and notice period dates.',
     workflows: [
@@ -268,7 +268,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'developer-tools': {
     slug: 'developer-tools',
     h1: 'Free Online Developer Tools & Code Formatters',
-    seoTitle: 'Developer Tools — Free Online JSON, JWT, Hash & Regex Utilities | Zubware',
+    seoTitle: 'Developer Tools - JSON, JWT, Hash & Regex | Zubware',
     metaDescription: 'Explore developer utilities. Format JSON, SQL & XML, decode JWT tokens, test regular expressions, generate hashes, and convert timestamps.',
     leadParagraph: 'A dedicated developer workbench built for speed and security. Format messy payloads, inspect JSON Web Tokens, validate regular expressions, encode base64 payloads, and compute cryptographic hashes right in your browser tab without transmitting sensitive API keys or credentials.',
     workflows: [
@@ -308,7 +308,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'design-tools': {
     slug: 'design-tools',
     h1: 'Design, Color & CSS Productivity Tools',
-    seoTitle: 'Design Tools — Free CSS Gradient, Shadow & Color Utilities | Zubware',
+    seoTitle: 'Design Tools - CSS Gradients, Shadows & Colors | Zubware',
     metaDescription: 'Explore design and utility tools. Generate CSS gradients, pick colors, build box shadows, and convert units with live visual previews.',
     leadParagraph: 'Speed up UI design and frontend implementation. Generate CSS gradients, experiment with box-shadow depths, pick harmonic colors, convert viewport units, and calculate financial figures with live responsive previews.',
     workflows: [
@@ -334,7 +334,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'prompt-tools': {
     slug: 'prompt-tools',
     h1: 'AI Prompt Builder Tools for ChatGPT, Claude & Midjourney',
-    seoTitle: 'AI Prompt Builders — Free Prompt Generators for ChatGPT & Claude | Zubware',
+    seoTitle: 'AI Prompt Builders - ChatGPT, Claude & More | Zubware',
     metaDescription: 'Discover specialized AI prompt builder tools. Structure effective system prompts for ChatGPT, Gemini, Claude, Midjourney, and Flux.',
     leadParagraph: 'Elevate your generative AI results with structured prompt engineering frameworks. Formulate crystal-clear system prompts, specify persona constraints, enforce output schemas, and craft descriptive Midjourney visual descriptors with precision.',
     workflows: [
@@ -360,7 +360,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'health-fitness': {
     slug: 'health-fitness',
     h1: 'Health, Caloric & Fitness Benchmarking Tools',
-    seoTitle: 'Health & Fitness — Free Calorie, Macro & Fitness Calculators | Zubware',
+    seoTitle: 'Health & Fitness - Calorie & Macro Calculators | Zubware',
     metaDescription: 'Browse free health and fitness calculators. Calculate daily calorie targets, macronutrient splits, and workout benchmarks easily.',
     leadParagraph: 'Track health metrics and establish baseline fitness targets with accurate mathematical models. Estimate daily caloric expenditure (TDEE), plan macronutrient balances for fat loss or muscle gain, and compute workout targets.',
     workflows: [
@@ -381,7 +381,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
   'generators': {
     slug: 'generators',
     h1: 'Generators, QR Codes & Daily Productivity Tools',
-    seoTitle: 'Generators & Productivity — Free QR, Barcode & Password Tools | Zubware',
+    seoTitle: 'Generators - QR Codes, Barcodes & Passwords | Zubware',
     metaDescription: 'Explore generator utilities. Create QR codes, barcodes, random passwords, secure notes, and track daily habits in your browser.',
     leadParagraph: 'Equip your everyday routine with dependable offline utilities. Generate customized QR codes for WiFi and URLs, design EAN/UPC barcodes, create unbreakable cryptographic passwords, and organize tasks with zero external logins.',
     workflows: [

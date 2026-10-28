@@ -31,6 +31,7 @@ jobs:
       - run: npm run build
         id: build
       - run: npm run test:seo-search
+      - run: node --import tsx scripts/testPerformanceBuild.ts
       - name: Start exact static build and collect links
         run: |
           node scripts/serveSeoBuild.mjs > /tmp/seo-server.log 2>&1 &
@@ -59,6 +60,9 @@ jobs:
       - name: Test Pagefind search in a real browser
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: node scripts/testSearchBrowser.mjs
+      - name: Test deferred QR PDF export
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: node scripts/testQrPdfBrowser.mjs
       - name: Stop local server before Lighthouse CI
         if: always()
         run: fuser -k 4173/tcp || true

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { buildQrPayload, type QrContentType } from '../../lib/qrPayload';
 import { renderQrSvg, qrContrast, escapeXml, type QrDesign } from '../../lib/qrCodeDesign';
-import { jsPDF } from 'jspdf';
 import {
   Download,
   Copy,
@@ -82,6 +81,8 @@ const QUICK_TEMPLATES = [
 
 export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast }) => {
 
+
+  const [pdfExporting, setPdfExporting] = useState(false);
 
   // Content Type
   const [qrType, setQrType] = useState<QrContentType>('url');
@@ -388,11 +389,16 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
     }
   };
 
-  const downloadPdf = () => {
-    if (!ready || !canvasRef.current) return;
+  const downloadPdf = async () => {
+    if (!ready || !canvasRef.current || pdfExporting) return;
+    setPdfExporting(true);
     try {
-      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      // Capture this design before loading the optional PDF engine.
       const imgData = canvasRef.current.toDataURL('image/png');
+      const printHeight = 120 * canvasRef.current.height / canvasRef.current.width;
+      const payload = getConstructedText();
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
       doc.setFontSize(18);
       doc.text('Zubware QR Code Print Sheet', 105, 30, { align: 'center' });
       doc.setFontSize(10);
@@ -400,7 +406,6 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       doc.text(`Type: ${qrType.toUpperCase()} • Generated with Zubware.com`, 105, 38, { align: 'center' });
 
       // Preserve the frame aspect ratio on the A4 print sheet.
-      const printHeight = 120 * canvasRef.current.height / canvasRef.current.width;
       doc.addImage(imgData, 'PNG', 45, 50, 120, printHeight);
 
       doc.setFontSize(11);
@@ -408,10 +413,12 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
       doc.text('Test this printed code with your phone before distribution.', 105, 65 + printHeight, { align: 'center' });
 
       doc.save(`qr-code-${qrType}.pdf`);
-      saveToHistory(qrType, getConstructedText());
+      saveToHistory(qrType, payload);
       onShowToast('Downloaded printable A4 PDF!');
     } catch {
       onShowToast('PDF generation failed.');
+    } finally {
+      setPdfExporting(false);
     }
   };
 
@@ -1439,11 +1446,11 @@ export const QrGeneratorTool: React.FC<QrGeneratorToolProps> = ({ onShowToast })
 
           <div className="grid grid-cols-3 gap-2 w-full text-xs">
             <button
-              disabled={!ready}
+              disabled={!ready || pdfExporting}
               onClick={downloadPdf}
               className="py-2.5 px-2 glass-btn text-slate-700 dark:text-slate-200 font-bold rounded-xl transition-all flex items-center justify-center gap-1.5 cursor-pointer hover:bg-slate-200/60"
             >
-              <FileText className="w-3.5 h-3.5" /> PDF (A4)
+              <FileText className="w-3.5 h-3.5" /> {pdfExporting ? 'Preparing PDF…' : 'PDF (A4)'}
             </button>
             <button
               disabled={!ready}

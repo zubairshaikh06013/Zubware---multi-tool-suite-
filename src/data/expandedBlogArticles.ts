@@ -4,7 +4,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "pdf-security-encryption-watermarking-guide",
     "title": "PDF Passwords and Watermarks: What They Protect",
-    "metaTitle": "PDF Passwords and Watermarks: What They Protect — Zubware",
+    "metaTitle": "PDF Passwords and Watermarks: What They Protect | Zubware",
     "description": "Understand opening passwords, permission flags and visible watermarks before choosing a PDF protection workflow.",
     "canonicalPath": "/blog/pdf-security-encryption-watermarking-guide",
     "publishedTime": "2026-10-01T00:00:00Z",
@@ -96,7 +96,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "how-to-electronically-sign-pdf-contracts",
     "title": "Add a Visible Signature to a PDF: Workflow and Limits",
-    "metaTitle": "Add a Visible Signature to a PDF: Workflow and Limits — Zubware",
+    "metaTitle": "Visible PDF Signatures: Workflow & Limits | Zubware",
     "description": "Place a signature mark in a PDF and inspect the output. A visible signature image is different from a certificate-backed digital signature.",
     "canonicalPath": "/blog/how-to-electronically-sign-pdf-contracts",
     "publishedTime": "2026-10-01T00:00:00Z",
@@ -188,7 +188,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "complete-image-formats-conversion-guide",
     "title": "The Complete Web Image Formats Guide: WebP, AVIF, PNG, JPG & HEIC",
-    "metaTitle": "The Complete Web Image Formats Guide: WebP, AVIF & HEIC — Zubware",
+    "metaTitle": "Web Image Formats: WebP, AVIF & HEIC | Zubware",
     "description": "Master image formats across the web. Compare WebP, AVIF, PNG, JPEG, and iPhone HEIC compression, browser compatibility, and conversion workflows.",
     "canonicalPath": "/blog/complete-image-formats-conversion-guide",
     "publishedTime": "2026-10-02T00:00:00Z",
@@ -297,7 +297,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "remove-exif-metadata-photo-privacy-guide",
     "title": "Remove EXIF Metadata: Re-encoding and Photo Privacy",
-    "metaTitle": "Remove EXIF Metadata: Re-encoding and Photo Privacy — Zubware",
+    "metaTitle": "Remove EXIF: Re-encoding & Photo Privacy | Zubware",
     "description": "Understand how Zubware creates a fresh image, why JPEG quality can change, and what to check before sharing a photo.",
     "canonicalPath": "/blog/remove-exif-metadata-photo-privacy-guide",
     "publishedTime": "2026-10-02T00:00:00Z",
@@ -393,7 +393,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "json-xml-csv-yaml-data-transformation-guide",
     "title": "JSON, CSV and XML Conversion Without Silent Data Loss",
-    "metaTitle": "JSON, CSV and XML Conversion Without Silent Data Loss — Zubware",
+    "metaTitle": "JSON, CSV & XML: Avoiding Silent Data Loss | Zubware",
     "description": "Preserve identifiers, quoted multiline fields and nested values when moving between common data formats.",
     "canonicalPath": "/blog/json-xml-csv-yaml-data-transformation-guide",
     "publishedTime": "2026-10-03T00:00:00Z",
@@ -489,7 +489,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "regex-tester-pattern-debugging-guide",
     "title": "Regex Demystified: Pattern Testing, Tokenization & Avoiding ReDoS",
-    "metaTitle": "Regex Demystified: Pattern Testing & Avoiding ReDoS — Zubware",
+    "metaTitle": "Regex Testing & Avoiding ReDoS | Zubware",
     "description": "Master regular expressions. Learn lookaheads, lookbehinds, non-capturing groups, and how to avoid catastrophic backtracking (ReDoS) vulnerability.",
     "canonicalPath": "/blog/regex-tester-pattern-debugging-guide",
     "publishedTime": "2026-10-03T00:00:00Z",
@@ -598,7 +598,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "cron-expression-generator-scheduling-guide",
     "title": "Mastering Cron Expressions: Schedule Syntax, Crontab Generators & Pitfalls",
-    "metaTitle": "Mastering Cron Expressions: Crontab Syntax Guide — Zubware",
+    "metaTitle": "Mastering Cron Expressions: Crontab Syntax Guide | Zubware",
     "description": "Learn Unix crontab syntax. Master the 5-field schedule format, special operators (*, /, -, ,), timezone drift, and automated crontab generation.",
     "canonicalPath": "/blog/cron-expression-generator-scheduling-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
@@ -707,7 +707,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "compress-convert-video-browser-ffmpeg-guide",
     "title": "Browser Video Compression: Formats, Quality and Limits",
-    "metaTitle": "Browser Video Compression: Formats, Quality and Limits — Zubware",
+    "metaTitle": "Browser Video Compression: Quality & Limits | Zubware",
     "description": "Zubware records resized video frames with browser MediaRecorder APIs. Understand the output format and test playback before sharing.",
     "canonicalPath": "/blog/compress-convert-video-browser-ffmpeg-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
@@ -803,7 +803,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "salary-negotiation-ctc-hike-calculator-guide",
     "title": "Salary Architecture & Negotiation: Demystifying CTC, In-Hand Pay & Hike Math",
-    "metaTitle": "Salary Architecture & Negotiation: CTC, In-Hand & Hike Guide — Zubware",
+    "metaTitle": "Salary Guide: CTC, In-Hand Pay & Hikes | Zubware",
     "description": "Learn compensation architecture. Master the mathematical salary hike formula, CTC to in-hand deductions, provident fund math, and counter-offer negotiation.",
     "canonicalPath": "/blog/salary-negotiation-ctc-hike-calculator-guide",
     "publishedTime": "2026-10-04T00:00:00Z",
@@ -912,7 +912,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "linkedin-profile-headline-summary-optimization-guide",
     "title": "LinkedIn Profile Architecture: SEO Headlines, Summaries & Recruiter Discovery",
-    "metaTitle": "LinkedIn Profile Architecture: SEO Headlines & Summaries — Zubware",
+    "metaTitle": "LinkedIn Headlines & Profile Summaries | Zubware",
     "description": "Learn how LinkedIn Recruiter search algorithms rank profiles. Optimize your 220-character headline, keyword-rich summary, and search visibility.",
     "canonicalPath": "/blog/linkedin-profile-headline-summary-optimization-guide",
     "publishedTime": "2026-10-05T00:00:00Z",
@@ -1021,7 +1021,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "markdown-syntax-technical-writing-guide",
     "title": "Markdown Technical Writing Guide: Syntax, Tables, Code Blocks & HTML Export",
-    "metaTitle": "Markdown Technical Writing Guide: Syntax, Tables & HTML — Zubware",
+    "metaTitle": "Markdown Guide: Syntax, Tables & HTML | Zubware",
     "description": "Master Markdown and GitHub Flavored Markdown (GFM). Build clean tables, task lists, fenced code blocks with syntax highlighting, and export to HTML.",
     "canonicalPath": "/blog/markdown-syntax-technical-writing-guide",
     "publishedTime": "2026-10-05T00:00:00Z",
@@ -1130,7 +1130,7 @@ export const EXPANDED_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "diffusion-model-prompting-lighting-camera-guide",
     "title": "Diffusion Model Cinematography: Camera Lenses, Lighting & Aspect Ratios in Midjourney & Flux",
-    "metaTitle": "Diffusion Model Cinematography: Camera Lenses & Lighting — Zubware",
+    "metaTitle": "Image Prompts: Camera Lenses & Lighting | Zubware",
     "description": "Master image generation prompting for Midjourney, Flux, and SDXL. Learn focal length optics, lighting styles, color grading, and aspect ratio syntax.",
     "canonicalPath": "/blog/diffusion-model-prompting-lighting-camera-guide",
     "publishedTime": "2026-10-05T00:00:00Z",

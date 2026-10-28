@@ -7,7 +7,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "how-to-compress-pdf-without-losing-readability",
     "title": "How to Compress a PDF Without Losing Readability",
-    "metaTitle": "How to Compress a PDF Without Losing Readability — Zubware",
+    "metaTitle": "How to Compress a PDF Without Losing Readability | Zubware",
     "description": "Learn how to reduce PDF file size while preserving clear, readable text. Understand lossy vs. lossless compression, target file sizes, and client-side optimization.",
     "canonicalPath": "/blog/how-to-compress-pdf-without-losing-readability",
     "publishedTime": "2026-09-23T00:00:00Z",
@@ -122,7 +122,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "merge-split-pdf-browser-workflow-guide",
     "title": "How to Merge, Split, and Reorder PDFs Securely in the Browser",
-    "metaTitle": "How to Merge, Split, and Reorder PDFs Securely in the Browser — Zubware",
+    "metaTitle": "Merge, Split & Reorder PDFs in Your Browser | Zubware",
     "description": "Master browser-based PDF page manipulation. Learn how to combine multiple files, extract custom page ranges, rotate orientations, and protect document privacy.",
     "canonicalPath": "/blog/merge-split-pdf-browser-workflow-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
@@ -241,7 +241,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "pdf-to-word-excel-conversion-guide",
     "title": "PDF to Word and Excel: What Converts and What Needs Checking",
-    "metaTitle": "PDF to Word and Excel: What Converts and What Needs Checking — Zubware",
+    "metaTitle": "PDF to Word & Excel: Conversion Limits | Zubware",
     "description": "Use selectable-text PDFs for editable DOCX or spreadsheet exports, and check reading order, columns and totals before relying on the result.",
     "canonicalPath": "/blog/pdf-to-word-excel-conversion-guide",
     "publishedTime": "2026-09-25T00:00:00Z",
@@ -333,7 +333,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "client-side-image-optimization-guide",
     "title": "Client-Side Image Optimization: WebP, Compression & Quality Preservation",
-    "metaTitle": "Client-Side Image Optimization: WebP, Compression & Quality — Zubware",
+    "metaTitle": "Image Optimization: WebP, Compression & Quality | Zubware",
     "description": "Master in-browser image optimization. Compare WebP, AVIF, JPG, and PNG compression algorithms, canvas downsampling math, and client-side privacy benefits.",
     "canonicalPath": "/blog/client-side-image-optimization-guide",
     "publishedTime": "2026-09-23T00:00:00Z",
@@ -452,7 +452,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "passport-size-photo-maker-guidelines",
     "title": "Passport Photo Preparation: Check the Official Requirements",
-    "metaTitle": "Passport Photo Preparation: Check the Official Requirements — Zubware",
+    "metaTitle": "Passport Photos: Check Official Requirements | Zubware",
     "description": "Use photo sizing tools only after checking the instructions for your exact country, application route and document type.",
     "canonicalPath": "/blog/passport-size-photo-maker-guidelines",
     "publishedTime": "2026-09-25T00:00:00Z",
@@ -544,7 +544,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "background-removal-ai-browser-guide",
     "title": "How to Remove Image Backgrounds: Smart AI, Quick & Private Modes",
-    "metaTitle": "How to Remove Image Backgrounds Online — 3 AI Modes | Zubware",
+    "metaTitle": "Remove Image Backgrounds: 3 Browser AI Modes | Zubware",
     "description": "Step-by-step background removal guide: choose Smart AI, Quick or Private mode, protect photo privacy, inspect edges and download a transparent PNG.",
     "canonicalPath": "/blog/background-removal-ai-browser-guide",
     "publishedTime": "2026-09-26T00:00:00Z",
@@ -672,7 +672,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "offline-developer-tools-privacy-guide",
     "title": "The Developer Privacy Handbook: Formatting, Decoding & Hashing Without Server Leakage",
-    "metaTitle": "The Developer Privacy Handbook: Client-Side Developer Tools — Zubware",
+    "metaTitle": "Browser Developer Tools: Data Privacy Guide | Zubware",
     "description": "Learn why pasting production JSON, JWTs, and database dumps into cloud formatters leaks credentials. Discover client-side sandboxed developer tooling.",
     "canonicalPath": "/blog/offline-developer-tools-privacy-guide",
     "publishedTime": "2026-09-23T00:00:00Z",
@@ -791,7 +791,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "json-formatting-validation-debugging-guide",
     "title": "JSON Formatting, Syntax Validation & Debugging for Developers",
-    "metaTitle": "JSON Formatting & Syntax Validation Guide — Zubware",
+    "metaTitle": "JSON Formatting & Syntax Validation Guide | Zubware",
     "description": "Learn JSON syntax validation, common formatting errors, trailing comma issues, and practical ways to inspect JSON in your browser.",
     "canonicalPath": "/blog/json-formatting-validation-debugging-guide",
     "publishedTime": "2026-09-26T00:00:00Z",
@@ -910,7 +910,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "jwt-security-decoding-claims-guide",
     "title": "Understanding JSON Web Tokens (JWT): Structure, Decoding & Verification",
-    "metaTitle": "Understanding JSON Web Tokens (JWT): Structure & Security — Zubware",
+    "metaTitle": "JSON Web Tokens: JWT Structure & Security | Zubware",
     "description": "Learn how JSON Web Tokens work under RFC 7519. Decode Headers, Payloads, and Signatures, prevent the alg:none exploit, and inspect claims locally in your browser.",
     "canonicalPath": "/blog/jwt-security-decoding-claims-guide",
     "publishedTime": "2026-09-27T00:00:00Z",
@@ -1029,7 +1029,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "financial-calculators-sip-emi-gst-guide",
     "title": "SIP, EMI and GST Calculations: Check the Assumptions",
-    "metaTitle": "SIP, EMI and GST Calculations: Check the Assumptions — Zubware",
+    "metaTitle": "SIP, EMI & GST: Check Calculation Assumptions | Zubware",
     "description": "Understand contribution timing, reducing-balance payments and inclusive tax arithmetic before comparing calculator results.",
     "canonicalPath": "/blog/financial-calculators-sip-emi-gst-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
@@ -1121,7 +1121,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "compound-interest-wealth-accumulation-guide",
     "title": "Compound Interest and CAGR: Read the Model Correctly",
-    "metaTitle": "Compound Interest and CAGR: Read the Model Correctly — Zubware",
+    "metaTitle": "Compound Interest & CAGR: Reading the Results | Zubware",
     "description": "Separate deposits from growth and understand the timing assumptions behind compound-interest and CAGR results.",
     "canonicalPath": "/blog/compound-interest-wealth-accumulation-guide",
     "publishedTime": "2026-09-28T00:00:00Z",
@@ -1213,7 +1213,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "emi-loan-amortization-strategies",
     "title": "Loan Amortization and Extra Payments: A Checkable Example",
-    "metaTitle": "Loan Amortization and Extra Payments: A Checkable Example — Zubware",
+    "metaTitle": "Loan Amortization & Extra Payments: Example | Zubware",
     "description": "Understand interest and principal in a payment schedule without relying on invented savings case studies.",
     "canonicalPath": "/blog/emi-loan-amortization-strategies",
     "publishedTime": "2026-09-28T00:00:00Z",
@@ -1305,7 +1305,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "freelancer-gst-invoicing-tax-compliance",
     "title": "GST Invoice Drafting: Data Entry and Verification",
-    "metaTitle": "GST Invoice Drafting: Data Entry and Verification — Zubware",
+    "metaTitle": "GST Invoice Drafting: Data Entry and Verification | Zubware",
     "description": "Prepare an invoice draft with checked line items and tax arithmetic, while keeping registration and filing requirements separate.",
     "canonicalPath": "/blog/freelancer-gst-invoicing-tax-compliance",
     "publishedTime": "2026-09-29T00:00:00Z",
@@ -1397,7 +1397,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "clean-text-processing-formatting-guide",
     "title": "Clean Text Processing: Diffs, Word Counts, ATS Formatting & Case Conversion",
-    "metaTitle": "Clean Text Processing: Diffs, Word Counts & ATS Formatting — Zubware",
+    "metaTitle": "Clean Text: Diffs, Word Counts & ATS Formatting | Zubware",
     "description": "Learn how to sanitize text for code and resumes. Remove invisible Unicode characters, calculate Levenshtein diffs, and master case conversions.",
     "canonicalPath": "/blog/clean-text-processing-formatting-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
@@ -1516,7 +1516,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "habit-tracking-science-daily-routines",
     "title": "The Neuroscience of Habit Formation: Streak Tracking & Habit Stacking",
-    "metaTitle": "The Neuroscience of Habit Formation: Streak Tracking Guide — Zubware",
+    "metaTitle": "Habit Tracking: Daily Routines & Streaks | Zubware",
     "description": "Explore the behavioral psychology of habit loops, implementation intentions, the Seinfeld streak effect, and how friction reduction builds lasting daily routines.",
     "canonicalPath": "/blog/habit-tracking-science-daily-routines",
     "publishedTime": "2026-09-29T00:00:00Z",
@@ -1635,7 +1635,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "password-security-entropy-brute-force-math",
     "title": "Password Entropy & Security: Why Length Trumps Complexity in 2026",
-    "metaTitle": "Password Entropy & Security: Length vs Complexity Guide — Zubware",
+    "metaTitle": "Password Entropy: Length vs Complexity | Zubware",
     "description": "Learn the mathematical formula for Shannon password entropy. Compare short complex passwords vs long Diceware passphrases and analyze GPU brute-force crack times.",
     "canonicalPath": "/blog/password-security-entropy-brute-force-math",
     "publishedTime": "2026-09-30T00:00:00Z",
@@ -1746,7 +1746,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "qr-code-security-phishing-prevention",
     "title": "QR Code Security & Quishing: Detecting Malicious Barcodes Before Scanning",
-    "metaTitle": "QR Code Security & Quishing Prevention Guide — Zubware",
+    "metaTitle": "QR Code Security & Quishing Prevention Guide | Zubware",
     "description": "Learn how QR code phishing (Quishing) works. Inspect encoded URL payloads in an isolated browser sandbox, spot malicious redirects, and stay safe.",
     "canonicalPath": "/blog/qr-code-security-phishing-prevention",
     "publishedTime": "2026-09-30T00:00:00Z",
@@ -1865,7 +1865,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "youtube-growth-metadata-thumbnails-guide",
     "title": "The YouTube Growth Blueprint: Titles, Tags, Descriptions, and High-CTR Thumbnails",
-    "metaTitle": "The YouTube Growth Blueprint: SEO Metadata & CTR Thumbnails — Zubware",
+    "metaTitle": "YouTube Metadata & Thumbnails: SEO Guide | Zubware",
     "description": "Master YouTube SEO and Click-Through Rate (CTR). Optimize video titles, keyword descriptions, tag taxonomy, and thumbnail design avoiding timestamp badges.",
     "canonicalPath": "/blog/youtube-growth-metadata-thumbnails-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
@@ -1984,7 +1984,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "browser-video-audio-creation-guide",
     "title": "Browser-Based Video Creation: Puzzle Shorts, Script-to-Video & Web Audio Production",
-    "metaTitle": "Browser-Based Video Creation & Web Audio Production — Zubware",
+    "metaTitle": "Browser Video Creation & Web Audio Guide | Zubware",
     "description": "Learn how modern browsers render video and audio using Web Audio API and HTML5 Canvas. Create viral puzzle shorts and video clips without desktop software.",
     "canonicalPath": "/blog/browser-video-audio-creation-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
@@ -2103,7 +2103,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "lofi-music-production-ambient-sound-design",
     "title": "The Science of Lofi Music: Chord Progressions, BPM & Ambient Layering",
-    "metaTitle": "The Science of Lofi Music: Chords, BPM & Sound Design — Zubware",
+    "metaTitle": "Lofi Music: Chords, BPM & Sound Design | Zubware",
     "description": "Learn the music theory and production secrets of lofi hip-hop. Master jazz 7th chords, the 70-85 BPM sweet spot, vinyl texture synthesis, and frequency filtering.",
     "canonicalPath": "/blog/lofi-music-production-ambient-sound-design",
     "publishedTime": "2026-09-27T00:00:00Z",
@@ -2222,7 +2222,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "slowed-reverb-audio-trend-explained",
     "title": "The Aesthetics of Slowed & Reverb: Pitch Shifting, Decay & Spatial Audio",
-    "metaTitle": "The Aesthetics of Slowed & Reverb: Audio Production Guide — Zubware",
+    "metaTitle": "Slowed & Reverb: Audio Production Guide | Zubware",
     "description": "Explore the audio engineering behind the slowed and reverb phenomenon. Master pitch shifting, convolution reverb impulses, and spatial audio psychoacoustics.",
     "canonicalPath": "/blog/slowed-reverb-audio-trend-explained",
     "publishedTime": "2026-09-27T00:00:00Z",
@@ -2341,7 +2341,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "video-aspect-ratio-guide-reels-shorts-tiktok",
     "title": "Mastering Video Aspect Ratios: 9:16 Shorts, 16:9 Landscape & 1:1 Squares",
-    "metaTitle": "Mastering Video Aspect Ratios: 9:16, 16:9 & 1:1 Guide — Zubware",
+    "metaTitle": "Video Aspect Ratios: 9:16, 16:9 & 1:1 | Zubware",
     "description": "Complete guide to video aspect ratios. Master vertical 9:16 (Shorts, Reels, TikTok), 16:9 landscape, and 1:1 square formats. Avoid UI overlay clipping.",
     "canonicalPath": "/blog/video-aspect-ratio-guide-reels-shorts-tiktok",
     "publishedTime": "2026-09-28T00:00:00Z",
@@ -2460,7 +2460,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "youtube-banner-safe-area-responsive-design",
     "title": "YouTube Channel Art Safe Area: Designing Banners for Mobile, Desktop & TV",
-    "metaTitle": "YouTube Channel Art Safe Area: Responsive Banner Guide — Zubware",
+    "metaTitle": "YouTube Banner Safe Area & Responsive Design | Zubware",
     "description": "Complete YouTube banner dimensions guide. Master the 2560x1440 canvas, 1546x423 mobile safe zone, desktop cutoffs, and responsive branding layout.",
     "canonicalPath": "/blog/youtube-banner-safe-area-responsive-design",
     "publishedTime": "2026-09-28T00:00:00Z",
@@ -2579,7 +2579,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "viral-youtube-hooks-titles-psychology",
     "title": "The Psychology of High-CTR YouTube Titles & Viral Video Hooks",
-    "metaTitle": "The Psychology of High-CTR YouTube Titles & Hooks — Zubware",
+    "metaTitle": "YouTube Titles & Hooks: Writing for Clicks | Zubware",
     "description": "Learn the cognitive psychology of viral YouTube hooks. Master the Curiosity Gap, the 3-second rule, pattern interrupts, and 50-character title optimization.",
     "canonicalPath": "/blog/viral-youtube-hooks-titles-psychology",
     "publishedTime": "2026-09-29T00:00:00Z",
@@ -2698,7 +2698,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "instagram-growth-hashtags-captions-strategy",
     "title": "Instagram SEO in 2026: Hashtag Strategy, Carousel Copy & Bio Optimization",
-    "metaTitle": "Instagram SEO & Growth Strategy Guide (2026) — Zubware",
+    "metaTitle": "Instagram SEO & Growth Strategy Guide (2026) | Zubware",
     "description": "Master Instagram search optimization in 2026. Explore semantic keyword indexing, targeted hashtag grouping, high-retention carousel copy, and bio architecture.",
     "canonicalPath": "/blog/instagram-growth-hashtags-captions-strategy",
     "publishedTime": "2026-09-29T00:00:00Z",
@@ -2817,7 +2817,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "css-modern-styling-glassmorphism-gradients",
     "title": "Modern CSS Visual Effects: Glassmorphism, Dynamic Gradients & Box Shadows",
-    "metaTitle": "Modern CSS Visual Effects: Glassmorphism & Gradients — Zubware",
+    "metaTitle": "CSS Visual Effects: Glassmorphism & Gradients | Zubware",
     "description": "Master modern CSS styling. Create performant glassmorphism with backdrop-filter, layer multi-stop gradients, and build realistic multi-layered box shadows.",
     "canonicalPath": "/blog/css-modern-styling-glassmorphism-gradients",
     "publishedTime": "2026-09-30T00:00:00Z",
@@ -2936,7 +2936,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "color-theory-accessible-contrast-palette-design",
     "title": "Color Theory & WCAG Accessibility: Contrast Ratios for Web UI Design",
-    "metaTitle": "Color Theory & WCAG Contrast Guide: Accessible UI Design — Zubware",
+    "metaTitle": "Color Theory & WCAG Contrast for UI Design | Zubware",
     "description": "Master WCAG 2.1 color accessibility. Understand relative luminance mathematics, 4.5:1 Level AA and 7:1 Level AAA contrast ratios, and color blindness palettes.",
     "canonicalPath": "/blog/color-theory-accessible-contrast-palette-design",
     "publishedTime": "2026-09-30T00:00:00Z",
@@ -3055,7 +3055,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "ai-prompt-engineering-mastery-guide",
     "title": "AI Prompt Engineering Mastery: Structuring Role, Context, and Few-Shot Directives",
-    "metaTitle": "AI Prompt Engineering Mastery: Frameworks & Few-Shot Guide — Zubware",
+    "metaTitle": "AI Prompt Engineering: Frameworks & Examples | Zubware",
     "description": "Master prompt engineering for LLMs. Learn the RCIO framework, Few-Shot prompting, Chain-of-Thought (CoT) reasoning, and output constraints to eliminate hallucinations.",
     "canonicalPath": "/blog/ai-prompt-engineering-mastery-guide",
     "publishedTime": "2026-09-24T00:00:00Z",
@@ -3174,7 +3174,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "ats-resume-optimization-career-guide",
     "title": "Beating the ATS: The Complete Guide to Applicant Tracking Systems & Resume Optimization",
-    "metaTitle": "Beating the ATS: Complete Resume Optimization Guide — Zubware",
+    "metaTitle": "ATS Resume Optimization Guide | Zubware",
     "description": "Learn how Applicant Tracking Systems (ATS) parse resumes. Avoid layout traps, optimize keyword density, and format clean PDFs that pass recruiter screens.",
     "canonicalPath": "/blog/ats-resume-optimization-career-guide",
     "publishedTime": "2026-09-25T00:00:00Z",
@@ -3293,7 +3293,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "bmi-body-composition-tdee-health-guide",
     "title": "BMI and Calorie Estimates: How to Read the Results",
-    "metaTitle": "BMI and Calorie Estimates: How to Read the Results — Zubware",
+    "metaTitle": "BMI & Calorie Estimates: Reading the Results | Zubware",
     "description": "Check units and assumptions before interpreting BMI or calorie estimates; a calculator does not assess your complete health.",
     "canonicalPath": "/blog/bmi-body-composition-tdee-health-guide",
     "publishedTime": "2026-09-30T00:00:00Z",

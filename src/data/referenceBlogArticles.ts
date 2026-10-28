@@ -4,7 +4,7 @@ export const REFERENCE_BLOG_ARTICLES: BlogArticle[] = [
   {
     "slug": "photo-upload-rejected-file-size-format-checklist",
     "title": "Photo Upload Rejected? Check Bytes, Pixels and Format",
-    "metaTitle": "Photo Upload Rejected? Check Bytes, Pixels and Format | Zubware",
+    "metaTitle": "Photo Upload Rejected? Check Size & Format | Zubware",
     "description": "Troubleshoot rejected photo uploads with a byte-size reference, format checks and a repeatable resize-and-compress workflow. Includes a downloadable checklist.",
     "canonicalPath": "/blog/photo-upload-rejected-file-size-format-checklist",
     "publishedTime": "2026-10-20T00:00:00Z",

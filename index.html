@@ -55,14 +55,18 @@
     <meta name="twitter:description" content="Free multi-tool suite for creators, developers, designers, and students." />
     <meta name="twitter:image" content="https://www.zubware.com/social-card.png" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Only load the two brand families; system fonts cover fallbacks. -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=optional" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=optional" media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=optional" />
-    </noscript>
+    <!-- Discover the brand font before first layout; optional avoids a late swap. -->
+    <link rel="preload" href="/fonts/plus-jakarta-sans-cf5976bd64e0.woff2" as="font" type="font/woff2" crossorigin />
+    <style>
+      @font-face {
+        font-family: 'Plus Jakarta Sans';
+        font-style: normal;
+        font-weight: 200 800;
+        font-display: optional;
+        src: url('/fonts/plus-jakarta-sans-cf5976bd64e0.woff2') format('woff2');
+      }
+      html, body { font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    </style>
 
     <script>
       (function() {

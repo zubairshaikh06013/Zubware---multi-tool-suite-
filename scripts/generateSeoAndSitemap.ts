@@ -371,7 +371,7 @@ function buildStaticPageJsonLd(page: StaticPageMeta, canonicalUrl: string): obje
 
 function renderStaticSiteFooter(): string {
   return `
-    <footer style="margin-top: 4rem; border-top: 1px solid #e2e8f0; background-color: #f8fafc; padding: 3rem 1.5rem 2rem 1.5rem; font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.85rem; color: #475569;">
+    <footer style="margin-top: 4rem; border-top: 1px solid #e2e8f0; background-color: #f8fafc; padding: 3rem 1.5rem 2rem 1.5rem; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-size: 0.85rem; color: #475569;">
       <div style="max-width: 64rem; margin: 0 auto;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2.5rem;">
           <div>
@@ -455,7 +455,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
   const matchingGuides = getMatchingGuidesForTool(tool, BLOG_ARTICLES, 2);
 
   return `
-    <main class="static-tool-seo" style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif;">
+    <main class="static-tool-seo" style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
       <header style="margin-bottom: 2rem;">
         <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.75rem;">
           <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
@@ -1137,7 +1137,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
   }
 
   return `
-    <main style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif;">
+    <main style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.75rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
         <span aria-current="page" style="font-weight: 600;">${escapeHtml(shortTitle)}</span>
@@ -1199,7 +1199,7 @@ function buildBlogIndexJsonLd(canonicalUrl: string): object {
 
 function renderBlogIndexContent(): string {
   return `
-    <main style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif;">
+    <main style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 0.75rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
         <span aria-current="page" style="font-weight: 600;">Guides &amp; Articles</span>
@@ -1343,7 +1343,7 @@ function renderBlogArticleContent(article: BlogArticle): string {
     .filter((t): t is ToolMeta => Boolean(t));
 
   return `
-    <main lang="${article.language || 'en'}" style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif; line-height: 1.7;">
+    <main lang="${article.language || 'en'}" style="max-width: 56rem; margin-left: auto; margin-right: auto; padding: 2rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; line-height: 1.7;">
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
         <a href="${DOMAIN}/blog" style="color: inherit; text-decoration: underline;">Guides &amp; Articles</a> &gt;
@@ -1451,7 +1451,7 @@ function renderCategoriesPageContent(): string {
   const realCategories = CATEGORIES_DATA.filter(c => c.slug !== 'all');
 
   return `
-    <main style="max-width: 72rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif;">
+    <main style="max-width: 72rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 1rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
         <span aria-current="page" style="font-weight: 600;">Tool Categories &amp; Directory</span>
@@ -1541,7 +1541,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
   const otherCategories = CATEGORIES_DATA.filter(c => c.slug !== 'all' && c.slug !== cat.slug);
 
   return `
-    <main style="max-width: 72rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif;">
+    <main style="max-width: 72rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
       <!-- Breadcrumbs -->
       <nav aria-label="Breadcrumb" style="font-size: 0.75rem; color: #64748b; margin-bottom: 1.25rem;">
         <a href="${DOMAIN}/" style="color: inherit; text-decoration: underline;">Home</a> &gt;
@@ -1788,7 +1788,7 @@ function renderHomepageContent(): string {
   const realCategories = CATEGORIES_DATA.filter(c => c.slug !== 'all');
 
   return `
-    <main style="max-width: 76rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: ui-sans-serif, system-ui, sans-serif;">
+    <main style="max-width: 76rem; margin-left: auto; margin-right: auto; padding: 2.5rem 1rem; color: #1e293b; font-family: 'Plus Jakarta Sans', system-ui, sans-serif;">
       <!-- Hero Value Proposition -->
       <section style="text-align: center; margin-bottom: 3.5rem;">
         <div style="display: inline-block; padding: 0.35rem 1rem; background-color: #eef2ff; color: #4f46e5; font-size: 0.8rem; font-weight: 800; border-radius: 9999px; margin-bottom: 1rem; border: 1px solid #c7d2fe;">

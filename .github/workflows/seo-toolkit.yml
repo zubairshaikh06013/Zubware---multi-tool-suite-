@@ -34,6 +34,7 @@ jobs:
       - run: node --import tsx scripts/testPerformanceBuild.ts
       - run: node --import tsx scripts/testToolSeoClient.ts
       - run: node --import tsx scripts/testToolSeoDelivery.ts
+      - run: node --import tsx scripts/testTitleAndFontBuild.ts
       - name: Start exact static build and collect links
         run: |
           node scripts/serveSeoBuild.mjs > /tmp/seo-server.log 2>&1 &
@@ -68,6 +69,9 @@ jobs:
       - name: Test per-tool guides and QR image decoding
         if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: node scripts/testToolSeoBrowser.mjs
+      - name: Test early and delayed brand font loading
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
+        run: node scripts/testBrandFontBrowser.mjs
       - name: Stop local server before Lighthouse CI
         if: always()
         run: fuser -k 4173/tcp || true

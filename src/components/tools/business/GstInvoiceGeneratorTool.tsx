@@ -811,27 +811,50 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
   };
 
   const handlePrint = async () => {
+    // Open a dedicated printable window synchronously from the user click.
+    // Android browsers can suppress window.print() after async canvas rendering
+    // because the original user activation has expired.
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      setPdfError('Print window was blocked. Allow pop-ups for this site, or download the PDF and print it from your PDF viewer.');
+      return;
+    }
+    printWindow.document.write('<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>Print GST Invoice</title></head><body><p>Preparing invoice for printing…</p></body></html>');
+    printWindow.document.close();
     setIsDownloading(true); setPdfError(null);
-    let cleanup: (() => void) | undefined;
     try {
       const pages = await getInvoicePages();
       setRenderedPreview({ key: renderKey, pages });
-      document.getElementById('invoice-print-root')?.remove();
-      const printRoot = document.createElement('div');
-      printRoot.id = 'invoice-print-root'; printRoot.style.display = 'none';
+      const doc = printWindow.document;
+      doc.body.replaceChildren();
+      const style = doc.createElement('style');
+      style.textContent = '@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;background:#e5e7eb;font-family:Arial,sans-serif}.print-toolbar{padding:12px;text-align:center;background:white;position:sticky;top:0}.print-toolbar button{font-size:16px;padding:10px 24px;cursor:pointer}.invoice-print-page{width:210mm;height:297mm;margin:12px auto;background:white;break-after:page}.invoice-print-page:last-child{break-after:auto}.invoice-print-page img{display:block;width:100%;height:100%}@media print{body{background:white}.print-toolbar{display:none}.invoice-print-page{margin:0}}';
+      doc.head.appendChild(style);
+      const toolbar = doc.createElement('div');
+      toolbar.className = 'print-toolbar';
+      const printButton = doc.createElement('button');
+      printButton.textContent = 'Print Invoice';
+      printButton.type = 'button';
+      printButton.addEventListener('click', () => printWindow.print());
+      toolbar.appendChild(printButton);
+      doc.body.appendChild(toolbar);
       const images = pages.map((page, index) => {
-        const wrapper = document.createElement('div'); wrapper.className = 'invoice-print-page';
-        const img = document.createElement('img'); img.src = page; img.alt = `Invoice page ${index + 1}`;
-        wrapper.appendChild(img); printRoot.appendChild(wrapper); return img;
+        const wrapper = doc.createElement('div');
+        wrapper.className = 'invoice-print-page';
+        const img = doc.createElement('img');
+        img.src = page;
+        img.alt = `Invoice page ${index + 1}`;
+        wrapper.appendChild(img);
+        doc.body.appendChild(wrapper);
+        return img;
       });
-      document.body.appendChild(printRoot);
-      cleanup = () => { printRoot.remove(); document.body.classList.remove('printing-invoice'); };
       await Promise.all(images.map(img => img.decode()));
-      document.body.classList.add('printing-invoice');
-      window.addEventListener('afterprint', cleanup, { once: true });
-      window.print();
+      printWindow.focus();
+      // Try opening the native print dialog automatically. If blocked by the
+      // browser, the visible Print Invoice button remains usable.
+      printWindow.print();
     } catch (error) {
-      cleanup?.();
+      printWindow.document.body.textContent = 'Could not prepare invoice for printing. Please download the PDF and print it from your PDF viewer.';
       setPdfError(`Print failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally { setIsDownloading(false); }
   };

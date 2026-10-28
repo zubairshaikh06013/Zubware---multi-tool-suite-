@@ -4341,9 +4341,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "qr-code-decoder",
-    "title": "QR Code Decoder — Scan & Read QR Codes from Images Online",
+    "title": "QR Code Decoder Online — Read QR Codes from Images",
     "navTitle": "QR Decoder",
-    "description": "Upload any image or screenshot containing a QR code to extract its underlying text or web link completely client-side. Fast, private in-browser QR reading.",
+    "description": "Decode a QR code from a saved image or screenshot. Read and copy its text, URL, WiFi or contact payload locally in your browser, without a camera.",
     "icon": "📱",
     "path": "/qr-code-decoder",
     "filename": "qr-code-decoder.html",
@@ -4356,19 +4356,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "Open URL Link",
       "Copy Decoded Text"
     ],
-    "tags": [
-      "Free",
-      "Online",
-      "Tool",
-      "Developer",
-      "Coding",
-      "JSON",
-      "Formatter",
-      "API",
-      "Base64",
-      "Hash",
-      "QR"
-    ],
+    "tags": ["QR Code Decoder", "Decode QR Code", "Read QR from Image", "QR Screenshot", "QR Reader", "Local Processing"],
     "trending": false,
     "featured": false,
     "editorsPick": true

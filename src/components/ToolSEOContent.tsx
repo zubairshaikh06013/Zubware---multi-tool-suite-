@@ -1,3 +1,4 @@
+import { QrDecoderGuide } from './seo/QrDecoderGuide';
 import { toolProcessingNotice } from '../lib/toolProcessingNotice';
 import { AgeCalculationExamples } from './seo/AgeCalculationExamples';
 import React, { useState } from 'react';
@@ -7,7 +8,7 @@ import { getLinkUrl, getToolCanonicalPath, getToolHowToHeading, getToolIntroPara
 import BLOG_ARTICLES from '../data/blogCatalog.json';
 import { getRelatedTools, getMatchingGuidesForTool } from '../lib/workflowMap';
 import { ToolIcon } from './common/ToolIcon';
-import { getToolSeoData } from '../data/toolSeoData';
+import { useToolSeoData } from '../hooks/useToolSeoData';
 import { ImageToolsSEOSection } from './seo/ImageToolsSEOSections';
 import { VideoBusinessSEOSection } from './seo/VideoBusinessSEOSections';
 import { PdfToolsSEOSection } from './seo/PdfToolsSEOSections';
@@ -28,7 +29,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
   const isNetworkTool = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
   const hasOptionalCloudflareAI = tool.id === 'background-remover';
-  const seoData = getToolSeoData(tool.id);
+  const seoData = useToolSeoData(tool.id);
   const toolFaqs = (tool.faq && tool.faq.length > 0) ? tool.faq : seoData.faq;
   const toolHowTo = (tool.howTo && tool.howTo.length > 0) ? tool.howTo : seoData.howTo;
 
@@ -970,6 +971,8 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           </div>
         </section>
       )}
+
+      {tool.id === 'qr-code-decoder' && <QrDecoderGuide />}
 
       {/* 3.12 DEDICATED AGE CALCULATOR FLAGSHIP GUIDE (Global Intent with Secondary Regional Intent) */}
       {tool.id === 'age-calculator' && (

@@ -1,0 +1,45 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import puppeteer from 'puppeteer-core';
+import QRCode from 'qrcode';
+const executablePath = process.env.CHROME_PATH || ['/usr/bin/google-chrome','/usr/bin/chromium'].find(fs.existsSync);
+assert.ok(executablePath, 'Chrome is required');
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(),'zubware-decode-'));
+const browser = await puppeteer.launch({ executablePath, headless:true, args:['--no-sandbox','--disable-dev-shm-usage'] });
+try {
+  const page = await browser.newPage();
+  await page.setViewport({width:390,height:844});
+  const seen = [];
+  page.on('request', r=>seen.push(r.url()));
+  await page.goto('http://127.0.0.1:4173/age-calculator',{waitUntil:'networkidle0'});
+  const initialQuestion = await page.evaluate(()=>JSON.parse(document.getElementById('tool-seo-data').textContent).faq[0].question);
+  await page.waitForFunction(q=>document.body.textContent.includes(q),{},initialQuestion);
+  assert.equal(seen.filter(url=>url.includes('/tool-seo/')).length,0, 'Initial visit must hydrate without another guide request');
+  await page.click('button[aria-label="Open search dialog"]');
+  await page.waitForSelector('#search-modal-title');
+  await page.type('#search-modal-title','QR Code Decoder');
+  const result = 'button[aria-label^="Open QR Code Decoder"]';
+  await page.waitForSelector(result);
+  await page.click(result);
+  await page.waitForSelector('#qr-decoder-image');
+  const question = 'Does a QR code decoder decrypt encrypted information?';
+  await page.waitForFunction(q=>document.body.textContent.includes(q),{},question);
+  assert.equal(seen.filter(url=>url.includes('/tool-seo/qr-code-decoder.json')).length,1, 'Client route must fetch only one copy of its guide');
+  assert.ok(!seen.some(url=>/toolSeoData-.*\.js/.test(url)), 'Full FAQ catalog must not load');
+  const payload = 'https://example.com/zubware-local-decoder-test';
+  const file = path.join(tmp,'sample.png');
+  await QRCode.toFile(file,payload,{width:512,margin:4});
+  await (await page.$('#qr-decoder-image')).uploadFile(file);
+  await page.waitForFunction(text=>[...document.querySelectorAll('a')].some(a=>a.textContent.includes('Open Link') && a.href===text),{},payload);
+  assert.ok(!seen.some(url=>url.startsWith('https://example.com')), 'Decoded link must not be opened automatically');
+  await page.click('button[aria-label="Clear uploaded QR image"]');
+  assert.equal(await page.$eval('#qr-decoder-image',el=>el.value),'');
+  // Rescanning exactly the same file must trigger another decode after Clear.
+  await (await page.$('#qr-decoder-image')).uploadFile(file);
+  await page.waitForFunction(text=>[...document.querySelectorAll('a')].some(a=>a.textContent.includes('Open Link') && a.href===text),{},payload);
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+  await page.screenshot({path:'reports/qr-decoder-mobile.png',fullPage:true});
+  console.log('Initial guide hydration, SPA guide isolation, single request, local QR decode and same-file rescan passed.');
+} finally { await browser.close(); fs.rmSync(tmp,{recursive:true,force:true}); }

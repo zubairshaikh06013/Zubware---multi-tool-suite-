@@ -5418,6 +5418,18 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     ],
     "faq": [
       {
+        "question": "How can I decode a QR code shown on the same phone?",
+        "answer": "Take a screenshot, save it, then select that image in the decoder. Keep the complete QR code and its blank border visible. You do not need a second phone or camera."
+      },
+      {
+        "question": "Does a QR code decoder decrypt encrypted information?",
+        "answer": "QR decoding reads the data encoded in the image; it does not break encryption. If the payload itself is encrypted, the appropriate key and software are still required."
+      },
+      {
+        "question": "Is a QR code translator also a language translator?",
+        "answer": "A QR decoder converts the QR pattern into its stored text. It displays that text as written and does not translate it into another language."
+      },
+      {
         "question": "Can this tool decode QR codes from screenshots and saved images?",
         "answer": "Yes. Choose a saved PNG, JPG, WebP, or GIF image containing a QR code. Clipboard image paste is not currently supported."
       },

@@ -789,8 +789,22 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         pdf.addImage(page, 'JPEG', 0, 0, 210, 297);
       });
       const filename = `${(supplier.businessName || 'Invoice').replace(/[^a-zA-Z0-9_-]/g, '_')}-${(invoiceMeta.invoiceNumber || 'INV-001').replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
-      await pdf.save(filename, { returnPromise: true });
-      onShowToast?.(`PDF ready: ${filename}. Check your downloads.`);
+      // Download the generated PDF as a Blob URL instead of relying on jsPDF's
+      // save() implementation, which is inconsistent in some Android browsers.
+      const blob = pdf.output('blob');
+      const url = URL.createObjectURL(blob);
+      try {
+        const anchor = document.createElement('a');
+        anchor.href = url;
+        anchor.download = filename;
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+        onShowToast?.(`PDF download started: ${filename} (${(blob.size / 1024).toFixed(0)} KB). Check your downloads.`);
+      } finally {
+        // Keep the Blob alive long enough for mobile browsers to begin downloading.
+        window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+      }
     } catch (error) {
       setPdfError(`PDF download failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     } finally { setIsDownloading(false); }

@@ -87,6 +87,8 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     onShowToast(`Imported ${letters.length} answers.`);
   };
 
+  // Use Arial explicitly for canvas text to match jsPDF's built-in Helvetica metrics.
+  // Avoid platform-dependent generic sans-serif fonts that can look handwritten on mobile.
   // Generate canvas rendering of standard A4 sheet (2480 × 3508 at 300 DPI, or 1240 × 1754 at 150 DPI)
   const renderOmrCanvas = (pageStart = 1, pageEnd = questionCount, outputContext?: CanvasRenderingContext2D): HTMLCanvasElement => {
     const canvas = document.createElement('canvas');
@@ -113,20 +115,20 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     ctx.textAlign = 'center';
 
     if (instituteName.trim()) {
-      ctx.font = 'bold 22px sans-serif';
+      ctx.font = 'bold 22px Arial, Helvetica, sans-serif';
       ctx.fillStyle = '#0f172a';
       ctx.fillText(instituteName.toUpperCase(), canvas.width / 2, curY + 20);
       curY += 28;
     }
 
     if (examTitle.trim()) {
-      ctx.font = 'bold 18px sans-serif';
+      ctx.font = 'bold 18px Arial, Helvetica, sans-serif';
       ctx.fillStyle = '#1e293b';
       ctx.fillText(examTitle.toUpperCase(), canvas.width / 2, curY + 18);
       curY += 24;
     }
 
-    ctx.font = '13px sans-serif';
+    ctx.font = '13px Arial, Helvetica, sans-serif';
     ctx.fillStyle = '#475569';
     const subDate = [subject.trim(), examDate.trim() ? `Date: ${examDate.trim()}` : ''].filter(Boolean).join('   |   ');
     if (subDate) {
@@ -149,7 +151,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
     // Candidate Name Write-in Box
     ctx.textAlign = 'left';
-    ctx.font = 'bold 11px sans-serif';
+    ctx.font = 'bold 11px Arial, Helvetica, sans-serif';
     ctx.fillStyle = '#0f172a';
     ctx.fillText('CANDIDATE NAME (IN CAPITAL LETTERS):', infoStartX, curY + 14);
     curY += 18;
@@ -169,7 +171,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       const bubbleR = Math.min(6.5, stepX * 0.24);
       ctx.textAlign = 'left';
       ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 10px sans-serif';
+      ctx.font = 'bold 10px Arial, Helvetica, sans-serif';
       ctx.fillText('ROLL NUMBER (WRITE AND SHADE):', infoStartX, startY - 10);
       for (let digit = 0; digit < digits; digit++) {
         const centerX = startX + (digit + 0.5) * stepX;
@@ -183,7 +185,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
           ctx.strokeStyle = '#0f172a';
           ctx.lineWidth = 1;
           ctx.stroke();
-          ctx.font = '8px sans-serif';
+          ctx.font = '8px Arial, Helvetica, sans-serif';
           ctx.textAlign = 'center';
           ctx.fillStyle = '#475569';
           ctx.fillText(String(n), centerX, cy + 2.8);
@@ -197,7 +199,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     let rightBlockY = curY - 18;
 
     if (showSetCode) {
-      ctx.font = 'bold 11px sans-serif';
+      ctx.font = 'bold 11px Arial, Helvetica, sans-serif';
       ctx.fillText('TEST BOOKLET SET:', rightBlockX, rightBlockY + 14);
       const setLetters = ['A', 'B', 'C', 'D'];
       const bubbleRadius = 9;
@@ -212,7 +214,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
         ctx.arc(bx, by, bubbleRadius, 0, Math.PI * 2);
         ctx.stroke();
 
-        ctx.font = 'bold 10px sans-serif';
+        ctx.font = 'bold 10px Arial, Helvetica, sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(letCode, bx, by + 3.5);
       });
@@ -229,9 +231,9 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       ctx.strokeRect(infoStartX, curY, contentWidth, 34);
 
       ctx.fillStyle = '#0f172a';
-      ctx.font = 'bold 10px sans-serif';
+      ctx.font = 'bold 10px Arial, Helvetica, sans-serif';
       ctx.fillText('IMPORTANT INSTRUCTIONS:', infoStartX + 10, curY + 14);
-      ctx.font = '9px sans-serif';
+      ctx.font = '9px Arial, Helvetica, sans-serif';
       ctx.fillStyle = '#334155';
       ctx.fillText(
         '• Use Blue / Black Ballpoint Pen only.   • Darken bubbles completely like ( ● ).   • Do not fold, tear or use correction fluid on this sheet.',
@@ -272,7 +274,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
       ctx.fillStyle = '#0f172a';
       ctx.fillRect(colStartX, questionsStartY, colWidth, 20);
       ctx.fillStyle = '#ffffff';
-      ctx.font = 'bold 10px sans-serif';
+      ctx.font = 'bold 10px Arial, Helvetica, sans-serif';
       ctx.textAlign = 'center';
       ctx.fillText('Q.No', colStartX + 22, questionsStartY + 14);
 
@@ -296,7 +298,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
         // Question Number
         ctx.fillStyle = '#0f172a';
-        ctx.font = 'bold 10px sans-serif';
+        ctx.font = 'bold 10px Arial, Helvetica, sans-serif';
         ctx.textAlign = 'right';
         ctx.fillText(`${qNum}.`, colStartX + 34, rowY + rowHeight / 2 + 2);
 
@@ -316,7 +318,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
             ctx.fill();
 
             ctx.fillStyle = '#ffffff';
-            ctx.font = 'bold 9px sans-serif';
+            ctx.font = 'bold 9px Arial, Helvetica, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(letter, optX, optY + 3.2);
           } else {
@@ -328,7 +330,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
             ctx.stroke();
 
             ctx.fillStyle = '#475569';
-            ctx.font = '9px sans-serif';
+            ctx.font = '9px Arial, Helvetica, sans-serif';
             ctx.textAlign = 'center';
             ctx.fillText(letter, optX, optY + 3.2);
           }
@@ -353,7 +355,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
 
       // Candidate signature box
       ctx.strokeRect(infoStartX, sigY, boxWidth, 44);
-      ctx.font = 'bold 10px sans-serif';
+      ctx.font = 'bold 10px Arial, Helvetica, sans-serif';
       ctx.fillStyle = '#0f172a';
       ctx.textAlign = 'left';
       ctx.fillText("CANDIDATE'S SIGNATURE", infoStartX + 8, sigY + 58);
@@ -402,7 +404,7 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
   const makePdfContext = (doc: jsPDF): CanvasRenderingContext2D => {
     const sx = doc.internal.pageSize.getWidth() / 1240;
     const sy = doc.internal.pageSize.getHeight() / 1754;
-    const state = { fillStyle: '#000000', strokeStyle: '#000000', lineWidth: 1, font: '10px sans-serif', textAlign: 'left' };
+    const state = { fillStyle: '#000000', strokeStyle: '#000000', lineWidth: 1, font: '10px Arial, Helvetica, sans-serif', textAlign: 'left' };
     type Segment = { kind: 'move' | 'line' | 'circle'; x: number; y: number; r?: number };
     let segments: Segment[] = [];
     const color = (value: string): [number, number, number] => {

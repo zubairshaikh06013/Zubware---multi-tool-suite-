@@ -50,6 +50,10 @@ assert.match(source, /printCanvas\.width = 2480/);
 assert.match(source, /printCanvas\.height = 3508/);
 assert.match(source, /printCtx\.scale\(2, 2\)/);
 assert.match(source, /renderOmrCanvas\(\(page - 1\) \* 100 \+ 1, Math\.min\(questionCount, page \* 100\), printCtx\)/);
+// The PNG canvas must use a predictable Arial-like font, matching vector PDF Helvetica.
+assert.ok(!/ctx\.font = '[^']*px sans-serif'/.test(source), 'Canvas should not use platform-dependent generic fonts');
+assert.match(source, /ctx\.font = 'bold 22px Arial, Helvetica, sans-serif'/);
+assert.match(source, /doc\.setFont\('helvetica'/);
 const a4Aspect = 210 / 297;
 assert.ok(Math.abs(1240 / 1754 - a4Aspect) < 0.001);
 assert.ok(Math.abs(2480 / 3508 - a4Aspect) < 0.001);

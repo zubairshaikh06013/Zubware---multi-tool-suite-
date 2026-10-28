@@ -39,4 +39,19 @@ for (const count of [20, 50, 100, 150, 200]) {
     }
   }
 }
+
+// PDF vectors and 300-DPI PNG must use the same A4 logical coordinate system.
+// Catch accidental regressions that silently distort bubbles or text between formats.
+assert.match(source, /const sx = doc\.internal\.pageSize\.getWidth\(\) \/ 1240/);
+assert.match(source, /const sy = doc\.internal\.pageSize\.getHeight\(\) \/ 1754/);
+assert.match(source, /doc\.setFontSize\(px \* sy\)/);
+assert.match(source, /doc\.circle\(segment\.x \* sx, segment\.y \* sy, \(segment\.r \|\| 0\) \* sx, 'S'\)/);
+assert.match(source, /printCanvas\.width = 2480/);
+assert.match(source, /printCanvas\.height = 3508/);
+assert.match(source, /printCtx\.scale\(2, 2\)/);
+assert.match(source, /renderOmrCanvas\(\(page - 1\) \* 100 \+ 1, Math\.min\(questionCount, page \* 100\), printCtx\)/);
+const a4Aspect = 210 / 297;
+assert.ok(Math.abs(1240 / 1754 - a4Aspect) < 0.001);
+assert.ok(Math.abs(2480 / 3508 - a4Aspect) < 0.001);
+
 console.log(`OMR layout geometry: ${checked} page/configuration checks passed.`);

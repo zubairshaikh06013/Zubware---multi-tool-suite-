@@ -14,8 +14,12 @@ export function luminance(hex: string) {
 }
 export function qrContrast(d: QrDesign) {
   const bg = luminance(d.transparentBg ? '#ffffff' : d.bgColor);
-  const fg = Math.max(luminance(d.fgColor), d.useGradient ? luminance(d.fgColor2) : 0);
-  return { ratio: (Math.max(bg, fg) + 0.05) / (Math.min(bg, fg) + 0.05), inverted: fg >= bg };
+  // The weakest gradient endpoint determines whether the QR remains scannable.
+  // Taking the brightest endpoint alone can hide low-contrast portions of a gradient.
+  const inks = [luminance(d.fgColor), ...(d.useGradient ? [luminance(d.fgColor2)] : [])];
+  const ratios = inks.map(fg => (Math.max(bg, fg) + 0.05) / (Math.min(bg, fg) + 0.05));
+  const ratio = Math.min(...ratios);
+  return { ratio, inverted: inks.every(fg => fg >= bg) };
 }
 /** One vector source feeds both the SVG download and the PNG/PDF preview. */
 export function renderQrSvg(content: string, d: QrDesign) {

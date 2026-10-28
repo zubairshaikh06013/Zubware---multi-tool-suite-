@@ -92,5 +92,9 @@ assert.throws(() => renderQrSvg('test', { ...base, logoImage: 'https://example.c
 assert.ok(!renderQrSvg('test', { ...base, frameText: '<img src=x onerror=alert(1)>' }).svg.includes('<img'));
 assert.equal(escapeXml('<script>"&'), '&lt;script&gt;&quot;&amp;');
 assert.ok(qrContrast({ ...base, fgColor: '#eeeeee' }).ratio < 4.5);
+// A gradient with one nearly-white endpoint on white must not report a safe contrast.
+assert.ok(qrContrast({ ...base, fgColor: '#0f172a', fgColor2: '#eeeeee', useGradient: true }).ratio < 4.5);
+assert.ok(qrContrast({ ...base, fgColor: '#0f172a', fgColor2: '#312e81', useGradient: true }).ratio >= 4.5);
+assert.equal(qrContrast({ ...base, fgColor: '#0f172a', fgColor2: '#eeeeee', useGradient: true }).inverted, false);
 assert.ok(qrContrast({ ...base, fgColor: '#ffffff', bgColor: '#000000' }).inverted);
 console.log(`QR regression tests passed: ${decoded} rendered SVG images decoded exactly; validation, UTC dates, escaping, logo, gradients, styles, margins and Unicode checked.`);

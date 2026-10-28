@@ -6123,7 +6123,11 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   {
     "question": "How is the next birthday countdown calculated?",
-    "answer": "The calculator finds the next birthday date based on your birth month and day, then estimates the number of days remaining from the selected reference date. February 29 birthdays may need special consideration in non-leap years."
+    "answer": "The countdown counts calendar days from Age at Date to the birthday on or after that date. It shows 0 days if the reference date is your birthday. Select Set to Today for a countdown from today. In this calculator, February 29 birthdays use February 28 in non-leap years."
+  },
+  {
+    "question": "How do I enter an Indian date of birth in DD/MM/YYYY format?",
+    "answer": "Read the date picker's day, month and year labels: its display format depends on your browser or device. A DOB written as 13/05/1997 in DD/MM/YYYY means 13 May 1997. Select that date, then set Age at Date to today or the reference date you need."
   },
   {
     "question": "Can I use this age calculator without downloading an app?",

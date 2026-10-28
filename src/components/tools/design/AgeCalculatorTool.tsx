@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { calendarAge, calendarAnniversary, calendarDay, parseCalendarDate } from '../../../lib/calendarAge';
+import { calendarAge, calendarDay, nextCalendarBirthday, parseCalendarDate } from '../../../lib/calendarAge';
 import { 
   Calendar, 
   Clock, 
@@ -53,10 +53,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
     const birthDayOfWeek = birth.toLocaleDateString('en-US', { weekday: 'long' });
 
     // Next Birthday
-    let nextBday = calendarAnniversary(birth, target.getFullYear());
-    if (nextBday < target) {
-      nextBday = calendarAnniversary(birth, target.getFullYear() + 1);
-    }
+    const nextBday = nextCalendarBirthday(birth, target)!;
     const daysToNextBday = calendarDay(nextBday) - calendarDay(target);
     const nextBdayDayOfWeek = nextBday.toLocaleDateString('en-US', { weekday: 'long' });
 
@@ -112,6 +109,11 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
 
   const result = calculateAge();
   const today = getTodayString();
+  const birthDate = parseCalendarDate(dob);
+  const nextBirthday = birthDate ? nextCalendarBirthday(birthDate, parseCalendarDate(today)!) : null;
+  const nextBirthdayValue = nextBirthday && nextBirthday.getFullYear() <= 9999
+    ? `${String(nextBirthday.getFullYear()).padStart(4, '0')}-${String(nextBirthday.getMonth() + 1).padStart(2, '0')}-${String(nextBirthday.getDate()).padStart(2, '0')}`
+    : null;
   const referenceLabel = parseCalendarDate(targetDate)?.toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' });
   const dateError = dob && !result ? 'Enter valid dates. The reference date must be on or after your date of birth.' : '';
   const setReference = (value: string) => { setTargetDate(value); setCopied(false); };
@@ -141,10 +143,10 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            Age Calculator by Date of Birth
+            Calculate Age on Any Date
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Find how many days old you are, your age in years and months, and the days until your next birthday. Choose today or another reference date.
+            Enter your date of birth and the date you need. See your age in years, months and days, total days old, and birthday countdown.
           </p>
         </div>
 
@@ -201,7 +203,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
           <div className="flex flex-wrap items-center justify-between gap-2">
             <label htmlFor="age-reference-date" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-indigo-500" />
-              <span>Age at date</span>
+              <span>Age at date (reference date)</span>
             </label>
             <button
               type="button"
@@ -236,6 +238,12 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
             {preset.label}
           </button>
         ))}
+        <button type="button" disabled={!nextBirthdayValue}
+          aria-pressed={Boolean(nextBirthdayValue && targetDate === nextBirthdayValue)}
+          onClick={() => { if (nextBirthdayValue) setReference(nextBirthdayValue); }}
+          className="min-h-11 px-4 py-2 rounded-xl border border-indigo-200 dark:border-indigo-800 text-sm font-semibold text-indigo-700 dark:text-indigo-300 aria-pressed:bg-indigo-100 dark:aria-pressed:bg-indigo-950 disabled:opacity-50 disabled:cursor-not-allowed">
+          Next birthday from today
+        </button>
         <button type="button" onClick={loadExample} className="min-h-11 px-4 py-2 rounded-xl border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-700 dark:text-slate-200">
           Try an example
         </button>

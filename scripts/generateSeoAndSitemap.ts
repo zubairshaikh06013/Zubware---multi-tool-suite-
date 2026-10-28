@@ -1961,7 +1961,7 @@ function injectMetadataIntoHtml(
   );
   html = html.replace(
     /<meta\s+property="og:image"\s+content="[\s\S]*?"\s*\/?>/i,
-    () => `<meta property="og:image" content="${DOMAIN}/icon.png" />`
+    () => `<meta property="og:image" content="${DOMAIN}/social-card.png" />`
   );
 
   // 5. Replace Twitter
@@ -1975,7 +1975,7 @@ function injectMetadataIntoHtml(
   );
   html = html.replace(
     /<meta\s+name="twitter:image"\s+content="[\s\S]*?"\s*\/?>/i,
-    () => `<meta name="twitter:image" content="${DOMAIN}/icon.png" />`
+    () => `<meta name="twitter:image" content="${DOMAIN}/social-card.png" />`
   );
 
   // 6. Inject robots, keywords (if present), and JSON-LD schema right after canonical tag

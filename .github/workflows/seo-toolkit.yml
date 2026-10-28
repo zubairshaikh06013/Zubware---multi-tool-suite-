@@ -26,7 +26,10 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
       - run: npm run build
+        id: build
       - run: npm run test:seo-search
       - name: Start exact static build and collect links
         run: |
@@ -45,13 +48,13 @@ jobs:
           output: reports/lychee.json
           fail: true
       - name: Test Pagefind search in a real browser
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: node scripts/testSearchBrowser.mjs
       - name: Stop local server before Lighthouse CI
         if: always()
         run: fuser -k 4173/tcp || true
       - name: Lighthouse CI - mobile representative pages
-        if: ${{ !cancelled() }}
+        if: ${{ !cancelled() && steps.build.outcome == 'success' }}
         run: npm run audit:lighthouse
       - name: Save audit evidence
         if: always()
@@ -74,7 +77,10 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: true
       - run: npm run build
+        id: build
       - name: Start static site
         run: |
           node scripts/serveSeoBuild.mjs > /tmp/seo-server.log 2>&1 &

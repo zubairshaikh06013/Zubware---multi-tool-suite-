@@ -742,7 +742,7 @@ export default function App() {
                 </div>
               )}
 
-              <Suspense fallback={<LoadingFallback />}>
+              <Suspense fallback={<div style={{ minHeight: 'calc(100svh - 8rem)' }}><LoadingFallback /></div>}>
                 {isBlogIndexPage && <BlogIndexPage onNavigate={navigateTo} />}
                 {isBlogPostPage && <BlogPostPage articleSlug={blogArticleSlug} onNavigate={navigateTo} />}
                 {isDashboardPage && <DashboardPage onNavigate={navigateTo} onShowToast={triggerToast} />}

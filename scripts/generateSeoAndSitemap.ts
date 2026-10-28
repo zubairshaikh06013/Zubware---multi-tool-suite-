@@ -1,3 +1,4 @@
+import { buildPageModuleHints, pageModuleHint, type BuildManifest } from './pageModuleHints';
 import { toolProcessingNotice } from '../src/lib/toolProcessingNotice';
 import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from '../src/data/siteTrustContent';
 import { createElement } from 'react';
@@ -48,6 +49,7 @@ const distDir = path.resolve(rootDir, 'dist');
 const publicDir = path.resolve(rootDir, 'public');
 
 const DOMAIN = SITE_ORIGIN;
+let pageHints = new Map<string, string>();
 
 export function renderStaticBlogMarkdown(content: string): string {
   const renderer = new marked.Renderer();
@@ -1924,6 +1926,10 @@ function injectMetadataIntoHtml(
   const escapedUrl = escapeHtml(canonicalUrl);
 
   let html = templateHtml;
+  const moduleFile = pageModuleHint(new URL(canonicalUrl).pathname, pageHints);
+  if (moduleFile) {
+    html = html.replace('</head>', `<link rel="modulepreload" crossorigin href="${escapeHtml(moduleFile)}" data-route-preload />\n</head>`);
+  }
 
   // 1. Replace <title>
   html = html.replace(/<title>[\s\S]*?<\/title>/i, () => `<title>${escapedTitle}</title>`);
@@ -2066,7 +2072,14 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
     throw new Error(`dist/index.html template not found at ${indexPath}`);
   }
 
-  const rawIndexTemplate = fs.readFileSync(indexPath, 'utf-8');
+  const manifestPath = path.join(distDir, '.vite/manifest.json');
+  if (!fs.existsSync(manifestPath)) throw new Error('Vite build manifest is required for route module hints');
+  pageHints = buildPageModuleHints(
+    fs.readFileSync(path.join(rootDir, 'src/App.tsx'), 'utf8'),
+    TOOLS_DATA,
+    JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as BuildManifest,
+  );
+  const rawIndexTemplate = fs.readFileSync(indexPath, 'utf-8').replace(/<link\b[^>]*data-route-preload[^>]*>/g, '');
   // Strip any pre-existing pre-rendered content from inside <div id="root">
   let pristineBaseHtml = rawIndexTemplate.replace(
     /<div id="root">[\s\S]*?(?=\s*<script\b|\s*<noscript\b|\s*<\/body>)/i,

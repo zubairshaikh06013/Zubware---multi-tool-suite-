@@ -497,15 +497,22 @@ export const OmrSheetGeneratorTool: React.FC<{ onShowToast: (msg: string) => voi
     if (!printCtx) { onShowToast('Could not prepare high-resolution PNG.'); return; }
     printCtx.scale(2, 2);
     renderOmrCanvas((page - 1) * 100 + 1, Math.min(questionCount, page * 100), printCtx);
-    const url = printCanvas.toDataURL('image/png');
-    const a = document.createElement('a');
-    a.href = url;
-    const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
-    a.download = `${prefix}-${questionCount}q-page-${page}.png`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    onShowToast('300 DPI OMR PNG downloaded.');
+    // Encode asynchronously to a Blob instead of a large base64 data URL.
+    // This reduces peak memory pressure and improves downloads on mobile browsers.
+    printCanvas.toBlob((blob) => {
+      if (!blob) { onShowToast('Could not encode the OMR PNG. Please try again.'); return; }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      const prefix = sheetMode === 'answer-key' ? 'omr-answer-key' : 'omr-sheet';
+      a.download = `${prefix}-${questionCount}q-page-${page}.png`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      // Allow the browser to start the download before releasing the object URL.
+      window.setTimeout(() => URL.revokeObjectURL(url), 60000);
+      onShowToast(`300 DPI OMR PNG ready (${(blob.size / 1024).toFixed(0)} KB).`);
+    }, 'image/png');
   };
 
   return (

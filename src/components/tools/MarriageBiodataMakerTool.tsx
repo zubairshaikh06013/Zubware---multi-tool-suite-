@@ -110,7 +110,18 @@ export function MarriageBiodataMakerTool({ onShowToast }: { onShowToast: (messag
           </div>
           <p className="text-xs text-slate-500">आप अपनी भाषा में लिख सकते हैं। Language बदलने से भरी हुई details translate नहीं होंगी। Muslim, Hindu या neutral biodata के लिए अपनी पसंद की heading और details रखें।</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2" role="group" aria-label="Free templates">{biodataThemes.map((theme, i) => <button key={theme.name} type="button" aria-pressed={options.theme === i} onClick={() => change({ theme: i })} className={`rounded-xl border-2 p-3 text-sm font-semibold ${options.theme === i ? 'ring-2 ring-offset-2 ring-rose-500' : ''}`} style={{ color: theme.ink, background: theme.paper, borderColor: theme.ink }}>{theme.name}</button>)}</div>
-          <label className="block text-sm font-semibold">फोटो (optional)<input ref={upload} type="file" accept="image/jpeg,image/png,image/webp" className="block mt-2 w-full text-sm" onChange={e => void loadPhoto(e.target.files?.[0])} /></label>
+          <div className="space-y-2">
+            <p className="text-sm font-semibold">फोटो (optional)</p>
+            <div className="flex flex-wrap items-center gap-3">
+              <button type="button" aria-controls="biodata-photo-input" disabled={photoBusy} onClick={() => upload.current?.click()} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border-2 border-rose-600 bg-rose-600 px-5 py-3 text-sm font-bold text-white shadow-sm hover:bg-rose-700 disabled:opacity-60">
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 16V4m-4 4 4-4 4 4M4 16v4h16v-4" /></svg>
+                {photoBusy ? 'फोटो तैयार हो रही है…' : options.photo ? 'फोटो बदलें' : 'फोटो चुनें'}
+              </button>
+              {options.photo && <img src={options.photo} alt="आपकी चुनी हुई फोटो" className="h-14 w-12 rounded-lg border border-slate-300 object-cover" />}
+              <span className="text-sm text-slate-600 dark:text-slate-300" role="status">{options.photo ? 'फोटो जुड़ गई है' : 'अभी कोई फोटो नहीं चुनी'}</span>
+            </div>
+            <input id="biodata-photo-input" ref={upload} type="file" accept="image/jpeg,image/png,image/webp" hidden aria-label="बायोडाटा के लिए फोटो चुनें" onChange={e => void loadPhoto(e.target.files?.[0])} />
+          </div>
           <p className="text-xs text-slate-500">JPG, PNG या WebP, 10 MB तक। Portrait फोटो चुनें; frame में center crop होगा।</p>
           {photoBusy && <p role="status">फोटो तैयार हो रही है…</p>}
           {options.photo && <button className="text-sm text-rose-600 underline" type="button" onClick={() => { photoJob.current++; setPhotoBusy(false); change({ photo: '' }); }}>फोटो हटाएं</button>}

@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import { convertGrade, weightedCgpa } from '../src/lib/cgpaMath';
+assert.equal(convertGrade(8.5, 'to-percent', 10, 9.5, 0), 80.75);
+assert.ok(Math.abs(convertGrade(80.75, 'to-cgpa', 10, 9.5, 0)! - 8.5) < 1e-10);
+assert.equal(convertGrade(8, 'to-percent', 10, 7.25, 11), 69);
+assert.equal(convertGrade(69, 'to-cgpa', 10, 7.25, 11), 8);
+assert.equal(convertGrade(3.5, 'to-percent', 4, 25, 0), 87.5);
+assert.equal(convertGrade(4.1, 'to-percent', 4, 25, 0), null);
+assert.equal(convertGrade(100, 'to-cgpa', 10, 9.5, 0), null);
+assert.equal(convertGrade(80, 'to-cgpa', 10, 0, 0), null);
+assert.equal(convertGrade(NaN, 'to-percent', 10, 9.5, 0), null);
+assert.equal(weightedCgpa([{gpa: 8, credits: 10}, {gpa: 9, credits: 30}], 10), 8.75);
+assert.equal(weightedCgpa([{gpa: 8, credits: 0}], 10), null);
+assert.equal(weightedCgpa([{gpa: 8, credits: 20}], 4), null);
+assert.equal(weightedCgpa([{gpa: NaN, credits: 20}], 10), null);
+console.log('CGPA forward/reverse, custom offsets, weighted credits and invalid input checks passed.');

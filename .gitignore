@@ -13,3 +13,5 @@ public/video-engine/
 .unlighthouse/
 reports/
 .seo-sources/
+
+.indexnow-state/

@@ -332,6 +332,8 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
       'Zubware Passport & Visa Photo Maker helps crop and size ID photos using country presets and alignment guides. Adjust your photo and export individual images or a printable sheet. Check the current dimensions, background and photo rules of the issuing authority before submitting; a preset does not guarantee acceptance.',
     'signature-maker':
       'Zubware Online Signature Maker creates professional electronic signatures for legal contracts, PDF documents, and online employment applications. Draw your autograph with smooth bezier pen strokes, generate realistic cursive signatures using elegant calligraphy fonts, or scan and clean a paper signature by removing paper background texture. Export in transparent PNG, solid white JPG, or vector SVG format with complete privacy.',
+    'text-to-handwriting':
+      'Create handwritten notes on lined notebook paper with a red margin, or choose blank, grid or vintage-style paper. Paste your text, select one of five handwriting font families and an ink color, then adjust text size and line height. Download all pages as an A4 PDF or save the selected page as PNG. These are font-rendered notes, not a reproduction of your personal handwriting. Text rendering and export run in your browser; handwriting fonts load from Google Fonts.',
     'handwriting-to-text':
       'Zubware Handwriting to Text OCR converts handwritten notebook pages, whiteboard sketches, student homework, and canvas scribbles into editable digital text directly in your browser. Featuring automatic adaptive binarization, high-contrast ink enhancement, and client-side Tesseract.js neural network OCR, your handwritten notes are transcribed locally with zero cloud data retention.',
     'image-to-text':
@@ -339,7 +341,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'discount-calculator':
       'Zubware Discount Calculator determines final retail checkout prices and total monetary savings across percentage discounts, flat cash price drops, stacked coupons, and local sales tax rates. Switch between single product calculations and multi-item shopping cart breakdowns with instant local browser computation.',
     'cgpa-calculator':
-      'Zubware CGPA Calculator converts 10-point scale CGPA into equivalent percentage marks for Indian university students and competitive exam applications (CBSE, VTU, Mumbai University, AKTU). Calculate aggregate percentages with standard university multipliers (such as 9.5x) or custom conversion formulas with zero server tracking.',
+      'Semester GPA aur credits enter karke weighted CGPA nikalo, ya ek value ko CGPA se percentage aur percentage se CGPA mein convert karo. 10-point aur 4-point scale available hain. 9.5 multiplier sirf legacy CBSE indicative rule ke roop mein diya hai; yeh har university ka formula nahi hai. Apne course aur batch ka linear formula custom multiplier aur offset mein enter karo. Result official marksheet ya conversion certificate ka replacement nahi hai.',
     'notice-period-calculator':
       'Zubware Notice Period Calculator determines your exact Last Working Day (LWD) and remaining calendar days upon submitting a job resignation. Factor in contractual notice periods (30, 60, or 90 days), weekend policies, paid leave adjustments, and early release buyout estimates with complete privacy.',
     'salary-hike-calculator':

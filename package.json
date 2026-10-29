@@ -14,11 +14,13 @@
     "test:omr": "tsx scripts/testOmrLayout.ts",
     "prebuild": "node scripts/prepareVideoEngine.mjs",
     "predev": "node scripts/prepareVideoEngine.mjs",
-    "postbuild": "node --import tsx scripts/generateSeoAndSitemap.ts && node --import tsx scripts/testCompactContent.ts && node scripts/buildSearchIndex.mjs",
+    "postbuild": "node --import tsx scripts/generateSeoAndSitemap.ts && node --import tsx scripts/testCompactContent.ts && node scripts/buildSearchIndex.mjs && node scripts/indexNow.mjs build",
     "audit:lighthouse": "lhci autorun",
     "audit:site": "unlighthouse-ci",
     "audit:links:prepare": "node scripts/prepareAuditLinks.mjs",
-    "test:seo-search": "node --import tsx scripts/testSeoSearch.ts"
+    "test:seo-search": "node --import tsx scripts/testSeoSearch.ts",
+    "test:indexnow": "node --test scripts/testIndexNow.mjs",
+    "test:cgpa": "node --import tsx scripts/testCgpa.ts"
   },
   "dependencies": {
     "@ffmpeg/core": "0.12.10",

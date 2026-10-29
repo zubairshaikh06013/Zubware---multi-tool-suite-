@@ -75,9 +75,10 @@ jobs:
 
 
   indexnow:
-    name: Notify IndexNow after successful deployment
+    name: Notify IndexNow after production is live
     runs-on: ubuntu-latest
-    needs: deploy
+    needs: build
+    timeout-minutes: 20
     permissions:
       contents: read
     steps:

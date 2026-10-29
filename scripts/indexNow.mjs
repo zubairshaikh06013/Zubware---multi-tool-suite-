@@ -80,13 +80,13 @@ export async function submitManifest(manifestFile = 'reports/indexnow-manifest.j
   let previous;
   try { previous = JSON.parse(await fs.readFile(stateFile, 'utf8')); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   let verified = false;
-  for (let attempt = 0; attempt < 12; attempt++) {
+  for (let attempt = 0; attempt < 90; attempt++) {
     try {
       const key = await (await getLive(`${ORIGIN}/${KEY}.txt`)).text();
       const live = await (await getLive(`${ORIGIN}/indexnow-manifest.json?revision=${current.revision}`)).json();
       if (key.trim() === KEY && live.revision === current.revision && JSON.stringify(live.pages) === JSON.stringify(current.pages)) { verified = true; break; }
     } catch (error) { console.log(`Live verification attempt ${attempt + 1}: ${error.message}`); }
-    if (attempt < 11) await new Promise(resolve => setTimeout(resolve, 10000));
+    if (attempt < 89) await new Promise(resolve => setTimeout(resolve, 10000));
   }
   if (!verified) throw new Error('Deployed key and manifest are not live yet. No URLs were submitted. Rerun the failed job after deployment.');
   const urls = changedUrls(current, previous);

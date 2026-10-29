@@ -227,7 +227,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
   const isNetwork = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
 
   const priorityIntros: Record<string, string> = {
-    'marriage-biodata-maker': 'Zubware पर शादी का बायोडाटा बनाने के लिए अपनी details भरें और live preview देखें। नाम, पढ़ाई, काम, परिवार और संपर्क की जानकारी अपनी मर्जी से जोड़ें। Photo optional है। खाली fields छिप जाती हैं और लंबी जानकारी अगले A4 page पर जाती है। सभी 6 designs और PDF/PNG download free हैं। Draft save करने पर ही details इसी browser में रखी जाती हैं।',
+    'marriage-biodata-maker': 'Zubware के free marriage biodata maker online में अपनी details भरें और live preview देखकर शादी का बायोडाटा बनाएं। Marriage bio data format में निजी जानकारी, पढ़ाई, काम, परिवार और संपर्क के sections मिलते हैं। Photo optional है; बिना photo का biodata भी बना सकते हैं। सभी 6 templates और PDF/PNG download free हैं। Muslim, Hindu या neutral profile के लिए heading और optional fields अपनी पसंद से भरें। Draft save करने पर ही details इसी browser में रखी जाती हैं।',
     'pdf-merge':
       'Zubware PDF Merge combines multiple separate PDF documents into a single organized file directly in your browser. Whether you need to compile contracts, scanned receipts, academic assignments, or business reports, you can reorder pages by dragging and dropping multiple files simultaneously. All merging executes locally using client-side WebAssembly and pdf-lib, ensuring your confidential documents are never uploaded to remote servers.',
     'pdf-split':

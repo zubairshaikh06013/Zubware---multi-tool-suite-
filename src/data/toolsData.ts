@@ -8,9 +8,9 @@ import { getToolCanonicalPath } from '../lib/paths';
 const RAW_TOOLS_DATA: ToolMeta[] = [
 {
   "id": "marriage-biodata-maker",
-  "title": "Free Marriage Biodata Maker — शादी का बायोडाटा बनाएं",
+  "title": "Free Marriage Biodata Maker Online — शादी का बायोडाटा बनाएं",
   "navTitle": "Marriage Biodata Maker",
-  "description": "शादी का बायोडाटा free बनाएं। 6 designs, Hindi/English labels, optional photo, live preview और बिना watermark A4 PDF/PNG download। Login की जरूरत नहीं।",
+  "description": "Free marriage biodata maker online: शादी का बायोडाटा बनाएं। 6 free templates, Hindi/English labels, photo optional और बिना watermark PDF/PNG download।",
   "icon": "💍",
   "path": "/marriage-biodata-maker",
   "filename": "marriage-biodata-maker.html",
@@ -25,23 +25,32 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "इसी browser में optional saved draft"
   ],
   "tags": [
-    "marriage biodata maker",
-    "शादी का बायोडाटा",
-    "free biodata pdf",
-    "muslim marriage biodata",
-    "biodata without photo"
+    "marriage biodata maker free",
+    "marriage biodata maker free online",
+    "marriage bio data maker",
+    "free marriage biodata maker",
+    "marriage biodata format",
+    "free biodata maker",
+    "free biodata for marriage",
+    "biodata maker",
+    "biodata banao",
+    "marriage biodata template free download",
+    "marriage biodata maker without photo",
+    "muslim marriage biodata maker free",
+    "marriage biodata maker pdf",
+    "शादी का बायोडाटा"
   ],
   "trending": false,
   "featured": true,
   "editorsPick": false,
   "howTo": [
     {
-      "title": "अपनी details भरें",
-      "desc": "नाम, पढ़ाई, काम और परिवार की जानकारी डालें। Photo optional है और खाली fields PDF में नहीं दिखेंगी।"
+      "title": "Marriage biodata format में details भरें",
+      "desc": "नाम, जन्म तारीख, पढ़ाई, काम, परिवार और संपर्क की जानकारी डालें। बिना photo के biodata बनाने के लिए फोटो न चुनें। सिर्फ नाम download के लिए जरूरी है।"
     },
     {
-      "title": "Design और भाषा चुनें",
-      "desc": "6 free designs में से पसंद चुनें। Hindi या English labels रखें; अपनी भरी details का translation अपने आप नहीं होगा।"
+      "title": "Free biodata template चुनें",
+      "desc": "6 designs में से अपना marriage biodata template चुनें। Hindi या English labels रखें। Muslim, Hindu या neutral biodata के लिए heading और optional fields अपनी पसंद से भरें।"
     },
     {
       "title": "Preview देखकर download करें",
@@ -50,16 +59,16 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   ],
   "faq": [
     {
-      "question": "क्या PDF download सच में free है?",
+      "question": "Marriage biodata maker free online है? PDF download का charge लगेगा?",
       "answer": "हाँ। सभी 6 designs, PDF और PNG download free हैं। Login, payment और watermark नहीं है।"
     },
     {
-      "question": "क्या बिना फोटो के शादी का बायोडाटा बना सकते हैं?",
+      "question": "Marriage biodata maker without photo कैसे इस्तेमाल करें?",
       "answer": "हाँ। फोटो optional है। फोटो न चुनें या फोटो हटाएं दबाएं; preview और download में फोटो का खाली box नहीं आएगा।"
     },
     {
-      "question": "क्या Muslim और Hindu marriage biodata बना सकते हैं?",
-      "answer": "हाँ। अपनी पसंद की heading, धर्म और समुदाय भर सकते हैं। सभी fields optional हैं, सिर्फ download के लिए नाम जरूरी है। Neutral biodata के लिए धर्म और समुदाय खाली रखें।"
+      "question": "Muslim marriage biodata maker free में क्या भर सकते हैं?",
+      "answer": "इस free biodata maker में अपनी पसंद की heading और धर्म, समुदाय, पढ़ाई, काम व परिवार की जानकारी जोड़ सकते हैं। Muslim, Hindu और neutral biodata के लिए यही editor इस्तेमाल करें; अलग धार्मिक symbols या तैयार community-specific layouts अभी नहीं हैं। निजी जानकारी अपनी मर्जी से भरें और बाकी fields खाली छोड़ दें।"
     },
     {
       "question": "मेरी photo और personal details कहाँ save होती हैं?",
@@ -72,6 +81,38 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     {
       "question": "Hindi और English बदलने से details translate होंगी?",
       "answer": "नहीं। इससे सिर्फ headings और labels बदलते हैं। जो नाम और details आपने लिखीं हैं, वे वैसे ही रहती हैं।"
+    },
+    {
+      "question": "Marriage bio data और marriage biodata format में क्या फर्क है?",
+      "answer": "इस काम के लिए लोग marriage bio data, marriage biodata और शादी का बायोडाटा जैसे नाम इस्तेमाल करते हैं। आम format में निजी जानकारी, पढ़ाई, काम, परिवार और संपर्क के sections होते हैं। जो जानकारी share करना चाहें, उतनी ही भरें; खाली fields output में नहीं आतीं।"
+    },
+    {
+      "question": "Marriage biodata template free download कैसे करें?",
+      "answer": "पसंद का template चुनें, अपनी details भरें और preview देखकर PDF या PNG download करें। सभी 6 templates free हैं। सिर्फ खाली Word template के बजाय यह editor भरी हुई details वाला biodata बनाता है।"
+    },
+    {
+      "question": "Marriage biodata Word format में download होगा?",
+      "answer": "अभी PDF और PNG download होते हैं; editable Word या DOCX export उपलब्ध नहीं है। बदलाव के लिए इसी editor में details बदलकर फिर download करें। PDF को Word में खोलने से layout बदल सकता है।"
+    },
+    {
+      "question": "Marriage biodata maker app install करनी होगी?",
+      "answer": "नहीं। यह browser में चलने वाला online tool है। मोबाइल या computer पर Zubware खोलकर biodata बनाएं। इस page से Android APK या अलग native app download नहीं होती।"
+    },
+    {
+      "question": "Marriage biodata maker near me खोज रहा हूँ—क्या दुकान जाना जरूरी है?",
+      "answer": "अगर आपको सिर्फ digital biodata PDF या PNG चाहिए, तो इसे browser में बना और download कर सकते हैं। यह tool आसपास की दुकानों की listing या printing service नहीं देता। Paper copy के लिए downloaded A4 PDF अपनी पसंद की print shop पर ले जा सकते हैं।"
+    },
+    {
+      "question": "Marriage biodata maker AI free है? क्या AI details लिखता है?",
+      "answer": "यह free template-based editor है; इसमें अभी AI writing या automatic translation नहीं है। अपनी details खुद भरें, और tool उन्हें चुने हुए design में रखकर preview और PDF/PNG बनाता है।"
+    },
+    {
+      "question": "Marriage biodata maker free Marathi के लिए इस्तेमाल कर सकते हैं?",
+      "answer": "अपने device के Marathi keyboard से मराठी में नाम, heading और details लिख सकते हैं। अभी ready-made Marathi labels और translation उपलब्ध नहीं हैं; labels के लिए Hindi या English चुन सकते हैं। Preview में अक्षर check करके download करें।"
+    },
+    {
+      "question": "JPG to PDF और marriage biodata PDF में क्या फर्क है?",
+      "answer": "JPG to PDF किसी तैयार photo या image को PDF page में रखता है। यह biodata maker आपकी भरी details से नया marriage profile तैयार करता है और optional JPG, PNG या WebP photo जोड़ता है। अगर biodata पहले से image में है, तो Zubware का Image to PDF tool इस्तेमाल करें।"
     }
   ]
 },

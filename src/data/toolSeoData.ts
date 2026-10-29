@@ -8251,42 +8251,50 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "text-to-handwriting": {
     "howTo": [
-      {
-        "title": "Paste or Type Your Text",
-        "desc": "Enter your assignments, letters, notes, or study material into the text editor."
-      },
-      {
-        "title": "Choose Handwriting Font and Paper Style",
-        "desc": "Select a cursive or neat handwriting style, pick lined or blank paper, and choose blue or black ink."
-      },
-      {
-        "title": "Export Handwritten Notes as PDF or PNG",
-        "desc": "Review the realistic handwritten pages and download them as high-resolution images or a printable multi-page PDF."
-      }
+        {
+            "title": "Paste your notes",
+            "desc": "Type or paste the text you want to turn into handwriting. Long notes are split into pages automatically."
+        },
+        {
+            "title": "Choose lined paper and handwriting",
+            "desc": "Select lined, blank, grid or vintage paper. Choose a handwriting font and ink color, then adjust font size and line height. Wait for the font-ready message."
+        },
+        {
+            "title": "Preview every page and download",
+            "desc": "Use the page arrows to check your notes. Download all pages as one A4 PDF, or save the currently selected page as PNG."
+        }
     ],
     "faq": [
-      {
-        "question": "How realistic do the generated handwritten pages look?",
-        "answer": "The tool uses authentic human handwriting fonts combined with subtle baseline variations, letter spacing jitter, and genuine paper textures to mimic real handwriting."
-      },
-      {
-        "question": "Can I convert long documents spanning multiple pages?",
-        "answer": "Yes. The converter automatically calculates page breaks and line wrapping, splitting long text into multiple sequential handwritten pages."
-      },
-      {
-        "question": "Which paper backgrounds can I write on?",
-        "answer": "You can choose from standard blue lined notebook paper with red left margins, plain clean white sheets, yellow legal pads, or textured vintage parchment."
-      },
-      {
-        "question": "Can I download the generated handwritten assignment as a PDF?",
-        "answer": "Yes. You can export your pages as a single multi-page PDF document ready for printing or submission, or download individual PNG image sheets."
-      },
-      {
-        "question": "Is my typed assignment text stored or sent to an external server?",
-        "answer": "No. All typography rendering and PDF document generation occur completely inside your local browser."
-      }
+        {
+            "question": "Can I create handwritten notes on lined paper?",
+            "answer": "Yes. Choose Ruled Lined Paper to get horizontal blue lines and a red left margin, then paste your notes and choose a handwriting font."
+        },
+        {
+            "question": "Can I convert long study notes into a multi-page PDF?",
+            "answer": "Yes. Text wraps onto new lines and pages automatically. Check each preview page before downloading the complete A4 PDF."
+        },
+        {
+            "question": "Which paper styles and ink colors are available?",
+            "answer": "Paper options are lined, blank, grid and vintage. Ink options are gel blue, navy, black, red and violet."
+        },
+        {
+            "question": "Does the tool copy my own handwriting or read handwriting from a photo?",
+            "answer": "No. It renders typed text using handwriting fonts. It does not learn your personal handwriting. To extract text from a photo, use the separate Handwriting to Text tool."
+        },
+        {
+            "question": "What is the download resolution?",
+            "answer": "Each page is rendered at 1240 × 1754 pixels, approximately 150 DPI at A4 size. PNG saves the selected page; PDF includes all pages and uses embedded page images."
+        },
+        {
+            "question": "Why does the handwriting font take time to appear?",
+            "answer": "Handwriting fonts load from Google Fonts. Wait for the ready message before downloading. If the fonts cannot load, check your connection and reload the page."
+        },
+        {
+            "question": "Are my notes uploaded for conversion?",
+            "answer": "Text rendering and PDF/PNG generation run in your browser. The page also loads external font files; it does not send your entered notes to a conversion server."
+        }
     ]
-  },
+},
   "omr-sheet-generator": {
     "howTo": [
       {"title":"Enter Exam Details","desc":"Add the institution name, exam title, subject and date to personalize your printable OMR sheet."},
@@ -10900,42 +10908,46 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "cgpa-calculator": {
     "howTo": [
-      {
-        "title": "Select Grading Scale",
-        "desc": "Choose between a standard 10.0 grading scale (common in universities and CBSE) or a 4.0 GPA scale."
-      },
-      {
-        "title": "Add Semester GPAs & Credits",
-        "desc": "Enter your GPA and credit weight for each completed academic semester or course module."
-      },
-      {
-        "title": "Review Cumulative CGPA & Percentage",
-        "desc": "Inspect your credit-weighted cumulative CGPA, converted percentage equivalent, total credits earned, and academic class honors."
-      }
+        {
+            "title": "Scale aur formula choose karo",
+            "desc": "10-point ya 4-point scale select karo. Apne course aur batch ka rule check karo; custom linear formula ke liye multiplier aur offset enter karo."
+        },
+        {
+            "title": "Direct conversion ya semester calculation karo",
+            "desc": "CGPA to Percentage / Percentage to CGPA mein value enter karo. Weighted CGPA ke liye har semester ka GPA aur credits bharo."
+        },
+        {
+            "title": "Result aur formula check karo",
+            "desc": "Shown formula ko apne official rule se match karo. Out-of-range input ya zero credits ko correct karo. Copy CGPA se semester summary copy kar sakte ho."
+        }
     ],
     "faq": [
-      {
-        "question": "How is credit-weighted Cumulative GPA (CGPA) calculated?",
-        "answer": "CGPA is calculated by dividing total earned grade points (sum of GPA × Credits for each semester) by total completed credits: CGPA = Σ(GPAᵢ × Creditsᵢ) / Σ(Creditsᵢ)."
-      },
-      {
-        "question": "How is CGPA converted to percentage marks on a 10-point scale?",
-        "answer": "For standard Indian universities and CBSE guidelines, percentage is calculated as: Percentage = CGPA × 9.5. On a 4.0 scale, percentage is computed as (GPA / 4.0) × 100."
-      },
-      {
-        "question": "What academic honors divisions are displayed?",
-        "answer": "The tool classifies results into recognized academic standings: First Class with Distinction (typically CGPA ≥ 7.5 or 75%+), First Class, Second Class, or Pass."
-      },
-      {
-        "question": "Can I add or remove semesters easily?",
-        "answer": "Yes. Use the 'Add Semester' button to append semesters up to a full 4-year or 5-year degree program, or click the trash icon to remove semesters."
-      },
-      {
-        "question": "Can I copy my full CGPA academic summary?",
-        "answer": "Yes. Click Copy Summary to copy your overall CGPA, equivalent percentage, total credits, and semester breakdown to your clipboard."
-      }
+        {
+            "question": "CGPA se percentage kaise nikalein?",
+            "answer": "Apne institution ka formula use karo. Is calculator mein Percentage = CGPA × multiplier + offset hai. 9.5 multiplier sirf legacy CBSE indicative conversion ka option hai, sab universities ka rule nahi."
+        },
+        {
+            "question": "Percentage se CGPA kaise nikalein?",
+            "answer": "Percentage to CGPA mode choose karo. Selected linear formula ka reverse use hota hai: CGPA = (Percentage − offset) ÷ multiplier. Sirf apne institution ke applicable rule ke saath use karo."
+        },
+        {
+            "question": "Mumbai University ke liye kaunsa formula use karun?",
+            "answer": "Apne programme, batch aur latest university instructions / conversion certificate ka rule check karo. Yeh calculator koi ek Mumbai University formula automatically apply nahi karta. Custom mode sirf linear rules ko support karta hai; actual marks, rounding ya piecewise rules alag se follow karo."
+        },
+        {
+            "question": "Credit-weighted CGPA ka formula kya hai?",
+            "answer": "CGPA = sab semesters ke (GPA × credits) ka sum ÷ total credits. Har GPA selected scale ke andar aur credits zero se zyada hone chahiye."
+        },
+        {
+            "question": "Kya 4-point GPA ko percentage mein badalna official conversion hai?",
+            "answer": "Proportional option GPA ÷ 4 × 100 sirf estimate hai. Official equivalence institution ya receiving organisation decide karti hai."
+        },
+        {
+            "question": "Kya tool official division, honours ya transcript deta hai?",
+            "answer": "Nahi. Tool CGPA, indicative percentage, credits aur copyable summary deta hai. Division, honours aur official transcript apne institution se confirm karo."
+        }
     ]
-  },
+},
   "college-gpa-calculator": {
     "howTo": [
       {

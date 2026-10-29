@@ -29,18 +29,6 @@ const INK_COLORS: Record<InkColor, { label: string; hex: string }> = {
 export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const { t } = useLanguage();
 
-  // On-demand load handwriting fonts
-  useEffect(() => {
-    const fontId = 'zubware-handwriting-fonts';
-    if (!document.getElementById(fontId)) {
-      const link = document.createElement('link');
-      link.id = fontId;
-      link.rel = 'stylesheet';
-      link.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Homemade+Apple&family=Kalam:wght@300;400;700&family=Sacramento&display=swap';
-      document.head.appendChild(link);
-    }
-  }, []);
-
   const [text, setText] = useState(
     'Assignment 1: Quantum Physics Overview\n\nIn physics, a quantum is the minimum amount of any physical entity involved in an interaction. The fundamental notion that a physical property may be "quantized" is referred to as the hypothesis of quantization.\n\nKey Concepts:\n1. Wave-particle duality of matter and radiation\n2. Heisenberg Uncertainty Principle\n3. Planck constant and energy quanta: E = h * f\n\nPlease submit all tutorial problem sets by next Tuesday morning.'
   );
@@ -51,7 +39,39 @@ export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => voi
   const [paperType, setPaperType] = useState<PaperType>('lined');
   const [fontSize, setFontSize] = useState<number>(24);
   const [lineSpacing, setLineSpacing] = useState<number>(36);
-  const [letterSpacing, setLetterSpacing] = useState<number>(1);
+  const [fontStatus, setFontStatus] = useState<'loading' | 'ready' | 'error'>('loading');
+  const [fontRevision, setFontRevision] = useState(0);
+  useEffect(() => {
+    let cancelled = false;
+    setFontStatus('loading');
+    const fontId = 'zubware-handwriting-fonts';
+    let link = document.getElementById(fontId) as HTMLLinkElement | null;
+    const loadFont = async () => {
+      try {
+        const loaded = await document.fonts.load(`24px "${fontFamily}"`);
+        if (!loaded.length) throw new Error('Handwriting font unavailable');
+        if (!cancelled) { clearTimeout(timeout); setFontRevision(n => n + 1); setFontStatus('ready'); }
+      } catch { if (!cancelled) setFontStatus('error'); }
+    };
+    const fail = () => { if (!cancelled) setFontStatus('error'); };
+    if (!link) {
+      link = document.createElement('link');
+      link.id = fontId;
+      link.rel = 'stylesheet';
+      link.href = 'https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Dancing+Script:wght@400;700&family=Homemade+Apple&family=Kalam:wght@300;400;700&family=Sacramento&display=swap';
+      document.head.appendChild(link);
+    }
+    link.addEventListener('load', loadFont);
+    link.addEventListener('error', fail);
+    if (link.sheet) void loadFont();
+    const timeout = window.setTimeout(fail, 20000);
+    return () => {
+      cancelled = true;
+      clearTimeout(timeout);
+      link?.removeEventListener('load', loadFont);
+      link?.removeEventListener('error', fail);
+    };
+  }, [fontFamily]);
   const [naturalJitter, setNaturalJitter] = useState<boolean>(true);
 
   // Pagination
@@ -123,7 +143,7 @@ export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => voi
     }
 
     return pageList;
-  }, [text, fontSize, fontFamily, lineSpacing]);
+  }, [text, fontSize, fontFamily, lineSpacing, fontRevision]);
 
   // Adjust current page if out of bounds
   useEffect(() => {
@@ -268,6 +288,7 @@ export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => voi
 
   return (
     <div className="space-y-6 p-4 sm:p-6">
+      <p role="status" className="text-xs text-slate-600 dark:text-slate-300">{fontStatus === 'loading' ? 'Loading handwriting font…' : fontStatus === 'error' ? 'Handwriting font could not load. Check your connection, then reload this page. The preview may use a fallback font.' : 'Handwriting font ready. Preview and downloads use the same font.'}</p>
       {/* Privacy Notice */}
       <div className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-50 dark:bg-emerald-950/40 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200/60 dark:border-emerald-800/40">
         <ShieldCheck className="w-4 h-4 shrink-0 text-emerald-600 dark:text-emerald-400" />
@@ -450,6 +471,7 @@ export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => voi
               <div className="flex items-center gap-2">
                 <button
                   type="button"
+                  disabled={fontStatus !== 'ready'}
                   onClick={handleDownloadPng}
                   className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-bold flex items-center gap-1.5 cursor-pointer"
                 >
@@ -457,6 +479,7 @@ export const TextToHandwritingTool: React.FC<{ onShowToast: (msg: string) => voi
                 </button>
                 <button
                   type="button"
+                  disabled={fontStatus !== 'ready'}
                   onClick={handleDownloadAllPdf}
                   className="px-4 py-1.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs"
                 >

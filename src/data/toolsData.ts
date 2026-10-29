@@ -6331,22 +6331,22 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "text-to-handwriting",
-    "title": "Text to Handwriting Converter — Create Realistic Handwritten Notes",
+    "title": "Text to Handwriting — Handwritten Notes on Lined Paper",
     "navTitle": "Text to Handwriting",
-    "description": "Convert digital text into realistic handwritten notes on lined or vintage paper online. Choose cursive font styles, ink colors, and export as PDF or PNG.",
+    "description": "Turn typed text into handwritten notes on lined, blank, grid or vintage paper. Choose handwriting fonts and ink colors; download a multi-page PDF or page PNG.",
     "icon": "🖋️",
     "path": "/text-to-handwriting",
     "filename": "text-to-handwriting.html",
     "category": "🖼️ Image Tools",
     "badge": "New",
     "features": [
-      "Multiple Realistic Cursive & Print Handwriting Font Styles",
-      "Authentic Paper Backgrounds (Ruled Lines, Red Margin, Plain, Vintage)",
-      "Custom Ink Colors (Classic Blue Ballpoint, Dark Blue, Black Gel, Red)",
-      "Human-Like Ink Jitter, Line Spacing & Word Slant Adjustments",
-      "Multi-Page Document Auto-Pagination with Header Margins",
-      "Export as High-Resolution Printable PNG Images or Multi-Page PDF"
-    ],
+      "Five handwriting font families",
+      "Lined notebook paper with red margin, blank, grid and vintage backgrounds",
+      "Five ink colors and adjustable font size / line height",
+      "Subtle word baseline variation",
+      "Automatic page breaks for long notes",
+      "Download all pages as A4 PDF or the current page as PNG"
+],
     "tags": [
       "Free",
       "Online",
@@ -8211,20 +8211,20 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   },
   {
     "id": "cgpa-calculator",
-    "title": "CGPA to Percentage Calculator — University Grade Points",
+    "title": "CGPA to Percentage & Percentage to CGPA Calculator",
     "navTitle": "CGPA Calculator",
-    "description": "Convert college and university CGPA or GPA into percentage marks using standard CBSE, Mumbai University, and 10-point scale formulas.",
+    "description": "CGPA se percentage ya percentage se CGPA nikalo. Semester credits se weighted CGPA calculate karo; apne institution ke liye custom linear formula set karo.",
     "icon": "🎓",
     "path": "/cgpa-calculator",
     "filename": "cgpa-calculator.html",
     "category": "💼 Career Tools",
     "features": [
-      "CBSE 9.5x Multiplier",
-      "Semester-by-Semester GPA",
-      "Credit Weight Calculation",
-      "Division & Honors Class",
-      "PDF Transcript Summary"
-    ],
+      "CGPA to percentage aur reverse conversion",
+      "10-point aur 4-point scale",
+      "Custom multiplier aur offset",
+      "Semester-wise credit-weighted CGPA",
+      "Formula, input validation aur copy summary"
+],
     "tags": [
       "Free",
       "Online",

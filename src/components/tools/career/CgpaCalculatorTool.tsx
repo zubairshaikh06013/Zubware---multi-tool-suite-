@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { GraduationCap, Plus, Trash2, Award, Copy, Check, Info } from 'lucide-react';
+import { Plus, Trash2, Copy, Check } from 'lucide-react';
+
+import { convertGrade, weightedCgpa } from '../../../lib/cgpaMath';
 
 interface SemesterRecord {
   id: string;
@@ -20,6 +22,15 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
     { id: '3', name: 'Semester 3', gpa: 9.1, credits: 20 },
     { id: '4', name: 'Semester 4', gpa: 8.4, credits: 22 }
   ]);
+  const [direction, setDirection] = useState<'to-percent' | 'to-cgpa'>('to-percent');
+  const [directValue, setDirectValue] = useState('8.5');
+  const [rule, setRule] = useState('indicative');
+  const [customMultiplier, setCustomMultiplier] = useState('9.5');
+  const [customOffset, setCustomOffset] = useState('0');
+  const multiplier = rule === 'custom' ? Number(customMultiplier) : rule === 'proportion' ? 100 / Number(scale) : 9.5;
+  const offset = rule === 'custom' ? Number(customOffset) : 0;
+  const validRule = (rule !== 'custom' || (customMultiplier.trim() !== '' && customOffset.trim() !== ''));
+  const directResult = directValue.trim() && validRule ? convertGrade(Number(directValue), direction, Number(scale), multiplier, offset) : null;
   const [copied, setCopied] = useState<boolean>(false);
 
   const addSemester = () => {
@@ -51,36 +62,24 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
     );
   };
 
-  // Cumulative GPA = sum(gpa * credits) / sum(credits)
-  const totalCredits = semesters.reduce((acc, s) => acc + (s.credits || 0), 0);
-  const totalWeightedPoints = semesters.reduce((acc, s) => acc + (s.gpa || 0) * (s.credits || 0), 0);
-  const cgpa = totalCredits > 0 ? totalWeightedPoints / totalCredits : 0;
-
-  // Percentage conversion:
-  // For 10.0 scale: CBSE / standard university formula is CGPA * 9.5
-  // For 4.0 scale: (CGPA / 4.0) * 100
-  const percentage = scale === '10.0' ? cgpa * 9.5 : (cgpa / 4.0) * 100;
-
-  // Honors
-  let honors = 'Pass';
-  if (scale === '10.0') {
-    if (cgpa >= 9.0) honors = 'First Class with Distinction (Honours)';
-    else if (cgpa >= 7.5) honors = 'First Class (Distinction)';
-    else if (cgpa >= 6.5) honors = 'Second Class (Upper Division)';
-    else if (cgpa >= 5.0) honors = 'Second Class (Lower Division)';
-  } else {
-    if (cgpa >= 3.8) honors = 'Summa Cum Laude (Highest Honors)';
-    else if (cgpa >= 3.6) honors = 'Magna Cum Laude (High Honors)';
-    else if (cgpa >= 3.4) honors = 'Cum Laude (Honors)';
-    else if (cgpa >= 3.0) honors = 'Dean’s List Standing';
-  }
-
-  const copyResult = () => {
-    const text = `Cumulative CGPA: ${cgpa.toFixed(2)} / ${scale} (${percentage.toFixed(1)}% - ${honors})`;
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-    onShowToast('Copied CGPA calculation!');
-    setTimeout(() => setCopied(false), 2000);
+  const totalCredits = semesters.reduce((sum, row) => sum + row.credits, 0);
+  const cgpa = weightedCgpa(semesters, Number(scale));
+  const percentage = cgpa !== null && validRule ? convertGrade(cgpa, 'to-percent', Number(scale), multiplier, offset) : null;
+  const changeScale = (next: '4.0' | '10.0') => {
+    // Preserve the relative grade when changing scales; never show GPA > maximum.
+    setSemesters(rows => rows.map(row => ({ ...row, gpa: Number((row.gpa * Number(next) / Number(scale)).toFixed(2)) })));
+    setScale(next);
+    setRule(next === '4.0' ? 'proportion' : 'indicative');
+    setDirectValue('');
+  };
+  const copyResult = async () => {
+    if (cgpa === null || percentage === null) return onShowToast('Pehle valid GPA, credits aur formula enter karo.');
+    try {
+      await navigator.clipboard.writeText(`CGPA: ${cgpa === null ? '—' : cgpa.toFixed(2)} / ${scale}; indicative percentage: ${percentage.toFixed(2)}%; formula: CGPA × ${multiplier} + (${offset}); total credits: ${totalCredits}. Verify with your institution.`);
+      setCopied(true);
+      onShowToast('CGPA summary copy ho gayi.');
+      setTimeout(() => setCopied(false), 2000);
+    } catch { onShowToast('Copy nahi hua. Result manually select karke copy karo.'); }
   };
 
   return (
@@ -92,13 +91,13 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
             CGPA Calculator (Cumulative Grade Point Average)
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Calculate your cumulative CGPA, overall percentage conversion, and degree honors across college semesters.
+            Semester GPA aur credits se CGPA nikalo, ya CGPA aur percentage convert karo.
           </p>
         </div>
         <div className="flex items-center gap-2">
           <div className="flex bg-slate-100 dark:bg-slate-800 p-1 rounded-xl">
             <button
-              onClick={() => setScale('10.0')}
+              onClick={() => changeScale('10.0')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 scale === '10.0' ? 'bg-white dark:bg-slate-900 text-indigo-600 shadow-sm' : 'text-slate-500'
               }`}
@@ -106,7 +105,7 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
               10.0 Scale
             </button>
             <button
-              onClick={() => setScale('4.0')}
+              onClick={() => changeScale('4.0')}
               className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
                 scale === '4.0' ? 'bg-white dark:bg-slate-900 text-indigo-600 shadow-sm' : 'text-slate-500'
               }`}
@@ -123,6 +122,35 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
           </button>
         </div>
       </div>
+
+      <section className="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 space-y-4">
+        <h3 className="font-bold">CGPA to Percentage / Percentage to CGPA</h3>
+        <p className="text-sm text-slate-600 dark:text-slate-300">Har university ka formula alag ho sakta hai. Apne course aur batch ka official rule check karo. 9.5 wala rule sab universities par apply nahi hota.</p>
+        <label className="block text-sm">Conversion formula
+          <select aria-label="Conversion formula" value={rule} onChange={e => setRule(e.target.value)} className="block w-full mt-1 p-2 rounded-lg bg-slate-100 dark:bg-slate-800">
+            {scale === '10.0' && <option value="indicative">9.5 × CGPA — legacy CBSE indicative rule</option>}
+            <option value="proportion">CGPA ÷ scale × 100 — proportional estimate</option>
+            <option value="custom">Custom formula — apne institution ka rule</option>
+          </select>
+        </label>
+        {rule === 'custom' && <div className="grid grid-cols-2 gap-3">
+          <label className="text-sm">Multiplier <input aria-label="Formula multiplier" type="number" step="any" value={customMultiplier} onChange={e => setCustomMultiplier(e.target.value)} className="block w-full p-2 rounded-lg bg-slate-100 dark:bg-slate-800" /></label>
+          <label className="text-sm">Offset (+ / −) <input aria-label="Formula offset" type="number" step="any" value={customOffset} onChange={e => setCustomOffset(e.target.value)} className="block w-full p-2 rounded-lg bg-slate-100 dark:bg-slate-800" /></label>
+        </div>}
+        <p className="text-xs">Percentage = CGPA × {multiplier} + ({offset}). Proportional estimate official equivalence nahi hai. Custom mode sirf linear formula ke liye hai.</p>
+        <div className="grid sm:grid-cols-2 gap-3">
+          <label className="text-sm">Convert
+            <select aria-label="Conversion direction" value={direction} onChange={e => { setDirection(e.target.value as typeof direction); setDirectValue(''); }} className="block w-full p-2 rounded-lg bg-slate-100 dark:bg-slate-800">
+              <option value="to-percent">CGPA to Percentage</option><option value="to-cgpa">Percentage to CGPA</option>
+            </select>
+          </label>
+          <label className="text-sm">{direction === 'to-percent' ? `CGPA (0–${scale})` : 'Percentage (0–100)'}
+            <input aria-label="Grade to convert" type="number" step="any" min="0" max={direction === 'to-percent' ? Number(scale) : 100} value={directValue} onChange={e => setDirectValue(e.target.value)} className="block w-full p-2 rounded-lg bg-slate-100 dark:bg-slate-800" />
+          </label>
+        </div>
+        <output aria-live="polite" className="block text-lg font-bold">{directResult === null ? (directValue ? 'Input ya formula check karo — result valid range mein nahi hai.' : 'Apni value enter karo.') : `${directResult.toFixed(2)}${direction === 'to-percent' ? '%' : ` / ${scale} CGPA`}`}</output>
+        <p className="text-xs">Mumbai University ya kisi aur university ke liye latest marksheet / conversion certificate ka rule use karo. Yeh result official certificate nahi hai. <a className="underline" href="https://www.cbse.gov.in/cbsenew/Examination_Circular/2012/9_CIRCULAR.pdf" target="_blank" rel="noopener noreferrer">CBSE ka 2012 indicative conversion reference</a>.</p>
+      </section>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Semester Table */}
@@ -149,6 +177,7 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
                 <div className="col-span-5 sm:col-span-5">
                   <input
                     type="text"
+                    aria-label="Semester name"
                     value={sem.name}
                     onChange={e => updateSemester(sem.id, 'name', e.target.value)}
                     className="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold"
@@ -162,8 +191,9 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
                       min="0"
                       max={scale === '10.0' ? 10 : 4}
                       step="0.01"
-                      value={sem.gpa}
-                      onChange={e => updateSemester(sem.id, 'gpa', Number(e.target.value))}
+                      aria-label={`${sem.name} GPA`}
+                      value={Number.isFinite(sem.gpa) ? sem.gpa : ''}
+                      onChange={e => updateSemester(sem.id, 'gpa', e.target.value === '' ? NaN : Number(e.target.value))}
                       className="w-full px-2 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold font-mono text-center"
                     />
                   </div>
@@ -175,14 +205,16 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
                       type="number"
                       min="1"
                       max="40"
-                      value={sem.credits}
-                      onChange={e => updateSemester(sem.id, 'credits', Number(e.target.value))}
+                      aria-label={`${sem.name} credits`}
+                      value={Number.isFinite(sem.credits) ? sem.credits : ''}
+                      onChange={e => updateSemester(sem.id, 'credits', e.target.value === '' ? NaN : Number(e.target.value))}
                       className="w-full px-2 py-2 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold font-mono text-center"
                     />
                   </div>
                 </div>
                 <div className="col-span-1 text-center">
                   <button
+                    aria-label={`Remove ${sem.name}`}
                     onClick={() => removeSemester(sem.id)}
                     disabled={semesters.length <= 1}
                     className="p-1 text-slate-400 hover:text-rose-500 disabled:opacity-30 cursor-pointer"
@@ -204,26 +236,26 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
 
             <div className="flex items-baseline gap-2">
               <span className="text-5xl font-black font-mono text-slate-900 dark:text-white tracking-tight">
-                {cgpa.toFixed(2)}
+                {cgpa === null ? '—' : cgpa.toFixed(2)}
               </span>
               <span className="text-xs font-bold text-slate-400">/ {scale}</span>
             </div>
 
             <div className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-indigo-500/10 text-indigo-600 dark:text-indigo-400">
-              {honors}
+              Indicative result — institution se verify karo
             </div>
 
             <div className="pt-4 border-t border-slate-200 dark:border-slate-800 space-y-2 text-xs">
               <div className="flex justify-between text-slate-600 dark:text-slate-300">
-                <span>Equivalent Percentage:</span>
+                <span>Indicative Percentage:</span>
                 <span className="font-mono font-bold text-slate-900 dark:text-white">
-                  {percentage.toFixed(1)}%
+                  {percentage === null ? '—' : `${percentage.toFixed(2)}%`}
                 </span>
               </div>
               <div className="flex justify-between text-slate-600 dark:text-slate-300">
                 <span>Total Credits Completed:</span>
                 <span className="font-mono font-bold text-slate-900 dark:text-white">
-                  {totalCredits} credits
+                  {Number.isFinite(totalCredits) ? totalCredits : '—'} credits
                 </span>
               </div>
             </div>

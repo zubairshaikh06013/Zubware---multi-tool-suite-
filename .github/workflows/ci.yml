@@ -40,6 +40,8 @@ jobs:
       - name: Check TypeScript and regressions
         run: |
           npm run lint
+          npm run test:cgpa
+          npm run test:indexnow
           node --import tsx scripts/testSeoRegressions.ts
           node --import tsx scripts/testToolReliability.ts
           node --import tsx scripts/testBackgroundRemovalConfig.ts

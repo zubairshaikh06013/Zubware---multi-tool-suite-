@@ -148,6 +148,9 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Enter your date of birth and the date you need. See your age in years, months and days, total days old, and birthday countdown.
           </p>
+          <p className="text-xs font-semibold text-indigo-700 dark:text-indigo-300 mt-2">
+            Free to use. No signup. Your dates are processed in your browser.
+          </p>
         </div>
 
         <div className="flex items-center gap-2">

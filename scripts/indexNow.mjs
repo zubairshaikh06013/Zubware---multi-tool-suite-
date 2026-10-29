@@ -74,6 +74,24 @@ async function getLive(url) {
   return response;
 }
 
+export async function submitBatch(batch, request = fetch, wait = ms => new Promise(resolve => setTimeout(resolve, ms))) {
+  for (let attempt = 0; attempt < 6; attempt++) {
+    const response = await request('https://api.indexnow.org/indexnow', {
+      method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify({ host: new URL(ORIGIN).hostname, key: KEY, keyLocation: `${ORIGIN}/${KEY}.txt`, urlList: batch }),
+      signal: AbortSignal.timeout(30000),
+    });
+    if ([200, 202].includes(response.status)) return { status: response.status, count: batch.length, attempts: attempt + 1 };
+    const body = await response.text();
+    const transient = (response.status === 403 && body.includes('SiteVerificationNotCompleted')) || response.status === 429 || response.status >= 500;
+    if (!transient || attempt === 5) throw new Error(`IndexNow HTTP ${response.status}: ${body.slice(0, 300)}. State not advanced.`);
+    const retrySeconds = Number(response.headers.get('retry-after'));
+    const delay = Number.isFinite(retrySeconds) && retrySeconds > 0 ? Math.min(60000, Math.max(30000, retrySeconds * 1000)) : 30000;
+    console.log(`IndexNow temporary HTTP ${response.status}; retrying after ${delay / 1000} seconds.`);
+    await wait(delay);
+  }
+}
+
 export async function submitManifest(manifestFile = 'reports/indexnow-manifest.json', stateDir = '.indexnow-state') {
   const current = JSON.parse(await fs.readFile(manifestFile, 'utf8'));
   const stateFile = path.join(stateDir, 'manifest.json');
@@ -93,14 +111,9 @@ export async function submitManifest(manifestFile = 'reports/indexnow-manifest.j
   const report = { revision: current.revision, submittedAt: new Date().toISOString(), urls, responses: [] };
   for (let start = 0; start < urls.length; start += 10000) {
     const batch = urls.slice(start, start + 10000);
-    const response = await fetch('https://api.indexnow.org/indexnow', {
-      method: 'POST', headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      body: JSON.stringify({ host: new URL(ORIGIN).hostname, key: KEY, keyLocation: `${ORIGIN}/${KEY}.txt`, urlList: batch }),
-      signal: AbortSignal.timeout(30000),
-    });
-    report.responses.push({ status: response.status, count: batch.length });
-    if (![200, 202].includes(response.status)) throw new Error(`IndexNow HTTP ${response.status}: ${(await response.text()).slice(0, 300)}. State not advanced.`);
-    console.log(`IndexNow received ${batch.length} URLs (HTTP ${response.status}); indexing remains the search engine's decision.`);
+    const receipt = await submitBatch(batch);
+    report.responses.push(receipt);
+    console.log(`IndexNow received ${batch.length} URLs (HTTP ${receipt.status}); indexing remains the search engine's decision.`);
   }
   await fs.mkdir('reports', { recursive: true });
   await fs.writeFile('reports/indexnow-submission.json', JSON.stringify(report, null, 2) + '\n');

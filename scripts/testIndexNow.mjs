@@ -3,7 +3,21 @@ import { test } from 'node:test';
 import fs from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
-import { changedUrls, submitManifest, ORIGIN } from './indexNow.mjs';
+import { changedUrls, submitManifest, submitBatch, ORIGIN } from './indexNow.mjs';
+
+test('New-key verification, throttling and temporary service errors retry; permanent errors fail', async () => {
+  const statuses = [403, 429, 503, 200];
+  let calls = 0;
+  let waits = 0;
+  const receipt = await submitBatch([`${ORIGIN}/a`], async () => {
+    const status = statuses[calls++];
+    return new Response(status === 403 ? '{"errorCode":"SiteVerificationNotCompleted"}' : '', {status});
+  }, async ms => { assert.equal(ms, 30000); waits++; });
+  assert.equal(receipt.status, 200);
+  assert.equal(calls, 4);
+  assert.equal(waits, 3);
+  await assert.rejects(submitBatch([`${ORIGIN}/a`], async () => new Response('InvalidKey', {status:403}), async () => assert.fail('Invalid key must not retry')), /403/);
+});
 
 test('First submission, unchanged, edited, added and deleted URLs', () => {
   const previous = { pages: { [`${ORIGIN}/a`]: 'a', [`${ORIGIN}/b`]: 'b', [`${ORIGIN}/removed`]: 'r' } };

@@ -23,6 +23,8 @@ const HelpPage = lazy(() => import('./components/pages/HelpPage').then(m => ({ d
 const ChangelogPage = lazy(() => import('./components/pages/ChangelogPage').then(m => ({ default: m.ChangelogPage })));
 const FeedbackPage = lazy(() => import('./components/pages/FeedbackPage').then(m => ({ default: m.FeedbackPage })));
 
+const MarriageBiodataMakerTool = lazy(() => import('./components/tools/MarriageBiodataMakerTool').then(m => ({ default: m.MarriageBiodataMakerTool })));
+
 // Lazy loaded tool components
 const ImageSplitterMergerTool = lazy(() => import('./components/tools/ImageSplitterMergerTool').then(m => ({ default: m.ImageSplitterMergerTool })));
 const BackgroundRemoverTool = lazy(() => import('./components/tools/image/BackgroundRemoverTool').then(m => ({ default: m.BackgroundRemoverTool })));
@@ -681,7 +683,7 @@ export default function App() {
   return (
     <LanguageProvider currentLang={currentLang} onChangeLang={changeLanguage}>
       <AccessibilityWrapper activeModalOpen={searchOpen || shortcutsOpen}>
-        <div className="relative min-h-screen flex flex-col font-sans bg-slate-100/90 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors selection:bg-indigo-600 selection:text-white overflow-x-hidden">
+        <div className={`${activeTool?.id === 'marriage-biodata-maker' ? 'biodata-page ' : ''}relative min-h-screen flex flex-col font-sans bg-slate-100/90 text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors selection:bg-indigo-600 selection:text-white overflow-x-hidden`}>
         
         {/* Skip to Main Content Link for WCAG Accessibility */}
         <a
@@ -1121,6 +1123,7 @@ export default function App() {
                   {activeTool.id === 'lofi-song-maker' && <LofiMusicStudioTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'lofi-maker' && <LofiMakerTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'slowed-and-reverb' && <SlowedAndReverbTool onShowToast={triggerToast} onNavigate={navigateTo} />}
+                  {activeTool.id === 'marriage-biodata-maker' && <MarriageBiodataMakerTool onShowToast={triggerToast} />}
                   {activeTool.id === 'gst-invoice-generator' && <GstInvoiceGeneratorTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'pdf-merge' && <PdfMergeTool onShowToast={triggerToast} />}
                   {activeTool.id === 'pdf-split' && <PdfSplitTool onShowToast={triggerToast} />}

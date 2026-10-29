@@ -6,6 +6,75 @@ import { getToolKeywords } from '../lib/toolKeywords';
 import { getToolCanonicalPath } from '../lib/paths';
 
 const RAW_TOOLS_DATA: ToolMeta[] = [
+{
+  "id": "marriage-biodata-maker",
+  "title": "Free Marriage Biodata Maker — शादी का बायोडाटा बनाएं",
+  "navTitle": "Marriage Biodata Maker",
+  "description": "शादी का बायोडाटा free बनाएं। 6 designs, Hindi/English labels, optional photo, live preview और बिना watermark A4 PDF/PNG download। Login की जरूरत नहीं।",
+  "icon": "💍",
+  "path": "/marriage-biodata-maker",
+  "filename": "marriage-biodata-maker.html",
+  "category": "🎨 Design & Utility Tools",
+  "badge": "New",
+  "features": [
+    "6 free templates और live A4 preview",
+    "हिंदी या English labels",
+    "Photo के साथ या बिना photo",
+    "खाली fields अपने आप छिपें",
+    "बिना watermark PDF और PNG download",
+    "इसी browser में optional saved draft"
+  ],
+  "tags": [
+    "marriage biodata maker",
+    "शादी का बायोडाटा",
+    "free biodata pdf",
+    "muslim marriage biodata",
+    "biodata without photo"
+  ],
+  "trending": false,
+  "featured": true,
+  "editorsPick": false,
+  "howTo": [
+    {
+      "title": "अपनी details भरें",
+      "desc": "नाम, पढ़ाई, काम और परिवार की जानकारी डालें। Photo optional है और खाली fields PDF में नहीं दिखेंगी।"
+    },
+    {
+      "title": "Design और भाषा चुनें",
+      "desc": "6 free designs में से पसंद चुनें। Hindi या English labels रखें; अपनी भरी details का translation अपने आप नहीं होगा।"
+    },
+    {
+      "title": "Preview देखकर download करें",
+      "desc": "नाम, संपर्क और spelling check करें। A4 PDF या PNG download करें। कई pages हों तो PNG files ZIP में मिलेंगी।"
+    }
+  ],
+  "faq": [
+    {
+      "question": "क्या PDF download सच में free है?",
+      "answer": "हाँ। सभी 6 designs, PDF और PNG download free हैं। Login, payment और watermark नहीं है।"
+    },
+    {
+      "question": "क्या बिना फोटो के शादी का बायोडाटा बना सकते हैं?",
+      "answer": "हाँ। फोटो optional है। फोटो न चुनें या फोटो हटाएं दबाएं; preview और download में फोटो का खाली box नहीं आएगा।"
+    },
+    {
+      "question": "क्या Muslim और Hindu marriage biodata बना सकते हैं?",
+      "answer": "हाँ। अपनी पसंद की heading, धर्म और समुदाय भर सकते हैं। सभी fields optional हैं, सिर्फ download के लिए नाम जरूरी है। Neutral biodata के लिए धर्म और समुदाय खाली रखें।"
+    },
+    {
+      "question": "मेरी photo और personal details कहाँ save होती हैं?",
+      "answer": "Tool आपकी details और photo को browser में process करता है, server पर upload नहीं करता। Draft save दबाने पर details और photo इसी browser के local storage में रहती हैं। सब मिटाएं से form और saved draft दोनों मिटते हैं।"
+    },
+    {
+      "question": "क्या लंबे biodata की details कटेंगी?",
+      "answer": "Details जरूरत के मुताबिक अगले A4 page पर जाती हैं। PDF में सभी pages आते हैं और कई PNG pages ZIP में मिलते हैं। Download के बाद हर page देखकर सही जानकारी share करें।"
+    },
+    {
+      "question": "Hindi और English बदलने से details translate होंगी?",
+      "answer": "नहीं। इससे सिर्फ headings और labels बदलते हैं। जो नाम और details आपने लिखीं हैं, वे वैसे ही रहती हैं।"
+    }
+  ]
+},
   {
     "id": "image-splitter-merger",
     "title": "Image Splitter & Combiner — Split or Merge Photos Online",

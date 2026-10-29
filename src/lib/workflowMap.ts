@@ -8,7 +8,8 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'currency-calculator': ['percentage-calculator', 'profit-margin-calculator', 'us-income-tax-calculator'],
   'password-generator': ['passphrase-generator', 'password-strength-checker', 'random-password-generator'],
   // Date calculations belong with dates, not CSS tools in the broad Design category.
-  'age-calculator': ['working-days-calculator', 'countdown-calculator', 'time-zone-converter', 'cat-age-calculator'],
+  'marriage-biodata-maker': ['image-compressor', 'passport-photo-maker', 'age-calculator'],
+  'age-calculator': ['marriage-biodata-maker', 'working-days-calculator', 'countdown-calculator', 'time-zone-converter', 'cat-age-calculator'],
   'countdown-calculator': ['age-calculator', 'working-days-calculator', 'time-zone-converter'],
   'cat-age-calculator': ['age-calculator', 'countdown-calculator'],
   'college-gpa-calculator': ['cgpa-calculator', 'exam-score-calculator', 'percentage-calculator'],
@@ -55,7 +56,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'background-color-changer': ['background-remover', 'passport-photo-maker', 'image-compressor'],
   'heic-to-jpg': ['image-compressor', 'image-converter', 'image-resizer', 'exif-remover'],
   'bulk-image-renamer-resizer': ['image-resizer', 'image-compressor', 'image-converter'],
-  'passport-photo-maker': ['background-remover', 'crop-image', 'image-resizer', 'photo-signature-joiner', 'signature-resizer'],
+  'passport-photo-maker': ['marriage-biodata-maker', 'background-remover', 'crop-image', 'image-resizer', 'photo-signature-joiner', 'signature-resizer'],
   'photo-signature-joiner': ['signature-resizer', 'passport-photo-maker', 'image-compressor', 'background-remover', 'crop-image'],
   'signature-resizer': ['photo-signature-joiner', 'passport-photo-maker', 'image-compressor', 'signature-maker', 'background-color-changer'],
   'image-watermark': ['image-compressor', 'crop-image', 'blur-image', 'pixelate-image'],

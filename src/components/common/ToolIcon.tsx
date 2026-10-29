@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Activity,
+  Heart,
   AlignJustify,
   AlignLeft,
   Anchor,
@@ -285,6 +286,7 @@ const TOOL_CONFIGS: Record<string, { icon: LucideIcon; color: string }> = {
   'slowed-and-reverb': { icon: Sliders, color: 'purple' },
   'audio-cutter': { icon: Scissors, color: 'rose' },
   'audio-speed': { icon: FastForward, color: 'amber' },
+  'marriage-biodata-maker': { icon: Heart, color: 'rose' },
   'gst-invoice-generator': { icon: Receipt, color: 'indigo' },
   'us-income-tax-calculator': { icon: Landmark, color: 'emerald' },
   'sale-price-calculator': { icon: Tag, color: 'rose' },

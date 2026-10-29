@@ -4,6 +4,7 @@ import { ToolMeta } from '../types';
  * Concise wording is an editorial budget, not a guarantee of Google display width.
  */
 export const TOOL_SEO_TITLES: Record<string, string> = {
+  'marriage-biodata-maker': 'Free Marriage Biodata Maker - PDF Download | Zubware',
   // --- Core & Image Tools ---
   'image-splitter-merger': 'Image Splitter & Combiner - Split & Merge Photos | Zubware',
   'learning-licence-mock-test': 'Learning Licence Mock Test - RTO Exam Practice | Zubware',

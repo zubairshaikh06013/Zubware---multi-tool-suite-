@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'Biodata Devanagari';
+  src: url('/fonts/noto-devanagari-regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Biodata Devanagari';
+  src: url('/fonts/noto-devanagari-semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+.biodata-maker { font-family: 'Biodata Devanagari', Arial, sans-serif; }
+
+.biodata-page {
+  --font-sans: 'Plus Jakarta Sans', 'Biodata Devanagari', Arial, sans-serif;
+  font-family: var(--font-sans);
+}

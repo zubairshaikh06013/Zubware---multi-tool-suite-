@@ -1,4 +1,5 @@
 export type ToolId = 
+  | 'marriage-biodata-maker'
   | 'image-splitter-merger'
   | 'background-remover'
   | 'image-compressor' 

@@ -1,3 +1,4 @@
+import '../common/DevanagariText.css';
 import React, { useState } from 'react';
 import { BookOpen, Clock, Calendar, ArrowRight, ShieldCheck, Tag, Sparkles } from 'lucide-react';
 import BLOG_ARTICLES from '../../data/blogCatalog.json';
@@ -41,7 +42,7 @@ export const BlogIndexPage: React.FC<BlogIndexPageProps> = ({ onNavigate }) => {
         breadcrumbs={breadcrumbs}
       />
 
-      <div className="max-w-5xl mx-auto space-y-8 my-8 px-4 sm:px-6">
+      <div className="devanagari-text max-w-5xl mx-auto space-y-8 my-8 px-4 sm:px-6">
         {/* Breadcrumb Navigation */}
         <Breadcrumb items={breadcrumbs} onNavigate={onNavigate} />
 

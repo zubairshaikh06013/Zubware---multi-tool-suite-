@@ -1,3 +1,4 @@
+import '../common/DevanagariText.css';
 import React, { useState, useMemo } from 'react';
 import { marked } from 'marked';
 import DOMPurify from 'dompurify';
@@ -163,7 +164,7 @@ export const BlogPostPage: React.FC<BlogPostPageProps> = ({ article: propArticle
         }}
       />
 
-      <article lang={article.language || 'en'} className="max-w-4xl mx-auto space-y-10 my-8 px-4 sm:px-6">
+      <article lang={article.language || 'en'} className={`${article.language === 'hi' ? 'devanagari-text ' : ''}max-w-4xl mx-auto space-y-10 my-8 px-4 sm:px-6`}>
         {/* Breadcrumb Navigation */}
         <Breadcrumb items={breadcrumbs} onNavigate={onNavigate} />
 

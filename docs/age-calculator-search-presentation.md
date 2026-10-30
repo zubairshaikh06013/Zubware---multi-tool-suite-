@@ -13,7 +13,23 @@ The description flows from `src/data/toolsData.ts` into the prerendered HTML,
 social metadata, structured data and client page. The about paragraph in
 `src/lib/paths.ts` is shared by the generated HTML and client.
 
-## Measurement
+## 30 October 2026: explain age on a selected date
+
+The primary query focus is "age calculator on date", with "age on a specific
+date" as a natural variant on the existing canonical page. Add a personalised
+calculation breakdown below the main result: the birth date, completed calendar
+months and their anniversary, then the remaining days to the reference date.
+Reuse the calculator's birth-anchored anniversary convention, including short
+months and leap-day births. Do not describe it as consecutive year/month
+additions, which can produce a different anchor after a February 29 birthday.
+Invalid dates show no explanation. Dates stay in the browser.
+
+This is a usability improvement, not a confirmed fix for a ranking drop. Keep
+the title, H1, description and canonical stable for this change. Evaluate the
+exact query with US/Desktop segmentation as well as the overall page; do not
+publish private account metrics in this repository.
+
+## Measurement procedure
 
 Keep Search Console exports and actual account metrics private. For this page,
 compare equivalent completed date windows and record the deployment date.

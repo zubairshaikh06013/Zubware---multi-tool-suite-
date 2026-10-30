@@ -1,5 +1,19 @@
 # Age calculator search presentation
 
+## Current state: 31 October 2026 restoration
+
+At the owner's request, restore the Age Calculator presentation from commit
+`40def9f9703671fa923d8a28317e90356deb3230`, before the 28 October search-intent
+experiment. Restore its tool title, SEO title, description, intro, FAQs, worked
+examples and calculator UI. Remove the later personalised breakdown and the
+next-birthday shortcut. Retain the existing canonical URL, calendar-age arithmetic,
+sitewide delivery improvements and other tools. The entries below are historical
+experiments and no longer describe the active page presentation.
+
+This restores code and content, not a specific Google position. The decline
+has not been attributed to a particular deployment. Evaluate equivalent completed
+Search Console windows after recrawl, segmented by query, country and device.
+
 ## 29 October 2026: description experiment
 
 Scope: `/age-calculator`, an English tool for a global audience. Keep the

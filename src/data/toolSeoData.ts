@@ -6118,12 +6118,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
     "answer": "Yes. The calculator compares your birth date with the selected reference date and displays a calendar-based breakdown in years, months, and days. This is different from estimating age by dividing total days by 365."
   },
   {
-    "question": "How do I calculate my age on a specific date?",
-    "answer": "Enter your date of birth, then set Age at Date to the past or future date you need. The reference date must be on or after your birth date. Your age in years, months and days updates automatically. Select Today to return to your current age."
-  },
-  {
-    "question": "How old will I be on my next birthday?",
-    "answer": "Enter your date of birth and select Next birthday from today. The shortcut uses the birthday on or after today, including today if it is your birthday. Read the completed years in the result. February 29 birthdays use February 28 in non-leap years in this calculator."
+    "question": "How do I calculate my age till date or on a past or future date?",
+    "answer": "Yes. Change the reference date to a date after your birth date. You can use this to check your age at a past milestone or on a future date."
   },
   {
     "question": "How do I calculate age for an exam cutoff date?",

@@ -27,7 +27,7 @@ try {
       }).observe({type:'layout-shift',buffered:true});
     });
     await page.goto('http://127.0.0.1:4173/age-calculator',{waitUntil:'domcontentloaded'});
-    await page.waitForFunction(()=>document.body.textContent.includes('Calculate Age on Any Date'));
+    await page.waitForSelector('#age-birth-date', {visible:true});
     const before=await page.evaluate(()=>({height:document.querySelector('h1').getBoundingClientRect().height,top:document.querySelector('main .glass-panel').getBoundingClientRect().top}));
     // Capture geometry while the delayed font request is still held.
     if (slow) {

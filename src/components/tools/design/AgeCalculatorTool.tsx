@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { calendarAge, calendarDay, nextCalendarBirthday, parseCalendarDate } from '../../../lib/calendarAge';
+import { AgeCalculationBreakdown } from './AgeCalculationBreakdown';
 import { 
   Calendar, 
   Clock, 
@@ -290,6 +291,8 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
               You were born on a <span className="font-bold text-slate-900 dark:text-white">{result.birthDayOfWeek}</span>.
             </p>
           </div>
+
+          <AgeCalculationBreakdown birthDate={dob} referenceDate={targetDate} />
 
           <p className="text-xs text-slate-600 dark:text-slate-400">
             Months and weeks below are completed units, with the remaining days shown separately. Hours, minutes and seconds use 24 hours per calendar day; they do not account for your birth time or daylight-saving clock changes.

@@ -1,4 +1,7 @@
 import assert from 'node:assert/strict';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { AgeCalculationBreakdown } from '../src/components/tools/design/AgeCalculationBreakdown';
 import { hasNoindexRobotsMeta, extractCanonicalHrefs, extractNamedMetaContent } from './validateSeoBuild';
 import { calendarAge, calendarAnniversary, nextCalendarBirthday } from '../src/lib/calendarAge';
 import { formatSubtitleTimestamp } from '../src/lib/subtitleTiming';
@@ -27,6 +30,21 @@ assert.deepEqual(extractNamedMetaContent('<meta name="keywords" content="no desc
 assert.equal(hasNoindexRobotsMeta('<meta content="index, follow" name="robots">'), false);
 
 const date = (value: string) => new Date(`${value}T00:00:00`);
+// Verify the explanation users see, especially the original-birth-date month anchor.
+for (const [birthDate, referenceDate, anchor, summary] of [
+  ['1997-05-13', '2026-12-31', '2026-12-13', '29 years, 7 months, 18 days'],
+  ['2000-01-31', '2026-03-01', '2026-02-28', '26 years, 1 month, 1 day'],
+  ['2024-02-29', '2025-03-28', '2025-02-28', '1 year, 0 months, 28 days'],
+  ['2000-01-01', '2000-01-01', '2000-01-01', '0 years, 0 months, 0 days'],
+] as const) {
+  const html = renderToStaticMarkup(createElement(AgeCalculationBreakdown, { birthDate, referenceDate }));
+  assert.ok(html.includes(`dateTime="${anchor}"`), `Explanation must show anniversary ${anchor}`);
+  assert.ok(html.includes(`${summary}.`), `Explanation must show ${summary}`);
+  assert.ok(html.includes(`dateTime="${referenceDate}"`), 'Explanation must identify the selected reference date');
+}
+for (const [birthDate, referenceDate] of [['', '2026-01-01'], ['2025-02-29', '2026-01-01'], ['2026-01-02', '2026-01-01']]) {
+  assert.equal(renderToStaticMarkup(createElement(AgeCalculationBreakdown, { birthDate, referenceDate })), '', 'Invalid dates must not show a stale explanation');
+}
 for (const [birth, target, expected] of [
   ['2000-01-31', '2026-03-01', [26, 1, 1]],
   ['2000-01-01', '2025-01-01', [25, 0, 0]],

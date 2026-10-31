@@ -40,3 +40,9 @@
 /fonts/*.woff2
   Cache-Control: public, max-age=31536000, immutable
   X-Robots-Tag: noindex
+
+# Public Nastaliq font used by the shared invitation renderer.
+/fonts/noto-nastaliq-urdu.woff2
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=86400
+  X-Robots-Tag: noindex

@@ -7,6 +7,94 @@ import { getToolCanonicalPath } from '../lib/paths';
 
 const RAW_TOOLS_DATA: ToolMeta[] = [
 {
+  "id": "wedding-invitation-maker",
+  "title": "Free Wedding Invitation Card Maker — शादी का निमंत्रण बनाएं",
+  "navTitle": "Wedding Invitation Maker",
+  "description": "6 free designs में शादी का invitation बनाएं। Hindi/English, live preview, animated guest link, photo, music और बिना watermark PNG/PDF download। RSVP की जरूरत नहीं।",
+  "icon": "💌",
+  "path": "/wedding-invitation-maker",
+  "filename": "wedding-invitation-maker.html",
+  "category": "🎨 Design & Utility Tools",
+  "badge": "New",
+  "features": [
+    "6 original designs: royal, floral, Islamic, mandap, ivory और photo",
+    "Hindi/English labels और ready invitation message",
+    "6 तक कार्यक्रम: तारीख, समय, venue और Google Maps",
+    "Animated opening, date reveal और countdown",
+    "बिना watermark PNG, PDF और animated HTML download",
+    "Free guest link: update, unpublish और private backup"
+  ],
+  "tags": [
+    "wedding invitation card maker",
+    "free wedding invitation maker",
+    "शादी का कार्ड",
+    "marriage invitation",
+    "nikah invitation",
+    "WhatsApp wedding invitation",
+    "Hindi wedding invitation"
+  ],
+  "howTo": [
+    {
+      "title": "Design चुनें",
+      "desc": "Royal Maroon, Ivory Gold, Floral Pink, Islamic Emerald, Traditional Mandap या Modern Photo चुनें। नाम और details बदलने से पहले sample को देख सकते हैं।"
+    },
+    {
+      "title": "अपनी details भरें",
+      "desc": "दुल्हन-दूल्हे और परिवार के नाम, message, तारीख, समय और venue भरें। हर कार्यक्रम का अपना address रखें और सही time zone चुनें। Photo optional है।"
+    },
+    {
+      "title": "Preview और download",
+      "desc": "Live preview में scroll करें और animated preview में opening देखें। PNG/PDF में details check करें; animation और music के लिए HTML या guest link इस्तेमाल करें।"
+    },
+    {
+      "title": "Guest link बनाएं",
+      "desc": "Publishing checkbox चुनकर guest link बनाएं। Details और photo Cloudflare पर save होती हैं ताकि guests खोल सकें। Private backup अपने पास रखें; इसी browser से update या unpublish करें।"
+    }
+  ],
+  "faq": [
+    {
+      "question": "क्या wedding invitation maker free है?",
+      "answer": "हाँ। सभी 6 designs, PNG/PDF/HTML download और guest link free हैं। PNG और PDF पर watermark नहीं लगता। Guest page में छोटा Made with love on Zubware footer link है। Login या payment नहीं चाहिए।"
+    },
+    {
+      "question": "क्या यह सिर्फ image card बनाता है या animated invitation भी?",
+      "answer": "दोनों। PNG और PDF स्थिर cards हैं। Guest link और HTML में tap-to-open, date reveal, countdown, optional built-in music और venue map links मिलते हैं। PDF card की लंबाई content के अनुसार होती है; यह तय A4 print layout नहीं है।"
+    },
+    {
+      "question": "क्या invitation में RSVP है?",
+      "answer": "नहीं। यह सरल wedding invitation maker है। Guest को reply form, login या app install करने की जरूरत नहीं है।"
+    },
+    {
+      "question": "क्या Hindi और English invitation बना सकते हैं?",
+      "answer": "हाँ। Labels और default wording के लिए Hindi या English चुनें। अपने keyboard से दूसरी भाषा में भी नाम और message लिख सकते हैं। आपके लिखे हुए text का automatic translation नहीं होता।"
+    },
+    {
+      "question": "मेरी photo और details कहाँ save होती हैं?",
+      "answer": "Editing और download browser में होते हैं। Draft save करने पर details इसी browser में रहती हैं। Guest link publish करने पर details और compressed photo Cloudflare पर save होती हैं। Link रखने वाला कोई भी इन्हें देख सकता है।"
+    },
+    {
+      "question": "Guest link कब तक काम करेगा?",
+      "answer": "आखिरी कार्यक्रम के 90 दिन बाद invitation अपने आप expire होता है; publish/update से अधिकतम एक साल। Link बंद करने के लिए Unpublish करें। बदलाव और unpublish सभी जगह दिखने में लगभग एक मिनट लग सकता है।"
+    },
+    {
+      "question": "भेजे हुए invitation में नाम या तारीख बदल सकते हैं?",
+      "answer": "हाँ। उसी browser में saved draft खोलें या अपना private backup import करें। Details बदलकर इसी link पर update publish करें। Private backup में edit key है, इसलिए इसे guests को share न करें। Backup खोने और browser data मिटने पर पुराना link edit नहीं कर पाएंगे।"
+    },
+    {
+      "question": "Photo कैसे जोड़ें और music कैसे चलता है?",
+      "answer": "Visible Photo जोड़ें button से JPG, PNG या WebP चुनें, 10 MB तक। Photo छोटी करके invitation में आती है। Optional music built-in instrumental tune है, जिसे guest button दबाकर बजाता है। अपना song upload या MP4 export अभी नहीं है।"
+    },
+    {
+      "question": "कितने कार्यक्रम जोड़ सकते हैं?",
+      "answer": "6 तक कार्यक्रम जोड़ सकते हैं, जैसे Mehendi, Haldi, Sangeet, Nikah, Wedding और Walima या Reception। हर कार्यक्रम का नाम, तारीख, समय और venue भरें। शादी या Nikah नाम वाला कार्यक्रम मुख्य date के लिए चुना जाता है; ऐसा नाम न हो तो पहला कार्यक्रम।"
+    },
+    {
+      "question": "क्या इसे बिना internet खोल सकते हैं?",
+      "answer": "Downloaded animated HTML अपने browser में offline खोली जा सकती है। Map link खोलने और published invitation पहली बार खोलने के लिए internet चाहिए। PNG और PDF download के बाद offline देख सकते हैं।"
+    }
+  ]
+},
+{
   "id": "marriage-biodata-maker",
   "title": "Free Marriage Biodata Maker Online — शादी का बायोडाटा बनाएं",
   "navTitle": "Marriage Biodata Maker",

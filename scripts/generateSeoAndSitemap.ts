@@ -110,7 +110,7 @@ const STATIC_PAGES: StaticPageMeta[] = [
   {
     filename: 'privacy.html',
     title: 'Privacy Policy — Zubware',
-    description: 'Read the Zubware Privacy Policy. Local tools process files on-device; optional Smart AI background removal uploads photos to Cloudflare only after consent.'
+    description: 'Read how Zubware handles local processing, optional online background removal, published wedding invitations, browser drafts and website requests.'
   },
   {
     filename: 'terms.html',
@@ -971,6 +971,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
       specificBody = `
         <p>Last reviewed: ${SITE_REVIEW_DATE}</p>
         <section><h2>Local Tool Processing</h2><p>Local utilities process files in your browser without uploading them to Zubware servers. Network tools connect to the endpoints you specify. Optional Subtitle Generator dictation may send microphone audio to your browser’s speech service after you choose that feature and grant permission.</p></section>
+        <section><h2>Published Wedding Invitations</h2><p>${escapeHtml(PRIVACY_NOTES.invitations)}</p></section>
         <section><h2>Browser Storage</h2><p>Preferences and some drafts or histories are saved in localStorage or IndexedDB on your device. Clearing site data may remove them. Local drafts are not synchronized to a Zubware account.</p></section>
         <section><h2>Website Requests, Measurement and Advertising</h2><p>${escapeHtml(PRIVACY_NOTES.analytics)}</p><p>${escapeHtml(PRIVACY_NOTES.hosting)}</p><p>${escapeHtml(PRIVACY_NOTES.advertising)}</p><p><a href="https://policies.google.com/privacy">Google privacy information</a> · <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy information</a></p></section>
         <section><h2>Contact Messages and Privacy Controls</h2><p>${escapeHtml(PRIVACY_NOTES.contact)}</p><p>${escapeHtml(PRIVACY_NOTES.controls)}</p><p>Contact Zubair Shaikh: <a href="mailto:zubairshaikh06013@gmail.com">zubairshaikh06013@gmail.com</a></p></section>`;

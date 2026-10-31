@@ -67,6 +67,8 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
           </p>
         </section>
 
+        <section className="space-y-3"><h2 className="text-base font-extrabold text-slate-900 dark:text-white">Published Wedding Invitations</h2><p>{PRIVACY_NOTES.invitations}</p></section>
+
         <section className="space-y-3">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white flex items-center gap-2">
             <Cookie className="w-4 h-4 text-indigo-600" /> 2. Browser Storage & Local State
@@ -79,7 +81,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             <li><strong>User-Created Data:</strong> Several tools save user-created drafts and work-in-progress locally on your device for your convenience, including resume versions and templates, encrypted notes, productivity planner items, calculation histories, prompt histories, GST invoice drafts, and generated QR/barcode history.</li>
           </ul>
           <p>
-            This data remains stored exclusively on your device until you manually clear it, delete browser data, or reset the respective tool. Zubware servers never receive or sync your locally stored drafts.
+            This data remains stored exclusively on your device until you manually clear it, delete browser data, or reset the respective tool. Locally saved drafts are not automatically synced. If you explicitly publish a wedding invitation, a separate online copy is saved as described above.
           </p>
         </section>
 

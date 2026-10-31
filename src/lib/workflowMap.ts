@@ -8,7 +8,8 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'currency-calculator': ['percentage-calculator', 'profit-margin-calculator', 'us-income-tax-calculator'],
   'password-generator': ['passphrase-generator', 'password-strength-checker', 'random-password-generator'],
   // Date calculations belong with dates, not CSS tools in the broad Design category.
-  'marriage-biodata-maker': ['image-compressor', 'passport-photo-maker', 'age-calculator', 'image-to-pdf'],
+  'wedding-invitation-maker': ['marriage-biodata-maker', 'qr-generator', 'image-compressor', 'countdown-calculator'],
+  'marriage-biodata-maker': ['wedding-invitation-maker', 'image-compressor', 'passport-photo-maker', 'age-calculator', 'image-to-pdf'],
   'age-calculator': ['marriage-biodata-maker', 'working-days-calculator', 'countdown-calculator', 'time-zone-converter', 'cat-age-calculator'],
   'countdown-calculator': ['age-calculator', 'working-days-calculator', 'time-zone-converter'],
   'cat-age-calculator': ['age-calculator', 'countdown-calculator'],

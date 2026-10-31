@@ -1828,6 +1828,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
             {relatedTools.map((relTool) => (
               <a
                 key={relTool.id}
+                aria-label={`Open ${relTool.title}`}
                 href={getLinkUrl(relTool.path)}
                 onClick={(e) => {
                   e.preventDefault();

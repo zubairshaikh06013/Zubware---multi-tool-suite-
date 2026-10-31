@@ -10,7 +10,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   "id": "wedding-invitation-maker",
   "title": "Free Wedding Invitation Card Maker — शादी का निमंत्रण बनाएं",
   "navTitle": "Wedding Invitation Maker",
-  "description": "6 free designs में शादी का invitation बनाएं। Hindi/English, live preview, animated guest link, photo, music और बिना watermark PNG/PDF download। RSVP की जरूरत नहीं।",
+  "description": "6 free designs में शादी का invitation बनाएं। Hindi/English और Urdu, अपना design upload, बेहतर animation, guest link, photo, music और बिना watermark PNG/PDF download। RSVP की जरूरत नहीं।",
   "icon": "💌",
   "path": "/wedding-invitation-maker",
   "filename": "wedding-invitation-maker.html",
@@ -18,9 +18,9 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   "badge": "New",
   "features": [
     "6 original designs: royal, floral, Islamic, mandap, ivory और photo",
-    "Hindi/English labels और ready invitation message",
+    "पूरा Hindi/English editor और optional Hindi + Urdu / English + Urdu",
     "6 तक कार्यक्रम: तारीख, समय, venue और Google Maps",
-    "Animated opening, date reveal और countdown",
+    "Custom artwork, रंग, font, opening और चलती पंखुड़ियां",
     "बिना watermark PNG, PDF और animated HTML download",
     "Free guest link: update, unpublish और private backup"
   ],
@@ -36,7 +36,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   "howTo": [
     {
       "title": "Design चुनें",
-      "desc": "Royal Maroon, Ivory Gold, Floral Pink, Islamic Emerald, Traditional Mandap या Modern Photo चुनें। नाम और details बदलने से पहले sample को देख सकते हैं।"
+      "desc": "Royal Maroon, Ivory Gold, Floral Pink, Islamic Emerald, Traditional Mandap या Modern Photo चुनें। या अपनी background / तैयार card upload करें। रंग, font, size, opening और particles बदल सकते हैं।"
     },
     {
       "title": "अपनी details भरें",
@@ -66,11 +66,11 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     },
     {
       "question": "क्या Hindi और English invitation बना सकते हैं?",
-      "answer": "हाँ। Labels और default wording के लिए Hindi या English चुनें। अपने keyboard से दूसरी भाषा में भी नाम और message लिख सकते हैं। आपके लिखे हुए text का automatic translation नहीं होता।"
+      "answer": "हाँ। पूरा editor और sample wording Hindi या English में रखें। Urdu toggle से Nastaliq font वाले अलग RTL fields भी जोड़ें। अपने keyboard से दूसरी भाषा में भी नाम और message लिख सकते हैं। आपके लिखे हुए text का automatic translation नहीं होता।"
     },
     {
       "question": "मेरी photo और details कहाँ save होती हैं?",
-      "answer": "Editing और download browser में होते हैं। Draft save करने पर details इसी browser में रहती हैं। Guest link publish करने पर details और compressed photo Cloudflare पर save होती हैं। Link रखने वाला कोई भी इन्हें देख सकता है।"
+      "answer": "Editing और download browser में होते हैं। Draft save करने पर details इसी browser में रहती हैं। Guest link publish करने पर details और compressed photos / artwork Cloudflare पर save होती हैं। Link रखने वाला कोई भी इन्हें देख सकता है।"
     },
     {
       "question": "Guest link कब तक काम करेगा?",
@@ -82,7 +82,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     },
     {
       "question": "Photo कैसे जोड़ें और music कैसे चलता है?",
-      "answer": "Visible Photo जोड़ें button से JPG, PNG या WebP चुनें, 10 MB तक। Photo छोटी करके invitation में आती है। Optional music built-in instrumental tune है, जिसे guest button दबाकर बजाता है। अपना song upload या MP4 export अभी नहीं है।"
+      "answer": "Visible Photo जोड़ें button से JPG, PNG या WebP चुनें, 12 MB तक। Photo छोटी करके invitation में आती है। Optional music built-in instrumental tune है, जिसे guest button दबाकर बजाता है। अपना song upload या MP4 export अभी नहीं है।"
     },
     {
       "question": "कितने कार्यक्रम जोड़ सकते हैं?",

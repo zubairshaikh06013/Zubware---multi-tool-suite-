@@ -1,6 +1,6 @@
 # Wedding invitations
 
-The `/wedding-invitation-maker` editor renders six original HTML/CSS/SVG designs, including Hindi/English wording, optional compressed photo, a built-in instrumental tune, up to six events, PNG/PDF/HTML exports and local drafts. No RSVP, payments, tracking pixels or login are added to guest invitations.
+The `/wedding-invitation-maker` editor renders six original HTML/CSS/SVG designs, including complete Hindi/English editing, optional bilingual Urdu with a bundled SIL OFL Nastaliq font, compressed photos and custom artwork (background or finished card), configurable colours, typography, opening scenes and particles, a built-in instrumental tune, up to six events, PNG/PDF/HTML exports and local drafts. No RSVP, payments, tracking pixels or login are added to guest invitations.
 
 ## Publishing
 
@@ -12,7 +12,7 @@ The deployed Worker is `zubware-invitations.zubairshaikh06013.workers.dev`. It u
 - `GET /i/:id` returns the escaped, self-contained guest HTML with noindex, no-store, a restricted CSP and no-referrer. `GET /api/invitations/:id` returns only public invitation data and expiry, never the key/hash.
 - Publishing is explicit; the editor first displays a public-sharing checkbox. Draft and private backup contain the edit key. Losing both means the original record cannot be edited from the maker.
 - Stored records expire 90 days after the last function, capped at 366 days from creation/update, with a minimum one-day lifetime for past events. KV propagation can take approximately a minute; the UI explains this.
-- Requests are capped at 200,000 bytes; only bounded fields and inline JPEG/PNG/WebP images are accepted. Uploads are locally re-encoded to strip metadata and keep the photo under 180,000 characters.
+- Requests are capped at 600,000 bytes; only bounded fields and inline JPEG/PNG/WebP images are accepted. Uploads are locally re-encoded to strip metadata and keep the photo under 180,000 characters.
 - Cloudflare rate-limit bindings cap writes at five/minute and reads at 120/minute per IP/location. These are abuse controls, not a guaranteed global quota. Free-tier KV/Workers allowances still apply; exhaustion returns a recoverable publishing error while local exports remain available.
 - No personal inputs or edit keys are logged by application code. Cloudflare infrastructure can retain request metadata according to its own settings and policies.
 

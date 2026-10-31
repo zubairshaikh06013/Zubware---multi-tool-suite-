@@ -1,3 +1,4 @@
+import { WEDDING_ENGLISH_METADATA } from './data/weddingInvitationEnglish';
 import React, { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { GstInvoiceIntro } from './components/seo/GstInvoiceIntro';
@@ -414,6 +415,8 @@ export default function App() {
 
   // Render immediately with English; switch only after the chosen dictionary is ready.
   const [currentLang, setCurrentLang] = useState<LanguageCode>('en');
+  const [weddingLanguage, setWeddingLanguage] = useState<'hi'|'en'>('hi');
+  useEffect(() => { const changed = (event: Event) => setWeddingLanguage((event as CustomEvent).detail === 'en' ? 'en' : 'hi'); window.addEventListener('zubware:wedding-language', changed); return () => window.removeEventListener('zubware:wedding-language', changed); }, []);
   const languageRequest = useRef(0);
 
   // Dark Mode state
@@ -475,7 +478,7 @@ export default function App() {
   // Find tool metadata for current page
   const cleanCurrentPath = currentPath.replace(/\/$/, '');
   const pathSegment = cleanCurrentPath.split('/').pop() || '';
-  const activeTool = useMemo(() => {
+  const matchedTool = useMemo(() => {
     // 1. Direct match on tool path or exact root-prefixed filename
     const directMatch = translatedTools.find((t) => {
       if (t.path === currentPath || t.path === cleanCurrentPath) return true;
@@ -506,6 +509,8 @@ export default function App() {
       return false;
     });
   }, [translatedTools, currentPath, cleanCurrentPath, pathSegment]);
+  const activeTool = useMemo(() => matchedTool?.id === 'wedding-invitation-maker' && weddingLanguage === 'en' ? { ...matchedTool, ...WEDDING_ENGLISH_METADATA } : matchedTool, [matchedTool, weddingLanguage]);
+  const toolPageTools = useMemo(() => activeTool?.id === 'wedding-invitation-maker' && weddingLanguage === 'en' ? translatedTools.map(tool => tool.id === 'marriage-biodata-maker' ? { ...tool, title: 'Free Marriage Biodata Maker', description: 'Create a marriage biodata with six free templates, a photo and PDF/PNG downloads.' } : tool) : translatedTools, [translatedTools, activeTool?.id, weddingLanguage]);
 
   // Global Keyboard Shortcuts (Ctrl+K, Ctrl+D, Ctrl+/, Esc)
   useEffect(() => {
@@ -1411,14 +1416,14 @@ export default function App() {
               {/* TOOL RECOMMENDATIONS */}
               <ToolRecommendations
                 currentTool={activeTool}
-                allTools={translatedTools}
+                allTools={toolPageTools}
                 onNavigate={navigateTo}
               />
 
               {/* RICH CRAWLABLE AEO & SEO CONTENT MODULE */}
               <ToolErrorBoundary toolTitle={`${activeTool.title} Guide`} onReset={() => window.location.reload()}>
                 <Suspense fallback={<LoadingFallback />}>
-                  <ToolSEOContent tool={activeTool} allTools={translatedTools} onNavigate={navigateTo} />
+                  <ToolSEOContent tool={activeTool} allTools={toolPageTools} onNavigate={navigateTo} />
                 </Suspense>
               </ToolErrorBoundary>
             </div>
@@ -1445,7 +1450,7 @@ export default function App() {
 
         {/* Offline & PWA Install Banner */}
         <Suspense fallback={null}>
-          <InstallBanner />
+          {activeTool?.id !== 'wedding-invitation-maker' && <InstallBanner />}
         </Suspense>
 
         {/* Footer */}

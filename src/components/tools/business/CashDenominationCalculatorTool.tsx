@@ -41,28 +41,52 @@ export const CashDenominationCalculatorTool: React.FC<{ onShowToast: (message: s
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a'); a.href = url; a.download = 'zubware-cash-denomination.txt'; document.body.appendChild(a); a.click(); a.remove(); window.setTimeout(() => URL.revokeObjectURL(url), 1000);
   };
-  const printSummary = () => {
+  const printSummary = async () => {
     if (!valid) return;
-    const escapeHtml = (value: string) => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    const tableRows = rows.filter(row => row.count > 0).map(row =>
-      '<tr><td>₹' + row.value + '</td><td>' + row.count.toLocaleString('en-IN') + '</td><td>' + escapeHtml(formatINR(row.amount)) + '</td></tr>'
-    ).join('');
-    const html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cash Denomination Summary - Zubware</title><style>body{font:16px Arial,sans-serif;max-width:720px;margin:30px auto;padding:0 16px;color:#111}h1{font-size:24px}table{width:100%;border-collapse:collapse}th,td{padding:12px;border:1px solid #ccc;text-align:left}th:last-child,td:last-child{text-align:right}.total{font-size:22px;font-weight:bold;margin-top:20px}.actions{margin-bottom:24px}button{padding:12px 18px;font-size:16px;cursor:pointer}@media print{.actions{display:none}body{margin:0}}</style></head><body><div class="actions"><button type="button" onclick="window.print()">Print / Save as PDF</button><p>If the print dialog does not appear, use your browser menu → Share → Print.</p></div><h1>Cash Denomination Summary</h1><p>Prepared with Zubware</p><table><thead><tr><th>Note / Coin</th><th>Quantity</th><th>Amount</th></tr></thead><tbody>' + tableRows + '</tbody></table><p>Total notes & coins: ' + pieces.toLocaleString('en-IN') + '</p><p class="total">Total cash: ' + escapeHtml(formatINR(total)) + '</p><p>' + escapeHtml(amountInWords(total)) + '</p></body></html>';
-    const popup = window.open('', '_blank');
-    if (popup) {
-      popup.document.open();
-      popup.document.write(html);
-      popup.document.close();
-      popup.focus();
-      onShowToast('Printable summary opened. Tap Print / Save as PDF.');
-    } else {
-      const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url; link.download = 'zubware-cash-print.html';
-      document.body.appendChild(link); link.click(); link.remove();
-      window.setTimeout(() => URL.revokeObjectURL(url), 1000);
-      onShowToast('Browser blocked the print tab. Open the downloaded HTML file and print from Chrome.');
+    try {
+      const { jsPDF } = await import('jspdf');
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+      const money = (n: number) => 'Rs. ' + n.toLocaleString('en-IN');
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(19);
+      pdf.text('Cash Denomination Summary', 16, 22);
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(10);
+      pdf.text('Prepared with Zubware | zubware.com', 16, 30);
+      pdf.setDrawColor(190);
+      pdf.line(16, 35, 194, 35);
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(11);
+      pdf.text('Note / Coin', 18, 45);
+      pdf.text('Quantity', 94, 45);
+      pdf.text('Amount', 192, 45, { align: 'right' });
+      pdf.line(16, 48, 194, 48);
+      pdf.setFont('helvetica', 'normal');
+      let y = 57;
+      for (const row of rows) {
+        pdf.text(money(row.value), 18, y);
+        pdf.text(row.count.toLocaleString('en-IN'), 94, y);
+        pdf.text(money(row.amount), 192, y, { align: 'right' });
+        y += 10;
+        pdf.setDrawColor(235);
+        pdf.line(16, y - 5, 194, y - 5);
+      }
+      y += 9;
+      pdf.setFontSize(11);
+      pdf.text('Total notes and coins: ' + pieces.toLocaleString('en-IN'), 18, y);
+      y += 12;
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(16);
+      pdf.text('Total cash: ' + money(total), 18, y);
+      y += 10;
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(11);
+      const words = pdf.splitTextToSize(amountInWords(total), 174);
+      pdf.text(words, 18, y);
+      pdf.save('zubware-cash-denomination-print.pdf');
+      onShowToast('A4 PDF downloaded. Open it to print or share.');
+    } catch {
+      onShowToast('Could not create PDF. Please try again in Chrome.');
     }
   };
   return <div className="space-y-6 p-4 sm:p-8">
@@ -75,7 +99,7 @@ export const CashDenominationCalculatorTool: React.FC<{ onShowToast: (message: s
     <div className="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700"><table className="w-full text-left text-sm"><thead className="bg-slate-100 dark:bg-slate-800"><tr><th className="p-3">Note / Coin</th><th className="p-3">Quantity</th><th className="p-3 text-right">Amount</th></tr></thead><tbody>{rows.map(row => <tr key={row.value} className="border-t border-slate-200 dark:border-slate-700"><th className="p-3 font-semibold">₹{row.value}</th><td className="p-2"><input aria-label={'Quantity of ₹' + row.value} inputMode="numeric" type="number" min="0" step="1" value={counts[row.value] ?? ''} placeholder="0" onChange={e => setCounts(prev => ({ ...prev, [row.value]: e.target.value }))} className="w-28 max-w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-900 dark:border-slate-600 dark:bg-slate-900 dark:text-white" /></td><td className="p-3 text-right font-medium">{Number.isSafeInteger(row.amount) && row.amount >= 0 ? formatINR(row.amount) : '—'}</td></tr>)}</tbody></table></div>
     {!valid && <p role="alert" className="text-red-600">Enter whole, non-negative quantities. Maximum total supported is ₹99,99,99,999.</p>}
     <section className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800"><h3 className="font-bold">Amount in words</h3><output aria-live="polite" className="mt-2 block break-words">{valid ? amountInWords(total) : 'Please correct the quantities'}</output></section>
-    <div className="flex flex-wrap gap-3"><button type="button" onClick={copy} disabled={!valid} className="flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white disabled:opacity-50"><Copy size={16}/>{copied ? 'Copied' : 'Copy summary'}</button><button type="button" onClick={download} disabled={!valid} className="flex items-center gap-2 rounded-xl border px-4 py-3 disabled:opacity-50"><Download size={16}/>Download TXT</button><button type="button" onClick={printSummary} disabled={!valid} className="flex items-center gap-2 rounded-xl border px-4 py-3 disabled:opacity-50"><Printer size={16}/>Print</button><button type="button" onClick={() => setCounts({})} className="flex items-center gap-2 rounded-xl border px-4 py-3"><RotateCcw size={16}/>Reset</button></div>
+    <div className="flex flex-wrap gap-3"><button type="button" onClick={copy} disabled={!valid} className="flex items-center gap-2 rounded-xl bg-indigo-600 px-4 py-3 font-semibold text-white disabled:opacity-50"><Copy size={16}/>{copied ? 'Copied' : 'Copy summary'}</button><button type="button" onClick={download} disabled={!valid} className="flex items-center gap-2 rounded-xl border px-4 py-3 disabled:opacity-50"><Download size={16}/>Download TXT</button><button type="button" onClick={printSummary} disabled={!valid} className="flex items-center gap-2 rounded-xl border px-4 py-3 disabled:opacity-50"><Printer size={16}/>Print / Save PDF</button><button type="button" onClick={() => setCounts({})} className="flex items-center gap-2 rounded-xl border px-4 py-3"><RotateCcw size={16}/>Reset</button></div>
     <section className="space-y-3 text-sm text-slate-600 dark:text-slate-300"><h3 className="text-lg font-bold text-slate-900 dark:text-white">How to use the cash denomination calculator</h3><p>Enter how many notes or coins you have for each denomination. The calculator multiplies each count by its rupee value and adds the results automatically. Copy, download or print your total for cash reconciliation.</p><h3 className="font-bold">Frequently asked questions</h3><p><strong>Is this calculator free?</strong> Yes. It works in your browser without an account.</p><p><strong>Does it support ₹2000 notes?</strong> This table covers common denominations ₹500 to ₹1; ₹2000 notes are not included in this version.</p><p><strong>Can I use it for a cash register?</strong> Yes, for counting and checking cash totals. Verify physical cash before closing your register.</p></section>
   </div>;
 };

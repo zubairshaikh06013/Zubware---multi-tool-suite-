@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {normalizeWedding,renderWedding,sampleWedding,validateWedding,weddingThemes} from '../../src/lib/weddingInvitation';
+import worker from './src/index';
+const data=sampleWedding();assert.equal(validateWedding(data),'');
+const malicious=normalizeWedding({...data,bride:'<img src=x onerror=alert(1)>',title:'</title><script>alert(1)</script>',photo:'javascript:alert(1)',offset:'+99:99',theme:'evil',events:[{name:'A',date:'2027-02-31',time:'99:99',venue:'javascript:alert(1)',address:'x&y'}]});
+assert.equal(malicious.events[0].date,'');assert.equal(malicious.events[0].time,'');assert.equal(malicious.photo,'');assert.equal(malicious.offset,'+05:30');assert.equal(malicious.theme,'ivory');
+const html=renderWedding(malicious);assert.ok(!html.includes('<img src=x'));assert.ok(html.includes('&lt;img'));assert.ok(!html.includes('</title><script>alert'));
+assert.ok(html.includes('</script>'),'Invitation must close its script element');
+const script=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];assert.ok(script);new Function(script!);
+for(const theme of weddingThemes){const h=renderWedding({...data,theme:theme.id});assert.ok(h.includes(`class="${theme.id}"`));assert.ok(h.includes('Google Maps'));assert.ok(!h.includes('Send my RSVP'));const print=renderWedding({...data,theme:theme.id},{export:true});assert.ok(!print.includes('<script>'));assert.ok(!print.includes('id="cover"'));for(const event of data.events)assert.ok(print.includes(event.venue));}
+const store=new Map<string,string>();let putCount=0;const rates={limit:async()=>({success:true})};
+const env={INVITATIONS:{get:async(k:string)=>store.has(k)?JSON.parse(store.get(k)!):null,put:async(k:string,v:string)=>{putCount++;store.set(k,v)}},READ_LIMIT:rates,WRITE_LIMIT:rates} as unknown as Env;
+const base='https://invitation.test';const origin='https://zubware.com';
+const request=(path:string,method='GET',body?:unknown,token?:string,site=origin)=>new Request(base+path,{method,headers:{Origin:site,'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},body:body===undefined?undefined:JSON.stringify(body)});
+const fetch=(req:Request)=>worker.fetch(req,env);
+assert.equal((await fetch(request('/api/invitations','POST',data,undefined,'https://evil.test'))).status,403);
+assert.equal((await fetch(request('/api/invitations','POST',{...data,bride:''}))).status,400);
+const created=await fetch(request('/api/invitations','POST',data));assert.equal(created.status,201);const result=await created.json() as {id:string;token:string;expiresAt:number};assert.match(result.id,/^[a-f0-9]{32}$/);assert.match(result.token,/^[a-f0-9]{64}$/);assert.ok(result.expiresAt<=Date.now()+366*86400000);
+const publicData=await fetch(request('/api/invitations/'+result.id));const response=await publicData.text();assert.ok(!response.includes(result.token));assert.ok(!response.includes('ownerHash'));assert.equal(publicData.headers.get('Cache-Control'),'no-store');
+const guest=await fetch(request('/i/'+result.id));assert.equal(guest.status,200);assert.ok((await guest.text()).includes('आलिया'));assert.match(guest.headers.get('X-Robots-Tag')!,/noindex/);
+assert.equal((await fetch(request('/api/invitations/'+result.id,'PUT',{...data,bride:'Changed'},'0'.repeat(64)))).status,403);
+assert.equal((await fetch(request('/api/invitations/'+result.id,'PUT',{...data,bride:'Changed'},result.token))).status,200);const changed=await (await fetch(request('/api/invitations/'+result.id))).json() as {data:{bride:string}};assert.equal(changed.data.bride,'Changed');
+assert.equal((await fetch(request('/api/invitations','POST',{...data,message:'x'.repeat(210000)}))).status,413);
+assert.equal((await fetch(request('/api/invitations/'+result.id,'DELETE',undefined,'0'.repeat(64)))).status,403);
+assert.equal((await fetch(request('/api/invitations/'+result.id,'DELETE',undefined,result.token))).status,200);assert.equal((await fetch(request('/i/'+result.id))).status,404);
+const limited={...env,WRITE_LIMIT:{limit:async()=>({success:false})}} as Env;assert.equal((await worker.fetch(request('/api/invitations','POST',data),limited)).status,429);
+assert.equal(putCount,3,'Only create, authorized update and unpublish may write data');
+console.log('Wedding checks passed: 6 designs, scripts, escaping, date validation, export content, publishing, CORS, owner-only edits, revoke, size and rate limits.');

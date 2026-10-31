@@ -23,6 +23,8 @@ const HelpPage = lazy(() => import('./components/pages/HelpPage').then(m => ({ d
 const ChangelogPage = lazy(() => import('./components/pages/ChangelogPage').then(m => ({ default: m.ChangelogPage })));
 const FeedbackPage = lazy(() => import('./components/pages/FeedbackPage').then(m => ({ default: m.FeedbackPage })));
 
+const WeddingInvitationMakerTool = lazy(() => import('./components/tools/WeddingInvitationMakerTool').then(m => ({ default: m.WeddingInvitationMakerTool })));
+
 const MarriageBiodataMakerTool = lazy(() => import('./components/tools/MarriageBiodataMakerTool').then(m => ({ default: m.MarriageBiodataMakerTool })));
 
 // Lazy loaded tool components
@@ -1123,6 +1125,7 @@ export default function App() {
                   {activeTool.id === 'lofi-song-maker' && <LofiMusicStudioTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'lofi-maker' && <LofiMakerTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'slowed-and-reverb' && <SlowedAndReverbTool onShowToast={triggerToast} onNavigate={navigateTo} />}
+                  {activeTool.id === 'wedding-invitation-maker' && <WeddingInvitationMakerTool onShowToast={triggerToast} />}
                   {activeTool.id === 'marriage-biodata-maker' && <MarriageBiodataMakerTool onShowToast={triggerToast} />}
                   {activeTool.id === 'gst-invoice-generator' && <GstInvoiceGeneratorTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'pdf-merge' && <PdfMergeTool onShowToast={triggerToast} />}

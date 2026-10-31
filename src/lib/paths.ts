@@ -118,6 +118,7 @@ export const NETWORK_DEPENDENT_TOOL_IDS = new Set([
  */
 export function getToolHowToHeading(tool: { id: string; title: string; navTitle?: string }): string {
   const specificHeadings: Record<string, string> = {
+    'wedding-invitation-maker': 'शादी का invitation card कैसे बनाएं?',
     'marriage-biodata-maker': 'शादी का बायोडाटा कैसे बनाएं?',
     'pdf-merge': 'How to Merge Multiple PDF Files Into One',
     'pdf-split': 'How to Split a PDF Into Separate Pages',
@@ -227,6 +228,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
   const isNetwork = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
 
   const priorityIntros: Record<string, string> = {
+    'wedding-invitation-maker': 'Zubware में अपना wedding invitation card बनाएं: 6 original designs में से चुनें, Hindi या English wording रखें और परिवार के नाम, शादी के कार्यक्रम, तारीख, समय और venue भरें। Live preview के साथ PNG/PDF card और animated HTML download कर सकते हैं। Guest link publish करने पर invitation online save होता है, ताकि आपके guests बिना login इसे खोल सकें। RSVP नहीं है। Save किए हुए draft या private backup से उसी link पर बदलाव publish कर सकते हैं।',
     'marriage-biodata-maker': 'Zubware के free marriage biodata maker online में अपनी details भरें और live preview देखकर शादी का बायोडाटा बनाएं। Marriage bio data format में निजी जानकारी, पढ़ाई, काम, परिवार और संपर्क के sections मिलते हैं। Photo optional है; बिना photo का biodata भी बना सकते हैं। सभी 6 templates और PDF/PNG download free हैं। Muslim, Hindu या neutral profile के लिए heading और optional fields अपनी पसंद से भरें। Draft save करने पर ही details इसी browser में रखी जाती हैं।',
     'pdf-merge':
       'Zubware PDF Merge combines multiple separate PDF documents into a single organized file directly in your browser. Whether you need to compile contracts, scanned receipts, academic assignments, or business reports, you can reorder pages by dragging and dropping multiple files simultaneously. All merging executes locally using client-side WebAssembly and pdf-lib, ensuring your confidential documents are never uploaded to remote servers.',

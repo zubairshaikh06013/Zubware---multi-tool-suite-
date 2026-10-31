@@ -27,6 +27,7 @@
     "node_modules",
     "dist",
     "public/video-engine",
-    "chatgpt-plugin"
+    "chatgpt-plugin",
+    "workers/wedding-invitations"
   ]
 }

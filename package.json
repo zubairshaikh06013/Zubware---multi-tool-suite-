@@ -20,7 +20,8 @@
     "audit:links:prepare": "node scripts/prepareAuditLinks.mjs",
     "test:seo-search": "node --import tsx scripts/testSeoSearch.ts",
     "test:indexnow": "node --test scripts/testIndexNow.mjs",
-    "test:cgpa": "node --import tsx scripts/testCgpa.ts"
+    "test:cgpa": "node --import tsx scripts/testCgpa.ts",
+    "test:wedding": "node --import tsx workers/wedding-invitations/test.ts"
   },
   "dependencies": {
     "@ffmpeg/core": "0.12.10",

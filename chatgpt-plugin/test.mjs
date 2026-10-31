@@ -5,8 +5,9 @@ import { InMemoryTransport } from '@modelcontextprotocol/sdk/inMemory.js';
 import { createZubwareServer, searchCatalog, categories, RESOURCE_URI } from './mcp.mjs';
 import catalog from './generated/catalog.json' with { type:'json' };
 test('all tools have components and safe canonical links; pagination covers the whole catalogue',()=>{
-  assert.equal(catalog.length,310);assert.equal(new Set(catalog.map(t=>t.id)).size,catalog.length);
+  assert.ok(catalog.length >= 310, 'catalogue must retain the existing tool suite');assert.equal(new Set(catalog.map(t=>t.id)).size,catalog.length);
   assert.equal(categories.length,16);
+  assert.ok(catalog.some(t=>t.id==='wedding-invitation-maker' && t.embedded));
   for(const tool of catalog){assert.ok(tool.embedded);assert.equal(new URL(tool.url).origin,'https://www.zubware.com');assert.equal(tool.chatgptVerified,false);}
   const paged=[];for(let offset=0;offset<catalog.length;offset+=50)paged.push(...searchCatalog({offset,limit:50}).tools);
   assert.deepEqual(paged,catalog);

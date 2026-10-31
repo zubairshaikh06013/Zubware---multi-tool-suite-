@@ -1,0 +1,37 @@
+{
+  "name": "zubware-invitations",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-10-31",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "workers_dev": true,
+  "kv_namespaces": [
+    {
+      "binding": "INVITATIONS",
+      "id": "e41c671f768a4b55a151192b46228467"
+    }
+  ],
+  "ratelimits": [
+    {
+      "name": "WRITE_LIMIT",
+      "namespace_id": "74103101",
+      "simple": {
+        "limit": 5,
+        "period": 60
+      }
+    },
+    {
+      "name": "READ_LIMIT",
+      "namespace_id": "74103102",
+      "simple": {
+        "limit": 120,
+        "period": 60
+      }
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 0.05
+  }
+}

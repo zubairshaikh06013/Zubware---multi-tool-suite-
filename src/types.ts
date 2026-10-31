@@ -1,4 +1,5 @@
 export type ToolId = 
+  | 'wedding-invitation-maker'
   | 'marriage-biodata-maker'
   | 'image-splitter-merger'
   | 'background-remover'

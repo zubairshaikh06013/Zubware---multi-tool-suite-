@@ -1,4 +1,5 @@
 export type ToolId = 
+  | 'attendance-calculator'
   | 'cash-denomination-calculator'
   | 'wedding-invitation-maker'
   | 'marriage-biodata-maker'

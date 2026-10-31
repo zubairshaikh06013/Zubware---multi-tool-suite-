@@ -8,6 +8,7 @@ import { getToolCanonicalPath } from '../lib/paths';
 const RAW_TOOLS_DATA: ToolMeta[] = [
 {
   "id": "attendance-calculator",
+  "featured": true,
   "title": "Attendance Calculator — 75% Attendance & Bunk Calculator",
   "navTitle": "Attendance Calculator",
   "description": "Free attendance calculator for college and school. Calculate attendance percentage, how many classes to attend for 75%, 80% or 90%, and how many classes you can miss. Includes subject-wise tracking.",

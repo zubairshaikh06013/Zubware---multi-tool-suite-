@@ -296,6 +296,7 @@ const UrlExtractorTool = lazy(() => import('./components/tools/text/UrlExtractor
 const BondYieldCalculatorTool = lazy(() => import('./components/tools/business/BondYieldCalculatorTool').then(m => ({ default: m.BondYieldCalculatorTool })));
 const CatAgeCalculatorTool = lazy(() => import('./components/tools/design/CatAgeCalculatorTool').then(m => ({ default: m.CatAgeCalculatorTool })));
 const ExamScoreCalculatorTool = lazy(() => import('./components/tools/career/ExamScoreCalculatorTool').then(m => ({ default: m.ExamScoreCalculatorTool })));
+const AttendanceCalculatorTool = lazy(() => import('./components/tools/career/AttendanceCalculatorTool').then(m => ({ default: m.AttendanceCalculatorTool })));
 const CashDenominationCalculatorTool = lazy(() => import('./components/tools/business/CashDenominationCalculatorTool').then(m => ({ default: m.CashDenominationCalculatorTool })));
 const CgpaCalculatorTool = lazy(() => import('./components/tools/career/CgpaCalculatorTool').then(m => ({ default: m.CgpaCalculatorTool })));
 const CollegeGpaCalculatorTool = lazy(() => import('./components/tools/career/CollegeGpaCalculatorTool').then(m => ({ default: m.CollegeGpaCalculatorTool })));
@@ -1342,6 +1343,7 @@ export default function App() {
                   {activeTool.id === 'bond-yield-calculator' && <BondYieldCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'cat-age-calculator' && <CatAgeCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'exam-score-calculator' && <ExamScoreCalculatorTool onShowToast={triggerToast} />}
+                  {activeTool.id === 'attendance-calculator' && <AttendanceCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'cash-denomination-calculator' && <CashDenominationCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'cgpa-calculator' && <CgpaCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'college-gpa-calculator' && <CollegeGpaCalculatorTool onShowToast={triggerToast} />}

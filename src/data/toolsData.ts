@@ -7,6 +7,33 @@ import { getToolCanonicalPath } from '../lib/paths';
 
 const RAW_TOOLS_DATA: ToolMeta[] = [
 {
+  "id": "attendance-calculator",
+  "featured": true,
+  "title": "Attendance Calculator — 75% Attendance & Bunk Calculator",
+  "navTitle": "Attendance Calculator",
+  "description": "Free attendance calculator for college and school. Calculate attendance percentage, how many classes to attend for 75%, 80% or 90%, and how many classes you can miss. Includes subject-wise tracking.",
+  "icon": "🎓",
+  "path": "/attendance-calculator",
+  "filename": "attendance-calculator.html",
+  "category": "💼 Career Tools",
+  "badge": "New",
+  "features": ["Attendance percentage calculator", "75% attendance calculator and class planner", "Bunk calculator: how many classes can I miss?", "Subject-wise attendance tracking", "Private and free mobile-friendly calculator"],
+  "tags": ["attendance calculator", "75 percent attendance calculator", "attendance percentage calculator", "bunk calculator", "college attendance calculator", "how many classes to attend for 75 percent", "subject wise attendance calculator"],
+  "howTo": [
+    {"title":"Enter your classes","desc":"Add each subject and enter attended and total classes. Attended classes must not exceed total classes."},
+    {"title":"Choose a target","desc":"Select 75%, 80%, 90%, or enter your institution's required attendance percentage."},
+    {"title":"Check attendance and bunk allowance","desc":"See overall and subject-wise percentages, consecutive classes needed, and how many future classes you can miss."}
+  ],
+  "faq": [
+    {"question":"How do I calculate my attendance percentage?","answer":"Divide classes attended by total classes and multiply by 100. For example, 30 attended out of 40 classes gives 75%."},
+    {"question":"How many classes do I need for 75% attendance?","answer":"Enter attended and total classes, then select 75%. The calculator shows the minimum number of consecutive future classes you need to attend to reach 75%."},
+    {"question":"How many classes can I bunk while maintaining 75%?","answer":"If your attendance is at or above 75%, the calculator shows how many additional future classes you can miss while keeping at least 75% overall attendance."},
+    {"question":"Can my college require 75% attendance in each subject?","answer":"Yes. Colleges may apply subject-wise rules, so check each subject's attendance and your institution's official policy."},
+    {"question":"Is this calculator free and private?","answer":"Yes. It runs in your browser without requiring sign-in or uploading your class records."}
+  ]
+},
+
+{
   "id": "cash-denomination-calculator",
   "title": "Cash Denomination Calculator India — Count Notes & Coins Free",
   "navTitle": "Cash Denomination Calculator",

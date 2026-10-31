@@ -1,4 +1,5 @@
 export type ToolId = 
+  | 'cash-denomination-calculator'
   | 'wedding-invitation-maker'
   | 'marriage-biodata-maker'
   | 'image-splitter-merger'

@@ -7,6 +7,61 @@ import { getToolCanonicalPath } from '../lib/paths';
 
 const RAW_TOOLS_DATA: ToolMeta[] = [
 {
+  "id": "cash-denomination-calculator",
+  "title": "Cash Denomination Calculator India — Count Notes & Coins Free",
+  "navTitle": "Cash Denomination Calculator",
+  "description": "Free cash denomination calculator for Indian rupees. Count ₹500, ₹200, ₹100, ₹50, ₹20, ₹10, ₹5, ₹2 and ₹1 notes or coins with instant totals, amount in words, print and copy.",
+  "icon": "💵",
+  "path": "/cash-denomination-calculator",
+  "filename": "cash-denomination-calculator.html",
+  "category": "💼 Business Tools",
+  "badge": "New",
+  "features": [
+    "Indian rupee notes and coins from ₹500 to ₹1",
+    "Instant total amount and piece count",
+    "Amount in Indian words",
+    "Copy, print and download TXT",
+    "Free private browser-side calculation"
+  ],
+  "tags": [
+    "cash denomination calculator",
+    "cash denomination calculator india",
+    "money counting calculator",
+    "note counting calculator",
+    "cash calculator",
+    "currency denomination calculator",
+    "cash denomination calculator online"
+  ],
+  "howTo": [
+    {
+      "title": "Enter note and coin quantities",
+      "desc": "Enter the number of ₹500, ₹200, ₹100, ₹50, ₹20, ₹10, ₹5, ₹2 and ₹1 notes or coins."
+    },
+    {
+      "title": "Check the total",
+      "desc": "See denomination-wise amounts, total pieces, total cash and rupee amount in words instantly."
+    },
+    {
+      "title": "Save the result",
+      "desc": "Copy the cash summary, download a text report or use your browser's print option."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How do I calculate cash denominations?",
+      "answer": "Multiply each note or coin value by its quantity and add all denomination subtotals. This tool does the calculation automatically."
+    },
+    {
+      "question": "Is this cash denomination calculator free?",
+      "answer": "Yes, the calculator is free and works locally in your browser without login."
+    },
+    {
+      "question": "Can I print or download the result?",
+      "answer": "Yes, you can print the page, copy the summary or download it as a TXT file."
+    }
+  ]
+},
+{
   "id": "wedding-invitation-maker",
   "title": "Free Wedding Invitation Card Maker — शादी का निमंत्रण बनाएं",
   "navTitle": "Wedding Invitation Maker",

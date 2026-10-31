@@ -15,6 +15,11 @@ interface CgpaCalculatorToolProps {
 }
 
 export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowToast }) => {
+  const [sgpaSubjects, setSgpaSubjects] = useState([{ id: 1, name: 'Subject 1', credits: '4', grade: '9' }, { id: 2, name: 'Subject 2', credits: '3', grade: '8' }, { id: 3, name: 'Subject 3', credits: '3', grade: '10' }]);
+  const sgpaValid = sgpaSubjects.length > 0 && sgpaSubjects.every(subject => subject.credits.trim() !== '' && subject.grade.trim() !== '' && Number.isFinite(Number(subject.credits)) && Number(subject.credits) > 0 && Number.isFinite(Number(subject.grade)) && Number(subject.grade) >= 0 && Number(subject.grade) <= 10);
+  const sgpaCredits = sgpaSubjects.reduce((sum, subject) => sum + Number(subject.credits || 0), 0);
+  const sgpa = sgpaValid && sgpaCredits > 0 ? sgpaSubjects.reduce((sum, subject) => sum + Number(subject.credits) * Number(subject.grade), 0) / sgpaCredits : null;
+  const updateSgpaSubject = (id: number, field: 'name' | 'credits' | 'grade', value: string) => setSgpaSubjects(rows => rows.map(row => row.id === id ? { ...row, [field]: value } : row));
   const [scale, setScale] = useState<'4.0' | '10.0'>('10.0');
   const [semesters, setSemesters] = useState<SemesterRecord[]>([
     { id: '1', name: 'Semester 1', gpa: 8.5, credits: 22 },
@@ -123,6 +128,20 @@ export const CgpaCalculatorTool: React.FC<CgpaCalculatorToolProps> = ({ onShowTo
         </div>
       </div>
 
+      <section className="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 space-y-4">
+        <div><h3 className="text-lg font-bold">SGPA Calculator — Subject-wise (10-point scale)</h3><p className="text-sm text-slate-600 dark:text-slate-300">Enter each subject's grade point and credit value from your marksheet. SGPA = sum of (grade point × credits) / total credits. Your university's grading rules take priority.</p></div>
+        <div className="space-y-3">
+          {sgpaSubjects.map(subject => <div key={subject.id} className="grid grid-cols-12 gap-2 items-end rounded-xl bg-slate-50 p-3 dark:bg-slate-800">
+            <label className="col-span-12 sm:col-span-5 text-xs font-semibold">Subject<input aria-label={subject.name + ' name'} value={subject.name} onChange={e => updateSgpaSubject(subject.id, 'name', e.target.value)} className="mt-1 w-full rounded-lg border p-2 bg-white text-slate-900 dark:bg-slate-900 dark:text-white dark:border-slate-700" /></label>
+            <label className="col-span-5 sm:col-span-3 text-xs font-semibold">Credits<input aria-label={subject.name + ' credits'} type="number" min="0.5" step="any" inputMode="decimal" value={subject.credits} onChange={e => updateSgpaSubject(subject.id, 'credits', e.target.value)} className="mt-1 w-full rounded-lg border p-2 bg-white text-slate-900 dark:bg-slate-900 dark:text-white dark:border-slate-700" /></label>
+            <label className="col-span-5 sm:col-span-3 text-xs font-semibold">Grade point (0–10)<input aria-label={subject.name + ' grade point'} type="number" min="0" max="10" step="any" inputMode="decimal" value={subject.grade} onChange={e => updateSgpaSubject(subject.id, 'grade', e.target.value)} className="mt-1 w-full rounded-lg border p-2 bg-white text-slate-900 dark:bg-slate-900 dark:text-white dark:border-slate-700" /></label>
+            <button type="button" aria-label={'Remove ' + subject.name} onClick={() => setSgpaSubjects(rows => rows.length > 1 ? rows.filter(row => row.id !== subject.id) : rows)} className="col-span-2 sm:col-span-1 rounded-lg border p-2 flex justify-center" disabled={sgpaSubjects.length === 1}><Trash2 size={16}/></button>
+          </div>)}
+        </div>
+        <button type="button" onClick={() => setSgpaSubjects(rows => [...rows, { id: Math.max(0, ...rows.map(row => row.id)) + 1, name: 'Subject ' + (rows.length + 1), credits: '3', grade: '8' }])} className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-semibold text-white"><Plus size={16}/>Add Subject</button>
+        <div className="rounded-xl bg-indigo-50 p-4 dark:bg-indigo-950/40"><p className="text-sm">Total subject credits: {sgpaCredits.toLocaleString('en-IN')}</p><output aria-live="polite" className="text-2xl font-bold">SGPA: {sgpa === null ? 'Enter valid credits and grade points' : sgpa.toFixed(2) + ' / 10'}</output></div>
+        <p className="text-xs text-slate-600 dark:text-slate-300">Example: 4 credits × 9 points and 3 credits × 8 points gives 8.57 SGPA. For cumulative CGPA, enter each semester's SGPA and total credits in the section below.</p>
+      </section>
       <section className="rounded-2xl border border-slate-200 dark:border-slate-800 p-4 space-y-4">
         <h3 className="font-bold">CGPA to Percentage / Percentage to CGPA</h3>
         <p className="text-sm text-slate-600 dark:text-slate-300">Har university ka formula alag ho sakta hai. Apne course aur batch ka official rule check karo. 9.5 wala rule sab universities par apply nahi hota.</p>

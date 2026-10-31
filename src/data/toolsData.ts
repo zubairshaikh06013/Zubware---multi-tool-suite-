@@ -15,7 +15,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   "icon": "🎓",
   "path": "/attendance-calculator",
   "filename": "attendance-calculator.html",
-  "category": "🎓 Education Tools",
+  "category": "💼 Career Tools",
   "badge": "New",
   "features": ["Attendance percentage calculator", "75% attendance calculator and class planner", "Bunk calculator: how many classes can I miss?", "Subject-wise attendance tracking", "Private and free mobile-friendly calculator"],
   "tags": ["attendance calculator", "75 percent attendance calculator", "attendance percentage calculator", "bunk calculator", "college attendance calculator", "how many classes to attend for 75 percent", "subject wise attendance calculator"],

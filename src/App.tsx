@@ -27,6 +27,8 @@ const WeddingInvitationMakerTool = lazy(() => import('./components/tools/Wedding
 
 const MarriageBiodataMakerTool = lazy(() => import('./components/tools/MarriageBiodataMakerTool').then(m => ({ default: m.MarriageBiodataMakerTool })));
 
+const PartnershipProfitCalculatorTool = lazy(() => import('./components/tools/business/PartnershipProfitCalculatorTool').then(m => ({ default: m.PartnershipProfitCalculatorTool })));
+
 // Lazy loaded tool components
 const ImageSplitterMergerTool = lazy(() => import('./components/tools/ImageSplitterMergerTool').then(m => ({ default: m.ImageSplitterMergerTool })));
 const BackgroundRemoverTool = lazy(() => import('./components/tools/image/BackgroundRemoverTool').then(m => ({ default: m.BackgroundRemoverTool })));
@@ -1129,6 +1131,7 @@ export default function App() {
                   {activeTool.id === 'slowed-and-reverb' && <SlowedAndReverbTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'wedding-invitation-maker' && <WeddingInvitationMakerTool onShowToast={triggerToast} />}
                   {activeTool.id === 'marriage-biodata-maker' && <MarriageBiodataMakerTool onShowToast={triggerToast} />}
+                  {activeTool.id === 'partnership-profit-sharing-calculator' && <PartnershipProfitCalculatorTool onShowToast={triggerToast} />}
                   {activeTool.id === 'gst-invoice-generator' && <GstInvoiceGeneratorTool onShowToast={triggerToast} onNavigate={navigateTo} />}
                   {activeTool.id === 'pdf-merge' && <PdfMergeTool onShowToast={triggerToast} />}
                   {activeTool.id === 'pdf-split' && <PdfSplitTool onShowToast={triggerToast} />}

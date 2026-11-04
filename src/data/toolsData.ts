@@ -7,6 +7,85 @@ import { getToolCanonicalPath } from '../lib/paths';
 
 const RAW_TOOLS_DATA: ToolMeta[] = [
 {
+  "id": "partnership-profit-sharing-calculator",
+  "title": "Partnership Profit Sharing Calculator — Salary, Bonus & Investor Split",
+  "navTitle": "Partnership Profit Sharing Calculator",
+  "description": "Free partnership profit sharing calculator with 2–10 partners, working partner salary, bonuses, capital interest, custom ratios, profit slabs, loss sharing and PDF/CSV reports. Hindi and English.",
+  "icon": "🤝",
+  "path": "/partnership-profit-sharing-calculator",
+  "filename": "partnership-profit-sharing-calculator.html",
+  "category": "💼 Business Tools",
+  "badge": "New",
+  "features": [
+    "2–10 working and investor partners",
+    "Salary, bonus, capital interest and reserve breakdown",
+    "Custom, capital, time-weighted, equal and slab ratios",
+    "Separate loss ratios and profit scenario comparison",
+    "Hindi/English, PDF/CSV and optional local drafts"
+  ],
+  "tags": [
+    "partnership profit sharing calculator",
+    "partnership calculator",
+    "profit split calculator",
+    "working partner salary calculator",
+    "business partnership calculator",
+    "profit sharing ratio calculator",
+    "पार्टनरशिप मुनाफा कैलकुलेटर"
+  ],
+  "howTo": [
+    {
+      "title": "Enter business profit and period",
+      "desc": "Enter profit after ordinary business expenses but before the partner allowances entered in this calculator. Select the number of months and optional business reserve and annual capital interest."
+    },
+    {
+      "title": "Add working partners and investors",
+      "desc": "Enter each partner’s capital and months invested. Enable working partner to enter salary for the full period and a bonus percentage on positive profit after salary and capital interest."
+    },
+    {
+      "title": "Choose the agreed profit and loss rules",
+      "desc": "Use an agreed ratio, investment ratio, capital multiplied by months, equal split or custom profit thresholds. Optionally use a separate ratio for negative remainder."
+    },
+    {
+      "title": "Review and save the allocation",
+      "desc": "Check each partner’s salary, interest, bonus, residual share and total allocation. Compare profit scenarios, download PDF or CSV, or save a draft on this device."
+    }
+  ],
+  "faq": [
+    {
+      "question": "How is partnership profit sharing calculated?",
+      "answer": "This calculator deducts partner salary allowances and prorated capital interest from input profit, calculates bonuses on any positive balance, retains an optional reserve from the positive balance after bonus, then divides the remainder using the selected agreed method. Each partner’s allocation is salary plus interest plus bonus plus residual share."
+    },
+    {
+      "question": "Is profit share always based on investment?",
+      "answer": "No. The agreed profit ratio can differ from the capital ratio. You can select a custom ratio, capital-based allocation, capital multiplied by months, equal sharing or custom profit slabs. The tool calculates your selected arrangement rather than recommending ownership percentages."
+    },
+    {
+      "question": "Can a working partner receive salary without investing capital?",
+      "answer": "Yes. Enter zero capital, enable the working-partner role and enter salary, bonus and the agreed profit weight. Choose custom ratio or slabs if the partner should share the remainder despite having no capital."
+    },
+    {
+      "question": "How do the custom profit slabs work?",
+      "answer": "Thresholds are amounts of input profit in the selected currency before partner allowances. The highest threshold reached selects one ratio for the entire remaining pool. This is a whole-pool switch, not a marginal slab calculation. All thresholds and ratios are editable examples."
+    },
+    {
+      "question": "What happens when salary and interest exceed profit?",
+      "answer": "The remaining pool becomes negative. Salary and interest allowances remain allocated and the shortfall is charged using the selected profit ratio or the separate loss ratio. Bonuses and reserves are zero if their respective calculation bases are not positive. Negative partner totals represent loss allocations, not payouts."
+    },
+    {
+      "question": "Are salaries monthly and is capital interest annual?",
+      "answer": "Salary is the total allowance for the full selected period. Annual capital interest is capital multiplied by the annual rate and months invested divided by twelve. All calculations use one currency; selecting another currency does not convert amounts."
+    },
+    {
+      "question": "Can I download a report in Hindi?",
+      "answer": "Yes. Switch the calculator to Hindi and download the allocation report as PDF or CSV. The PDF uses a rendered report to preserve Hindi text and currency symbols. Open the downloaded PDF to print it."
+    },
+    {
+      "question": "Is my partnership data uploaded or saved automatically?",
+      "answer": "Calculation takes place in your browser and inputs are not uploaded by this tool. Saving a draft is optional and stores it on the current device; use Delete saved draft to remove it. PDF and CSV reports are generated locally."
+    }
+  ]
+},
+{
   "id": "attendance-calculator",
   "featured": true,
   "title": "Attendance Calculator — 75% Attendance & Bunk Calculator",

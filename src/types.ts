@@ -1,4 +1,5 @@
 export type ToolId = 
+  | 'partnership-profit-sharing-calculator'
   | 'attendance-calculator'
   | 'cash-denomination-calculator'
   | 'wedding-invitation-maker'

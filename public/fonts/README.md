@@ -8,3 +8,7 @@ Downloaded source: https://raw.githubusercontent.com/google/fonts/main/ofl/plusj
 Source TTF SHA-256: `89b3fb38aa0d275d7a731d0d817a4f1622b316b4d7fbdedcf02ee9099ff68bc8`
 
 The complete original font was converted without subsetting using fontTools TTFont with `flavor = 'woff2'` and Brotli. The WOFF2 filename contains the first 12 characters of its SHA-256 hash. The original license is in PlusJakartaSans-OFL.txt. No font build dependency is needed at runtime.
+
+## Wedding Urdu font
+
+Noto Nastaliq Urdu, distributed under the included NotoNastaliqUrdu-OFL.txt SIL Open Font License. Source: https://github.com/google/fonts/tree/main/ofl/notonastaliqurdu . Downloaded via Google Fonts (v23); converted in full from TTF to WOFF2 using fontTools without subsetting. Self-hosted for the editor and guest cards; embedded in downloaded bilingual HTML for offline rendering.

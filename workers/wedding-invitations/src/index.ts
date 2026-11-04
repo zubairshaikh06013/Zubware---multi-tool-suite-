@@ -1,7 +1,7 @@
 /// <reference path="../worker-configuration.d.ts" />
 import { normalizeWedding, validateWedding, renderWedding, type WeddingInvitation } from '../../../src/lib/weddingInvitation';
 const ORIGINS = new Set(['https://zubware.com', 'https://www.zubware.com', 'http://localhost:3000', 'http://terminal.local:4173']);
-const MAX_BYTES = 200000;
+const MAX_BYTES = 600000;
 interface StoredInvite { data: WeddingInvitation; ownerHash: string; expiresAt: number; updatedAt: number; revoked?: boolean }
 async function digest(token: string) { return new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(token))); }
 const hex = (bytes: Uint8Array) => Array.from(bytes,b=>b.toString(16).padStart(2,'0')).join('');
@@ -37,7 +37,7 @@ export default {
       try {
         const saved=await env.INVITATIONS.get<StoredInvite>('invite:'+id,{type:'json',cacheTtl:30});
         if(!saved||saved.revoked||saved.expiresAt<=Date.now())return isPage?new Response('<!doctype html><meta name="viewport" content="width=device-width"><title>Invitation unavailable</title><h1>Invitation unavailable</h1><p>This invitation has expired or was unpublished.</p><a href="https://zubware.com/wedding-invitation-maker">Create an invitation on Zubware</a>',{status:404,headers:{...headers,'Content-Type':'text/html; charset=utf-8'}}):json({error:'Invitation expired, unpublished or not found.'},404);
-        if(isPage)return new Response(renderWedding(saved.data),{headers:{...headers,'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'; base-uri 'none'; frame-ancestors https://zubware.com https://www.zubware.com http://terminal.local:4173; form-action 'none'"}});
+        if(isPage)return new Response(renderWedding(saved.data),{headers:{...headers,'Content-Type':'text/html; charset=utf-8','Content-Security-Policy':"default-src 'none'; img-src data:; style-src 'unsafe-inline'; font-src https://www.zubware.com data:; script-src 'unsafe-inline'; base-uri 'none'; frame-ancestors https://zubware.com https://www.zubware.com http://terminal.local:4173; form-action 'none'"}});
         return json({data:saved.data,expiresAt:saved.expiresAt});
       }catch{return json({error:'Invitation service is temporarily unavailable. Try again later.'},503)}
     }

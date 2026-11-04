@@ -117,6 +117,7 @@ export const NETWORK_DEPENDENT_TOOL_IDS = new Set([
  * Returns intent-focused, search-optimized How-To headings for priority tools.
  */
 export function getToolHowToHeading(tool: { id: string; title: string; navTitle?: string }): string {
+  if (tool.id === 'wedding-invitation-maker' && !/[\u0900-\u097f]/.test(tool.title)) return 'How to create your wedding invitation';
   const specificHeadings: Record<string, string> = {
     'wedding-invitation-maker': 'शादी का invitation card कैसे बनाएं?',
     'marriage-biodata-maker': 'शादी का बायोडाटा कैसे बनाएं?',
@@ -225,6 +226,7 @@ export function getToolHowToHeading(tool: { id: string; title: string; navTitle?
  * Returns a high-quality, intent-answering first paragraph for tool pages.
  */
 export function getToolIntroParagraph(tool: { id: string; title: string; navTitle?: string; description: string; category: string }): string {
+  if (tool.id === 'wedding-invitation-maker' && !/[\u0900-\u097f]/.test(tool.title)) return tool.description + ' Personalise the colours, typography and opening animation, or upload your own design. Add Urdu alongside English or Hindi using separate right-to-left fields. Local downloads stay on your device; publishing explicitly saves a shareable invitation online.';
   const isNetwork = NETWORK_DEPENDENT_TOOL_IDS.has(tool.id);
 
   const priorityIntros: Record<string, string> = {

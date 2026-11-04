@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {normalizeWedding,renderWedding,sampleWedding,validateWedding,weddingThemes} from '../../src/lib/weddingInvitation';
+import {normalizeWedding,renderWedding,sampleWedding,switchWeddingLanguage,enableWeddingUrdu,validateWedding,weddingThemes} from '../../src/lib/weddingInvitation';
 import worker from './src/index';
 const data=sampleWedding();assert.equal(validateWedding(data),'');
 const malicious=normalizeWedding({...data,bride:'<img src=x onerror=alert(1)>',title:'</title><script>alert(1)</script>',photo:'javascript:alert(1)',offset:'+99:99',theme:'evil',events:[{name:'A',date:'2027-02-31',time:'99:99',venue:'javascript:alert(1)',address:'x&y'}]});
@@ -7,7 +7,21 @@ assert.equal(malicious.events[0].date,'');assert.equal(malicious.events[0].time,
 const html=renderWedding(malicious);assert.ok(!html.includes('<img src=x'));assert.ok(html.includes('&lt;img'));assert.ok(!html.includes('</title><script>alert'));
 assert.ok(html.includes('</script>'),'Invitation must close its script element');
 const script=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];assert.ok(script);new Function(script!);
-for(const theme of weddingThemes){const h=renderWedding({...data,theme:theme.id});assert.ok(h.includes(`class="${theme.id}"`));assert.ok(h.includes('Google Maps'));assert.ok(!h.includes('Send my RSVP'));const print=renderWedding({...data,theme:theme.id},{export:true});assert.ok(!print.includes('<script>'));assert.ok(!print.includes('id="cover"'));for(const event of data.events)assert.ok(print.includes(event.venue));}
+for(const theme of weddingThemes){const h=renderWedding({...data,theme:theme.id});assert.match(h,new RegExp(`<body class="${theme.id}(?: |")`));assert.ok(h.includes('Google Maps'));assert.ok(!h.includes('Send my RSVP'));const print=renderWedding({...data,theme:theme.id},{export:true});assert.ok(!print.includes('<script>'));assert.ok(!print.includes('id="cover"'));for(const event of data.events)assert.ok(print.includes(event.venue));}
+// Language changes translate built-in examples, while preserving personal wording.
+const english=switchWeddingLanguage(data,'en');
+assert.ok(!/[\u0900-\u097f]/.test(JSON.stringify(english)));
+const englishHtml=renderWedding(english);assert.ok(!/[\u0900-\u097f]/.test(englishHtml));
+assert.equal(switchWeddingLanguage({...data,bride:'My personal name'},'en').bride,'My personal name');
+const bilingual=enableWeddingUrdu(data),urduHtml=renderWedding(bilingual);
+assert.ok(urduHtml.includes('lang="ur" dir="rtl"'));assert.ok(urduHtml.includes('عالیہ'));assert.ok(urduHtml.includes('noto-nastaliq-urdu.woff2'));
+assert.ok(renderWedding(bilingual,{export:true,fontData:'data:font/woff2;base64,AAAA'}).includes('data:font/woff2;base64,AAAA'));
+const hostile=normalizeWedding({...data,customDesign:'data:image/svg+xml;base64,AAAA',appearance:{paper:'red;}</style><script>x</script>',fontScale:999,opening:'evil',animationSpeed:-100},urduText:{bride:'<script>evil</script>'},urdu:true});
+assert.equal(hostile.customDesign,'');assert.equal(hostile.appearance.paper,'');assert.equal(hostile.appearance.fontScale,1.4);assert.equal(hostile.appearance.opening,'auto');assert.equal(hostile.appearance.animationSpeed,.6);assert.ok(!renderWedding(hostile).includes('<script>evil'));
+const artwork=normalizeWedding({...english,customDesign:'data:image/png;base64,AAAA',customMode:'finished',appearance:{showEvents:false,showCountdown:false,showFamilies:false,showMessage:false}});
+const artworkHtml=renderWedding(artwork);assert.ok(artworkHtml.includes('class="finished-art"'));assert.ok(!artworkHtml.includes('class="families"'));assert.ok(!artworkHtml.includes('class="event-list"'));assert.ok(!artworkHtml.includes('id="clock-0"'));
+for(const opening of ['curtains','envelope','doors','none'] as const){const h=renderWedding({...english,appearance:{...english.appearance,opening,animation:'petals'}});assert.ok(h.includes('data-opening="'+opening+'"'));assert.ok(h.includes('class="ambience petals"'));assert.ok(!renderWedding({...english,appearance:{...english.appearance,opening}},{export:true}).includes('class="ambience '));}
+const legacy={...data} as Record<string,unknown>;delete legacy.appearance;delete legacy.urduText;delete legacy.customDesign;assert.equal(normalizeWedding(legacy).appearance.showEvents,true);
 const store=new Map<string,string>();let putCount=0;const rates={limit:async()=>({success:true})};
 const env={INVITATIONS:{get:async(k:string)=>store.has(k)?JSON.parse(store.get(k)!):null,put:async(k:string,v:string)=>{putCount++;store.set(k,v)}},READ_LIMIT:rates,WRITE_LIMIT:rates} as unknown as Env;
 const base='https://invitation.test';const origin='https://zubware.com';
@@ -20,7 +34,7 @@ const publicData=await fetch(request('/api/invitations/'+result.id));const respo
 const guest=await fetch(request('/i/'+result.id));assert.equal(guest.status,200);assert.ok((await guest.text()).includes('आलिया'));assert.match(guest.headers.get('X-Robots-Tag')!,/noindex/);
 assert.equal((await fetch(request('/api/invitations/'+result.id,'PUT',{...data,bride:'Changed'},'0'.repeat(64)))).status,403);
 assert.equal((await fetch(request('/api/invitations/'+result.id,'PUT',{...data,bride:'Changed'},result.token))).status,200);const changed=await (await fetch(request('/api/invitations/'+result.id))).json() as {data:{bride:string}};assert.equal(changed.data.bride,'Changed');
-assert.equal((await fetch(request('/api/invitations','POST',{...data,message:'x'.repeat(210000)}))).status,413);
+assert.equal((await fetch(request('/api/invitations','POST',{...data,message:'x'.repeat(610000)}))).status,413);
 assert.equal((await fetch(request('/api/invitations/'+result.id,'DELETE',undefined,'0'.repeat(64)))).status,403);
 assert.equal((await fetch(request('/api/invitations/'+result.id,'DELETE',undefined,result.token))).status,200);assert.equal((await fetch(request('/i/'+result.id))).status,404);
 const limited={...env,WRITE_LIMIT:{limit:async()=>({success:false})}} as Env;assert.equal((await worker.fetch(request('/api/invitations','POST',data),limited)).status,429);

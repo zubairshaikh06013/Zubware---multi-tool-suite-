@@ -10,7 +10,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   "id": "partnership-profit-sharing-calculator",
   "title": "Partnership Profit Sharing Calculator — Salary, Bonus & Investor Split",
   "navTitle": "Partnership Profit Sharing Calculator",
-  "description": "Free partnership profit sharing calculator with 2–10 partners, working partner salary, bonuses, capital interest, custom ratios, profit slabs, loss sharing and PDF/CSV reports. Hindi and English.",
+  "description": "Calculate partnership profit shares, salaries, bonuses and losses for 2–10 partners. Create an agreement draft with partner signatures, witnesses and PDF export. Hindi/English, free and private.",
   "icon": "🤝",
   "path": "/partnership-profit-sharing-calculator",
   "filename": "partnership-profit-sharing-calculator.html",
@@ -21,7 +21,8 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "Salary, bonus, capital interest and reserve breakdown",
     "Custom, capital, time-weighted, equal and slab ratios",
     "Separate loss ratios and profit scenario comparison",
-    "Hindi/English, PDF/CSV and optional local drafts"
+    "Hindi/English, PDF/CSV and optional local drafts",
+    "Agreement draft with partner signatures, witnesses and multi-page PDF"
   ],
   "tags": [
     "partnership profit sharing calculator",
@@ -48,6 +49,10 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     {
       "title": "Review and save the allocation",
       "desc": "Check each partner’s salary, interest, bonus, residual share and total allocation. Compare profit scenarios, download PDF or CSV, or save a draft on this device."
+    },
+    {
+      "title": "Create an agreement draft",
+      "desc": "Open Create partnership agreement. Enter firm details, partner addresses and operating terms. Review imported financial rules, add optional signature images and witnesses, then download the draft PDF for review and printing."
     }
   ],
   "faq": [
@@ -82,6 +87,22 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     {
       "question": "Is my partnership data uploaded or saved automatically?",
       "answer": "Calculation takes place in your browser and inputs are not uploaded by this tool. Saving a draft is optional and stores it on the current device; use Delete saved draft to remove it. PDF and CSV reports are generated locally."
+    },
+    {
+      "question": "Can I create a partnership agreement from the calculation?",
+      "answer": "Yes. Open Create partnership agreement to import partner names, capital, salary, bonus, reserve, sharing method and loss rules into a reviewable draft. Add business details, addresses, operating terms and optional witnesses. The current calculation can be attached as an illustrative appendix."
+    },
+    {
+      "question": "Can every partner sign the agreement?",
+      "answer": "Each partner can draw a signature using a finger or mouse or upload an authorized PNG, JPG or WebP signature image. Blank signature lines can be left for signing after printing. These are visual images, not certificate-based digital signatures or Aadhaar eSign, and the tool does not verify signer identity."
+    },
+    {
+      "question": "Are signatures stored with saved agreement drafts?",
+      "answer": "No. Signature images stay in session memory and are not saved with a local draft. Changing calculation inputs, language or agreement terms clears all attached images. Partners should review the updated draft and add their signatures again."
+    },
+    {
+      "question": "Is the generated agreement ready for legal execution?",
+      "answer": "The output is a draft template for review, not legal advice or a guarantee of enforceability. Review local law, stamp duty, registration and signing requirements with a qualified professional before execution."
     }
   ]
 },

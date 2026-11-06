@@ -27,5 +27,9 @@ for (const tool of TOOLS_DATA) {
 const assets = fs.readdirSync('dist/assets');
 assert.ok(!assets.some(name => /^toolSeoData-.*\.js$/.test(name)), 'Full FAQ catalog leaked into browser assets');
 assert.ok(fs.readFileSync('dist/qr-code-decoder/index.html','utf8').includes('Read a QR code from a screenshot or saved image'));
+const signatureHtml = fs.readFileSync('dist/signature-resizer/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+assert.ok(signatureHtml.includes('There is no fixed conversion from KB to pixels.'), 'Signature size explanation must be available without JavaScript');
+assert.ok(signatureHtml.includes('A 20 KB maximum does not enforce a 10 KB minimum'), 'Signature guide must explain both file-size boundaries');
+assert.ok(!fs.readFileSync('src/components/ToolSEOContent.tsx', 'utf8').includes('guarantee your file stays under the upload ceiling'), 'Do not promise guaranteed compression');
 assert.ok(fs.readFileSync('public/_headers','utf8').includes('/tool-seo/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Robots-Tag: noindex'));
 console.log(`Verified static FAQs, inline hydration and individual JSON for ${TOOLS_DATA.length} tools; largest guide ${largest} gzip bytes; no full-catalog browser bundle.`);

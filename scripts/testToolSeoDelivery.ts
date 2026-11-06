@@ -35,3 +35,7 @@ assert.ok(signatureHtml.includes('A 20 KB maximum does not enforce a 10 KB minim
 assert.ok(!fs.readFileSync('src/components/ToolSEOContent.tsx', 'utf8').includes('guarantee your file stays under the upload ceiling'), 'Do not promise guaranteed compression');
 assert.ok(fs.readFileSync('public/_headers','utf8').includes('/tool-seo/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Robots-Tag: noindex'));
 console.log(`Verified static FAQs, inline hydration and individual JSON for ${TOOLS_DATA.length} tools; largest guide ${largest} gzip bytes; no full-catalog browser bundle.`);
+
+const attendanceHtml = fs.readFileSync('dist/attendance-calculator/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+assert.ok(attendanceHtml.includes('Semester plan'), 'Attendance worked examples must be available without JavaScript');
+assert.ok(attendanceHtml.includes('/blog/how-many-classes-to-attend-for-75-percent'), 'Attendance tool must link to the formula guide');

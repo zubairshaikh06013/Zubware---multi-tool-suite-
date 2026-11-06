@@ -1,3 +1,4 @@
+import { AttendanceGuide } from './seo/AttendanceGuide';
 import { SignatureResizeGuide } from './seo/SignatureResizeGuide';
 import { QrDecoderGuide } from './seo/QrDecoderGuide';
 import { toolProcessingNotice } from '../lib/toolProcessingNotice';
@@ -678,6 +679,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
       )}
 
       {tool.id === 'signature-resizer' && <SignatureResizeGuide />}
+      {tool.id === 'attendance-calculator' && <AttendanceGuide />}
 
       {/* 3.11 DEDICATED PHOTO & SIGNATURE JOINER IN-DEPTH GUIDE (Targeting Admit Cards, Vyapam, Police & Court Applications) */}
       {tool.id === 'photo-signature-joiner' && (

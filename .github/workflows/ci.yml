@@ -40,6 +40,7 @@ jobs:
       - name: Check TypeScript and regressions
         run: |
           npm run lint
+          node --import tsx scripts/testAttendancePlan.ts
           npm run test:wedding
           npx tsc -p workers/wedding-invitations/tsconfig.json
           npm run test:cgpa

@@ -261,7 +261,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {comparisons.map((row, index) => <div key={index} className="space-y-2">
             <label htmlFor={`age-compare-${index}`} className="block text-sm font-bold text-slate-700 dark:text-slate-200">Compare date {index + 1}</label>
-            <input id={`age-compare-${index}`} type="date" min="0001-01-01" max="9999-12-31" value={row.date} aria-invalid={Boolean(row.error)} aria-describedby={row.error ? `age-compare-error-${index}` : undefined} onChange={e => { setComparisonDates(values => values.map((value, i) => i === index ? e.target.value : value)); setCopied(false); }} className="w-full px-3 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
+            <input id={`age-compare-${index}`} type="date" min="0001-01-01" max="9999-12-31" value={row.date} aria-invalid={Boolean(row.error)} aria-describedby={row.error ? `age-compare-error-${index}` : undefined} onChange={e => { const nextValue = e.currentTarget.value; setComparisonDates(values => values.map((value, i) => i === index ? nextValue : value)); setCopied(false); }} className="w-full px-3 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
             {row.error && <p id={`age-compare-error-${index}`} role="alert" className="text-xs text-rose-600 dark:text-rose-400">{row.error}</p>}
           </div>)}
         </div>

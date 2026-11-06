@@ -12,6 +12,57 @@ html, body {
 
 @custom-variant dark (&:is(.dark, .dark *));
 
+/* Directory polish is scoped to tool cards, never the brand or search UI. */
+.glass-card.tool-directory-card {
+  --directory-border: #e2e8f0;
+  --directory-hover-border: #a5b4fc;
+  --directory-shadow: 0 2px 8px -2px rgb(15 23 42 / 0.06);
+  min-width: 0;
+  border-color: var(--directory-border);
+  box-shadow: var(--directory-shadow);
+  transition: border-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dark .glass-card.tool-directory-card {
+  --directory-border: #334155;
+  --directory-hover-border: #818cf8;
+  --directory-shadow: 0 2px 8px -2px rgb(0 0 0 / 0.2);
+  border-color: var(--directory-border);
+  box-shadow: var(--directory-shadow);
+}
+
+.glass-card.tool-directory-card :where(h3, h4) {
+  min-width: 0;
+  overflow-wrap: break-word;
+  line-height: 1.45;
+}
+
+.glass-card.tool-directory-card:hover,
+.dark .glass-card.tool-directory-card:hover {
+  transform: none;
+  border-color: var(--directory-hover-border);
+  box-shadow: var(--directory-shadow);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .glass-card.tool-directory-card:hover,
+  .dark .glass-card.tool-directory-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px -8px rgb(79 70 229 / 0.16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glass-card.tool-directory-card,
+  .glass-card.tool-directory-card * {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* High-Contrast Focus Ring for WCAG Keyboard Navigation Compliance */
 *:focus-visible {
   outline: 2px solid #4f46e5 !important;

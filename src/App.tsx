@@ -834,7 +834,7 @@ export default function App() {
 
                     return (
                       <div key={catName} className="space-y-4">
-                        <div className="flex items-center justify-between">
+                        <div className="flex flex-wrap items-center justify-between gap-3">
                           <div className="flex items-center gap-3">
                             <h3 className="text-xl font-extrabold text-slate-900 dark:text-white">
                               {catName}
@@ -847,7 +847,7 @@ export default function App() {
                           {hasMore && (
                             <a
                               href={getLinkUrl(`/category/${getCategoryForTool(catName)?.slug || 'all'}`)}
-                              className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1 cursor-pointer transition-colors"
+                              className="min-h-11 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 flex items-center gap-1 cursor-pointer transition-colors"
                             >
                               <span>View all {allCategoryTools.length} tools</span>
                               <ArrowRight className="w-3.5 h-3.5" />
@@ -860,7 +860,7 @@ export default function App() {
                             <a
                               key={tool.id}
                               href={getLinkUrl(tool.path)}
-                              className="glass-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all hover:-translate-y-1 shadow-sm hover:shadow-xl hover:shadow-indigo-500/5 block"
+                              className="glass-card tool-directory-card flex flex-col justify-between p-6 rounded-3xl group cursor-pointer block"
                               onClick={(e) => {
                                 e.preventDefault();
                                 navigateTo(getLinkUrl(tool.path));
@@ -872,10 +872,10 @@ export default function App() {
                                     toolId={tool.id} 
                                     category={tool.category} 
                                     size="lg" 
-                                    className="group-hover:scale-110 transition-transform shadow-xs" 
+                                    className="shadow-xs"
                                   />
                                   {tool.badge && (
-                                    <span className="text-[10px] font-bold uppercase px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
+                                    <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
                                       {tool.badge}
                                     </span>
                                   )}
@@ -883,7 +883,7 @@ export default function App() {
                                 <h4 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                                   {tool.title}
                                 </h4>
-                                <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                                <p className="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                                   {tool.description}
                                 </p>
 
@@ -892,7 +892,7 @@ export default function App() {
 
                               <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
                                 <span
-                                  className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
+                                  className="w-full min-h-11 py-2.5 px-4 rounded-xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
                                 >
                                   <span>{getTranslation(currentLang, 'openTool', 'Open')} {tool.navTitle}</span>
                                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" />
@@ -1093,7 +1093,7 @@ export default function App() {
                   <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
                     {activeTool.title}
                   </h1>
-                  <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                     {activeTool.description}
                   </p>
                   {activeTool.id === 'gst-invoice-generator' && <GstInvoiceIntro />}

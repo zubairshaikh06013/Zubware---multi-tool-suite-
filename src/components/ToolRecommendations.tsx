@@ -44,7 +44,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
               onNavigate(getLinkUrl(tool.path));
             }}
             aria-label={`Open tool ${tool.navTitle}`}
-            className="glass-card p-4 rounded-2xl cursor-pointer hover:border-indigo-500/40 transition-all group flex flex-col justify-between text-left block"
+            className="glass-card tool-directory-card p-4 rounded-2xl cursor-pointer group flex flex-col justify-between text-left block"
           >
             <div>
               <div className="flex items-center gap-2 mb-2">
@@ -53,7 +53,7 @@ export const ToolRecommendations: React.FC<ToolRecommendationsProps> = ({
                   {tool.navTitle}
                 </h4>
               </div>
-              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed font-normal">
+              <p className="text-sm text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed font-normal">
                 {tool.description}
               </p>
             </div>

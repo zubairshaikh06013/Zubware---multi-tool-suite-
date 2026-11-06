@@ -159,7 +159,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
             ? t('toolCategories', 'Tool Categories & Directory')
             : <><ToolIcon category={activeCategoryMeta.slug} size="xl" className="mx-auto mb-3" />{authMeta?.h1 || t(activeCategoryMeta.nameKey, activeCategoryMeta.defaultName)}</>}
         </h1>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed">
           {activeCategory === 'all'
             ? t('categoriesSubtitle', 'Browse hundreds of browser-based utilities organized by domain with zero installation and fast client-side processing.')
             : (authMeta?.leadParagraph || activeCategoryMeta.description)}
@@ -196,9 +196,9 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
               }}
               aria-label={`Category ${translatedName}`}
               aria-current={isActive ? 'page' : undefined}
-              className={`px-4 py-2.5 rounded-2xl text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer ${
+              className={`min-h-11 px-4 py-2.5 rounded-2xl text-sm font-semibold whitespace-nowrap transition-colors flex items-center gap-2 cursor-pointer ${
                 isActive
-                  ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 scale-105'
+                  ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-500/20'
                   : 'glass-card text-slate-700 dark:text-slate-300 hover:border-indigo-500/40'
               }`}
             >
@@ -319,7 +319,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 e.preventDefault();
                 onNavigate(getLinkUrl(tool.path));
               }}
-              className="glass-card h-full flex flex-col justify-between p-6 rounded-3xl group cursor-pointer hover:border-indigo-500/30 transition-all relative block shadow-xs hover:shadow-md"
+              className="glass-card tool-directory-card h-full flex flex-col justify-between p-6 rounded-3xl group cursor-pointer relative block"
             >
               <div>
                 <div className="flex items-center justify-between mb-4 pr-12">
@@ -327,11 +327,11 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                     toolId={tool.id} 
                     category={tool.category} 
                     size="lg" 
-                    className="group-hover:scale-110 transition-transform shadow-xs" 
+                    className="shadow-xs"
                   />
                   <div className="flex items-center gap-1.5">
                     {tool.badge && (
-                      <span className="text-[10px] font-bold uppercase px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
+                      <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400 border border-indigo-200/50 dark:border-indigo-800/50">
                         {tool.badge}
                       </span>
                     )}
@@ -341,14 +341,14 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 <h3 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                   {tool.title}
                 </h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400 mt-2 leading-relaxed">
+                <p className="text-sm text-slate-600 dark:text-slate-300 mt-2 leading-relaxed">
                   {tool.description}
                 </p>
 
                 <ul className="mt-4 space-y-1.5 border-t border-slate-100 dark:border-slate-800/60 pt-3">
                   {tool.features.slice(0, 3).map((f, i) => (
-                    <li key={i} className="flex items-center gap-1.5 text-[11px] text-slate-600 dark:text-slate-400 font-medium">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-indigo-500 shrink-0" aria-hidden="true" />
+                    <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                      <CheckCircle2 className="w-4 h-4 mt-0.5 text-indigo-500 shrink-0" aria-hidden="true" />
                       <span>{f}</span>
                     </li>
                   ))}
@@ -357,7 +357,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
 
               <div className="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800">
                 <span
-                  className="w-full py-2.5 px-4 rounded-xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-semibold text-xs transition-all flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
+                  className="w-full min-h-11 py-2.5 px-4 rounded-xl bg-indigo-600 group-hover:bg-indigo-700 text-white font-semibold text-sm transition-colors flex items-center justify-center gap-2 group/btn shadow-md hover:shadow-indigo-500/20"
                 >
                   <span>{t('openTool', 'Open')} {tool.navTitle}</span>
                   <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform" aria-hidden="true" />
@@ -369,10 +369,10 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                       onClick={(e) => handleToggleFav(tool.id, e)}
                       aria-label={fav ? `Remove ${tool.title} from favorites` : `Add ${tool.title} to favorites`}
                       aria-pressed={fav}
-                      className={`absolute right-6 top-6 z-10 p-2 rounded-xl transition-all cursor-pointer ${
+                      className={`absolute right-5 top-5 z-10 min-h-11 min-w-11 inline-flex items-center justify-center p-2 rounded-xl transition-colors cursor-pointer ${
                         fav
                           ? 'bg-amber-500/10 text-amber-500'
-                          : 'text-slate-300 dark:text-slate-600 hover:text-amber-500'
+                          : 'text-slate-500 dark:text-slate-400 hover:text-amber-600 dark:hover:text-amber-400'
                       }`}
                       title={fav ? 'Remove Favorite' : 'Add to Favorite'}
                     >

@@ -15,6 +15,7 @@ interface HomepageHeroProps {
 }
 
 const POPULAR_TOOLS_CONFIG = [
+  { id: 'age-calculator', label: 'Age Calculator' },
   { id: 'image-splitter-merger', label: 'Image Split & Combine' },
   { id: 'image-compressor', label: 'Image Compressor' },
   { id: 'pdf-merge', label: 'PDF Merge Tool' },

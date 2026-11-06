@@ -1812,6 +1812,7 @@ function renderHomepageContent(): string {
           Work with images, PDFs, text and calculations without installing software. Processing options and limits vary by tool; check its notice before using private files.
         </p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="${DOMAIN}/age-calculator" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Age Calculator &rarr;</a>
           <a href="${DOMAIN}/category/pdf-tools" style="padding: 0.75rem 1.5rem; background: #4f46e5; color: #ffffff; font-weight: 700; text-decoration: none; border-radius: 0.75rem;">Explore PDF Tools &rarr;</a>
           <a href="${DOMAIN}/category/image-tools" style="padding: 0.75rem 1.5rem; background: #ffffff; color: #4f46e5; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #c7d2fe;">Image Tools &rarr;</a>
           <a href="${DOMAIN}/categories" style="padding: 0.75rem 1.5rem; background: #f8fafc; color: #334155; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #e2e8f0;">Full Directory &rarr;</a>

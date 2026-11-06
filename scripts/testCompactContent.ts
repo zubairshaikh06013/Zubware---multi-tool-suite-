@@ -6,6 +6,7 @@ import { CATEGORIES_DATA } from '../src/data/categoriesData';
 import { getToolCanonicalPath } from '../src/lib/paths';
 const html = fs.readFileSync('dist/index.html','utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi,'');
 const hrefs=new Set([...html.matchAll(/href="([^"]+)"/g)].map(m=>m[1]));
+assert.ok(hrefs.has('https://www.zubware.com/age-calculator'), 'Homepage must expose a crawlable age calculator link');
 const linkedTools=TOOLS_DATA.filter(t=>hrefs.has(`https://www.zubware.com${getToolCanonicalPath(t)}`));
 assert.ok(linkedTools.length > 10 && linkedTools.length <= 45, `Homepage previews: ${linkedTools.length}`);
 for(const category of CATEGORIES_DATA.filter(c=>c.slug!=='all')) assert.ok(hrefs.has(`https://www.zubware.com/category/${category.slug}`),category.slug);

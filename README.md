@@ -4,12 +4,15 @@
 
 Zubware is a collection of browser-accessible tools for everyday image, PDF, and digital workflows. Try the tools directly on the website:
 
+- [Age Calculator](https://www.zubware.com/age-calculator) — calculate calendar age from DOB on any reference date, compare three dates and copy the results.
 - [Image Compressor](https://www.zubware.com/image-compressor) — compress images and use target-size and batch-download options.
 - [Image Resizer](https://www.zubware.com/image-resizer) — resize by pixels, percentages, and common social-media dimensions.
 
 Explore more utilities at [Zubware.com](https://www.zubware.com).
 
 ## Free educational resources
+
+- [Age on a reference date: worked examples and test cases](docs/age-calculator-guide.md) — birthday boundaries, completed years and reproducible checks for tutorials.
 
 - [Image optimization guide and publishing checklist](docs/free-image-optimization-guide.md) — practical steps for compression, resizing, background removal, and checking exports before publishing.
 

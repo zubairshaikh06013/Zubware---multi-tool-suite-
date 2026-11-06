@@ -58,3 +58,20 @@ const ageHtml = fs.readFileSync('dist/age-calculator/index.html', 'utf8').replac
 assert.ok(ageHtml.includes('Compare age on three reference dates'));
 assert.ok(ageHtml.includes('/blog/calculate-age-on-cutoff-date'));
 assert.ok(fs.readFileSync('dist/age-calculator/index.html', 'utf8').includes('Age Calculator on Any Date'));
+
+// The age route must not download the unrelated multi-tool editorial module.
+const ageManifest = JSON.parse(fs.readFileSync('dist/.vite/manifest.json', 'utf8'));
+const ageGuideEntry = ageManifest['src/components/seo/AgeToolSEOContent.tsx'];
+assert.ok(ageGuideEntry?.file, 'Age guide needs a dedicated lazy module');
+const seenAgeImports = new Set<string>();
+const inspectAgeImports = (key: string) => {
+  if (seenAgeImports.has(key)) return;
+  seenAgeImports.add(key);
+  const entry = ageManifest[key];
+  assert.ok(entry, `Missing age guide import ${key}`);
+  assert.ok(!/(?:^|\/)(?:ToolSEOContent-|ImageToolsSEO|VideoBusinessSEO|PdfToolsSEO|DesignUtilitySecuritySEO)/.test(entry.file), 'Age guide must not import other tools editorial modules');
+  for (const dependency of entry.imports || []) inspectAgeImports(dependency);
+};
+inspectAgeImports('src/components/seo/AgeToolSEOContent.tsx');
+assert.ok(gzipSync(fs.readFileSync(`dist/${ageGuideEntry.file}`)).length < 10000, 'Keep the age-only guide under 10 KB gzip');
+assert.ok(fs.readFileSync('src/App.tsx', 'utf8').includes("activeTool.id === 'age-calculator' ? <AgeToolSEOContent />"));

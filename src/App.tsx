@@ -376,6 +376,7 @@ const ContactPage = lazy(() => import('./components/pages/ContactPage').then(m =
 const AboutPage = lazy(() => import('./components/pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const SeoDiagnosticsPage = lazy(() => import('./components/pages/SeoDiagnosticsPage').then(m => ({ default: m.SeoDiagnosticsPage })));
 const NotFoundPage = lazy(() => import('./components/pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
+const AgeToolSEOContent = lazyWithRetry(() => import('./components/seo/AgeToolSEOContent').then(m => ({ default: m.AgeToolSEOContent })));
 const ToolSEOContent = lazyWithRetry(() => import('./components/ToolSEOContent').then(m => ({ default: m.ToolSEOContent })));
 const BlogIndexPage = lazy(() => import('./components/pages/BlogIndexPage').then(m => ({ default: m.BlogIndexPage })));
 const BlogPostPage = lazy(() => import('./components/pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
@@ -1430,7 +1431,7 @@ export default function App() {
               {/* RICH CRAWLABLE AEO & SEO CONTENT MODULE */}
               <ToolErrorBoundary toolTitle={`${activeTool.title} Guide`} onReset={() => window.location.reload()}>
                 <Suspense fallback={<LoadingFallback />}>
-                  <ToolSEOContent tool={activeTool} allTools={toolPageTools} onNavigate={navigateTo} />
+                  {activeTool.id === 'age-calculator' ? <AgeToolSEOContent /> : <ToolSEOContent tool={activeTool} allTools={toolPageTools} onNavigate={navigateTo} />}
                 </Suspense>
               </ToolErrorBoundary>
             </div>

@@ -252,26 +252,6 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       <p id="age-date-help" className="text-xs text-slate-600 dark:text-slate-400">
         Results update automatically when both dates are valid. Choose any past or future reference date on or after birth. Month-end dates use the last valid day of the destination month. A February 29 birthday uses February 28 in non-leap years here. Official eligibility rules may differ.
       </p>
-      <section className="glass-card p-5 sm:p-6 rounded-3xl border border-indigo-200 dark:border-indigo-900 space-y-4" aria-labelledby="age-comparison-title">
-        <div className="flex flex-wrap justify-between items-center gap-3">
-          <h3 id="age-comparison-title" className="text-lg font-bold text-slate-900 dark:text-white">Compare age on three dates</h3>
-          <button type="button" onClick={() => { setComparisonDates(['', '', '']); setCopied(false); }} className="min-h-11 px-3 text-sm font-bold text-indigo-600 dark:text-indigo-400">Clear comparison dates</button>
-        </div>
-        <p className="text-sm text-slate-600 dark:text-slate-300">Use one date of birth with up to three reference or cutoff dates. Enter dates from your own form; these comparisons calculate age, not eligibility.</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-          {comparisons.map((row, index) => <div key={index} className="space-y-2">
-            <label htmlFor={`age-compare-${index}`} className="block text-sm font-bold text-slate-700 dark:text-slate-200">Compare date {index + 1}</label>
-            <input id={`age-compare-${index}`} type="date" min="0001-01-01" max="9999-12-31" value={row.date} aria-invalid={Boolean(row.error)} aria-describedby={row.error ? `age-compare-error-${index}` : undefined} onChange={e => { const nextValue = e.currentTarget.value; setComparisonDates(values => values.map((value, i) => i === index ? nextValue : value)); setCopied(false); }} className="w-full px-3 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
-            {row.error && <p id={`age-compare-error-${index}`} role="alert" className="text-xs text-rose-600 dark:text-rose-400">{row.error}</p>}
-          </div>)}
-        </div>
-        {comparisons.some(row => row.age) && <div className="overflow-x-auto"><table className="w-full text-sm text-left">
-          <caption className="text-left py-2 text-slate-600 dark:text-slate-300">Age comparison for date of birth {dob} (YYYY-MM-DD)</caption>
-          <thead><tr className="border-b border-slate-200 dark:border-slate-700"><th scope="col" className="p-2">Reference date</th><th scope="col" className="p-2">Calendar age</th><th scope="col" className="p-2">Completed years</th></tr></thead>
-          <tbody>{comparisons.filter(row => row.age).map((row,index) => <tr key={index} className="border-b border-slate-100 dark:border-slate-800"><th scope="row" className="p-2 font-semibold"><time dateTime={row.date}>{row.date}</time></th><td className="p-2">{row.age!.years} years, {row.age!.months} months, {row.age!.days} days</td><td className="p-2 font-bold">{row.age!.years}</td></tr>)}</tbody>
-        </table></div>}
-        <p className="text-xs text-slate-500">Completed years are not rounded up. The same month-end and February 29 convention applies to all rows. <a className="underline text-indigo-600 dark:text-indigo-400" href="/blog/calculate-age-on-cutoff-date">Read the age on cutoff date guide</a>.</p>
-      </section>
       {result ? (
         <div className="space-y-6">
           {/* Main Hero Age Display */}
@@ -305,6 +285,27 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
               You were born on a <span className="font-bold text-slate-900 dark:text-white">{result.birthDayOfWeek}</span>.
             </p>
           </div>
+
+      <section className="glass-card p-5 sm:p-6 rounded-3xl border border-indigo-200 dark:border-indigo-900 space-y-4" aria-labelledby="age-comparison-title">
+        <div className="flex flex-wrap justify-between items-center gap-3">
+          <h3 id="age-comparison-title" className="text-lg font-bold text-slate-900 dark:text-white">Compare age on three dates</h3>
+          <button type="button" onClick={() => { setComparisonDates(['', '', '']); setCopied(false); }} className="min-h-11 px-3 text-sm font-bold text-indigo-600 dark:text-indigo-400">Clear comparison dates</button>
+        </div>
+        <p className="text-sm text-slate-600 dark:text-slate-300">Use one date of birth with up to three reference or cutoff dates. Enter dates from your own form; these comparisons calculate age, not eligibility.</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {comparisons.map((row, index) => <div key={index} className="space-y-2">
+            <label htmlFor={`age-compare-${index}`} className="block text-sm font-bold text-slate-700 dark:text-slate-200">Compare date {index + 1}</label>
+            <input id={`age-compare-${index}`} type="date" min="0001-01-01" max="9999-12-31" value={row.date} aria-invalid={Boolean(row.error)} aria-describedby={row.error ? `age-compare-error-${index}` : undefined} onChange={e => { const nextValue = e.currentTarget.value; setComparisonDates(values => values.map((value, i) => i === index ? nextValue : value)); setCopied(false); }} className="w-full px-3 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white" />
+            {row.error && <p id={`age-compare-error-${index}`} role="alert" className="text-xs text-rose-600 dark:text-rose-400">{row.error}</p>}
+          </div>)}
+        </div>
+        {comparisons.some(row => row.age) && <div className="overflow-x-auto"><table className="w-full text-sm text-left">
+          <caption className="text-left py-2 text-slate-600 dark:text-slate-300">Age comparison for date of birth {dob} (YYYY-MM-DD)</caption>
+          <thead><tr className="border-b border-slate-200 dark:border-slate-700"><th scope="col" className="p-2">Reference date</th><th scope="col" className="p-2">Calendar age</th><th scope="col" className="p-2">Completed years</th></tr></thead>
+          <tbody>{comparisons.filter(row => row.age).map((row,index) => <tr key={index} className="border-b border-slate-100 dark:border-slate-800"><th scope="row" className="p-2 font-semibold"><time dateTime={row.date}>{row.date}</time></th><td className="p-2">{row.age!.years} years, {row.age!.months} months, {row.age!.days} days</td><td className="p-2 font-bold">{row.age!.years}</td></tr>)}</tbody>
+        </table></div>}
+        <p className="text-xs text-slate-500">Completed years are not rounded up. The same month-end and February 29 convention applies to all rows. <a className="underline text-indigo-600 dark:text-indigo-400" href="/blog/calculate-age-on-cutoff-date">Read the age on cutoff date guide</a>.</p>
+      </section>
 
           <p className="text-xs text-slate-600 dark:text-slate-400">
             Months and weeks below are completed units, with the remaining days shown separately. Hours, minutes and seconds use 24 hours per calendar day; they do not account for your birth time or daylight-saving clock changes.

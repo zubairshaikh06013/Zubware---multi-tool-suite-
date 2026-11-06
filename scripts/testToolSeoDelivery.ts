@@ -48,3 +48,8 @@ const joinedHtml = fs.readFileSync('dist/photo-signature-joiner/index.html', 'ut
 assert.ok(joinedHtml.includes('A 12 KB file is below that minimum'));
 assert.ok(joinedHtml.includes('/blog/join-photo-signature-one-jpg-size-guide'));
 assert.equal((joinedHtml.match(/Join photo and signature into one JPG with a KB range check/g) || []).length, 1);
+
+const nameDateHtml = fs.readFileSync('dist/photo-name-date-joiner/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+assert.ok(nameDateHtml.includes('output 600 × 840 px'));
+assert.ok(nameDateHtml.includes('/blog/add-name-date-photo-size-guide'));
+assert.ok(!nameDateHtml.includes('download your compliant photo instantly'));

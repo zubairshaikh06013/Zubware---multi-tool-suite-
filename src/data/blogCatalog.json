@@ -1,5 +1,31 @@
 [
   {
+    "slug": "add-name-date-photo-size-guide",
+    "title": "Add Name and Date Below a Photo: Final Pixels and KB Explained",
+    "description": "Add a visible name and photo date, compare strip versus overlay, calculate final pixels and check a JPG maximum KB before uploading an application photo.",
+    "canonicalPath": "/blog/add-name-date-photo-size-guide",
+    "publishedTime": "2026-11-06T11:04:19Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "Name and Date on Photo",
+      "DOP",
+      "Photo Strip",
+      "Photo KB",
+      "Form Upload"
+    ],
+    "excerpt": "A name strip can change the full photo height. Compare layouts, use the actual photograph date and inspect the encoded file before submitting it.",
+    "relatedToolIds": [
+      "photo-name-date-joiner",
+      "image-resizer",
+      "photo-signature-joiner",
+      "signature-resizer"
+    ]
+  },
+  {
     "slug": "join-photo-signature-one-jpg-size-guide",
     "title": "Join Photo and Signature in One JPG: Pixels, KB and Layout",
     "description": "Combine a photo and signature in one JPG. Calculate final pixels, check a 20–50 KB example range, compare layouts and troubleshoot rejected form uploads.",

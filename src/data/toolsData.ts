@@ -6690,19 +6690,19 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "photo-name-date-joiner",
     "title": "Add Name and Date to Photo Online — Exam Photo Editor Free",
     "navTitle": "Name & Date on Photo",
-    "description": "Add candidate name and date of photo (DOP) to passport pictures for recruitment exams. Customize date formats and font sizes with instant image export.",
+    "description": "Add name and date of photograph to a photo. Choose strip or overlay, check final pixels and maximum KB, preview and download JPG or PNG free.",
     "icon": "📅",
     "path": "/photo-name-date-joiner",
     "filename": "photo-name-date-joiner.html",
     "category": "🖼️ Image Tools",
     "badge": "New",
     "features": [
-      "Compliant White Footer Strip for Candidate Name & Date",
-      "Custom Date Formats (DD/MM/YYYY, MM/DD/YYYY, DOP, DOB)",
-      "Adjustable Font Family, Font Size & Banner Height",
-      "Preset Dimensions for SSC, NEET, UPSC & State PSC Forms",
-      "High-Resolution JPG Export Meeting Portal Requirements",
-      "Zero Cloud Uploads with Local In-Browser Processing"
+      "Visible Candidate Name and Date of Photograph Label",
+      "Four Date Formats and Optional DOP Prefix",
+      "Top Strip, Bottom Strip or Bottom Overlay",
+      "Measured Final Pixel Dimensions and Byte Size",
+      "Optional Maximum KB Check with JPG Quality Adjustment",
+      "Encoded JPG or PNG Preview and Local Browser Processing"
     ],
     "tags": [
       "Free",

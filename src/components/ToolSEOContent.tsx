@@ -1,3 +1,4 @@
+import { PhotoNameDateGuide } from './seo/PhotoNameDateGuide';
 import { PhotoSignatureGuide } from './seo/PhotoSignatureGuide';
 import { CashClosingGuide } from './seo/CashClosingGuide';
 import { AttendanceGuide } from './seo/AttendanceGuide';
@@ -685,6 +686,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
       {tool.id === 'cash-denomination-calculator' && <CashClosingGuide />}
 
       {tool.id === 'photo-signature-joiner' && <PhotoSignatureGuide />}
+      {tool.id === 'photo-name-date-joiner' && <PhotoNameDateGuide />}
 
       {/* 3.12 DEDICATED AGE CALCULATOR FLAGSHIP GUIDE (Global Intent with Secondary Regional Intent) */}
       {tool.id === 'age-calculator' && (

@@ -20,7 +20,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'cat-age-calculator': ['age-calculator', 'countdown-calculator'],
   'college-gpa-calculator': ['cgpa-calculator', 'exam-score-calculator', 'percentage-calculator'],
   'signature-maker': ['signature-resizer', 'pdf-signature', 'photo-signature-joiner'],
-  'photo-name-date-joiner': ['photo-signature-joiner', 'signature-resizer', 'passport-photo-maker'],
+  'photo-name-date-joiner': ['image-resizer', 'photo-signature-joiner', 'signature-resizer', 'passport-photo-maker'],
   'subtitle-generator': ['video-trimmer', 'video-compressor', 'video-aspect-ratio', 'video-to-audio'],
   'video-compressor': ['video-trimmer', 'video-aspect-ratio', 'video-to-audio', 'video-to-gif'],
   'json-validator': ['json-formatter', 'json-viewer', 'json-minifier', 'json-to-csv'],

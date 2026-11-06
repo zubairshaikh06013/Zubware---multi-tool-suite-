@@ -8213,42 +8213,46 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "photo-name-date-joiner": {
     "howTo": [
-      {
-        "title": "Upload Passport Photograph",
-        "desc": "Select or drag your passport-style photo into the exam photo formatting tool."
-      },
-      {
-        "title": "Enter Candidate Name and Date of Photo",
-        "desc": "Type your official name and select the photo capture date (DOP) or date of birth (DOB) as required by notification guidelines."
-      },
-      {
-        "title": "Preview and Download Form-Ready Photo",
-        "desc": "Adjust text size or banner height on the live preview canvas and download your compliant photo instantly."
-      }
+        {
+            "title": "Upload a photograph",
+            "desc": "Choose a JPG, PNG or WebP image up to 25 MB. Check whether your form actually asks for a visible name and date label."
+        },
+        {
+            "title": "Enter your name and the actual photo date",
+            "desc": "Enter the candidate name and date the photograph was taken. Select the date format and strip placement; Today uses your device date."
+        },
+        {
+            "title": "Check final pixels and KB, then download",
+            "desc": "Review the encoded preview and measured output dimensions. Set an optional maximum KB and download JPG or PNG only when it fits. Check your portal requirements separately."
+        }
     ],
     "faq": [
-      {
-        "question": "Why do exams like SSC, NEET, and police recruitments require name and date on photos?",
-        "answer": "Exam commissions mandate printing the candidate’s full name and Date of Photograph (DOP) to verify the photo is recent and prevent impersonation."
-      },
-      {
-        "question": "Can I customize the date format to match official notification requirements?",
-        "answer": "Yes. You can format the date as DD-MM-YYYY, DD/MM/YYYY, or include custom text prefixes such as \"DOP: 15/08/2026\"."
-      },
-      {
-        "question": "Does the white text bar cut into the candidate’s face or chin?",
-        "answer": "You can adjust the banner height, font size, and vertical padding to ensure the text strip sits neatly below the chin area."
-      },
-      {
-        "question": "Can I adjust the final output image dimensions (e.g. 3.5cm x 4.5cm or 200x230px)?",
-        "answer": "Yes. The tool lets you enforce exact pixel dimensions and maximum file size limits required by official upload portals."
-      },
-      {
-        "question": "Is my personal identity photograph uploaded to a cloud server?",
-        "answer": "No. All text compositing and image generation happen locally in your browser memory."
-      }
+        {
+            "question": "Does every exam require name and date on a photo?",
+            "answer": "No. Use a visible label only when your specific form instructions ask for one. There is no universal exam photo specification."
+        },
+        {
+            "question": "Is DOP the same as date of birth?",
+            "answer": "No. DOP means date of photograph, the date the photo was taken. It is different from DOB. Enter the actual photo date, not automatically the application date."
+        },
+        {
+            "question": "Does adding the name strip change photo dimensions?",
+            "answer": "A top or bottom strip adds height. With the default 20% strip, a 600 × 700 px original becomes 600 × 840 px. Bottom overlay keeps 600 × 700 px but covers part of the image."
+        },
+        {
+            "question": "Can I keep a labelled JPG under 50 KB?",
+            "answer": "Set maximum KB to 50. The tool attempts lower JPG quality at unchanged pixels and measures actual bytes. If it still exceeds the limit, download is blocked. No minimum-size check is applied."
+        },
+        {
+            "question": "Can I set exact final dimensions here?",
+            "answer": "This tool retains the original photo dimensions and adds a strip or overlay. It displays final pixels but does not provide exact output resizing. Use the Image Resizer on the labelled export if your form requires different pixels, then inspect the text again."
+        },
+        {
+            "question": "Are my photos uploaded for editing?",
+            "answer": "Photo compositing and image export run in your browser. Your entered name, date and photo are not sent to a conversion server by this tool."
+        }
     ]
-  },
+},
   "text-to-handwriting": {
     "howTo": [
         {

@@ -14,6 +14,9 @@ import {
 import { useLanguage } from '../../../context/LanguageContext';
 import { UniversalFileUpload } from '../../common/UniversalFileUpload';
 
+import { exportCompositeImage } from '../../../lib/compositeImageExport';
+import { formatDecimalBytes, parseTargetBytes } from '../../../lib/fileSizeStandard';
+
 import { localPhotoDate, fitPhotoLabel } from '../../../lib/photoLabel';
 
 type Placement = 'bottom-strip' | 'top-strip' | 'bottom-overlay';
@@ -27,8 +30,8 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
   const [origFile, setOrigFile] = useState<File | null>(null);
 
   // Form Fields
-  const [name, setName] = useState('JOHN DOE');
-  const [dateStr, setDateStr] = useState(localPhotoDate());
+  const [name, setName] = useState('');
+  const [dateStr, setDateStr] = useState('');
   const [datePrefix, setDatePrefix] = useState('DOP: '); // Date of Photo
   const [dateFormat, setDateFormat] = useState<DateFormat>('DD/MM/YYYY');
   const [textTransform, setTextTransform] = useState<'uppercase' | 'capitalize' | 'none'>('uppercase');
@@ -45,10 +48,15 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
   // Live Canvas Preview
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const [outputDataUrl, setOutputDataUrl] = useState<string>('');
+  const [maxKb, setMaxKb] = useState(0);
+  const [outputInfo, setOutputInfo] = useState({ width: 0, height: 0, bytes: 0, withinLimit: true });
+  const [exportError, setExportError] = useState('');
+  const uploadRequest = useRef(0);
 
   const handleFileSelected = (files: File[]) => {
     if (!files || files.length === 0) return;
     const selected = files[0];
+    const requestId = ++uploadRequest.current;
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(selected.type) || selected.size === 0 || selected.size > 25 * 1024 * 1024) { onShowToast('Choose a JPG, PNG or WebP image up to 25 MB.'); return; }
     const img = new Image();
     const reader = new FileReader();
@@ -56,6 +64,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
     img.onerror = () => onShowToast('Unable to decode this image. Try JPG, PNG or WebP.');
     reader.onload = (e) => {
       img.onload = () => {
+        if (requestId !== uploadRequest.current) return;
         if (img.width * img.height > 12000000 || img.width > 8192 || img.height > 6000) { onShowToast('Use a photo up to 12 megapixels, 8192 pixels wide and 6000 pixels tall.'); return; }
         setPhotoImg(img);
         setOrigFile(selected);
@@ -199,9 +208,15 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
       ctx.strokeRect(bWidth / 2, bWidth / 2, canvasW - bWidth, canvasH - bWidth);
     }
 
-    const mime = exportFormat === 'jpeg' ? 'image/jpeg' : 'image/png';
-    const dataUrl = canvas.toDataURL(mime, 0.95);
-    setOutputDataUrl(dataUrl);
+    try {
+      const exported = exportCompositeImage(canvas, exportFormat, parseTargetBytes(maxKb, 'KB'));
+      setOutputDataUrl(exported.url);
+      setOutputInfo({ width: canvasW, height: canvasH, bytes: exported.bytes, withinLimit: exported.withinLimit });
+      setExportError('');
+    } catch {
+      setOutputDataUrl('');
+      setExportError('Unable to export this photo. Try a smaller original.');
+    }
 
     // Update preview canvas
     const pCanvas = previewCanvasRef.current;
@@ -211,10 +226,10 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
       const pCtx = pCanvas.getContext('2d');
       if (pCtx) pCtx.drawImage(canvas, 0, 0);
     }
-  }, [photoImg, name, dateStr, datePrefix, dateFormat, textTransform, placement, stripHeightPct, stripBgColor, textColor, fontFamily, includeBorder, exportFormat]);
+  }, [photoImg, name, dateStr, datePrefix, dateFormat, textTransform, placement, stripHeightPct, stripBgColor, textColor, fontFamily, includeBorder, exportFormat, maxKb]);
 
   const handleDownload = () => {
-    if (!outputDataUrl) return;
+    if (!outputDataUrl || !outputInfo.withinLimit || exportError) return;
     const a = document.createElement('a');
     a.href = outputDataUrl;
     const ext = exportFormat === 'jpeg' ? 'jpg' : 'png';
@@ -226,6 +241,9 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
   };
 
   const handleReset = () => {
+    uploadRequest.current++;
+    setExportError('');
+    setOutputInfo({ width: 0, height: 0, bytes: 0, withinLimit: true });
     setPhotoImg(null);
     setOrigFile(null);
     setOutputDataUrl('');
@@ -245,7 +263,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
           multiple={false}
           maxSizeMB={25}
           title="Drop candidate photo here to add name & date"
-          subtitle="Meets standard recruitment, entrance exam, and passport application requirements"
+          subtitle="Add a visible label, then check your form’s own photo requirements"
           fileTypeSupportText="Client-Side • Sharp vector typography"
           onFilesSelected={handleFileSelected}
         />
@@ -263,6 +281,8 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
                 <label className="text-xs font-bold text-slate-500 block mb-1">Candidate Full Name</label>
                 <input
                   type="text"
+                  aria-label="Candidate name"
+                  maxLength={120}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. JOHN DOE"
@@ -287,6 +307,7 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
                 </div>
                 <input
                   type="date"
+                  aria-label="Date photograph was taken"
                   value={dateStr}
                   onChange={(e) => setDateStr(e.target.value)}
                   className="w-full p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
@@ -303,7 +324,6 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
                     className="w-full p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-bold text-slate-900 dark:text-white"
                   >
                     <option value="DOP: ">DOP: (Date of Photo)</option>
-                    <option value="DOB: ">DOB: (Date of Birth)</option>
                     <option value="Date: ">Date: </option>
                     <option value="">None (Just Date)</option>
                   </select>
@@ -446,18 +466,30 @@ export const PhotoNameDateJoinerTool: React.FC<{ onShowToast: (msg: string) => v
 
               {/* Preview Box */}
               <div className="p-6 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 flex items-center justify-center min-h-[380px] overflow-auto">
-                <canvas
-                  ref={previewCanvasRef}
-                  className="max-h-[480px] object-contain shadow-md rounded-lg bg-white"
-                />
+                {outputDataUrl && <img src={outputDataUrl} alt="Exported photo with name and date" className="max-w-full max-h-[480px] object-contain shadow-md rounded-lg bg-white" />}
+                <canvas ref={previewCanvasRef} className="hidden" aria-hidden="true" />
               </div>
 
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-300">Export format
+                <select value={exportFormat} onChange={e => setExportFormat(e.target.value as 'jpeg' | 'png')} className="block w-full mt-2 p-2 rounded-lg border bg-white dark:bg-slate-900"><option value="jpeg">JPG</option><option value="png">PNG</option></select>
+              </label>
+              <label className="block text-xs font-bold text-slate-600 dark:text-slate-300">
+                Maximum file size (KB; 0 = no limit)
+                <input type="number" min="0" max="10000" value={maxKb} onChange={e => setMaxKb(Math.min(10000, Math.max(0, Number(e.target.value) || 0)))} className="block w-full mt-2 p-2 rounded-lg border bg-white dark:bg-slate-900" />
+              </label>
+              <p className="text-xs text-slate-500">1 KB = 1,000 bytes. JPG quality adjusts without changing pixels. PNG is measured without lossy compression. No minimum-size check is applied here.</p>
+              {outputDataUrl && <p role="status" className="text-sm font-bold">Output: {outputInfo.width} × {outputInfo.height} px · {formatDecimalBytes(outputInfo.bytes)} ({outputInfo.bytes.toLocaleString('en-US')} bytes)</p>}
+              {!outputInfo.withinLimit && <p role="alert" className="text-sm text-rose-600">The export exceeds your maximum KB. Download is blocked. Increase the limit or resize the image if your form permits it.</p>}
+              {exportError && <p role="alert" className="text-sm text-rose-600">{exportError}</p>}
+              <p className="text-xs text-slate-500">A separate top or bottom strip increases the output height. Overlay keeps the original dimensions but covers part of the photo. Check readability and your form instructions.</p>
+              <a href="/image-resizer" className="text-xs text-indigo-600 underline">Need different final pixels? Resize the labelled photo</a>
               {/* Download Action */}
               <div className="flex items-center justify-end gap-3 pt-2">
                 <button
                   type="button"
                   onClick={handleDownload}
-                  className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all"
+                  disabled={!outputDataUrl || !outputInfo.withinLimit || !!exportError}
+                  className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Download className="w-4 h-4" /> Download Form Photo
                 </button>

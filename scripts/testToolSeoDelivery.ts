@@ -53,3 +53,8 @@ const nameDateHtml = fs.readFileSync('dist/photo-name-date-joiner/index.html', '
 assert.ok(nameDateHtml.includes('output 600 × 840 px'));
 assert.ok(nameDateHtml.includes('/blog/add-name-date-photo-size-guide'));
 assert.ok(!nameDateHtml.includes('download your compliant photo instantly'));
+
+const ageHtml = fs.readFileSync('dist/age-calculator/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+assert.ok(ageHtml.includes('Compare age on three reference dates'));
+assert.ok(ageHtml.includes('/blog/calculate-age-on-cutoff-date'));
+assert.ok(fs.readFileSync('dist/age-calculator/index.html', 'utf8').includes('Age Calculator on Any Date'));

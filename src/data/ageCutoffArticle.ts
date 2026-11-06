@@ -1,0 +1,34 @@
+import { BlogArticle } from '../types';
+
+export const AGE_CUTOFF_ARTICLE: BlogArticle = {
+  slug: 'calculate-age-on-cutoff-date',
+  canonicalPath: '/blog/calculate-age-on-cutoff-date',
+  title: 'How to Calculate Age on a Cutoff Date: Completed Years and Examples',
+  metaTitle: 'Age on Cutoff Date: Completed Years Guide | Zubware',
+  description: 'Calculate age on a specific date from DOB, compare three reference dates, and distinguish completed years from running age with birthday-boundary examples.',
+  publishedTime: '2026-11-06T11:25:19Z', modifiedTime: '2026-11-06T11:25:19Z',
+  author: { name: 'Zubware', url: 'https://www.zubware.com/about', role: 'Tool guides and documentation' },
+  publisher: { name: 'Zubware', url: 'https://www.zubware.com' },
+  category: 'Calculator Guides', readingTime: '4 min read',
+  tags: ['Age on Date', 'Age as On', 'Cutoff Date', 'Completed Years', 'Date of Birth'],
+  excerpt: 'The relevant date may be an application cutoff rather than today. Calculate calendar age on that date and compare results without rounding up completed years.',
+  takeaways: [
+    'Enter the reference date stated by the form instead of assuming it means today or the submission deadline.',
+    'The day before a birthday and the birthday itself can have different completed-year values.',
+    'Compare up to three dates for the same DOB; these are age calculations, not eligibility decisions.',
+  ],
+  sections: [
+    { id: 'which-date', title: '1. What does age as on a date mean?', content: 'Age as on a date means the calendar age reached on that particular reference date. It is not necessarily age today. An application may give a separate age cutoff and submission deadline: read the field and use the date it actually names. Do not copy a cutoff from a different form.\n\nOpen the [Age Calculator on Any Date](/age-calculator), enter the full date of birth, and set Age at date to your required reference date. The result updates automatically. This guide uses fixed YYYY-MM-DD dates so the examples remain reproducible rather than changing with today’s date.' },
+    { id: 'birthday-boundary', title: '2. Completed years change on the birthday, not on New Year’s Day', content: 'Take a date of birth of 13 May 1997. On 12 May 2026 the calendar age is 28 years, 11 months and 29 days. On 13 May 2026 it is 29 years, 0 months and 0 days. On 31 December 2026 it is 29 years, 7 months and 18 days. The completed-year values are 28, 29 and 29.\n\nIf a field requests completed years, do not round 28 years and 11 months to 29. Likewise, a person who has completed 29 years is in their 30th year of life; that does not make the completed age 30. Enter the type of age the receiving form requests.\n\nA useful completed-years formula for ordinary birthdays is reference year minus birth year, subtracting one when that year’s birthday has not occurred yet. Month-end and February 29 dates need an explicit anniversary convention, described below.' },
+    { id: 'compare-dates', title: '3. Compare the same DOB on three reference dates', content: 'In the calculator, enter the date of birth once. Under Compare age on three dates, enter up to three reference dates. The table shows the full calendar age and completed years for every valid row, in the order you entered them.\n\nChoose Try an example to load DOB 1997-05-13 and comparison dates 2026-05-12, 2026-05-13 and 2026-12-31. This demonstrates the birthday boundary. These are illustrative dates, not official cutoffs for any exam. You can replace each date independently, leave unused rows blank or clear the comparisons. A date before birth is flagged rather than assigned a negative age.\n\nCopy Age Card includes valid comparison results as well as the main reference-date summary. Invalid or empty comparison rows are omitted. Your DOB is personal information: check the copied text before sharing it with someone else.' },
+    { id: 'months-days', title: '4. Why dividing days by 365 does not give calendar age', content: 'Calendar years contain leap days and months have different lengths. The calculator counts completed calendar months using monthly anniversaries, then the remaining days. It separately counts total elapsed calendar days, treating the birth date as day zero. Dividing that day count by 365 is an approximation, not the same result.\n\nWhen an anniversary day does not exist in the destination month, Zubware uses that month’s last day. A January 31 birth date therefore reaches one month on February 28 in a non-leap year. February 29 birthdays use February 28 in non-leap years here. Another authority or calculator may use a different rule; check the applicable instructions when that distinction matters. See the [leap-year and month-end test cases](/blog/age-calculator-leap-year-month-end-test-cases) for reproducible examples.' },
+    { id: 'date-entry', title: '5. Enter DD/MM/YYYY dates carefully on a phone', content: 'Your browser controls the display format of its date picker. A written Indian-style date 13/05/1997 means 13 May 1997. Check the day, month and year labels rather than assuming that a picker uses the same order. The comparison table displays YYYY-MM-DD to make its dates explicit.\n\nSet to Today reads your device date. If you need age on 31 December, choose December 31 of the correct year instead. The Today and 31 Dec shortcuts are conveniences; neither determines a form’s official cutoff. Check the displayed DOB and reference date in the result before copying it.' },
+    { id: 'hindi-example', title: 'Cutoff date par age kaise nikalein?', content: 'Pehle form mein age as on wali date dekho. DOB bharo aur Age at date mein wahi date select karo. Agar form sirf completed years maangta hai, to saal ka result lo; months ko round up mat karo.\n\nExample: DOB 13 May 1997 hai to 12 May 2026 par completed age 28 hai. Agle din 13 May par 29 ho jaati hai. Teen dates compare karke yeh difference ek table mein dekh sakte ho. Tool calendar age batata hai; age limit, inclusive birth-date range ya relaxation ka decision form ki actual instructions se check karo.' },
+  ],
+  faqs: [
+    { question: 'Is age on the cutoff date the same as age today?', answer: 'Only if the cutoff is today. Otherwise enter the specified reference date rather than using the current device date.' },
+    { question: 'Should 28 years and 11 months be entered as 29 completed years?', answer: 'No. It is 28 completed years. Do not round up the months when a field asks for completed years.' },
+    { question: 'Does the comparison table decide exam eligibility?', answer: 'No. It calculates calendar age on the dates you enter. Use the specific authority’s age limits, dates and applicable rules to assess eligibility.' },
+  ],
+  relatedToolIds: ['age-calculator', 'countdown-calculator', 'working-days-calculator'],
+};

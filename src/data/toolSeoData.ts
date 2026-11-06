@@ -6093,6 +6093,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+      { "question": "Can I compare age on different dates for the same date of birth?", "answer": "Yes. Enter your DOB once, then enter up to three dates under Compare age on three dates. The table shows calendar age and completed years for each valid date. Copy Age Card includes valid comparison rows. Dates before birth are flagged." },
+      { "question": "Do I round up months when a form asks for completed years?", "answer": "No. An age of 28 years and 11 months is 28 completed years. On the 29th birthday it becomes 29 completed years. Use the reference date and rules specified by the form." },
 {
   "question": "How many weeks old am I?",
   "answer": "Enter your date of birth and reference date. The calculator divides total elapsed calendar days by seven and shows completed weeks with the remaining days. For example, 100 days is 14 weeks and 2 days."

@@ -164,7 +164,7 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
   // --- Calculators & Math Tools ---
   'unit-converter': 'Unit Converter - Metric, Imperial, Length & Weight | Zubware',
   'percentage-calculator': 'Percentage Calculator - Find Increase & Difference | Zubware',
-  'age-calculator': 'Age Calculator by Date of Birth – How Old Am I? | Zubware',
+  'age-calculator': 'Age Calculator on Any Date – Years, Months & Days | Zubware',
   'emi-calculator': 'EMI Calculator - Loan EMI, Interest & Schedule | Zubware',
   'discount-calculator': 'Discount Calculator - Sale Prices & Savings | Zubware',
   'currency-calculator': 'Currency Exchange Calculator - Live FX Rates Free | Zubware',

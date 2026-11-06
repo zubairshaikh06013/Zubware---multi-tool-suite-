@@ -1,5 +1,30 @@
 [
   {
+    "slug": "calculate-age-on-cutoff-date",
+    "title": "How to Calculate Age on a Cutoff Date: Completed Years and Examples",
+    "description": "Calculate age on a specific date from DOB, compare three reference dates, and distinguish completed years from running age with birthday-boundary examples.",
+    "canonicalPath": "/blog/calculate-age-on-cutoff-date",
+    "publishedTime": "2026-11-06T11:25:19Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Calculator Guides",
+    "readingTime": "4 min read",
+    "tags": [
+      "Age on Date",
+      "Age as On",
+      "Cutoff Date",
+      "Completed Years",
+      "Date of Birth"
+    ],
+    "excerpt": "The relevant date may be an application cutoff rather than today. Calculate calendar age on that date and compare results without rounding up completed years.",
+    "relatedToolIds": [
+      "age-calculator",
+      "countdown-calculator",
+      "working-days-calculator"
+    ]
+  },
+  {
     "slug": "add-name-date-photo-size-guide",
     "title": "Add Name and Date Below a Photo: Final Pixels and KB Explained",
     "description": "Add a visible name and photo date, compare strip versus overlay, calculate final pixels and check a JPG maximum KB before uploading an application photo.",

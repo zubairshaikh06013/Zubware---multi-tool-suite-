@@ -1,3 +1,4 @@
+import { FilePenLine as DecorFilePenLine, Lightbulb as DecorLightbulb, Mic as DecorMic, Palette as DecorPalette, Ruler as DecorRuler, Sparkles as DecorSparkles, Type as DecorType } from 'lucide-react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Play,
@@ -604,7 +605,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
                 activeTab === 'script' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              📝 Script
+              <DecorFilePenLine className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Script
             </button>
             <button
               onClick={() => setActiveTab('audio')}
@@ -612,7 +613,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
                 activeTab === 'audio' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              🎙️ Voiceover {audioFileName && '●'}
+              <DecorMic className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Voiceover {audioFileName && '●'}
             </button>
             <button
               onClick={() => setActiveTab('bg')}
@@ -620,7 +621,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
                 activeTab === 'bg' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              🎨 Background
+              <DecorPalette className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Background
             </button>
             <button
               onClick={() => setActiveTab('format')}
@@ -628,7 +629,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
                 activeTab === 'format' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              📐 Format
+              <DecorRuler className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Format
             </button>
             <button
               onClick={() => setActiveTab('text')}
@@ -636,7 +637,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
                 activeTab === 'text' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              🔤 Typography
+              <DecorType className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Typography
             </button>
             <button
               onClick={() => setActiveTab('overlay')}
@@ -644,7 +645,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
                 activeTab === 'overlay' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
               }`}
             >
-              ✨ Overlays
+              <DecorSparkles className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Overlays
             </button>
           </div>
 
@@ -1266,7 +1267,7 @@ export const ScriptToVideoMakerTool: React.FC<ScriptToVideoMakerProps> = ({
               {/* Dragging Overlay Tip */}
               {pngOverlayElement && (
                 <div className="absolute top-2 left-2 px-2.5 py-1 rounded-full bg-slate-900/80 text-[10px] font-bold text-indigo-300 border border-slate-700/80 pointer-events-none backdrop-blur-sm">
-                  💡 Drag logo to move
+                  <DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Drag logo to move
                 </div>
               )}
             </div>

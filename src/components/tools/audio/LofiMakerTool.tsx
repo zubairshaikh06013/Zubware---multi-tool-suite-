@@ -1,3 +1,4 @@
+import { Sparkles as DecorSparkles } from 'lucide-react';
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Upload,
@@ -449,7 +450,7 @@ export function LofiMakerTool({ onShowToast }: LofiMakerToolProps) {
               ) : (
                 <>
                   <Sparkles className="w-5 h-5" />
-                  <span>✨ MAKE IT LOFI</span>
+                  <span><DecorSparkles className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> MAKE IT LOFI</span>
                 </>
               )}
             </button>

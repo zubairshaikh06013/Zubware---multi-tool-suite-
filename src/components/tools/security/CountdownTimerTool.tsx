@@ -1,3 +1,4 @@
+import { Timer as UiTimer } from 'lucide-react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Play, Pause, RotateCcw, Bell, BellOff, Volume2, Sparkles, CheckCircle2 } from 'lucide-react';
 import { formatTimerDisplay, playChimeSound } from '../../../lib/timeUtils';
@@ -274,7 +275,7 @@ export const CountdownTimerTool: React.FC<CountdownTimerToolProps> = ({ onShowTo
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4 flex flex-wrap items-center justify-between gap-4">
         <div>
           <h2 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <span>⏲️</span> Countdown Timer
+            <span><UiTimer className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Countdown Timer
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Accurate live countdown timer with custom presets, audio chime, and optional desktop alerts.

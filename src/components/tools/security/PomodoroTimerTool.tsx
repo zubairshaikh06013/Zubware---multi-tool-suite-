@@ -1,3 +1,4 @@
+import { Timer as UiTimer } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { Play, Pause, RotateCcw, Bell, Volume2 } from 'lucide-react';
 
@@ -70,7 +71,7 @@ export const PomodoroTimerTool: React.FC<PomodoroTimerToolProps> = ({ onShowToas
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>⏱️</span> Pomodoro Focus Timer
+          <span><UiTimer className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Pomodoro Focus Timer
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Boost productivity with 25, 30, 45, 50 minute timeboxing intervals and offline audio alerts.

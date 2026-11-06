@@ -1,3 +1,4 @@
+import { KeyRound as UiKeyRound } from 'lucide-react';
 import { passwordPool, generateRandomPassword, randomPasswordEntropy } from '../../../lib/secureRandom';
 import React, { useState, useEffect } from 'react';
 import { Copy, RefreshCw, Key, ShieldCheck, Check, AlertCircle } from 'lucide-react';
@@ -62,7 +63,7 @@ export const PasswordGeneratorTool: React.FC<PasswordGeneratorToolProps> = ({ on
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🔐</span> Security Password Generator
+            <span><UiKeyRound className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Security Password Generator
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Generate customized, cryptographically secure passwords locally in your browser.

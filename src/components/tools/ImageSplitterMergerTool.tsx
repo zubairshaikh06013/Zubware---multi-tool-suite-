@@ -1,3 +1,4 @@
+import { Camera as DecorCamera, ChartColumn as DecorChartColumn } from 'lucide-react';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Download, Share2, ArrowRightLeft, Scissors, Layers, RefreshCw, Copy, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -464,7 +465,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
                 {/* File Info Badge */}
                 {splitFile && (
                   <div className="flex items-center justify-between p-3 rounded-2xl glass-card text-xs font-bold text-indigo-900 dark:text-indigo-200">
-                    <span className="truncate max-w-[240px] sm:max-w-xs">📷 {splitFile.name}</span>
+                    <span className="truncate max-w-[240px] sm:max-w-xs"><DecorCamera className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> {splitFile.name}</span>
                     <span className="px-2.5 py-0.5 bg-indigo-600 text-white rounded-full text-[11px] shadow-xs">
                       Size: {formatSize(splitFile.size)}
                     </span>
@@ -653,7 +654,7 @@ export const ImageSplitterMergerTool: React.FC<ImageSplitterMergerToolProps> = (
 
             {(fileA || fileB) && (
               <div className="p-3 rounded-2xl glass-card text-xs font-bold text-indigo-900 dark:text-indigo-200 text-center">
-                📊 Total Selected Input File Size: <strong className="text-indigo-600 dark:text-indigo-400 font-extrabold">{formatSize((fileA?.size || 0) + (fileB?.size || 0))}</strong>
+                <DecorChartColumn className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Total Selected Input File Size: <strong className="text-indigo-600 dark:text-indigo-400 font-extrabold">{formatSize((fileA?.size || 0) + (fileB?.size || 0))}</strong>
               </div>
             )}
 

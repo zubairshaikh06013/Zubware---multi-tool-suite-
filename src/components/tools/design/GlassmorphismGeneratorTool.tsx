@@ -1,3 +1,4 @@
+import { Sparkles as DecorSparkles } from 'lucide-react';
 import React, { useState } from 'react';
 import { Copy, Sparkles } from 'lucide-react';
 
@@ -83,7 +84,7 @@ export const GlassmorphismGeneratorTool: React.FC<GlassmorphismGeneratorToolProp
         >
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-2xl bg-white/20 flex items-center justify-center font-bold text-lg">
-              ✨
+              <DecorSparkles className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
             </div>
             <div>
               <h4 className="font-bold text-sm">Glassmorphism Card</h4>

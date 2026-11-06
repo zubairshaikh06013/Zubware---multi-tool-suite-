@@ -1,3 +1,4 @@
+import { Globe as DecorGlobe, Settings as DecorSettings } from 'lucide-react';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   ShieldCheck, Upload, Camera, ZoomIn, ZoomOut, RotateCw, RefreshCw, Download,
@@ -897,8 +898,8 @@ export const PassportPhotoMakerTool: React.FC<PassportPhotoMakerToolProps> = ({ 
                   <option value="ca-passport">🇨🇦 Canada Passport (50 × 70 mm)</option>
                   <option value="au-passport">🇦🇺 Australia Passport (35 × 45 mm)</option>
                   <option value="sg-passport">🇸🇬 Singapore Passport (35 × 45 mm / 400 × 514 px)</option>
-                  <option value="other">🌐 International General ID (35 × 45 mm)</option>
-                  <option value="custom">⚙️ Custom Dimensions...</option>
+                  <option value="other"><DecorGlobe className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> International General ID (35 × 45 mm)</option>
+                  <option value="custom"><DecorSettings className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Custom Dimensions...</option>
                 </select>
               </div>
 

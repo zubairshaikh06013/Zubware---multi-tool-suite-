@@ -1,3 +1,4 @@
+import { Lock as DecorLock } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import {
   FileText,
@@ -870,7 +871,7 @@ export function GstInvoiceGeneratorTool({ onShowToast }: GstInvoiceGeneratorTool
         <div className="flex items-center gap-2.5 text-indigo-900 dark:text-indigo-200 font-medium">
           <ShieldCheck className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />
           <span>
-            <strong className="font-bold">🔒 Private & Local:</strong> Processed locally in your browser. Files are not uploaded to Zubware servers.
+            <strong className="font-bold"><DecorLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Private & Local:</strong> Processed locally in your browser. Files are not uploaded to Zubware servers.
           </span>
         </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Activity,
+  Users,
   Heart,
   AlignJustify,
   AlignLeft,
@@ -208,8 +209,12 @@ const COLOR_STYLES: Record<string, { bgLight: string; bgDark: string; textColor:
   slate: { bgLight: 'bg-slate-100', bgDark: 'dark:bg-slate-800', textColor: 'text-slate-700 dark:text-slate-300', borderColor: 'border-slate-200 dark:border-slate-700' }
 };
 
-// All 307 tool specific icon mappings
+// Tool-specific icons share the same stroke and size system across the directory.
 const TOOL_CONFIGS: Record<string, { icon: LucideIcon; color: string }> = {
+  'partnership-profit-sharing-calculator': { icon: Users, color: 'emerald' },
+  'attendance-calculator': { icon: GraduationCap, color: 'blue' },
+  'cash-denomination-calculator': { icon: Coins, color: 'emerald' },
+  'wedding-invitation-maker': { icon: Heart, color: 'rose' },
   'image-splitter-merger': { icon: Columns, color: 'indigo' },
   'learning-licence-mock-test': { icon: Car, color: 'emerald' },
   'background-remover': { icon: Wand2, color: 'violet' },
@@ -569,6 +574,7 @@ const CATEGORY_FALLBACK_CONFIGS: Record<string, { icon: LucideIcon; color: strin
   'creator': { icon: Sparkles, color: 'pink' },
   'social': { icon: Sparkles, color: 'sky' },
   'government': { icon: Landmark, color: 'emerald' },
+  'productivity': { icon: ListTodo, color: 'indigo' },
   'generator': { icon: QrCode, color: 'violet' },
   'prompt': { icon: Bot, color: 'emerald' }
 };
@@ -595,6 +601,9 @@ export const ToolIcon: React.FC<ToolIconProps> = React.memo(({
   if (toolId && TOOL_CONFIGS[toolId]) {
     selectedIcon = TOOL_CONFIGS[toolId].icon;
     selectedColor = TOOL_CONFIGS[toolId].color;
+  } else if (category === 'all') {
+    selectedIcon = LayoutGrid;
+    selectedColor = 'indigo';
   } else if (category) {
     const cleanCat = category.replace(/[^a-zA-Z]/g, '').toLowerCase();
     for (const [key, conf] of Object.entries(CATEGORY_FALLBACK_CONFIGS)) {
@@ -633,7 +642,7 @@ export const ToolIcon: React.FC<ToolIconProps> = React.memo(({
   if (!showBackground) {
     return (
       <IconComp
-        className={`${dimensions.icon} ${colorStyle.textColor} ${iconClassName}`}
+        className={`${dimensions.icon} shrink-0 ${colorStyle.textColor} ${className} ${iconClassName}`}
         strokeWidth={2.25}
         aria-hidden="true"
       />
@@ -641,14 +650,14 @@ export const ToolIcon: React.FC<ToolIconProps> = React.memo(({
   }
 
   return (
-    <div
+    <span
       className={`inline-flex items-center justify-center shrink-0 border shadow-xs transition-all duration-200 ${dimensions.container} ${colorStyle.bgLight} ${colorStyle.bgDark} ${colorStyle.borderColor} ${className}`}
     >
       <IconComp
-        className={`${dimensions.icon} ${colorStyle.textColor} ${iconClassName}`}
+        className={`${dimensions.icon} shrink-0 ${colorStyle.textColor} ${iconClassName}`}
         strokeWidth={2.25}
         aria-hidden="true"
       />
-    </div>
+    </span>
   );
 });

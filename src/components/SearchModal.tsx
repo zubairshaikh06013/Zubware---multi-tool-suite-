@@ -216,7 +216,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onSel
                           </span>
                           {fav && <Star className="w-3.5 h-3.5 text-amber-500 fill-amber-500 shrink-0" />}
                           <span className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 font-semibold shrink-0">
-                            {tool.category}
+                            {tool.category.replace(/^[^\p{L}\p{N}]+/u, '')}
                           </span>
                         </div>
                         <p className="text-xs text-slate-500 dark:text-slate-400 truncate mt-0.5">

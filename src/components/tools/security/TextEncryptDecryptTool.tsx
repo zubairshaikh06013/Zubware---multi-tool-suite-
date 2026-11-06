@@ -1,3 +1,4 @@
+import { Lock as UiLock } from 'lucide-react';
 import React, { useState } from 'react';
 import CryptoJS from 'crypto-js';
 import { Lock, Unlock, Copy, Key, Eye, EyeOff, Check, RefreshCw } from 'lucide-react';
@@ -56,7 +57,7 @@ export const TextEncryptDecryptTool: React.FC<TextEncryptDecryptToolProps> = ({ 
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>🔒</span> Text Encrypt & Decrypt
+          <span><UiLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Text Encrypt & Decrypt
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Encrypt secret messages with military-grade AES-256 password protection entirely inside your browser.

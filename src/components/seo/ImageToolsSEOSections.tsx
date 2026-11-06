@@ -1,3 +1,4 @@
+import { Link2 as UiLink2 } from 'lucide-react';
 import { BACKGROUND_REMOVAL_NOTES } from '../../data/siteTrustContent';
 import React from 'react';
 import { ToolMeta } from '../../types';
@@ -132,7 +133,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
           {/* Related Image Tools */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Related Image Workflow Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Related Image Workflow Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -281,7 +282,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Related Conversion Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Related Conversion Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -406,7 +407,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -509,7 +510,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Related Tools for Graphic Cropping
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Related Tools for Graphic Cropping
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -612,7 +613,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Related Tools for Media Protection
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Related Tools for Media Protection
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -713,7 +714,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Privacy Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Privacy Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -827,7 +828,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Related Tools for Web Graphics
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Related Tools for Web Graphics
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -928,7 +929,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Animation &amp; Image Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Animation &amp; Image Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -1026,7 +1027,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Bulk Editing Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Bulk Editing Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -1149,7 +1150,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Related Image Workflow Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Related Image Workflow Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -1316,7 +1317,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Identity Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Identity Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -1457,7 +1458,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Signature &amp; Document Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Signature &amp; Document Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -1555,7 +1556,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related OCR &amp; Text Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related OCR &amp; Text Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -1692,7 +1693,7 @@ export const ImageToolsSEOSection: React.FC<ImageToolsSEOSectionProps> = ({ tool
 
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related OCR Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related OCR Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a

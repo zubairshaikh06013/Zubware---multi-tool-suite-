@@ -1,3 +1,4 @@
+import { Briefcase as DecorBriefcase, Camera as DecorCamera, Globe as DecorGlobe, Laptop as DecorLaptop, Mail as DecorMail, Video as DecorVideo } from 'lucide-react';
 import React, { useState } from 'react';
 import { Copy, Check, Download, Link, Smartphone, Globe, Instagram, Youtube, Linkedin, Github, Mail } from 'lucide-react';
 
@@ -281,32 +282,32 @@ export const SocialBioLinkBuilderTool: React.FC<{ onShowToast: (msg: string) => 
             <div className="space-y-2 pt-2">
               {website && (
                 <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all border border-white/10 cursor-pointer">
-                  🌐 Official Website
+                  <DecorGlobe className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Official Website
                 </div>
               )}
               {instagram && (
                 <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all border border-white/10 cursor-pointer">
-                  📸 Instagram (@{instagram})
+                  <DecorCamera className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Instagram (@{instagram})
                 </div>
               )}
               {youtube && (
                 <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all border border-white/10 cursor-pointer">
-                  🎥 YouTube Channel
+                  <DecorVideo className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> YouTube Channel
                 </div>
               )}
               {linkedin && (
                 <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all border border-white/10 cursor-pointer">
-                  💼 LinkedIn Profile
+                  <DecorBriefcase className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> LinkedIn Profile
                 </div>
               )}
               {github && (
                 <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all border border-white/10 cursor-pointer">
-                  💻 GitHub Repositories
+                  <DecorLaptop className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> GitHub Repositories
                 </div>
               )}
               {email && (
                 <div className="p-2.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold transition-all border border-white/10 cursor-pointer">
-                  ✉️ Contact Email
+                  <DecorMail className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Contact Email
                 </div>
               )}
             </div>

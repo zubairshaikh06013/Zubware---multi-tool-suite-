@@ -1,3 +1,4 @@
+import { CircleX as DecorCircleX, Lightbulb as DecorLightbulb } from 'lucide-react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Play,
@@ -2031,7 +2032,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
                   className="w-full accent-indigo-500 cursor-pointer"
                 />
                 <p className="text-[10px] text-slate-400">
-                  Part will try wrong slots first with red ❌ and buzz sound before snapping to the correct slot
+                  Part will try wrong slots first with red <DecorCircleX className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> and buzz sound before snapping to the correct slot
                 </p>
               </div>
             </div>
@@ -2148,7 +2149,7 @@ export function MatchingPartsPuzzleVideoMakerTool({
               {/* Interactive Edit Overlay Helper Text */}
               {!isPlaying && (
                 <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-semibold text-slate-300 border border-slate-700/80 pointer-events-none">
-                  💡 Click & drag object on scene
+                  <DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Click & drag object on scene
                 </div>
               )}
             </div>

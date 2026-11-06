@@ -1,3 +1,9 @@
+import { MessageCircle as FooterMessageCircle } from 'lucide-react';
+import { History as FooterHistory } from 'lucide-react';
+import { CircleHelp as FooterCircleHelp } from 'lucide-react';
+import { BookOpen as FooterBookOpen } from 'lucide-react';
+import { Layers as FooterLayers } from 'lucide-react';
+import { Star as FooterStar } from 'lucide-react';
 import { SITE_SUMMARY, PROCESSING_PRIVACY_TITLE, PROCESSING_PRIVACY_SUMMARY, FREE_TOOLS_SUMMARY } from '../data/siteTrustContent';
 import React from 'react';
 import { ShieldCheck, Zap, Lock } from 'lucide-react';
@@ -142,32 +148,32 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <ul className="space-y-2 text-xs font-medium text-slate-600 dark:text-slate-400">
               <li>
                 <a href={getLinkUrl('/dashboard')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/dashboard')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 font-bold text-indigo-600 dark:text-indigo-400 transition-colors">
-                  ⭐ User Dashboard
+                  <FooterStar className="inline-block size-4 mr-1 align-[-0.125em]" aria-hidden="true" /> User Dashboard
                 </a>
               </li>
               <li>
                 <a href={getLinkUrl('/categories')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/categories')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  ⚡ Tool Categories Directory
+                  <FooterLayers className="inline-block size-4 mr-1 align-[-0.125em]" aria-hidden="true" /> Tool Categories Directory
                 </a>
               </li>
               <li>
                 <a href={getLinkUrl('/blog')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/blog')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 font-semibold text-slate-700 dark:text-slate-300 transition-colors">
-                  📚 Guides & Tutorials
+                  <FooterBookOpen className="inline-block size-4 mr-1 align-[-0.125em]" aria-hidden="true" /> Guides & Tutorials
                 </a>
               </li>
               <li>
                 <a href={getLinkUrl('/help')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/help')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  ❓ Help Center & Guides
+                  <FooterCircleHelp className="inline-block size-4 mr-1 align-[-0.125em]" aria-hidden="true" /> Help Center & Guides
                 </a>
               </li>
               <li>
                 <a href={getLinkUrl('/changelog')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/changelog')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  📜 Changelog & Updates
+                  <FooterHistory className="inline-block size-4 mr-1 align-[-0.125em]" aria-hidden="true" /> Changelog & Updates
                 </a>
               </li>
               <li>
                 <a href={getLinkUrl('/feedback')} onClick={(e) => { e.preventDefault(); onNavigate(getLinkUrl('/feedback')); }} className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
-                  💬 Send Feedback
+                  <FooterMessageCircle className="inline-block size-4 mr-1 align-[-0.125em]" aria-hidden="true" /> Send Feedback
                 </a>
               </li>
               <li>

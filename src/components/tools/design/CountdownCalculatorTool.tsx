@@ -1,3 +1,4 @@
+import { PartyPopper as DecorPartyPopper } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, Copy, Check, Sparkles, RefreshCw, PartyPopper } from 'lucide-react';
 
@@ -107,7 +108,7 @@ export const CountdownCalculatorTool: React.FC<CountdownCalculatorToolProps> = (
           <div className="py-6 space-y-2">
             <PartyPopper className="w-12 h-12 mx-auto text-amber-500 animate-bounce" />
             <div className="text-2xl sm:text-3xl font-black text-emerald-600 dark:text-emerald-400">
-              The event has arrived! 🎉
+              The event has arrived! <DecorPartyPopper className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
             </div>
           </div>
         ) : (

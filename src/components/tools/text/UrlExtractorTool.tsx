@@ -1,3 +1,4 @@
+import { Link2 as UiLink2 } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 import { Link2, Copy, Check, Download, Filter, Trash2, Search, ExternalLink } from 'lucide-react';
 
@@ -98,7 +99,7 @@ export const UrlExtractorTool: React.FC<UrlExtractorToolProps> = ({ onShowToast 
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🔗</span> URL Extractor
+            <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> URL Extractor
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Extract, filter, and export all web links, URLs, and domains from unformatted text or HTML blocks.

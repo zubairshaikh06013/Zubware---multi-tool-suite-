@@ -1,3 +1,4 @@
+import { FileText as DecorFileText, Folder as DecorFolder, Lightbulb as DecorLightbulb, Package as DecorPackage } from 'lucide-react';
 import React, { useState, useRef } from 'react';
 import JSZip from 'jszip';
 import {
@@ -1038,16 +1039,16 @@ links inside index.html so they still render when connected to the internet.
             </h3>
 
             <div className="bg-slate-950 text-slate-200 p-4 rounded-2xl font-mono text-xs leading-relaxed overflow-x-auto">
-              <div className="text-indigo-400 font-bold">📦 website-download.zip/</div>
+              <div className="text-indigo-400 font-bold"><DecorPackage className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> website-download.zip/</div>
               <div className="pl-4">
-                <div>├── 📄 <span className="text-emerald-400 font-bold">index.html</span> <span className="text-slate-500">(Rewritten entrypoint with offline relative paths)</span></div>
-                <div>├── 📄 <span className="text-amber-400 font-bold">README.txt</span> <span className="text-slate-500">(Metadata report & asset inventory)</span></div>
-                <div>├── 📁 <span className="text-sky-400 font-bold">assets/</span></div>
+                <div>├── <DecorFileText className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-emerald-400 font-bold">index.html</span> <span className="text-slate-500">(Rewritten entrypoint with offline relative paths)</span></div>
+                <div>├── <DecorFileText className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-amber-400 font-bold">README.txt</span> <span className="text-slate-500">(Metadata report & asset inventory)</span></div>
+                <div>├── <DecorFolder className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-sky-400 font-bold">assets/</span></div>
                 <div className="pl-6">
-                  <div>├── 📁 <span className="text-indigo-400">css/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'css').length} styles)</span></div>
-                  <div>├── 📁 <span className="text-amber-400">js/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'js').length} scripts)</span></div>
-                  <div>├── 📁 <span className="text-emerald-400">images/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'image' || a.type === 'favicon').length} images)</span></div>
-                  <div>└── 📁 <span className="text-purple-400">fonts/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'font').length} web fonts)</span></div>
+                  <div>├── <DecorFolder className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-indigo-400">css/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'css').length} styles)</span></div>
+                  <div>├── <DecorFolder className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-amber-400">js/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'js').length} scripts)</span></div>
+                  <div>├── <DecorFolder className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-emerald-400">images/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'image' || a.type === 'favicon').length} images)</span></div>
+                  <div>└── <DecorFolder className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <span className="text-purple-400">fonts/</span> <span className="text-slate-500">({discoveredAssets.filter((a) => a.type === 'font').length} web fonts)</span></div>
                 </div>
               </div>
             </div>
@@ -1284,7 +1285,7 @@ links inside index.html so they still render when connected to the internet.
 
           <div className="p-5 rounded-2xl bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800 space-y-3">
             <h4 className="font-bold text-indigo-900 dark:text-indigo-300 text-sm">
-              💡 How to Package Websites with Direct Source Mode:
+              <DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> How to Package Websites with Direct Source Mode:
             </h4>
             <ol className="list-decimal list-inside space-y-2 text-xs text-indigo-950 dark:text-indigo-200">
               <li>

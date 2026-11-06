@@ -1,3 +1,5 @@
+import { PartyPopper as DecorPartyPopper } from 'lucide-react';
+import { ShieldCheck as UiShieldCheck } from 'lucide-react';
 import React, { useState } from 'react';
 import { ShieldCheck, Eye, EyeOff, CheckCircle2, AlertTriangle, Clock, KeyRound } from 'lucide-react';
 
@@ -99,7 +101,7 @@ export const PasswordStrengthCheckerTool: React.FC<PasswordStrengthCheckerToolPr
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>🛡️</span> Password Strength Checker
+          <span><UiShieldCheck className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Password Strength Checker
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Test and analyze password security, crack time estimate, and entropy score locally in your browser.
@@ -198,7 +200,7 @@ export const PasswordStrengthCheckerTool: React.FC<PasswordStrengthCheckerToolPr
               </ul>
             ) : (
               <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold">
-                🎉 Great job! Your password meets all major security standards.
+                <DecorPartyPopper className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Great job! Your password meets all major security standards.
               </p>
             )}
           </div>

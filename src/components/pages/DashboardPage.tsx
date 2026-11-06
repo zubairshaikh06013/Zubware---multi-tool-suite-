@@ -183,7 +183,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
                 <div>
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-3xl p-2.5 rounded-2xl bg-indigo-50/80 dark:bg-slate-800/80 group-hover:scale-110 transition-transform inline-block" aria-hidden="true">
-                      {cat.icon}
+                      <ToolIcon category={cat.slug} size="sm" showBackground={false} />
                     </span>
                     <span className="text-[11px] font-extrabold px-2.5 py-1 rounded-full bg-indigo-600/10 dark:bg-indigo-400/10 text-indigo-600 dark:text-indigo-400">
                       {count} {t('toolsCount', 'Tools')}
@@ -247,7 +247,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate, onShow
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-indigo-600 dark:text-indigo-400 font-bold">
-                  <span>{tool.category}</span>
+                  <span>{tool.category.replace(/^[^\p{L}\p{N}]+/u, '')}</span>
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>

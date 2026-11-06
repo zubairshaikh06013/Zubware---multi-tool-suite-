@@ -43,6 +43,8 @@ export const TOOL_SEO_TITLES: Record<string, string> = {
   'slowed-and-reverb': 'Slowed & Reverb Generator - Chill Audio Effects | Zubware',
 
   // --- Business & PDF Tools ---
+  'partnership-profit-sharing-calculator': 'Partnership Profit Sharing Calculator | Zubware',
+  'cash-denomination-calculator': 'Cash Denomination Calculator India | Zubware',
   'gst-invoice-generator': 'Free GST Invoice Generator & Bill Maker | Zubware',
   'pdf-merge': 'PDF Merge - Combine Multiple PDF Files Online | Zubware',
   'pdf-split': 'PDF Split - Extract & Separate PDF Pages Free | Zubware',

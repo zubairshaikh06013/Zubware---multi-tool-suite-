@@ -1,5 +1,31 @@
 [
   {
+    "slug": "cash-closing-denomination-shortage-guide",
+    "title": "How to Calculate Cash Closing Balance and Check a Shortage",
+    "description": "Count cash by denomination, calculate an expected drawer balance and compare shortage or excess. Worked INR examples and a downloadable PDF or CSV tally.",
+    "canonicalPath": "/blog/cash-closing-denomination-shortage-guide",
+    "publishedTime": "2026-11-06T10:40:00Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Business Guides",
+    "readingTime": "5 min read",
+    "tags": [
+      "Cash Closing",
+      "Cash Denomination",
+      "Cash Shortage",
+      "Note Counting",
+      "Cash Tally PDF"
+    ],
+    "excerpt": "Keep physical cash and the expected cash-book balance separate. This worked example shows how a denomination count becomes a cash tally and how to interpret the difference.",
+    "relatedToolIds": [
+      "cash-denomination-calculator",
+      "gst-invoice-generator",
+      "expense-tracker",
+      "percentage-calculator"
+    ]
+  },
+  {
     "slug": "how-many-classes-to-attend-for-75-percent",
     "title": "How Many Classes Must You Attend for 75% Attendance?",
     "description": "Calculate classes needed for 75% attendance with worked examples. Compare consecutive classes with a fixed semester plan and check each subject separately.",

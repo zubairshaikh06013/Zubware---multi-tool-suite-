@@ -41,6 +41,7 @@ jobs:
         run: |
           npm run lint
           node --import tsx scripts/testAttendancePlan.ts
+          node --import tsx scripts/testCashReconciliation.ts
           npm run test:wedding
           npx tsc -p workers/wedding-invitations/tsconfig.json
           npm run test:cgpa

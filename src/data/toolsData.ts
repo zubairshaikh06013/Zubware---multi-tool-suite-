@@ -139,7 +139,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
   "id": "cash-denomination-calculator",
   "title": "Cash Denomination Calculator India — Count Notes & Coins Free",
   "navTitle": "Cash Denomination Calculator",
-  "description": "Free cash denomination calculator for Indian rupees. Count ₹500, ₹200, ₹100, ₹50, ₹20, ₹10, ₹5, ₹2 and ₹1 notes or coins with instant totals, amount in words, print and copy.",
+  "description": "Count INR notes and coins, check cash shortage or excess against your expected balance, and download a denomination tally as PDF, CSV or TXT. Free, no login.",
   "icon": "💵",
   "path": "/cash-denomination-calculator",
   "filename": "cash-denomination-calculator.html",
@@ -149,7 +149,8 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "Indian rupee notes and coins from ₹500 to ₹1",
     "Instant total amount and piece count",
     "Amount in Indian words",
-    "Copy, print and download TXT",
+    "Expected cash comparison with shortage or excess in rupees and paise",
+    "Copy summary and download A4 PDF, CSV or TXT",
     "Free private browser-side calculation"
   ],
   "tags": [
@@ -159,7 +160,10 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "note counting calculator",
     "cash calculator",
     "currency denomination calculator",
-    "cash denomination calculator online"
+    "cash denomination calculator online",
+    "cash closing calculator",
+    "cash shortage calculator",
+    "cash denomination calculator with pdf"
   ],
   "howTo": [
     {
@@ -168,11 +172,11 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     },
     {
       "title": "Check the total",
-      "desc": "See denomination-wise amounts, total pieces, total cash and rupee amount in words instantly."
+      "desc": "See denomination subtotals, total pieces and the amount in words. Optionally enter the expected register balance to compare shortage, excess or an exact match."
     },
     {
       "title": "Save the result",
-      "desc": "Copy the cash summary, download a text report or use your browser's print option."
+      "desc": "Copy the summary or download TXT, CSV or an A4 PDF. Expected cash and the comparison are included when entered."
     }
   ],
   "faq": [
@@ -186,7 +190,11 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     },
     {
       "question": "Can I print or download the result?",
-      "answer": "Yes, you can print the page, copy the summary or download it as a TXT file."
+      "answer": "Use Print / Save PDF to download an A4 tally, then open it to print or share. CSV, TXT and Copy summary are also available."
+    },
+    {
+      "question": "How do I check a cash shortage or excess?",
+      "answer": "Enter your physical note and coin counts, then the expected cash balance from your register. The tool subtracts expected cash from counted cash. Negative means short, positive means over, and zero means matched. This does not identify the cause of a difference."
     }
   ]
 },

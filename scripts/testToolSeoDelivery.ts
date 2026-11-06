@@ -39,3 +39,7 @@ console.log(`Verified static FAQs, inline hydration and individual JSON for ${TO
 const attendanceHtml = fs.readFileSync('dist/attendance-calculator/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
 assert.ok(attendanceHtml.includes('Semester plan'), 'Attendance worked examples must be available without JavaScript');
 assert.ok(attendanceHtml.includes('/blog/how-many-classes-to-attend-for-75-percent'), 'Attendance tool must link to the formula guide');
+
+const cashHtml = fs.readFileSync('dist/cash-denomination-calculator/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+assert.ok(cashHtml.includes('Cash closing calculator: check counted cash against expected cash'));
+assert.ok(cashHtml.includes('/blog/cash-closing-denomination-shortage-guide'));

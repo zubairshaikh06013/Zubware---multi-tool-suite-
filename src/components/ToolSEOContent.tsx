@@ -1,3 +1,4 @@
+import { CashClosingGuide } from './seo/CashClosingGuide';
 import { AttendanceGuide } from './seo/AttendanceGuide';
 import { SignatureResizeGuide } from './seo/SignatureResizeGuide';
 import { QrDecoderGuide } from './seo/QrDecoderGuide';
@@ -680,6 +681,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
       {tool.id === 'signature-resizer' && <SignatureResizeGuide />}
       {tool.id === 'attendance-calculator' && <AttendanceGuide />}
+      {tool.id === 'cash-denomination-calculator' && <CashClosingGuide />}
 
       {/* 3.11 DEDICATED PHOTO & SIGNATURE JOINER IN-DEPTH GUIDE (Targeting Admit Cards, Vyapam, Police & Court Applications) */}
       {tool.id === 'photo-signature-joiner' && (

@@ -4,6 +4,8 @@ import { ToolMeta, BlogArticle } from '../types';
  * Curated workflow clusters mapping specific tools to next-step or companion utilities.
  */
 export const WORKFLOW_MAP: Record<string, string[]> = {
+  'cash-denomination-calculator': ['gst-invoice-generator', 'expense-tracker', 'percentage-calculator'],
+  'expense-tracker': ['cash-denomination-calculator', 'monthly-budget-planner', 'gst-invoice-generator'],
   'attendance-calculator': ['cgpa-calculator', 'exam-score-calculator', 'percentage-calculator'],
   'cgpa-calculator': ['attendance-calculator', 'college-gpa-calculator', 'exam-score-calculator', 'percentage-calculator'],
   'exam-score-calculator': ['attendance-calculator', 'cgpa-calculator', 'percentage-calculator'],
@@ -95,7 +97,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   // Financial & Business Calculator Clusters
   'emi-calculator': ['compound-interest-calculator', 'ctc-calculator', 'loan-calculator', 'gst-invoice-generator'],
   'compound-interest-calculator': ['emi-calculator', 'percentage-calculator', 'loan-calculator'],
-  'gst-invoice-generator': ['discount-calculator', 'percentage-calculator', 'signature-maker', 'qr-generator'],
+  'gst-invoice-generator': ['cash-denomination-calculator', 'discount-calculator', 'percentage-calculator', 'signature-maker', 'qr-generator'],
   'salary-hike-calculator': ['ctc-calculator', 'experience-calculator', 'working-days-calculator'],
   'ctc-calculator': ['salary-hike-calculator', 'notice-period-calculator', 'working-days-calculator'],
   'percentage-calculator': ['discount-calculator', 'compound-interest-calculator', 'scientific-calculator'],

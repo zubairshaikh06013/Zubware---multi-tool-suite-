@@ -1,3 +1,4 @@
+import { PhotoSignatureGuide } from '../src/components/seo/PhotoSignatureGuide';
 import { CashClosingGuide } from '../src/components/seo/CashClosingGuide';
 import { AttendanceGuide } from '../src/components/seo/AttendanceGuide';
 import { SignatureResizeGuide } from '../src/components/seo/SignatureResizeGuide';
@@ -522,6 +523,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
       ${tool.id === 'signature-resizer' ? renderToStaticMarkup(createElement(SignatureResizeGuide)) : ''}
       ${tool.id === 'attendance-calculator' ? renderToStaticMarkup(createElement(AttendanceGuide)) : ''}
       ${tool.id === 'cash-denomination-calculator' ? renderToStaticMarkup(createElement(CashClosingGuide)) : ''}
+      ${tool.id === 'photo-signature-joiner' ? renderToStaticMarkup(createElement(PhotoSignatureGuide)) : ''}
 
       ${tool.id === 'image-compressor' ? `
       <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">

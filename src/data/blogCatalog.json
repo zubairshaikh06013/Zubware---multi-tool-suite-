@@ -1,5 +1,31 @@
 [
   {
+    "slug": "join-photo-signature-one-jpg-size-guide",
+    "title": "Join Photo and Signature in One JPG: Pixels, KB and Layout",
+    "description": "Combine a photo and signature in one JPG. Calculate final pixels, check a 20–50 KB example range, compare layouts and troubleshoot rejected form uploads.",
+    "canonicalPath": "/blog/join-photo-signature-one-jpg-size-guide",
+    "publishedTime": "2026-11-06T10:51:30Z",
+    "author": {
+      "name": "Zubware"
+    },
+    "category": "Image Guides",
+    "readingTime": "5 min read",
+    "tags": [
+      "Photo and Signature Joiner",
+      "One JPG",
+      "Combined Image Size",
+      "20 to 50 KB",
+      "Form Upload"
+    ],
+    "excerpt": "A combined image must satisfy its own layout, dimensions and file-size requirements. Work out the final canvas and inspect the actual exported file before submitting it.",
+    "relatedToolIds": [
+      "photo-signature-joiner",
+      "signature-resizer",
+      "image-resizer",
+      "passport-photo-maker"
+    ]
+  },
+  {
     "slug": "cash-closing-denomination-shortage-guide",
     "title": "How to Calculate Cash Closing Balance and Check a Shortage",
     "description": "Count cash by denomination, calculate an expected drawer balance and compare shortage or excess. Worked INR examples and a downloadable PDF or CSV tally.",

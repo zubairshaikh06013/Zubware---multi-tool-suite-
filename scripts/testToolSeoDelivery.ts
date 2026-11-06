@@ -43,3 +43,8 @@ assert.ok(attendanceHtml.includes('/blog/how-many-classes-to-attend-for-75-perce
 const cashHtml = fs.readFileSync('dist/cash-denomination-calculator/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
 assert.ok(cashHtml.includes('Cash closing calculator: check counted cash against expected cash'));
 assert.ok(cashHtml.includes('/blog/cash-closing-denomination-shortage-guide'));
+
+const joinedHtml = fs.readFileSync('dist/photo-signature-joiner/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
+assert.ok(joinedHtml.includes('A 12 KB file is below that minimum'));
+assert.ok(joinedHtml.includes('/blog/join-photo-signature-one-jpg-size-guide'));
+assert.equal((joinedHtml.match(/Join photo and signature into one JPG with a KB range check/g) || []).length, 1);

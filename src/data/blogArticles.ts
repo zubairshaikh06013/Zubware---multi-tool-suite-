@@ -1,3 +1,4 @@
+import { PHOTO_SIGNATURE_ARTICLE } from './photoSignatureArticle';
 import { CASH_CLOSING_ARTICLE } from './cashClosingArticle';
 import { ATTENDANCE_ARTICLE } from './attendanceArticle';
 import { BlogArticle } from '../types';
@@ -3387,7 +3388,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
   }
 ];
 
-export const BLOG_ARTICLES: BlogArticle[] = [CASH_CLOSING_ARTICLE, ATTENDANCE_ARTICLE, MARRIAGE_BIODATA_ARTICLE, ...GST_BILLING_ARTICLES, ...REFERENCE_BLOG_ARTICLES, ...BASE_BLOG_ARTICLES, ...EXPANDED_BLOG_ARTICLES];
+export const BLOG_ARTICLES: BlogArticle[] = [PHOTO_SIGNATURE_ARTICLE, CASH_CLOSING_ARTICLE, ATTENDANCE_ARTICLE, MARRIAGE_BIODATA_ARTICLE, ...GST_BILLING_ARTICLES, ...REFERENCE_BLOG_ARTICLES, ...BASE_BLOG_ARTICLES, ...EXPANDED_BLOG_ARTICLES];
 
 export function getBlogArticleBySlug(slug: string): BlogArticle | undefined {
   return BLOG_ARTICLES.find(

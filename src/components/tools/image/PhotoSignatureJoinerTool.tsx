@@ -1,3 +1,4 @@
+import { compositeSizeRange } from '../../../lib/compositeSizeRange';
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Upload,
@@ -66,10 +67,13 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   const resetFraming = () => { setPhotoZoom(1); setPhotoX(50); setPhotoY(50); };
 
   const [maxKb, setMaxKb] = useState(0);
+  const [minKb, setMinKb] = useState(0);
   const [outputBytes, setOutputBytes] = useState(0);
   const [exportError, setExportError] = useState('');
   const [actualSize, setActualSize] = useState(false);
-  const exceedsLimit = maxKb > 0 && outputBytes > parseTargetBytes(maxKb, 'KB');
+  const rangeStatus = compositeSizeRange(outputBytes, minKb, maxKb);
+  const exceedsLimit = rangeStatus === 'above';
+  const blockedByRange = rangeStatus === 'above' || rangeStatus === 'below' || rangeStatus === 'invalid';
 
   // Preview & Export Canvas
   const previewCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -246,7 +250,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
   }, [photoImg, sigImg, layoutMode, photoWidth, photoHeight, sigWidth, sigHeight, gap, padding, borderWidth, borderColor, bgColor, exportFormat, maxKb, photoZoom, photoPositionX, photoPositionY]);
 
   const handleDownload = () => {
-    if (!photoImg || !sigImg || !outputDataUrl || exceedsLimit) return;
+    if (!photoImg || !sigImg || !outputDataUrl || blockedByRange) return;
     const a = document.createElement('a');
     a.href = outputDataUrl;
     const ext = exportFormat === 'jpeg' ? 'jpg' : 'png';
@@ -547,10 +551,17 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
             </div>
 
             <div className="space-y-2">
+              <label className="block text-xs font-bold">Minimum file size (KB; 0 = no minimum)
+                <input type="number" min="0" max="10000" step="1" value={minKb} onChange={e => setMinKb(Math.min(10000, Math.max(0, Number(e.target.value) || 0)))} className="ml-2 w-24 rounded border p-2 bg-white dark:bg-slate-900" />
+              </label>
               <label className="block text-xs font-bold">Maximum file size (KB; 0 = no limit)
                 <input type="number" min="0" max="10000" step="1" value={maxKb} onChange={e => setMaxKb(Math.min(10000, Math.max(0, Number(e.target.value) || 0)))} className="ml-2 w-24 rounded border p-2 bg-white dark:bg-slate-900" />
               </label>
               <div className="flex gap-2">{[20, 50, 100].map(kb => <button type="button" key={kb} onClick={() => { setMaxKb(kb); setExportFormat('jpeg'); }} className="rounded border px-3 py-2 text-xs">{kb} KB JPG</button>)}</div>
+              <button type="button" onClick={() => { setMinKb(20); setMaxKb(50); setExportFormat('jpeg'); }} className="rounded border px-3 py-2 text-xs">Example: 20–50 KB JPG range</button>
+              {rangeStatus === 'invalid' && <p role="alert" className="text-xs text-red-600">Minimum KB cannot exceed maximum KB. Set maximum to 0 only when there is no upper limit.</p>}
+              {outputDataUrl && rangeStatus === 'below' && <p role="alert" className="text-xs text-red-600">This file is below your minimum. Download is disabled. Use a clearer original or change dimensions only if your form permits it; no filler bytes are added.</p>}
+              {outputDataUrl && rangeStatus === 'within' && <p role="status" className="text-xs text-emerald-700 dark:text-emerald-400">File size is within your selected limits. Check the required dimensions, format and visual quality separately.</p>}
               <p className="text-xs text-slate-500">1 KB = 1,000 bytes. JPG quality adjusts to your limit; pixel dimensions stay fixed. PNG is measured without lossy compression.</p>
               <label className="block text-xs"><input type="checkbox" checked={actualSize} onChange={e => setActualSize(e.target.checked)} /> View actual pixels (scroll to inspect)</label>
               {exceedsLimit && <p role="alert" className="text-xs text-red-600">This file exceeds your limit. Increase the limit, choose JPG, or reduce dimensions if your form allows it. Download is disabled until it fits.</p>}
@@ -562,7 +573,7 @@ export const PhotoSignatureJoinerTool: React.FC<{ onShowToast: (msg: string) => 
               <button
                 type="button"
                 onClick={handleDownload}
-                disabled={!photoImg || !sigImg || !outputDataUrl || exceedsLimit}
+                disabled={!photoImg || !sigImg || !outputDataUrl || blockedByRange}
                 className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-400 disabled:cursor-not-allowed text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all"
               >
                 <Download className="w-4 h-4" /> Download Composite ({exportFormat.toUpperCase()})

@@ -6653,7 +6653,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "photo-signature-joiner",
     "title": "Photo and Signature Joiner — Combine Photo & Signature Online Free",
     "navTitle": "Photo & Signature Joiner",
-    "description": "Combine candidate passport photos and signatures into a single image for exam portals. Choose vertical or horizontal layout, adjust sizes, and export in JPG.",
+    "description": "Join photo and signature in one JPG or PNG. Choose below or beside layout, check minimum–maximum KB and final pixels, preview and download free.",
     "icon": "🪪",
     "path": "/photo-signature-joiner",
     "filename": "photo-signature-joiner.html",
@@ -6667,6 +6667,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
       "Customizable Gap & Padding Spacing Sliders (0px to 40px)",
       "Adjustable Outer Border Width (0 to 4px) with Custom Color Picker",
       "JPG or PNG Download with Zero Watermark; verify final file requirements",
+      "Minimum and maximum KB range checks with out-of-range download protection",
       "100% Private Client-Side Processing with No Server Uploads"
     ],
     "tags": [

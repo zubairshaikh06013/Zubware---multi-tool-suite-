@@ -54,7 +54,7 @@ export const WORKFLOW_MAP: Record<string, string[]> = {
   'image-splitter-merger': ['crop-image', 'image-resizer', 'image-compressor', 'background-remover'],
   'image-compressor': ['image-converter', 'image-resizer', 'crop-image', 'heic-to-jpg', 'background-remover'],
   'image-converter': ['image-compressor', 'image-resizer', 'heic-to-jpg', 'background-remover'],
-  'image-resizer': ['crop-image', 'image-compressor', 'bulk-image-renamer-resizer', 'passport-photo-maker'],
+  'image-resizer': ['photo-signature-joiner', 'crop-image', 'image-compressor', 'bulk-image-renamer-resizer', 'passport-photo-maker'],
   'crop-image': ['image-resizer', 'image-compressor', 'rotate-image', 'flip-image'],
   'rotate-image': ['flip-image', 'crop-image', 'image-resizer', 'image-compressor'],
   'flip-image': ['rotate-image', 'crop-image', 'image-resizer'],

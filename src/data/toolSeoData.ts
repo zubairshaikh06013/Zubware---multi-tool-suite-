@@ -8169,7 +8169,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "title": "Fine-Tune Spacing, Border & Format",
-        "desc": "Adjust spacing, border and JPG or PNG format. Set an optional maximum KB limit. JPG quality adjusts while pixel dimensions stay fixed; a result above your limit cannot be downloaded."
+        "desc": "Adjust spacing, border and JPG or PNG format. Set optional minimum and maximum KB limits. JPG quality adjusts while pixel dimensions stay fixed; a result outside the selected range cannot be downloaded."
       },
       {
         "title": "Download Combined Image",
@@ -8177,6 +8177,10 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+      {
+        "question": "Can I check a combined photo and signature between 20 KB and 50 KB?",
+        "answer": "Yes. Set minimum KB to 20 and maximum KB to 50 to check the inclusive 20,000–50,000 byte range used here. Both are example values: follow your form’s own units and requirements. Download is blocked below the minimum, above the maximum, or for an invalid range. The tool does not add filler bytes to enlarge a small image."
+      },
       {
         "question": "Can I keep the combined photo and signature under 20 KB or 50 KB?",
         "answer": "Choose a JPG size button or enter a custom maximum in KB (1 KB = 1,000 bytes). The tool reduces JPEG quality without changing your pixel dimensions. If the limit cannot be met, it shows the measured size and blocks download. Increase the limit or change dimensions only if your form allows it. Preview the exported file to check legibility; size compliance alone does not guarantee acceptance."

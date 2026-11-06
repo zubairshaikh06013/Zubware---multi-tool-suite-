@@ -202,7 +202,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                   : 'glass-card text-slate-700 dark:text-slate-300 hover:border-indigo-500/40'
               }`}
             >
-              <span aria-hidden="true"><ToolIcon category={cat.slug} size="sm" showBackground={false} /></span>
+              <span aria-hidden="true"><ToolIcon category={cat.slug} size="sm" showBackground={false} iconClassName={isActive ? 'text-white! dark:text-white!' : ''} /></span>
               <span>{translatedName}</span>
             </a>
           );

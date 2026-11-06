@@ -1,3 +1,4 @@
+import { ShieldCheck as UiShieldCheck } from 'lucide-react';
 import React, { useState } from 'react';
 import { ShieldCheck, ShieldAlert, Upload, Copy, Check, FileCheck, RefreshCw } from 'lucide-react';
 import CryptoJS from 'crypto-js';
@@ -78,7 +79,7 @@ export const FileChecksumVerifierTool: React.FC<FileChecksumVerifierToolProps> =
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>🛡️</span> File Checksum Verifier ({algorithm})
+          <span><UiShieldCheck className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> File Checksum Verifier ({algorithm})
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Verify file integrity by comparing uploaded file cryptographic hashes (SHA-256, SHA-1, SHA-512, MD5) against original developer checksums locally.

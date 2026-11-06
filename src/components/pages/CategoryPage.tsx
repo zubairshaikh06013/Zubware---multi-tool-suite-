@@ -1,3 +1,6 @@
+import { BadgeCheck as CategoryBadgeCheck } from 'lucide-react';
+import { Lock as CategoryLock } from 'lucide-react';
+import { Zap as CategoryZap } from 'lucide-react';
 import React, { useState, useEffect, useMemo } from 'react';
 import { getTranslatedTools, TOOLS_DATA } from '../../data/toolsData';
 import { CATEGORIES_DATA } from '../../data/categoriesData';
@@ -154,7 +157,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
         <h1 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white">
           {activeCategory === 'all'
             ? t('toolCategories', 'Tool Categories & Directory')
-            : `${activeCategoryMeta.icon} ${authMeta?.h1 || t(activeCategoryMeta.nameKey, activeCategoryMeta.defaultName)}`}
+            : <><ToolIcon category={activeCategoryMeta.slug} size="xl" className="mx-auto mb-3" />{authMeta?.h1 || t(activeCategoryMeta.nameKey, activeCategoryMeta.defaultName)}</>}
         </h1>
         <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto leading-relaxed">
           {activeCategory === 'all'
@@ -165,13 +168,13 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
         {activeCategory !== 'all' && (
           <div className="flex items-center justify-center gap-2 pt-2 flex-wrap text-[11px] font-bold">
             <span className="px-3 py-1 rounded-full bg-white dark:bg-slate-800 text-indigo-600 dark:text-indigo-400 border border-indigo-200/60 dark:border-indigo-800/60">
-              ⚡ {filteredTools.length} Active Utilities
+              <CategoryZap className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> {filteredTools.length} Active Utilities
             </span>
             <span className="px-3 py-1 rounded-full bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
-              🔒 In-Browser Execution
+              <CategoryLock className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> In-Browser Execution
             </span>
             <span className="px-3 py-1 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-              🆓 100% Free Forever
+              <CategoryBadgeCheck className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> 100% Free Forever
             </span>
           </div>
         )}
@@ -199,7 +202,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                   : 'glass-card text-slate-700 dark:text-slate-300 hover:border-indigo-500/40'
               }`}
             >
-              <span aria-hidden="true">{cat.icon}</span>
+              <span aria-hidden="true"><ToolIcon category={cat.slug} size="sm" showBackground={false} /></span>
               <span>{translatedName}</span>
             </a>
           );
@@ -504,7 +507,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
               }}
               className="px-3.5 py-2 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 hover:bg-indigo-100 text-indigo-600 dark:text-indigo-400 font-bold text-xs border border-indigo-200/60 dark:border-indigo-800/60 transition-colors"
             >
-              ⚡ All Categories Directory
+              <CategoryZap className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> All Categories Directory
             </a>
             {otherCategories.map((c) => (
               <a
@@ -516,7 +519,7 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
                 }}
                 className="px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800/60 hover:bg-indigo-50 hover:text-indigo-600 dark:hover:bg-indigo-950/40 text-slate-700 dark:text-slate-300 font-semibold text-xs border border-slate-200/60 dark:border-slate-700/60 transition-colors flex items-center gap-1.5"
               >
-                <span>{c.icon}</span>
+                <span><ToolIcon category={c.slug} size="sm" showBackground={false} /></span>
                 <span>{c.defaultName}</span>
               </a>
             ))}

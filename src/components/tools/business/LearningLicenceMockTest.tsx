@@ -1,3 +1,4 @@
+import { OctagonAlert as DecorOctagonAlert, TrafficCone as DecorTrafficCone, Trophy as DecorTrophy } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import {
   CheckCircle2,
@@ -1288,7 +1289,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
           {testState === 'start' && (
             <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 text-center">
               <div className="w-20 h-20 mx-auto rounded-3xl bg-indigo-100 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-4xl shadow-inner">
-                🚦
+                <DecorTrafficCone className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
               </div>
 
               <div className="space-y-2">
@@ -1574,7 +1575,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
           {signTestState === 'start' && (
             <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-6 border border-slate-200 dark:border-slate-800 text-center">
               <div className="w-20 h-20 mx-auto rounded-3xl bg-indigo-100 dark:bg-indigo-950/60 border border-indigo-200 dark:border-indigo-800 flex items-center justify-center text-4xl shadow-inner">
-                🛑
+                <DecorOctagonAlert className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
               </div>
 
               <div className="space-y-2">
@@ -1681,7 +1682,7 @@ export function LearningLicenceMockTest({ onShowToast }: { onShowToast: (msg: st
             <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-8 border border-slate-200 dark:border-slate-800 text-center">
               <div className="p-6 rounded-3xl bg-indigo-50/60 dark:bg-indigo-950/30 border border-indigo-500/30 space-y-3">
                 <div className="w-16 h-16 mx-auto rounded-2xl flex items-center justify-center text-3xl shadow-inner">
-                  🏆
+                  <DecorTrophy className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-black text-slate-900 dark:text-white">
                   {lang === 'en' ? 'Traffic Signs Practice Completed!' : 'ट्रैफिक संकेत अभ्यास पूरा हुआ!'}

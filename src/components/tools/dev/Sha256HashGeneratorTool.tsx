@@ -1,3 +1,4 @@
+import { ShieldCheck as UiShieldCheck } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { ShieldCheck, Copy, Check, Lock, CheckCircle2, XCircle } from 'lucide-react';
 
@@ -62,7 +63,7 @@ export const Sha256HashGeneratorTool: React.FC<Sha256HashGeneratorToolProps> = (
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🛡️</span> SHA-256 Hash Generator & Checksum Verifier
+            <span><UiShieldCheck className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> SHA-256 Hash Generator & Checksum Verifier
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Generate 256-bit cryptographic SHA-256 checksum hashes in real-time with Web Crypto API and verify matching digests.

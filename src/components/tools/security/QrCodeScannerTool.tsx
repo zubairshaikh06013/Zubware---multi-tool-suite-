@@ -1,3 +1,4 @@
+import { ScanLine as UiScanLine } from 'lucide-react';
 import React, { useState, useRef, useEffect } from 'react';
 import jsQR from 'jsqr';
 import { Camera, Upload, Clipboard, Copy, ExternalLink, RefreshCw, Check, QrCode, Trash2 } from 'lucide-react';
@@ -173,7 +174,7 @@ export const QrCodeScannerTool: React.FC<QrCodeScannerToolProps> = ({ onShowToas
     <div className="p-6 sm:p-8 space-y-6">
       <div className="border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <span>📷</span> QR Code Scanner
+          <span><UiScanLine className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> QR Code Scanner
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Scan QR codes using live camera feed, file upload, or clipboard image with 100% local processing.

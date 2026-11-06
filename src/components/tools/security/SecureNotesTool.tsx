@@ -1,3 +1,4 @@
+import { FilePenLine as UiFilePenLine } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { FileText, Plus, Trash2, Download, Upload, Pin, Search, Save, Check } from 'lucide-react';
 
@@ -122,7 +123,7 @@ export const SecureNotesTool: React.FC<SecureNotesToolProps> = ({ onShowToast })
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>📝</span> Offline Secure Notes
+            <span><UiFilePenLine className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Offline Secure Notes
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Private, auto-saved local notepad with TXT file import and export capabilities.

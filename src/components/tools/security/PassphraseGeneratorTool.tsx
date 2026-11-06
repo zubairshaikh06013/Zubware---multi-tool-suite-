@@ -1,3 +1,4 @@
+import { KeyRound as UiKeyRound } from 'lucide-react';
 import { PASSPHRASE_WORDS as WORD_LIST } from '../../../data/passphraseWords';
 import { secureRandomIndex } from '../../../lib/secureRandom';
 import React, { useState, useEffect } from 'react';
@@ -64,7 +65,7 @@ export const PassphraseGeneratorTool: React.FC<PassphraseGeneratorToolProps> = (
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>🗝️</span> Random Passphrase Generator
+            <span><UiKeyRound className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Random Passphrase Generator
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Generate easy-to-remember yet cryptographically secure diceware-style passphrases locally.

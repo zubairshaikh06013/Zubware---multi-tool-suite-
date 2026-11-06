@@ -1,3 +1,4 @@
+import { Lightbulb as DecorLightbulb } from 'lucide-react';
 import React, { useState } from 'react';
 import { Copy, Check, Type, Sparkles, Layers } from 'lucide-react';
 
@@ -56,7 +57,7 @@ export const ThumbnailTextGeneratorTool: React.FC<{ onShowToast: (msg: string) =
           </div>
 
           <div className="p-4 rounded-xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-600 dark:text-amber-400 space-y-1">
-            <p className="font-bold">💡 Creator Pro Tip:</p>
+            <p className="font-bold"><DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Creator Pro Tip:</p>
             <p className="text-[11px] leading-relaxed">Keep thumbnail text under 4 words total! Large, high-contrast, bold text gets 3x higher click-through rate on mobile devices.</p>
           </div>
         </div>

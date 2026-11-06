@@ -1,3 +1,4 @@
+import { Beef as DecorBeef, Salad as DecorSalad, Scale as DecorScale, UserRound as DecorUserRound, Wheat as DecorWheat } from 'lucide-react';
 import React, { useState, useMemo } from 'react';
 import {
   Dumbbell,
@@ -296,7 +297,7 @@ export const WeightGainCalculatorTool: React.FC<WeightGainCalculatorToolProps> =
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
-                  <span>👨 Male</span>
+                  <span><DecorUserRound className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Male</span>
                 </button>
                 <button
                   id="gender-female-btn"
@@ -308,7 +309,7 @@ export const WeightGainCalculatorTool: React.FC<WeightGainCalculatorToolProps> =
                       : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
                   }`}
                 >
-                  <span>👩 Female</span>
+                  <span><DecorUserRound className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Female</span>
                 </button>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400">
@@ -566,25 +567,25 @@ export const WeightGainCalculatorTool: React.FC<WeightGainCalculatorToolProps> =
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-600 dark:text-slate-400">
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800">
                     <strong className="font-bold text-slate-900 dark:text-white block mb-1">
-                      🥩 Protein Timing
+                      <DecorBeef className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Protein Timing
                     </strong>
                     Distribute your {calculation.protein_g}g across 4–5 balanced meals (~25–35g per meal) to maximize muscle protein synthesis throughout the day.
                   </div>
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800">
                     <strong className="font-bold text-slate-900 dark:text-white block mb-1">
-                      🍚 Complex Carbs
+                      <DecorWheat className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Complex Carbs
                     </strong>
                     Focus on clean, energy-dense carbs like oats, brown/white rice, potatoes, pasta, and bananas to power intense progressive overload training.
                   </div>
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800">
                     <strong className="font-bold text-slate-900 dark:text-white block mb-1">
-                      🥑 Healthy Fats
+                      <DecorSalad className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Healthy Fats
                     </strong>
                     Incorporate {calculation.fat_g}g of fats from eggs, nuts, olive oil, avocados, and seeds to support optimal hormone production during your bulk.
                   </div>
                   <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200/60 dark:border-slate-800">
                     <strong className="font-bold text-slate-900 dark:text-white block mb-1">
-                      ⚖️ Progress Tracking
+                      <DecorScale className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Progress Tracking
                     </strong>
                     Weigh yourself weekly under consistent conditions. Aim for 0.25 to 0.5 kg gain per week to keep muscle gain high and fat accumulation minimal.
                   </div>

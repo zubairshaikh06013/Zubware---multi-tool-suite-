@@ -1,3 +1,4 @@
+import { Mail as DecorMail } from 'lucide-react';
 import React, { useState } from 'react';
 import { Mail, Sparkles, Sliders, BookOpen } from 'lucide-react';
 import { PromptExportActions } from './PromptExportActions';
@@ -39,7 +40,7 @@ export const CoverLetterPromptBuilderTool: React.FC<CoverLetterPromptBuilderTool
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800 pb-4">
         <div>
           <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-            <span>✉️</span> Cover Letter Prompt Builder
+            <span><DecorMail className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Cover Letter Prompt Builder
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Craft persuasive, professional AI cover letter prompts tailored to target companies & hiring managers.

@@ -1,3 +1,4 @@
+import { Headphones as DecorHeadphones, Piano as DecorPiano } from 'lucide-react';
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   Headphones,
@@ -715,7 +716,7 @@ export function LofiMusicStudioTool({
           </div>
           <div>
             <h3 className="text-lg font-bold text-white flex items-center gap-2">
-              MODE 1: 🎧 LOFI SONG MAKER
+              MODE 1: <DecorHeadphones className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> LOFI SONG MAKER
             </h3>
             <p className="text-xs text-slate-400 mt-1">
               Upload your own audio track and apply vintage tape, vinyl crackle, pitch shifts, and rain ambiance.
@@ -739,7 +740,7 @@ export function LofiMusicStudioTool({
           </div>
           <div>
             <h3 className="text-lg font-bold text-white flex items-center gap-2">
-              MODE 2: 🎹 ORIGINAL LOFI CREATOR
+              MODE 2: <DecorPiano className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> ORIGINAL LOFI CREATOR
             </h3>
             <p className="text-xs text-slate-400 mt-1">
               Synthesize original Lofi beats, chords, and melodies from scratch without uploading existing songs.

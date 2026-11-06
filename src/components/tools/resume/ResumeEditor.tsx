@@ -1,3 +1,4 @@
+import { Rocket as DecorRocket, ScrollText as DecorScrollText } from 'lucide-react';
 import React, { useState } from 'react';
 import { 
   ResumeData, 
@@ -863,7 +864,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold text-xs flex items-center gap-1.5">
-                      🚀 Modern Style
+                      <DecorRocket className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Modern Style
                     </span>
                     {(data.styling.layoutPreset || 'modern') === 'modern' && (
                       <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
@@ -897,7 +898,7 @@ export const ResumeEditor: React.FC<ResumeEditorProps> = ({
                 >
                   <div className="flex items-center justify-between mb-1">
                     <span className="font-bold text-xs flex items-center gap-1.5 font-serif">
-                      📜 Classic Style
+                      <DecorScrollText className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Classic Style
                     </span>
                     {data.styling.layoutPreset === 'classic' && (
                       <Check className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />

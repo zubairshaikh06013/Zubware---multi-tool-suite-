@@ -1,3 +1,4 @@
+import { ToolIcon } from '../src/components/common/ToolIcon';
 import { PhotoNameDateGuide } from '../src/components/seo/PhotoNameDateGuide';
 import { PhotoSignatureGuide } from '../src/components/seo/PhotoSignatureGuide';
 import { CashClosingGuide } from '../src/components/seo/CashClosingGuide';
@@ -1484,7 +1485,7 @@ function renderCategoriesPageContent(): string {
             <div style="display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">
               <div style="display: flex; align-items: baseline; gap: 0.75rem;">
                 <h2 style="font-size: 1.5rem; font-weight: 800; color: #0f172a; margin: 0;">
-                  <span aria-hidden="true">${cat.icon}</span> ${escapeHtml(cat.defaultName)}
+                  <span aria-hidden="true">${renderToStaticMarkup(createElement(ToolIcon, { category: cat.slug, size: "sm", showBackground: false }))}</span> ${escapeHtml(cat.defaultName)}
                 </h2>
                 <span style="font-size: 0.85rem; font-weight: 700; color: #4f46e5;">(${catTools.length} tools)</span>
               </div>
@@ -1499,7 +1500,7 @@ function renderCategoriesPageContent(): string {
               ${catTools.map(tool => `
               <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                  <span style="font-size: 1.5rem;">${tool.icon}</span>
+                  <span style="font-size: 1.5rem;">${renderToStaticMarkup(createElement(ToolIcon, { toolId: tool.id, category: tool.category, size: "md" }))}</span>
                   ${tool.badge ? `<span style="font-size: 0.7rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.2rem 0.5rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
                 </div>
                 <h3 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem 0;">
@@ -1563,7 +1564,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
       <!-- Category Hero Header -->
       <header style="margin-bottom: 3rem; background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%); padding: 2.5rem; border-radius: 1.5rem; border: 1px solid #e0e7ff;">
         <div style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; font-weight: 800; color: #4f46e5; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem;">
-          <span style="font-size: 1.25rem;">${cat.icon}</span> Zubware Category Hub
+          <span style="font-size: 1.25rem;">${renderToStaticMarkup(createElement(ToolIcon, { category: cat.slug, size: "sm", showBackground: false }))}</span> Zubware Category Hub
         </div>
         <h1 style="font-size: 2.25rem; font-weight: 900; color: #0f172a; margin: 0 0 1rem 0; line-height: 1.2;">
           ${escapeHtml(auth.h1)}
@@ -1630,7 +1631,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
           <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; text-decoration: none; color: inherit; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: transform 0.15s ease, border-color 0.15s ease;">
             <div>
               <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
-                <span style="font-size: 1.75rem;">${tool.icon}</span>
+                <span style="font-size: 1.75rem;">${renderToStaticMarkup(createElement(ToolIcon, { toolId: tool.id, category: tool.category, size: "md" }))}</span>
                 ${tool.badge ? `<span style="font-size: 0.7rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.2rem 0.55rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
               </div>
               <h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin: 0 0 0.4rem 0;">
@@ -1699,7 +1700,7 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
           <a href="${DOMAIN}/categories" style="font-size: 0.8rem; font-weight: 700; color: #4f46e5; background: #eef2ff; border: 1px solid #c7d2fe; padding: 0.5rem 1rem; border-radius: 0.75rem; text-decoration: none;">⚡ All Categories Directory</a>
           ${otherCategories.map(c => `
           <a href="${DOMAIN}/category/${c.slug}" style="font-size: 0.8rem; font-weight: 600; color: #334155; background: #ffffff; border: 1px solid #e2e8f0; padding: 0.5rem 1rem; border-radius: 0.75rem; text-decoration: none;">
-            ${c.icon} ${escapeHtml(c.defaultName)}
+            ${renderToStaticMarkup(createElement(ToolIcon, { category: c.slug, size: "sm", showBackground: false }))} ${escapeHtml(c.defaultName)}
           </a>`).join('\n          ')}
         </div>
       </section>
@@ -1837,7 +1838,7 @@ function renderHomepageContent(): string {
           <div id="category-${cat.slug}" style="scroll-margin-top: 4rem;">
             <div style="display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.75rem; margin-bottom: 1.25rem;">
               <h3 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0;">
-                <span aria-hidden="true">${cat.icon}</span> ${escapeHtml(cat.defaultName)}
+                <span aria-hidden="true">${renderToStaticMarkup(createElement(ToolIcon, { category: cat.slug, size: "sm", showBackground: false }))}</span> ${escapeHtml(cat.defaultName)}
                 <span style="font-size: 0.85rem; font-weight: 700; color: #4f46e5; margin-left: 0.5rem;">(${catTools.length} tools)</span>
               </h3>
               <a href="${DOMAIN}/category/${cat.slug}" style="font-size: 0.8rem; color: #4f46e5; font-weight: 600; text-decoration: underline;">Explore ${escapeHtml(cat.defaultName)} Hub &rarr;</a>
@@ -1846,7 +1847,7 @@ function renderHomepageContent(): string {
               ${catTools.slice(0, 3).map(tool => `
               <a href="${DOMAIN}${getToolCanonicalPath(tool)}" style="display: block; padding: 1rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; text-decoration: none; color: inherit;">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem;">
-                  <span style="font-size: 1.4rem;">${tool.icon}</span>
+                  <span style="font-size: 1.4rem;">${renderToStaticMarkup(createElement(ToolIcon, { toolId: tool.id, category: tool.category, size: "md" }))}</span>
                   ${tool.badge ? `<span style="font-size: 0.65rem; font-weight: 700; background: #eef2ff; color: #4f46e5; padding: 0.15rem 0.45rem; border-radius: 9999px;">${escapeHtml(tool.badge)}</span>` : ''}
                 </div>
                 <h4 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem 0;">

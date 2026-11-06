@@ -1,3 +1,4 @@
+import { ShieldCheck as DecorShieldCheck } from 'lucide-react';
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import jsQR from 'jsqr';
 import {
@@ -1084,7 +1085,7 @@ export const QrCodeSafetyCheckerTool: React.FC<QrCodeSafetyCheckerToolProps> = (
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200/80 dark:border-slate-800">
         <div className="flex items-center gap-3.5">
           <div className="w-12 h-12 rounded-2xl bg-indigo-600/10 dark:bg-indigo-500/20 flex items-center justify-center text-2xl border border-indigo-200 dark:border-indigo-800/50 shadow-inner">
-            🛡️
+            <DecorShieldCheck className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">

@@ -1,3 +1,4 @@
+import { Target as DecorTarget, Zap as DecorZap } from 'lucide-react';
 import React, { useState } from 'react';
 import { Copy, Check, Lightbulb, Star, Compass, Tag, Layers } from 'lucide-react';
 
@@ -155,8 +156,8 @@ export const YouTubeVideoIdeaGeneratorTool: React.FC<{ onShowToast: (msg: string
                   </h4>
 
                   <div className="space-y-1 text-[11px] text-slate-500 dark:text-slate-400 border-t border-slate-100 dark:border-slate-800 pt-2">
-                    <p>🎯 <strong className="text-slate-700 dark:text-slate-300">Audience:</strong> {idea.audience}</p>
-                    <p>⚡ <strong className="text-slate-700 dark:text-slate-300">Hook Angle:</strong> {idea.angle}</p>
+                    <p><DecorTarget className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <strong className="text-slate-700 dark:text-slate-300">Audience:</strong> {idea.audience}</p>
+                    <p><DecorZap className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> <strong className="text-slate-700 dark:text-slate-300">Hook Angle:</strong> {idea.angle}</p>
                   </div>
                 </div>
 

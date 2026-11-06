@@ -1,3 +1,4 @@
+import { Lightbulb as DecorLightbulb } from 'lucide-react';
 import React, { useState } from 'react';
 import { getActiveResume } from '../../../lib/resumeStore';
 import { ResumeData } from '../../../types/resume';
@@ -71,7 +72,7 @@ export const ResumeKeywordOptimizerTool: React.FC<{ onShowToast: (msg: string) =
 
           {jobDescription.length === 0 && (
             <p className="text-xs text-slate-500 italic">
-              💡 Tip: Paste a real job post above to see exact keyword match percentages and missing power words.
+              <DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Tip: Paste a real job post above to see exact keyword match percentages and missing power words.
             </p>
           )}
         </div>

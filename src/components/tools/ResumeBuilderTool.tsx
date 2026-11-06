@@ -1,3 +1,4 @@
+import { FileText as DecorFileText, Rocket as DecorRocket, ScrollText as DecorScrollText } from 'lucide-react';
 import React, { useState, useEffect, useRef } from 'react';
 import { ResumeData, ResumeLanguage } from '../../types/resume';
 import { EMPTY_RESUME_DATA, SAMPLE_RESUME_DATA } from '../../data/resumeTemplatesData';
@@ -445,7 +446,7 @@ export const ResumeBuilderTool: React.FC<ResumeBuilderToolProps> = ({ onShowToas
         {/* Title & Saved Status */}
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-black text-lg shadow-sm">
-            📄
+            <DecorFileText className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" />
           </div>
           <div>
             <div className="flex items-center gap-2">
@@ -487,7 +488,7 @@ export const ResumeBuilderTool: React.FC<ResumeBuilderToolProps> = ({ onShowToas
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              🚀 Modern
+              <DecorRocket className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Modern
             </button>
             <button
               onClick={() => {
@@ -509,7 +510,7 @@ export const ResumeBuilderTool: React.FC<ResumeBuilderToolProps> = ({ onShowToas
                   : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white font-serif'
               }`}
             >
-              📜 Classic
+              <DecorScrollText className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Classic
             </button>
           </div>
 

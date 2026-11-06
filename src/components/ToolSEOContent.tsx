@@ -1,3 +1,5 @@
+import { Lightbulb as DecorLightbulb } from 'lucide-react';
+import { Binary as UiBinary, Bot as UiBot, Calculator as UiCalculator, ChartColumn as UiChartColumn, CircleX as UiCircleX, ClipboardList as UiClipboardList, GraduationCap as UiGraduationCap, Image as UiImage, Keyboard as UiKeyboard, Landmark as UiLandmark, Link2 as UiLink2, Lock as UiLock, Minimize2 as UiMinimize2, Smartphone as UiSmartphone, Target as UiTarget, TrafficCone as UiTrafficCone, TrendingUp as UiTrendingUp, TriangleAlert as UiTriangleAlert, Zap as UiZap } from 'lucide-react';
 import { PhotoNameDateGuide } from './seo/PhotoNameDateGuide';
 import { PhotoSignatureGuide } from './seo/PhotoSignatureGuide';
 import { CashClosingGuide } from './seo/CashClosingGuide';
@@ -197,7 +199,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🎯</span> Compress Images for Government &amp; Exam Portals
+                <span className="text-indigo-600"><UiTarget className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Compress Images for Government &amp; Exam Portals
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Photo and signature requirements vary by exam, recruitment year, and application portal. Read the current official upload instructions for the required file format, dimensions, and KB range before choosing a preset. A small file alone does not guarantee acceptance.
@@ -209,7 +211,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📱</span> Mobile Mein Photo Ka Size Kaise Kam Kare?
+                <span className="text-indigo-600"><UiSmartphone className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Mobile Mein Photo Ka Size Kaise Kam Kare?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Aapko mobile mein photo compress karne ke liye kisi heavy application ya shady APK ko install karne ki zaroorat nahi hai. Seedhe apne mobile browser (Chrome, Safari, ya Firefox) mein Zubware open karein:
@@ -228,7 +230,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🖼️</span> Reduce JPG, PNG &amp; WebP Image Size
+                <span className="text-indigo-600"><UiImage className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Reduce JPG, PNG &amp; WebP Image Size
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Zubware provides smart compression tuned for each specific image format:
@@ -248,7 +250,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-500">🔒</span> 100% Private Browser Execution (Zero Server Upload)
+                <span className="text-emerald-500"><UiLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> 100% Private Browser Execution (Zero Server Upload)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 This tool processes the selected image in your browser. Keep a backup of the original and check readability before sharing the compressed copy.
@@ -276,7 +278,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🎯</span> Compress PDFs for Exam Portals, Job Forms &amp; Admissions
+                <span className="text-indigo-600"><UiTarget className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Compress PDFs for Exam Portals, Job Forms &amp; Admissions
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Many online application systems—such as government recruitment portals (UPSC, SSC, State PSC, IBPS, Railways), university admissions, and visa processing services—enforce strict document upload ceilings (typically <strong>1 MB, 2 MB, or 5 MB</strong>). Uploading a 15 MB scanned certificate or portfolio results in immediate submission errors.
@@ -288,7 +290,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📱</span> Mobile Mein PDF Ka Size Kaise Kam Kare?
+                <span className="text-indigo-600"><UiSmartphone className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Mobile Mein PDF Ka Size Kaise Kam Kare?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Mobile par PDF file compress karne ke liye aapko kisi suspicious app ya subscription-based tool ki zaroorat nahi hai. Seedhe apne smartphone browser (Chrome ya Safari) mein Zubware open karein:
@@ -307,7 +309,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🗜️</span> Understanding Compression Levels: Recommended, Extreme &amp; Light
+                <span className="text-indigo-600"><UiMinimize2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Understanding Compression Levels: Recommended, Extreme &amp; Light
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Zubware PDF Compressor gives you three calibrated compression profiles to suit different document needs:
@@ -327,7 +329,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-500">🔒</span> 100% Private In-Browser Execution (Zero Server Upload)
+                <span className="text-emerald-500"><UiLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> 100% Private In-Browser Execution (Zero Server Upload)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Most commercial PDF utilities transfer your documents to remote cloud servers for rendering, raising serious privacy concerns for bank statements, tax forms, salary slips, and confidential contracts.
@@ -374,7 +376,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Internal links related cluster */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Generator Tools &amp; Security Guides
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Generator Tools &amp; Security Guides
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -441,7 +443,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🎯</span> ATS-Friendly Resume Formatting That Passes Job Filters
+                <span className="text-indigo-600"><UiTarget className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> ATS-Friendly Resume Formatting That Passes Job Filters
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Over 75% of job applications are scanned by Applicant Tracking Systems (ATS) such as Workday, Taleo, Greenhouse, and Lever before ever reaching a human recruiter. Resumes with multi-layered text boxes, fancy background graphics, unreadable fonts, or non-standard tables often get scrambled or discarded.
@@ -453,7 +455,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📱</span> Mobile Aur Computer Par Resume Kaise Banaye?
+                <span className="text-indigo-600"><UiSmartphone className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Mobile Aur Computer Par Resume Kaise Banaye?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Apne smartphone ya laptop par bina kisi paid app ya complicated software ke professional resume banana behad aasan hai:
@@ -473,7 +475,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🎓</span> Resume Format For Freshers &amp; Career Starters
+                <span className="text-indigo-600"><UiGraduationCap className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Resume Format For Freshers &amp; Career Starters
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 If you are a college graduate or career changer without years of corporate experience, your resume should emphasize education, practical projects, technical skills, and certifications rather than an empty employment history.
@@ -485,7 +487,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-500">🔒</span> 100% Private In-Browser Auto-Save (Zero Server Upload)
+                <span className="text-emerald-500"><UiLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> 100% Private In-Browser Auto-Save (Zero Server Upload)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Many online resume services lock your download behind an unexpected subscription paywall, sell your contact details to recruitment agencies, or store your private career history on third-party servers.
@@ -499,7 +501,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Internal links related cluster */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Career &amp; Resume Optimization Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Career &amp; Resume Optimization Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -566,7 +568,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🤖</span> What Is an ATS Resume Checker?
+                <span className="text-indigo-600"><UiBot className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> What Is an ATS Resume Checker?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 An <strong>Applicant Tracking System (ATS)</strong> is recruitment software utilized by enterprise companies, startups, and recruitment agencies (such as Workday, Taleo, Greenhouse, iCIMS, and Lever) to organize, filter, and rank incoming job applicants. Before a human hiring manager reads your resume, the ATS scans the document for specific job qualifications, technical skills, and educational thresholds.
@@ -578,7 +580,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📊</span> What Does an ATS Resume Score Mean?
+                <span className="text-indigo-600"><UiChartColumn className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> What Does an ATS Resume Score Mean?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Zubware calculates a transparent, multi-dimensional <strong>ATS Match Score (0–100%)</strong> by evaluating your resume against your targeted job posting across four weighted pillars:
@@ -598,7 +600,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📱</span> Resume ATS Score Kaise Check Kare? (Step-by-Step Guide)
+                <span className="text-indigo-600"><UiSmartphone className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Resume ATS Score Kaise Check Kare? (Step-by-Step Guide)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Apne mobile phone ya computer par resume ATS-friendly hai ya nahi check karna behad aasan hai:
@@ -614,7 +616,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-500">🔒</span> 100% In-Browser Privacy (Zero Server Upload)
+                <span className="text-emerald-500"><UiLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> 100% In-Browser Privacy (Zero Server Upload)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Your resume contains sensitive personally identifiable information (PII) including your full legal name, home address, personal phone number, email, and detailed employment record.
@@ -628,7 +630,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Internal links related cluster */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Career &amp; Application Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Career &amp; Application Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -703,7 +705,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Official Government Disclaimer Box */}
           <div className="p-5 rounded-2xl bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-900/60 space-y-2">
             <div className="flex items-center gap-2 text-amber-800 dark:text-amber-300 font-bold text-sm">
-              <span className="text-lg">⚠️</span>
+              <span className="text-lg"><UiTriangleAlert className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span>
               <span>Important Disclaimer: Zubware is an Independent Educational Practice Tool</span>
             </div>
             <p className="text-xs sm:text-sm text-amber-900/80 dark:text-amber-200/80 leading-relaxed">
@@ -715,7 +717,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-600">🚦</span> What is a Learning Licence (LL) Mock Test?
+                <span className="text-emerald-600"><UiTrafficCone className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> What is a Learning Licence (LL) Mock Test?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Before obtaining a permanent Driving Licence (DL) in India, applicants must first pass a computer-based <strong>Learner&rsquo;s Licence (LL / LLR) test</strong> administered by their local RTO or online via the Parivahan Sarathi system. The test evaluates your fundamental knowledge of the <strong>Motor Vehicles Act, traffic signals, road signs, and safe driving etiquette</strong>.
@@ -727,7 +729,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-emerald-600">📋</span> Computer Exam Structure &amp; Passing Criteria
+                <span className="text-emerald-600"><UiClipboardList className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Computer Exam Structure &amp; Passing Criteria
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 While specific question numbers vary slightly across Indian states, standard RTO computerized exams follow this pattern:
@@ -804,7 +806,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Common Mistakes & Traps */}
           <div className="glass-card p-6 sm:p-8 rounded-3xl space-y-4">
             <h3 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span className="text-rose-500">❌</span> Top 5 Common Traps in the RTO Computer Exam
+              <span className="text-rose-500"><UiCircleX className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Top 5 Common Traps in the RTO Computer Exam
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300">
               Many learners fail on their first attempt due to tricky wording or confusing subtle differences between traffic signals:
@@ -888,7 +890,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* State Guidelines Note */}
           <div className="glass-card p-6 rounded-2xl space-y-3">
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span>🏛️</span> State-Wise Guidelines &amp; Official Verification
+              <span><UiLandmark className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> State-Wise Guidelines &amp; Official Verification
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
               Whether you are preparing for RTO tests in <strong>Uttar Pradesh (UP), Bihar, Maharashtra, Rajasthan, Delhi, Madhya Pradesh, Gujarat, Haryana, West Bengal, Karnataka, or other Indian states</strong>, the underlying road safety rules and sign categories are governed nationally by the Indian Motor Vehicles Act. However, slot booking procedures, touch screen interfaces, and question languages can vary across states. We advise all applicants to download their state transport department&rsquo;s official question handbook on <a href="https://parivahan.gov.in" target="_blank" rel="noopener noreferrer" className="text-emerald-600 font-bold underline">parivahan.gov.in</a> before scheduling their test.
@@ -898,7 +900,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Related Tools for Indian Exam & License Applications */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Tools for Driving Licence &amp; Government Form Applications
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Tools for Driving Licence &amp; Government Form Applications
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a
@@ -973,7 +975,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🧮</span> What is a Scientific Calculator?
+                <span className="text-indigo-600"><UiCalculator className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> What is a Scientific Calculator?
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 A scientific calculator is an advanced mathematical computing tool designed to solve multi-step problems in <strong>algebra, trigonometry, physics, engineering, statistics, and calculus</strong>.
@@ -985,7 +987,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">⚡</span> Basic Calculator vs Scientific Calculator
+                <span className="text-indigo-600"><UiZap className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Basic Calculator vs Scientific Calculator
               </h3>
               <ul className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 space-y-2 list-disc list-inside">
                 <li><strong>Order of Operations:</strong> Basic calculators compute <code>2 + 3 × 4 = 20</code> (immediate execution). Scientific calculators correctly evaluate <code>2 + 3 × 4 = 14</code> by prioritizing multiplication.</li>
@@ -1043,7 +1045,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
               </div>
             </div>
             <p className="text-xs text-slate-500 dark:text-slate-400 italic">
-              💡 Tip: Click the &ldquo;RAD / DEG&rdquo; toggle button in the top-left of the calculator display to switch instantly between angle units.
+              <DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Tip: Click the &ldquo;RAD / DEG&rdquo; toggle button in the top-left of the calculator display to switch instantly between angle units.
             </p>
           </div>
 
@@ -1051,7 +1053,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">📈</span> Common Log (log₁₀) vs Natural Log (ln)
+                <span className="text-indigo-600"><UiTrendingUp className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Common Log (log₁₀) vs Natural Log (ln)
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Logarithms answer the question: <em>&ldquo;To what power must the base be raised to obtain this number?&rdquo;</em>
@@ -1064,7 +1066,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
 
             <div className="glass-card p-6 rounded-2xl space-y-3">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-                <span className="text-indigo-600">🔢</span> Powers, Roots &amp; Factorials
+                <span className="text-indigo-600"><UiBinary className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Powers, Roots &amp; Factorials
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
                 Perform higher-order algebraic computations with single-button operations:
@@ -1120,7 +1122,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Keyboard Shortcuts Reference */}
           <div className="glass-card p-6 rounded-2xl space-y-3">
             <h3 className="text-base font-bold text-slate-900 dark:text-white flex items-center gap-2">
-              <span>⌨️</span> Desktop Keyboard Shortcuts
+              <span><UiKeyboard className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Desktop Keyboard Shortcuts
             </h3>
             <p className="text-xs text-slate-500 dark:text-slate-400">
               For rapid data entry on laptop and desktop computers, use your physical keyboard:
@@ -1150,7 +1152,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
           {/* Related Math & Calculation Tools */}
           <div className="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 space-y-3">
             <h3 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider flex items-center gap-2">
-              <span>🔗</span> Explore Related Mathematics &amp; Calculation Tools
+              <span><UiLink2 className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /></span> Explore Related Mathematics &amp; Calculation Tools
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-1">
               <a

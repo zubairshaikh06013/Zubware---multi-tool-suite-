@@ -1,3 +1,4 @@
+import { Headphones as DecorHeadphones, Lightbulb as DecorLightbulb, Lock as DecorLock } from 'lucide-react';
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Upload,
@@ -349,7 +350,7 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
           <Disc className="w-4 h-4 animate-spin-slow text-indigo-500" /> Free Browser-Based Audio Tool
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900 dark:text-white tracking-tight">
-          🎧 Slowed & Reverb
+          <DecorHeadphones className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Slowed & Reverb
         </h1>
         <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed font-medium">
           Add a smooth slowed-down and reverb effect to your song. Zero uploads required — fast, private, and 100% free.
@@ -399,7 +400,7 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
             </div>
 
             <p className="text-[11px] text-slate-400 dark:text-slate-500 font-medium">
-              🔒 Private local processing — processed locally in your browser. Files are not uploaded to Zubware servers.
+              <DecorLock className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> Private local processing — processed locally in your browser. Files are not uploaded to Zubware servers.
             </p>
           </div>
         )}
@@ -531,7 +532,7 @@ export function SlowedAndReverbTool({ onShowToast, onNavigate }: SlowedAndReverb
                 </div>
 
                 <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                  💡 0.85x is the standard slowed preset. Speed and pitch adjust naturally together for a deep atmosphere.
+                  <DecorLightbulb className="inline-block size-[1em] shrink-0 align-[-0.125em]" strokeWidth={2.25} aria-hidden="true" /> 0.85x is the standard slowed preset. Speed and pitch adjust naturally together for a deep atmosphere.
                 </p>
               </div>
 

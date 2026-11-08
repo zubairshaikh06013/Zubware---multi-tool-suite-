@@ -1,4 +1,5 @@
 import { WEDDING_ENGLISH_METADATA } from './data/weddingInvitationEnglish';
+import { HOMEPAGE_SEO } from './lib/siteConfig';
 import React, { useState, useEffect, useMemo, useCallback, useRef, lazy, Suspense } from 'react';
 import { Header } from './components/Header';
 import { GstInvoiceIntro } from './components/seo/GstInvoiceIntro';
@@ -789,8 +790,8 @@ export default function App() {
           {!isStaticPage && !activeTool && (currentPath === '/' || currentPath === '/index.html' || currentPath === '') && (
             <>
               <SEOHead
-                title="Zubware — Free Online Multi-Tool Suite"
-                description="Explore 300+ free online tools for PDF, images, video, developers, calculators, and productivity. Fast, private browser processing with zero server uploads for local tools."
+                title={HOMEPAGE_SEO.title}
+                description={HOMEPAGE_SEO.description}
                 canonicalPath="/"
                 faqs={HOMEPAGE_FAQS}
               />

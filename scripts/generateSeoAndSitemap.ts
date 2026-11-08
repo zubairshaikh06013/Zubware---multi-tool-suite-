@@ -42,7 +42,7 @@ import { getToolSeoTitle } from '../src/lib/seoTitles';
 import { getRelatedTools, getMatchingGuidesForTool } from '../src/lib/workflowMap';
 import { BlogArticle } from '../src/types';
 import { CategoryItem } from '../src/data/categoriesData';
-import { SITE_ORIGIN } from '../src/lib/siteConfig';
+import { SITE_ORIGIN, HOMEPAGE_SEO } from '../src/lib/siteConfig';
 import { getToolCanonicalPath, getToolCanonicalUrl, getToolHowToHeading, getToolIntroParagraph, NETWORK_DEPENDENT_TOOL_IDS } from '../src/lib/paths';
 import { getStaticImageToolSectionHtml } from './staticImageToolsContent';
 import { getStaticVideoBusinessSectionHtml } from './staticVideoBusinessContent';
@@ -2151,8 +2151,8 @@ export function generateSeoHtmlAndSitemap(): { toolsCount: number; categoryHubsC
   };
 
   const homepageHtml = injectMetadataIntoHtml(pristineBaseHtml, {
-    title: 'Zubware — Free Online Multi-Tool Suite | Fast & Private',
-    description: 'Access 300+ free online tools for PDF, images, video, developers, calculators, and productivity. Fast, browser-based processing with local privacy.',
+    title: HOMEPAGE_SEO.title,
+    description: HOMEPAGE_SEO.description,
     canonicalUrl: `${DOMAIN}/`,
     keywords: 'free online tools, pdf tools, image compressor, json formatter, calculators, web developer tools, client side processing, zubware',
     jsonLdSchema: homeJsonLd,

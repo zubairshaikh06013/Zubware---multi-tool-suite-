@@ -7,6 +7,8 @@ Zubware is a collection of browser-accessible tools for everyday image, PDF, and
 - [Age Calculator](https://www.zubware.com/age-calculator) — calculate calendar age from DOB on any reference date, compare three dates and copy the results.
 - [Image Compressor](https://www.zubware.com/image-compressor) — compress images and use target-size and batch-download options.
 - [Image Resizer](https://www.zubware.com/image-resizer) — resize by pixels, percentages, and common social-media dimensions.
+- [Signature Resizer](https://www.zubware.com/signature-resizer) — set signature dimensions and an optional minimum/maximum file-size range for application uploads. Check the exported file against the portal's current requirements.
+- [QR Code Decoder](https://www.zubware.com/qr-decoder) — read the contents of a QR image. Check decoded destinations before opening unfamiliar links.
 
 Explore more utilities at [Zubware.com](https://www.zubware.com).
 

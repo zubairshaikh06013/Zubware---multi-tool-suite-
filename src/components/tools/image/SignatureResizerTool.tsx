@@ -17,6 +17,8 @@ import { UniversalFileUpload } from '../../common/UniversalFileUpload';
 import { formatBytes } from '../../../lib/pdfUtils';
 
 import { signatureFit, whitenSignaturePaper } from '../../../lib/signatureAppearance';
+import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
+import { signatureSizeIssue, encodeSignatureJpeg } from '../../../lib/signatureFileSize';
 
 type Unit = 'px' | 'cm' | 'mm' | 'in';
 
@@ -43,6 +45,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
   const [backgroundMode, setBackgroundMode] = useState<'transparent' | 'white'>('transparent');
   const [exportFormat, setExportFormat] = useState<'png' | 'jpeg'>('png');
   const [maxKbLimit, setMaxKbLimit] = useState<number | null>(null);
+  const [minKbLimit, setMinKbLimit] = useState<number | null>(null);
 
   // Output result
   const [outputBlob, setOutputBlob] = useState<Blob | null>(null);
@@ -236,41 +239,28 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
     // Convert to Blob with file size limit check if requested
     const mime = exportFormat === 'jpeg' ? 'image/jpeg' : 'image/png';
-    let quality = 0.92;
-
-    const buildBlob = (q: number) => {
-      try {
-        finalCanvas.toBlob((b) => {
-          if (cancelled) return;
-          if (b) {
-            // If KB limit is set and format is JPEG, attempt to compress further
-            if (maxKbLimit && b.size > maxKbLimit * 1000 && q > 0.2 && exportFormat === 'jpeg') {
-              buildBlob(q - 0.15);
-              return;
-            }
-            setOutputBlob(b);
-            previewUrl = URL.createObjectURL(b);
-            setOutputDataUrl(previewUrl);
-          } else {
-            setExportError('फ़ाइल नहीं बन पाई। छोटा साइज़ चुनें या दूसरी फ़ोटो लगाएँ।');
-          }
-        }, mime, q);
-      } catch {
-        if (!cancelled) setExportError('फ़ाइल नहीं बन पाई। छोटा साइज़ चुनें या दूसरी फ़ोटो लगाएँ।');
-      }
-    };
-
-    buildBlob(quality);
+    const encode = (quality: number) => encodeCanvasBlob(finalCanvas, mime, quality);
+    const result = exportFormat === 'jpeg' ? encodeSignatureJpeg(encode, maxKbLimit) : encode(1);
+    result.then(blob => {
+      if (cancelled) return;
+      setOutputBlob(blob);
+      previewUrl = URL.createObjectURL(blob);
+      setOutputDataUrl(previewUrl);
+    }).catch(() => {
+      if (!cancelled) setExportError('फ़ाइल नहीं बन पाई। छोटा साइज़ चुनें या दूसरी फ़ोटो लगाएँ।');
+    });
     return () => {
       cancelled = true;
       if (previewUrl) URL.revokeObjectURL(previewUrl);
     };
   }, [imgElement, targetWidth, targetHeight, cropMargins, backgroundMode, exportFormat, maxKbLimit, preserveShape, cleanPaper, paperThreshold]);
 
+  const sizeIssue = signatureSizeIssue(outputBlob?.size ?? 0, minKbLimit, maxKbLimit);
+
   const handleDownload = () => {
     if (!outputBlob || !file) return;
-    if (maxKbLimit && outputBlob.size > maxKbLimit * 1000) {
-      onShowToast(`Unable to meet ${maxKbLimit} KB limit. Try smaller dimensions or a different image.`);
+    if (signatureSizeIssue(outputBlob.size, minKbLimit, maxKbLimit)) {
+      onShowToast('The exported file is outside your selected size range. Check the size warning before downloading.');
       return;
     }
     const ext = exportFormat === 'jpeg' ? 'jpg' : 'png';
@@ -301,12 +291,17 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
         <p className="text-xs text-slate-600 dark:text-slate-300">Choose a maximum size (1 KB = 1,000 bytes), then upload your signature. Confirm your form's required pixel dimensions and format before submitting.</p>
         <div className="flex flex-wrap gap-2">
           {[10, 20, 50, 100].map(kb => (
-            <button key={kb} type="button" onClick={() => { setMaxKbLimit(kb); setExportFormat('jpeg'); }}
-              className={`px-3 py-2 rounded-xl text-xs font-bold border ${maxKbLimit === kb && exportFormat === 'jpeg' ? 'bg-indigo-600 border-indigo-600 text-white' : 'bg-white dark:bg-slate-800 border-indigo-200 dark:border-slate-700 text-indigo-700 dark:text-indigo-300'}`}>
+            <button key={kb} type="button" onClick={() => { setMinKbLimit(null); setMaxKbLimit(kb); setExportFormat('jpeg'); }}
+              className={`px-3 py-2 rounded-xl text-xs font-bold border ${minKbLimit === null && maxKbLimit === kb && exportFormat === 'jpeg' ? 'bg-indigo-600 border-indigo-600 text-white' : 'bg-white dark:bg-slate-800 border-indigo-200 dark:border-slate-700 text-indigo-700 dark:text-indigo-300'}`}>
               Signature under {kb}KB
             </button>
           ))}
+          <button type="button" onClick={() => { setMinKbLimit(10); setMaxKbLimit(20); setExportFormat('jpeg'); }}
+            className={`px-3 py-2 rounded-xl text-xs font-bold border ${minKbLimit === 10 && maxKbLimit === 20 && exportFormat === 'jpeg' ? 'bg-indigo-600 border-indigo-600 text-white' : 'bg-white dark:bg-slate-800 border-indigo-200 dark:border-slate-700 text-indigo-700 dark:text-indigo-300'}`}>
+            Signature between 10KB and 20KB
+          </button>
         </div>
+        <p className="text-xs text-slate-600 dark:text-slate-300">{minKbLimit !== null ? `Checking ${minKbLimit} KB minimum${maxKbLimit !== null ? ` and ${maxKbLimit} KB maximum` : ''}.` : 'Minimum size is optional.'} A range checks the actual exported bytes; it does not guarantee the image can meet both limits at your required dimensions.</p>
         <nav aria-label="Related form tools" className="flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold">
           <a href="/image-resizer" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Photo Resize 20KB-50KB</a>
           <a href="/pdf-compressor" className="text-indigo-600 dark:text-indigo-400 underline underline-offset-2">Compress PDF to 200KB</a>
@@ -545,6 +540,12 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
 
                   {/* Target File Size Cap (KB) */}
                   <div>
+                    <label className="block text-xs text-slate-700 dark:text-slate-300 mb-2">
+                      Minimum file size (KB, optional)
+                      <input type="number" min="1" max="10000" step="1" value={minKbLimit ?? ''} placeholder="No minimum"
+                        onChange={e => { const value = Number(e.target.value); setMinKbLimit(e.target.value === '' || !Number.isFinite(value) || value <= 0 ? null : Math.min(10000, Math.round(value))); }}
+                        className="mt-1 block w-full rounded-xl border border-slate-200 dark:border-slate-800 p-2 bg-white dark:bg-slate-900" />
+                    </label>
                     <label className="text-[11px] font-bold text-slate-500 block mb-1">
                       Target File Size Limit (Optional): {maxKbLimit ? `${maxKbLimit} KB` : 'No Limit'}
                     </label>
@@ -565,6 +566,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                           key={kb}
                           type="button"
                           onClick={() => {
+                            setMinKbLimit(null);
                             setMaxKbLimit(maxKbLimit === kb ? null : kb);
                             if (maxKbLimit !== kb) setExportFormat('jpeg'); // limit works via JPEG compression
                           }}
@@ -580,7 +582,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                       {maxKbLimit && (
                         <button
                           type="button"
-                          onClick={() => setMaxKbLimit(null)}
+                          onClick={() => { setMinKbLimit(null); setMaxKbLimit(null); }}
                           className="px-2 py-1 rounded-lg bg-rose-50 dark:bg-rose-950 text-rose-600 text-xs font-bold cursor-pointer"
                         >
                           Clear
@@ -643,7 +645,10 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   )}
                 </div>
 
-                {maxKbLimit && outputBlob && outputBlob.size > maxKbLimit * 1000 && (
+                {sizeIssue === 'invalid-range' && <p role="alert" className="text-xs font-semibold text-rose-600">Minimum KB must be less than or equal to maximum KB.</p>}
+                {outputBlob && sizeIssue === 'below-minimum' && <p role="alert" className="text-xs font-semibold text-rose-600 dark:text-rose-400">File is below the {minKbLimit} KB minimum. JPG export already uses the highest quality that fits the maximum. Try a more detailed original or remove the minimum only if your form allows it. Required pixel dimensions are unchanged.</p>}
+                {outputBlob && sizeIssue === null && (minKbLimit !== null || maxKbLimit !== null) && <p role="status" className="text-xs font-semibold text-emerald-700 dark:text-emerald-400">File size is within your selected limits. Also check dimensions, format and signature clarity.</p>}
+                {maxKbLimit && outputBlob && sizeIssue === 'above-maximum' && (
                   <p role="alert" className="text-xs font-semibold text-rose-600 dark:text-rose-400">
                     File is larger than the selected {maxKbLimit} KB limit. Reduce dimensions to meet the form requirement.
                   </p>
@@ -654,7 +659,7 @@ export const SignatureResizerTool: React.FC<{ onShowToast: (msg: string) => void
                   <button
                     type="button"
                     onClick={handleDownload}
-                    disabled={!outputBlob || Boolean(maxKbLimit && outputBlob.size > maxKbLimit * 1000)}
+                    disabled={!outputBlob || sizeIssue !== null}
                     className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-xs sm:text-sm font-bold shadow-md flex items-center gap-2 cursor-pointer transition-all disabled:opacity-40"
                   >
                     <Download className="w-4 h-4" /> Download Resized Signature

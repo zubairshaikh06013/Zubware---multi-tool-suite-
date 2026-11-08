@@ -44,6 +44,7 @@ jobs:
           node --import tsx scripts/testCashReconciliation.ts
           node --import tsx scripts/testAgeComparison.ts
           node --import tsx scripts/testCompositeSizeRange.ts
+          node --import tsx scripts/testSignatureFileSize.ts
           npm run test:wedding
           npx tsc -p workers/wedding-invitations/tsconfig.json
           npm run test:cgpa

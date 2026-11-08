@@ -1,3 +1,6 @@
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { PhotoResizeGuide } from '../src/components/seo/PhotoResizeGuide';
 import { BACKGROUND_REMOVAL_NOTES } from '../src/data/siteTrustContent';
 /**
  * Static HTML evergreen content generator for Batch 2 Image Tools
@@ -103,52 +106,7 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
       </section>`;
 
     case 'image-resizer':
-      return `
-      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
-          Free Online Image Resizer: Resize Photos by Pixels, Percentage &amp; Presets
-        </h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Exact Pixels &amp; Aspect Ratio Locking
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Specify exact pixel width and height with intelligent aspect ratio preservation to prevent image distortion. Or switch to Percentage mode (1% to 500%) for rapid proportional downscaling.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Social Media Dimension Presets
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              One-click presets for Instagram Square (1080x1080), Instagram Story/Reels (1080x1920), YouTube Thumbnail (1280x720), LinkedIn Post (1200x627), and Twitter/X Header (1500x500).
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Recruitment Exam &amp; Portal Dimensions
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Indian exam portals (SSC, UPSC, State PSC, IBPS) mandate specific candidate photo bounds like 100x120 px, 140x160 px, or 350x350 px. Unlock aspect ratio and set exact portal limits.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Sharp Bicubic Downsampling
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              High-quality canvas resampling avoids jagged pixelation or muddy text when downscaling photos, running 100% locally on your device GPU/CPU.
-            </p>
-          </div>
-        </div>
-        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #64748b;">
-          <strong>Related Tools:</strong>
-          <a href="${DOMAIN}/crop-image" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Crop Image</a> •
-          <a href="${DOMAIN}/image-compressor" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Image Compressor</a> •
-          <a href="${DOMAIN}/signature-resizer" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Signature Resizer</a>
-        </div>
-      </section>`;
+      return renderToStaticMarkup(createElement(PhotoResizeGuide));
 
     case 'crop-image':
       return `

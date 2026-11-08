@@ -6619,7 +6619,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "signature-resizer",
     "title": "Signature Resizer — Resize Signature Images for Online Exam Forms",
     "navTitle": "Signature Resizer",
-    "description": "Resize signature online for Indian exam and application forms. Choose 10 KB, 20 KB, 50 KB or 100 KB limits, adjust pixel dimensions, crop margins and download JPG or PNG. Check each form’s official requirements; files exceeding your selected limit are flagged.",
+    "description": "Resize signatures with 10–20 KB range checks, custom pixel dimensions and JPG/PNG export. Check actual output bytes, crop margins and fix size warnings before downloading.",
     "icon": "📏",
     "path": "/signature-resizer",
     "filename": "signature-resizer.html",
@@ -6628,7 +6628,8 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "features": [
       "Custom Dimensions in Pixels (px), Centimeters (cm), Millimeters (mm) & Inches",
       "Custom Signature Sizes for Application Forms (Verify Official Exam Requirements)",
-      "Target File Size Limits (10 KB, 20 KB, 50 KB, 100 KB) with JPEG Compression and Limit Warning",
+      "Optional Minimum and Maximum KB Checks, Including a 10–20 KB Signature Range",
+      "JPEG Quality Search with 10 KB, 20 KB, 50 KB and 100 KB Maximum Shortcuts",
       "Auto-Crop Empty White Margins & Tight Non-Ink Boundary Trimming",
       "Aspect Ratio Lock & Instant Scaling Percentages (25% to 200%)",
       "Solid White Background or Transparent Canvas with Direct JPG/PNG Download",

@@ -271,7 +271,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Are my images stored or tracked on any server?",
-        "answer": "No. Zubware Image Resizer executes completely inside your browser memory using HTML5 Canvas bicubic interpolation. Your photos remain 100% private on your own device."
+        "answer": "Photo resizing and encoding happen locally in your browser using HTML Canvas. The browser controls the resampling implementation; the tool does not upload your images to Zubware for resizing. The website may still load libraries and measurement services."
       },
       {
         "question": "Can I resize photos on iPhone and Android mobile browsers?",

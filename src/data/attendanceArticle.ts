@@ -4,7 +4,7 @@ export const ATTENDANCE_ARTICLE: BlogArticle = {
   slug: 'how-many-classes-to-attend-for-75-percent',
   canonicalPath: '/blog/how-many-classes-to-attend-for-75-percent',
   title: 'How Many Classes Must You Attend for 75% Attendance?',
-  metaTitle: 'Classes Needed for 75% Attendance: Formula & Examples | Zubware',
+  metaTitle: 'Classes for 75% Attendance: Formula & Examples | Zubware',
   description: 'Calculate classes needed for 75% attendance with worked examples. Compare consecutive classes with a fixed semester plan and check each subject separately.',
   publishedTime: '2026-11-06T10:30:00Z',
   modifiedTime: '2026-11-06T10:30:00Z',

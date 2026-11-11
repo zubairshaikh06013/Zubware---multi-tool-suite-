@@ -56,5 +56,6 @@ jobs:
           node --import tsx scripts/testCloudflareBackgroundRemoval.ts
           node --import tsx scripts/testLanguageLoading.ts
           node --import tsx scripts/testQrGenerator.ts
+          node --import tsx scripts/testQrDecoderState.ts
           npm run test:omr
 

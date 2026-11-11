@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { QrCode, Upload, Copy, Check, AlertCircle, Trash2, Link } from 'lucide-react';
 import jsQR from 'jsqr';
 
@@ -7,13 +7,37 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
   const [decodedData, setDecodedData] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [scanning, setScanning] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const scanRunRef = useRef(0);
+  const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => () => {
+    scanRunRef.current++;
+    if (copyTimerRef.current !== null) clearTimeout(copyTimerRef.current);
+  }, []);
+
+  const resetCopy = () => {
+    if (copyTimerRef.current !== null) clearTimeout(copyTimerRef.current);
+    copyTimerRef.current = null;
+    setCopied(false);
+  };
 
   const decodeQrImage = (file: File) => {
+    const run = ++scanRunRef.current;
+    const isCurrent = () => run === scanRunRef.current;
+    const fail = (message: string) => {
+      if (!isCurrent()) return;
+      setScanning(false);
+      setError(message);
+    };
+    resetCopy();
+    setImageSrc(null);
     setError(null);
     setDecodedData(null);
+    setScanning(false);
     if (!file.type.startsWith('image/')) {
       setError('Please select an image file containing a QR code.');
       return;
@@ -23,37 +47,40 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
       return;
     }
 
+    setScanning(true);
     const reader = new FileReader();
     reader.onload = (e) => {
+      if (!isCurrent()) return;
       const src = e.target?.result as string;
       setImageSrc(src);
 
       const img = new Image();
       img.onload = () => {
+        if (!isCurrent()) return;
         const canvas = canvasRef.current || document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         if (!ctx) {
-          setError('Could not initialize 2D canvas context.');
+          fail('Could not initialize 2D canvas context.');
           return;
         }
 
         if (!img.width || !img.height || img.width * img.height > 24_000_000) {
-          setError('Image dimensions are too large to scan safely. Resize the image and try again.');
+          fail('Image dimensions are too large to scan safely. Resize the image and try again.');
           return;
         }
         canvas.width = img.width;
         canvas.height = img.height;
-        ctx.drawImage(img, 0, 0, img.width, img.height);
-
         let code;
         try {
+          ctx.drawImage(img, 0, 0, img.width, img.height);
           const imageData = ctx.getImageData(0, 0, img.width, img.height);
           code = jsQR(imageData.data, imageData.width, imageData.height);
         } catch {
-          setError('Unable to read this image. Try a clearer PNG or JPEG screenshot.');
+          fail('Unable to read this image. Try a clearer PNG or JPEG screenshot.');
           return;
         }
 
+        setScanning(false);
         if (code && code.data) {
           setDecodedData(code.data);
           onShowToast('Successfully decoded QR Code!');
@@ -61,20 +88,25 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
           setError('No valid QR code detected in the uploaded image.');
         }
       };
-      img.onerror = () => setError('Could not load this image. Try PNG, JPEG or WebP.');
+      img.onerror = () => fail('Could not load this image. Try PNG, JPEG or WebP.');
       img.src = src;
     };
-    reader.onerror = () => setError('Could not read the selected file. Please try again.');
+    reader.onerror = () => fail('Could not read the selected file. Please try again.');
     reader.readAsDataURL(file);
   };
 
   const handleCopy = () => {
     if (!decodedData) return;
+    const run = scanRunRef.current;
     navigator.clipboard.writeText(decodedData).then(() => {
+      if (run !== scanRunRef.current) return;
+      resetCopy();
       setCopied(true);
       onShowToast('Copied decoded QR content!');
-      setTimeout(() => setCopied(false), 2000);
-    }).catch(() => setError('Clipboard access was blocked. Select the decoded text and copy it manually.'));
+      copyTimerRef.current = setTimeout(() => setCopied(false), 2000);
+    }).catch(() => {
+      if (run === scanRunRef.current) setError('Clipboard access was blocked. Select the decoded text and copy it manually.');
+    });
   };
 
   return (
@@ -103,7 +135,11 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
               ref={fileInputRef}
               type="file"
               accept="image/*"
-              onChange={(e) => e.target.files?.[0] && decodeQrImage(e.target.files[0])}
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                e.target.value = '';
+                if (file) decodeQrImage(file);
+              }}
               className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
             />
             <div className="w-12 h-12 mx-auto rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
@@ -123,6 +159,9 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
               </div>
               <button
                 onClick={() => {
+                  scanRunRef.current++;
+                  resetCopy();
+                  setScanning(false);
                   if (fileInputRef.current) fileInputRef.current.value = '';
                   setImageSrc(null);
                   setDecodedData(null);
@@ -139,9 +178,10 @@ export const QrCodeDecoderTool: React.FC<{ onShowToast: (msg: string) => void }>
         </div>
 
         {/* Decoded Output */}
-        <div className="space-y-4">
+        <div className="space-y-4" aria-busy={scanning} aria-live="polite">
           <label className="text-xs font-bold text-indigo-600 dark:text-indigo-400">Decoded Payload Content</label>
 
+          {scanning && <p role="status" className="text-sm text-slate-500">Reading QR image…</p>}
           {error && (
             <div role="alert" className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs font-bold flex items-center gap-2">
               <AlertCircle className="w-5 h-5 shrink-0" />

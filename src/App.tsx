@@ -398,6 +398,7 @@ import { LanguageProvider } from './context/LanguageContext';
 import { normalizePath, getLinkUrl, getToolCanonicalPath } from './lib/paths';
 import { ArrowRight, ChevronDown, CheckCircle2, Shield, Zap, Sparkles, BookOpen } from 'lucide-react';
 import { HomepageHero } from './components/HomepageHero';
+import { TaskToolLinks } from './components/TaskToolLinks';
 import { ToolIcon } from './components/common/ToolIcon';
 
 export default function App() {
@@ -803,6 +804,8 @@ export default function App() {
                 selectedCategory={homeCategoryFilter}
                 onSelectCategory={setHomeCategoryFilter}
               />
+
+              <TaskToolLinks />
 
               {/* EXPLORE FREE TOOLS SECTION */}
               <section className="my-12">

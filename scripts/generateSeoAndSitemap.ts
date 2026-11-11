@@ -1,4 +1,5 @@
 import { ToolIcon } from '../src/components/common/ToolIcon';
+import { TaskToolLinks } from '../src/components/TaskToolLinks';
 import { PhotoNameDateGuide } from '../src/components/seo/PhotoNameDateGuide';
 import { PhotoSignatureGuide } from '../src/components/seo/PhotoSignatureGuide';
 import { CashClosingGuide } from '../src/components/seo/CashClosingGuide';
@@ -1820,6 +1821,8 @@ function renderHomepageContent(): string {
           <a href="${DOMAIN}/blog" style="padding: 0.75rem 1.5rem; background: #f8fafc; color: #334155; font-weight: 700; text-decoration: none; border-radius: 0.75rem; border: 1px solid #e2e8f0;">Knowledge Base &rarr;</a>
         </div>
       </section>
+
+      ${renderToStaticMarkup(createElement(TaskToolLinks))}
 
       <!-- Complete Directory of Tools by Category -->
       <section style="display: flex; flex-direction: column; gap: 3rem; margin-bottom: 4rem;">

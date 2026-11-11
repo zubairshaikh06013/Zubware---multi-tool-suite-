@@ -682,6 +682,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
         </section>
       )}
 
+      {tool.id === 'qr-code-decoder' && <QrDecoderGuide />}
       {tool.id === 'signature-resizer' && <SignatureResizeGuide />}
       {tool.id === 'attendance-calculator' && <AttendanceGuide />}
       {tool.id === 'cash-denomination-calculator' && <CashClosingGuide />}

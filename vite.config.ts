@@ -6,6 +6,7 @@ import {defineConfig, Plugin} from 'vite';
 import { generateSeoHtmlAndSitemap } from './scripts/generateSeoAndSitemap';
 import { generateBlogCatalog } from './scripts/generateBlogCatalog';
 import { validateSeoBuild } from './scripts/validateSeoBuild';
+import { initialToolIconFiles } from './scripts/sharedIconChunks';
 
 function generateToolPagesAndSitemapPlugin(): Plugin {
   return {
@@ -70,6 +71,7 @@ function devSpaFallbackPlugin(): Plugin {
 }
 
 export default defineConfig(() => {
+  const sharedIcons = initialToolIconFiles(__dirname);
   return {
     base: '/',
     plugins: [react(), tailwindcss(), generateToolPagesAndSitemapPlugin(), devSpaFallbackPlugin()],
@@ -84,7 +86,13 @@ export default defineConfig(() => {
       rollupOptions: {
         output: {
           manualChunks(id) {
+            if (id.endsWith('/src/data/toolsData.ts') || id.endsWith('/src/lib/toolKeywords.ts')) {
+              return 'tool-catalog';
+            }
             if (id.includes('node_modules')) {
+              if (id.includes('/lucide-react/dist/esm/icons/') && sharedIcons.has(id.split('/icons/').pop()!)) {
+                return 'vendor-icons';
+              }
               if (id.includes('/react/') || id.includes('/react-dom/') || id.includes('/scheduler/')) {
                 return 'vendor-react';
               }

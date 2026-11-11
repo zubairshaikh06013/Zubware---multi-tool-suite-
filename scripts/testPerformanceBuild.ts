@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { gzipSync } from 'node:zlib';
 import { buildPageModuleHints, pageModuleHint, type BuildManifest } from './pageModuleHints';
 import { TOOLS_DATA } from '../src/data/toolsData';
 
@@ -16,6 +17,22 @@ for (const route of ['/qr-generator','/age-calculator','/image-compressor','/blo
 }
 assert.equal(pageModuleHint('/not-a-real-tool', hints), undefined);
 assert.equal(pageModuleHint('/', hints), undefined, 'Homepage must not preload unrelated tools');
+const startup = new Set<string>();
+function collect(key: string, target: Set<string>) {
+  if (target.has(key)) return;
+  target.add(key);
+  for (const dependency of manifest[key]?.imports || []) collect(dependency, target);
+}
+collect('index.html', startup);
+const startupGzip = [...startup].reduce((bytes, key) => bytes + gzipSync(fs.readFileSync(path.join('dist', manifest[key].file))).length, 0);
+assert.ok(startupGzip <= 260000, `Initial shared JavaScript exceeds the 260 KB gzip budget: ${startupGzip}`);
+for (const name of ['tool-catalog', 'vendor-icons']) {
+  const key = Object.keys(manifest).find(key => manifest[key].file.startsWith(`assets/${name}-`));
+  assert.ok(key && startup.has(key), `${name} must be a shared startup dependency`);
+  const dependencies = new Set<string>();
+  collect(key!, dependencies);
+  assert.ok(!dependencies.has('index.html'), `${name} must not depend on the changing application entry`);
+}
 const visited = new Set<string>();
 function staticGraph(key: string) {
   if (visited.has(key)) return;

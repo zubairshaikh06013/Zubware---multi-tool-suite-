@@ -5185,7 +5185,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "age-calculator",
     "title": "Age Calculator on Any Date — Years, Months and Days",
     "navTitle": "Age Calculator",
-    "description": "Calculate age on any date from your date of birth. Compare three reference dates, see completed years, months and days, total days and next birthday.",
+    "description": "Calculate your age on today's date or any cutoff date from your date of birth. Get completed years, months and days, compare three dates, or check your next birthday. Free, no sign-in.",
     "icon": "🎂",
     "path": "/age-calculator",
     "filename": "age-calculator.html",

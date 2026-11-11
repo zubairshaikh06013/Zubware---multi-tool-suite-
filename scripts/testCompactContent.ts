@@ -8,7 +8,11 @@ const html = fs.readFileSync('dist/index.html','utf8').replace(/<script\b[^>]*>[
 const hrefs=new Set([...html.matchAll(/href="([^"]+)"/g)].map(m=>m[1]));
 assert.ok(hrefs.has('https://www.zubware.com/age-calculator'), 'Homepage must expose a crawlable age calculator link');
 const linkedTools=TOOLS_DATA.filter(t=>hrefs.has(`https://www.zubware.com${getToolCanonicalPath(t)}`));
-assert.ok(linkedTools.length > 10 && linkedTools.length <= 45, `Homepage previews: ${linkedTools.length}`);
+// Category previews plus the small task directory stay below 50 distinct tools.
+assert.ok(linkedTools.length > 10 && linkedTools.length <= 50, `Homepage previews: ${linkedTools.length}`);
+for (const slug of ['signature-resizer', 'image-resizer', 'photo-signature-joiner', 'pdf-compressor', 'barcode-generator', 'attendance-calculator']) {
+  assert.ok(hrefs.has(`https://www.zubware.com/${slug}`), `Task directory must expose ${slug} without JavaScript`);
+}
 for(const category of CATEGORIES_DATA.filter(c=>c.slug!=='all')) assert.ok(hrefs.has(`https://www.zubware.com/category/${category.slug}`),category.slug);
 assert.match(toolProcessingNotice('background-remover'),/Cloudflare.*consent/);
 assert.match(toolProcessingNotice('subtitle-generator'),/microphone.*send audio/);

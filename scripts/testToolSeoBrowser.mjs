@@ -24,6 +24,8 @@ try {
   await page.waitForSelector(result);
   await page.click(result);
   await page.waitForSelector('#qr-decoder-image');
+  const screenshotGuide = 'Read a QR code from a screenshot or saved image';
+  await page.waitForFunction(text => [...document.querySelectorAll('h2')].filter(h => h.textContent === text).length === 1, {}, screenshotGuide);
   const question = 'Does a QR code decoder decrypt encrypted information?';
   await page.waitForFunction(q=>document.body.textContent.includes(q),{},question);
   assert.equal(seen.filter(url=>url.includes('/tool-seo/qr-code-decoder.json')).length,1, 'Client route must fetch only one copy of its guide');

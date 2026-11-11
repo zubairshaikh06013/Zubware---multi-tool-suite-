@@ -4,6 +4,10 @@ import { gzipSync } from 'node:zlib';
 import { getToolCanonicalPath } from '../src/lib/paths';
 import { TOOLS_DATA } from '../src/data/toolsData';
 import { getToolSeoData } from '../src/data/toolSeoData';
+import React from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { ToolSEOContent } from '../src/components/ToolSEOContent';
+import { QrDecoderGuide } from '../src/components/seo/QrDecoderGuide';
 
 let largest = 0;
 for (const tool of TOOLS_DATA) {
@@ -27,6 +31,11 @@ for (const tool of TOOLS_DATA) {
 const assets = fs.readdirSync('dist/assets');
 assert.ok(!assets.some(name => /^toolSeoData-.*\.js$/.test(name)), 'Full FAQ catalog leaked into browser assets');
 assert.ok(fs.readFileSync('dist/qr-code-decoder/index.html','utf8').includes('Read a QR code from a screenshot or saved image'));
+const qrTool = TOOLS_DATA.find(tool => tool.id === 'qr-code-decoder')!;
+const qrClientGuide = renderToStaticMarkup(React.createElement(ToolSEOContent, { tool: qrTool, allTools: TOOLS_DATA, onNavigate() {} }));
+const qrGuide = renderToStaticMarkup(React.createElement(QrDecoderGuide));
+assert.ok(qrClientGuide.includes(qrGuide), 'The client must retain the complete prerendered QR screenshot guide');
+assert.equal(qrClientGuide.split(qrGuide).length - 1, 1, 'Render only one QR screenshot guide');
 const signatureHtml = fs.readFileSync('dist/signature-resizer/index.html', 'utf8').replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, '');
 assert.ok(signatureHtml.includes('There is no fixed conversion from KB to pixels.'), 'Signature size explanation must be available without JavaScript');
 assert.ok(!signatureHtml.includes('exported file never exceeds the gateway ceiling'), 'Generated guide must not retain contradictory compression promises');

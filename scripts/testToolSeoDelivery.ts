@@ -31,7 +31,8 @@ const signatureHtml = fs.readFileSync('dist/signature-resizer/index.html', 'utf8
 assert.ok(signatureHtml.includes('There is no fixed conversion from KB to pixels.'), 'Signature size explanation must be available without JavaScript');
 assert.ok(!signatureHtml.includes('exported file never exceeds the gateway ceiling'), 'Generated guide must not retain contradictory compression promises');
 assert.equal((signatureHtml.match(/Resize a signature to 10 KB–20 KB for an online form/g) || []).length, 1, 'Render only one signature size guide');
-assert.ok(signatureHtml.includes('A 20 KB maximum does not enforce a 10 KB minimum'), 'Signature guide must explain both file-size boundaries');
+assert.ok(signatureHtml.includes('A 7 KB result is under 20 KB but outside a 10–20 KB requirement.'), 'Signature guide must explain both file-size boundaries');
+assert.ok(signatureHtml.includes('With a minimum set, the tool flags this and prevents an out-of-range download.'), 'Signature guide must explain minimum-size download protection');
 assert.ok(!fs.readFileSync('src/components/ToolSEOContent.tsx', 'utf8').includes('guarantee your file stays under the upload ceiling'), 'Do not promise guaranteed compression');
 assert.ok(fs.readFileSync('public/_headers','utf8').includes('/tool-seo/*\n  Cache-Control: public, max-age=0, must-revalidate\n  X-Robots-Tag: noindex'));
 console.log(`Verified static FAQs, inline hydration and individual JSON for ${TOOLS_DATA.length} tools; largest guide ${largest} gzip bytes; no full-catalog browser bundle.`);

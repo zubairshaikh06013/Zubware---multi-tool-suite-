@@ -13,7 +13,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
 
   const sendViaEmail = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
-    const mailtoUrl = `mailto:zubairshaikh06013@gmail.com?subject=${encodeURIComponent(subject || 'Zubware Inquiry / Feedback')}&body=${encodeURIComponent(`Hi Zubair,\n\nName: ${name || 'Anonymous'}\nEmail: ${email || 'Not provided'}\n\nMessage:\n${message}`)}`;
+    const mailtoUrl = `mailto:info@zubware.com?subject=${encodeURIComponent(subject || 'Zubware Inquiry / Feedback')}&body=${encodeURIComponent(`Hi Zubair,\n\nName: ${name || 'Anonymous'}\nEmail: ${email || 'Not provided'}\n\nMessage:\n${message}`)}`;
     window.location.href = mailtoUrl;
     onShowToast('Opening email client...');
   };
@@ -67,7 +67,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
 
         {/* Email Card */}
         <a
-          href="mailto:zubairshaikh06013@gmail.com?subject=Zubware%20Inquiry"
+          href="mailto:info@zubware.com?subject=Zubware%20Inquiry"
           className="glass-card p-5 rounded-2xl flex items-center gap-4 group hover:border-indigo-500/50 transition-all cursor-pointer"
         >
           <div className="w-12 h-12 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
@@ -81,7 +81,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onShowToast }) => {
               Zubair Shaikh
             </h4>
             <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 truncate">
-              zubairshaikh06013@gmail.com
+              info@zubware.com
             </p>
           </div>
         </a>

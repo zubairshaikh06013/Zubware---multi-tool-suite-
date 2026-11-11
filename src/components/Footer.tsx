@@ -85,6 +85,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
               {SITE_SUMMARY}
             </p>
+            <a href="mailto:info@zubware.com" className="inline-block text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline break-all">
+              info@zubware.com
+            </a>
           </div>
 
           {/* Col 2 Image Tools */}

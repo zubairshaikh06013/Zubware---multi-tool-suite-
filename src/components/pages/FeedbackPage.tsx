@@ -47,7 +47,7 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onShowToast }) => {
     setFeedbackHistory(getFeedbackList());
 
     const categoryName = type === 'feature' ? 'New Feature Request' : type === 'bug' ? 'Bug Report' : 'User Feedback';
-    const mailtoUrl = `mailto:zubairshaikh06013@gmail.com?subject=${encodeURIComponent(`[Zubware] ${categoryName}`)}&body=${encodeURIComponent(getFormattedFeedbackText())}`;
+    const mailtoUrl = `mailto:info@zubware.com?subject=${encodeURIComponent(`[Zubware] ${categoryName}`)}&body=${encodeURIComponent(getFormattedFeedbackText())}`;
     window.location.href = mailtoUrl;
     setSubmitted(true);
     onShowToast('Opening email client to send to Zubair...');
@@ -91,7 +91,7 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onShowToast }) => {
         </a>
 
         <a
-          href="mailto:zubairshaikh06013@gmail.com?subject=Zubware%20Feedback"
+          href="mailto:info@zubware.com?subject=Zubware%20Feedback"
           className="glass-card p-4 rounded-2xl flex items-center gap-3.5 hover:border-indigo-500/50 transition-all cursor-pointer group"
         >
           <div className="w-10 h-10 rounded-xl bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
@@ -102,7 +102,7 @@ export const FeedbackPage: React.FC<FeedbackPageProps> = ({ onShowToast }) => {
               Direct Email
             </span>
             <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
-              zubairshaikh06013@gmail.com
+              info@zubware.com
             </p>
           </div>
         </a>

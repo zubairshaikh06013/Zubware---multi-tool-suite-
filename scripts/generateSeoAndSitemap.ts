@@ -388,6 +388,7 @@ function renderStaticSiteFooter(): string {
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.5; margin: 0 0 1rem 0;">
               ${SITE_SUMMARY}
             </p>
+            <p><a href="mailto:info@zubware.com" style="color: #4f46e5; text-decoration: underline; overflow-wrap: anywhere;">info@zubware.com</a></p>
             <div style="display: inline-block; font-size: 0.7rem; font-weight: 700; color: #166534; background: #dcfce7; padding: 0.2rem 0.5rem; border-radius: 0.375rem; border: 1px solid #bbf7d0;">
               ${PROCESSING_PRIVACY_TITLE}
             </div>
@@ -986,7 +987,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
         <section><h2>Published Wedding Invitations</h2><p>${escapeHtml(PRIVACY_NOTES.invitations)}</p></section>
         <section><h2>Browser Storage</h2><p>Preferences and some drafts or histories are saved in localStorage or IndexedDB on your device. Clearing site data may remove them. Local drafts are not synchronized to a Zubware account.</p></section>
         <section><h2>Website Requests, Measurement and Advertising</h2><p>${escapeHtml(PRIVACY_NOTES.analytics)}</p><p>${escapeHtml(PRIVACY_NOTES.hosting)}</p><p>${escapeHtml(PRIVACY_NOTES.advertising)}</p><p><a href="https://policies.google.com/privacy">Google privacy information</a> · <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy information</a></p></section>
-        <section><h2>Contact Messages and Privacy Controls</h2><p>${escapeHtml(PRIVACY_NOTES.contact)}</p><p>${escapeHtml(PRIVACY_NOTES.controls)}</p><p>Contact Zubair Shaikh: <a href="mailto:zubairshaikh06013@gmail.com">zubairshaikh06013@gmail.com</a></p></section>`;
+        <section><h2>Contact Messages and Privacy Controls</h2><p>${escapeHtml(PRIVACY_NOTES.contact)}</p><p>${escapeHtml(PRIVACY_NOTES.controls)}</p><p>Contact Zubair Shaikh: <a href="mailto:info@zubware.com">info@zubware.com</a></p></section>`;
       break;
 
     case 'terms.html':
@@ -1039,7 +1040,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
             Have questions, feedback, partnership proposals, or requests for new utilities? Contact the site maintainer, Zubair Shaikh.
           </p>
           <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1.5rem;">
-            <p style="font-size: 0.95rem; color: #1e293b; margin: 0 0 0.5rem 0;"><strong>Direct Inquiries:</strong> <a href="mailto:zubairshaikh06013@gmail.com" style="color: #4f46e5; text-decoration: underline;">zubairshaikh06013@gmail.com</a></p>
+            <p style="font-size: 0.95rem; color: #1e293b; margin: 0 0 0.5rem 0;"><strong>Direct Inquiries:</strong> <a href="mailto:info@zubware.com" style="color: #4f46e5; text-decoration: underline;">info@zubware.com</a></p>
             <p style="font-size: 0.85rem; color: #64748b; margin: 0;">Opening an email or WhatsApp draft does not send it automatically. Review your message and press Send in that service.</p>
           </div>
           <p><a href="${DOMAIN}/feedback" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Submit Feature Request &rarr;</a></p>
@@ -1102,7 +1103,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
               <li>Specify expected input formats (e.g. PDF, CSV, PNG, WebP) and desired outputs.</li>
               <li>Confirm whether the utility requires browser-side offline computation or API access.</li>
             </ul>
-            <p style="font-size: 0.9rem; color: #0f172a; margin: 0;">Email your suggestions to: <a href="mailto:zubairshaikh06013@gmail.com" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">zubairshaikh06013@gmail.com</a></p>
+            <p style="font-size: 0.9rem; color: #0f172a; margin: 0;">Email your suggestions to: <a href="mailto:info@zubware.com" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">info@zubware.com</a></p>
           </div>
         </section>`;
       break;

@@ -114,8 +114,8 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
             <p className="font-bold text-slate-800 dark:text-white">Zubair Shaikh (Founder & Developer)</p>
             <p>
               Email:{' '}
-              <a href="mailto:zubairshaikh06013@gmail.com" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
-                zubairshaikh06013@gmail.com
+              <a href="mailto:info@zubware.com" className="text-indigo-600 dark:text-indigo-400 font-bold hover:underline">
+                info@zubware.com
               </a>
             </p>
             <p>

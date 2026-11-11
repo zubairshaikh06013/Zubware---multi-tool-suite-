@@ -1,7 +1,7 @@
 import { encodeCanvasBlob } from '../../../lib/canvasEncoding';
 import { imageExportExtension } from '../../../lib/imageExport';
-import { imageResizeDimensions } from '../../../lib/imageResize';
-import React, { useState, useEffect, useRef } from 'react';
+import { imageResizeDimensions, encodeResizeToLimit } from '../../../lib/imageResize';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { 
   Download, 
   Trash2, 
@@ -98,7 +98,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
     setItems(previous => previous.map(item => ({...item, status:'idle', resizedBlob:null, resizedSize:undefined, errorMessage:undefined})));
   }, [resizeMode, width, height, percentage, lockAspect, exportFormat, quality, targetKb]);
 
-  const handleFilesAdded = async (files: File[]) => {
+  const handleFilesAdded = useCallback(async (files: File[]) => {
     if (processingRef.current) return;
     const importRun = runRef.current;
     // Restrict uploads to formats supported by browser canvas decoding.
@@ -154,7 +154,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
 
     setItems(prev => [...prev, ...loaded]);
     onShowToast(`Added ${loaded.length} image(s)${rejected || loaded.length < validFiles.length ? `; skipped ${files.length - loaded.length} unreadable or unsupported file(s)` : ''}.`);
-  };
+  }, [items.length, resizeMode, width, height, onShowToast]);
 
   // Paste support
   useEffect(() => {
@@ -175,7 +175,7 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
     };
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
-  }, [items.length]);
+  }, [handleFilesAdded]);
 
   const handleWidthChange = (val: number) => {
     setWidth(val);
@@ -257,26 +257,11 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
 
           const expQuality = (exportFormat === 'image/jpeg' || exportFormat === 'image/webp') ? quality / 100 : undefined;
 
-          let blob = await encodeCanvasBlob(canvas, exportFormat, expQuality);
+          const blob = targetKb > 0 && expQuality !== undefined
+            ? await encodeResizeToLimit(q => encodeCanvasBlob(canvas, exportFormat, q), expQuality, targetKb * 1000)
+            : await encodeCanvasBlob(canvas, exportFormat, expQuality);
           if (targetKb > 0 && (exportFormat === 'image/jpeg' || exportFormat === 'image/webp')) {
             const limit = targetKb * 1000;
-            if (blob.size > limit) {
-              let smallest = blob;
-              let low = 0.05;
-              let high = Math.min(1, quality / 100);
-              for (let attempt = 0; attempt < 9; attempt++) {
-                const midpoint = (low + high) / 2;
-                const candidate = await encodeCanvasBlob(canvas, exportFormat, midpoint);
-                if (candidate.size < smallest.size) smallest = candidate;
-                if (candidate.size <= limit) {
-                  blob = candidate;
-                  low = midpoint;
-                } else {
-                  high = midpoint;
-                }
-              }
-              if (blob.size > limit) blob = smallest;
-            }
             if (blob.size > limit) {
               resolve({...item, resizedBlob:null, resizedSize:undefined, status:'error', errorMessage:`Cannot reach ${targetKb} KB at these dimensions. Try smaller width/height.`});
               return;

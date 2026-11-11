@@ -1,6 +1,23 @@
 export const MAX_RESIZE_EDGE = 16384;
 export const MAX_RESIZE_PIXELS = 40000000;
 
+/** Keep the canvas dimensions and selected quality ceiling; check the floor too. */
+export async function encodeResizeToLimit(encode: (quality: number) => Promise<Blob>, quality: number, maxBytes: number) {
+  const initial = await encode(quality);
+  if (initial.size <= maxBytes) return initial;
+  let low = Math.min(0.05, quality);
+  let high = quality;
+  let best = await encode(low);
+  if (best.size > maxBytes) return best; // The caller reports an unmet limit.
+  for (let attempt = 0; attempt < 10; attempt++) {
+    const midpoint = (low + high) / 2;
+    const candidate = await encode(midpoint);
+    if (candidate.size <= maxBytes) { best = candidate; low = midpoint; }
+    else high = midpoint;
+  }
+  return best;
+}
+
 export function imageResizeDimensions(originalWidth: number, originalHeight: number, options: {
   mode: 'dimensions' | 'percentage' | 'preset'; width: number; height: number; percentage: number; preserveBatchAspect: boolean;
 }) {

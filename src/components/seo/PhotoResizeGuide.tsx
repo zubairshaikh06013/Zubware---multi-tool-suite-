@@ -1,8 +1,10 @@
 import React from 'react';
+import { PhotoResizeVisualGuide } from './PhotoResizeVisualGuide';
 
 /** Shared by the interactive page and the generated HTML. */
 export function PhotoResizeGuide() {
   return <section className="glass-panel p-6 sm:p-8 rounded-3xl space-y-5">
+    <PhotoResizeVisualGuide />
     <h2 className="text-xl sm:text-2xl font-bold">Resize a photo to 20–50 KB with the required pixels</h2>
     <p>A form can specify three different things: width and height in pixels, a file-size range in KB, and a format such as JPG. Check all three on the final downloaded file. Zubware resizes photos in your browser and measures the exported bytes; use the separate minimum and maximum KB settings when your form specifies a range.</p>
     <h3 className="font-bold">What is a 20 KB to 50 KB photo size in pixels?</h3>

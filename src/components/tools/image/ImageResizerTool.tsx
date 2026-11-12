@@ -371,6 +371,9 @@ export const ImageResizerTool: React.FC<ImageResizerToolProps> = ({ onShowToast 
 
   return (
     <div className="p-4 sm:p-6 max-w-5xl mx-auto space-y-6">
+      <a href="#photo-visual-guide-title" className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 underline underline-offset-4">
+        तस्वीरों से सीखें — 3-step photo resize guide ↓
+      </a>
       {items.length > 0 && (
         <div className="glass-card p-4 rounded-2xl border border-slate-200/80 dark:border-slate-800/80 bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl flex items-center justify-between gap-4">
           <span className="text-xs font-bold text-slate-600 dark:text-slate-300">

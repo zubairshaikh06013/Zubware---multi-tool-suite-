@@ -1,3 +1,4 @@
+import { AgeDateInput } from './AgeDateInput';
 import { compareAgeDates } from '../../../lib/ageComparison';
 import React, { useState } from 'react';
 import { calendarAge, calendarAnniversary, calendarDay, parseCalendarDate } from '../../../lib/calendarAge';
@@ -186,26 +187,16 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
       {/* Date Pickers */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="glass-card p-5 rounded-3xl space-y-2">
-          <label htmlFor="age-birth-date" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+          <label htmlFor="age-birth-date-day" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
             <Calendar className="w-4 h-4 text-indigo-500" />
             <span>Date of Birth</span>
           </label>
-          <input
-            id="age-birth-date"
-            type="date"
-            value={dob}
-            onChange={e => { setDob(e.target.value); setCopied(false); }}
-            min="0001-01-01"
-            max="9999-12-31"
-            aria-describedby="age-date-help age-result-status"
-            aria-invalid={Boolean(dateError)}
-            className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white"
-          />
+          <AgeDateInput id="age-birth-date" label="Date of birth" value={dob} invalid={Boolean(dateError)} onChange={value => { setDob(value); setCopied(false); }} />
         </div>
 
         <div className="glass-card p-5 rounded-3xl space-y-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <label htmlFor="age-reference-date" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
+            <label htmlFor="age-reference-date-day" className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider flex items-center gap-1.5">
               <Clock className="w-4 h-4 text-indigo-500" />
               <span>Age at date</span>
             </label>
@@ -217,17 +208,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
               Set to Today
             </button>
           </div>
-          <input
-            id="age-reference-date"
-            type="date"
-            aria-describedby="age-date-help age-result-status"
-            aria-invalid={Boolean(dateError)}
-            value={targetDate}
-            onChange={e => { setTargetDate(e.target.value); setCopied(false); }}
-            min="0001-01-01"
-            max="9999-12-31"
-            className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-base font-bold text-slate-900 dark:text-white"
-          />
+          <AgeDateInput id="age-reference-date" label="Age at date" value={targetDate} invalid={Boolean(dateError)} onChange={value => { setTargetDate(value); setCopied(false); }} />
         </div>
       </div>
 
@@ -250,7 +231,7 @@ export const AgeCalculatorTool: React.FC<AgeCalculatorToolProps> = ({ onShowToas
         {dateError || (result ? `Age on ${referenceLabel}: ${result.years} years, ${result.months} months, ${result.days} days.` : 'Enter your date of birth. Results update automatically.')}
       </p>
       <p id="age-date-help" className="text-xs text-slate-600 dark:text-slate-400">
-        Results update automatically when both dates are valid. Choose any past or future reference date on or after birth. Month-end dates use the last valid day of the destination month. A February 29 birthday uses February 28 in non-leap years here. Official eligibility rules may differ.
+        Select day and month, then type a four-digit year (for example, 1997). Invalid dates such as 31 February are rejected, not changed silently. Results update automatically when both dates are valid. Choose any past or future reference date on or after birth. Month-end dates use the last valid day of the destination month. A February 29 birthday uses February 28 in non-leap years here. Official eligibility rules may differ.
       </p>
       {result ? (
         <div className="space-y-6">

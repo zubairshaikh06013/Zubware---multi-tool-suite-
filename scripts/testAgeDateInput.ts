@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import { AgeDateInput } from '../src/components/tools/design/AgeDateInput';
+import { parseCalendarDate } from '../src/lib/calendarAge';
+import { compareAgeDates } from '../src/lib/ageComparison';
+
+let value = '';
+const render = () => AgeDateInput({ id: 'birth', label: 'Date of birth', value, onChange: next => { value = next; } });
+const nodes = (node: any): any[] => Array.isArray(node) ? node.flatMap(nodes) : node?.props ? [node, ...nodes(node.props.children)] : [];
+const control = (id: string) => nodes(render()).find(n => n.props.id === id);
+const change = (id: string, next: string) => control(id).props.onChange({ currentTarget: { value: next } });
+
+change('birth-day', '13');
+change('birth-month', '05');
+change('birth-year', '199');
+assert.equal(parseCalendarDate(value), null, 'Incomplete years must not become a valid age');
+change('birth-year', '1997');
+assert.equal(value, '1997-05-13');
+assert.equal(compareAgeDates(value, ['2026-05-12'])[0].age?.years, 28);
+assert.equal(compareAgeDates(value, ['2026-05-13'])[0].age?.years, 29);
+change('birth-day', '29');
+change('birth-month', '02');
+change('birth-year', '2004');
+assert.ok(parseCalendarDate(value));
+change('birth-year', '2003');
+assert.equal(parseCalendarDate(value), null, 'Do not roll an impossible leap date into March');
+assert.equal(control('birth-day').props.value, '29', 'Retain the entered day so users can correct it');
+assert.equal(control('birth').props.value, '', 'Never send invalid partial dates to the native picker');
+change('birth', '2000-01-31');
+assert.equal(control('birth-year').props.value, '2000');
+assert.equal(control('birth-month').props.value, '01');
+assert.equal(control('birth-day').props.value, '31');
+value = '2026-12-31'; // External example / Today / Reset updates stay controlled.
+assert.equal(control('birth-year').props.value, '2026');
+value = '';
+assert.equal(control('birth-day').props.value, '');
+assert.equal(control('birth-month').props.value, '');
+assert.equal(control('birth-year').props.value, '');
+change('birth-day', '01'); change('birth-month', '01'); change('birth-year', '0001');
+assert.equal(parseCalendarDate(value)?.getFullYear(), 1);
+change('birth-year', '0000');
+assert.equal(parseCalendarDate(value), null);
+console.log('Age date entry: partial years, birthdays, leap dates, calendar sync, reset and early years passed.');

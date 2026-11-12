@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { encodeResizeToLimit } from '../src/lib/imageResize';
+import { encodeResizeToLimit, imageResizeSizeError } from '../src/lib/imageResize';
 
 const blob = (bytes: number) => new Blob([new Uint8Array(bytes)], { type: 'image/jpeg' });
 // A feasible result at the exact floor was never sampled by the old search.
@@ -17,3 +17,16 @@ const impossible = await encodeResizeToLimit(async () => blob(21000), 0.9, 20000
 assert.ok(impossible.size > 20000, 'Return the unmet limit for the existing download guard');
 await assert.rejects(encodeResizeToLimit(async () => { throw new Error('encoding failed'); }, 0.9, 20000), /encoding failed/);
 console.log('Image resizing checks the quality floor, preserves the quality ceiling, and reports impossible limits.');
+
+// A file under the maximum can still fail the application's minimum.
+assert.match(imageResizeSizeError(14000, 20, 50)!, /below 20 KB/);
+for (const bytes of [20000, 35000, 50000]) assert.equal(imageResizeSizeError(bytes, 20, 50), undefined);
+assert.match(imageResizeSizeError(19999, 20, 50)!, /below/);
+assert.match(imageResizeSizeError(50001, 20, 50)!, /exceeds/);
+assert.match(imageResizeSizeError(30000, 50, 20)!, /Minimum KB/);
+assert.equal(imageResizeSizeError(14000, 0, 50), undefined, 'Maximum-only workflows still allow small files');
+assert.equal(imageResizeSizeError(80000, 20, 0), undefined, 'A minimum does not imply a maximum');
+assert.match(imageResizeSizeError(0, 0, 0)!, /No valid output/);
+const constrained = await encodeResizeToLimit(async q => blob(Math.round(q * 100000)), 1, 50000);
+assert.equal(imageResizeSizeError(constrained.size, 20, 50), undefined, 'The actual compressed blob satisfies both boundaries');
+console.log('Photo size ranges reject undersized and oversized files and include exact boundaries.');

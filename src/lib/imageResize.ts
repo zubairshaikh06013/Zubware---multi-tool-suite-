@@ -1,3 +1,5 @@
+import { compositeSizeRange } from './compositeSizeRange';
+
 export const MAX_RESIZE_EDGE = 16384;
 export const MAX_RESIZE_PIXELS = 40000000;
 
@@ -34,4 +36,13 @@ export function imageResizeDimensions(originalWidth: number, originalHeight: num
   height = Math.max(1, Math.round(height));
   if (width > MAX_RESIZE_EDGE || height > MAX_RESIZE_EDGE || width * height > MAX_RESIZE_PIXELS) throw new Error('Choose an output up to 16,384 px per side and 40 megapixels. Try a smaller size or percentage.');
   return {width, height};
+}
+
+/** Validate the encoded bytes; never pad the image to satisfy a form minimum. */
+export function imageResizeSizeError(bytes: number, minKb: number, maxKb: number): string | undefined {
+  const status = compositeSizeRange(bytes, minKb, maxKb);
+  if (status === 'invalid') return 'Minimum KB must not exceed maximum KB. Enter valid file-size limits.';
+  if (status === 'below') return `Output is ${bytes.toLocaleString('en-US')} bytes, below ${minKb} KB. Increase JPEG/WebP quality or use a clearer original. Keep the dimensions your form requires; no filler bytes are added.`;
+  if (status === 'above') return `Output exceeds ${maxKb} KB. Select JPEG/WebP or reduce dimensions only if your form permits it.`;
+  if (status === 'pending') return 'No valid output file was created. Try the original image again.';
 }

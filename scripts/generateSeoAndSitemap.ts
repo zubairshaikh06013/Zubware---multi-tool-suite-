@@ -962,11 +962,11 @@ function renderStaticPageContent(page: StaticPageMeta): string {
         <section style="margin-bottom: 2rem;">
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Our Mission: Speed, Privacy &amp; Zero Barriers</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            Zubware is an open, privacy-focused multi-tool suite offering over ${TOOLS_DATA.length} free web utilities designed to solve daily technical, design, audio-visual, and documentation challenges. We believe essential computational tools should be instantly accessible to everyone on earth without paywalls, sign-up forms, or invasive tracking.
+            Zubware offers ${TOOLS_DATA.length} free web utilities for everyday image, document, calculation and productivity tasks. Many tools run locally in your browser; features that use an online service explain the processing choice. Website measurement and browser storage are described in our Privacy Policy.
           </p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Browser-Based Processing &amp; Local Privacy</h2>
           <p style="font-size: 0.95rem; color: #334155; line-height: 1.7; margin-bottom: 1rem;">
-            Unlike legacy online converters that transmit your private files, PDFs, and media assets to distant cloud servers, Zubware executes local operations inside your web browser. Utilizing high-performance WebAssembly (WASM), HTML5 Canvas, and native Web Cryptography APIs, files and inputs processed by local tools are not uploaded to Zubware servers.
+            Files and inputs processed by local tools are not uploaded to Zubware servers. Background Remover also offers optional online Smart AI Removal after consent, and publishing a wedding invitation stores a separate online copy. Check each tool's processing notice and our Privacy Policy before using an online feature.
           </p>
           <h2>Maintainer and Corrections</h2><p>${escapeHtml(ABOUT_QUALITY)}</p><p>${escapeHtml(REPORT_A_PROBLEM)}</p>
           <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Comprehensive Multi-Tool Ecosystem</h2>
@@ -986,7 +986,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
         <section><h2>Local Tool Processing</h2><p>Local utilities process files in your browser without uploading them to Zubware servers. Network tools connect to the endpoints you specify. Optional Subtitle Generator dictation may send microphone audio to your browser’s speech service after you choose that feature and grant permission.</p></section>
         <section><h2>Published Wedding Invitations</h2><p>${escapeHtml(PRIVACY_NOTES.invitations)}</p></section>
         <section><h2>Browser Storage</h2><p>Preferences and some drafts or histories are saved in localStorage or IndexedDB on your device. Clearing site data may remove them. Local drafts are not synchronized to a Zubware account.</p></section>
-        <section><h2>Website Requests, Measurement and Advertising</h2><p>${escapeHtml(PRIVACY_NOTES.analytics)}</p><p>${escapeHtml(PRIVACY_NOTES.hosting)}</p><p>${escapeHtml(PRIVACY_NOTES.advertising)}</p><p><a href="https://policies.google.com/privacy">Google privacy information</a> · <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy information</a></p></section>
+        <section><h2>Website Requests, Measurement and Advertising</h2><p>${escapeHtml(PRIVACY_NOTES.analytics)}</p><p>${escapeHtml(PRIVACY_NOTES.hosting)}</p><p>${escapeHtml(PRIVACY_NOTES.advertising)}</p><p>${escapeHtml(PRIVACY_NOTES.advertisingCookies)}</p><p>${escapeHtml(PRIVACY_NOTES.advertisingChoices)}</p><p><a href="https://myadcenter.google.com/">Google ad personalization choices</a> · <a href="https://optout.aboutads.info/">Participating third-party advertising choices</a></p><p><a href="https://policies.google.com/privacy">Google privacy information</a> · <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy information</a></p></section>
         <section><h2>Contact Messages and Privacy Controls</h2><p>${escapeHtml(PRIVACY_NOTES.contact)}</p><p>${escapeHtml(PRIVACY_NOTES.controls)}</p><p>Contact Zubair Shaikh: <a href="mailto:info@zubware.com">info@zubware.com</a></p></section>`;
       break;
 

@@ -1975,7 +1975,7 @@ const BASE_BLOG_ARTICLES: BlogArticle[] = [
       },
       {
         "question": "Are my video metadata prompts stored on Zubware servers?",
-        "answer": "No. All Zubware creator tools run locally in your browser memory with zero tracking, cookies, or remote server storage."
+        "answer": "Local-processing creator tools work in your browser without uploading their inputs to Zubware servers. Some features use online services or save drafts in browser storage; check the tool notice. The website also loads measurement services described in the Privacy Policy."
       }
     ],
     "relatedToolIds": [

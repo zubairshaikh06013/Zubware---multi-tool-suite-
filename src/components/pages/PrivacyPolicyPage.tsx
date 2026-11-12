@@ -92,6 +92,9 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
           <p>{PRIVACY_NOTES.analytics}</p>
           <p>{PRIVACY_NOTES.hosting}</p>
           <p>{PRIVACY_NOTES.advertising}</p>
+          <p>{PRIVACY_NOTES.advertisingCookies}</p>
+          <p>{PRIVACY_NOTES.advertisingChoices}</p>
+          <p><a className="underline" href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer">Google ad personalization choices</a> · <a className="underline" href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer">Participating third-party advertising choices</a></p>
           <p><a className="underline" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google privacy information</a> · <a className="underline" href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare privacy information</a></p>
         </section>
 

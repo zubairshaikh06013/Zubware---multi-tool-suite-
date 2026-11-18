@@ -2741,7 +2741,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "youtube-title-generator",
     "title": "YouTube Title Generator",
     "navTitle": "Title Generator",
-    "description": "Generate creative, SEO-friendly video titles for Tutorial, Review, Gaming, Education, Tech, Finance, AI, Vlog, Shorts, News, Islamic, and Entertainment.",
+    "description": "Create editable YouTube title drafts with 12 category presets, five template styles, character counts and copy controls. Runs in your browser; no live trend research.",
     "icon": "🎬",
     "path": "/youtube-title-generator",
     "filename": "youtube-title-generator.html",
@@ -2750,7 +2750,7 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "features": [
       "12 Category Options",
       "Curated Title Formulas",
-      "Keyword Optimization",
+      "Character Counts and 100-Character Limit Warnings",
       "Instant Copy",
       "Client-Side Processing"
     ],

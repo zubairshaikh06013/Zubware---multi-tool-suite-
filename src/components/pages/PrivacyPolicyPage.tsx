@@ -1,4 +1,4 @@
-import { SITE_REVIEW_DATE, PRIVACY_NOTES } from '../../data/siteTrustContent';
+import { SITE_REVIEW_DATE, PRIVACY_NOTES, BACKGROUND_REMOVAL_PRIVACY } from '../../data/siteTrustContent';
 import React from 'react';
 import { ShieldCheck, Lock, HardDrive, Cookie, EyeOff, CheckCircle } from 'lucide-react';
 
@@ -56,15 +56,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
         <section className="space-y-3">
           <h2 className="text-base font-extrabold text-slate-900 dark:text-white">Background Remover: Online AI and Private Options</h2>
-          <p>
-            Background Remover offers three options: Smart AI Removal, Quick Removal and Private Removal. Quick and Private Removal process your selected photo on your device; the photo is not uploaded for background removal. Local modes may download AI model files and require substantial device memory.
-          </p>
-          <p>
-            Smart AI Removal uses a Cloudflare-hosted image-processing service. When you select this option, check the upload consent box and press Start Smart AI Removal, the selected photo is sent to Cloudflare for processing and a resulting image is returned to your browser. Selecting a file alone does not start this online upload. The online mode accepts JPG, PNG and WebP images up to 10 MB. Avoid uploading confidential, sensitive or identifying images if you do not want them sent to an external processor.
-          </p>
-          <p>
-            Cloudflare may process request metadata, including network and security information, in connection with delivery and abuse prevention. Do not assume an uploaded image has the same privacy properties as a locally processed photo. Zubware does not promise that third-party infrastructure never temporarily processes or retains information; consult Cloudflare privacy information linked below for its practices. You can choose Quick or Private Removal instead of sending a photo for online processing.
-          </p>
+          {BACKGROUND_REMOVAL_PRIVACY.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
         </section>
 
         <section className="space-y-3"><h2 className="text-base font-extrabold text-slate-900 dark:text-white">Published Wedding Invitations</h2><p>{PRIVACY_NOTES.invitations}</p></section>

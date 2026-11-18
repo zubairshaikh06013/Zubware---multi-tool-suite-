@@ -3095,40 +3095,17 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
   },
   "youtube-title-generator": {
     "howTo": [
-      {
-        "title": "Enter Topic & Select Channel Niche",
-        "desc": "Type your target subject keywords and choose your content category (Tech, Gaming, Education, Lifestyle, Business)."
-      },
-      {
-        "title": "Select Copywriting Formula Style",
-        "desc": "Filter by How-To, Listicle, Curiosity Gap, Shock/Extreme, or Beginner Guide styles to match your video's mood."
-      },
-      {
-        "title": "Monitor Character Limits & Copy",
-        "desc": "Check the character count gauge to stay within the recommended 50–70 character sweet spot, then click to copy your favorite title."
-      }
+      { "title": "Enter a Topic and Category", "desc": "Enter the subject of your actual video. Choose one of the 12 categories, such as Tutorial, Gaming, Tech, Finance or Vlog. Suggestions update as you type." },
+      { "title": "Choose a Formula Style", "desc": "Choose High CTR & Curiosity, How-To & Guides, Listicles & Top 10, Debate & Questions, or Warnings & Checklists. Reorder Suggestions rotates the current drafts; it does not fetch trends or generate new facts." },
+      { "title": "Review the Draft and Copy", "desc": "Check the displayed character count and shorten drafts over 100 characters before publishing. Replace any claim, number, date or testing period that does not match your video, then use Copy Title. If copying fails, select and copy the text manually." }
     ],
     "faq": [
-      {
-        "question": "What is the optimal character length for a YouTube video title?",
-        "answer": "Between 50 and 70 characters. Although YouTube allows up to 100 characters, titles longer than 60–70 characters get truncated with an ellipsis on mobile home feeds and search result cards."
-      },
-      {
-        "question": "Why is keyword front-loading critical for YouTube SEO?",
-        "answer": "Placing your primary target keyword in the first 30–40 characters ensures viewers immediately recognize the video's relevance even if the end of the title is clipped on smaller screens."
-      },
-      {
-        "question": "Can I include numbers and brackets in my YouTube titles?",
-        "answer": "Yes. Data shows titles with specific numbers (e.g., '7 Mistakes', '2026 Edition') and brackets (e.g., '[Step-by-Step]') frequently achieve higher click-through rates by setting concrete expectations."
-      },
-      {
-        "question": "Should I use ALL CAPS in YouTube titles?",
-        "answer": "Capitalizing one or two key impact words (e.g. 'STOP Doing This') adds punchy emphasis, but typing an entire title in all caps often looks spammy and can discourage discerning viewers."
-      },
-      {
-        "question": "Does this tool guarantee YouTube search rankings or CTR?",
-        "answer": "No tool can guarantee algorithmic rankings. These formulas are based on proven copywriting psychology, but real performance depends on audience demand, viewer retention, and thumbnail synergy."
-      }
+      { "question": "Does this tool use AI or live YouTube trends?", "answer": "No. It inserts your topic into local title templates for the selected category and style. It does not call an AI service, check search volume or verify trending topics." },
+      { "question": "How long can a YouTube title be?", "answer": "YouTube allows up to 100 characters. This tool shows the length of each suggestion and flags drafts over that limit. The amount visible in a feed depends on the screen and layout; there is no single character count that guarantees a full preview or better performance." },
+      { "question": "What does Reorder Suggestions do?", "answer": "It rotates the order of the current suggestions, moving the first draft to the end. Change the topic, category or formula style to change the wording." },
+      { "question": "Should I publish a generated title unchanged?", "answer": "Only if it accurately describes your video. Templates may mention numbers, experiments or testing periods; replace those details with your actual content. The generator does not verify the claims it suggests." },
+      { "question": "Does this tool guarantee views, rankings or CTR?", "answer": "No. The suggestions are starting points for editing, not performance predictions. Choose an accurate title that helps the intended audience understand your video." },
+      { "question": "Is my topic uploaded for title generation?", "answer": "The template generator runs in your browser. The website may still load measurement services and other resources as explained in the Privacy Policy." }
     ]
   },
   "youtube-description-generator": {

@@ -2613,16 +2613,16 @@ const RAW_TOOLS_DATA: ToolMeta[] = [
     "id": "notice-period-calculator",
     "title": "Notice Period Calculator",
     "navTitle": "Notice Period Calc",
-    "description": "Determine exact last working day, remaining working days, holiday exclusions, and estimated notice buyout cost.",
+    "description": "Estimate your last working day using calendar days, paid leave adjustments, and notice buyout cost.",
     "icon": "📅",
     "path": "/notice-period-calculator",
     "filename": "notice-period-calculator.html",
     "category": "💼 Career Tools",
     "features": [
       "Exact End Date Calculation",
-      "Working Days Remaining",
+      "Calendar Days Remaining",
       "Notice Buyout Calculator",
-      "Public Holiday Exclusions",
+      "Paid Leave Adjustment",
       "Instant Summary"
     ],
     "tags": [

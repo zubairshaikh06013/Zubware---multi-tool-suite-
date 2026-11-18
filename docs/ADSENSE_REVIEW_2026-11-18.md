@@ -29,8 +29,9 @@ No publisher ID, AdSense verification metadata, ads.txt, canonical rules or inde
 - Build-content regression verifies the actual initial Privacy/Help HTML contains the shared disclosure paragraphs and FAQ answers.
 - Supplemental generated HTML audit: 786 HTML files, 394 distinct route keys, zero findings after the fallback fix. The generator emits both flat `.html` files and clean `/index.html` files; its 392 duplicate file route keys do not mean 392 indexed duplicates.
 - This executor's direct production HTTP requests returned 403, while web retrieval and the interactive browser loaded the pages. This is a verification limitation; it does not establish that Googlebot is blocked. Raw production robots/sitemap/ads HTTP behavior was not certified here.
-- The browser cannot reach this executor's localhost preview. Interactive validation of the patched UI remains pending.
-- Dependency audit did not pass: npm reports four high-severity findings through picomatch/fdir/tinyglobby/Vite. No dependency versions changed in this patch. This existing dependency issue needs separate review; CI has not been claimed to pass.
+- The localhost preview was unreachable from the browser, so validation used the deployed Cloudflare preview. Six distinct warning/checklist drafts, reorder, exact clipboard copy, over-length warnings, online-photo privacy disclosure and expanded Help upload-limit guidance passed interactive checks.
+- The initial production dependency audit failed because the Vite React and Tailwind plugins were incorrectly listed as runtime dependencies. Both are imported by build configuration only. They now belong to devDependencies; the lockfile was regenerated without changing any retained package version, resolved URL or integrity hash. The unchanged `npm audit --omit=dev --audit-level=high` command reports zero production vulnerabilities.
+- This classification correction is not an upstream picomatch patch: the development/build dependency advisory remains. GitHub GHSA-fc5q-39xc-vjpf lists no patched version as checked on 18 November. The public deployment consists of static build output, not an exposed Vite development server. Audit commands, thresholds and failure handling are unchanged; do not describe the entire development dependency tree as vulnerability-free.
 
 ## Remaining review priorities
 

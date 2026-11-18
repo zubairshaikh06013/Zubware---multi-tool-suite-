@@ -1,14 +1,7 @@
-import React, { useState } from 'react';
-import { Copy, Check, Sparkles, RefreshCw, Layers, SlidersHorizontal, Share2 } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Copy, Check, Sparkles, RefreshCw, Layers, SlidersHorizontal } from 'lucide-react';
 
-const CATEGORIES = [
-  'Tutorial', 'Review', 'Gaming', 'Education', 'Tech', 
-  'Finance', 'AI', 'Vlog', 'Shorts', 'News', 'Islamic', 'Entertainment'
-] as const;
-
-type Category = typeof CATEGORIES[number];
-
-const STYLES = ['High CTR & Curiosity', 'How-To & Guides', 'Listicles & Top 10', 'Debate & Questions', 'Urgency & Secret Formula'];
+import { CATEGORIES, STYLES, generateYouTubeTitles, type Category } from '../../../lib/youtubeTitleSuggestions';
 
 export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) => void }> = ({ onShowToast }) => {
   const [topic, setTopic] = useState('React 19 & Next.js');
@@ -16,131 +9,26 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
   const [style, setStyle] = useState('High CTR & Curiosity');
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
 
-  const generateTitles = () => {
-    const raw = topic.trim() || 'My Video Topic';
-    const cap = raw.charAt(0).toUpperCase() + raw.slice(1);
 
-    const titleTemplates: Record<Category, string[]> = {
-      Tutorial: [
-        `How to Master ${cap} in 10 Minutes (Step-by-step)`,
-        `Stop Doing ${cap} Wrong! Do THIS Instead`,
-        `The Ultimate ${cap} Tutorial for Beginners (2026)`,
-        `Learn ${cap} From Scratch: Complete Practical Guide`,
-        `5 Easy Steps to Master ${cap} Fast!`,
-        `${cap} Explained Simply (No Experience Needed)`
-      ],
-      Review: [
-        `Is ${cap} ACTUALLY Worth It? Honest Unfiltered Review`,
-        `I Tried ${cap} For 30 Days (Real Results)`,
-        `${cap} Review: Don't Buy Until You Watch THIS!`,
-        `The Truth About ${cap} (Pros, Cons & Regrets)`,
-        `${cap} vs The Competition: Which One Wins?`,
-        `Why Everyone Is Talking About ${cap}!`
-      ],
-      Gaming: [
-        `I Spent 100 Hours Testing ${cap} (INSANE RESULTS)`,
-        `The Most BROKEN ${cap} Strategy You Must Try`,
-        `Noob vs Pro in ${cap}: Impossible Challenge!`,
-        `Only 1% Of Players Know This ${cap} Secret`,
-        `I Unlocked Everything in ${cap} So You Don't Have To`,
-        `10 Secret Tips for ${cap} You Missed!`
-      ],
-      Education: [
-        `The Shocking Truth About ${cap} (Explained)`,
-        `Everything You Need to Know About ${cap}`,
-        `Why ${cap} Will Change Everything in 2026`,
-        `The Hidden Math/Science Behind ${cap}`,
-        `${cap}: 5 Deep Insights Most People Miss`,
-        `A Complete Breakdown of ${cap} Made Simple`
-      ],
-      Tech: [
-        `The Future of ${cap} Is HERE (Full Breakdown)`,
-        `Why ${cap} Changes EVERYTHING For Tech in 2026`,
-        `I Built a Project Using ${cap} in 24 Hours!`,
-        `${cap} Top Features You Need to Use Right Now`,
-        `Don't Ignore ${cap}: The Next Big Revolution`,
-        `The Ultimate Tech Setup with ${cap}`
-      ],
-      Finance: [
-        `How to Make Money with ${cap} in 2026 (Beginner Guide)`,
-        `The ${cap} Mistake Costing You Thousands!`,
-        `How I Turned ${cap} into Passive Income`,
-        `3 ${cap} Strategies That ACTUALLY Work`,
-        `Is ${cap} Still Profitable? Honest Analysis`,
-        `The Smart Way to Invest in ${cap}`
-      ],
-      AI: [
-        `I Replaced My Workflow with ${cap} AI (Mind Blown)`,
-        `10 Secret ${cap} AI Prompts You Didn't Know Exist`,
-        `${cap} AI Just Made Everything Else Obsolete!`,
-        `How to Use ${cap} AI Like a Pro in 5 Minutes`,
-        `The DARK Side of ${cap} AI No One Is Talking About`,
-        `Automate Your Entire Life with ${cap} AI`
-      ],
-      Vlog: [
-        `A Day in My Life Testing ${cap} (Unexpected Ending)`,
-        `I Tried ${cap} For a Week and THIS Happened!`,
-        `We Needs to Talk About ${cap}...`,
-        `My HONEST Thoughts on ${cap} After 1 Year`,
-        `Behind the Scenes of ${cap} (Raw & Uncut)`,
-        `A Life-Changing Experience with ${cap}`
-      ],
-      Shorts: [
-        `Do THIS for ${cap}! 😱 #Shorts`,
-        `Secret ${cap} Trick You Need NOW! 🔥`,
-        `Stop Doing ${cap} Like This! ❌`,
-        `${cap} In 30 Seconds! ⚡`,
-        `Mind-Blowing ${cap} Hack! 💡`,
-        `You Won't Believe This ${cap} Secret! 🚀`
-      ],
-      News: [
-        `BREAKING: Major Update on ${cap} Announced!`,
-        `What Just Happened to ${cap}? Full Report`,
-        `The Real Reason Behind the ${cap} Crisis`,
-        `Everything Changing About ${cap} Starting Today`,
-        `Why ${cap} Is Trending Worldwide Right Now`,
-        `What You Must Know About ${cap} Today`
-      ],
-      Islamic: [
-        `The Powerful Blessings of ${cap} in Islam`,
-        `How to Practice ${cap} According to Sunnah`,
-        `Beautiful Daily Guide to ${cap} for Peace`,
-        `Understanding ${cap}: Meaning & Spiritual Rewards`,
-        `3 Important Lessons About ${cap} Every Muslim Should Know`,
-        `The Spiritual Impact of ${cap} in Daily Life`
-      ],
-      Entertainment: [
-        `Top 10 Craziest Moments in ${cap} (Ranked)`,
-        `Reacting to the Most Unbelievable ${cap} Videos!`,
-        `I Tried ${cap} Challenge (Extreme Mode)`,
-        `The Funniest ${cap} Fail Compilation Ever`,
-        `We Tested Every Single ${cap} So You Don't Have To`,
-        `10 Secrets Hidden in ${cap} You Never Noticed`
-      ]
-    };
+  const [orderOffset, setOrderOffset] = useState(0);
+  useEffect(() => {
+    setCopiedIndex(null);
+    setOrderOffset(0);
+  }, [topic, category, style]);
+  const suggestions = generateYouTubeTitles(topic, category, style);
+  const offset = orderOffset % suggestions.length;
+  const titles = [...suggestions.slice(offset), ...suggestions.slice(0, offset)];
 
-    let base = titleTemplates[category] || titleTemplates['Tech'];
-
-    if (style.includes('How-To')) {
-      base = base.map(t => t.startsWith('How') ? t : `How To Master ${raw}: ${t}`);
-    } else if (style.includes('Listicles')) {
-      base = base.map((t, idx) => `Top ${ (idx + 1) * 3 } Secrets About ${raw} You Must Know`);
-    } else if (style.includes('Debate')) {
-      base = base.map(t => `Is ${raw} Overrated? ${t}`);
-    } else if (style.includes('Urgency')) {
-      base = base.map(t => `⚠️ URGENT: Watch Before Doing ${raw}!`);
+  const handleCopy = async (text: string, index: number) => {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopiedIndex(index);
+      onShowToast('Title copied to clipboard!');
+      setTimeout(() => setCopiedIndex(null), 2000);
+    } catch {
+      setCopiedIndex(null);
+      onShowToast('Copy failed. Select the title text and copy it manually.');
     }
-
-    return base;
-  };
-
-  const titles = generateTitles();
-
-  const handleCopy = (text: string, index: number) => {
-    navigator.clipboard.writeText(text);
-    setCopiedIndex(index);
-    onShowToast('Title copied to clipboard!');
-    setTimeout(() => setCopiedIndex(null), 2000);
   };
 
   return (
@@ -152,7 +40,7 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
             YouTube Title Generator
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Generate creative, potentially engaging, SEO-friendly titles tailored to your topic and niche.
+            Create title drafts from local templates. Review each suggestion so it accurately describes your video.
           </p>
         </div>
       </div>
@@ -160,10 +48,11 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
       {/* Inputs */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="md:col-span-1 space-y-1.5">
-          <label className="text-xs font-bold text-slate-700 dark:text-slate-300">
+          <label htmlFor="youtube-title-topic" className="text-xs font-bold text-slate-700 dark:text-slate-300">
             Video Topic / Keywords
           </label>
           <input
+            id="youtube-title-topic"
             type="text"
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
@@ -173,10 +62,11 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+          <label htmlFor="youtube-title-category" className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
             <Layers className="w-3.5 h-3.5 text-indigo-500" /> Category Preset
           </label>
           <select
+            id="youtube-title-category"
             value={category}
             onChange={(e) => setCategory(e.target.value as Category)}
             className="w-full px-4 py-2.5 text-xs font-semibold rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white cursor-pointer"
@@ -190,10 +80,11 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
         </div>
 
         <div className="space-y-1.5">
-          <label className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
+          <label htmlFor="youtube-title-style" className="text-xs font-bold text-slate-700 dark:text-slate-300 flex items-center gap-1">
             <SlidersHorizontal className="w-3.5 h-3.5 text-indigo-500" /> Formula Style
           </label>
           <select
+            id="youtube-title-style"
             value={style}
             onChange={(e) => setStyle(e.target.value)}
             className="w-full px-4 py-2.5 text-xs font-semibold rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-900 dark:text-white cursor-pointer"
@@ -225,6 +116,12 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
         ))}
       </div>
 
+      <p className="text-xs text-slate-500 dark:text-slate-400">
+        These are editable ideas, not verified claims or live trend data. Replace any testing periods,
+        numbers or promises that do not match your video. No title guarantees views or rankings.
+        YouTube allows up to 100 characters; the visible preview varies by screen.
+      </p>
+
       {/* Generated Suggestions Grid */}
       <div className="space-y-3 pt-4">
         <div className="flex items-center justify-between">
@@ -232,17 +129,17 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
             Suggested Video Titles ({titles.length})
           </h3>
           <button
-            onClick={() => onShowToast('Refreshed title formulas!')}
+            onClick={() => { setOrderOffset(value => value + 1); setCopiedIndex(null); }}
             className="flex items-center gap-1 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline cursor-pointer"
           >
-            <RefreshCw className="w-3.5 h-3.5" /> Re-shuffle Formulas
+            <RefreshCw className="w-3.5 h-3.5" /> Reorder Suggestions
           </button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {titles.map((titleText, idx) => {
             const charCount = titleText.length;
-            const isOptimal = charCount >= 45 && charCount <= 70;
+            const withinLimit = charCount <= 100;
             return (
               <div
                 key={idx}
@@ -255,13 +152,13 @@ export const YouTubeTitleGeneratorTool: React.FC<{ onShowToast: (msg: string) =>
                     </span>
                     <span
                       className={`text-[10px] font-bold px-2 py-0.5 rounded-md ${
-                        isOptimal
+                        withinLimit
                           ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
                           : 'bg-amber-500/15 text-amber-600 dark:text-amber-400'
                       }`}
-                      title={isOptimal ? 'Optimal title length for YouTube SEO' : 'Slightly short/long for YouTube search'}
+                      title={withinLimit ? 'Within the 100-character title limit' : 'Shorten this draft before publishing: over 100 characters'}
                     >
-                      {charCount} Chars
+                      {charCount}/100 chars{!withinLimit && ' — shorten before publishing'}
                     </span>
                   </div>
                   <p className="text-sm font-bold text-slate-900 dark:text-white leading-snug">

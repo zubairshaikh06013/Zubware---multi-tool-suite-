@@ -13,7 +13,7 @@ import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { AgeCalculationExamples } from '../src/components/seo/AgeCalculationExamples';
 import { GstInvoiceIntro } from '../src/components/seo/GstInvoiceIntro';
-import { ABOUT_QUALITY, REPORT_A_PROBLEM, PRIVACY_NOTES, SITE_REVIEW_DATE } from '../src/data/siteTrustContent';
+import { ABOUT_QUALITY, REPORT_A_PROBLEM, PRIVACY_NOTES, SITE_REVIEW_DATE, BACKGROUND_REMOVAL_PRIVACY, HELP_FAQS } from '../src/data/siteTrustContent';
 import fs from 'fs';
 import { marked } from 'marked';
 import path from 'path';
@@ -984,6 +984,7 @@ function renderStaticPageContent(page: StaticPageMeta): string {
       specificBody = `
         <p>Last reviewed: ${SITE_REVIEW_DATE}</p>
         <section><h2>Local Tool Processing</h2><p>Local utilities process files in your browser without uploading them to Zubware servers. Network tools connect to the endpoints you specify. Optional Subtitle Generator dictation may send microphone audio to your browser’s speech service after you choose that feature and grant permission.</p></section>
+        <section><h2>Background Remover: Online AI and Private Options</h2>${BACKGROUND_REMOVAL_PRIVACY.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join('')}</section>
         <section><h2>Published Wedding Invitations</h2><p>${escapeHtml(PRIVACY_NOTES.invitations)}</p></section>
         <section><h2>Browser Storage</h2><p>Preferences and some drafts or histories are saved in localStorage or IndexedDB on your device. Clearing site data may remove them. Local drafts are not synchronized to a Zubware account.</p></section>
         <section><h2>Website Requests, Measurement and Advertising</h2><p>${escapeHtml(PRIVACY_NOTES.analytics)}</p><p>${escapeHtml(PRIVACY_NOTES.hosting)}</p><p>${escapeHtml(PRIVACY_NOTES.advertising)}</p><p>${escapeHtml(PRIVACY_NOTES.advertisingCookies)}</p><p>${escapeHtml(PRIVACY_NOTES.advertisingChoices)}</p><p><a href="https://myadcenter.google.com/">Google ad personalization choices</a> · <a href="https://optout.aboutads.info/">Participating third-party advertising choices</a></p><p><a href="https://policies.google.com/privacy">Google privacy information</a> · <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare privacy information</a></p></section>
@@ -1049,23 +1050,10 @@ function renderStaticPageContent(page: StaticPageMeta): string {
 
     case 'help.html':
       specificBody = `
-        <section style="margin-bottom: 2rem;">
-          <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin-bottom: 0.75rem;">Frequently Asked Questions &amp; Support</h2>
-          <div style="display: flex; flex-direction: column; gap: 1rem; margin-bottom: 1.5rem;">
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
-              <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem 0;">Do I need to install plugins or software?</h3>
-              <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">No. All 300+ tools run natively in your web browser on desktop, tablet, and mobile devices.</p>
-            </div>
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
-              <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem 0;">Are there file size limits?</h3>
-              <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">Because processing occurs locally in memory, file size limits depend on your device's available RAM rather than cloud upload quotas.</p>
-            </div>
-            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; padding: 1.25rem;">
-              <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin: 0 0 0.35rem 0;">Which browsers are supported?</h3>
-              <p style="font-size: 0.85rem; color: #475569; margin: 0; line-height: 1.5;">Chrome, Firefox, Safari, Edge, and all modern Chromium-based browsers with WebAssembly and JavaScript enabled.</p>
-            </div>
-          </div>
-          <p><a href="${DOMAIN}/blog" style="color: #4f46e5; font-weight: 700; text-decoration: underline;">Explore Detailed Guides &amp; Tutorials &rarr;</a></p>
+        <section>
+          <h2>Frequently Asked Questions &amp; Support</h2>
+          ${HELP_FAQS.map(faq => `<section><h3>${escapeHtml(faq.question)}</h3><p>${escapeHtml(faq.answer)}</p></section>`).join('')}
+          <p><a href="${DOMAIN}/contact">Contact Zubware</a> · <a href="${DOMAIN}/privacy">Privacy Policy</a> · <a href="${DOMAIN}/blog">Detailed Guides &amp; Tutorials</a></p>
         </section>`;
       break;
 

@@ -248,7 +248,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'protect-pdf':
       'Zubware Protect PDF encrypts sensitive financial statements, contracts, and confidential records with standard 128-bit and 256-bit AES encryption. Set user passwords for viewing access, configure owner passwords with granular restrictions against unauthorized printing or copying, and safeguard documents with 100% private browser WebAssembly cryptography.',
     'unlock-pdf':
-      'Zubware Unlock PDF permanently strips password encryption and security restrictions from authorized PDF documents directly in your browser. By entering your known password once, it decrypts the document in memory and saves a clean, unencrypted PDF that opens friction-free on any device with zero server tracking.',
+      'Unlock a PDF with its known password in your browser, then download an unprotected copy. To unlock multiple PDF files, process and save each file separately; this tool does not support batch unlocking. Some PDFs are rebuilt as page images, so selectable text, links and interactive fields may be lost. Keep the original and inspect the downloaded copy. Your file and password are processed locally.',
     'pdf-size-adjuster':
       'Zubware PDF Size Adjuster modifies PDF document weights to exact target KB or MB thresholds mandated by government exam portals (UPSC, SSC, IBPS, State PSCs) and university upload systems. Expand file size safely using standard PDF private data streams without blurring text or degrading visual layout, or compress oversized documents below upload limits with complete browser privacy.',
     'pdf-to-jpg':
@@ -286,7 +286,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'batch-image-converter':
       'Zubware Batch Image Converter converts dozens of photos simultaneously to modern WebP, universal JPG, or lossless PNG format directly in your browser. Queue entire folders, fine-tune global compression quality, monitor real-time conversion progress per file, and download all processed images in a single ZIP archive without cloud upload bottlenecks.',
     'ats-resume-checker':
-      'Zubware ATS Resume Checker is a free online tool that evaluates your resume against target job postings to calculate your ATS compatibility score (0–100%). It scans for technical and soft skill keywords, detects missing qualifications, verifies contact details, and highlights formatting risks before you submit your application. All PDF text extraction and keyword matching run 100% locally in your browser with zero server uploads and complete privacy.',
+      'Check your ATS score for free: upload a PDF, TXT or Markdown resume, or paste its text, then enter the target job title and job description and select Scan ATS Match Compatibility. Review the score, matched skills and missing keywords without creating an account. Resume extraction and scoring run locally in your browser. This tool uses its own text-matching rules; it does not reproduce an employer’s ATS or predict an interview.',
     'json-validator':
       'Zubware JSON Validator verifies JSON syntax, highlights parse errors with exact line and column numbers, and formats messy code into readable indented structures. Ideal for API debugging and configuration audits, all validation and formatting execute locally in your browser with zero data retention.',
     'qr-generator':

@@ -1,6 +1,7 @@
+import { WEEKLY_TOOL_GUIDES, WEEKLY_TOOL_SEO } from './weeklyToolGuides';
 import type { ToolSeoData } from './toolSeoData';
 
-interface SearchQuestionGuide {
+export interface SearchQuestionGuide {
   heading: string;
   answer: string;
   steps: string[];
@@ -11,6 +12,7 @@ interface SearchQuestionGuide {
 
 /** Practical answers shared by the interactive tool and its initial HTML. */
 export const SEARCH_QUESTION_GUIDES: Record<string, SearchQuestionGuide> = {
+  ...WEEKLY_TOOL_GUIDES,
   'image-resizer': {
     heading: 'What is a 20 to 50 KB photo size in pixels?',
     answer: 'A 20–50 KB photo has no single pixel width or height. KB measures the encoded file size; pixels measure its dimensions. Follow the dimensions and format requested by your form, then adjust compression until the exported file is inside the required size range.',
@@ -54,6 +56,7 @@ export const SEARCH_QUESTION_GUIDES: Record<string, SearchQuestionGuide> = {
 
 /** Replace outdated FAQs for these pages, including misleading precision claims. */
 export const SEARCH_QUESTION_SEO: Record<string, ToolSeoData> = {
+  ...WEEKLY_TOOL_SEO,
   'image-resizer': {
     faq: [
       { question: 'What is a 20 to 50 KB photo size in pixels?', answer: SEARCH_QUESTION_GUIDES['image-resizer'].answer },

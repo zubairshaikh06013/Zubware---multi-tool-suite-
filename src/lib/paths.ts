@@ -342,7 +342,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'text-to-handwriting':
       'Create handwritten notes on lined notebook paper with a red margin, or choose blank, grid or vintage-style paper. Paste your text, select one of five handwriting font families and an ink color, then adjust text size and line height. Download all pages as an A4 PDF or save the selected page as PNG. These are font-rendered notes, not a reproduction of your personal handwriting. Text rendering and export run in your browser; handwriting fonts load from Google Fonts.',
     'handwriting-to-text':
-      'Zubware Handwriting to Text OCR converts handwritten notebook pages, whiteboard sketches, student homework, and canvas scribbles into editable digital text directly in your browser. Featuring automatic adaptive binarization, high-contrast ink enhancement, and client-side Tesseract.js neural network OCR, your handwritten notes are transcribed locally with zero cloud data retention.',
+      'Upload a clear photo of handwritten notes or use the drawing canvas, then extract editable text with English OCR. Review every line and correct errors before copying or downloading the result. Clear block lettering is a better fit than cursive. Recognition runs locally after the engine and English model load.',
     'image-to-text':
       'Zubware Image to Text OCR Converter extracts editable text from screenshots, invoices, receipts, book pages, and scanned photos across 11+ languages including English, Hindi (हिंदी), Spanish, French, and German. Powered by client-side Tesseract.js WebAssembly, optical character recognition runs completely in browser memory with real-time progress tracking, accuracy confidence ratings, and instant text download.',
     'discount-calculator':
@@ -368,7 +368,7 @@ export function getToolIntroParagraph(tool: { id: string; title: string; navTitl
     'emi-calculator':
       'Zubware EMI Calculator computes equated monthly installments for home mortgages, auto loans, and personal loans using standard monthly reducing balance formulas. Input principal, annual interest rate, and tenure to evaluate monthly payments, total interest payable, annual amortization schedules, and interest saved through extra monthly prepayments.',
     'currency-calculator':
-      'Zubware Currency Calculator performs instantaneous fiat currency conversions across major international currencies including USD, EUR, GBP, INR, JPY, CAD, AUD, and AED. Features benchmark foreign exchange rates, custom bank spread adjustments, and instant reciprocal rate comparisons without external network latency or tracker cookies.',
+      'Convert amounts between 24 currencies using exchange rates you enter. Choose your source and destination currency, then set the rates in Edit Custom Rates. Starting rates are illustrative and do not update automatically. The result excludes provider fees and is not a live bank or card-network quote.',
     'loan-calculator':
       'Zubware Loan & Mortgage Calculator provides comprehensive financial amortization modeling for residential home loans, commercial mortgages, and fixed-rate borrowing. Analyze monthly principal and interest payments, total lifetime financing costs, and accelerated payoff schedules achieved through recurring extra principal contributions.',
     'roi-calculator':

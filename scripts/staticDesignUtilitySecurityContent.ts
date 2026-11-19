@@ -384,68 +384,9 @@ export function getStaticDesignUtilitySecuritySectionHtml(toolId: string, domain
     </section>
       `;
     case 'currency-calculator':
-      return `
-    <section class="zubware-seo-deep-content" style="margin-top: 2.5rem; padding: 2rem 1.5rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 1rem;">
-      <div style="border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem; margin-bottom: 1.5rem;">
-        <span style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #4f46e5;">Foreign Exchange Modeling</span>
-        <h2 style="font-size: 1.75rem; font-weight: 800; color: #0f172a; margin-top: 0.25rem; margin-bottom: 0.5rem;">Currency Calculator: International FX Rates & Custom Spread Adjustments</h2>
-        <p style="font-size: 0.95rem; color: #475569; line-height: 1.6;">Zubware Currency Calculator performs instantaneous currency conversions across major international fiat currencies. Features benchmark interbank exchange rates, custom bank spread adjustments, and reciprocal rate lookups with zero network tracking.</p>
-      </div>
+      // The shared SearchQuestionGuide now supplies this page's verified instructions.
+      return '';
 
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
-        
-      <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Major International Currencies</h3>
-        <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Instant conversion between major global currencies: USD, EUR, GBP, INR, JPY, CAD, AUD, CHF, CNY, AED, and SGD.</p>
-        <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
-          <li>Bidirectional unit swap</li><li>Reciprocal rate display (1 USD = X EUR)</li><li>High decimal precision</li>
-        </ul>
-      </div>
-      <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Custom Bank Spread Settings</h3>
-        <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">Open Rate Settings to input your credit card or bank’s specific markup spread to see actual statement charges.</p>
-        <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
-          <li>Model 1.5%–3.5% foreign transaction fees</li><li>Test hypothetical exchange rate scenarios</li><li>Custom rate persistence in session</li>
-        </ul>
-      </div>
-      <div style="padding: 1.25rem; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 0.75rem; margin-bottom: 1rem;">
-        <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">Zero Latency & Total Privacy</h3>
-        <p style="font-size: 0.875rem; color: #475569; line-height: 1.5; margin-bottom: 0.5rem;">All conversions run locally in browser memory without connecting to external tracking servers or third-party ad networks.</p>
-        <ul style="font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; padding-left: 1.25rem;">
-          <li>Instant calculation on keystroke</li><li>Works offline without Wi-Fi</li><li>Zero financial data collection</li>
-        </ul>
-      </div>
-      </div>
-
-      
-      <div style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Interbank Mid-Market Rates vs Retail Foreign Exchange Spreads</h3>
-        <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">Foreign exchange markets operate on wholesale interbank rates—the midpoint between institutional buy and sell quotes. However, retail consumers traveling abroad or ordering international goods rarely receive the mid-market rate.</p><p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">Commercial banks, airport currency exchange kiosks, and credit card issuers add a foreign exchange markup (spread) ranging from 1.5% to over 5%, plus optional foreign transaction fees. By opening Rate Settings, users can calibrate the conversion rate to match their bank’s exact fee schedule.</p>
-        <div style="padding: 1rem; background-color: #fef3c7; border: 1px solid #fde68a; border-radius: 0.5rem; color: #92400e; font-size: 0.875rem; margin-top: 0.75rem;">
-          <strong style="display: block; margin-bottom: 0.25rem;">Understanding Reciprocal Exchange Rates</strong>
-          Every currency conversion has a direct rate and an inverse (reciprocal) rate: Inverse = 1 / Direct Rate. For example, if 1 USD = 0.92 EUR, then 1 EUR = 1 / 0.92 ≈ 1.087 USD. The calculator displays both directions simultaneously to prevent mental math errors.
-        </div>
-      </div>
-      <div style="margin-bottom: 1.5rem;">
-        <h3 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">Travel Budgeting & Cross-Border Commerce</h3>
-        <p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">When budgeting for overseas travel or pricing international ecommerce shipments, tracking exchange rate volatility prevents unexpected credit card charges. Dynamic Currency Conversion (DCC) offered at foreign payment terminals often carries hidden 5%–7% markups; travelers should always opt to be billed in the local destination currency.</p><p style="font-size: 0.875rem; color: #334155; line-height: 1.6; margin-bottom: 0.75rem;">This tool provides an immediate reference benchmark so you can quickly evaluate whether a local merchant or ATM is offering a fair exchange rate.</p>
-        
-      </div>
-
-      <div style="border-top: 1px solid #e2e8f0; padding-top: 1.5rem; margin-top: 2rem;">
-        <h4 style="font-size: 0.875rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #64748b; margin-bottom: 1rem;">Related Free Tools on Zubware</h4>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.75rem;">
-          
-      <a href="${domain}/unit-converter" style="display: block; padding: 0.75rem 1rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; color: #1e293b; text-decoration: none; margin-bottom: 0.5rem;">
-        <strong style="color: #4f46e5;">Unit Converter</strong> — <span style="font-size: 0.8rem; color: #64748b;">Convert imperial and metric units for international travel</span>
-      </a>
-      <a href="${domain}/discount-calculator" style="display: block; padding: 0.75rem 1rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; color: #1e293b; text-decoration: none; margin-bottom: 0.5rem;">
-        <strong style="color: #4f46e5;">Discount Calculator</strong> — <span style="font-size: 0.8rem; color: #64748b;">Calculate duty-free shopping discounts across currencies</span>
-      </a>
-        </div>
-      </div>
-    </section>
-      `;
     case 'loan-calculator':
       return `
     <section class="zubware-seo-deep-content" style="margin-top: 2.5rem; padding: 2rem 1.5rem; background-color: #f8fafc; border: 1px solid #e2e8f0; border-radius: 1rem;">

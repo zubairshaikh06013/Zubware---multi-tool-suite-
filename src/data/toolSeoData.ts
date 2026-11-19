@@ -1,3 +1,4 @@
+import { SEARCH_QUESTION_SEO } from './searchQuestionGuides';
 import { FAQItem } from '../types';
 
 export interface HowToStep {
@@ -13653,5 +13654,5 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
 };
 
 export function getToolSeoData(id: string): ToolSeoData {
-  return TOOL_SEO_DATA[id] || {};
+  return { ...TOOL_SEO_DATA[id], ...SEARCH_QUESTION_SEO[id] };
 }

@@ -1,3 +1,4 @@
+import { SearchQuestionGuide } from './seo/SearchQuestionGuide';
 import { Lightbulb as DecorLightbulb } from 'lucide-react';
 import { Binary as UiBinary, Bot as UiBot, Calculator as UiCalculator, ChartColumn as UiChartColumn, CircleX as UiCircleX, ClipboardList as UiClipboardList, GraduationCap as UiGraduationCap, Image as UiImage, Keyboard as UiKeyboard, Landmark as UiLandmark, Link2 as UiLink2, Lock as UiLock, Minimize2 as UiMinimize2, Smartphone as UiSmartphone, Target as UiTarget, TrafficCone as UiTrafficCone, TrendingUp as UiTrendingUp, TriangleAlert as UiTriangleAlert, Zap as UiZap } from 'lucide-react';
 import { PhotoNameDateGuide } from './seo/PhotoNameDateGuide';
@@ -682,6 +683,7 @@ export const ToolSEOContent: React.FC<ToolSEOContentProps> = ({
         </section>
       )}
 
+      <SearchQuestionGuide toolId={tool.id} />
       {tool.id === 'qr-code-decoder' && <QrDecoderGuide />}
       {tool.id === 'signature-resizer' && <SignatureResizeGuide />}
       {tool.id === 'attendance-calculator' && <AttendanceGuide />}

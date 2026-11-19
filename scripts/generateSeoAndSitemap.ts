@@ -1,3 +1,4 @@
+import { SearchQuestionGuide } from '../src/components/seo/SearchQuestionGuide';
 import { ToolIcon } from '../src/components/common/ToolIcon';
 import { TaskToolLinks } from '../src/components/TaskToolLinks';
 import { PhotoNameDateGuide } from '../src/components/seo/PhotoNameDateGuide';
@@ -518,6 +519,7 @@ function renderStaticToolContent(tool: ToolMeta, allTools: ToolMeta[]): string {
         </ol>
       </section>
 
+      ${renderToStaticMarkup(createElement(SearchQuestionGuide, { toolId: tool.id }))}
       ${getStaticImageToolSectionHtml(tool.id, DOMAIN)}
       ${getStaticVideoBusinessSectionHtml(tool.id, DOMAIN)}
       ${getStaticPdfToolSectionHtml(tool.id, DOMAIN)}

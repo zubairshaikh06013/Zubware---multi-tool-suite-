@@ -15,3 +15,7 @@ reports/
 .seo-sources/
 
 .indexnow-state/
+
+# Reproducible benchmark outputs, regenerated before each production build
+/public/resources/age-benchmark/birthday-boundary-benchmark.csv
+/public/resources/age-benchmark/summary.json

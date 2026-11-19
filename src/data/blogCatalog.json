@@ -250,22 +250,25 @@
   },
   {
     "slug": "age-calculator-leap-year-month-end-test-cases",
-    "title": "Age Calculator: Leap-Year and Month-End Test Cases",
-    "description": "Understand calendar age with eight reproducible date pairs, leap-day and month-end examples, and a downloadable CSV for testing calculators.",
+    "title": "Age Calculator Benchmark: 87,660 Birthday-Boundary Tests",
+    "description": "Original reproducible age-calculation data: 87,660 birthday-boundary tests comparing fixed-day formulas with calendar age. Free CSV, source code and methodology.",
     "canonicalPath": "/blog/age-calculator-leap-year-month-end-test-cases",
     "publishedTime": "2026-10-20T00:00:00Z",
     "author": {
       "name": "Zubware"
     },
     "category": "Calculator Guides",
-    "readingTime": "6 min read",
+    "readingTime": "9 min read",
     "tags": [
       "Age calculator",
       "Leap year",
       "Calendar age",
-      "Test cases"
+      "Test cases",
+      "Original research",
+      "Open data",
+      "Age calculation statistics"
     ],
-    "excerpt": "Understand calendar age with eight reproducible date pairs, leap-day and month-end examples, and a downloadable CSV for testing calculators.",
+    "excerpt": "Original reproducible age-calculation data: 87,660 birthday-boundary tests comparing fixed-day formulas with calendar age. Free CSV, source code and methodology.",
     "relatedToolIds": [
       "age-calculator"
     ]

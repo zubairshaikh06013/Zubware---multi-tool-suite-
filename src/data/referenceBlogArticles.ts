@@ -87,12 +87,12 @@ export const REFERENCE_BLOG_ARTICLES: BlogArticle[] = [
   },
   {
     "slug": "age-calculator-leap-year-month-end-test-cases",
-    "title": "Age Calculator: Leap-Year and Month-End Test Cases",
-    "metaTitle": "Age Calculator: Leap-Year and Month-End Test Cases | Zubware",
-    "description": "Understand calendar age with eight reproducible date pairs, leap-day and month-end examples, and a downloadable CSV for testing calculators.",
+    "title": "Age Calculator Benchmark: 87,660 Birthday-Boundary Tests",
+    "metaTitle": "Age Calculator Benchmark: 87,660 Tests | Zubware",
+    "description": "Original reproducible age-calculation data: 87,660 birthday-boundary tests comparing fixed-day formulas with calendar age. Free CSV, source code and methodology.",
     "canonicalPath": "/blog/age-calculator-leap-year-month-end-test-cases",
     "publishedTime": "2026-10-20T00:00:00Z",
-    "modifiedTime": "2026-10-20T00:00:00Z",
+    "modifiedTime": "2026-11-19T00:00:00Z",
     "author": {
       "name": "Zubware",
       "url": "https://www.zubware.com/about",
@@ -103,20 +103,38 @@ export const REFERENCE_BLOG_ARTICLES: BlogArticle[] = [
       "url": "https://www.zubware.com"
     },
     "category": "Calculator Guides",
-    "readingTime": "6 min read",
+    "readingTime": "9 min read",
     "tags": [
       "Age calculator",
       "Leap year",
       "Calendar age",
-      "Test cases"
+      "Test cases",
+      "Original research",
+      "Open data",
+      "Age calculation statistics"
     ],
-    "excerpt": "Understand calendar age with eight reproducible date pairs, leap-day and month-end examples, and a downloadable CSV for testing calculators.",
+    "excerpt": "Original reproducible age-calculation data: 87,660 birthday-boundary tests comparing fixed-day formulas with calendar age. Free CSV, source code and methodology.",
     "takeaways": [
-      "Fixed dates make the examples reproducible on any day.",
-      "Month-end anniversaries are clamped to the last available day.",
-      "Calendar-day counts differ from elapsed-time and inclusive-day calculations."
+      "In this synthetic boundary sample, days / 365 mismatched completed age in 23,740 of 87,660 rows.",
+      "Days / 365.25 mismatched in 14,615 rows; these are sample-specific counts, not real-world error rates.",
+      "Download the complete CC0 CSV and generator; February 29 uses a stated February 28 convention."
     ],
     "sections": [
+      {
+        "id": "benchmark-results",
+        "title": "Original study: 87,660 birthday-boundary test cases",
+        "content": "Updated 19 November 2026. Zubware generated 87,660 synthetic date pairs to examine two shortcuts for completed age: floor(total calendar days / 365) and floor(total calendar days / 365.25). Against a calendar-anniversary reference, the shortcuts differed in **23,740** and **14,615** rows respectively. These are results for this deliberately boundary-heavy sample, not estimates of how often age calculators or people are wrong. We did not test any third-party calculator website.\n\n| Formula | Mismatched rows | All rows |\n|---|---:|---:|\n| floor(days / 365) | 23,740 | 87,660 |\n| floor(days / 365.25) | 14,615 | 87,660 |\n\n[Download the complete benchmark CSV](/resources/age-benchmark/birthday-boundary-benchmark.csv) · [Machine-readable summary](/resources/age-benchmark/summary.json) · [Download the standalone generator](/resources/age-benchmark/generate.mjs)\n\nThe data, source and methodology are free to reuse under CC0. The existing eight hand-picked regression cases remain below for quick manual testing. [Try your dates in the age calculator](/age-calculator)."
+      },
+      {
+        "id": "benchmark-methodology",
+        "title": "Methodology, coverage and limits",
+        "content": "We enumerated every valid Gregorian birth date from 1980-01-01 through 1999-12-31: 7,305 dates. For each, we selected the 1st, 18th, 25th and 60th anniversary and sampled the day before, the anniversary itself and the day after. That produces 7,305 × 4 × 3 = 87,660 rows. Some target dates are in the future; this is a constructed test dataset, not a survey or collection of personal birth dates.\n\nReference completed age is the chosen anniversary age minus one on the day before, and the anniversary age on the other two dates. February 29 anniversaries clamp to February 28 in non-leap years. Calendar-day differences use UTC date boundaries and exclude the starting day. Each formula is evaluated with floor rounding. We separately checked every reference result and total-day count against Zubware’s calendarAge function; that agreement verifies consistency with the stated convention, not universal or legal correctness.\n\nThe birth range spans several leap cycles but does not cover all historical calendars or the 2100 century exception. Ages and offsets were selected for boundary coverage, not population representativeness. Different February 29 conventions can change some answers. No timestamps, time zones, real users, competitor rankings or third-party calculator outputs were measured. The [U.S. Naval Observatory’s calendar reference](https://aa.usno.navy.mil/faq/calendars) documents the Gregorian leap-year rule used here.\n\nTo reproduce: download generate.mjs, then run `node generate.mjs output-directory` with Node.js 18 or newer. It writes the full CSV and summary.json. No network or packages are required. The CSV SHA-256 is `82a400d4103d172d25a16994b0127dccd2ea25fe3a923fb3bc78a5fe8943629a`. This identifies the exact version of the data used for the counts."
+      },
+      {
+        "id": "benchmark-breakdown",
+        "title": "Results by anniversary and birthday offset",
+        "content": "Each row below covers all 7,305 birth dates. Offset −1 means the day before the selected anniversary; 0 means the anniversary; +1 means the next day.\n\n| Anniversary age | Offset in days | Cases | / 365 mismatches | / 365.25 mismatches |\n|---:|---:|---:|---:|---:|\n| 1 | -1 | 7,305 | 1,825 | 0 |\n| 1 | +0 | 7,305 | 0 | 5,480 |\n| 1 | +1 | 7,305 | 0 | 0 |\n| 18 | -1 | 7,305 | 7,305 | 0 |\n| 18 | +0 | 7,305 | 0 | 3,655 |\n| 18 | +1 | 7,305 | 0 | 0 |\n| 25 | -1 | 7,305 | 7,305 | 0 |\n| 25 | +0 | 7,305 | 0 | 5,480 |\n| 25 | +1 | 7,305 | 0 | 0 |\n| 60 | -1 | 7,305 | 7,305 | 0 |\n| 60 | +0 | 7,305 | 0 | 0 |\n| 60 | +1 | 7,305 | 0 | 0 |\n\nA concrete example: 1980-01-01 to 1997-12-31 is one day before the 18th birthday. The completed age is 17, but 6,574 / 365 rounded down gives 18. On 1981-01-01, the same birth date has reached age 1, while 366 / 365.25 rounded down gives 1. A non-leap first year illustrates the other shortcut: 1981-01-01 to 1982-01-01 is age 1, but 365 / 365.25 rounded down gives 0. Averaging a year’s length cannot reliably identify an exact birthday boundary."
+      },
       {
         "id": "meaning",
         "title": "Decide what “age” means before comparing answers",
@@ -150,7 +168,7 @@ export const REFERENCE_BLOG_ARTICLES: BlogArticle[] = [
       {
         "id": "reference",
         "title": "Reuse the data with its assumptions",
-        "content": "The accompanying CSV is original Zubware test data released under CC0. You can copy, adapt or redistribute the cases for tutorials or testing. Attribution is welcome, but not a condition of using the data. Keep the clamped-anniversary and exclusive-start-day assumptions with the values so readers know what they demonstrate.\n\nSuggested citation: “Zubware, Age Calculator: Leap-Year and Month-End Test Cases, published 20 October 2026.” Link to this article when explaining the method, and to the CSV when readers need machine-readable rows. If you find a mismatch, include the two dates, the expected convention and the observed result in a [report](/contact)."
+        "content": "The accompanying CSV is original Zubware test data released under CC0. You can copy, adapt or redistribute the cases for tutorials or testing. Attribution is welcome, but not a condition of using the data. Keep the clamped-anniversary and exclusive-start-day assumptions with the values so readers know what they demonstrate.\n\nSuggested citation: “Zubware, Age Calculator: Leap-Year and Month-End Test Cases, published 20 October 2026.” Link to this article when explaining the method, and to the CSV when readers need machine-readable rows. If you find a mismatch, include the two dates, the expected convention and the observed result in a [report](/contact).\n\nFor the expanded benchmark, suggested citation: “Zubware (19 November 2026), Age Calculator Benchmark: 87,660 Birthday-Boundary Tests, version 1.” Link to this page so readers can inspect the sample, assumptions and reproducible source. Attribution is welcome, never required by the CC0 release. Please describe the results as synthetic boundary tests and retain the limitations rather than presenting them as a real-world calculator error rate."
       }
     ],
     "relatedToolIds": [

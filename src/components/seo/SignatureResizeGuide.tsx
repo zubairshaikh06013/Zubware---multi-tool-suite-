@@ -6,7 +6,7 @@ export function SignatureResizeGuide() {
     <h2 className="text-xl sm:text-2xl font-bold">Resize a signature to 10 KB–20 KB for an online form</h2>
     <p>Start with your form's instructions: the required width and height in pixels, accepted file format, and minimum and maximum file size. These are separate requirements. A file can have the right dimensions but still be too large or too small in KB. Zubware lets you resize the image and check the exported file before submitting it.</p>
 
-    <h3 className="font-bold">What is the pixel size of a 10 KB–20 KB signature?</h3>
+    <h3 className="font-bold">What width and height in pixels make a 10 KB to 20 KB signature?</h3>
     <p>There is no fixed conversion from KB to pixels. Pixels describe the image's width and height; KB measures the encoded file's bytes. Format, compression quality, paper texture and the amount of detail all affect the file size. Two signatures with identical dimensions can have different KB sizes.</p>
     <p>For example, 140 × 60 pixels describes 8,400 pixels, not a guaranteed 10 KB or 20 KB file. Use those dimensions only if your own form requests them. Do not assume that one size applies to every SSC, UPSC, banking, railway or state application.</p>
 

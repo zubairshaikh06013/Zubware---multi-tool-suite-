@@ -2084,8 +2084,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
         "desc": "The engine tests the password against PDF encryption dictionaries and confirms authorization."
       },
       {
-        "title": "Strip Encryption Dictionaries",
-        "desc": "Click Unlock PDF to remove security handlers, permission locks, and cipher tags in client memory."
+        "title": "Unlock and Inspect the Copy",
+        "desc": "Click Unlock PDF to create an unprotected copy. Some documents are rebuilt as page images; inspect the output before using it."
       },
       {
         "title": "Download Unrestricted PDF",
@@ -2093,6 +2093,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+      {"question": "Can I unlock multiple PDF files with a known password?", "answer": "You can process multiple documents one at a time. This tool accepts one PDF per operation and does not offer batch unlocking or a ZIP export. Select a PDF, enter its known opening password when required, unlock it and save the result. Then select the next file and repeat, using that document’s password."},
+
       {
         "question": "Can Zubware Unlock PDF unlock a file without knowing the password?",
         "answer": "No. This tool is designed for authorized document owners to eliminate repetitive password prompts on their own files. If a document requires an open password, you must enter that valid password once so our engine can decrypt the byte stream."
@@ -2103,7 +2105,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Will unlocking affect the document formatting, fonts, or image quality?",
-        "answer": "No. Decryption restores the native content streams losslessly, keeping all pages, text typography, vectors, and embedded images identical to the original."
+        "answer": "Not always. The tool first tries copying pages; if that fails or the PDF needs an opening password, it renders pages as images in a new PDF. This can change image quality and remove searchable text, links and interactive form fields. Keep the original and inspect the downloaded copy."
       },
       {
         "question": "Can this tool remove owner permission restrictions (e.g., printing or copying locks)?",
@@ -2135,7 +2137,7 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       },
       {
         "question": "Does unlocking a PDF change its digital signatures?",
-        "answer": "If a PDF contained a cryptographic PKI certificate stamp, stripping the encryption container will invalidate the original cryptographic hash. Visual signature overlays remain completely intact."
+        "answer": "The exported copy does not preserve the original cryptographic digital signature. A visible signature may still appear on a rendered page, but that is not a valid certificate signature. Keep the signed original."
       }
     ]
   },
@@ -2337,6 +2339,8 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+      {"question": "How to check my ATS score for free?", "answer": "Open Zubware ATS Resume Checker, upload a PDF, TXT or Markdown resume or paste its text, then enter the target job title and job description. Select Scan ATS Match Compatibility to see the score and missing keywords. The scan needs no account or payment. It is a local, tool-specific text comparison, not an employer’s ATS score or an interview guarantee."},
+
       {
         "question": "What is an ATS resume checker?",
         "answer": "An ATS (Applicant Tracking System) resume checker is a diagnostic tool that scans your resume against a specific job posting. It evaluates keyword overlap, technical skills, core competencies, contact details, and text formatting to help you review the wording of your resume. It does not reproduce an employer’s ATS or predict how your application will rank."
@@ -6070,6 +6074,10 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+      {"question": "What does age as on 1st January of the current year mean?", "answer": "It means your age on January 1 of the stated year, not your age today. Enter your full date of birth and set Age at Date to January 1 of that year. For example, someone born on May 13, 1997 is 28 years, 7 months and 19 days old on January 1, 2026. If a form asks for completed years, enter 28."},
+      {"question": "How old are you if born in 2007?", "answer": "Someone born in 2007 turns 19 during 2026: they are 18 before their birthday and 19 on or after it. For another reference year, subtract 2007 and subtract one more if the birthday has not occurred yet. Enter the full date of birth for months and days."},
+      {"question": "What is your cumulative age?", "answer": "Cumulative age can mean different things depending on the form or question. For one person it may refer to total age since birth; this calculator shows calendar age and total elapsed days. For a group it may mean the sum of individual ages, which this single-person calculator does not calculate. Check which meaning is requested."},
+
       { "question": "Can I compare age on different dates for the same date of birth?", "answer": "Yes. Enter your DOB once, then enter up to three dates under Compare age on three dates. The table shows calendar age and completed years for each valid date. Copy Age Card includes valid comparison rows. Dates before birth are flagged." },
       { "question": "Do I round up months when a form asks for completed years?", "answer": "No. An age of 28 years and 11 months is 28 completed years. On the 29th birthday it becomes 29 completed years. Use the reference date and rules specified by the form." },
 {
@@ -8098,6 +8106,9 @@ export const TOOL_SEO_DATA: Record<string, ToolSeoData> = {
       }
     ],
     "faq": [
+      {"question": "What width and height in pixels make a 10 KB to 20 KB signature?", "answer": "There is no fixed KB-to-pixel conversion. Use the width and height requested by your form, then choose the Signature between 10KB and 20KB preset and check the measured output. Format, image detail and JPG quality affect bytes independently of pixel dimensions."},
+      {"question": "What if the signature size should be between 10 KB and 20 KB?", "answer": "Both limits apply: a 7 KB file is too small even though it is under 20 KB. Choose the 10–20 KB range preset rather than a maximum-only shortcut. Keep the required dimensions and format, inspect the range status and check legibility before downloading. If the result remains too small, try a clearer, more detailed original; the tool does not add artificial padding."},
+
       {
         "question": "सिग्नेचर resize करने पर लिखावट खिंचने से कैसे बचाएँ?",
         "answer": "Keep signature shape चालू रखें। फाइल की चौड़ाई और ऊंचाई वही रहेगी जो आपने सेट की है, लेकिन लिखावट का अनुपात नहीं बदलेगा। जरूरत होने पर आसपास खाली जगह जुड़ती है। Auto Crop और preview देखकर जांचें कि पूरी लिखावट साफ दिखाई दे रही है।"

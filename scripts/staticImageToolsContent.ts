@@ -541,52 +541,8 @@ export function getStaticImageToolSectionHtml(toolId: string, DOMAIN: string): s
       </section>`;
 
     case 'handwriting-to-text':
-      return `
-      <section style="margin-bottom: 2rem; padding: 1.5rem; background-color: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0;">
-        <h2 style="font-size: 1.25rem; font-weight: 700; color: #0f172a; margin-bottom: 0.75rem;">
-          Handwriting to Text OCR: Convert Handwritten Notes to Digital Text Online
-        </h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-top: 1rem;">
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Digitize Notebooks &amp; Lecture Notes
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Convert handwritten student notebook pages, research scribbles, or whiteboard notes into editable, searchable digital text in seconds without manual retyping.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Interactive Canvas &amp; Photo Upload
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Upload camera photos of notebook pages, or switch to the interactive drawing canvas to write live using a stylus, Apple Pencil, or touchscreen.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Adaptive Ink Binarization
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Adaptive contrast thresholding darkens faint pencil/pen strokes while brightening paper backgrounds, eliminating shadows and lined paper margins.
-            </p>
-          </div>
-          <div style="background: #ffffff; padding: 1.25rem; border-radius: 0.75rem; border: 1px solid #e2e8f0;">
-            <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-top: 0; margin-bottom: 0.5rem;">
-              Client-Side Tesseract OCR Engine
-            </h3>
-            <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">
-              Runs LSTM neural network character recognition in WebAssembly with a built-in text editor, confidence score, and one-click TXT export.
-            </p>
-          </div>
-        </div>
-        <div style="margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #e2e8f0; font-size: 0.8rem; color: #64748b;">
-          <strong>Related Tools:</strong>
-          <a href="${DOMAIN}/image-to-text" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Image to Text OCR</a> •
-          <a href="${DOMAIN}/text-to-handwriting" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">Text to Handwriting</a> •
-          <a href="${DOMAIN}/pdf-to-text" style="color: #4f46e5; margin-left: 0.5rem; text-decoration: underline;">PDF to Text Converter</a>
-        </div>
-      </section>`;
+      // The shared SearchQuestionGuide now supplies this page's verified instructions.
+      return '';
 
     case 'image-to-text':
       return `

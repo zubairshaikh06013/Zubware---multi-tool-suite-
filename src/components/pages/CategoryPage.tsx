@@ -1,3 +1,4 @@
+import { ToolChoiceGuide } from '../seo/ToolChoiceGuide';
 import { BadgeCheck as CategoryBadgeCheck } from 'lucide-react';
 import { Lock as CategoryLock } from 'lucide-react';
 import { Zap as CategoryZap } from 'lucide-react';
@@ -171,10 +172,10 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
               <CategoryZap className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> {filteredTools.length} Active Utilities
             </span>
             <span className="px-3 py-1 rounded-full bg-white dark:bg-slate-800 text-emerald-600 dark:text-emerald-400 border border-emerald-200/60 dark:border-emerald-800/60">
-              <CategoryLock className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> In-Browser Execution
+              <CategoryLock className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> Check tool processing details
             </span>
             <span className="px-3 py-1 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
-              <CategoryBadgeCheck className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> 100% Free Forever
+              <CategoryBadgeCheck className="inline-block size-4 align-[-0.125em]" aria-hidden="true" /> Free to Use
             </span>
           </div>
         )}
@@ -210,6 +211,8 @@ export const CategoryPage: React.FC<CategoryPageProps> = ({
       </nav>
 
       {/* Authority Workflows (Subtopics) if available */}
+      <ToolChoiceGuide category={activeCategory} tools={allTools} />
+
       {authMeta?.workflows && authMeta.workflows.length > 0 && (
         <section className="glass-panel p-6 sm:p-8 rounded-3xl space-y-4">
           <div className="flex items-center justify-between border-b border-slate-200/60 dark:border-slate-800/60 pb-3">

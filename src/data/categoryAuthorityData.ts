@@ -25,11 +25,11 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     h1: 'Free Online PDF Tools & Document Utilities',
     seoTitle: 'PDF Tools - Merge, Split, Compress & Convert | Zubware',
     metaDescription: 'Browse free browser-based PDF utilities. Merge, split, compress, edit, convert, and sign PDF documents directly in your browser with local processing.',
-    leadParagraph: 'Zubware PDF Tools provide a fast, secure, client-side document processing suite. Whether optimizing heavy PDFs for email attachments, merging multi-part contracts, rearranging invoice pages, or signing NDAs, all operations run inside your browser using WebAssembly. Confidential business files and personal records never touch an external server.',
+    leadParagraph: 'Zubware PDF Tools provide a fast, secure, client-side document processing suite. Compress documents, combine files, extract pages or add a signature in your browser. Check each tool’s supported inputs, output format and limitations before processing important documents.',
     workflows: [
       {
         title: 'Document Compression & Size Optimization',
-        description: 'Shrink oversized PDFs to meet strict email, job portal, and government gateway upload thresholds while retaining crisp vector text.',
+        description: 'Try reducing a PDF for email or an upload limit. Check the exported size and page clarity; image-based compression can rasterize text.',
         toolIds: ['pdf-compressor', 'decrease-pdf-size', 'pdf-size-adjuster']
       },
       {
@@ -55,11 +55,11 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       },
       {
         question: 'How do I compress a PDF without making the text blurry?',
-        answer: 'True PDF compression downsamples embedded raster images (e.g., from 300 DPI to 150 DPI) while preserving vector typography and glyph outlines. Our PDF compressor maintains crisp text rendering across any zoom level.'
+        answer: 'Start with the least aggressive settings and compare the exported PDF with the original. Object-stream optimization can preserve text, but the image-based fallback can rasterize pages. Check readability and whether text selection still works.'
       },
       {
         question: 'Are there any page limits or watermarks applied to exported files?',
-        answer: 'No. Zubware does not impose file size limits, page caps, or mandatory watermark overlays on your processed documents.'
+        answer: 'Limits vary by tool, browser and available memory. Check the selected tool’s instructions and test the exported file before relying on it.'
       }
     ]
   },
@@ -73,12 +73,12 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     workflows: [
       {
         title: 'Lossless & High-Efficiency Compression',
-        description: 'Reduce visual payload sizes by up to 80% to boost Google Core Web Vitals and accelerate web page load speeds.',
+        description: 'Adjust image size and quality, then compare the exported file size with the original. Savings depend on the input image and settings.',
         toolIds: ['image-compressor', 'image-splitter-merger', 'svg-optimizer']
       },
       {
         title: 'Modern Format Conversion',
-        description: 'Seamlessly interchange between WebP, PNG, JPEG, SVG, and iPhone HEIC formats without loss of color fidelity.',
+        description: 'Choose a converter for your input and required output format. SVG input does not imply SVG output; JPEG compression can change image detail.',
         toolIds: ['image-converter', 'heic-to-jpg', 'batch-image-converter', 'svg-optimizer']
       },
       {
@@ -88,7 +88,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
       },
       {
         title: 'Backgrounds & Creative Enhancements',
-        description: 'Isolate subjects with client-side AI, replace background colors, apply blur/pixelate privacy filters, and watermark media.',
+        description: 'Remove backgrounds using local modes or optional Cloudflare AI after consent. Inspect the edges before using the result.',
         toolIds: ['background-remover', 'background-color-changer', 'blur-image', 'pixelate-image', 'image-watermark']
       }
     ],
@@ -109,7 +109,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     h1: 'Creator & Social Media Optimization Tools',
     seoTitle: 'Creator Tools - YouTube & Social Media | Zubware',
     metaDescription: 'Discover free tools for content creators, YouTubers, and social marketers. Character counters, bio generators, tag optimizers, and banner safe-area guides.',
-    leadParagraph: 'Streamline your social distribution workflows across YouTube, TikTok, Instagram, X (Twitter), and LinkedIn. From character limit verifications to thumbnail feed previews and bio builders, Zubware creator utilities ensure every post achieves maximum engagement.',
+    leadParagraph: 'Streamline your social distribution workflows across YouTube, TikTok, Instagram, X (Twitter), and LinkedIn. From character limit verifications to thumbnail feed previews and bio builders, Zubware creator utilities help prepare and preview posts. Audience response and reach vary.',
     workflows: [
       {
         title: 'Audience Copy & Character Verification',
@@ -182,7 +182,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     h1: 'Free Business Invoicing & Commerce Tools',
     seoTitle: 'Business Tools - GST Invoices, Receipts & Cards | Zubware',
     metaDescription: 'Explore free business tools. Generate GST invoices, printable receipts, and professional business cards with local browser privacy.',
-    leadParagraph: 'Empower your small business, freelance practice, or consulting firm with instant administrative tools. Generate tax-compliant invoices, export printable PDF receipts, and configure branded business cards with zero monthly SaaS fees.',
+    leadParagraph: 'Empower your small business, freelance practice, or consulting firm with instant administrative tools. Prepare invoice PDFs, printable receipts and business cards. Review required fields and applicable tax rules before issuing an invoice; these tools do not certify compliance.',
     workflows: [
       {
         title: 'Invoicing & Tax Calculations',
@@ -260,7 +260,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     faqs: [
       {
         question: 'How does an ATS resume checker evaluate my resume?',
-        answer: 'Our ATS checker inspects heading taxonomy, keyword frequency, measurable achievement bullet points, and formatting simplicity to ensure recruiters and scanning bots parse your credentials accurately.'
+        answer: 'Our ATS checker inspects headings, keyword matches and formatting signals. Its local heuristic score is not an employer ATS score, a parsing guarantee or a hiring prediction.'
       }
     ]
   },
@@ -340,7 +340,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     workflows: [
       {
         title: 'Large Language Model Prompt Structuring',
-        description: 'Apply role-task-context-constraint prompting architectures to eliminate hallucinations and achieve accurate LLM replies.',
+        description: 'Define a role, task, context and constraints to clarify the request. Independently verify generated facts; structured prompts cannot eliminate errors.',
         toolIds: ['chatgpt-prompt-builder', 'gemini-prompt-builder', 'claude-prompt-builder']
       },
       {
@@ -373,7 +373,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     faqs: [
       {
         question: 'What equations do Zubware health calculators use?',
-        answer: 'Our calculators employ validated clinical standards such as the Mifflin-St Jeor and Harris-Benedict formulas to compute metabolic baselines.'
+        answer: 'Check the equation and assumptions shown in the individual calculator. Calorie and fitness outputs are estimates and do not establish an individual diagnosis or treatment plan.'
       }
     ]
   },
@@ -383,7 +383,7 @@ export const CATEGORY_AUTHORITY_MAP: Record<string, CategoryAuthorityItem> = {
     h1: 'Generators, QR Codes & Daily Productivity Tools',
     seoTitle: 'Generators - QR Codes, Barcodes & Passwords | Zubware',
     metaDescription: 'Explore generator utilities. Create QR codes, barcodes, random passwords, secure notes, and track daily habits in your browser.',
-    leadParagraph: 'Equip your everyday routine with dependable offline utilities. Generate customized QR codes for WiFi and URLs, design EAN/UPC barcodes, create unbreakable cryptographic passwords, and organize tasks with zero external logins.',
+    leadParagraph: 'Equip your everyday routine with dependable offline utilities. Generate customized QR codes for WiFi and URLs, design EAN/UPC barcodes, create randomized passwords, and organize tasks with zero external logins.',
     workflows: [
       {
         title: 'Codes & Quick Scanners',

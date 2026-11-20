@@ -1,3 +1,4 @@
+import { ToolChoiceGuide } from '../src/components/seo/ToolChoiceGuide';
 import { SearchQuestionGuide } from '../src/components/seo/SearchQuestionGuide';
 import { ToolIcon } from '../src/components/common/ToolIcon';
 import { TaskToolLinks } from '../src/components/TaskToolLinks';
@@ -1569,13 +1570,15 @@ function renderCategoryHubPageContent(cat: CategoryItem, catTools: ToolMeta[]): 
             ⚡ ${catTools.length} Active Tools
           </span>
           <span style="background: #ffffff; padding: 0.4rem 0.85rem; border-radius: 9999px; border: 1px solid #c7d2fe; color: #4338ca;">
-            🔒 Local In-Browser Privacy
+            Processing details on each tool
           </span>
           <span style="background: #ffffff; padding: 0.4rem 0.85rem; border-radius: 9999px; border: 1px solid #c7d2fe; color: #4338ca;">
             🆓 Free to Use • Zero Install
           </span>
         </div>
       </header>
+
+      ${renderToStaticMarkup(createElement(ToolChoiceGuide, { category: cat.slug, tools: TOOLS_DATA }))}
 
       <!-- Key Workflows -->
       ${auth.workflows && auth.workflows.length > 0 ? `

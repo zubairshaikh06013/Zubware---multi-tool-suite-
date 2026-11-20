@@ -208,49 +208,28 @@ export function getRelatedTools(tool: ToolMeta, allTools: ToolMeta[], maxCount: 
  * Returns matching cornerstone blog articles for a tool.
  */
 export function getMatchingGuidesForTool<T extends Pick<BlogArticle, 'slug' | 'title' | 'category' | 'tags' | 'relatedToolIds'>>(tool: ToolMeta, articles: T[], maxCount: number = 2): T[] {
-  const toolCat = tool.category.toLowerCase().replace(/^[^\w]+/, '').trim();
-  const toolWords = tool.title.toLowerCase().split(/\s+/).filter(w => w.length > 3);
-
-  // 1. Articles that explicitly reference this tool, sorted by topical relevance
-  const explicit = articles
-    .filter((a) => a.relatedToolIds && a.relatedToolIds.includes(tool.id))
-    .sort((a, b) => {
-      let scoreA = 0;
-      let scoreB = 0;
-      if (a.category.toLowerCase().includes(toolCat)) scoreA += 5;
-      if (b.category.toLowerCase().includes(toolCat)) scoreB += 5;
-      for (const w of toolWords) {
-        if (a.title.toLowerCase().includes(w)) scoreA += 2;
-        if (b.title.toLowerCase().includes(w)) scoreB += 2;
-      }
-      return scoreB - scoreA;
-    });
-
-  if (explicit.length >= maxCount) return explicit.slice(0, maxCount);
-
-  const matched = [...explicit];
-  const seenSlugs = new Set(explicit.map((a) => a.slug));
-
-  // 2. Articles matching category keyword
-  const genericCategories = new Set(['tools', 'tool', 'utility', 'utilities', 'design', 'calculators', 'calculator']);
-  const toolCatWords = tool.category.toLowerCase().replace(/^[^\w]+/, '').trim().split(/\s+/)
-    .filter(word => !genericCategories.has(word));
-  for (const a of articles) {
-    if (seenSlugs.has(a.slug)) continue;
-    const artCat = a.category.toLowerCase();
-    const artTitle = a.title.toLowerCase();
-    const artTags = (a.tags || []).map((t) => t.toLowerCase());
-
-    const isMatch = toolCatWords.some(
-      (word) => word.length > 2 && (artCat.includes(word) || artTitle.includes(word) || artTags.some((t) => t.includes(word)))
-    );
-
-    if (isMatch) {
-      matched.push(a);
-      seenSlugs.add(a.slug);
-      if (matched.length >= maxCount) break;
+  if (maxCount <= 0) return [];
+  const genericWords = new Set(['free', 'online', 'tool', 'tools', 'calculator', 'converter', 'generator', 'maker', 'builder', 'guide', 'best', 'with', 'from', 'your', 'and', 'the', 'for']);
+  const words = (value: string) => value.toLowerCase().split(/[^a-z0-9]+/)
+    .filter(word => word.length > 2 && !genericWords.has(word));
+  const concepts = new Set(words(`${tool.id} ${tool.navTitle || tool.title}`));
+  const ranked = articles.map((article, index) => {
+    const explicit = article.relatedToolIds?.includes(tool.id) || false;
+    const titleWords = new Set(words(article.title));
+    const tagWords = new Set(words((article.tags || []).join(' ')));
+    let relevance = 0;
+    for (const word of concepts) {
+      if (titleWords.has(word)) relevance += 3;
+      if (tagWords.has(word)) relevance += 1;
     }
-  }
-
-  return matched.slice(0, maxCount);
+    // A broad shared category alone does not make a guide useful for this task.
+    return { article, index, score: (explicit ? 1000 : 0) + relevance };
+  }).filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.index - b.index);
+  const seen = new Set<string>();
+  return ranked.filter(({ article }) => {
+    if (seen.has(article.slug)) return false;
+    seen.add(article.slug);
+    return true;
+  }).slice(0, maxCount).map(item => item.article);
 }

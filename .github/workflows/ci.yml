@@ -50,6 +50,7 @@ jobs:
           npm run test:cgpa
           npm run test:indexnow
           node --import tsx scripts/testSeoRegressions.ts
+          node --import tsx scripts/testToolChoices.ts
           node --import tsx scripts/testToolReliability.ts
           node --import tsx scripts/testYouTubeTitleSuggestions.ts
           node --import tsx scripts/testBackgroundRemovalConfig.ts
